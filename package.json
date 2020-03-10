@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "description": "--- __Advertisement :)__",
   "main": "app.js",
-  "dependencies": {},
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "pug": "^2.0.4"
+  },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

@@ -5,7 +5,7 @@ const app = express()
 const register = require('./routes/register-server')
 const index = require('./routes/index-server')
 //var port = process.env.PORT || 8080
-var port = 8080
+var port = 8081
 app.use(cors())
 app.use(express.json())
 
