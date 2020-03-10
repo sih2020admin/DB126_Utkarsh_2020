@@ -1,0 +1,21 @@
+{
+  "name": "v-victory",
+  "version": "1.0.0",
+  "description": "--- __Advertisement :)__",
+  "main": "app.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vraj72/V-victory.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vraj72/V-victory/issues"
+  },
+  "homepage": "https://github.com/vraj72/V-victory#readme"
+}
