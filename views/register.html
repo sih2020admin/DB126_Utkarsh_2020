@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html> <!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="UTF-8">
+      <link rel="stylesheet" href="css/navigation-bar.css">
+    </head>
+    <body>
+      <div class="body__content">
+        <header class="header__container">
+          <nav class="nav__items">
+            <ul>
+              <li><a href="http://localhost:8080/">Home</a></li>
+              <li><a>Contact Us</a></li>
+              <li><a>FAQ</a></li>
+              <li><a>About Us</a></li>
+            </ul>
+          </nav>
+          <button id="login__button">Login</button>
+          <button id="register__button">Register</button>
+        </header>
+      </div>
+    </body>
+  </html>
+  <div class="body__content">
+    <div class="company_details">
+      <label for="email_id">Email Address</label>
+      <input id="email_id" type="email">
+      <label for="correspondence_email_id">Correspondence Email Address</label>
+      <input id="correspondence_email_id" type="email">
+      <label for="mobile_number">Mobile Number</label>
+      <input id="mobile_number" type="number">
+      <label for="company_name">Company Name</label>
+      <input id="company_name" type="text">
+      <label for="registration_number">Registration Number</label>
+      <input id="registration_number" type="text">
+      <label for="company_address">Company Address</label>
+      <textarea id="company_address" name="" cols="30" rows="10"></textarea>
+      <label for="city">City</label>
+      <input id="city" type="text">
+      <label for="establishment_year">Establishment Year</label>
+      <input id="establishment_year" type="text">
+      <label for="legal_status">Legal Status</label>
+      <input id="legal_status" type="text">
+    </div>
+    <div class="contact__details">
+      <label for="title">Title</label>
+      <select id="title">
+        <option value="select" selected>--Select--</option>
+        <option value="Mrs">Mrs</option>
+        <option value="Mr"> Mr</option>
+        <option value="Ms"> Ms</option>
+        <option value="Dr"> Dr</option>
+        <option value="Sri">Sri</option>
+      </select>
+      <label for="contact_name">Contact Name</label>
+      <input id="contact_name" type="text ">
+      <label for="date_of_birth">Date Of Birth(DD/MM/YYYY)</label>
+      <input id="date_of_birth" type="date">
+      <label for="designation">Designation</label>
+      <input id="designation" type="text">
+      <label for="aadhaar_number">Aadhaar Number</label>
+      <input id="aadhaar_number" type="number">
+      <label for="gst_registration_number">Company Registration Number</label>
+      <input id="gst_registration_number" type="text">
+    </div>
+    <div class="submit_button">
+      <button id="submit_button">Submit</button>
+    </div>
+  </div>
+</html>
+<script src="javascript/register.js"></script>

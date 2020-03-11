@@ -1,8 +1,8 @@
-const express = require('express')
-const router = express.Router()
-
-router.get('/',(req,res)=>{
-    res.render('index')
-})
-
-module.exports = router
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var express = require('express');
+var router = express.Router();
+router.get('/', function (request, response) {
+    response.render("index");
+});
+module.exports = router;

@@ -1,24 +1,4 @@
-*{
-    box-sizing: border-box;
-    margin: 0;
-    font-family: 'Montserrat';
-}
-a{
-    text-decoration: none;
-    color: #663EFD;
-    font-size: 20px;
-    margin: 1.2rem;
-}
-a:hover{
-    color: rgba(103, 62, 253, 0.24);
-}
-a:nth-child(3)
-{
-    margin-left: 73rem;
-}
-nav{
-    padding: 2rem;
-}
+
 .cont{
     background-color: #663EFD;
     width: 1450px;
@@ -29,7 +9,7 @@ nav{
     margin-right: 3rem576;
 }
 p{
-    color: #000000;
+    color: #ffffff;
 }
 .heading{
     font-size: 1.5rem;
