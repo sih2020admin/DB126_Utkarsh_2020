@@ -5,11 +5,8 @@ const express = require('express')
 const router:Router = express.Router()
 const connection:Connection = require('./db')
 
-router.get('/',(request:Request,response:Response)=>{
-    response.render('register')
-})
-
 router.post('/register-data',(request:Request,response:Response)=>{
+    console.log("hello")
     var duplicate:string = ""
     var check_company: number= 1
     var check_contact:number = 1
@@ -30,14 +27,18 @@ router.post('/register-data',(request:Request,response:Response)=>{
     var designation:string = contact_details.designation
     var aadhaar_number:string = contact_details.aadhaar_number
     var gst_register_number:string = contact_details.gst_register_number
+    console.log("hello1")
+    console.log(company_details)
     /* check_company = check_company_details(email_id,correspondence_email_id,mobile_number,company_name,registration_number,company_address,city,establishment_year,legal_status)
     check_contact = check_contact_details(title,contact_name,date_of_birth,designation,aadhaar_number,gst_register_number) */
     if (check_contact == 1 && check_company == 1) {
         connection.query("insert into user values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",[email_id,correspondence_email_id,mobile_number,company_name,registration_number,company_address,city,establishment_year,legal_status,title,contact_name,date_of_birth,designation,aadhaar_number,gst_register_number],(error,result)=>{
             if (error){
+                console.log(error)
                 if (error.code == "ER_DUP_ENTRY"){
                     console.log("duplicate entry")
                     duplicate = error.message
+                    console.log("hello2")
                     var user_duplicate_message:string = duplicate.substring(duplicate.indexOf("key")+5,duplicate.length-1)
                     if(user_duplicate_message == "PRIMARY"){
                         response.send("Email address is already registered with us")
@@ -50,7 +51,8 @@ router.post('/register-data',(request:Request,response:Response)=>{
             }
             else{
                 console.log(result)
-                response.send("Successfully registered")   
+                
+                response.status(200).send({"message":"Successfully registered"})   
             }
         })
     }

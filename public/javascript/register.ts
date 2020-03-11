@@ -16,8 +16,8 @@ document.getElementById("submit_button")?.addEventListener('click',() => {
     var date_of_birth = (<HTMLInputElement>document.getElementById("date_of_birth"))?.value;
     var designation = (<HTMLInputElement>document.getElementById("designation"))?.value;
     var aadhaar_number = (<HTMLInputElement>document.getElementById("aadhaar_number"))?.value;
-    var gst_registration_number = (<HTMLInputElement>document.getElementById("gst_registration_numbe"))?.value;
-    var url:string = "http://localhost:8081/register-data";
+    var gst_registration_number = (<HTMLInputElement>document.getElementById("gst_registration_number"))?.value;
+    var url:string = "http://localhost:8081/register/register-data";
     xhr.open('POST', url, true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onload = function () {
@@ -37,6 +37,23 @@ document.getElementById("submit_button")?.addEventListener('click',() => {
         alert("Check your network or try again later")
     }
 
+    xhr.send(JSON.stringify({
+        email_id:email_id,
+        correspondence_email_id:correspondence_email_id,
+        mobile_number:mobile_number,
+        company_name:company_name,
+        registration_number :registration_number,
+        company_address:company_address,
+        city:city,
+        establishment_year:establishment_year, 
+        legal_status:legal_status,
+        title:title,
+        contact_name:contact_name,
+        date_of_birth:date_of_birth,
+        designation:designation,
+        aadhaar_number:aadhaar_number,
+        gst_registration_number:gst_registration_number
 
+    }))
     console.log(title)
 })

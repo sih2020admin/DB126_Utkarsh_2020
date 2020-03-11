@@ -18,8 +18,8 @@ var message;
     var date_of_birth = (_m = document.getElementById("date_of_birth")) === null || _m === void 0 ? void 0 : _m.value;
     var designation = (_o = document.getElementById("designation")) === null || _o === void 0 ? void 0 : _o.value;
     var aadhaar_number = (_p = document.getElementById("aadhaar_number")) === null || _p === void 0 ? void 0 : _p.value;
-    var gst_registration_number = (_q = document.getElementById("gst_registration_numbe")) === null || _q === void 0 ? void 0 : _q.value;
-    var url = "http://localhost:8081/register-data";
+    var gst_registration_number = (_q = document.getElementById("gst_registration_number")) === null || _q === void 0 ? void 0 : _q.value;
+    var url = "http://localhost:8081/register/register-data";
     xhr.open('POST', url, true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onload = function () {
@@ -38,5 +38,22 @@ var message;
     xhr.onerror = function () {
         alert("Check your network or try again later");
     };
+    xhr.send(JSON.stringify({
+        email_id: email_id,
+        correspondence_email_id: correspondence_email_id,
+        mobile_number: mobile_number,
+        company_name: company_name,
+        registration_number: registration_number,
+        company_address: company_address,
+        city: city,
+        establishment_year: establishment_year,
+        legal_status: legal_status,
+        title: title,
+        contact_name: contact_name,
+        date_of_birth: date_of_birth,
+        designation: designation,
+        aadhaar_number: aadhaar_number,
+        gst_registration_number: gst_registration_number
+    }));
     console.log(title);
 });

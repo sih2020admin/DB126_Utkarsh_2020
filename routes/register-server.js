@@ -3,10 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var express = require('express');
 var router = express.Router();
 var connection = require('./db');
-router.get('/', function (request, response) {
-    response.render('register');
-});
 router.post('/register-data', function (request, response) {
+    console.log("hello");
     var duplicate = "";
     var check_company = 1;
     var check_contact = 1;
@@ -27,14 +25,18 @@ router.post('/register-data', function (request, response) {
     var designation = contact_details.designation;
     var aadhaar_number = contact_details.aadhaar_number;
     var gst_register_number = contact_details.gst_register_number;
+    console.log("hello1");
+    console.log(company_details);
     /* check_company = check_company_details(email_id,correspondence_email_id,mobile_number,company_name,registration_number,company_address,city,establishment_year,legal_status)
     check_contact = check_contact_details(title,contact_name,date_of_birth,designation,aadhaar_number,gst_register_number) */
     if (check_contact == 1 && check_company == 1) {
         connection.query("insert into user values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", [email_id, correspondence_email_id, mobile_number, company_name, registration_number, company_address, city, establishment_year, legal_status, title, contact_name, date_of_birth, designation, aadhaar_number, gst_register_number], function (error, result) {
             if (error) {
+                console.log(error);
                 if (error.code == "ER_DUP_ENTRY") {
                     console.log("duplicate entry");
                     duplicate = error.message;
+                    console.log("hello2");
                     var user_duplicate_message = duplicate.substring(duplicate.indexOf("key") + 5, duplicate.length - 1);
                     if (user_duplicate_message == "PRIMARY") {
                         response.send("Email address is already registered with us");
@@ -47,7 +49,7 @@ router.post('/register-data', function (request, response) {
             }
             else {
                 console.log(result);
-                response.send("Successfully registered");
+                response.status(200).send({ "message": "Successfully registered" });
             }
         });
     }
