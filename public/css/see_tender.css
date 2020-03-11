@@ -1,0 +1,145 @@
+@import url("https://fonts.googleapis.com/css?family=Esteban&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Montserrat:500&display=swap");
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  padding: 0;
+  border: none;
+}
+
+header {
+  height: 60px;
+  -webkit-box-shadow: 3px 4px 6px -6px rgba(103, 62, 253, 0.507);
+          box-shadow: 3px 4px 6px -6px rgba(103, 62, 253, 0.507);
+  border: black;
+}
+
+a {
+  text-decoration: none;
+  color: #663EFD;
+  font-size: 20px;
+  margin-left: 60px;
+}
+
+a:hover {
+  color: rgba(103, 62, 253, 0.24);
+}
+
+nav {
+  margin-left: -30px;
+  padding: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.container {
+  width: 100%;
+  height: auto;
+  margin-top: 30px;
+  background: #ffffff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -ms-flex-flow: wrap;
+      flex-flow: wrap;
+}
+
+.cont {
+  background-color: white;
+  width: 1600px;
+  height: auto;
+  padding: 20px;
+  margin: 40px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  -webkit-box-shadow: 3px 4px 6px -6px rgba(103, 62, 253, 0.507), -3px -4px 6px -6px rgba(103, 62, 253, 0.507);
+          box-shadow: 3px 4px 6px -6px rgba(103, 62, 253, 0.507), -3px -4px 6px -6px rgba(103, 62, 253, 0.507);
+  white-space: wrap;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+}
+
+.cont:hover {
+  -webkit-transform: scale(1.01);
+          transform: scale(1.01);
+}
+
+p {
+  color: #663EFD;
+}
+
+.heading {
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.Tdetails p {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+.OdateLabel {
+  margin-left: 90px;
+}
+
+.BdateLabel {
+  margin-left: 90px;
+}
+
+.para {
+  margin-top: 1px;
+  max-width: 1600px;
+  min-width: 600px;
+}
+
+.apply {
+  background-color: #663EFD;
+  color: #ffffff;
+  font-size: 1rem;
+  border-radius: 3px;
+  border: none;
+  height: 30px;
+  width: 100px;
+  margin-top: 1px;
+  -webkit-transition: 3sec;
+  transition: 3sec;
+}
+
+.apply:hover {
+  background-color: #ffffff;
+  color: #663EFD;
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+@media only screen and (max-width: 680px) {
+  .cont {
+    width: 800px;
+    white-space: wrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+  .Tdetails p {
+    display: block;
+  }
+  .OdateLabel {
+    margin-left: auto;
+  }
+  .BdateLabel {
+    margin-left: auto;
+  }
+}
+/*# sourceMappingURL=see_tender.css.map */
