@@ -4,17 +4,15 @@ var express = require('express');
 var cors = require('cors');
 var path = require('path');
 var app = express();
-var register = require('./routes/register-server');
-var index = require('./routes/index-server');
 
+var verify = require('./routes/verify');
 //var port = process.env.PORT || 8080
-var port = 8081;
+var port = 8082;
 app.use(cors());
 app.use(express.json());
 //app.use(express.urlencoded({extended:false}))
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'views')));
-app.use('/register', register);
+
+app.use('', verify);
 //app.use('/',index)
 app.listen(port, function () {
     console.log("Server started on port " + port);
