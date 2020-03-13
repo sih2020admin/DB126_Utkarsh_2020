@@ -6,7 +6,6 @@ var path = require('path');
 var app = express();
 var register = require('./routes/register-server');
 var index = require('./routes/index-server');
-
 //var port = process.env.PORT || 8080
 var port = 8081;
 app.use(cors());

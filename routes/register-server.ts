@@ -34,7 +34,7 @@ router.post('/register-data',(request:Request,response:Response)=>{
     if (check_contact == 1 && check_company == 1) {
         connection.query("insert into user values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",[email_id,correspondence_email_id,mobile_number,company_name,registration_number,company_address,city,establishment_year,legal_status,title,contact_name,date_of_birth,designation,aadhaar_number,gst_register_number],(error,result)=>{
             if (error){
-                console.log(error)
+                console.log(error,error.code,error.message)
                 if (error.code == "ER_DUP_ENTRY"){
                     console.log("duplicate entry")
                     duplicate = error.message
@@ -48,11 +48,17 @@ router.post('/register-data',(request:Request,response:Response)=>{
                         response.send(user_duplicate_message + " is already registered with us")
                     }
                 }
+                else if(error.code == "1366"){
+                    response.send("Some Mandatory fields are empty")
+                }
+                else{
+                    response.send("some error")
+                }
             }
             else{
                 console.log(result)
                 
-                response.status(200).send({"message":"Successfully registered"})   
+                response.status(200).send("Successfully registered")   
             }
         })
     }

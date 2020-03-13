@@ -22,11 +22,11 @@ document.getElementById("submit_button")?.addEventListener('click',() => {
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onload = function () {
         if (this.status == 200) {
-            message = JSON.parse(this.responseText);
+            message = this.responseText;
             alert(message)
         }
         else if (this.status == 400) { 
-            message = JSON.parse(this.responseText);
+            message = this.responseText;
             alert(message)
         }
         else {
@@ -38,22 +38,25 @@ document.getElementById("submit_button")?.addEventListener('click',() => {
     }
 
     xhr.send(JSON.stringify({
-        email_id:email_id,
-        correspondence_email_id:correspondence_email_id,
-        mobile_number:mobile_number,
-        company_name:company_name,
-        registration_number :registration_number,
-        company_address:company_address,
-        city:city,
-        establishment_year:establishment_year, 
-        legal_status:legal_status,
-        title:title,
-        contact_name:contact_name,
-        date_of_birth:date_of_birth,
-        designation:designation,
-        aadhaar_number:aadhaar_number,
-        gst_registration_number:gst_registration_number
+        company_details:{
+            email_id:email_id,
+            correspondence_email_id:correspondence_email_id,
+            mobile_number:mobile_number,
+            company_name:company_name,
+            registration_number :registration_number,
+            company_address:company_address,
+            city:city,
+            establishment_year:establishment_year, 
+            legal_status:legal_status
+        },
+        contact_details:{
+            title:title,
+            contact_name:contact_name,
+            date_of_birth:date_of_birth,
+            designation:designation,
+            aadhaar_number:aadhaar_number,
+            gst_register_number:gst_registration_number
+        }
 
     }))
-    console.log(title)
 })
