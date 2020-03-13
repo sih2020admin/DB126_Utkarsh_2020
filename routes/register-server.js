@@ -1,8 +1,11 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var express = require('express');
-var router = express.Router();
-var connection = require('./db');
+var express_1 = __importDefault(require("express"));
+var db_1 = __importDefault(require("./db"));
+var router = express_1.default.Router();
 router.post('/register-data', function (request, response) {
     console.log("hello");
     var duplicate = "";
@@ -30,7 +33,7 @@ router.post('/register-data', function (request, response) {
     /* check_company = check_company_details(email_id,correspondence_email_id,mobile_number,company_name,registration_number,company_address,city,establishment_year,legal_status)
     check_contact = check_contact_details(title,contact_name,date_of_birth,designation,aadhaar_number,gst_register_number) */
     if (check_contact == 1 && check_company == 1) {
-        connection.query("insert into user values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", [email_id, correspondence_email_id, mobile_number, company_name, registration_number, company_address, city, establishment_year, legal_status, title, contact_name, date_of_birth, designation, aadhaar_number, gst_register_number], function (error, result) {
+        db_1.default.query("insert into user values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", [email_id, correspondence_email_id, mobile_number, company_name, registration_number, company_address, city, establishment_year, legal_status, title, contact_name, date_of_birth, designation, aadhaar_number, gst_register_number], function (error, result) {
             if (error) {
                 console.log(error, error.code, error.message);
                 if (error.code == "ER_DUP_ENTRY") {
@@ -75,4 +78,4 @@ function check_contact_details(title,contact_name,date_of_birth,designation,aadh
     console.log(title)
     return 1
 } */
-module.exports = router;
+exports.default = router;

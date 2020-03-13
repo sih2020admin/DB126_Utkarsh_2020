@@ -4,6 +4,7 @@
   "description": "--- __Advertisement :)__",
   "main": "app.js",
   "dependencies": {
+    "@types/cors": "^2.8.6",
     "@types/express": "^4.17.3",
     "@types/mysql": "^2.15.9",
     "bcryptjs": "^2.4.3",

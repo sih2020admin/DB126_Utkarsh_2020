@@ -1,10 +1,9 @@
 import { Router,Request,Response } from "express"
 import { Connection } from "mysql"
+import express from "express"
+import connection from "./db"
 
-const express = require('express')
 const router:Router = express.Router()
-const connection:Connection = require('./db')
-
 router.post('/register-data',(request:Request,response:Response)=>{
     console.log("hello")
     var duplicate:string = ""
@@ -79,4 +78,4 @@ function check_contact_details(title,contact_name,date_of_birth,designation,aadh
     console.log(title)
     return 1
 } */
-module.exports = router
+export default router
