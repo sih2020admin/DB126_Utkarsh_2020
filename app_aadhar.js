@@ -5,7 +5,7 @@ var cors = require('cors');
 var path = require('path');
 var app = express();
 
-var verify = require('./routes/verify');
+var verify = require('./routes_aadhar/verify');
 //var port = process.env.PORT || 8080
 var port = 8082;
 app.use(cors());
