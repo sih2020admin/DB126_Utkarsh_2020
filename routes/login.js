@@ -9,8 +9,9 @@ var router = express_1.default.Router();
 
 
 
-router.post('/login', function (request, response) {
-    
+router.post('/login', function (request, res) {
+    console.log("login called"); 
+	res.sendStatus(200);
 });
 
 
