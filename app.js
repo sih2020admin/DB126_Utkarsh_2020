@@ -7,6 +7,8 @@ var express_1 = __importDefault(require("express"));
 var cors_1 = __importDefault(require("cors"));
 var path_1 = __importDefault(require("path"));
 var register_server_1 = __importDefault(require("./routes/register-server"));
+
+var login = require("./routes/login.js");
 var app = express_1.default();
 //var port = process.env.PORT || 8080
 var port = 8081;
@@ -16,6 +18,7 @@ app.use(express_1.default.json());
 app.use(express_1.default.static(path_1.default.join(__dirname, 'public')));
 app.use(express_1.default.static(path_1.default.join(__dirname, 'views')));
 app.use('/register', register_server_1.default);
+app.use('',login)
 app.listen(port, function () {
     console.log("Server started on port " + port);
 });
