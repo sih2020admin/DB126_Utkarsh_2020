@@ -1,0 +1,94 @@
+register
+
+#Feilds to be entered from user:
+
+	*related to vendor company:
+	1.vendor name
+	2.vendor address
+	3.v email
+	4.v mobile number
+	5.v register number
+	6.v state
+	7.v ditrict
+	8.v year of estabilishment
+	9.v pincode
+	10.v legal status
+	11.v pan number
+
+
+	*related to contact details:
+	1.title
+	2.contact name
+	3.date of birth
+	4.designation
+	5.aadhar number (will be verified by calling aadhar api through otp onece verified 		cant be change during regsitration)
+	6.email
+	7.phone number
+
+	*related to account details:
+	1.username
+	2.password
+	3.confirm password
+
+
+
+
+
+#Feilds to be entered in Database:
+
+	*related to vendor company:
+
+	1.vendor name
+	2.vendor address
+	3.v email
+	4.v mobile number
+	5.v register number
+	6.v state (will be entered as state id by mapping in state table)
+	7.v ditrict  (will be entered as district id by mapping in district table)
+	8.v year of estabilishment
+	9.v pincode
+	10.v legal status (will be entered as legal status id by mapping in status table)
+	11.v pan number
+
+
+		extra:
+		1.vdid:will be autoincrement type
+		2.is verified (0 at starting)
+
+
+
+
+
+
+	*related to contact details:
+	1.title (will be entered as title id by mapping in title table)
+	2.contact name
+	3.date of birth
+	4.designation
+	5.aadhar number 
+	6.email
+	7.phone number
+
+		extra 
+		1.vdid for mapping with vendor
+		2.vcd_id (autoincrement)
+
+
+
+
+
+	*related to account details:
+	1.username
+	2.password
+	3.confirm password
+
+		extra
+		1.ldid (autoincrement)
+		2.RoleID (for vendor its 2 for department admin its 1 super admin 0)
+		3.vcd_id for mapping with contact table
+
+
+
+
+
+
