@@ -170,6 +170,15 @@ router.post('/verifyOTP',(req,res)=>{
 
 			});
 
+
+router.get('/getCategories', function (req, res) {
+	console.log("get categories")
+    con.query('SELECT email,aadharno FROM aadhar_details', function (error, results) {
+      if (error) throw error;
+     res.json(results);
+  });
+});
+
 module.exports= router;
 
 

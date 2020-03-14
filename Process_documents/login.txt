@@ -1,0 +1,20 @@
+login
+
+#Feilds to be entered from user:
+
+	
+	1.username
+	2.password
+	
+	post to server check in database (/login)
+		if correct post linked aadhar number to (/verify)
+			user will get 6 digit otp email enter it otp feild
+				send it to aadhar server (/verifyOTP) check
+					if correct logged in
+
+
+
+
+Future scope:
+1.forgot password
+2.forgot username

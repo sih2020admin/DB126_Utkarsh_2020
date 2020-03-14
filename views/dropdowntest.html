@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <select id="drop">
+    </select>
+</body>
+<script type="text/javascript">
+    
+    var xhr = new XMLHttpRequest();
+
+
+    xhr.addEventListener("readystatechange", function() {
+      if(this.readyState === 4) {
+        console.log(this.responseText);
+        var titelliste = JSON.parse(this.responseText);
+
+        for (var i = 0; i < titelliste.length; i++) {
+            var select = document.getElementById("drop");
+            var option = document.createElement("option");
+            option.text = titelliste[i].email;
+            option.value = titelliste[i].aadharno;
+            select.add(option);
+            }
+      }
+    });
+
+    xhr.open("GET", "http://localhost:8082/getCategories");
+
+    xhr.send();
+</script>
