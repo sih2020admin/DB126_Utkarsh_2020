@@ -4,6 +4,7 @@ import express from "express"
 import connection from "./db"
 
 const router:Router = express.Router()
+
 router.post('/register-data',(request:Request,response:Response)=>{
     console.log("hello")
     var duplicate:string = ""
