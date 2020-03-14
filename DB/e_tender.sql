@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 14, 2020 at 01:27 PM
+-- Generation Time: Mar 14, 2020 at 03:20 PM
 -- Server version: 5.7.27-0ubuntu0.19.04.1
 -- PHP Version: 7.2.24-0ubuntu0.19.04.1
 
@@ -278,7 +278,7 @@ ALTER TABLE `districts`
 -- Constraints for table `log_in_details`
 --
 ALTER TABLE `log_in_details`
-  ADD CONSTRAINT `log_in_details_ibfk_1` FOREIGN KEY (`v_id`) REFERENCES `vendor_details` (`vd_id`);
+  ADD CONSTRAINT `log_in_details_ibfk_1` FOREIGN KEY (`v_id`) REFERENCES `v_contact_details` (`vcd_id`);
 
 --
 -- Constraints for table `v_contact_details`

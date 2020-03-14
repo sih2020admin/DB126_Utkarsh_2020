@@ -7,7 +7,7 @@ var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
     user: 'softmandev123@gmail.com',
-    pass: '########'
+    pass: 'reverb254'
   }
 });
 
@@ -59,20 +59,20 @@ router.post('/verify',(req,res,next)=>{
 
 
 
-					  	var mailOptions = {
-							 from: 'AADHAR UIDAI',
-							   to: results[0].email,
-							   subject: 'Aadhar Authentication OTP',
-							   text: 'OTP for Your Aadhar Authentication is '+otp
-							 };
+					  	// var mailOptions = {
+							 // from: 'AADHAR UIDAI',
+							 //   to: results[0].email,
+							 //   subject: 'Aadhar Authentication OTP',
+							 //   text: 'OTP for Your Aadhar Authentication is '+otp
+							 // };
 
-							 transporter.sendMail(mailOptions, function(error, info){
-							   if (error) {
-							     console.log(error);
-							   } else {
-							     console.log('Email sent: ' + info.response);
-							   }
-							 }); 
+							 // transporter.sendMail(mailOptions, function(error, info){
+							 //   if (error) {
+							 //     console.log(error);
+							 //   } else {
+							 //     console.log('Email sent: ' + info.response);
+							 //   }
+							 // }); 
 
 
 

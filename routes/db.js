@@ -6,8 +6,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var mysql_1 = __importDefault(require("mysql"));
 var connection = mysql_1.default.createConnection({
     host: 'localhost',
-    user: 'winston',
-    password: '',
-    database: 'testing'
+    user: 'viraj',
+    password: 'qwerty',
+    database: 'e_tender'
 });
 exports.default = connection;
