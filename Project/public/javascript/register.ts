@@ -1,8 +1,86 @@
 var xhr:XMLHttpRequest = new XMLHttpRequest()
-var message:string;
+var xhr1:XMLHttpRequest = new XMLHttpRequest()
+var message:any;
+load_years()
+load_states()
+load_legal_status()
+
+function load_years(){
+    const end_year:number = 1700
+    const current_year:number = new Date().getFullYear()
+    const year = <HTMLSelectElement>document.getElementById("establishment_year")
+    for (var i:number=current_year;i>= end_year;i--){
+        const option = document.createElement("option")
+        option.text = i.toString()
+        option.value = i.toString()
+        year.add(option)
+    }
+}
+
+function load_states(){
+    const state = <HTMLSelectElement>document.getElementById("state")
+    var url:string = "http://localhost:8081/misc/get-state";
+    xhr1.open('POST', url, true);
+    xhr1.setRequestHeader('Content-Type', 'application/json');
+    xhr1.onload = function () {
+        if (this.status == 200) {
+            message = JSON.parse(this.responseText);
+            for (let i of message){
+                var option = document.createElement("option")
+                option.text=i.state_name;
+                option.value= i.st_id
+                state.add(option)
+            }
+        }
+        else if (this.status == 400) { 
+            message = this.responseText;
+            alert(message)
+        }
+        else {
+            alert(message)
+        }
+    };
+    xhr1.onerror=function(){
+        alert("Check your network or try again later")
+    }
+    xhr1.send()
+}
+
+function load_legal_status(){
+    const legal = <HTMLSelectElement>document.getElementById("legal_status")
+    var url:string = "http://localhost:8081/misc/get-legal-status";
+    xhr.open('POST', url, true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onload = function () {
+        if (this.status == 200) {
+            message = JSON.parse(this.responseText);
+            for (let i of message){
+                var option = document.createElement("option")
+                option.text=i.l_name;
+                option.value= i.l_id
+                legal.add(option)
+            }
+        }
+        else if (this.status == 400) { 
+            message = this.responseText;
+            alert(message)
+        }
+        else {
+            alert(message)
+        }
+    };
+    xhr.onerror=function(){
+        alert("Check your network or try again later")
+    }
+    xhr.send()
+
+}
 
 document.getElementById("submit_button")?.addEventListener('click',() => {
-    var email_id = (<HTMLInputElement>document.getElementById("email_id"))?.value;
+    var state = (<HTMLSelectElement>document.getElementById("state"))
+    console.log(state.value)
+
+    /* var email_id = (<HTMLInputElement>document.getElementById("email_id"))?.value;
     var correspondence_email_id  = (<HTMLInputElement>document.getElementById("correspondence_email_id"))?.value;
     var mobile_number = (<HTMLInputElement>document.getElementById("mobile_number"))?.value;
     var company_name = (<HTMLInputElement>document.getElementById("company_name"))?.value;
@@ -58,5 +136,5 @@ document.getElementById("submit_button")?.addEventListener('click',() => {
             gst_register_number:gst_registration_number
         }
 
-    }))
+    })) */
 })
