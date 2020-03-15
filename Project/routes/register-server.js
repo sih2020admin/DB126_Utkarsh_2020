@@ -37,7 +37,7 @@ router.post('/register-data', function (request, response) {
     var c_designation = contact_details.designation;
     var c_aadhaar_number = contact_details.aadhaar_number;
     var correspondence_email_id = company_details.correspondence_email_id;
-    var v_mobile_number = contact_details.contact_number;
+    var c_mobile_number = contact_details.contact_number;
 
     var v_username = account_details.username;
     var v_password = account_details.password;
@@ -45,10 +45,10 @@ router.post('/register-data', function (request, response) {
 
     
     console.log("hello1");
-    console.log(company_details);
     
     
-        db_1.default.query("insert into user values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", [email_id, correspondence_email_id, mobile_number, company_name, registration_number, company_address, city, establishment_year, legal_status, title, contact_name, date_of_birth, designation, aadhaar_number, gst_register_number], function (error, result) {
+    
+        db_1.default.query("insert into `vendor_details`(`v_name`, `v_address`, `v_yoe`, `v_email`, `v_mobile`, `v_reg_no`, `v_state_id`, `v_dist_id`, `v_city_id`, `v_pincode`, `v_legal_id`, `v_pan`, `v_is_verified`) VALUES (?,?,?, ?,?,?, ?,?,?, ?,?,?, ?); Se", [v_company_name,v_address,v_establishment_year,v_email,v_mobile_number,v_registration_number,v_state,"-1",v_city,v_pincode,v_legal_status,v_pan,"0"], function (error, result) {
             if (error) {
                 console.log(error, error.code, error.message);
                 if (error.code == "ER_DUP_ENTRY") {
