@@ -1,85 +1,76 @@
-var xhr:XMLHttpRequest = new XMLHttpRequest()
-var xhr1:XMLHttpRequest = new XMLHttpRequest()
-var message:any;
 load_years()
 load_states()
 load_legal_status()
-
 function load_years(){
     const end_year:number = 1700
     const current_year:number = new Date().getFullYear()
-    const year = <HTMLSelectElement>document.getElementById("establishment_year")
     for (var i:number=current_year;i>= end_year;i--){
-        const option = document.createElement("option")
-        option.text = i.toString()
-        option.value = i.toString()
-        year.add(option)
+        $( "<option></option>", {
+            "value": i.toString(),
+            "text":i.toString()
+          }).appendTo("#establishment_year");
     }
 }
 
 function load_states(){
-    const state = <HTMLSelectElement>document.getElementById("state")
-    var url:string = "http://localhost:8081/misc/get-state";
-    xhr1.open('POST', url, true);
-    xhr1.setRequestHeader('Content-Type', 'application/json');
-    xhr1.onload = function () {
-        if (this.status == 200) {
-            message = JSON.parse(this.responseText);
+    $.ajax({
+        url:"http://localhost:8081/misc/get-state",
+        method:"POST",
+        async:true,
+
+        success:(response)=>{
+            var message = response
             for (let i of message){
-                var option = document.createElement("option")
-                option.text=i.state_name;
-                option.value= i.st_id
-                state.add(option)
+                $("<option></option>",{
+                    "text":i.state_name,
+                    "value":i.st_id
+                }).appendTo("#state")
             }
+        },
+        statusCode:{
+            400:()=>{
+                alert("some error")
+            }
+        },
+        error:(xhr,error_type,exception)=>{
+            var error_message = xhr.responseText
+            alert(`Problem connecting with ${error_message}`)
         }
-        else if (this.status == 400) { 
-            message = this.responseText;
-            alert(message)
-        }
-        else {
-            alert(message)
-        }
-    };
-    xhr1.onerror=function(){
-        alert("Check your network or try again later")
-    }
-    xhr1.send()
+    })
 }
 
 function load_legal_status(){
-    const legal = <HTMLSelectElement>document.getElementById("legal_status")
-    var url:string = "http://localhost:8081/misc/get-legal-status";
-    xhr.open('POST', url, true);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.onload = function () {
-        if (this.status == 200) {
-            message = JSON.parse(this.responseText);
+    $.ajax({
+        url:"http://localhost:8081/misc/get-legal-status",
+        method:"POST",
+        async:true,
+
+        success:(response)=>{
+            var message = response
             for (let i of message){
-                var option = document.createElement("option")
-                option.text=i.l_name;
-                option.value= i.l_id
-                legal.add(option)
+                $("<option></option>",{
+                    "text":i.l_name,
+                    "value":i.l_id
+                }).appendTo("#legal_status")
             }
+        },
+        statusCode:{
+            400:()=>{
+                alert("some error")
+            }
+        },
+        error:(xhr,error_type,exception)=>{
+            var error_message = xhr.responseText
+            alert(`Problem connecting with ${error_message}`)
         }
-        else if (this.status == 400) { 
-            message = this.responseText;
-            alert(message)
-        }
-        else {
-            alert(message)
-        }
-    };
-    xhr.onerror=function(){
-        alert("Check your network or try again later")
     }
-    xhr.send()
-
+    )
 }
-
-document.getElementById("submit_button")?.addEventListener('click',() => {
-    var state = (<HTMLSelectElement>document.getElementById("state"))
-    console.log(state.value)
-
+$("#account_button").on("click",()=>{
+    $(".account_details").hide()
+    $(".company_details").show()
+    //var state = $("#state :selected").text()
+    //console.log(state)
     /* var email_id = (<HTMLInputElement>document.getElementById("email_id"))?.value;
     var correspondence_email_id  = (<HTMLInputElement>document.getElementById("correspondence_email_id"))?.value;
     var mobile_number = (<HTMLInputElement>document.getElementById("mobile_number"))?.value;
@@ -137,4 +128,9 @@ document.getElementById("submit_button")?.addEventListener('click',() => {
         }
 
     })) */
+})
+
+$("#company_button").on("click",()=>{
+    $(".company_details").hide()
+    $(".contact__details").show()
 })

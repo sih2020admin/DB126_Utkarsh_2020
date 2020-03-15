@@ -1,83 +1,74 @@
 "use strict";
-var _a;
-var xhr = new XMLHttpRequest();
-var xhr1 = new XMLHttpRequest();
-var message;
 load_years();
 load_states();
 load_legal_status();
 function load_years() {
     var end_year = 1700;
     var current_year = new Date().getFullYear();
-    var year = document.getElementById("establishment_year");
     for (var i = current_year; i >= end_year; i--) {
-        var option = document.createElement("option");
-        option.text = i.toString();
-        option.value = i.toString();
-        year.add(option);
+        $("<option></option>", {
+            "value": i.toString(),
+            "text": i.toString()
+        }).appendTo("#establishment_year");
     }
 }
 function load_states() {
-    var state = document.getElementById("state");
-    var url = "http://localhost:8081/misc/get-state";
-    xhr1.open('POST', url, true);
-    xhr1.setRequestHeader('Content-Type', 'application/json');
-    xhr1.onload = function () {
-        if (this.status == 200) {
-            message = JSON.parse(this.responseText);
+    $.ajax({
+        url: "http://localhost:8081/misc/get-state",
+        method: "POST",
+        async: true,
+        success: function (response) {
+            var message = response;
             for (var _i = 0, message_1 = message; _i < message_1.length; _i++) {
                 var i = message_1[_i];
-                var option = document.createElement("option");
-                option.text = i.state_name;
-                option.value = i.st_id;
-                state.add(option);
+                $("<option></option>", {
+                    "text": i.state_name,
+                    "value": i.st_id
+                }).appendTo("#state");
             }
+        },
+        statusCode: {
+            400: function () {
+                alert("some error");
+            }
+        },
+        error: function (xhr, error_type, exception) {
+            var error_message = xhr.responseText;
+            alert("Problem connecting with " + error_message);
         }
-        else if (this.status == 400) {
-            message = this.responseText;
-            alert(message);
-        }
-        else {
-            alert(message);
-        }
-    };
-    xhr1.onerror = function () {
-        alert("Check your network or try again later");
-    };
-    xhr1.send();
+    });
 }
 function load_legal_status() {
-    var legal = document.getElementById("legal_status");
-    var url = "http://localhost:8081/misc/get-legal-status";
-    xhr.open('POST', url, true);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.onload = function () {
-        if (this.status == 200) {
-            message = JSON.parse(this.responseText);
+    $.ajax({
+        url: "http://localhost:8081/misc/get-legal-status",
+        method: "POST",
+        async: true,
+        success: function (response) {
+            var message = response;
             for (var _i = 0, message_2 = message; _i < message_2.length; _i++) {
                 var i = message_2[_i];
-                var option = document.createElement("option");
-                option.text = i.l_name;
-                option.value = i.l_id;
-                legal.add(option);
+                $("<option></option>", {
+                    "text": i.l_name,
+                    "value": i.l_id
+                }).appendTo("#legal_status");
             }
+        },
+        statusCode: {
+            400: function () {
+                alert("some error");
+            }
+        },
+        error: function (xhr, error_type, exception) {
+            var error_message = xhr.responseText;
+            alert("Problem connecting with " + error_message);
         }
-        else if (this.status == 400) {
-            message = this.responseText;
-            alert(message);
-        }
-        else {
-            alert(message);
-        }
-    };
-    xhr.onerror = function () {
-        alert("Check your network or try again later");
-    };
-    xhr.send();
+    });
 }
-(_a = document.getElementById("submit_button")) === null || _a === void 0 ? void 0 : _a.addEventListener('click', function () {
-    var state = document.getElementById("state");
-    console.log(state.value);
+$("#account_button").on("click", function () {
+    $(".account_details").hide();
+    $(".company_details").show();
+    //var state = $("#state :selected").text()
+    //console.log(state)
     /* var email_id = (<HTMLInputElement>document.getElementById("email_id"))?.value;
     var correspondence_email_id  = (<HTMLInputElement>document.getElementById("correspondence_email_id"))?.value;
     var mobile_number = (<HTMLInputElement>document.getElementById("mobile_number"))?.value;
@@ -135,4 +126,8 @@ function load_legal_status() {
         }
 
     })) */
+});
+$("#company_button").on("click", function () {
+    $(".company_details").hide();
+    $(".contact__details").show();
 });
