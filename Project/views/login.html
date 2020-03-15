@@ -22,17 +22,20 @@
 	<td><input type="email" id="email_id" placeholder="Enter UserId" required></td></tr>
 	<tr><td><label for="password">Password</label></td>
 	<td><input type="password" id="password" placeholder="Enter password" required></td>
-	</tr>
 	</table>
 	<p id="tc">Enter email address for login id. eg: abc@nic.com<br>(Care may be taken to enter valid e-mail ID. This information will be kept confidential. The login ID cannot be modified once registered.) </p>
 	<!input type="Password" placeholder="Enter Password" required=""></br>
 
 	<button class="login" id="login" onclick="show()">Login</button>
 	<p id="not_registered">Don't have an account? <a href="register.html" >Register</a></p>
-	
-	<p id="enter_otp" style="display: none;">Enter OTP sent via e-mail</p>
-	<input type="text" id="otp" placeholder="Enter OTP" required="" style="display: none;"><br>
+	<table style="margin: auto;">
+	</tr>
+	<tr><td><label id="enter_otp" style="display: none;">Enter OTP</label></td>
+	<td><input type="text" id="otp" placeholder="Enter OTP" required="" style="display: none;"></td>
+	</tr>
+	</table>
 	<button class="login" id="confirm" style="display: none;">Confirm</button>
+	
 	</div>
 </body>
 <script>function show() {
@@ -56,9 +59,9 @@
 		}
 	else 
 		{	
-			x.style.display = "inline-block";
+			x.style.display = "";
 			y.style.display = "inline-block";
-			z.style.display = "block";
+			z.style.display = "";
 			return true; 
 		}
 	} 
