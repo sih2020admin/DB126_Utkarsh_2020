@@ -25,7 +25,7 @@ nav{
     padding: 20px;
     display: flex;
 }
-.company_details, .contact__details{
+.company_details, .contact__details, .account_details{
     background-color: rgb(255, 255, 255);
     width: auto;
     height: auto;
@@ -100,10 +100,23 @@ button.submit_button{
     border: none;
     color: #ffffff;
 }
- button.submit_button:hover{
+button.submit_button:hover, #confirm_button:hover{
     cursor: pointer;
     background-color: #ffffff;
     color: #663EFD;
     border: solid;
+    border-width: 0.2px;
     border-color: #663EFD;
+ }
+ #confirm_button{
+    width: 100px;
+    height: 40px;
+    font-size: 16px;
+    font-weight: 300;
+    margin-top: 10px;
+    margin-right: 10px;
+    border-radius: 10px; 
+    background-color: #663EFD;
+    border: none;
+    color: #ffffff;
  }
