@@ -76,6 +76,10 @@ select, input[type="date"] {
   color: #663EFD;
 }
 
+.select-selected {
+  background-color: DodgerBlue;
+}
+
 input[type="number"] {
   padding: 0;
   padding-left: 10px;
