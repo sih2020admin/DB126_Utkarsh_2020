@@ -20,9 +20,9 @@
       <input id="password" type="password">
       <label for="conform_password">Confirm Password</label>
       <input type="password" id="confirm_password">
-      <button id="confirm_button">Confirm</button>
+      <button id="account_button">Confirm</button>
     </div>
-    <div class="company_details">
+    <div class="company_details" style="display: none;">
       <label style = "font-size: 25px;"><strong>Company Details</strong></label><br><br>
       <table style="width:100%">
         <tr>
@@ -60,8 +60,9 @@
           </select></td>
         </tr>
     </table>
+    <button id="company_button">Confirm</button>
     </div>
-    <div class="contact__details">
+    <div class="contact__details" style="display: none;">
       <label style = "font-size: 25px;"><strong>Contact Details</strong></label><br><br>
       <table style="width:100%">
         <tr>
@@ -91,9 +92,10 @@
         </tr>
     </table>
     </div>
-    <div class="submit_button">
+    <div class="submit_button" style="display: none;">
       <button class="submit_button" id="submit_button">Submit</button>
     </div>
 </div>
 </body></html>
 <script src="javascript/register.js" defer></script>
+<script src="javascript/jquery-3.4.1.min.js"></script>
