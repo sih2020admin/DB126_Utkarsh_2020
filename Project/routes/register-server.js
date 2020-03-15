@@ -47,6 +47,7 @@ router.post('/register-data', function (request, response) {
     console.log("hello1");
     console.log(company_details);
     
+    
         db_1.default.query("insert into user values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", [email_id, correspondence_email_id, mobile_number, company_name, registration_number, company_address, city, establishment_year, legal_status, title, contact_name, date_of_birth, designation, aadhaar_number, gst_register_number], function (error, result) {
             if (error) {
                 console.log(error, error.code, error.message);
@@ -75,7 +76,6 @@ router.post('/register-data', function (request, response) {
                 response.status(200).send("Successfully registered");
             }
         });
-    }
     
     //response.sendFile(path.join(__dirname + '/../views/index.html'));})
 });
