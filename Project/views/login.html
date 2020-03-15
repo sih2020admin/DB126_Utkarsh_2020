@@ -15,45 +15,47 @@
         </nav>
 	</header>
 	<div class="cont">
-	<h2>Login</h2><br>
-	<table class="center">
-    <tr>
-	<td><label for="email_id">UserId</label></td>
-	<td><input type="email" id="email_id" placeholder="Enter UserId" required></td></tr>
-	<tr><td><label for="password">Password</label></td>
-	<td><input type="password" id="password" placeholder="Enter password" required></td>
-	</tr>
-	</table>
-	<p id="tc">Enter email address for login id. eg: abc@nic.com<br>(Care may be taken to enter valid e-mail ID. This information will be kept confidential. The login ID cannot be modified once registered.) </p>
-	<!input type="Password" placeholder="Enter Password" required=""></br>
+		<h2>Login</h2><br>
 
-	<button class="login" id="login" onclick="show()">Login</button>
-	<p id="not_registered">Don't have an account? <a href="register.html" >Register</a></p>
-	
-	<p id="enter_otp" style="display: none;">Enter OTP sent via e-mail</p>
-	<input type="text" id="otp" placeholder="Enter OTP" required="" style="display: none;"><br>
-	<button class="login" id="confirm" style="display: none;">Confirm</button>
+		<table class="center">
+		    <tr>
+			<td><label for="email_id">UserId</label></td>
+			<td><input type='text' id="username" placeholder="Enter UserId" required></td></tr>
+			<tr><td><label for="password">Password</label></td>
+			<td><input type="password" id="pass" placeholder="Enter password" required></td>
+			</tr>
+		</table>
+
+		<p id="tc">(Care may be taken to enter valid e-mail ID. This information will be kept confidential. The login ID cannot be modified once registered.) </p>
+		<!input type="Password" placeholder="Enter Password" required=""></br>
+
+		<button class="login" id="login" onclick="show()">Login</button>
+		<p id="not_registered">Don't have an account? <a href="register.html" >Register</a></p>
+		
+		<p id="enter_otp" style="display: none;">Enter OTP sent via e-mail</p>
+		<input type="text" id="otp" placeholder="Enter OTP" required="" style="display: none;"><br>
+		<button class="login" id="confirm" style="display: none;">Confirm</button>
 	</div>
 </body>
-<script>function show() {
+<script>
 	var x = document.getElementById("enter_otp");
 	var y = document.getElementById("otp");
 	var z = document.getElementById("confirm");
-	// if (x.style.display === "none") {
-	//   x.style.display = "inline-block";
-	//   y.style.display = "inline-block";
-	//   z.style.display = "block";
-	// } else {
-	//   x.style.display = "none";
-	//   y.style.display = "none";
-	//   z.style.display = "none";
-	// }
-	var email_input = document.getElementById("email_id").value;
-	if (email_input == '')
+	var userid ;
+	var password;
+	function show() {
+	userid= document.getElementById("username").value;
+	passw = document.getElementById("pass").value;
+	console.log(userid.length , passw.length)
+	if (userid.length == 0 )
 		{
-			alert("Please input a Value");
+			alert("Please input a UserId");
 			return false;
 		}
+	else if (passw.length == 0){
+		alert("Please input a Password");
+			return false;
+	}
 	else 
 		{	
 			x.style.display = "inline-block";
