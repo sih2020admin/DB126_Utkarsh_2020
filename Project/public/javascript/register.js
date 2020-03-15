@@ -1,31 +1,66 @@
 "use strict";
 var _a;
 var xhr = new XMLHttpRequest();
+var xhr1 = new XMLHttpRequest();
 var message;
-(_a = document.getElementById("submit_button")) === null || _a === void 0 ? void 0 : _a.addEventListener('click', function () {
-    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q;
-    var email_id = (_a = document.getElementById("email_id")) === null || _a === void 0 ? void 0 : _a.value;
-    var correspondence_email_id = (_b = document.getElementById("correspondence_email_id")) === null || _b === void 0 ? void 0 : _b.value;
-    var mobile_number = (_c = document.getElementById("mobile_number")) === null || _c === void 0 ? void 0 : _c.value;
-    var company_name = (_d = document.getElementById("company_name")) === null || _d === void 0 ? void 0 : _d.value;
-    var registration_number = (_e = document.getElementById("registration_number")) === null || _e === void 0 ? void 0 : _e.value;
-    var company_address = (_f = document.getElementById("company_address")) === null || _f === void 0 ? void 0 : _f.value;
-    var city = (_g = document.getElementById("city")) === null || _g === void 0 ? void 0 : _g.value;
-    var establishment_year = (_h = document.getElementById("establishment_year")) === null || _h === void 0 ? void 0 : _h.value;
-    var legal_status = (_j = document.getElementById("legal_status")) === null || _j === void 0 ? void 0 : _j.value;
-    var title = (_k = document.getElementById("title")) === null || _k === void 0 ? void 0 : _k.value;
-    var contact_name = (_l = document.getElementById("company_name")) === null || _l === void 0 ? void 0 : _l.value;
-    var date_of_birth = (_m = document.getElementById("date_of_birth")) === null || _m === void 0 ? void 0 : _m.value;
-    var designation = (_o = document.getElementById("designation")) === null || _o === void 0 ? void 0 : _o.value;
-    var aadhaar_number = (_p = document.getElementById("aadhaar_number")) === null || _p === void 0 ? void 0 : _p.value;
-    var gst_registration_number = (_q = document.getElementById("gst_registration_number")) === null || _q === void 0 ? void 0 : _q.value;
-    var url = "http://localhost:8081/register/register-data";
+load_years();
+load_states();
+load_legal_status();
+function load_years() {
+    var end_year = 1700;
+    var current_year = new Date().getFullYear();
+    var year = document.getElementById("establishment_year");
+    for (var i = current_year; i >= end_year; i--) {
+        var option = document.createElement("option");
+        option.text = i.toString();
+        option.value = i.toString();
+        year.add(option);
+    }
+}
+function load_states() {
+    var state = document.getElementById("state");
+    var url = "http://localhost:8081/misc/get-state";
+    xhr1.open('POST', url, true);
+    xhr1.setRequestHeader('Content-Type', 'application/json');
+    xhr1.onload = function () {
+        if (this.status == 200) {
+            message = JSON.parse(this.responseText);
+            for (var _i = 0, message_1 = message; _i < message_1.length; _i++) {
+                var i = message_1[_i];
+                var option = document.createElement("option");
+                option.text = i.state_name;
+                option.value = i.st_id;
+                state.add(option);
+            }
+        }
+        else if (this.status == 400) {
+            message = this.responseText;
+            alert(message);
+        }
+        else {
+            alert(message);
+        }
+    };
+    xhr1.onerror = function () {
+        alert("Check your network or try again later");
+    };
+    xhr1.send();
+}
+function load_legal_status() {
+    var legal = document.getElementById("legal_status");
+    var url = "http://localhost:8081/misc/get-legal-status";
     xhr.open('POST', url, true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onload = function () {
         if (this.status == 200) {
-            message = this.responseText;
-            alert(message);
+            message = JSON.parse(this.responseText);
+            for (var _i = 0, message_2 = message; _i < message_2.length; _i++) {
+                var i = message_2[_i];
+                var option = document.createElement("option");
+                option.text = i.l_name;
+                option.value = i.l_id;
+                legal.add(option);
+            }
         }
         else if (this.status == 400) {
             message = this.responseText;
@@ -38,25 +73,66 @@ var message;
     xhr.onerror = function () {
         alert("Check your network or try again later");
     };
-    xhr.send(JSON.stringify({
-        company_details: {
-            email_id: email_id,
-            correspondence_email_id: correspondence_email_id,
-            mobile_number: mobile_number,
-            company_name: company_name,
-            registration_number: registration_number,
-            company_address: company_address,
-            city: city,
-            establishment_year: establishment_year,
-            legal_status: legal_status
-        },
-        contact_details: {
-            title: title,
-            contact_name: contact_name,
-            date_of_birth: date_of_birth,
-            designation: designation,
-            aadhaar_number: aadhaar_number,
-            gst_register_number: gst_registration_number
+    xhr.send();
+}
+(_a = document.getElementById("submit_button")) === null || _a === void 0 ? void 0 : _a.addEventListener('click', function () {
+    var state = document.getElementById("state");
+    console.log(state.value);
+    /* var email_id = (<HTMLInputElement>document.getElementById("email_id"))?.value;
+    var correspondence_email_id  = (<HTMLInputElement>document.getElementById("correspondence_email_id"))?.value;
+    var mobile_number = (<HTMLInputElement>document.getElementById("mobile_number"))?.value;
+    var company_name = (<HTMLInputElement>document.getElementById("company_name"))?.value;
+    var registration_number = (<HTMLInputElement>document.getElementById("registration_number"))?.value;
+    var company_address = (<HTMLInputElement>document.getElementById("company_address"))?.value;
+    var city = (<HTMLInputElement>document.getElementById("city"))?.value;
+    var establishment_year = (<HTMLInputElement>document.getElementById("establishment_year"))?.value;
+    var legal_status = (<HTMLInputElement>document.getElementById("legal_status"))?.value;
+    var title = (<HTMLSelectElement>document.getElementById("title"))?.value;
+    var contact_name = (<HTMLInputElement>document.getElementById("company_name"))?.value;
+    var date_of_birth = (<HTMLInputElement>document.getElementById("date_of_birth"))?.value;
+    var designation = (<HTMLInputElement>document.getElementById("designation"))?.value;
+    var aadhaar_number = (<HTMLInputElement>document.getElementById("aadhaar_number"))?.value;
+    var gst_registration_number = (<HTMLInputElement>document.getElementById("gst_registration_number"))?.value;
+    var url:string = "http://localhost:8081/register/register-data";
+    xhr.open('POST', url, true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onload = function () {
+        if (this.status == 200) {
+            message = this.responseText;
+            alert(message)
         }
-    }));
+        else if (this.status == 400) {
+            message = this.responseText;
+            alert(message)
+        }
+        else {
+            alert(message)
+        }
+    };
+    xhr.onerror=function(){
+        alert("Check your network or try again later")
+    }
+
+    xhr.send(JSON.stringify({
+        company_details:{
+            email_id:email_id,
+            correspondence_email_id:correspondence_email_id,
+            mobile_number:mobile_number,
+            company_name:company_name,
+            registration_number :registration_number,
+            company_address:company_address,
+            city:city,
+            establishment_year:establishment_year,
+            legal_status:legal_status
+        },
+        contact_details:{
+            title:title,
+            contact_name:contact_name,
+            date_of_birth:date_of_birth,
+            designation:designation,
+            aadhaar_number:aadhaar_number,
+            gst_register_number:gst_registration_number
+        }
+
+    })) */
 });
