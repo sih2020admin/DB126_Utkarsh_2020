@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 4.6.6deb5
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Mar 15, 2020 at 05:26 PM
--- Server version: 10.4.10-MariaDB
--- PHP Version: 7.3.12
+-- Host: localhost:3306
+-- Generation Time: Mar 16, 2020 at 11:17 AM
+-- Server version: 5.7.27-0ubuntu0.19.04.1
+-- PHP Version: 7.2.24-0ubuntu0.19.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -37,6 +35,13 @@ CREATE TABLE `admin_detail` (
   `ad_addr` varchar(30) NOT NULL,
   `ad_org_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `admin_detail`
+--
+
+INSERT INTO `admin_detail` (`ad_id`, `ad_name`, `ad_contact`, `ad_email`, `ad_dept_id`, `ad_addr`, `ad_org_id`) VALUES
+(1, 'admin', '7894561230', 'admintest@gmail.com', 0, 'kurla', 1);
 
 -- --------------------------------------------------------
 
@@ -827,7 +832,8 @@ CREATE TABLE `department` (
 --
 
 INSERT INTO `department` (`dept_id`, `dept_name`) VALUES
-(0, 'All');
+(0, 'All'),
+(1, 'IT');
 
 -- --------------------------------------------------------
 
@@ -874,7 +880,9 @@ CREATE TABLE `e_tender_details` (
   `et_tender_desc` text NOT NULL,
   `et_last_date_apply` varchar(10) NOT NULL,
   `et_bidding_rate` varchar(10) NOT NULL,
-  `et_file_uri` varchar(25) NOT NULL
+  `et_file_uri` varchar(25) NOT NULL,
+  `is_active` tinyint(4) NOT NULL,
+  `dept_id` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -948,10 +956,17 @@ CREATE TABLE `org_details` (
   `org_contact` varchar(15) NOT NULL,
   `org_email` varchar(25) NOT NULL,
   `org_addr` varchar(30) NOT NULL,
-  `org_state` varchar(5) NOT NULL,
+  `org_state` varchar(40) NOT NULL,
   `org_dist` varchar(5) NOT NULL,
   `org_pin` varchar(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `org_details`
+--
+
+INSERT INTO `org_details` (`org_id`, `org_name`, `org_contact`, `org_email`, `org_addr`, `org_state`, `org_dist`, `org_pin`) VALUES
+(1, 'Tripura Inst of Techno', '7894561230', 'tiot@gmail.com', 'Tripura', 'Tripura', 'a', '456123');
 
 -- --------------------------------------------------------
 
@@ -1086,7 +1101,7 @@ CREATE TABLE `vendor_file` (
 
 CREATE TABLE `v_contact_details` (
   `vcd_id` int(11) NOT NULL,
-  `vcd_name` varchar(30) NOT NULL,
+  `vcd_name` varchar(20) NOT NULL,
   `vcd_title` varchar(15) NOT NULL,
   `vcd_dob` varchar(10) NOT NULL,
   `vcd_aadhar` varchar(12) NOT NULL,
@@ -1101,7 +1116,7 @@ CREATE TABLE `v_contact_details` (
 --
 
 INSERT INTO `v_contact_details` (`vcd_id`, `vcd_name`, `vcd_title`, `vcd_dob`, `vcd_aadhar`, `vcd_contact`, `vcd_email`, `vcd_designation`, `vd_id`) VALUES
-(1, 'winston sequeria', 'Mr.', '16-6-1999', '456145614561', '8975647845', 'winstonsequeria@gmail.com', 'CEO', 1);
+(1, 'winston sequeria', 'Mr.', '16-6-1999', '456745674567', '8975647845', 'winstonsequeria@gmail.com', 'CEO', 1);
 
 --
 -- Indexes for dumped tables
@@ -1111,14 +1126,15 @@ INSERT INTO `v_contact_details` (`vcd_id`, `vcd_name`, `vcd_title`, `vcd_dob`, `
 -- Indexes for table `admin_detail`
 --
 ALTER TABLE `admin_detail`
-  ADD PRIMARY KEY (`ad_id`);
+  ADD PRIMARY KEY (`ad_id`),
+  ADD KEY `ad_dept_id` (`ad_dept_id`),
+  ADD KEY `ad_org_id` (`ad_org_id`);
 
 --
 -- Indexes for table `city`
 --
 ALTER TABLE `city`
-  ADD PRIMARY KEY (`c_id`),
-  ADD KEY `d_id` (`st_id`);
+  ADD KEY `st_id` (`st_id`);
 
 --
 -- Indexes for table `department`
@@ -1143,7 +1159,8 @@ ALTER TABLE `documents`
 -- Indexes for table `e_tender_details`
 --
 ALTER TABLE `e_tender_details`
-  ADD PRIMARY KEY (`et_id`);
+  ADD PRIMARY KEY (`et_id`),
+  ADD KEY `dept_id` (`dept_id`);
 
 --
 -- Indexes for table `e_tender_vendor`
@@ -1219,65 +1236,47 @@ ALTER TABLE `v_contact_details`
 -- AUTO_INCREMENT for table `admin_detail`
 --
 ALTER TABLE `admin_detail`
-  MODIFY `ad_id` int(11) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `ad_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `districts`
 --
 ALTER TABLE `districts`
   MODIFY `d_id` tinyint(4) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `documents`
---
-ALTER TABLE `documents`
-  MODIFY `doc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
 -- AUTO_INCREMENT for table `e_tender_details`
 --
 ALTER TABLE `e_tender_details`
   MODIFY `et_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `e_tender_vendor`
---
-ALTER TABLE `e_tender_vendor`
-  MODIFY `etd_id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `log_in_details`
 --
 ALTER TABLE `log_in_details`
   MODIFY `login_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `org_details`
---
-ALTER TABLE `org_details`
-  MODIFY `org_id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `states`
 --
 ALTER TABLE `states`
   MODIFY `st_id` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
-
 --
 -- AUTO_INCREMENT for table `vendor_details`
 --
 ALTER TABLE `vendor_details`
   MODIFY `vd_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 --
 -- AUTO_INCREMENT for table `v_contact_details`
 --
 ALTER TABLE `v_contact_details`
   MODIFY `vcd_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `admin_detail`
+--
+ALTER TABLE `admin_detail`
+  ADD CONSTRAINT `admin_detail_ibfk_1` FOREIGN KEY (`ad_dept_id`) REFERENCES `department` (`dept_id`),
+  ADD CONSTRAINT `admin_detail_ibfk_2` FOREIGN KEY (`ad_org_id`) REFERENCES `org_details` (`org_id`);
 
 --
 -- Constraints for table `city`
@@ -1292,12 +1291,10 @@ ALTER TABLE `districts`
   ADD CONSTRAINT `districts_ibfk_1` FOREIGN KEY (`st_id`) REFERENCES `states` (`st_id`);
 
 --
--- Constraints for table `e_tender_vendor`
+-- Constraints for table `e_tender_details`
 --
-ALTER TABLE `e_tender_vendor`
-  ADD CONSTRAINT `e_tender_vendor_ibfk_1` FOREIGN KEY (`et_id`) REFERENCES `e_tender_details` (`et_id`),
-  ADD CONSTRAINT `e_tender_vendor_ibfk_2` FOREIGN KEY (`vd_id`) REFERENCES `vendor_details` (`vd_id`),
-  ADD CONSTRAINT `e_tender_vendor_ibfk_3` FOREIGN KEY (`vcd_id`) REFERENCES `v_contact_details` (`vcd_id`);
+ALTER TABLE `e_tender_details`
+  ADD CONSTRAINT `e_tender_details_ibfk_1` FOREIGN KEY (`dept_id`) REFERENCES `department` (`dept_id`);
 
 --
 -- Constraints for table `log_in_details`
@@ -1306,24 +1303,10 @@ ALTER TABLE `log_in_details`
   ADD CONSTRAINT `log_in_details_ibfk_1` FOREIGN KEY (`v_id`) REFERENCES `v_contact_details` (`vcd_id`);
 
 --
--- Constraints for table `tendor_req`
---
-ALTER TABLE `tendor_req`
-  ADD CONSTRAINT `tendor_req_ibfk_1` FOREIGN KEY (`tei_id`) REFERENCES `e_tender_details` (`et_id`),
-  ADD CONSTRAINT `tendor_req_ibfk_2` FOREIGN KEY (`trd_id`) REFERENCES `documents` (`doc_id`);
-
---
--- Constraints for table `vendor_file`
---
-ALTER TABLE `vendor_file`
-  ADD CONSTRAINT `vendor_file_ibfk_1` FOREIGN KEY (`vd_id`) REFERENCES `vendor_details` (`vd_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Constraints for table `v_contact_details`
 --
 ALTER TABLE `v_contact_details`
   ADD CONSTRAINT `v_contact_details_ibfk_1` FOREIGN KEY (`vd_id`) REFERENCES `vendor_details` (`vd_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
