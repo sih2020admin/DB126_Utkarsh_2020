@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.6deb5
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Mar 12, 2020 at 10:21 PM
--- Server version: 5.7.27-0ubuntu0.19.04.1
--- PHP Version: 7.2.24-0ubuntu0.19.04.1
+-- Host: localhost
+-- Generation Time: Mar 16, 2020 at 09:10 PM
+-- Server version: 10.3.16-MariaDB
+-- PHP Version: 7.3.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -44,7 +46,7 @@ CREATE TABLE `aadhar_details` (
 --
 
 INSERT INTO `aadhar_details` (`aadharno`, `phone_number`, `dob`, `name`, `email`, `address`, `date_creation`, `last_modified_date`, `is_delete`, `deletion_date`) VALUES
-('123412341234', '8976853955', '2020-03-10', 'softman', 'softmandev123@gmail.com', 'b-300 sector-2', '2020-03-12', '2020-03-12', 0, NULL);
+('456745674567', '8976853955', '2020-03-10', 'softman', 'softmandev123@gmail.com', 'b-300 sector-2', '2020-03-12', '2020-03-12', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -71,7 +73,8 @@ INSERT INTO `OTP` (`otpid`, `aadharno`, `otp`, `validtill`, `isUsed`, `reference
 (9, '123412341234', '248001', '2020-03-12 16:47:13', 1, 1),
 (10, '123412341234', '782065', '2020-03-12 16:49:50', 1, 1),
 (11, '123412341234', '665279', '2020-03-12 16:49:26', 0, 1),
-(12, '123412341234', '674782', '2020-03-12 16:52:10', 0, 1);
+(12, '123412341234', '674782', '2020-03-12 16:52:10', 0, 1),
+(13, '456745674567', '122786', '2020-03-16 20:09:39', 1, 1);
 
 --
 -- Indexes for dumped tables
@@ -97,7 +100,9 @@ ALTER TABLE `OTP`
 -- AUTO_INCREMENT for table `OTP`
 --
 ALTER TABLE `OTP`
-  MODIFY `otpid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `otpid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

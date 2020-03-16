@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="css/login.css">
-	<title>Login Page</title>
+	<title>Login</title>
 </head>
 <body>
 	<header>
@@ -23,7 +23,7 @@
 	<tr><td><label for="password">Password</label></td>
 	<td><input type="password" id="pass" placeholder="Enter password" required></td>
 	</table>
-	<p id="tc">Enter email address for login id. eg: abc@nic.com<br>(Care may be taken to enter valid e-mail ID. This information will be kept confidential. The login ID cannot be modified once registered.) </p>
+	<p id="tc"></p>
 	<!input type="Password" placeholder="Enter Password" required=""></br>
 
 	<button class="login" id="login" onclick="show()">Login</button>
@@ -31,39 +31,13 @@
 	<table style="margin: auto;">
 	</tr>
 	<tr><td><label id="enter_otp" style="display: none;">Enter OTP</label></td>
-	<td><input type="text" id="otp" placeholder="Enter OTP" required="" style="display: none;"></td>
+	<td><input type="password" id="otp" placeholder="Enter OTP" required="" style="display: none;"></td>
 	</tr>
 	</table>
+	<p id="tc1"></p><br>
 	<button class="login" id="confirm" style="display: none;">Confirm</button>
 	
 	</div>
 </body>
-<script>
-	var x = document.getElementById("enter_otp");
-	var y = document.getElementById("otp");
-	var z = document.getElementById("confirm");
-	var userid ;
-	var password;
-	function show() {
-	userid= document.getElementById("username").value;
-	passw = document.getElementById("pass").value;
-	console.log(userid.length , passw.length)
-	if (userid.length == 0 )
-		{
-			alert("Please input a UserId");
-			return false;
-		}
-	else if (passw.length == 0){
-		alert("Please input a Password");
-			return false;
-	}
-	else 
-		{	
-			x.style.display = "";
-			y.style.display = "inline-block";
-			z.style.display = "";
-			return true; 
-		}
-	} 
-</script>
+<script src="javascript/login.js"></script>
 </html>
