@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 16, 2020 at 01:53 PM
+-- Generation Time: Mar 16, 2020 at 02:16 PM
 -- Server version: 5.7.27-0ubuntu0.19.04.1
 -- PHP Version: 7.2.24-0ubuntu0.19.04.1
 
@@ -934,19 +934,21 @@ CREATE TABLE `log_in_details` (
   `user_name` varchar(20) NOT NULL,
   `password` varchar(20) NOT NULL,
   `role_id` tinyint(4) NOT NULL,
-  `vcd_id` int(11) NOT NULL
+  `vcd_id` int(11) DEFAULT NULL,
+  `ad_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `log_in_details`
 --
 
-INSERT INTO `log_in_details` (`login_id`, `user_name`, `password`, `role_id`, `vcd_id`) VALUES
-(1, 'winu', 'winu', 2, 1),
-(3, 'new', 'new', 2, 7),
-(5, 'new1', 'new', 2, 9),
-(7, 'new12', 'new', 2, 11),
-(9, 'new123', 'new', 2, 13);
+INSERT INTO `log_in_details` (`login_id`, `user_name`, `password`, `role_id`, `vcd_id`, `ad_id`) VALUES
+(1, 'winu', 'winu', 2, 1, NULL),
+(3, 'new', 'new', 2, 7, NULL),
+(5, 'new1', 'new', 2, 9, NULL),
+(7, 'new12', 'new', 2, 11, NULL),
+(9, 'new123', 'new', 2, 13, NULL),
+(10, 'admin', 'admin', 1, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -1201,7 +1203,8 @@ ALTER TABLE `log_in_details`
   ADD PRIMARY KEY (`login_id`),
   ADD UNIQUE KEY `user_name` (`user_name`),
   ADD UNIQUE KEY `user_name_2` (`user_name`),
-  ADD KEY `v_id` (`vcd_id`);
+  ADD KEY `v_id` (`vcd_id`),
+  ADD KEY `ad_id` (`ad_id`);
 
 --
 -- Indexes for table `org_details`
@@ -1273,7 +1276,7 @@ ALTER TABLE `e_tender_details`
 -- AUTO_INCREMENT for table `log_in_details`
 --
 ALTER TABLE `log_in_details`
-  MODIFY `login_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `login_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `states`
 --
@@ -1322,7 +1325,8 @@ ALTER TABLE `e_tender_details`
 -- Constraints for table `log_in_details`
 --
 ALTER TABLE `log_in_details`
-  ADD CONSTRAINT `log_in_details_ibfk_1` FOREIGN KEY (`vcd_id`) REFERENCES `v_contact_details` (`vcd_id`);
+  ADD CONSTRAINT `log_in_details_ibfk_1` FOREIGN KEY (`vcd_id`) REFERENCES `v_contact_details` (`vcd_id`),
+  ADD CONSTRAINT `log_in_details_ibfk_2` FOREIGN KEY (`ad_id`) REFERENCES `admin_detail` (`ad_id`);
 
 --
 -- Constraints for table `v_contact_details`
