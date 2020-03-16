@@ -79,4 +79,6 @@ function check_contact_details(title,contact_name,date_of_birth,designation,aadh
     console.log(title)
     return 1
 } */
-exports.default = router;
+var db_1 = __importDefault(require("./db"));
+var router = express_1.default.Router();
+

@@ -1,4 +1,5 @@
 "use strict";
+<<<<<<< HEAD
 var username;
 var password;
 var title;
@@ -19,6 +20,8 @@ var establishment_year;
 var pincode;
 var legal_status;
 var pan_number;
+=======
+>>>>>>> deb319e33dbf6cbbc734e6d1ffae1a3704eca409
 load_years();
 load_states();
 load_legal_status();
@@ -84,6 +87,7 @@ function load_legal_status() {
         }
     });
 }
+<<<<<<< HEAD
 $("#submit_button").on("click", function () {
     var _a, _b, _c, _d, _e, _f, _g;
     title = (_a = $("#title").val()) === null || _a === void 0 ? void 0 : _a.toString();
@@ -141,6 +145,13 @@ $("#account_button").on("click", function () {
     // $(".account_details").hide()
     //$(".company_details").show()
     //var state = $("#state :selected").text()
+=======
+$("#account_button").on("click", function () {
+    $(".account_details").hide();
+    $(".company_details").show();
+    //var state = $("#state :selected").text()
+    //console.log(state)
+>>>>>>> deb319e33dbf6cbbc734e6d1ffae1a3704eca409
     /* var email_id = (<HTMLInputElement>document.getElementById("email_id"))?.value;
     var correspondence_email_id  = (<HTMLInputElement>document.getElementById("correspondence_email_id"))?.value;
     var mobile_number = (<HTMLInputElement>document.getElementById("mobile_number"))?.value;
@@ -200,6 +211,7 @@ $("#account_button").on("click", function () {
     })) */
 });
 $("#company_button").on("click", function () {
+<<<<<<< HEAD
     var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l;
     company_name = (_a = $("#company_name").val()) === null || _a === void 0 ? void 0 : _a.toString();
     company_address = (_b = $("#company_address").val()) === null || _b === void 0 ? void 0 : _b.toString();
@@ -350,3 +362,8 @@ function contact_validate(title, contact_name, date_of_birth, designation, aadha
     $("#error_para").text("Success");
     return 1;
 }
+=======
+    $(".company_details").hide();
+    $(".contact__details").show();
+});
+>>>>>>> deb319e33dbf6cbbc734e6d1ffae1a3704eca409

@@ -17,6 +17,8 @@
     <p id="error_para"></p><br><nr><br>
   </div>
     <div class="account_details">
+      <label style = "font-size: 25px;"><strong>Account Details</strong></label><br><br>
+      <br>
       <label for="username">Username</label>
       <input id="username" type="text">
       <label for="password">Password</label>
@@ -61,7 +63,7 @@
           <td><label for="pincode">Pincode</label></td>
           <td><input id="pincode" type="nummer"></td>
           <td><label for="legal_status">Legal Status</label></td>
-          <td><select id="legal_status" > 
+          <td><select id="legal_status"> 
             <option value="select" selected>-- Select--</option>
           </select></td>
         </tr>
@@ -76,6 +78,8 @@
       <label style = "font-size: 25px;"><strong>Contact Details</strong></label><br><br>
       <table style="width:100%">
         <tr>
+          <td><label for="correspondence_email_id">Correspondence Email Address</label></td>
+          <td><input id="correspondence_email_id" type="email"></td>
           <td><label for="title">Title</label></td>
           <td><select id="title">
             <option value="select" selected>--Select--</option>
@@ -85,16 +89,18 @@
             <option value="Dr"> Dr</option>
             <option value="Sri">Sri</option>
           </select></td>
+
+        </tr>
+        <tr>
           <td><label for="contact_name">Contact Name</label></td>
           <td><input id="contact_name" type="text "></td>
-        </tr>
-        <tr>
           <td><label for="date_of_birth">Date Of Birth(DD/MM/YYYY)</label></td>
           <td><input id="date_of_birth" type="date"></td>
-          <td><label for="designation">Designation</label></td>
-          <td><input id="designation" type="text"></td>
+
         </tr>
         <tr>
+          <td><label for="designation">Designation</label></td>
+          <td><input id="designation" type="text"></td>
           <td><label for="aadhaar_number">Aadhaar Number</label>
           <td><input id="aadhaar_number" type="number">
           <td><label for="contact_email">Email Address</label>
