@@ -49,7 +49,7 @@ router.post('/login', function (req, res) {
 								    	res.sendStatus(404); }
 
 								    console.log(res.raw_body);
-								    res.sendStatus(200);
+								    res.send(results[0]);
 								  });
 				     }
 				     });
