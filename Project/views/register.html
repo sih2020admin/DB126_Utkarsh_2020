@@ -23,7 +23,7 @@
       <input id="username" type="text">
       <label for="password">Password</label>
       <input id="password" type="password">
-      <label for="conform_password">Confirm Password</label>
+      <label for="confirm_password">Confirm Password</label>
       <input type="password" id="confirm_password">
       <button id="account_button">Confirm</button>
     </div>
@@ -44,7 +44,7 @@
         
         </tr>
         <tr>
-          <td><label for="registration_number">Registration Number</label></td>
+          <td><label for="registration_number">Company Registration Number</label></td>
           <td><input id="registration_number" type="text"></td>
         <td><label for="state">State</label></td>
         <td><select id="state">
@@ -53,7 +53,9 @@
         </tr>
         <tr>
           <td><label for="city">City</label></td>
-          <td><input id="city" type="text"></td>
+          <td><select id="city">
+            <option value="select">--select--</option>
+          </select></td>
           <td><label for="establishment_year">Establishment Year</label></td>
         <td><select id="establishment_year">
           <option value="select"> -- select --</option>
@@ -61,7 +63,7 @@
         </tr>
         <tr>
           <td><label for="pincode">Pincode</label></td>
-          <td><input id="pincode" type="nummer"></td>
+          <td><input id="pincode" type="number"></td>
           <td><label for="legal_status">Legal Status</label></td>
           <td><select id="legal_status"> 
             <option value="select" selected>-- Select--</option>
@@ -70,6 +72,8 @@
         <tr>
           <td><label for="pan_number">Pan Number</label></td>
           <td><input id="pan_number" type="text"></td>
+          <td><label for="gst_register_number">GST Registration Number</label></td>
+          <td><input id="gst_register_number" type="text"></td>
         </tr>
     </table>
     <button id="company_button">Confirm</button>
@@ -78,8 +82,6 @@
       <label style = "font-size: 25px;"><strong>Contact Details</strong></label><br><br>
       <table style="width:100%">
         <tr>
-          <td><label for="correspondence_email_id">Correspondence Email Address</label></td>
-          <td><input id="correspondence_email_id" type="email"></td>
           <td><label for="title">Title</label></td>
           <td><select id="title">
             <option value="select" selected>--Select--</option>
@@ -103,10 +105,11 @@
           <td><input id="designation" type="text"></td>
           <td><label for="aadhaar_number">Aadhaar Number</label>
           <td><input id="aadhaar_number" type="number">
-          <td><label for="contact_email">Email Address</label>
-          <td><input id="contact_email" type="email">
+          
         </tr>
         <tr>
+          <td><label for="contact_email">Correspondence Email Address</label>
+            <td><input id="contact_email" type="email">
           <td><label for="contact_contact">Mobile Number</label></td>
           <td><input  id="contact_contact" type="number" ></td>
         </tr>
