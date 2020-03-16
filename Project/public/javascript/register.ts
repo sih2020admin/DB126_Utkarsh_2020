@@ -18,9 +18,12 @@ var establishment_year:string
 var pincode:string
 var legal_status:string
 var pan_number:string
+var gst_register_number:string
 load_years()
 load_states()
 load_legal_status()
+$("#city").prop("disabled", true);
+// loading years
 function load_years(){
     const end_year:number = 1700
     const current_year:number = new Date().getFullYear()
@@ -32,17 +35,17 @@ function load_years(){
     }
 }
 
+// loading states from database
 function load_states(){
     $.ajax({
         url:"http://localhost:8081/misc/get-state",
         method:"POST",
         async:true,
-
         success:(response)=>{
             var message = response
             for (let i of message){
                 $("<option></option>",{
-                    "text":i.state_name,
+                    "text":i.st_name,
                     "value":i.st_id
                 }).appendTo("#state")
             }
@@ -59,6 +62,50 @@ function load_states(){
     })
 }
 
+// loading cities dynamically by taking checking state field after each change
+function load_cities(state_code:string){
+    $.ajax({
+        url:"http://localhost:8081/misc/get-city",
+        method:"POST",
+        contentType:"application/json; charset=utf-8",
+        data:JSON.stringify({
+            state_code:state_code
+        }),
+        success:(response)=>{
+            var message = response
+            console.log(message)
+            for (let i of message){
+                $("<option></option>",{
+                    "text":i.c_name,
+                    "value":i.c_id
+                }).appendTo("#city")
+            } 
+        },
+        statusCode:{
+            400:()=>{
+                alert("some error")
+            }
+        },
+        error:(xhr,error_type,exception)=>{
+            var error_message = xhr.responseText
+            alert(`Problem connecting with ${error_message}`)
+        }
+
+
+    })
+}
+$("#state").change(()=>{
+    $("#city").prop("disabled", false);
+    $("#city").empty()
+    $("<option></option>",{
+        "text":"--select--",
+        "value":"select"
+    }).appendTo("#city")
+    load_cities($("#state").val()?.toString()!)
+})
+
+
+// loading legal status field from databse
 function load_legal_status(){
     $.ajax({
         url:"http://localhost:8081/misc/get-legal-status",
@@ -86,7 +133,7 @@ function load_legal_status(){
     )
 }
 
-
+// validation for contact details
 $("#submit_button").on("click",()=>{
     title = $("#title").val()?.toString()!
     contact_name = $("#contact_name").val()?.toString()!
@@ -96,6 +143,7 @@ $("#submit_button").on("click",()=>{
     contact_email = $("#contact_email").val()?.toString()!
     contact_contact = $("#contact_contact").val()?.toString()!
     var check_contact = contact_validate(title,contact_name,date_of_birth,designation,aadhaar_number,contact_email,contact_contact)
+    console.log(title)
     if(check_contact === 1){
         var abc ={
             account_details:{
@@ -103,16 +151,27 @@ $("#submit_button").on("click",()=>{
                 password:password
             },
             company_details:{
-
+                company_name:company_name,
+                company_address:company_address,
+                email_id:company_email,
+                mobile_number:mobile_number,
+                registration_number:registration_number,
+                state:state,
+                city:city,
+                establishment_year:establishment_year,
+                pincode:pincode,
+                legal_status:legal_status,
+                pan_number:pan_number,
+                gst_register_number:gst_register_number
             },
-            contact__details:{
+            contact_details:{
                 title:title,
-                contact_name:company_name,
+                contact_name:contact_name,
                 date_of_birth:date_of_birth,
                 designation:designation,
                 aadhaar_number:aadhaar_number,
-                contact_email:company_email,
-                contact_contact:contact_contact
+                correspondence_email_id:company_email,
+                contact_number:contact_contact
             }
         }
         console.log(abc)
@@ -133,6 +192,8 @@ $("#submit_button").on("click",()=>{
     }
 
 })
+
+// validation for account_details
 $("#account_button").on("click",()=>{
     username= $("#username").val()?.toString()!;
     password= $("#password").val()?.toString()!;
@@ -142,68 +203,9 @@ $("#account_button").on("click",()=>{
         $(".company_details").show()
         $(".account_details").hide()
     }
-   // $(".account_details").hide()
-    //$(".company_details").show()
-    //var state = $("#state :selected").text()
-    /* var email_id = (<HTMLInputElement>document.getElementById("email_id"))?.value;
-    var correspondence_email_id  = (<HTMLInputElement>document.getElementById("correspondence_email_id"))?.value;
-    var mobile_number = (<HTMLInputElement>document.getElementById("mobile_number"))?.value;
-    var company_name = (<HTMLInputElement>document.getElementById("company_name"))?.value;
-    var registration_number = (<HTMLInputElement>document.getElementById("registration_number"))?.value;
-    var company_address = (<HTMLInputElement>document.getElementById("company_address"))?.value;
-    var city = (<HTMLInputElement>document.getElementById("city"))?.value;
-    var establishment_year = (<HTMLInputElement>document.getElementById("establishment_year"))?.value;
-    var legal_status = (<HTMLInputElement>document.getElementById("legal_status"))?.value;
-    var title = (<HTMLSelectElement>document.getElementById("title"))?.value;
-    var contact_name = (<HTMLInputElement>document.getElementById("company_name"))?.value;
-    var date_of_birth = (<HTMLInputElement>document.getElementById("date_of_birth"))?.value;
-    var designation = (<HTMLInputElement>document.getElementById("designation"))?.value;
-    var aadhaar_number = (<HTMLInputElement>document.getElementById("aadhaar_number"))?.value;
-    var gst_registration_number = (<HTMLInputElement>document.getElementById("gst_registration_number"))?.value;
-    var url:string = "http://localhost:8081/register/register-data";
-    xhr.open('POST', url, true);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.onload = function () {
-        if (this.status == 200) {
-            message = this.responseText;
-            alert(message)
-        }
-        else if (this.status == 400) { 
-            message = this.responseText;
-            alert(message)
-        }
-        else {
-            alert(message)
-        }
-    };
-    xhr.onerror=function(){
-        alert("Check your network or try again later")
-    }
 
-    xhr.send(JSON.stringify({
-        company_details:{
-            email_id:email_id,
-            correspondence_email_id:correspondence_email_id,
-            mobile_number:mobile_number,
-            company_name:company_name,
-            registration_number :registration_number,
-            company_address:company_address,
-            city:city,
-            establishment_year:establishment_year, 
-            legal_status:legal_status
-        },
-        contact_details:{
-            title:title,
-            contact_name:contact_name,
-            date_of_birth:date_of_birth,
-            designation:designation,
-            aadhaar_number:aadhaar_number,
-            gst_register_number:gst_registration_number
-        }
-
-    })) */
 })
-
+// validation of company details
 $("#company_button").on("click",()=>{
 
     company_name = $("#company_name").val()?.toString()!
@@ -217,8 +219,9 @@ $("#company_button").on("click",()=>{
     pincode = $("#pincode").val()?.toString()!
     legal_status = $("#legal_status").val()?.toString()!
     pan_number = $("#pan_number").val()?.toString()!
+    gst_register_number = $("#gst_register_number").val()?.toString()!
     var check_company = company_validate(company_name,company_address,company_email,mobile_number,
-        registration_number,state,city,establishment_year,pincode,legal_status,pan_number)
+        registration_number,state,city,establishment_year,pincode,legal_status,pan_number,gst_register_number)
     if( check_company === 1){
         $(".company_details").hide()
         $(".contact__details").show()
@@ -270,8 +273,8 @@ function account_validate(username: string ,password: string,confirm_password: s
 
 }
 
-function company_validate(company_name:string,company_address:string,company_email:string,
-    mobile_number:string,registration_number:string,state:string,city:string,establishment_year:string,pincode:string,legal_status:string,pan_number:string):number{
+function company_validate(company_name:string,company_address:string,company_email:string,mobile_number:string,registration_number:string,
+    state:string,city:string,establishment_year:string,pincode:string,legal_status:string,pan_number:string,gst_register_number:string):number{
     if(company_name === ""){
         $("#error_para").text("Error : Company Name field cannot be empty")
         return 0
@@ -296,8 +299,8 @@ function company_validate(company_name:string,company_address:string,company_ema
         $("#error_para").text("Error : State field has inappropriate value")
         return 0
     }
-    if(city === ""){
-        $("#error_para").text("Error : City field cannot be empty")
+    if(city === "select"){
+        $("#error_para").text("Error : City field has inappropriate value")
         return 0
     }
     if(establishment_year === "select"){
@@ -314,6 +317,10 @@ function company_validate(company_name:string,company_address:string,company_ema
     }
     if(pan_number === ""){
         $("#error_para").text("Error : Pan Number field cannot be empty")
+        return 0
+    }
+    if(gst_register_number === ""){
+        $("#error_para").text("Error : GST Registration  field  cannot be empty")
         return 0
     }
     $("#error_para").text("Success")

@@ -6,7 +6,6 @@ import connection from "./db"
 const router:Router = express.Router()
 
 router.post("/get-state",(request:Request,response:Response)=>{
-    console.log("States loaded")
     connection.query("select * from states",(error,result)=>{
         if (error){
             console.log(error)
@@ -19,11 +18,24 @@ router.post("/get-state",(request:Request,response:Response)=>{
 })
 
 router.post("/get-legal-status",(request:Request,response:Response)=>{
-    console.log("Legal status loaded")
     connection.query("select * from legal_status_details ",(error,result)=>{
         if (error){
             console.log(error)
             response.send("Some error in sending legal status ")
+        }
+        else{
+            response.status(200).send(result)
+        }
+    })
+})
+
+router.post("/get-city",(request:Request,response:Response)=>{
+    const state_code = request.body.state_code
+    console.log(state_code)
+    connection.query("select * from city where st_id=?",[state_code],(error,result)=>{
+        if (error){
+            console.log(error)
+            response.status(400).send("Some error in sending legal status ")
         }
         else{
             response.status(200).send(result)
