@@ -47,16 +47,16 @@ router.post('/register-data', function (request, response) {
     console.log("hello1");
     
     
-        var sql1= "insert into `vendor_details`(`v_name`, `v_address`, `v_yoe`, `v_email`, `v_mobile`, `v_reg_no`, `v_state_id`, `v_dist_id`, `v_city_id`, `v_pincode`, `v_legal_id`, `v_pan`, `v_is_verified`) VALUES (?,?,?, ?,?,?, ?,?,?, ?,?,?, ?); SELECT LAST_INSERT_ID() as vd_id;"
+        var sql1= "insert into `vendor_details`(`v_name`, `v_address`, `v_yoe`, `v_email`, `v_mobile`, `v_reg_no`, `v_state_id`, `v_dist_id`, `v_city_id`, `v_pincode`, `v_legal_id`, `v_pan`, `v_is_verified`,`v_gst`) VALUES (?,?,?, ?,?,?, ?,?,?, ?,?,?, ?,?); SELECT LAST_INSERT_ID() as vd_id;"
 
-        db_1.default.query(sql1, [v_company_name,v_company_address ,v_establishment_year,v_email,v_mobile_number,v_registration_number,v_state,"-1",v_city,v_pincode,v_legal_status,v_pan,"0",v_registration_number], function (error, result) {
+        db_1.default.query(sql1, [v_company_name,v_company_address ,v_establishment_year,v_email,v_mobile_number,v_registration_number,v_state,"-1",v_city,v_pincode,v_legal_status,v_pan,"0",v_registration_number,v_gst], function (error, result) {
             if (error) {
                 console.log(error, error.code, error.message);
                 if (error.code == "ER_DUP_ENTRY") {
                     console.log("duplicate entry");
                     var duplicate = error.message;
                     console.log("hello2");
-                    response.status(400).send("Comapany Registration number is already registered with us");
+                    response.status(400).send("Comapany Registration number/ GST number / PAN is already registered with us");
                 }
                 
             }
@@ -80,6 +80,28 @@ router.post('/register-data', function (request, response) {
                         db_1.default.query("INSERT INTO `log_in_details`( `user_name`, `password`, `role_id`, `vcd_id`) VALUES (?,?, ?,?);", [v_username,v_password,"2",vcd_id], function (error3, result3) {
                             if (error3) {
                                 console.log(error3, error3.code, error3.message);
+                                if (error3.code == "ER_DUP_ENTRY") {
+                                console.log("duplicate entry");
+                                var duplicate = error3.message;
+                                console.log("hello3");
+
+
+
+                                db_1.default.query("DELETE FROM `v_contact_details` WHERE vcd_id = ?; DELETE FROM `vendor_details` WHERE vd_id=?;", [vcd_id,vd_id], function (error, result) {
+                                    if (error) {
+                                        console.log(error, error.code, error.message);
+                                        
+                                    }
+                                    else {
+                                        console.log(result);
+                                        response.status(400).send("Username allready taken");
+                                        
+                                        // response.status(200).send("Successfully registered");
+                                    }
+                                });
+
+                                
+                            }
                                 
                             }
                             else {

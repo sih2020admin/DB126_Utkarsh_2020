@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 16, 2020 at 01:17 PM
+-- Generation Time: Mar 16, 2020 at 01:53 PM
 -- Server version: 5.7.27-0ubuntu0.19.04.1
 -- PHP Version: 7.2.24-0ubuntu0.19.04.1
 
@@ -943,7 +943,10 @@ CREATE TABLE `log_in_details` (
 
 INSERT INTO `log_in_details` (`login_id`, `user_name`, `password`, `role_id`, `vcd_id`) VALUES
 (1, 'winu', 'winu', 2, 1),
-(3, 'new', 'new', 2, 7);
+(3, 'new', 'new', 2, 7),
+(5, 'new1', 'new', 2, 9),
+(7, 'new12', 'new', 2, 11),
+(9, 'new123', 'new', 2, 13);
 
 -- --------------------------------------------------------
 
@@ -1072,16 +1075,22 @@ CREATE TABLE `vendor_details` (
   `v_pincode` varchar(6) NOT NULL,
   `v_legal_id` varchar(1) NOT NULL,
   `v_pan` varchar(10) NOT NULL,
-  `v_is_verified` varchar(1) NOT NULL
+  `v_is_verified` varchar(1) NOT NULL,
+  `v_gst` varchar(25) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `vendor_details`
 --
 
-INSERT INTO `vendor_details` (`vd_id`, `v_name`, `v_address`, `v_yoe`, `v_email`, `v_mobile`, `v_reg_no`, `v_state_id`, `v_dist_id`, `v_city_id`, `v_pincode`, `v_legal_id`, `v_pan`, `v_is_verified`) VALUES
-(1, 'sequeria industry', 'andheri east', '1999', 'ws@gmail.com', '7894561230', 'D123N67', 5, 4, 10, '400706', '1', 'Rf234Rt', '0'),
-(25, 'seueria industry', 'andheri', '2019', 'sequeria@gmail.com', '7894561230', 'N123W', 1, -1, 109, '400708', '1', 'QWer123', '0');
+INSERT INTO `vendor_details` (`vd_id`, `v_name`, `v_address`, `v_yoe`, `v_email`, `v_mobile`, `v_reg_no`, `v_state_id`, `v_dist_id`, `v_city_id`, `v_pincode`, `v_legal_id`, `v_pan`, `v_is_verified`, `v_gst`) VALUES
+(1, 'sequeria industry', 'andheri east', '1999', 'ws@gmail.com', '7894561230', 'D123N67', 5, 4, 10, '400706', '1', 'Rf234Rt', '0', '789456'),
+(25, 'seueria industry', 'andheri', '2019', 'sequeria@gmail.com', '7894561230', 'N123W', 1, -1, 109, '400708', '1', 'QWer123', '0', '741852'),
+(33, 'seueria industry', 'andheri', '2019', 'sequeria@gmail.com', '7894561230', 'N123WT', 1, -1, 109, '400708', '1', 'QWer123T', '0', 'N123WT'),
+(35, 'seueria industry', 'andheri', '2019', 'sequeria@gmail.com', '7894561230', 'N123WT1', 1, -1, 109, '400708', '1', 'QWer123T1', '0', 'N123WT1'),
+(36, 'seueria industry', 'andheri', '2019', 'sequeria@gmail.com', '7894561230', 'N123WT12', 1, -1, 109, '400708', '1', 'QWer123T12', '0', 'N123WT12'),
+(38, 'seueria industry', 'andheri', '2019', 'sequeria@gmail.com', '7894561230', 'N', 1, -1, 109, '400708', '1', 'Q', '0', 'N'),
+(40, 'seueria industry', 'andheri', '2019', 'sequeria@gmail.com', '7894561230', 'N1', 11, -1, 109, '400708', '1', 'Q1', '0', 'N1');
 
 -- --------------------------------------------------------
 
@@ -1119,7 +1128,12 @@ CREATE TABLE `v_contact_details` (
 
 INSERT INTO `v_contact_details` (`vcd_id`, `vcd_name`, `vcd_title`, `vcd_dob`, `vcd_aadhar`, `vcd_contact`, `vcd_email`, `vcd_designation`, `vd_id`) VALUES
 (1, 'winston sequeria', 'Mr.', '16-6-1999', '456745674567', '8975647845', 'winstonsequeria@gmail.com', 'CEO', 1),
-(7, 'winston sequeria', 'Mr', '1999-16-6', '456745674567', '7894561230', 'winstonsequeria@gmail.com', 'CEO', 25);
+(7, 'winston sequeria', 'Mr', '1999-16-6', '456745674567', '7894561230', 'winstonsequeria@gmail.com', 'CEO', 25),
+(8, 'winston sequeria', 'Mr', '1999-16-6', '456745674567', '7894561230', 'winstonsequeria@gmail.com', 'CEO', 33),
+(9, 'winston sequeria', 'Mr', '1999-16-6', '456745674567', '7894561230', 'winstonsequeria@gmail.com', 'CEO', 35),
+(10, 'winston sequeria', 'Mr', '1999-16-6', '456745674567', '7894561230', 'winstonsequeria@gmail.com', 'CEO', 36),
+(11, 'winston sequeria', 'Mr', '1999-16-6', '456745674567', '7894561230', 'winstonsequeria@gmail.com', 'CEO', 38),
+(13, 'winston sequeria', 'Mr', '1999-16-6', '456745674567', '7894561230', 'winstonsequeria@gmail.com', 'CEO', 40);
 
 --
 -- Indexes for dumped tables
@@ -1185,6 +1199,8 @@ ALTER TABLE `legal_status_details`
 --
 ALTER TABLE `log_in_details`
   ADD PRIMARY KEY (`login_id`),
+  ADD UNIQUE KEY `user_name` (`user_name`),
+  ADD UNIQUE KEY `user_name_2` (`user_name`),
   ADD KEY `v_id` (`vcd_id`);
 
 --
@@ -1217,7 +1233,9 @@ ALTER TABLE `tendor_req`
 --
 ALTER TABLE `vendor_details`
   ADD PRIMARY KEY (`vd_id`),
-  ADD UNIQUE KEY `v_reg_no` (`v_reg_no`);
+  ADD UNIQUE KEY `v_reg_no` (`v_reg_no`),
+  ADD UNIQUE KEY `v_pan` (`v_pan`),
+  ADD UNIQUE KEY `v_gst` (`v_gst`);
 
 --
 -- Indexes for table `vendor_file`
@@ -1255,7 +1273,7 @@ ALTER TABLE `e_tender_details`
 -- AUTO_INCREMENT for table `log_in_details`
 --
 ALTER TABLE `log_in_details`
-  MODIFY `login_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `login_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `states`
 --
@@ -1265,12 +1283,12 @@ ALTER TABLE `states`
 -- AUTO_INCREMENT for table `vendor_details`
 --
 ALTER TABLE `vendor_details`
-  MODIFY `vd_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `vd_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 --
 -- AUTO_INCREMENT for table `v_contact_details`
 --
 ALTER TABLE `v_contact_details`
-  MODIFY `vcd_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `vcd_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- Constraints for dumped tables
 --
