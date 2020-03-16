@@ -6,10 +6,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
 var db_1 = __importDefault(require("./db"));
 var router = express_1.default.Router();
-
-
-
-
 router.post("/get-state", function (request, response) {
     console.log("States loaded");
     db_1.default.query("select * from states", function (error, result) {
@@ -22,10 +18,6 @@ router.post("/get-state", function (request, response) {
         }
     });
 });
-
-
-
-
 router.post("/get-legal-status", function (request, response) {
     console.log("Legal status loaded");
     db_1.default.query("select * from legal_status_details ", function (error, result) {
@@ -38,6 +30,4 @@ router.post("/get-legal-status", function (request, response) {
         }
     });
 });
-
-
 exports.default = router;

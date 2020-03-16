@@ -3,7 +3,7 @@ import mysql from "mysql"
 var connection:Connection = mysql.createConnection({
     host:'localhost',
     user:'winston',
-    password:'W',
+    password:'Winston@99',
     database:'e_tender'
 })
 export default connection
