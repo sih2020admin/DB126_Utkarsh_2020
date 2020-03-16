@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 16, 2020 at 11:17 AM
+-- Generation Time: Mar 16, 2020 at 01:17 PM
 -- Server version: 5.7.27-0ubuntu0.19.04.1
 -- PHP Version: 7.2.24-0ubuntu0.19.04.1
 
@@ -881,7 +881,7 @@ CREATE TABLE `e_tender_details` (
   `et_last_date_apply` varchar(10) NOT NULL,
   `et_bidding_rate` varchar(10) NOT NULL,
   `et_file_uri` varchar(25) NOT NULL,
-  `is_active` tinyint(4) NOT NULL,
+  `is_delete` tinyint(4) NOT NULL,
   `dept_id` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -934,15 +934,16 @@ CREATE TABLE `log_in_details` (
   `user_name` varchar(20) NOT NULL,
   `password` varchar(20) NOT NULL,
   `role_id` tinyint(4) NOT NULL,
-  `v_id` int(11) NOT NULL
+  `vcd_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `log_in_details`
 --
 
-INSERT INTO `log_in_details` (`login_id`, `user_name`, `password`, `role_id`, `v_id`) VALUES
-(1, 'winu', 'winu', 2, 1);
+INSERT INTO `log_in_details` (`login_id`, `user_name`, `password`, `role_id`, `vcd_id`) VALUES
+(1, 'winu', 'winu', 2, 1),
+(3, 'new', 'new', 2, 7);
 
 -- --------------------------------------------------------
 
@@ -1079,7 +1080,8 @@ CREATE TABLE `vendor_details` (
 --
 
 INSERT INTO `vendor_details` (`vd_id`, `v_name`, `v_address`, `v_yoe`, `v_email`, `v_mobile`, `v_reg_no`, `v_state_id`, `v_dist_id`, `v_city_id`, `v_pincode`, `v_legal_id`, `v_pan`, `v_is_verified`) VALUES
-(1, 'sequeria industry', 'andheri east', '1999', 'ws@gmail.com', '7894561230', 'D123N67', 5, 4, 10, '400706', '1', 'Rf234Rt', '0');
+(1, 'sequeria industry', 'andheri east', '1999', 'ws@gmail.com', '7894561230', 'D123N67', 5, 4, 10, '400706', '1', 'Rf234Rt', '0'),
+(25, 'seueria industry', 'andheri', '2019', 'sequeria@gmail.com', '7894561230', 'N123W', 1, -1, 109, '400708', '1', 'QWer123', '0');
 
 -- --------------------------------------------------------
 
@@ -1116,7 +1118,8 @@ CREATE TABLE `v_contact_details` (
 --
 
 INSERT INTO `v_contact_details` (`vcd_id`, `vcd_name`, `vcd_title`, `vcd_dob`, `vcd_aadhar`, `vcd_contact`, `vcd_email`, `vcd_designation`, `vd_id`) VALUES
-(1, 'winston sequeria', 'Mr.', '16-6-1999', '456745674567', '8975647845', 'winstonsequeria@gmail.com', 'CEO', 1);
+(1, 'winston sequeria', 'Mr.', '16-6-1999', '456745674567', '8975647845', 'winstonsequeria@gmail.com', 'CEO', 1),
+(7, 'winston sequeria', 'Mr', '1999-16-6', '456745674567', '7894561230', 'winstonsequeria@gmail.com', 'CEO', 25);
 
 --
 -- Indexes for dumped tables
@@ -1182,7 +1185,7 @@ ALTER TABLE `legal_status_details`
 --
 ALTER TABLE `log_in_details`
   ADD PRIMARY KEY (`login_id`),
-  ADD KEY `v_id` (`v_id`);
+  ADD KEY `v_id` (`vcd_id`);
 
 --
 -- Indexes for table `org_details`
@@ -1213,7 +1216,8 @@ ALTER TABLE `tendor_req`
 -- Indexes for table `vendor_details`
 --
 ALTER TABLE `vendor_details`
-  ADD PRIMARY KEY (`vd_id`);
+  ADD PRIMARY KEY (`vd_id`),
+  ADD UNIQUE KEY `v_reg_no` (`v_reg_no`);
 
 --
 -- Indexes for table `vendor_file`
@@ -1251,7 +1255,7 @@ ALTER TABLE `e_tender_details`
 -- AUTO_INCREMENT for table `log_in_details`
 --
 ALTER TABLE `log_in_details`
-  MODIFY `login_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `login_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `states`
 --
@@ -1261,12 +1265,12 @@ ALTER TABLE `states`
 -- AUTO_INCREMENT for table `vendor_details`
 --
 ALTER TABLE `vendor_details`
-  MODIFY `vd_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `vd_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT for table `v_contact_details`
 --
 ALTER TABLE `v_contact_details`
-  MODIFY `vcd_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `vcd_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- Constraints for dumped tables
 --
@@ -1300,7 +1304,7 @@ ALTER TABLE `e_tender_details`
 -- Constraints for table `log_in_details`
 --
 ALTER TABLE `log_in_details`
-  ADD CONSTRAINT `log_in_details_ibfk_1` FOREIGN KEY (`v_id`) REFERENCES `v_contact_details` (`vcd_id`);
+  ADD CONSTRAINT `log_in_details_ibfk_1` FOREIGN KEY (`vcd_id`) REFERENCES `v_contact_details` (`vcd_id`);
 
 --
 -- Constraints for table `v_contact_details`
