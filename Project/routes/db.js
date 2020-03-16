@@ -8,6 +8,8 @@ var connection = mysql_1.default.createConnection({
     host: 'localhost',
     user: 'viraj',
     password: 'qwerty',
-    database: 'e_tender'
+    database: 'e_tender',
+    debug:false,
+    multipleStatements: true
 });
 exports.default = connection;

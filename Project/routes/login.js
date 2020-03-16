@@ -26,7 +26,7 @@ router.post('/login', function (req, res) {
              //Users password match
              
              	var aadharno;
-             	var vcd = results[0].v_id;
+             	var vcd = results[0].vcd_id;
 
              	//fetch aadhar number
 				db_1.default.query('SELECT vcd_aadhar FROM  v_contact_details WHERE vcd_id = ?',[vcd], function (error, results, fields) {
