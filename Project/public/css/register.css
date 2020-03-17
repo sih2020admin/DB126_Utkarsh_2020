@@ -34,9 +34,15 @@ nav {
   display: flex;
 }
 
+body {
+  text-align: center;
+}
+
 .company_details, .contact__details, .account_details {
   background-color: white;
-  width: auto;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
   height: auto;
   padding: 20px;
   margin: 40px;
@@ -45,14 +51,35 @@ nav {
   border-radius: 10px;
   -webkit-box-shadow: 3px 4px 6px -6px rgba(103, 62, 253, 0.507), -3px -4px 6px -6px rgba(103, 62, 253, 0.507);
           box-shadow: 3px 4px 6px -6px rgba(103, 62, 253, 0.507), -3px -4px 6px -6px rgba(103, 62, 253, 0.507);
-  white-space: wrap;
-  overflow-x: hidden;
-  overflow-y: hidden;
-  -webkit-transition: all .2s ease-in-out;
-  transition: all .2s ease-in-out;
+  text-align: center;
+  display: inline-block;
+  -webkit-animation: .5s ease-out 0s 1 slideInFromLeft;
+          animation: .5s ease-out 0s 1 slideInFromLeft;
 }
 
-label {
+@-webkit-keyframes slideInFromLeft {
+  0% {
+    -webkit-transform: translateX(-5%);
+            transform: translateX(-5%);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    -webkit-transform: translateX(-5%);
+            transform: translateX(-5%);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+
+h1, h2, label {
   color: #663EFD;
 }
 
@@ -120,9 +147,13 @@ textarea {
   color: #663EFD;
 }
 
-table, th, td {
-  border: none;
-  border-collapse: collapse;
+td {
+  text-align: left;
+}
+
+table.center {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 button {
@@ -147,14 +178,15 @@ button:hover {
   border-color: #663EFD;
 }
 
-#company_button, #submit_button {
-  float: right;
-}
-
 #error_para {
   font-size: 12px;
   font-style: italic;
   color: #fd0000;
   margin: 40px;
+}
+
+.Detailslabel {
+  width: 100%;
+  text-align: left;
 }
 /*# sourceMappingURL=register.css.map */
