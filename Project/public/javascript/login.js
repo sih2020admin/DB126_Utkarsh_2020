@@ -50,7 +50,9 @@ function show()
 							},1500);
 						}
 						else if(this.status == 400){
-							document.getElementById("tc1").innerHTML="Invalid OTP <br>Redirecting to Login";
+							document.getElementById("tc1").innerHTML="Invalid OTP ";
+							document.getElementById("tc2").style.display = "inline-block";
+							document.getElementById("tc2").innerHTML="Redirecting to Login";
 							document.getElementById("otp").disabled=true;
 							setTimeout(function(){
     								location="login.html"
