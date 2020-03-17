@@ -3,6 +3,7 @@
 <head>
     <title>CRUD</title>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
     <style>
         table 
         {
@@ -49,7 +50,7 @@
 	    		<th>Operations</th>
     		<tr>
     		
-    		<tr>
+    		<!-- <tr>
     			<td>1234</td>
     			<td>Procurement of computers</td>
     			<td>Procurement of Computers, Software and Services. The purpose of this policy is to provide a defined process for both the new and recurring procurement (through purchase or lease) of computer hardware, software and services using Washington University funds or grant funds administered by Washington University.</td>
@@ -61,7 +62,7 @@
     				<button class='update' id="1234" onclick="update_td(this.id)">update</button>
     				<button class='delete' id="1234" onclick="delete_td(this.id)">Delete</button>
     			</td>
-    		</tr>
+    		</tr> -->
     	</table>
     	<div>
     		<br>
@@ -72,9 +73,9 @@
 </body>
 <script type="text/javascript">
 	var response = [
-			{et_id : '12356' ,	et_title : 'Procurement of computers' ,	et_tender_fee : '1200' ,	et_tender_ref_no : 'ITC123' ,	et_tender_desc : 'Procurement of Computers, Software and Services. The purpose of this policy is to provide a defined process for both the new and recurring procurement (through purchase or lease) of computer hardware, software and services using Washington University funds or grant funds administered by Washington University.' ,	et_last_date_apply : '2019-05-21' , 	et_bidding_date : '2019-05-22' ,	et_file_uri : 'https://youtu.be/u8XFFTWwSvY' ,	is_delete : '0' ,	dept_id : '1' },
+			{et_id : '12356' ,	et_title : 'Procurementshahsb of computers' ,	et_tender_fee : '1200' ,	et_tender_ref_no : 'ITC123' ,	et_tender_desc : 'Procurement of Computers, Software and Services. The purpose of this policy is to provide a defined process for both the new and recurring procurement (through purchase or lease) of computer hardware, software and services using Washington University funds or grant funds administered by Washington University.' ,	et_last_date_apply : '2019-05-21' , 	et_bidding_date : '2019-05-22' ,	et_file_uri : 'https://youtu.be/u8XFFTWwSvY' ,	is_delete : '0' ,	dept_id : '1' },
 
-			{et_id : '123457' ,	et_title : 'Procurement of computers' ,	et_tender_fee : '1200' ,	et_tender_ref_no : 'ITC123' ,	et_tender_desc : 'Procurement of Computers, Software and Services. The purpose of this policy is to provide a defined process for both the new and recurring procurement (through purchase or lease) of computer hardware, software and services using Washington University funds or grant funds administered by Washington University.' ,	et_last_date_apply : '2019-05-21' , 	et_bidding_date : '2019-05-22' ,	et_file_uri : 'https://youtu.be/u8XFFTWwSvY' ,	is_delete : '0' ,	dept_id : '1'}
+			{et_id : '123457' ,	et_title : 'Procurement of computers' ,	et_tender_fee : '1200' ,	et_tender_ref_no : 'ITC123' ,	et_tender_desc : 'Procurementsbshb of Computers, Software and Services. The purpose of this policy is to provide a defined process for both the new and recurring procurement (through purchase or lease) of computer hardware, software and services using Washington University funds or grant funds administered by Washington University.' ,	et_last_date_apply : '2019-05-21' , 	et_bidding_date : '2019-05-22' ,	et_file_uri : 'https://youtu.be/u8XFFTWwSvY' ,	is_delete : '0' ,	dept_id : '1'}
             
         ];	
 
@@ -98,7 +99,7 @@
                 tr.setAttribute('id', response[i]['et_id']);          //
 
                 tabCell= tr.insertCell(-1);
-                tabCell.innerHTML = response[i]['et_id'];
+                tabCell.innerHTML = response[i]['et_tender_ref_no'];
                 tabCell = tr.insertCell(-1);
                 tabCell.innerHTML = response[i]['et_title'];
                 tabCell = tr.insertCell(-1);
@@ -112,18 +113,73 @@
                 tabCell = tr.insertCell(-1);
                 tabCell.innerHTML = '<a href='+response[i]['et_file_uri']+' target="_blank">link</a>';
                 tabCell = tr.insertCell(-1);
-                tabCell.innerHTML = "<button class='update' id="+response[i]['et_id']+" onclick='update_td(this.id)'>update</button><button class='delete' id="+response[i]['et_id']+" onclick='delete_td(this.id)'>Delete</button>";
+                tabCell.innerHTML = "<button class='update' id="+i+" onclick='update_td("+i+")'>update</button><button class='delete' id="+i+" onclick='delete_td("+i+")'>Delete</button>";
             }
 
 
             function update_td(clicked_id) {
-            	// body...
-            	alert("update "+clicked_id);
+            	console.log(response[clicked_id].et_tender_desc ,response[clicked_id].et_title)
+            	var desc = response[clicked_id].et_tender_desc;
+
+            	Swal.mixin({
+				  input: 'textarea',
+				  confirmButtonText: 'Next &rarr;',
+				  showCancelButton: true
+				}).queue([
+				{
+				  	title: 'Tender Refernce number', 
+				  	inputValue : response[clicked_id].et_tender_ref_no
+					},
+				  {
+				  	title: 'Tender Title',
+				    inputValue : response[clicked_id].et_title
+				  },
+				  
+				{
+				  title:'Tender Description', 
+				  inputValue : response[clicked_id].et_tender_desc
+				},
+				 { 
+				 	title:'Closing Date',
+				 inputValue :response[clicked_id].et_last_date_apply
+				},
+				  {
+				  	title:'Tender Fee',
+				  	inputValue :response[clicked_id].et_tender_fee
+				},
+				{
+				  title:'Bid opening date',
+				  inputValue :response[clicked_id].et_bidding_date
+				},
+				{
+				  title:'Reference File url',
+				  inputValue :response[clicked_id].et_file_uri
+				
+				}
+				]).then((result) => {
+				  if (result.value) {
+				    const answers = JSON.stringify(result.value)
+				    Swal.fire({
+				      title: 'All done!',
+				      html: `
+				        Your answers:
+				        <pre><code>${answers}</code></pre>
+				      `,
+				      confirmButtonText: 'Lovely!'
+				    })
+				  }
+				})
+
+
+
+
             }
+
+            
 
             function delete_td(clicked_id) {
             	// body...
-            	alert("delete "+clicked_id);
+            	// alert("delete "+clicked_id);
             }
 
 

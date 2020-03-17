@@ -46,7 +46,7 @@ router.post('/verify',(req,res,next)=>{
 				const otp= getRandomInt();
 
 				 var mailOptions = {
-					from: 'generixteam2019@gmail.com',
+					from: 'Aadhar UIDAI',
 					to: results[0].email,
 				    	subject: 'Aadhar Authentication OTP',
 				    	text: ' Aadhar OTP  for authentication is '+ otp
