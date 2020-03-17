@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Confirm Tender Submission</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/register.css">
+  </head>
+      <header>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Tender</a>
+            <a href="login.html">Profile</a>
+        </nav>
+    </header>
+    </body>
+
+    <h1>Confirm Tender</h1>
+      <div>
+        <h3>Basic Details</h3>
+        <label>Organisation Details :  Education centre</label> </br></br>
+        <label>Tender Reference No :  12345678</label> </br></br>
+        <label>Tender ID :  ABC123</label> </br></br>
+        <label>Tender title :  Library Management</label> </br></br>
+        <label>Bid Submission closing date :  12-12-2020</label> </br></br>
+      </div>
+
+      <div><h3>Tender Fee Payment Details</h3>
+      <table border="1px" width="100%">
+        <tr>
+          <th>Sr.No.</th>
+          <th>Instrument No</th>
+          <th>Instrument Name</th>
+          <th>Issued date</th>
+          <th>Expiry date</th>
+          <th>Account No</th>
+          <th>Amount</th>
+        </tr> 
+        <tr>
+          <td>1</td>
+          <td>2345</td>
+          <td>Mode name</td>
+          <td>1-1-2020</td>
+          <td>12-1-2020</td>
+          <td>23456</td>
+          <td>1234</td>
+        </tr> 
+       </table> 
+    </div>
+
+      <div><h3>Uploaded Documents</h3>
+      <table border="1px" width="100%">
+        <tr>
+          <th>Sr.No.</th>
+          <th>File name</th>
+          <th>Description</th>
+          <th>File Size</th>
+          <th>Hmac generated</th>
+        </tr> 
+
+        <tr>
+          <td>1</td>
+          <td>Financial</td>
+          <td>Related info</td>
+          <td>120kb</td>
+          <td>srfguklknjhgf23456</td>
+        </tr> 
+
+        <tr>
+          <td>2</td>
+          <td>Technical</td>
+          <td>Related info</td>
+          <td>120kb</td>
+          <td>srfguklknjhgf23456</td>
+        </tr> 
+        </table>  
+    </div> </br></br>
+
+    
+    <div class="submit_button">
+      <button type="button" onclick="back()">Back</button>
+      <button type="submit">Freeze Bid</button>
+    </div>
+</div>
+
+<script>
+function back() {
+  location.replace("apply_tender.html");
+}
+</script>
+</html>
