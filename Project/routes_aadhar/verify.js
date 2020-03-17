@@ -6,8 +6,8 @@ const assert = require('assert');
 var mysql = require('mysql');
 var con = mysql.createConnection({
   	host: "localhost",
-  	user: "viraj",
-  	password: "qwerty",
+  	user: "root",
+  	password: "",
   	database:"aadharDB"
 });
 con.connect(function(err) {
@@ -124,14 +124,4 @@ router.get('/getCategories', function (req, res) {
 		res.json(results);
   	});
 });
-
 module.exports= router;
-
-
-
-
-
-// INSERT INTO `OTP` (`otpid`, `aadharno`, `otp`, `validtill`, `isUsed`, `reference_id`) VALUES ('1', '123412341234', '456123', '2020-03-12 09:22:19', '0', '4') 
-
-// 
-	

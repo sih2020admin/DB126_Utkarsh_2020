@@ -151,7 +151,7 @@ $("#submit_button").on("click", function () {
             company_details: {
                 company_name: company_name,
                 company_address: company_address,
-                email_id: company_email,
+                company_email: company_email,
                 mobile_number: mobile_number,
                 registration_number: registration_number,
                 state: state,
@@ -168,11 +168,10 @@ $("#submit_button").on("click", function () {
                 date_of_birth: date_of_birth,
                 designation: designation,
                 aadhaar_number: aadhaar_number,
-                correspondence_email_id: company_email,
-                contact_number: contact_contact
+                contact_email: company_email,
+                contact_contact: contact_contact
             }
         };
-        console.log(abc);
         $.ajax({
             url: "http://localhost:8081/register/register-data",
             method: "POST",
@@ -223,10 +222,67 @@ $("#company_button").on("click", function () {
         $(".submit_button").show();
     }
 });
+$("#verify_button").on("click", function () {
+    var _a;
+    var aadhaar = (_a = $("#aadhaar_number").val()) === null || _a === void 0 ? void 0 : _a.toString();
+    if (aadhaar === "") {
+        $("#error_para").text("Error : Aadhaar Number Filed cannot be empty");
+    }
+    else if (aadhaar.length < 12 || aadhaar.length > 12) {
+        $("#error_para").text("Error : Aadhaar Number has inappropriate length");
+    }
+    else {
+        $.ajax({
+            url: "http://localhost:8082/verify",
+            method: "POST",
+            async: true,
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({
+                aadharno: aadhaar
+            }),
+            success: function (response) {
+                console.log(response);
+                alert("got some response from server");
+            },
+            error: function (xhr, error_type, exception) {
+                var error_message = xhr.responseText;
+                alert("Problem connecting with " + error_message);
+            }
+        });
+    }
+});
+$("#otp_button").on("click", function () {
+    var _a, _b;
+    var aadhar = (_a = $("#aadhaar_number").val()) === null || _a === void 0 ? void 0 : _a.toString();
+    var otp = (_b = $("#otp").val()) === null || _b === void 0 ? void 0 : _b.toString();
+    console.log(aadhar, otp);
+    $.ajax({
+        url: "http://localhost:8082/verifyOTP",
+        method: "POST",
+        async: true,
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({
+            aadharno: aadhar,
+            OTP: otp
+        }),
+        success: function (response) {
+            console.log(response);
+            alert("got some response from server");
+        },
+        error: function (xhr, error_type, exception) {
+            var error_message = xhr.responseText;
+            alert("Problem connecting with " + error_message);
+        }
+    });
+});
 $("#contact__details_previous").on("click", function () {
     $(".contact__details").hide();
     $(".company_details").show();
     $(".submit_button").hide();
+});
+$("#company_button_back").on("click", function () {
+    $(".account_details").show();
+    $(".company_details").hide();
 });
 function account_validate(username, password, confirm_password) {
     var reg = /^[a-zA-Z0-9_]{5,}[a-zA-Z]+[0-9]*$/;

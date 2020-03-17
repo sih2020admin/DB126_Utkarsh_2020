@@ -6,7 +6,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
 var cors_1 = __importDefault(require("cors"));
 var path_1 = __importDefault(require("path"));
-//import register from './routes/register-server1'
 var misc_1 = __importDefault(require("./routes/misc"));
 var app = express_1.default();
 var login = require("./routes/login");

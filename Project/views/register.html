@@ -25,9 +25,9 @@
       <input id="password" type="password">
       <label for="confirm_password">Confirm Password</label>
       <input type="password" id="confirm_password">
-      <button id="account_button">Confirm</button>
+      <button id="account_button">Next</button>
     </div>
-    <div class="company_details" style="display: block;">
+    <div class="company_details" style="display: none;">
       <label style = "font-size: 25px;"><strong>Company Details</strong></label><br><br>
       <table style="width:100%">
         <tr>
@@ -74,11 +74,15 @@
           <td><input id="pan_number" type="text"></td>
           <td><label for="gst_register_number">GST Registration Number</label></td>
           <td><input id="gst_register_number" type="text"></td>
+          
+        </tr>
+        <tr>
+          <td><button id="company_button_back">Back</button></td>
+          <td><button id="company_button">Next</button></td>
         </tr>
     </table>
-    <button id="company_button">Confirm</button>
     </div>
-    <div class="contact__details" style="display: block;">
+    <div class="contact__details" style="display: none;">
       <label style = "font-size: 25px;"><strong>Contact Details</strong></label><br><br>
       <table style="width:100%">
         <tr>
@@ -103,8 +107,10 @@
         <tr>
           <td><label for="designation">Designation</label></td>
           <td><input id="designation" type="text"></td>
-          <td><label for="aadhaar_number">Aadhaar Number</label>
-          <td><input id="aadhaar_number" type="number">
+          <td><label for="aadhaar_number">Aadhaar Number</label></td>
+          <td><input id="aadhaar_number" type="number"><button id="verify_button">Verify Aadhaar Number</button>
+            <input id="otp" placeholder="Enter OTP" type="number"><button id="otp_button">Send OTP</button>
+          </td>
           
         </tr>
         <tr>
@@ -115,7 +121,7 @@
         </tr>
     </table>
     </div>
-    <div class="submit_button" style="display: block;">
+    <div class="submit_button" style="display: none;">
       <button class="submit_button" id="contact__details_previous">Back</button>
       <button class="submit_button" id="submit_button">Register</button>
     </div>

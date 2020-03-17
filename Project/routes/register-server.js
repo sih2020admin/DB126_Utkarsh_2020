@@ -9,16 +9,12 @@ var router = express_1.default.Router();
 
 router.post('/register-data', function (request, response) {
     console.log("register data called" );
-
-    // var duplicate = "";
-    // var check_company = 1;
-    // var check_contact = 1;
-
+    
     var company_details = request.body.company_details;
     var contact_details = request.body.contact_details;
     var account_details = request.body.account_details;
 
-    var v_email = company_details.email_id;
+    var v_email = company_details.company_email;
     var v_mobile_number = company_details.mobile_number;
     var v_company_name = company_details.company_name;
     var v_registration_number = company_details.registration_number;
@@ -36,8 +32,8 @@ router.post('/register-data', function (request, response) {
     var c_date_of_birth = contact_details.date_of_birth;
     var c_designation = contact_details.designation;
     var c_aadhaar_number = contact_details.aadhaar_number;
-    var correspondence_email_id = contact_details.correspondence_email_id;
-    var c_mobile_number = contact_details.contact_number;
+    var correspondence_email_id = contact_details.contact_mail;
+    var c_mobile_number = contact_details.contact_contact;
 
     var v_username = account_details.username;
     var v_password = account_details.password;
@@ -49,7 +45,7 @@ router.post('/register-data', function (request, response) {
     
         var sql1= "insert into `vendor_details`(`v_name`, `v_address`, `v_yoe`, `v_email`, `v_mobile`, `v_reg_no`, `v_state_id`, `v_dist_id`, `v_city_id`, `v_pincode`, `v_legal_id`, `v_pan`, `v_is_verified`,`v_gst`) VALUES (?,?,?, ?,?,?, ?,?,?, ?,?,?, ?,?); SELECT LAST_INSERT_ID() as vd_id;"
 
-        db_1.default.query(sql1, [v_company_name,v_company_address ,v_establishment_year,v_email,v_mobile_number,v_registration_number,v_state,"-1",v_city,v_pincode,v_legal_status,v_pan,"0",v_registration_number,v_gst], function (error, result) {
+        db_1.default.query(sql1, [v_company_name,v_company_address ,v_establishment_year,v_email,v_mobile_number,v_registration_number,v_state,"-1",v_city,v_pincode,v_legal_status,v_pan,"0",v_gst], function (error, result) {
             if (error) {
                 console.log(error, error.code, error.message);
                 if (error.code == "ER_DUP_ENTRY") {
