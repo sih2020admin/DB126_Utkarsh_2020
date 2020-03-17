@@ -1,0 +1,83 @@
+fill tender
+
+refer link: https://dribbble.com/shots/3306661-App-Settings-CRUD
+
+#Feilds to be displayed to user(vendor can enter role details (2) after selecting particular tender):
+
+	1.et_title
+	2.tender fee
+	3.tender ref no
+	4.tender description
+	5.last date to apply
+	6.bidding rate
+	7.if any realted file specify url here
+
+
+
+
+
+#Feilds to be entered in Database:
+
+	*table e_tener_details
+
+	1.et_title
+	2.tender fee
+	3.tender ref no
+	4.tender description
+	5.last date to apply
+	6.bidding rate
+	7.if any realted file specify url here
+
+
+		extra:
+		1.et_id (Auto increment ie no need to specify)
+		2.dept_id (map whos is creating)
+		3.is delete (0 by default)
+
+
+
+Read
+#Feilds to be fetched from Database:
+
+	*table e_tener_details
+
+	1.et_title
+	2.tender fee
+	3.tender ref no
+	4.tender description
+	5.last date to apply
+	6.bidding rate
+	7.if any realted file specify url here
+	8.et_id (not shown)
+	9.is_delete (dont show if delte set to 1)
+	10.corresponding department
+
+
+
+
+update
+#Feilds to be fetched from Database:
+(there will be button for each tender to update once click all feilds should be editable)
+(once done updtae in database to respective et_id )
+
+	*table e_tener_details
+
+	1.et_title
+	2.tender fee
+	3.tender ref no
+	4.tender description
+	5.last date to apply
+	6.bidding rate
+	7.if any realted file specify url here
+	8.et_id (not shown)
+	9.department(isko change karne ka previlage dena hai?)
+
+
+Delete
+#Feilds to be fetched from Database:
+(there will be button for each tender to delte once clickuser will be promted to confirm)
+(once done delete in database to respective et_id set is delete to 1)
+
+	
+
+

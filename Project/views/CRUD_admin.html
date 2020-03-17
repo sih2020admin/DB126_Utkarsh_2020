@@ -1,69 +1,164 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="css/login.css">
-	<title>Login Page</title>
+    <title>CRUD</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <style>
+        table 
+        {
+            width: 100%;
+            font: 17px Calibri;
+        }
+        table, th, td 
+        {
+            border: solid 1px #DDD;
+            border-collapse: collapse;
+            padding: 2px 3px;
+            text-align: center;
+        }
+      
+        input[type='button'] 
+        {
+            font: 15px Calibri;
+            cursor: pointer;
+            border: none;
+            color: #FFF;
+        }
+        
+        input[type='text'], select 
+        {
+            font: 17px Calibri;
+            text-align: center;
+            border: solid 1px #CCC;
+            width: auto;
+            padding: 2px 3px;
+        }
+    </style>
 </head>
 <body>
-	<header>
-        <nav>
-            <a href="#">Home</a>
-            <a href="#">Tender</a>
-            <a href="login.html">Profile</a>
-        </nav>
-	</header>
-	<div class="cont">
-	<h2>Login</h2><br>
-	<table class="center">
-    <tr>
-	<td><label for="email_id">UserId</label></td>
-	<td><input type="text" id="username" placeholder="Enter UserId" required></td></tr>
-	<tr><td><label for="password">Password</label></td>
-	<td><input type="password" id="pass" placeholder="Enter password" required></td>
-	</table>
-	<p id="tc">Enter email address for login id. eg: abc@nic.com<br>(Care may be taken to enter valid e-mail ID. This information will be kept confidential. The login ID cannot be modified once registered.) </p>
-	<!input type="Password" placeholder="Enter Password" required=""></br>
-
-	<button class="login" id="login" onclick="show()">Login</button>
-	<p id="not_registered">Don't have an account? <a href="register.html" >Register</a></p>
-	<table style="margin: auto;">
-	</tr>
-	<tr><td><label id="enter_otp" style="display: none;">Enter OTP</label></td>
-	<td><input type="text" id="otp" placeholder="Enter OTP" required="" style="display: none;"></td>
-	</tr>
-	</table>
-	<button class="login" id="confirm" style="display: none;">Confirm</button>
-	
-	</div>
+    <div id="container" style="width:80%;">
+    	<table id="content_table">
+    		<tr>
+	    		<th>Tener Refernce no.</th>
+	    		<th>Tender title</th>
+	    		<th>Tender Description</th>
+	    		<th>Department</th>
+	    		<th>Closing date</th>
+	    		<th>Bid opening Date</th>
+	    		<th>File link</th>
+	    		<th>Operations</th>
+    		<tr>
+    		
+    		<tr>
+    			<td>1234</td>
+    			<td>Procurement of computers</td>
+    			<td>Procurement of Computers, Software and Services. The purpose of this policy is to provide a defined process for both the new and recurring procurement (through purchase or lease) of computer hardware, software and services using Washington University funds or grant funds administered by Washington University.</td>
+    			<td>IT ,Roorkee</td>
+    			<td>2019-05-26</td>
+    			<td>2019-05-27</td>
+    			<td><a href="https://youtu.be/u8XFFTWwSvY" target="_blank">link</a></td>
+    			<td>
+    				<button class='update' id="1234" onclick="update_td(this.id)">update</button>
+    				<button class='delete' id="1234" onclick="delete_td(this.id)">Delete</button>
+    			</td>
+    		</tr>
+    	</table>
+    	<div>
+    		<br>
+    		<h4>Create tender</h4>
+    		<button onclick="add_td()">+</button>
+    	</div>
+    </div>
 </body>
-<script>
-	var x = document.getElementById("enter_otp");
-	var y = document.getElementById("otp");
-	var z = document.getElementById("confirm");
-	var userid ;
-	var password;
-	function show() {
-	userid= document.getElementById("username").value;
-	passw = document.getElementById("pass").value;
-	console.log(userid.length , passw.length)
-	if (userid.length == 0 )
-		{
-			alert("Please input a UserId");
-			return false;
-		}
-	else if (passw.length == 0){
-		alert("Please input a Password");
-			return false;
-	}
-	else 
-		{	
-			x.style.display = "";
-			y.style.display = "inline-block";
-			z.style.display = "";
-			return true; 
-		}
-	} 
+<script type="text/javascript">
+	var response = [
+			{et_id : '12356' ,	et_title : 'Procurement of computers' ,	et_tender_fee : '1200' ,	et_tender_ref_no : 'ITC123' ,	et_tender_desc : 'Procurement of Computers, Software and Services. The purpose of this policy is to provide a defined process for both the new and recurring procurement (through purchase or lease) of computer hardware, software and services using Washington University funds or grant funds administered by Washington University.' ,	et_last_date_apply : '2019-05-21' , 	et_bidding_date : '2019-05-22' ,	et_file_uri : 'https://youtu.be/u8XFFTWwSvY' ,	is_delete : '0' ,	dept_id : '1' },
+
+			{et_id : '123457' ,	et_title : 'Procurement of computers' ,	et_tender_fee : '1200' ,	et_tender_ref_no : 'ITC123' ,	et_tender_desc : 'Procurement of Computers, Software and Services. The purpose of this policy is to provide a defined process for both the new and recurring procurement (through purchase or lease) of computer hardware, software and services using Washington University funds or grant funds administered by Washington University.' ,	et_last_date_apply : '2019-05-21' , 	et_bidding_date : '2019-05-22' ,	et_file_uri : 'https://youtu.be/u8XFFTWwSvY' ,	is_delete : '0' ,	dept_id : '1'}
+            
+        ];	
+
+        var tr;
+        var col = [];
+        var table = document.getElementById("content_table");
+        var tabCell;
+
+        for (var i = 0; i < response.length; i++) {
+                for (var key in response[i]) {
+                    if (col.indexOf(key) === -1) {
+                        col.push(key);
+                    }
+                }
+            }
+            console.log(col)
+
+        for (var i = 0; i < response.length; i++) {
+
+                tr = table.insertRow(-1); 
+                tr.setAttribute('id', response[i]['et_id']);          //
+
+                tabCell= tr.insertCell(-1);
+                tabCell.innerHTML = response[i]['et_id'];
+                tabCell = tr.insertCell(-1);
+                tabCell.innerHTML = response[i]['et_title'];
+                tabCell = tr.insertCell(-1);
+                tabCell.innerHTML = response[i]['et_tender_desc'];
+                tabCell = tr.insertCell(-1);
+                tabCell.innerHTML = response[i]['dept_id'];
+                tabCell = tr.insertCell(-1);
+                tabCell.innerHTML = response[i]['et_last_date_apply'];
+                tabCell = tr.insertCell(-1);
+                tabCell.innerHTML = response[i]['et_bidding_date'];
+                tabCell = tr.insertCell(-1);
+                tabCell.innerHTML = '<a href='+response[i]['et_file_uri']+' target="_blank">link</a>';
+                tabCell = tr.insertCell(-1);
+                tabCell.innerHTML = "<button class='update' id="+response[i]['et_id']+" onclick='update_td(this.id)'>update</button><button class='delete' id="+response[i]['et_id']+" onclick='delete_td(this.id)'>Delete</button>";
+            }
+
+
+            function update_td(clicked_id) {
+            	// body...
+            	alert("update "+clicked_id);
+            }
+
+            function delete_td(clicked_id) {
+            	// body...
+            	alert("delete "+clicked_id);
+            }
+
+
+            function add_td() {
+            	// body...
+            	Swal.mixin({
+				  input: 'text',
+				  confirmButtonText: 'Next &rarr;',
+				  showCancelButton: true,
+				  progressSteps: ['1', '2', '3','4','5','6','7']
+				}).queue([
+				  {
+				    title: 'Tender Title',
+				  },
+				  'Tender Refernce number',
+				  'Tender Description',
+				  'Closing Date',
+				  'Tender Fee'
+				  ,'Bid opening date',
+				  'Reference File url',
+				]).then((result) => {
+				  if (result.value) {
+				    const answers = JSON.stringify(result.value)
+				    Swal.fire({
+				      title: 'All done!',
+				      html: `
+				        Your answers:
+				        <pre><code>${answers}</code></pre>
+				      `,
+				      confirmButtonText: 'Lovely!'
+				    })
+				  }
+				})
+            }
 </script>
+
+
 </html>
