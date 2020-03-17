@@ -6,8 +6,8 @@ const assert = require('assert');
 var mysql = require('mysql');
 var con = mysql.createConnection({
   	host: "localhost",
-  	user: "root",
-  	password: "",
+  	user: "viraj",
+  	password: "qwerty",
   	database:"aadharDB"
 });
 con.connect(function(err) {
@@ -45,7 +45,7 @@ router.post('/verify',(req,res,next)=>{
 				//console.log("number",results[0].phone_number," email",results[0].email)
 				const otp= getRandomInt();
 
-				 /*var mailOptions = {
+				 var mailOptions = {
 					from: 'generixteam2019@gmail.com',
 					to: results[0].email,
 				    	subject: 'Aadhar Authentication OTP',
@@ -57,7 +57,7 @@ router.post('/verify',(req,res,next)=>{
 					} else {
 					      console.log('Email sent: ' + info.response);
 				    	}
-				 }); */
+				 }); 
 
 				// database part
 				var dt= new Date(Date.now()+90000);
@@ -95,9 +95,10 @@ router.post('/verifyOTP',(req,res)=>{
 		      res.sendStatus(400);
 		 }
 		 else{
-		     	if(results.length > 0 && results[0].otp==req.body.OTP  ){
+		 		var n =results.length-1;
+		     	if(results.length > 0 && results[n].otp==req.body.OTP  ){
 				//console.log(Date.now(),'\n',	results[0].validtill,'\n' , Date.now() < Date(results[0].validtill))
-		     		con.query('UPDATE OTP SET isUsed = "1" WHERE OTP.otpid = ? ',[results[0].otpid],function(error,results2,fields){
+		     		con.query('UPDATE OTP SET isUsed = "1" WHERE OTP.otpid = ? ',[results[n].otpid],function(error,results2,fields){
 	    				if (error) {
 						//console.log("error: otp db ",error);
 					}else{

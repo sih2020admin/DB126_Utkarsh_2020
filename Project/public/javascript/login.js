@@ -1,6 +1,8 @@
 var x = document.getElementById("enter_otp");
 var y = document.getElementById("otp");
 var z = document.getElementById("confirm");
+var login_button = document.getElementById("login");
+
 function show() 
 {
 	var userid= document.getElementById("username").value;
@@ -27,6 +29,7 @@ function show()
 				//alert(message.aadhar);
 				document.getElementById("username").disabled=true;
 				document.getElementById("pass").disabled=true;
+				login_button.style.visibility="hidden";
 				document.getElementById("tc").innerHTML="OTP Has been send to Email";
 
 				x.style.display = "";
