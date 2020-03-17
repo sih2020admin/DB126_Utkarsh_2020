@@ -20,6 +20,7 @@ var pincode;
 var legal_status;
 var pan_number;
 var gst_register_number;
+var is_verified;
 load_years();
 load_states();
 load_legal_status();
@@ -143,49 +144,56 @@ $("#submit_button").on("click", function () {
     var check_contact = contact_validate(title, contact_name, date_of_birth, designation, aadhaar_number, contact_email, contact_contact);
     console.log(title);
     if (check_contact === 1) {
-        var abc = {
-            account_details: {
-                username: username,
-                password: password
-            },
-            company_details: {
-                company_name: company_name,
-                company_address: company_address,
-                company_email: company_email,
-                mobile_number: mobile_number,
-                registration_number: registration_number,
-                state: state,
-                city: city,
-                establishment_year: establishment_year,
-                pincode: pincode,
-                legal_status: legal_status,
-                pan_number: pan_number,
-                gst_register_number: gst_register_number
-            },
-            contact_details: {
-                title: title,
-                contact_name: contact_name,
-                date_of_birth: date_of_birth,
-                designation: designation,
-                aadhaar_number: aadhaar_number,
-                contact_email: company_email,
-                contact_contact: contact_contact
-            }
-        };
-        $.ajax({
-            url: "http://localhost:8081/register/register-data",
-            method: "POST",
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify(abc),
-            async: true,
-            success: function (response) {
-                alert("got some response from server");
-            },
-            error: function (xhr, error_type, exception) {
-                var error_message = xhr.responseText;
-                alert("Problem connecting with " + error_message);
-            }
-        });
+        console.log(is_verified);
+        if (is_verified != "ok") {
+            $("#error_para").text("Error : Aadhaar Number is not verified \n Click on verify to start verifying it");
+        }
+        else {
+            var abc = {
+                account_details: {
+                    username: username,
+                    password: password
+                },
+                company_details: {
+                    company_name: company_name,
+                    company_address: company_address,
+                    company_email: company_email,
+                    mobile_number: mobile_number,
+                    registration_number: registration_number,
+                    state: state,
+                    city: city,
+                    establishment_year: establishment_year,
+                    pincode: pincode,
+                    legal_status: legal_status,
+                    pan_number: pan_number,
+                    gst_register_number: gst_register_number
+                },
+                contact_details: {
+                    title: title,
+                    contact_name: contact_name,
+                    date_of_birth: date_of_birth,
+                    designation: designation,
+                    aadhaar_number: aadhaar_number,
+                    contact_email: contact_email,
+                    contact_contact: contact_contact
+                }
+            };
+            $.ajax({
+                url: "http://localhost:8081/register/register-data",
+                method: "POST",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(abc),
+                async: true,
+                success: function (response) {
+                    alert(response);
+                    alert("got some response from server");
+                },
+                error: function (xhr, error_type, exception) {
+                    var error_message = xhr.responseText;
+                    alert("" + error_message);
+                }
+            });
+        }
     }
 });
 // validation for account_details
@@ -196,13 +204,8 @@ $("#account_button").on("click", function () {
     var confirm_password = (_c = $("#confirm_password").val()) === null || _c === void 0 ? void 0 : _c.toString();
     var check_account = account_validate(username, password, confirm_password);
     if (check_account === 1) {
-        $(".account_details").fadeTo("slow", 0, function () {
-            setTimeout(function () {
-                $(".account_details").fadeOut(function () {
-                    $(".company_details").fadeTo("slow", 1);
-                });
-            }, 1000);
-        });
+        $(".account_details").hide();
+        $(".company_details").fadeTo("fast", 1);
     }
 });
 // validation of company details
@@ -223,20 +226,23 @@ $("#company_button").on("click", function () {
     var check_company = company_validate(company_name, company_address, company_email, mobile_number, registration_number, state, city, establishment_year, pincode, legal_status, pan_number, gst_register_number);
     if (check_company === 1) {
         $(".company_details").hide();
-        $(".contact__details").show();
-        $(".submit_button").show();
+        $(".contact__details").fadeTo("fast", 1);
+        $(".submit_button").fadeTo("fast", 1);
     }
 });
 $("#verify_button").on("click", function () {
     var _a;
     var aadhaar = (_a = $("#aadhaar_number").val()) === null || _a === void 0 ? void 0 : _a.toString();
     if (aadhaar === "") {
-        $("#error_para").text("Error : Aadhaar Number Filed cannot be empty");
+        $("#error_para").text("Error : Aadhaar Number Field cannot be empty");
     }
     else if (aadhaar.length < 12 || aadhaar.length > 12) {
         $("#error_para").text("Error : Aadhaar Number has inappropriate length");
     }
     else {
+        $("#otp").show();
+        $("#otp_button").show();
+        $("#aadhaar_number").prop("disabled", true);
         $.ajax({
             url: "http://localhost:8082/verify",
             method: "POST",
@@ -251,7 +257,8 @@ $("#verify_button").on("click", function () {
             },
             error: function (xhr, error_type, exception) {
                 var error_message = xhr.responseText;
-                alert("Problem connecting with " + error_message);
+                alert("" + error_message);
+                $("#aadhaar_number").prop("disabled", false);
             }
         });
     }
@@ -272,28 +279,31 @@ $("#otp_button").on("click", function () {
         }),
         success: function (response) {
             console.log(response);
+            is_verified = "ok";
             alert("got some response from server");
         },
         error: function (xhr, error_type, exception) {
             var error_message = xhr.responseText;
             alert("Problem connecting with " + error_message);
+            $("#aadhaar_number").prop("disabled", false);
         }
     });
 });
 $("#contact__details_previous").on("click", function () {
     $(".contact__details").hide();
-    $(".company_details").show();
     $(".submit_button").hide();
+    $(".company_details").fadeTo("slow", 1);
 });
 $("#company_button_back").on("click", function () {
-    $(".account_details").show();
     $(".company_details").hide();
+    $(".account_details").fadeTo("slow", 1);
 });
 function account_validate(username, password, confirm_password) {
     var reg = /^[a-zA-Z0-9_]{5,}[a-zA-Z]+[0-9]*$/;
     if (username === "") {
-        console.log("emppty");
         $("#error_para").text("Error : Username field cannot be empty");
+        //$("#username").attr('style', "border-radius: 5px; border:#FF0000 1px solid;");
+        //$("#username").focus()
         return 0;
     }
     if (password === "") {
@@ -340,6 +350,10 @@ function company_validate(company_name, company_address, company_email, mobile_n
         $("#error_para").text("Error :Company Mobile Number cannot be empty");
         return 0;
     }
+    if (mobile_number.length < 10 || mobile_number.length > 10) {
+        $("#error_para").text("Error : Mobile Number Field has inappropriate length");
+        return 0;
+    }
     if (registration_number === "") {
         $("#error_para").text("Error : Registration Number field cannot be empty");
         return 0;
@@ -360,6 +374,10 @@ function company_validate(company_name, company_address, company_email, mobile_n
         $("#error_para").text("Error : Pincode field cannot be empty");
         return 0;
     }
+    if (pincode.length < 6 || pincode.length > 6) {
+        $("#error_para").text("Error : Pincode Number has inappropriate length");
+        return 0;
+    }
     if (legal_status === "select") {
         $("#error_para").text("Error : Legal Status field has inappropriate field");
         return 0;
@@ -368,8 +386,16 @@ function company_validate(company_name, company_address, company_email, mobile_n
         $("#error_para").text("Error : Pan Number field cannot be empty");
         return 0;
     }
+    if (pan_number.length < 10 || pan_number.length > 10) {
+        $("#error_para").text("Error : Pan Number has inappropriate length");
+        return 0;
+    }
     if (gst_register_number === "") {
-        $("#error_para").text("Error : GST Registration  field  cannot be empty");
+        $("#error_para").text("Error : GST Registration field  cannot be empty");
+        return 0;
+    }
+    if (gst_register_number.length < 15 || gst_register_number.length > 15) {
+        $("#error_para").text("Error : GST Registration Number has inappropriate length");
         return 0;
     }
     $("#error_para").text("Success");

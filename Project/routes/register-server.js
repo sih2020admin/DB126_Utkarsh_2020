@@ -32,7 +32,7 @@ router.post('/register-data', function (request, response) {
     var c_date_of_birth = contact_details.date_of_birth;
     var c_designation = contact_details.designation;
     var c_aadhaar_number = contact_details.aadhaar_number;
-    var correspondence_email_id = contact_details.contact_mail;
+    var correspondence_email_id = contact_details.contact_email;
     var c_mobile_number = contact_details.contact_contact;
 
     var v_username = account_details.username;
@@ -52,7 +52,7 @@ router.post('/register-data', function (request, response) {
                     console.log("duplicate entry");
                     var duplicate = error.message;
                     console.log("hello2");
-                    response.status(400).send("Comapany Registration number/ GST number / PAN is already registered with us");
+                    response.status(400).send("Company Registration number/ GST number / PAN is already registered with us");
                 }
                 
             }
