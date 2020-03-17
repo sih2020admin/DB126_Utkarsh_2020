@@ -10,6 +10,7 @@ var misc_1 = __importDefault(require("./routes/misc"));
 var app = express_1.default();
 var login = require("./routes/login");
 var register = require("./routes/register-server");
+var tender_desc = require("./routes/tender_desc");
 //var port = process.env.PORT || 8080
 var port = 8081;
 app.use(cors_1.default());
@@ -18,6 +19,7 @@ app.use(express_1.default.json());
 app.use(express_1.default.static(path_1.default.join(__dirname, 'public')));
 app.use(express_1.default.static(path_1.default.join(__dirname, 'views')));
 app.use('/register', register.default);
+app.use('/', tender_desc.default);
 app.use("/misc", misc_1.default);
 app.use('', login.default);
 app.listen(port, function () {
