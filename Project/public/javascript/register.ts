@@ -198,8 +198,14 @@ $("#account_button").on("click",()=>{
     var confirm_password:string = $("#confirm_password").val()?.toString()!;
     var check_account:number = account_validate(username,password,confirm_password)
     if (check_account === 1){
-        $(".company_details").show()
-        $(".account_details").hide()
+        $(".account_details").fadeTo("slow",0,()=>{
+            setTimeout(()=>{
+                $(".account_details").fadeOut(()=>{
+                    $(".company_details").fadeTo("slow",1)
+                })
+
+            },1000)
+        })
     }
 
 })
