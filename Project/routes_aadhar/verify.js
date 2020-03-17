@@ -15,8 +15,8 @@ var transporter = nodemailer.createTransport({
 var mysql = require('mysql');
 var con = mysql.createConnection({
   host: "localhost",
-  user: "viraj",
-  password: "qwerty",
+  user: "winston",
+  password: "Win",
   database:"aadharDB"
 });
 
@@ -130,44 +130,27 @@ router.post('/verifyOTP',(req,res)=>{
     				if (error) {
 				      console.log("error: otp db ",error)
 				      res.sendStatus(404);
-				      
 				     }
 				     else{
 				     	console.log(results[0])
 				     	if(results.length > 0 && results[0].otp==req.body.OTP  ){
-
 				     		console.log(Date.now(),'\n',	results[0].validtill,'\n' , Date.now() < Date(results[0].validtill))
-				     		
 				     		con.query('UPDATE `OTP` SET `isUsed` = "1" WHERE `OTP`.`otpid` = ? ',[results[0].otpid],function(error,results2,fields){
 								    				if (error) {
 												      console.log("error: otp db ",error)
-								
-												      
 												     }
 												     else{
-												    
 												     console.log("updated")
 
-												     }
-												     	
-
+												     }												     	
 								    			});
-
-
-
-
-
 				     		res.sendStatus(200);
 
 				     	}else{
 				     		res.sendStatus(404);
 				     	}
-
-				     }
-				     	
-
+				     }				     	
     			});
-
 			});
 
 
@@ -178,14 +161,4 @@ router.get('/getCategories', function (req, res) {
      res.json(results);
   });
 });
-
 module.exports= router;
-
-
-
-
-
-// INSERT INTO `OTP` (`otpid`, `aadharno`, `otp`, `validtill`, `isUsed`, `reference_id`) VALUES ('1', '123412341234', '456123', '2020-03-12 09:22:19', '0', '4') 
-
-// 
-	
