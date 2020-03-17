@@ -55,6 +55,9 @@ input{
     margin: 10px;
     color: #663EFD;
 }
+input::placeholder{
+    font-size: 11.5px;
+}
 select, input[type="date"]{
         //border-style: dashed;
         border-width: 1.5px;
@@ -65,13 +68,16 @@ select, input[type="date"]{
         color: #663EFD;
 }
 .select-selected {
-    background-color: DodgerBlue;
-  }
+    background-color: #663EFD;
+} 
 input[type="number"]{
     padding: 0;
     padding-left: 10px;
     padding-right: 10px;
     appearance: textfield;
+}
+#otp{
+    margin-left: 0px;
 }
 textarea{
         // border-style: dashed;
@@ -81,16 +87,16 @@ textarea{
         height: 60px;
         padding: 10px;
         margin: 10px;
+        font-size: 14px;
         color: #663EFD;
 }
 table, th, td {
     border:none;
     border-collapse: collapse;
 }
-button.submit_button{
+button{
     width: 100px;
-    height: 40px;
-    margin: 40px;
+    height: 35px;
     font-size: 16px;
     font-weight: 300;
     margin-top: 10px;
@@ -100,7 +106,7 @@ button.submit_button{
     border: none;
     color: #ffffff;
 }
-button.submit_button:hover, #confirm_button:hover{
+button:hover{
     cursor: pointer;
     background-color: #ffffff;
     color: #663EFD;
@@ -108,15 +114,12 @@ button.submit_button:hover, #confirm_button:hover{
     border-width: 0.2px;
     border-color: #663EFD;
  }
- #confirm_button{
-    width: 100px;
-    height: 40px;
-    font-size: 16px;
-    font-weight: 300;
-    margin-top: 10px;
-    margin-right: 10px;
-    border-radius: 10px; 
-    background-color: #663EFD;
-    border: none;
-    color: #ffffff;
+ #company_button, #submit_button{
+     float: right;
+ }
+ #error_para{
+    font-size: 12px;
+    font-style: italic;
+    color: rgb(253, 0, 0);
+    margin : 40px;
  }

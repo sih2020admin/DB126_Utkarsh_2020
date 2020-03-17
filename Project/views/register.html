@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/register.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
 <body>
       <header>
@@ -14,38 +15,39 @@
     </header>
 <div class="body__content">
   <div class="error">
-    <p id="error_para"></p><br><nr><br>
   </div>
     <div class="account_details">
+      <h1 style="text-align: center; color: #663EFD;">Registration</h1>
       <label style = "font-size: 25px;"><strong>Account Details</strong></label><br><br>
       <br>
       <label for="username">Username</label>
-      <input id="username" type="text">
+      <input id="username" type="text" placeholder="Enter Username" pattern="\S+.*">
       <label for="password">Password</label>
-      <input id="password" type="password">
+      <input id="password" type="password" placeholder="min 5 characters">
       <label for="confirm_password">Confirm Password</label>
-      <input type="password" id="confirm_password">
+      <input type="password" id="confirm_password" placeholder="Renter Password">
       <button id="account_button">Next</button>
     </div>
     <div class="company_details" style="display: none;">
+      <h1 style="text-align: center; color: #663EFD;">Registration</h1>
       <label style = "font-size: 25px;"><strong>Company Details</strong></label><br><br>
       <table style="width:100%">
         <tr>
         <td><label for="company_name">Company Name</label></td>
-        <td><input id="company_name" type="text"></td>
+        <td><input id="company_name" type="text"  placeholder="Enter Your Company Name"></td>
         <td><label for="company_address">Company Address</label></td>
-        <td><textarea id="company_address" name="" cols="30" rows="10" style="resize: none;"></textarea></td>
+        <td><textarea id="company_address" name="" cols="30" rows="10" style="resize: none;" placeholder="Enter Your Company Address"></textarea></td>
         </tr>
         <tr>
         <td><label for="company_email">Company Email Address</label></td>
-        <td><input id="company_email" type="email"></td>
+        <td><input id="company_email" type="email" placeholder="Enter Your Company Email"></td>
         <td><label for="mobile_number">Mobile Number</label></td>
-        <td><input id="mobile_number" type="number"></td>
+        <td><input id="mobile_number" type="number" placeholder="Enter Your Company Mobile No"></td>
         
         </tr>
         <tr>
           <td><label for="registration_number">Company Registration Number</label></td>
-          <td><input id="registration_number" type="text"></td>
+          <td><input id="registration_number" type="text" placeholder="Enter Your Company RegNo"></td>
         <td><label for="state">State</label></td>
         <td><select id="state">
           <option value="select" selected> --select--</option>
@@ -63,7 +65,7 @@
         </tr>
         <tr>
           <td><label for="pincode">Pincode</label></td>
-          <td><input id="pincode" type="number"></td>
+          <td><input id="pincode" type="number" placeholder="Enter Your Area Pincode"></td>
           <td><label for="legal_status">Legal Status</label></td>
           <td><select id="legal_status"> 
             <option value="select" selected>-- Select--</option>
@@ -71,20 +73,18 @@
         </tr>
         <tr>
           <td><label for="pan_number">Pan Number</label></td>
-          <td><input id="pan_number" type="text"></td>
+          <td><input id="pan_number" type="text" placeholder="Enter Your Pan No"></td>
           <td><label for="gst_register_number">GST Registration Number</label></td>
-          <td><input id="gst_register_number" type="text"></td>
-          
-        </tr>
-        <tr>
-          <td><button id="company_button_back">Back</button></td>
-          <td><button id="company_button">Next</button></td>
+          <td><input id="gst_register_number" type="text" placeholder="Enter Your GST Reg No"></td>
         </tr>
     </table>
+    <button id="company_button_back">Back</button>
+    <button id="company_button">Next</i></button>
     </div>
     <div class="contact__details" style="display: none;">
+      <h1 style="text-align: center; color: #663EFD;">Registration</h1>
       <label style = "font-size: 25px;"><strong>Contact Details</strong></label><br><br>
-      <table style="width:100%">
+      <table border="1" style="width:100%" >
         <tr>
           <td><label for="title">Title</label></td>
           <td><select id="title">
@@ -95,36 +95,34 @@
             <option value="Dr"> Dr</option>
             <option value="Sri">Sri</option>
           </select></td>
-
+          <td><label for="contact_name">Contact Name</label></td>
+          <td><input id="contact_name" type="text" placeholder="Enter Your Contact Number"></td>
         </tr>
         <tr>
-          <td><label for="contact_name">Contact Name</label></td>
-          <td><input id="contact_name" type="text "></td>
           <td><label for="date_of_birth">Date Of Birth(DD/MM/YYYY)</label></td>
           <td><input id="date_of_birth" type="date"></td>
-
+          <td><label for="designation">Designation</label></td>
+          <td><input id="designation" type="text" placeholder="Enter Your Designation"></td>
         </tr>
         <tr>
-          <td><label for="designation">Designation</label></td>
-          <td><input id="designation" type="text"></td>
           <td><label for="aadhaar_number">Aadhaar Number</label></td>
-          <td><input id="aadhaar_number" type="number"><button id="verify_button">Verify Aadhaar Number</button>
-            <input id="otp" placeholder="Enter OTP" type="number"><button id="otp_button">Send OTP</button>
+          <td><input id="aadhaar_number" type="number" placeholder="Enter Your Aadhar Number"><button id="verify_button">Verify</button></td>
+          <td><input id="otp" placeholder="Enter OTP" type="number"><button id="otp_button">Confirm</button>
           </td>
-          
         </tr>
         <tr>
           <td><label for="contact_email">Correspondence Email Address</label>
-            <td><input id="contact_email" type="email">
+            <td><input id="contact_email" type="email" placeholder="Enter Correspondence Email">
           <td><label for="contact_contact">Mobile Number</label></td>
-          <td><input  id="contact_contact" type="number" ></td>
+          <td><input  id="contact_contact" type="number" placeholder="Enter Your Mobile Number"></td>
         </tr>
     </table>
+    <button class="submit_button" id="contact__details_previous">Back</button>
+    <button class="submit_button" id="submit_button">Register</button>
     </div>
-    <div class="submit_button" style="display: none;">
-      <button class="submit_button" id="contact__details_previous">Back</button>
-      <button class="submit_button" id="submit_button">Register</button>
-    </div>
+    <!-- <div class="submit_button" style="display: none;">
+    </div> -->
+    <p id="error_para"></p><br><nr><br>
 </div>
 </body></html>
 
