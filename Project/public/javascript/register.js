@@ -196,8 +196,13 @@ $("#account_button").on("click", function () {
     var confirm_password = (_c = $("#confirm_password").val()) === null || _c === void 0 ? void 0 : _c.toString();
     var check_account = account_validate(username, password, confirm_password);
     if (check_account === 1) {
-        $(".company_details").show();
-        $(".account_details").hide();
+        $(".account_details").fadeTo("slow", 0, function () {
+            setTimeout(function () {
+                $(".account_details").fadeOut(function () {
+                    $(".company_details").fadeTo("slow", 1);
+                });
+            }, 1000);
+        });
     }
 });
 // validation of company details
