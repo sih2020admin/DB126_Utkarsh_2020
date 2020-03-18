@@ -1,0 +1,32 @@
+approve tender
+
+
+#Feilds to be displayed to admin(admin (role id:1) can see his department tender only after bidding date only):
+	
+	#general discriptio of tender
+	1.et_title
+	2.tender fee
+	3.tender ref no
+	4.tender description
+	5.last date to apply
+	6.bidding rate
+	7.if any realted file specify url here
+	8.department
+
+(once admin selects particular tender from above)	
+#table of applications 
+	1.vd_id
+	2.comapny name (only) once click we can show him all deatils of company in new tab
+	3.payemnet details (necessary???)
+	4.files uri(once clik open in new tab ) (signature mark)
+	5.approve button
+	
+
+from above table admin will approve only one vendor application (ask for cofirmation)
+one application approved all other will be disabled
+
+add all data in new table for further tracking (new table need to be create (think on attribuyes eg: is_active , is_money_given , is_cancelled, approved_by))
+
+sed notification to respective vendor about details.
+
+
