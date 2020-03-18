@@ -59,8 +59,8 @@ body {
 
 @-webkit-keyframes slideInFromLeft {
   0% {
-    -webkit-transform: translateX(-5%);
-            transform: translateX(-5%);
+    -webkit-transform: translateX(-3%);
+            transform: translateX(-3%);
   }
   100% {
     -webkit-transform: translateX(0);
@@ -70,8 +70,8 @@ body {
 
 @keyframes slideInFromLeft {
   0% {
-    -webkit-transform: translateX(-5%);
-            transform: translateX(-5%);
+    -webkit-transform: translateX(-3%);
+            transform: translateX(-3%);
   }
   100% {
     -webkit-transform: translateX(0);
@@ -179,7 +179,7 @@ button:hover {
   background-color: #ffffff;
   color: #663EFD;
   border: solid;
-  border-width: 0.2px;
+  border-width: 0.4px;
   border-color: #663EFD;
 }
 

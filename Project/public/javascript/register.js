@@ -331,7 +331,9 @@ function account_validate(username, password, confirm_password) {
         return 0;
     }
     $("#error_para").text("Success");
-    return 1;
+    $(".account_details").fadeOut("slow");
+    $(".company_details").fadeIn(1000);
+    return 1;  
 }
 function company_validate(company_name, company_address, company_email, mobile_number, registration_number, state, city, establishment_year, pincode, legal_status, pan_number, gst_register_number) {
     if (company_name === "") {
@@ -399,6 +401,8 @@ function company_validate(company_name, company_address, company_email, mobile_n
         return 0;
     }
     $("#error_para").text("Success");
+    $(".company_details").fadeOut("slow");
+    $(".contact_details").fadeIn(1000);
     return 1;
 }
 function contact_validate(title, contact_name, date_of_birth, designation, aadhaar_number, contact_email, contact_contact) {
