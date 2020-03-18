@@ -35,7 +35,6 @@ nav{
     flex-direction: column;
     justify-content: space-around;
     flex-flow: wrap;
-    
 }
 .cont{
     background-color: rgb(255, 255, 255);
@@ -93,7 +92,9 @@ p{
 .apply:hover{
     background-color: #ffffff;
     color: #663EFD;
+    border: 0.3px solid #663EFD;
     transform: scale(1.1);
+    cursor: pointer;
 } 
 
 @media only screen and (max-width:680px){

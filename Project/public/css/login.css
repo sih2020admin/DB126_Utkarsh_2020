@@ -70,11 +70,6 @@ h2, label {
   display: none;
 }
 
-#tc3 {
-  font-size: 12px;
-  font-style: italic;
-  color: #008000;
-}
 #tc2:after {
   content: ' .';
   -webkit-animation: dots 1s steps(5, end) infinite;
@@ -96,8 +91,7 @@ h2, label {
   }
   80%, 100% {
     color: black;
-    text-shadow: .25em 0 0 black,
- .5em 0 0 black;
+    text-shadow: .25em 0 0 black, .5em 0 0 black;
   }
 }
 
@@ -116,8 +110,7 @@ h2, label {
   }
   80%, 100% {
     color: black;
-    text-shadow: .25em 0 0 black,
- .5em 0 0 black;
+    text-shadow: .25em 0 0 black, .5em 0 0 black;
   }
 }
 
