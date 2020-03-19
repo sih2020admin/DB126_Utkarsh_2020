@@ -48,7 +48,7 @@ body{
 //ani
 @keyframes slideInFromLeft {
     0% {
-      transform: translateX(-5%);
+      transform: translateX(-3%);
     }
     100% {
       transform: translateX(0);
@@ -106,8 +106,8 @@ textarea{
         color: #663EFD;
 }
 table, th, td {
-    // border:none;
-    // border-collapse: collapse;
+    border:none;
+    border-collapse: collapse;
 }
 td{
     text-align: left;
@@ -133,7 +133,7 @@ button:hover{
     background-color: #ffffff;
     color: #663EFD;
     border: solid;
-    border-width: 0.2px;
+    border-width: 0.4px;
     border-color: #663EFD;
  }
 

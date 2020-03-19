@@ -9,9 +9,9 @@ var router = express_1.default.Router();
 var unirest = require('unirest');
 
 
-router.post('/login', function (req, res) {
+router.post('/', function (req, res) {
 
-    	var username= req.body.username;
+    var username= req.body.username;
 	var password= req.body.password;
 				
 	db_1.default.query('SELECT * FROM  log_in_details WHERE user_name = ?',[username], function (error, results, fields) {
@@ -63,5 +63,40 @@ router.post('/login', function (req, res) {
     	});
 });
 
+router.post('/admin', function (req, res) {
+	var username= req.body.username;
+    var password= req.body.password;
+			
+	db_1.default.query('SELECT * FROM  log_in_details WHERE role_id= 1 and user_name = ?',[username], function (error, results, fields) {
+     	if (error) {
+      		res.status(400);
+     	}else{
+       		if(results.length >0){
+          		//User exists
+          		if(results[0].password == password){
+					//Users password match
+					var ad_id = results[0].vcd_id;
+
+					//fetch aadhar number
+					db_1.default.query('SELECT * FROM `admin_detail` WHERE ad_id = 1; ',[ad_id], function (error, results, fields) {
+						if (error) {
+							res.status(400);
+						}else{
+							res.send(results[0]);
+						}
+					});
+          		}
+				else{
+					//Users password do not match
+					res.sendStatus(400);
+				}	
+       		}
+			else{
+				//User does not exist
+				res.sendStatus(400);
+			}
+    	}	
+	});
+});
 
 exports.default = router;

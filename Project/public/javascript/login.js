@@ -2,6 +2,7 @@ var x = document.getElementById("enter_otp");
 var y = document.getElementById("otp");
 var z = document.getElementById("confirm");
 var login_button = document.getElementById("login");
+document.getElementById('username').value = "";
 
 function show() 
 {
@@ -15,7 +16,7 @@ function show()
 	}
 	else{
 		var xhr = new XMLHttpRequest();
-		var url = "http://localhost:8081/login";
+		var url = "http://localhost:8081/login/";
 		xhr.open("POST" ,url);
 		xhr.setRequestHeader('Content-Type','application/json');
 		xhr.send(JSON.stringify({"username":userid,"password": passw}));
@@ -30,7 +31,8 @@ function show()
 				document.getElementById("username").disabled=true;
 				document.getElementById("pass").disabled=true;
 				login_button.style.visibility="hidden";
-				document.getElementById("tc").innerHTML="OTP Has been send to Email";
+				document.getElementById("tc").innerHTML="";
+				document.getElementById("tc3").innerHTML="OTP has been send to Email";
 
 				x.style.display = "";
 				y.style.display = "inline-block";
@@ -45,6 +47,7 @@ function show()
 					xhr.onload = function(){
 						if(this.status == 200){
 							//alert("OTP verified");
+							document.getElementById("otp").disabled=true;
 							setTimeout(function(){
     								location="error.html"
 							},1500);
@@ -52,7 +55,7 @@ function show()
 						else if(this.status == 400){
 							document.getElementById("tc1").innerHTML="Invalid OTP ";
 							document.getElementById("tc2").style.display = "inline-block";
-							document.getElementById("tc2").innerHTML="Redirecting to Login";
+							document.getElementById("tc2").innerHTML="Directing to Relogin";
 							document.getElementById("otp").disabled=true;
 							setTimeout(function(){
     								location="login.html"

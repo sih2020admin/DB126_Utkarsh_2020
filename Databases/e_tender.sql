@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 16, 2020 at 02:16 PM
+-- Generation Time: Mar 18, 2020 at 12:13 PM
 -- Server version: 5.7.27-0ubuntu0.19.04.1
 -- PHP Version: 7.2.24-0ubuntu0.19.04.1
 
@@ -874,16 +874,23 @@ INSERT INTO `documents` (`doc_id`, `doc_name`) VALUES
 
 CREATE TABLE `e_tender_details` (
   `et_id` int(11) NOT NULL,
-  `et_title` varchar(25) NOT NULL,
+  `et_title` text NOT NULL,
   `et_tender_fee` varchar(10) NOT NULL,
   `et_tender_ref_no` varchar(10) NOT NULL,
   `et_tender_desc` text NOT NULL,
-  `et_last_date_apply` varchar(10) NOT NULL,
-  `et_bidding_rate` varchar(10) NOT NULL,
-  `et_file_uri` varchar(25) NOT NULL,
+  `et_last_date_apply` date NOT NULL,
+  `et_bidding_date` date NOT NULL,
+  `et_file_uri` text NOT NULL,
   `is_delete` tinyint(4) NOT NULL,
   `dept_id` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `e_tender_details`
+--
+
+INSERT INTO `e_tender_details` (`et_id`, `et_title`, `et_tender_fee`, `et_tender_ref_no`, `et_tender_desc`, `et_last_date_apply`, `et_bidding_date`, `et_file_uri`, `is_delete`, `dept_id`) VALUES
+(123, 'Procurement of computers', '1200', 'ITC123', 'Procurement of Computers, Software and Services. The purpose of this policy is to provide a defined process for both the new and recurring procurement (through purchase or lease) of computer hardware, software and services using Washington University funds or grant funds administered by Washington University.', '2020-03-11', '2020-03-14', 'https://www.youtube.com/watch?v=u8XFFTWwSvY&feature=youtu.be', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -900,6 +907,19 @@ CREATE TABLE `e_tender_vendor` (
   `is_approved` varchar(1) NOT NULL,
   `date_of_approval` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `file_uri`
+--
+
+CREATE TABLE `file_uri` (
+  `furi_id` int(11) NOT NULL,
+  `furi` text NOT NULL,
+  `etd_id` int(11) NOT NULL,
+  `f_type` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -1069,11 +1089,11 @@ CREATE TABLE `vendor_details` (
   `v_address` varchar(35) NOT NULL,
   `v_yoe` varchar(4) NOT NULL,
   `v_email` varchar(25) NOT NULL,
-  `v_mobile` varchar(10) NOT NULL,
+  `v_mobile` varchar(12) NOT NULL,
   `v_reg_no` varchar(10) NOT NULL,
   `v_state_id` tinyint(4) NOT NULL,
   `v_dist_id` tinyint(4) NOT NULL,
-  `v_city_id` tinyint(4) NOT NULL,
+  `v_city_id` smallint(4) NOT NULL,
   `v_pincode` varchar(6) NOT NULL,
   `v_legal_id` varchar(1) NOT NULL,
   `v_pan` varchar(10) NOT NULL,
@@ -1092,7 +1112,9 @@ INSERT INTO `vendor_details` (`vd_id`, `v_name`, `v_address`, `v_yoe`, `v_email`
 (35, 'seueria industry', 'andheri', '2019', 'sequeria@gmail.com', '7894561230', 'N123WT1', 1, -1, 109, '400708', '1', 'QWer123T1', '0', 'N123WT1'),
 (36, 'seueria industry', 'andheri', '2019', 'sequeria@gmail.com', '7894561230', 'N123WT12', 1, -1, 109, '400708', '1', 'QWer123T12', '0', 'N123WT12'),
 (38, 'seueria industry', 'andheri', '2019', 'sequeria@gmail.com', '7894561230', 'N', 1, -1, 109, '400708', '1', 'Q', '0', 'N'),
-(40, 'seueria industry', 'andheri', '2019', 'sequeria@gmail.com', '7894561230', 'N1', 11, -1, 109, '400708', '1', 'Q1', '0', 'N1');
+(40, 'seueria industry', 'andheri', '2019', 'sequeria@gmail.com', '7894561230', 'N1', 11, -1, 109, '400708', '1', 'Q1', '0', 'N1'),
+(41, 'viraj', 'viraj', '2017', 'viraj@gmail.com', '7894561230', 'ASDFGHJK', 21, -1, 2134, '400708', '3', 'QWERTYU', '0', 'QWERTYU'),
+(43, 'z', 'z', '2011', 'z@gmail.com', '7894561212', 'z', 11, -1, 1113, '478554', '3', 'z', '0', 'z');
 
 -- --------------------------------------------------------
 
@@ -1191,6 +1213,13 @@ ALTER TABLE `e_tender_vendor`
   ADD KEY `vcd_id` (`vcd_id`);
 
 --
+-- Indexes for table `file_uri`
+--
+ALTER TABLE `file_uri`
+  ADD PRIMARY KEY (`furi_id`),
+  ADD KEY `etd_id` (`etd_id`);
+
+--
 -- Indexes for table `legal_status_details`
 --
 ALTER TABLE `legal_status_details`
@@ -1271,7 +1300,12 @@ ALTER TABLE `districts`
 -- AUTO_INCREMENT for table `e_tender_details`
 --
 ALTER TABLE `e_tender_details`
-  MODIFY `et_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `et_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
+--
+-- AUTO_INCREMENT for table `file_uri`
+--
+ALTER TABLE `file_uri`
+  MODIFY `furi_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `log_in_details`
 --
@@ -1286,7 +1320,7 @@ ALTER TABLE `states`
 -- AUTO_INCREMENT for table `vendor_details`
 --
 ALTER TABLE `vendor_details`
-  MODIFY `vd_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `vd_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 --
 -- AUTO_INCREMENT for table `v_contact_details`
 --
@@ -1320,6 +1354,12 @@ ALTER TABLE `districts`
 --
 ALTER TABLE `e_tender_details`
   ADD CONSTRAINT `e_tender_details_ibfk_1` FOREIGN KEY (`dept_id`) REFERENCES `department` (`dept_id`);
+
+--
+-- Constraints for table `file_uri`
+--
+ALTER TABLE `file_uri`
+  ADD CONSTRAINT `file_uri_ibfk_1` FOREIGN KEY (`etd_id`) REFERENCES `e_tender_vendor` (`etd_id`);
 
 --
 -- Constraints for table `log_in_details`

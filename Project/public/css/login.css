@@ -70,6 +70,12 @@ h2, label {
   display: none;
 }
 
+#tc3 {
+  font-size: 12px;
+  font-style: italic;
+  color: #008000;
+}
+
 #tc2:after {
   content: ' .';
   -webkit-animation: dots 1s steps(5, end) infinite;
