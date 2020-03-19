@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Details</title>
+    
+  <style>
+
+       table,th,td
+        {
+            
+            font: 17px Calibri;
+             border: solid 1px ;
+            text-align: center;
+        }
+       #back{
+          display: none;
+          width: 100%;
+          height: 100%;
+          position: fixed;
+         }
+      #box{ 
+        background-color: gray;
+          display: none;
+          position: fixed;
+          width: 480px;
+          border-radius: 20px;
+          height: 30%;
+        }
+      #box-body , #box-footer{
+         font-size: 25px;
+          padding: 30px;
+          margin: 0 10px 0 10px;
+          }
+  </style>
+</head>
+
+    <header>
+      <nav>
+          <a href="#">Home</a>
+          <a href="#">Tender</a>
+          <a href="login.html">Profile</a>
+      </nav>
+    </header>
+
+    <body>
+      <div id="back"></div>
+      <h1>Organisation Details</h1>
+      <div>
+        <table border="1px" width="100%" id="approve_table">
+        <tr>
+          <th>Vendor ID</th>
+          <th>Company Name</th>
+          <th>Tech and Finance files</th>
+          <th>Response</th>
+        </tr>
+        <!--<tr>
+          <td>1234</td>
+          <td><a href="https://www.microsoft.com/en-in" target="_blank"> Microsoft</a></td>
+          <td><a href="e_tender_details.sql" target="_blank">Uploaded Files</a> </td>
+        </tr> -->
+       </table> 
+      </div></br></br></br></br>
+    
+      <div><button type="button" onclick="back()">Back</button></div> 
+      
+      <div id="box" >
+        <div id="box-body">Do you want to approve this company?</div>
+          <div id="box-footer">
+            <button onclick="approve()">Approve</button>
+            <button onclick="approve()">Cancel</button>
+          </div>
+      </div>
+    </body>
+    <script>
+
+      function back() {
+        location.replace("applied_tender_admin.html");
+      }
+
+      function showBox(){
+           var back = document.getElementById("back");
+            var box = document.getElementById("box");
+            back.style.display = "block";
+            box.style.display = "block";
+            var winWidth = window.innerWidth;
+            box.style.left = (winWidth/2) - 480/2 + "px";
+            box.style.top = "150px";
+        }
+
+      function approve(){
+              document.getElementById("back").style.display = "none";
+              document.getElementById("box").style.display = "none";
+          }
+
+      
+var response = [
+      { et_id  : '1' , v_id : '12' , v_comp_name : 'https://www.microsoft.com/en-in' , v_file_uri : 'https://youtu.be/u8XFFTWwSvY'},
+      { et_id  : '2' , v_id : '34' , v_comp_name : 'https://www.microsoft.com/en-in' , v_file_uri : 'https://youtu.be/u8XFFTWwSvY'},
+      { et_id  : '3' , v_id : '56' , v_comp_name : 'https://www.microsoft.com/en-in' , v_file_uri : 'https://youtu.be/u8XFFTWwSvY'}
+            
+        ];  
+
+      var tr;
+        var col = [];
+        var table = document.getElementById("approve_table");
+        var tabCell;
+
+        for (var i = 0; i < response.length; i++) {
+                for (var key in response[i]) {
+                    if (col.indexOf(key) === -1) {
+                        col.push(key);
+                    }
+                }
+            }
+
+        for (var i = 0; i < response.length; i++) {
+                tr = table.insertRow(-1); 
+                tr.setAttribute('id', response[i]['et_id']);
+
+                tabCell = tr.insertCell(-1);
+                tabCell.innerHTML = response[i]['v_id'];
+                tabCell = tr.insertCell(-1);
+                tabCell.innerHTML = '<a href='+response[i]['v_comp_name']+' target="_blank">link</a>';
+                tabCell = tr.insertCell(-1);
+                tabCell.innerHTML = '<a href='+response[i]['et_file_uri']+' target="_blank">link</a>';
+                tabCell = tr.insertCell(-1);
+                tabCell.innerHTML = "<button  onclick='showBox()'>Approve</button>";
+                
+            }
+</script>
+
+</html>
