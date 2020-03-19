@@ -313,37 +313,38 @@ $("#company_button_back").on("click",()=>{
 })
 
 function account_validate(username: string ,password: string,confirm_password: string):number{
-    var reg:RegExp=/^[a-zA-Z0-9_]{5,}[a-zA-Z]+[0-9]*$/;
     if (username === ""){
         $("#error_para").text("Error : Username field cannot be empty")
         //$("#username").attr('style', "border-radius: 5px; border:#FF0000 1px solid;");
         //$("#username").focus()
         return 0
     }
+    if(username.length < 7 || username.length >15){
+        $("#error_para").text("Error : Username should be greater than six characters and less than 15 characters")
+        return 0
+    }
+    if(/[^a-zA-Z0-9]/.test(username)==true){
+        $("#error_para").text("Error : Username contains inappropriate characters")
+        return 0
+    }
     if(password === ""){
         $("#error_para").text("Error : Password field cannot be empty")
+        return 0
+    }
+    
+    if(password.length<5 || password.length>15){
+        $("#error_para").text("Error : Password has to be greater than six characters and less than 15 characters")
         return 0
     }
     if(confirm_password === ""){
         $("#error_para").text("Error : Confirm Password field cannot be empty")
         return 0
     }
-    if(username.length < 7 || username.length >15){
-        $("#error_para").text("Error : Username should be greater than six characters and less than 15 characters")
-        return 0
-    }
-    if(reg.test(username)==false){
-        $("#error_para").text("Error : Username contains inappropriate characters")
-        return 0
-    }
-    if(password.length<5){
-        $("#error_para").text("Error : Password has to be greater than four characters ")
-        return 0
-    }
     if(password !== confirm_password){
         $("#error_para").text("Error : Password and Confirm Password fields do not match each other")
         return 0
     }
+
     $("#error_para").text("Success")
     return 1
 
