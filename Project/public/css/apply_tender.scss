@@ -1,0 +1,19 @@
+body{
+    align-items: center;
+}
+.cont{
+    background-color: rgb(255, 255, 255);
+    width: fit-content;
+    height: auto;
+    padding: 20px;
+    margin: 40px;
+    margin-top: 10px;   
+    margin-bottom: 10px;
+    border-radius: 10px; 
+    box-shadow: 3px 4px 6px -6px rgba(103, 62, 253, 0.507),
+                -3px -4px 6px -6px rgba(103, 62, 253, 0.507);
+    white-space: wrap;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    transition: all .2s ease-in-out; 
+}
