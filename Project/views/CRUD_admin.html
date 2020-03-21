@@ -15,8 +15,45 @@
             <a href="#">Tender</a>
             <a href="#">Profile</a>
         </nav>
-	</header>
-    <div id="container">
+    </header>
+    <div class="container1">
+        <h1>CRUD ADMIN</h1><br><br>
+        <div class="main_bar">
+                <label for="search_bar"></label>
+                <input type="text" name="sear_bar" id="search_bar" placeholder="Enter Title">
+                <button id="search_button" class="search_button">Search</button><br>
+                <button id="create_tender_button" class="create_tender_button" onclick="display_form()">Create</button>
+        </div>
+        <div class="input_details" id="input_details" style="display:block;">
+            <h1>Create Tender</h1><br><br>
+            <table>
+                <tr>
+                    <td><label for="ref_no">Ref No</label></td>
+                    <td><input id="ref_no" type="text"  placeholder="Enter Ref no"></td>
+                    <td><label for="title">Title</label></td>
+                    <td><input id="title" type="text" placeholder="Enter Your Tender title"></td>
+                </tr>
+                <tr>
+                    <td><label for="department">Department</label></td>
+                    <td><input id="department" type="text" placeholder="Enter Department"></td>
+                    <td><label for="closing_date">Closing date</label></td>
+                    <td><input id="closing_date" type="date" placeholder="Enter Closing date"></td>
+                </tr>
+                <tr>
+                    <td><label for="bid_opening_date">Bid Opening Date</label></td>
+                    <td><input id="bid_opening_date" type="date" placeholder="Enter Bid Opening Date"></td>
+                    <td><label for="link">Link</label></td>
+                    <td><input id="link" type="text" placeholder="Enter link"></td>
+                </tr>
+                <tr>
+                    <td><label for="description">Description</label></td>
+                    <td><textarea id="description" name="" cols="30" rows="10" style="resize: none;" placeholder="Enter Description"></textarea></td>
+                </tr>
+            </table>
+            <button>Create</button>
+        </div>
+    </div>
+    <div class="container2">
     	<table id="content_table">
     		<tr>
 	    		<th>Tener Refernce no.</th>

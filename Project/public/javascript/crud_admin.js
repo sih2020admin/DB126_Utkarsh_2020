@@ -1,4 +1,12 @@
 
+	function display_form() {
+		var x = getElementById("input_details");
+		document.getElementById("ref_no").innerHTML="OTP has been send to Email";
+		x.style.display = "block";
+
+
+	}
+
 	function isValidDate(dateString) {
 		  var regEx = /^\d{4}-\d{2}-\d{2}$/;
 		  if(!dateString.match(regEx)) return false;  // Invalid format
@@ -7,8 +15,6 @@
 		  if(!dNum && dNum !== 0) return false; // NaN value, Invalid date
 		  return d.toISOString().slice(0,10) === dateString;
 		}
-
-
 	var response = [
 			{et_id : '12356' ,	et_title : 'Procurementshahsb of computers' ,	et_tender_fee : '1200' ,	et_tender_ref_no : 'ITC123' ,	et_tender_desc : 'Procurement of Computers, Software and Services. The purpose of this policy is to provide a defined process for both the new and recurring procurement (through purchase or lease) of computer hardware, software and services using Washington University funds or grant funds administered by Washington University.' ,	et_last_date_apply : '2019-05-21' , 	et_bidding_date : '2019-05-22' ,	et_file_uri : 'https://youtu.be/u8XFFTWwSvY' ,	is_delete : '0' ,	dept_id : '1' },
 
