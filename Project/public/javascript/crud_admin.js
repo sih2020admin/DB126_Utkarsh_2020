@@ -2,7 +2,7 @@ var tr;
 var col = [];
 var table = document.getElementById("content_table");
 var tabCell;
-var response
+var response;
 
 
 
@@ -57,6 +57,14 @@ var response
 			xhr.send(data);
 
 
+	function display_form() {
+		var x = getElementById("input_details");
+		document.getElementById("ref_no").innerHTML="OTP has been send to Email";
+		x.style.display = "block";
+
+
+	}
+
 	function isValidDate(dateString) {
 		  var regEx = /^\d{4}-\d{2}-\d{2}$/;
 		  if(!dateString.match(regEx)) return false;  // Invalid format
@@ -65,10 +73,6 @@ var response
 		  if(!dNum && dNum !== 0) return false; // NaN value, Invalid date
 		  return d.toISOString().slice(0,10) === dateString;
 		}
-
-
-	
-
 
             function update_td(clicked_id) {
             	// console.log(response[clicked_id].et_tender_desc ,response[clicked_id].et_title)

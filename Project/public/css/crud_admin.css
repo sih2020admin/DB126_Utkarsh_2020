@@ -42,11 +42,125 @@ body {
   text-align: center;
 }
 
-#container {
+.container1 {
   margin: 40px;
 }
 
-table {
+.container1 .main_bar {
+  border: 0.4px solid var(--main_color);
+  border-radius: 10px;
+  margin: auto;
+  padding: 20px;
+  max-width: 50%;
+}
+
+.container1 .main_bar input {
+  border-width: 1.5px;
+  border-radius: 3px;
+  border-color: #663EFD;
+  height: 30px;
+  width: 550px;
+  padding: 10px;
+  margin: 10px 10px 10px 0;
+  color: #663EFD;
+}
+
+.container1 .main_bar button {
+  width: 80px;
+  height: 30px;
+  font-size: 16px;
+  font-weight: 300;
+  border-radius: 5px;
+  background-color: #663EFD;
+  border: none;
+  outline: none;
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+.container1 .main_bar button:hover {
+  cursor: pointer;
+  background-color: #ffffff;
+  color: #663EFD;
+  border: solid;
+  border-width: 0.2px;
+  border-color: #663EFD;
+}
+
+.container1 .input_details {
+  background-color: white;
+  height: auto;
+  max-width: -webkit-fit-content;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+  padding: 20px;
+  margin: auto;
+  margin-top: 40px;
+  border-radius: 10px;
+  -webkit-box-shadow: 3px 4px 6px -6px rgba(103, 62, 253, 0.507), -3px -4px 6px -6px rgba(103, 62, 253, 0.507);
+          box-shadow: 3px 4px 6px -6px rgba(103, 62, 253, 0.507), -3px -4px 6px -6px rgba(103, 62, 253, 0.507);
+  -webkit-transition: ease-in-out 0.3s;
+  transition: ease-in-out 0.3s;
+}
+
+.container1 .input_details table {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container1 .input_details td {
+  text-align: left;
+}
+
+.container1 .input_details input {
+  border-width: 1.5px;
+  border-radius: 3px;
+  border-color: #663EFD;
+  height: 30px;
+  width: auto;
+  padding: 10px;
+  margin: 10px;
+  color: #663EFD;
+}
+
+.container1 .input_details textarea {
+  border-width: 1.5px;
+  border-radius: 3px;
+  border-color: #663EFD;
+  height: 60px;
+  padding: 10px;
+  margin: 10px;
+  font-size: 14px;
+  color: #663EFD;
+}
+
+.container1 .input_details button {
+  width: 100px;
+  height: 35px;
+  font-size: 16px;
+  font-weight: 300;
+  margin-top: 10px;
+  margin-right: 10px;
+  border-radius: 5px;
+  background-color: #663EFD;
+  border: none;
+  color: #ffffff;
+}
+
+.container1 .input_details button:hover {
+  cursor: pointer;
+  background-color: #ffffff;
+  color: #663EFD;
+  border: solid;
+  border-width: 0.4px;
+  border-color: #663EFD;
+}
+
+.container2 {
+  margin: 40px;
+}
+
+.container2 table {
   max-width: 100%;
   border-radius: 1em;
   border-collapse: collapse;
@@ -55,28 +169,28 @@ table {
           box-shadow: 3px 4px 6px -6px rgba(103, 62, 253, 0.507), -3px -4px 6px -6px rgba(103, 62, 253, 0.507);
 }
 
-table a {
+.container2 table a {
   text-decoration: none;
 }
 
-tr:nth-child(odd) {
+.container2 table button {
+  border: none;
+  margin: 10px;
+  background-color: inherit;
+}
+
+.container2 tr:nth-child(odd) {
   background-color: rgba(141, 111, 251, 0.061);
 }
 
-th {
+.container2 th {
   background-color: var(--main_color);
   color: #fff;
   font-weight: lighter;
 }
 
-th, td {
+.container2 th, .container2 td {
   padding: 0.5em 1em;
-}
-
-table button {
-  border: none;
-  margin: 10px;
-  background-color: inherit;
 }
 
 button:hover {
