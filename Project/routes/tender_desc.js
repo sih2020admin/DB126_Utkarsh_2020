@@ -14,7 +14,7 @@ router.post('/tender_desc', function (req, res) {
     	var id= req.body.et_id;
 	
 				
-	db_1.default.query('SELECT * FROM  e_tender_details WHERE et_id = ?',[id], function (error, results, fields) {
+	db_1.default.query('SELECT * FROM  e_tender_details INNER JOIN department ON e_tender_details.dept_id = department.dept_id WHERE et_id = ?',[id], function (error, results, fields) {
 		if (error) {
 	      		//console.log("error");
 	      		res.status(400);

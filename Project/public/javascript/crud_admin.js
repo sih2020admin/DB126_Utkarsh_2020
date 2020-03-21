@@ -3,6 +3,9 @@ var col = [];
 var table = document.getElementById("content_table");
 var tabCell;
 var response;
+// var create_form = document.getElementById("create_input_details");
+
+
 
 
 
@@ -41,9 +44,9 @@ var response;
 		                tabCell = tr.insertCell(-1);
 		                tabCell.innerHTML = response[i]['dept_name'];
 		                tabCell = tr.insertCell(-1);
-		                tabCell.innerHTML = response[i]['et_last_date_apply'];
+		                tabCell.innerHTML = response[i]['et_last_date_apply'].slice(0,10);
 		                tabCell = tr.insertCell(-1);
-		                tabCell.innerHTML = response[i]['et_bidding_date'];
+		                tabCell.innerHTML = response[i]['et_bidding_date'].slice(0,10);
 		                tabCell = tr.insertCell(-1);
 		                tabCell.innerHTML = '<a href='+response[i]['et_file_uri']+' target="_blank">link</a>';
 		                tabCell = tr.insertCell(-1);
@@ -58,10 +61,9 @@ var response;
 
 
 	function display_form() {
-		var x = getElementById("input_details");
-		document.getElementById("ref_no").innerHTML="OTP has been send to Email";
-		x.style.display = "block";
-
+		
+		$( "#create_input_details" ).toggle();
+		console.log("dsiplay from called")
 
 	}
 
