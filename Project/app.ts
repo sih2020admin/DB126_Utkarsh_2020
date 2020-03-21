@@ -7,6 +7,8 @@ const app:Application = express()
 const login =require("./routes/login")
 const register=require("./routes/register-server")
 const tender_desc = require("./routes/tender_desc");
+var crud_admin = require("./routes/crud_admin");
+
 //var port = process.env.PORT || 8080
 var port = 8081
 app.use(cors())
