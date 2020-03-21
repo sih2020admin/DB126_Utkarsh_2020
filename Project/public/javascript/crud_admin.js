@@ -50,7 +50,7 @@
                 tabCell = tr.insertCell(-1);
                 tabCell.innerHTML = '<a href='+response[i]['et_file_uri']+' target="_blank">link</a>';
                 tabCell = tr.insertCell(-1);
-                tabCell.innerHTML = "<button class='update' id="+i+" onclick='update_td("+i+")'>update</button><button class='delete' id="+i+" onclick='delete_td("+i+")'>Delete</button>";
+                tabCell.innerHTML = "<button class='update' id="+i+" onclick='update_td("+i+")'><i class='far fa-edit' style='color:#663EFD; font-size:20px;'></i></button><button class='delete' id="+i+" onclick='delete_td("+i+")'><i class='far fa-trash-alt' style='color:#663EFD; font-size:20px;'></i></button>";
             }
 
 

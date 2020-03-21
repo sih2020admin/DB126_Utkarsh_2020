@@ -1,43 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <link rel="stylesheet" href="css/crud_admin.css">
+    <script src="https://kit.fontawesome.com/523ff21025.js" crossorigin="anonymous"></script>
     <title>CRUD</title>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-
-    <style>
-        table 
-        {
-            width: 100%;
-            font: 17px Calibri;
-        }
-        table, th, td 
-        {
-            border: solid 1px #DDD;
-            border-collapse: collapse;
-            padding: 2px 3px;
-            text-align: center;
-        }
-      
-        input[type='button'] 
-        {
-            font: 15px Calibri;
-            cursor: pointer;
-            border: none;
-            color: #FFF;
-        }
-        
-        input[type='text'], select 
-        {
-            font: 17px Calibri;
-            text-align: center;
-            border: solid 1px #CCC;
-            width: auto;
-            padding: 2px 3px;
-        }
-    </style>
 </head>
 <body>
-    <div id="container" style="width:80%;">
+    <header>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Tender</a>
+            <a href="#">Profile</a>
+        </nav>
+	</header>
+    <div id="container">
     	<table id="content_table">
     		<tr>
 	    		<th>Tener Refernce no.</th>
@@ -65,16 +44,10 @@
     	</table>
     	<div>
     		<br>
-    		<h4>Create tender</h4>
+            <h4 style="color: #663EFD;">Create tender</h4>
     		<button onclick="add_td()">+</button>
     	</div>
     </div>
 </body>
-
-
-<script type="text/javascript" src="javascript/crud_admin.js">
-	
-</script>
-
-
+<script type="text/javascript" src="javascript/crud_admin.js"></script>
 </html>

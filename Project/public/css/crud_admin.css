@@ -1,0 +1,85 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Montserrat:500&display=swap");
+:root {
+  --main_color: #663EFD;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  padding: 0;
+  color: var(--main_color);
+}
+
+header {
+  height: 60px;
+  -webkit-box-shadow: 3px 4px 6px -6px rgba(103, 62, 253, 0.507);
+          box-shadow: 3px 4px 6px -6px rgba(103, 62, 253, 0.507);
+  border: black;
+}
+
+nav a {
+  text-decoration: none;
+  font-size: 20px;
+  margin-left: 60px;
+}
+
+a:hover {
+  color: rgba(103, 62, 253, 0.24);
+}
+
+nav {
+  margin-left: -30px;
+  padding: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+body {
+  text-align: center;
+}
+
+#container {
+  margin: 40px;
+}
+
+table {
+  max-width: 100%;
+  border-radius: 1em;
+  border-collapse: collapse;
+  overflow: hidden;
+  -webkit-box-shadow: 3px 4px 6px -6px rgba(103, 62, 253, 0.507), -3px -4px 6px -6px rgba(103, 62, 253, 0.507);
+          box-shadow: 3px 4px 6px -6px rgba(103, 62, 253, 0.507), -3px -4px 6px -6px rgba(103, 62, 253, 0.507);
+}
+
+table a {
+  text-decoration: none;
+}
+
+tr:nth-child(odd) {
+  background-color: rgba(141, 111, 251, 0.061);
+}
+
+th {
+  background-color: var(--main_color);
+  color: #fff;
+  font-weight: lighter;
+}
+
+th, td {
+  padding: 0.5em 1em;
+}
+
+table button {
+  border: none;
+  margin: 10px;
+  background-color: inherit;
+}
+
+button:hover {
+  opacity: 0.5;
+}
+/*# sourceMappingURL=crud_admin.css.map */
