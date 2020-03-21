@@ -43,4 +43,7 @@ router.post("/get-city",(request:Request,response:Response)=>{
     })
 })
 
+router.post("/payment/payment-redirect",(request:Request,response:Response)=>{
+    response.send("hello world")
+})
 export default router

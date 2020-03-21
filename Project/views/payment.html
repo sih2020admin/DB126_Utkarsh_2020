@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <form id="body_content" method="POST" action="http://localhost:8081/payment">
+        <!-- <div class="content">
+            <label for="tscid">Transcation/Order ID</label>
+            <input type="text" id="tscid" name="tscid">
+        </div> -->
+        <div class="content">
+            <label for="amount">Amount</label>
+            <input type="text" id="amount" name="amount">
+        </div>
+        <!-- <div class="content">
+            <label for="product_info">Product Info</label>
+            <input id="product_info" type="text">
+        </div> -->
+        <!-- div class="content">
+            <label for="first_name">First Name</label>
+            <input id="first_name" type="text">
+        </div> -->
+        <div class="content">
+            <label for="email">Email ID</label>
+            <input id="email" type="text" name="email">
+        </div>
+        <div class="content">
+            <label for="mobile">Mobile/Cell Number</label>
+            <input id="mobile" type="text" name="mobile">
+        </div>
+        <input type="submit" value="submit" id="bg_tsc_button">
+        <!-- <button id="bg_tsc_button">Begin Transaction</button> -->
+    </form>
+    <p id="error-para"></p>
+</body>
+</html>
+<script src="javascript/jquery-3.4.1.min.js"></script>
+<script src="javascript/payment.js" ></script>
