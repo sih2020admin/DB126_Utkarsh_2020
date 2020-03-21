@@ -1,0 +1,26 @@
+body {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.cont {
+  background-color: white;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: auto;
+  padding: 20px;
+  margin: 40px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  -webkit-box-shadow: 3px 4px 6px -6px rgba(103, 62, 253, 0.507), -3px -4px 6px -6px rgba(103, 62, 253, 0.507);
+          box-shadow: 3px 4px 6px -6px rgba(103, 62, 253, 0.507), -3px -4px 6px -6px rgba(103, 62, 253, 0.507);
+  white-space: wrap;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+}
+/*# sourceMappingURL=apply_tender.css.map */

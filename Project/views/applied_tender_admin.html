@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Applied Tenders Admin</title>
+
+   <style>
+        table,th,td
+        {
+            
+            font: 17px Calibri;
+             border: solid 1px ;
+            text-align: center;
+        }
+       
+    </style> 
+</head>
+<body>
+      <header>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Tender</a>
+            <a href="login.html">Profile</a>
+        </nav>
+    </header>
+    <h1>TENDERS</h1>
+
+    <div id="container" style="width:80%;">
+      <table id="approve_table">
+      <tr>
+      <th>Title </th>
+      <th>Fee </th>
+      <th>Reference No.</th>
+      <th>Description </th>
+      <th>Bidding Amount </th>
+      <th>Last date to apply </th>
+      <th>Bidding Date </th>
+      <th>Necessary Files</th>
+      <th>Details</th>
+    </tr>
+  </table> 
+  <br>
+    <div>  
+<button type="button" >Next Page</button></br></br>
+    </div>
+   </div> 
+ </body>
+<script type="text/javascript">
+
+  function view() {
+  location.replace("approve_tender_admin.html");
+}
+
+var response = [
+      { et_id : '12356' , et_title : 'Procurement of computers' , et_tender_fee : '1200' ,  et_tender_ref_no : 'ITC123' , et_tender_desc : 'Procurement of Computers, Software and Services. The purpose of this policy is to provide a defined process for both the new and recurring procurement (through purchase or lease) of computer hardware, software and services using Washington University funds or grant funds administered by Washington University.' , et_amount : '200', et_last_date_apply : '2019-05-21' ,   et_bidding_date : '2019-05-22',et_file_uri : 'https://youtu.be/u8XFFTWwSvY'},
+
+      { et_id : '12356' ,et_title : 'Procurementshahsb of computers' , et_tender_fee : '1200' ,  et_tender_ref_no : 'ITC123' , et_tender_desc : 'Procurement of Computers, Software and Services. The purpose of this policy is to provide a defined process for both the new and recurring procurement (through purchase or lease) of computer hardware, software and services using Washington University funds or grant funds administered by Washington University.' ,et_amount : '200', et_last_date_apply : '2019-05-21' ,   et_bidding_date : '2019-05-22',et_file_uri : 'https://youtu.be/u8XFFTWwSvY'}
+            
+        ];  
+
+      var tr;
+        var col = [];
+        var table = document.getElementById("approve_table");
+        var tabCell;
+
+        for (var i = 0; i < response.length; i++) {
+                for (var key in response[i]) {
+                    if (col.indexOf(key) === -1) {
+                        col.push(key);
+                    }
+                }
+            }
+            console.log(col)
+
+        for (var i = 0; i < response.length; i++) {
+                tr = table.insertRow(-1); 
+                tr.setAttribute('id', response[i]['et_id']);
+
+                tabCell = tr.insertCell(-1);
+                tabCell.innerHTML = response[i]['et_title'];
+                tabCell= tr.insertCell(-1);
+                tabCell.innerHTML = response[i]['et_tender_fee'];
+                tabCell= tr.insertCell(-1);
+                tabCell.innerHTML = response[i]['et_tender_ref_no'];
+                tabCell = tr.insertCell(-1);
+                tabCell.innerHTML = response[i]['et_tender_desc'];
+                tabCell = tr.insertCell(-1);
+                tabCell.innerHTML = response[i]['et_amount'];
+                tabCell = tr.insertCell(-1);
+                tabCell.innerHTML = response[i]['et_last_date_apply'];
+                tabCell = tr.insertCell(-1);
+                tabCell.innerHTML = response[i]['et_bidding_date'];
+                tabCell = tr.insertCell(-1);
+                tabCell.innerHTML = '<a href='+response[i]['et_file_uri']+' target="_blank">link</a>';
+                tabCell = tr.insertCell(-1);
+                tabCell.innerHTML = "<button  onclick='view()'>View</button>";
+                
+            }
+</script>    
+
+</html>
+

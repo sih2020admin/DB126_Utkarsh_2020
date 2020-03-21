@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.6deb5
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Mar 18, 2020 at 12:13 PM
--- Server version: 5.7.27-0ubuntu0.19.04.1
--- PHP Version: 7.2.24-0ubuntu0.19.04.1
+-- Host: localhost
+-- Generation Time: Mar 20, 2020 at 05:14 PM
+-- Server version: 10.4.10-MariaDB
+-- PHP Version: 7.3.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -1093,7 +1095,7 @@ CREATE TABLE `vendor_details` (
   `v_reg_no` varchar(10) NOT NULL,
   `v_state_id` tinyint(4) NOT NULL,
   `v_dist_id` tinyint(4) NOT NULL,
-  `v_city_id` smallint(4) NOT NULL,
+  `v_city_id` int(11) NOT NULL,
   `v_pincode` varchar(6) NOT NULL,
   `v_legal_id` varchar(1) NOT NULL,
   `v_pan` varchar(10) NOT NULL,
@@ -1124,7 +1126,7 @@ INSERT INTO `vendor_details` (`vd_id`, `v_name`, `v_address`, `v_yoe`, `v_email`
 
 CREATE TABLE `vendor_file` (
   `vd_id` int(11) NOT NULL,
-  `file_uri` varchar(35) NOT NULL,
+  `file_uri` text NOT NULL,
   `file_type` varchar(35) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1265,7 +1267,6 @@ ALTER TABLE `tendor_req`
 --
 ALTER TABLE `vendor_details`
   ADD PRIMARY KEY (`vd_id`),
-  ADD UNIQUE KEY `v_reg_no` (`v_reg_no`),
   ADD UNIQUE KEY `v_pan` (`v_pan`),
   ADD UNIQUE KEY `v_gst` (`v_gst`);
 
@@ -1291,41 +1292,49 @@ ALTER TABLE `v_contact_details`
 --
 ALTER TABLE `admin_detail`
   MODIFY `ad_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `districts`
 --
 ALTER TABLE `districts`
   MODIFY `d_id` tinyint(4) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `e_tender_details`
 --
 ALTER TABLE `e_tender_details`
   MODIFY `et_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
+
 --
 -- AUTO_INCREMENT for table `file_uri`
 --
 ALTER TABLE `file_uri`
   MODIFY `furi_id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `log_in_details`
 --
 ALTER TABLE `log_in_details`
   MODIFY `login_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
 --
 -- AUTO_INCREMENT for table `states`
 --
 ALTER TABLE `states`
   MODIFY `st_id` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+
 --
 -- AUTO_INCREMENT for table `vendor_details`
 --
 ALTER TABLE `vendor_details`
   MODIFY `vd_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+
 --
 -- AUTO_INCREMENT for table `v_contact_details`
 --
 ALTER TABLE `v_contact_details`
   MODIFY `vcd_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
 --
 -- Constraints for dumped tables
 --
@@ -1369,10 +1378,18 @@ ALTER TABLE `log_in_details`
   ADD CONSTRAINT `log_in_details_ibfk_2` FOREIGN KEY (`ad_id`) REFERENCES `admin_detail` (`ad_id`);
 
 --
+-- Constraints for table `tendor_req`
+--
+ALTER TABLE `tendor_req`
+  ADD CONSTRAINT `tendor_req_ibfk_1` FOREIGN KEY (`tei_id`) REFERENCES `e_tender_details` (`et_id`),
+  ADD CONSTRAINT `tendor_req_ibfk_2` FOREIGN KEY (`trd_id`) REFERENCES `documents` (`doc_id`);
+
+--
 -- Constraints for table `v_contact_details`
 --
 ALTER TABLE `v_contact_details`
   ADD CONSTRAINT `v_contact_details_ibfk_1` FOREIGN KEY (`vd_id`) REFERENCES `vendor_details` (`vd_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
