@@ -1,3 +1,61 @@
+var tr;
+var col = [];
+var table = document.getElementById("content_table");
+var tabCell;
+var response
+
+
+
+
+			var data = "";
+
+			var xhr = new XMLHttpRequest();
+			xhr.withCredentials = true;
+
+			xhr.addEventListener("readystatechange", function() {
+			  if(this.readyState === 4) {
+					    console.log(this.responseText);
+					    response = JSON.parse(this.responseText);
+
+		       
+		        for (var i = 0; i < response.length; i++) {
+		                for (var key in response[i]) {
+		                    if (col.indexOf(key) === -1) {
+		                        col.push(key);
+		                    }
+		                }
+		            }
+		            console.log(col)
+
+		        for (var i = 0; i < response.length; i++) {
+
+		                tr = table.insertRow(-1); 
+		                tr.setAttribute('id', response[i]['et_id']);          //
+
+		                tabCell= tr.insertCell(-1);
+		                tabCell.innerHTML = response[i]['et_tender_ref_no'];
+		                tabCell = tr.insertCell(-1);
+		                tabCell.innerHTML = response[i]['et_title'];
+		                tabCell = tr.insertCell(-1);
+		                tabCell.innerHTML = response[i]['et_tender_desc'];
+		                tabCell = tr.insertCell(-1);
+		                tabCell.innerHTML = response[i]['dept_name'];
+		                tabCell = tr.insertCell(-1);
+		                tabCell.innerHTML = response[i]['et_last_date_apply'];
+		                tabCell = tr.insertCell(-1);
+		                tabCell.innerHTML = response[i]['et_bidding_date'];
+		                tabCell = tr.insertCell(-1);
+		                tabCell.innerHTML = '<a href='+response[i]['et_file_uri']+' target="_blank">link</a>';
+		                tabCell = tr.insertCell(-1);
+		                tabCell.innerHTML = "<button class='update' id="+i+" onclick='update_td("+i+")'><i class='far fa-edit' style='color:#663EFD; font-size:20px;'></i></button><button class='delete' id="+i+" onclick='delete_td("+i+")'><i class='far fa-trash-alt' style='color:#663EFD; font-size:20px;'></i></button>";
+		            }
+			  }
+			});
+
+			xhr.open("POST", "http://localhost:8081/gettenderlist");
+
+			xhr.send(data);
+
 
 	function isValidDate(dateString) {
 		  var regEx = /^\d{4}-\d{2}-\d{2}$/;
@@ -9,49 +67,7 @@
 		}
 
 
-	var response = [
-			{et_id : '12356' ,	et_title : 'Procurementshahsb of computers' ,	et_tender_fee : '1200' ,	et_tender_ref_no : 'ITC123' ,	et_tender_desc : 'Procurement of Computers, Software and Services. The purpose of this policy is to provide a defined process for both the new and recurring procurement (through purchase or lease) of computer hardware, software and services using Washington University funds or grant funds administered by Washington University.' ,	et_last_date_apply : '2019-05-21' , 	et_bidding_date : '2019-05-22' ,	et_file_uri : 'https://youtu.be/u8XFFTWwSvY' ,	is_delete : '0' ,	dept_id : '1' },
-
-			{et_id : '123457' ,	et_title : 'Procurement of computers' ,	et_tender_fee : '1200' ,	et_tender_ref_no : 'ITC128' ,	et_tender_desc : 'Procurementsbshb of Computers, Software and Services. The purpose of this policy is to provide a defined process for both the new and recurring procurement (through purchase or lease) of computer hardware, software and services using Washington University funds or grant funds administered by Washington University.' ,	et_last_date_apply : '2019-05-21' , 	et_bidding_date : '2019-05-22' ,	et_file_uri : 'https://youtu.be/u8XFFTWwSvY' ,	is_delete : '0' ,	dept_id : '1'}
-            
-        ];	
-
-        var tr;
-        var col = [];
-        var table = document.getElementById("content_table");
-        var tabCell;
-
-        for (var i = 0; i < response.length; i++) {
-                for (var key in response[i]) {
-                    if (col.indexOf(key) === -1) {
-                        col.push(key);
-                    }
-                }
-            }
-            console.log(col)
-
-        for (var i = 0; i < response.length; i++) {
-
-                tr = table.insertRow(-1); 
-                tr.setAttribute('id', response[i]['et_id']);          //
-
-                tabCell= tr.insertCell(-1);
-                tabCell.innerHTML = response[i]['et_tender_ref_no'];
-                tabCell = tr.insertCell(-1);
-                tabCell.innerHTML = response[i]['et_title'];
-                tabCell = tr.insertCell(-1);
-                tabCell.innerHTML = response[i]['et_tender_desc'];
-                tabCell = tr.insertCell(-1);
-                tabCell.innerHTML = response[i]['dept_id'];
-                tabCell = tr.insertCell(-1);
-                tabCell.innerHTML = response[i]['et_last_date_apply'];
-                tabCell = tr.insertCell(-1);
-                tabCell.innerHTML = response[i]['et_bidding_date'];
-                tabCell = tr.insertCell(-1);
-                tabCell.innerHTML = '<a href='+response[i]['et_file_uri']+' target="_blank">link</a>';
-                tabCell = tr.insertCell(-1);
-                tabCell.innerHTML = "<button class='update' id="+i+" onclick='update_td("+i+")'><i class='far fa-edit' style='color:#663EFD; font-size:20px;'></i></button><button class='delete' id="+i+" onclick='delete_td("+i+")'><i class='far fa-trash-alt' style='color:#663EFD; font-size:20px;'></i></button>";
-            }
+	
 
 
             function update_td(clicked_id) {

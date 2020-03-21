@@ -12,7 +12,7 @@ var unirest = require('unirest');
 router.post('/gettenderlist', function (req, res) {
 
 	console.log("gettenderlist called")			
-	db_1.default.query('SELECT * FROM `e_tender_details`  WHERE is_delete = 0', function (error, results, fields) {
+	db_1.default.query('SELECT * FROM `e_tender_details` INNER JOIN department ON e_tender_details.dept_id = department.dept_id WHERE is_delete = 0', function (error, results, fields) {
 		if (error) {
 	      		console.log("error",error);
 	      		res.sendStatus(400);
