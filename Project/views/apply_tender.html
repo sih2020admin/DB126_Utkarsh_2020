@@ -14,9 +14,9 @@
         </nav>
     </header>
     </body>
-      <h1>Apply for Tenders</h1>
+      <br><h1>Apply for Tenders</h1>
       <div class="cont">
-        <h3>Basic Details</h3>
+        <h3>Basic Details</h3><br>
         <label>Organisation Details :  Education centre</label> </br></br>
         <label>Tender Reference No :  12345678</label> </br></br>
         <label>Tender ID :  ABC123</label> </br></br>
@@ -25,34 +25,41 @@
       </div>
 
       <div class="cont">
-        <h3>Tender Fee Payment Details</h3></
-        <label>Instrument type :</label>
-          <select id="mode">
-            <option>DD</option>
-            <option>FD</option>
-            <option>Others</option>
-          </select>
-        <label>Instrument No :</label>
-        <input type="Text" value="1234567"></br></br>
-        <label>Issued date :</label>
-        <input type="date">
-        <label>Expiry date :</label>
-        <input type="date"></br></br>
-        <label>Account No. :</label>
-        <input type="Text" value="123456"></br></br>
-        <label>Amount :</label>
-        <input type="Text" value="1234"></br></br>
-        <button type="submit">Save</button>
+        <h3>Tender Fee Payment Details</h3><br>
+          <table>
+            <tr>
+              <td><label for="mode">Instrument type</label></td>
+              <td><select id="mode">
+                <option>DD</option>
+                <option>FD</option>
+                <option>Others</option>
+              </select></td>
+              <td><label for="ints_no">Instrument No</label></td>
+              <td><input type="Text" placeholder="Enter Instrument Number" id="inst_no"></td>
+            </tr>
+            <tr>
+              <td><label for="issued_date">Issued date</label></td>
+              <td><input type="date" id="issued_date"></td>
+              <td><label for="expiry_date">Expiry date</label></td>
+              <td><input type="date" id="expiry_date"></td>
+            </tr>
+            <tr>
+              <td><label for="acc_no">Account No</label></td>
+              <td><input type="Text" placeholder="Enter Account Number" id="acc_no">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+              <td><label for="amount">Amount</label></td>
+              <td><input type="Text" placeholder="Enter Amount" id="amount"></td>
+            </tr>
+          </table>
+        <br><div class="button_div"><button type="submit" class="save_button">Save</button></div>
       </div>
 
       <div class="cont">
-        <h3>Upload Documents :</h3>
-        <label>Techincal Files</br></br>   <a href="#">(pdf format) </label></a> </br></br> 
-        <label>Financial Files</br></br>   <a href="#">(xls format) </label></a> 
-        <button type="submit">Save</button></br></br> 
+        <h3>Upload Documents</h3><br>
+        <label>Techincal Files <a href="#">(pdf format) </label></a> </br></br> 
+        <label>Financial Files <a href="#">(xls format) </label></a> <br><br>
+        <div class="button_div"><button type="submit">Save</button></div>
       </div>
         
-    
     <div class="submit_button">
       <button type="button" onclick="next()">NEXT</button>
     </div>
