@@ -3,8 +3,8 @@ var response ;
 
 var xhr = new XMLHttpRequest();
 
-xhr.addEventListener("readystatechange", function () {
-  if (this.readyState === 4) {
+xhr.onload = function () {
+  if (this.status === 200) {
     console.log(this.responseText);
 
     response = JSON.parse(this.responseText);
@@ -30,7 +30,13 @@ xhr.addEventListener("readystatechange", function () {
         cont_div.insertAdjacentHTML('beforeend', div);   
     }
   }
-});
+    else if (this.status == 400) {  
+        alert("Some error occured!");
+    }
+    else{
+        alert("Check Network!");
+    }
+}  
 
 xhr.open("POST", "http://localhost:8081/gettenderlist");
 xhr.setRequestHeader("cache-control", "no-cache");
