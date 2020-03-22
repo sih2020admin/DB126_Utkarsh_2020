@@ -1,4 +1,15 @@
 "use strict";
+var __values = (this && this.__values) || function(o) {
+    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
+    if (m) return m.call(o);
+    if (o && typeof o.length === "number") return {
+        next: function () {
+            if (o && i >= o.length) o = void 0;
+            return { value: o && o[i++], done: !o };
+        }
+    };
+    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
+};
 var username;
 var password;
 var title;
@@ -43,13 +54,23 @@ function load_states() {
         method: "POST",
         async: true,
         success: function (response) {
+            var e_1, _a;
             var message = response;
-            for (var _i = 0, message_1 = message; _i < message_1.length; _i++) {
-                var i = message_1[_i];
-                $("<option></option>", {
-                    "text": i.st_name,
-                    "value": i.st_id
-                }).appendTo("#state");
+            try {
+                for (var message_1 = __values(message), message_1_1 = message_1.next(); !message_1_1.done; message_1_1 = message_1.next()) {
+                    var i = message_1_1.value;
+                    $("<option></option>", {
+                        "text": i.st_name,
+                        "value": i.st_id
+                    }).appendTo("#state");
+                }
+            }
+            catch (e_1_1) { e_1 = { error: e_1_1 }; }
+            finally {
+                try {
+                    if (message_1_1 && !message_1_1.done && (_a = message_1.return)) _a.call(message_1);
+                }
+                finally { if (e_1) throw e_1.error; }
             }
         },
         statusCode: {
@@ -73,14 +94,24 @@ function load_cities(state_code) {
             state_code: state_code
         }),
         success: function (response) {
+            var e_2, _a;
             var message = response;
             console.log(message);
-            for (var _i = 0, message_2 = message; _i < message_2.length; _i++) {
-                var i = message_2[_i];
-                $("<option></option>", {
-                    "text": i.c_name,
-                    "value": i.c_id
-                }).appendTo("#city");
+            try {
+                for (var message_2 = __values(message), message_2_1 = message_2.next(); !message_2_1.done; message_2_1 = message_2.next()) {
+                    var i = message_2_1.value;
+                    $("<option></option>", {
+                        "text": i.c_name,
+                        "value": i.c_id
+                    }).appendTo("#city");
+                }
+            }
+            catch (e_2_1) { e_2 = { error: e_2_1 }; }
+            finally {
+                try {
+                    if (message_2_1 && !message_2_1.done && (_a = message_2.return)) _a.call(message_2);
+                }
+                finally { if (e_2) throw e_2.error; }
             }
         },
         statusCode: {
@@ -111,13 +142,23 @@ function load_legal_status() {
         method: "POST",
         async: true,
         success: function (response) {
+            var e_3, _a;
             var message = response;
-            for (var _i = 0, message_3 = message; _i < message_3.length; _i++) {
-                var i = message_3[_i];
-                $("<option></option>", {
-                    "text": i.l_name,
-                    "value": i.l_id
-                }).appendTo("#legal_status");
+            try {
+                for (var message_3 = __values(message), message_3_1 = message_3.next(); !message_3_1.done; message_3_1 = message_3.next()) {
+                    var i = message_3_1.value;
+                    $("<option></option>", {
+                        "text": i.l_name,
+                        "value": i.l_id
+                    }).appendTo("#legal_status");
+                }
+            }
+            catch (e_3_1) { e_3 = { error: e_3_1 }; }
+            finally {
+                try {
+                    if (message_3_1 && !message_3_1.done && (_a = message_3.return)) _a.call(message_3);
+                }
+                finally { if (e_3) throw e_3.error; }
             }
         },
         statusCode: {
