@@ -16,7 +16,7 @@ app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'views')));
+app.use(express.static(path.join(__dirname, 'views/user')));
 
 app.use('/register',register.default)
 app.use("/misc",misc)
