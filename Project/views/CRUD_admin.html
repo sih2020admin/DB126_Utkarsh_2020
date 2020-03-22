@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <link rel="stylesheet" href="css/crud_admin.css">
@@ -26,7 +27,7 @@
                 <button id="search_button" class="search_button">Search</button><br>
                 <button id="create_tender_button" class="create_tender_button" onclick="display_form()">Create</button>
         </div>
-        <div class="input_details" id="input_details" style="display:block;">
+        <div class="input_details" id="create_input_details" style="display:none;">
             <h1>Create Tender</h1><br><br>
             <table>
                 <tr>

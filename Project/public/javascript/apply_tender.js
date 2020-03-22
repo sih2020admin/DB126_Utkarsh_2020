@@ -8,7 +8,7 @@ xhr.addEventListener("readystatechange", function () {
     console.log(this.responseText);
 
     response = JSON.parse(this.responseText);
-    var cont_div = document.getElementById('det');
+    var cont_div = document.getElementById('cont');
 
     for (var i = 0; i < response.length; i++) 
     {
