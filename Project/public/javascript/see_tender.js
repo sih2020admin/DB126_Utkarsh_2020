@@ -1,4 +1,49 @@
-var response = [
+var data = "";
+var response;
+
+var xhr = new XMLHttpRequest();
+
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === 4) {
+    console.log(this.responseText);
+    response = JSON.parse(this.responseText);
+    var cont_div = document.getElementById('cont');
+
+    for (var i = 0; i < response.length; i++) {
+
+        var div=`<div class="cont" id="`+i+`">
+            <p class="heading">`+response[i].et_title+`</p><br>
+            <div class="Tdetails">
+                <p class="RnoLabel"><strong>Ref No:</strong></p>
+                <p >`+response[i].et_tender_ref_no+`</p>
+                <p class="OdateLabel"><strong>Closing Date:</strong></p>
+                <p id="Odate">`+response[i].et_last_date_apply+`</p>
+                <p class="BdateLabel"><strong>Bid Opening Date:</strong></p>
+                <p id="Bdate">`+response[i].et_bidding_date+`</p>
+            </div><br>  
+            <p class="para">`+response[i].et_tender_desc+`</p>
+            <br><input type="button" name="apply" value='apply' class="apply" onclick="apply(`+i+`)">
+        </div>`;
+        
+        cont_div.insertAdjacentHTML('beforeend', div);   
+    }
+  }
+});
+
+xhr.open("POST", "http://localhost:8081/gettenderlist");
+xhr.setRequestHeader("cache-control", "no-cache");
+xhr.setRequestHeader("Postman-Token", "d27115c9-3103-48c3-8336-cb4b43250422");
+
+xhr.send(data);
+function apply(i){
+          
+            location.replace("apply_tender.html");
+
+        }
+
+
+
+/*var response = [
     {
         "et_id": 124,
         "et_title": "hello title",
@@ -23,25 +68,6 @@ var response = [
         "is_delete": 0,
         "dept_id": 1
     }
-]	
+]*/	
 
-    var cont_div = document.getElementById('cont');
-
-    for (var i = 0; i < response.length; i++) {
-
-		var div=`<div class="cont" id="`+i+`">
-	        <p class="heading">`+response[i].et_title+`</p><br>
-	        <div class="Tdetails">
-	            <p class="RnoLabel"><strong>Ref No:</strong></p>
-	            <p >`+response[i].et_tender_ref_no+`</p>
-	            <p class="OdateLabel"><strong>Closing Date:</strong></p>
-	            <p id="Odate">`+response[i].et_last_date_apply+`</p>
-	            <p class="BdateLabel"><strong>Bid Opening Date:</strong></p>
-	            <p id="Bdate">`+response[i].et_bidding_date+`</p>
-	        </div><br>  
-	        <p class="para">`+response[i].et_tender_desc+`</p>
-	        <br><input type="button" name="apply" value='apply' class="apply onclick="apply(`+i+`)">
-	    </div>`;
-	    
-	    cont_div.insertAdjacentHTML('beforeend', div);
-}
+    
