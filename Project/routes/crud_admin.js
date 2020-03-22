@@ -11,22 +11,53 @@ var unirest = require('unirest');
 
 router.post('/gettenderlist', function (req, res) {
 
-	console.log("gettenderlist called")			
+	console.log("gettenderlist called")	
+		
+
 	db_1.default.query('SELECT * FROM `e_tender_details` INNER JOIN department ON e_tender_details.dept_id = department.dept_id WHERE is_delete = 0', function (error, results, fields) {
 		if (error) {
 	      		console.log("error",error);
 	      		res.sendStatus(400);
-	      		console.log("gettenderlist called0")	
+	      		// console.log("gettenderlist called0")	
 	     	}
 	     else{
 	       		if(results.length >0){
-	       			console.log("gettenderlist called1")	
+	       			// console.log("gettenderlist called1")	
 		  			res.send(results);
 
        			}
        			else{
          			
-         			console.log("gettenderlist called2")	
+         			// console.log("gettenderlist called2")	
+         			res.sendStatus(400);
+       			}
+      		}
+    	});
+});
+
+
+
+router.post('/gettenderlist_dept', function (req, res) {
+	
+	var dept_id = req.body.dept_id
+	console.log("gettenderlist_dept called ",dept_id,req.body)	
+
+	db_1.default.query('SELECT * FROM `e_tender_details` INNER JOIN department ON e_tender_details.dept_id = department.dept_id WHERE is_delete = 0 and e_tender_details.dept_id = ? ',[dept_id], function (error, results, fields) {
+		if (error) {
+	      		console.log("error",error);
+	      		res.sendStatus(400);
+	      		// console.log("gettenderlist deptcalled0")	
+	     	}
+	     else{
+	     		console.log(results)
+	       		if(results.length >0){
+	       			// console.log("gettenderlist dept called1")	
+		  			res.send(results);
+
+       			}
+       			else{
+         			
+         			// console.log("gettenderlist  dept called2")	
          			res.sendStatus(400);
        			}
       		}
@@ -51,7 +82,11 @@ router.post('/create_tender', function (req, res) {
 	db_1.default.query('INSERT INTO `e_tender_details` ( `et_title`, `et_tender_fee`, `et_tender_ref_no`, `et_tender_desc`, `et_last_date_apply`, `et_bidding_date`, `et_file_uri`, `is_delete`, `dept_id`) VALUES ( ?, ?, ?,?,?,?, ?, 0, ?);',[et_title ,et_tender_fee ,et_tender_ref_no ,et_tender_desc ,et_last_date_apply ,et_bidding_date ,et_file_uri ,dept_id] ,function (error, results, fields) {
 		if (error) {
 	      		console.log("error",error);
-	      		res.sendStatus(400);
+	      		if (error.code == "ER_DUP_ENTRY") {
+	      			res.status(400)
+	      			res.send("Duplicate entry")
+	      		}
+	      		else res.sendStatus(400);
 	      		// console.log("gettenderlist called0")	
 	     	}
 	     else{

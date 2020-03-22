@@ -10,14 +10,15 @@ var response;
 
 
 
-			var data = "";
+		
 
-			var xhr = new XMLHttpRequest();
-			xhr.withCredentials = true;
+			var xhr2 = new XMLHttpRequest();
+			xhr2.withCredentials = true;
 
-			xhr.addEventListener("readystatechange", function() {
-			  if(this.readyState === 4) {
-					    console.log(this.responseText);
+			xhr2.onload = function(){
+			if(this.status==200){
+
+				console.log(this.responseText);
 					    response = JSON.parse(this.responseText);
 
 		       
@@ -52,12 +53,21 @@ var response;
 		                tabCell = tr.insertCell(-1);
 		                tabCell.innerHTML = "<button class='update' id="+i+" onclick='update_td("+i+")'><i class='far fa-edit' style='color:#663EFD; font-size:20px;'></i></button><button class='delete' id="+i+" onclick='delete_td("+i+")'><i class='far fa-trash-alt' style='color:#663EFD; font-size:20px;'></i></button>";
 		            }
-			  }
-			});
 
-			xhr.open("POST", "http://localhost:8081/gettenderlist");
+			}
+			else if (this.status==400){
+				
+			}
+			else{	
+				alert("Check Network")
+			}
+		};
 
-			xhr.send(data);
+			xhr2.open("POST", "http://localhost:8081/gettenderlist");
+			var data2 = JSON.stringify({"dept_id":1});
+			console.log(data2)
+			xhr2.send(data2);
+			//as of now dept_id is 1 take it from cookies
 
 
 	function display_form() {
@@ -179,12 +189,43 @@ var response;
 				  confirmButtonText: 'Yes, delete it!'
 				}).then((result) => {
 				  if (result.value) {
-				    Swal.fire(
-				      'Deleted!',
-				      'Your file has been deleted.',
-				      'success'
-				    )
-				  }
+
+						var xhr = new XMLHttpRequest();
+						xhr.withCredentials = true;
+
+						xhr.onload = function(){
+							if(this.status==200){
+
+								Swal.fire(
+							      'Deleted!',
+							      'Your file has been deleted.',
+							      'success'
+							    )
+							    window.location.href = "http://localhost:8081/CRUD_admin.html";
+
+							}
+							else if (this.status==400){
+
+								Swal.fire(
+							      'Failed to delete',
+							      'Some error',
+							      'error'
+							    )
+
+								
+							}
+							else{	
+								alert("Check Network")
+							}
+						};
+						
+
+						xhr.open("POST", "http://localhost:8081/delete_tender");
+						xhr.setRequestHeader("Content-Type", "application/json");
+
+						xhr.send(JSON.stringify({"et_id":response[clicked_id].et_id}));
+					    
+					  }
 				})
             }
 
@@ -274,3 +315,101 @@ var response;
 
             	
             }
+
+            function add_tender(){
+            	console.log("add tender called")
+            	var ref_no = document.getElementById("ref_no").value
+            	var title = document.getElementById("title").value
+            	var fee = document.getElementById("fee").value
+				var closing_date = document.getElementById("closing_date").value
+				var bid_opening_date = document.getElementById("bid_opening_date").value
+				var link = document.getElementById("link").value
+				var description = document.getElementById("description").value
+
+				console.log("add tender called"+ref_no.length)
+
+				if(ref_no.length<1){
+					alert("Enter Reference number")
+					return false
+				}
+				else if(title.length<1){
+					alert("Enter Title")
+					return false
+				}
+				else if(isNaN(fee) || fee < 0 || fee.length<1 ){
+					alert("Invalid Tender fee")
+					return false
+				}
+				else if(closing_date.length<1){
+					alert("Enter Closing date")
+					return false
+				}
+				else if(bid_opening_date.length<1){
+					alert("Enter Bid opening date")
+					return false
+				}
+				else if(description.length<1){
+					alert("Enter Description")
+					return false
+				}
+
+				var xhr = new XMLHttpRequest();
+				xhr.withCredentials = true;
+
+				xhr.addEventListener("readystatechange", function() {
+				  if(this.readyState === 4) {
+				    console.log(this.responseText);
+				    window.location.href = "http://localhost:8081/CRUD_admin.html";
+				    alert("successfully added")
+
+				  }
+				});
+
+				xhr.open("POST", "http://localhost:8081/create_tender");
+				xhr.setRequestHeader("Content-Type", "application/json");
+
+				xhr.send(JSON.stringify({"et_title":title,
+					"et_tender_fee":fee,
+					"et_tender_ref_no":ref_no,
+					"et_tender_desc":description,
+					"et_last_date_apply":closing_date,
+					"et_bidding_date":bid_opening_date,
+					"et_file_uri":link,
+					"dept_id":1}));
+				//imp here dept id is fixed for now but it shoud be taken from cookies
+
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+             
