@@ -41,4 +41,7 @@ router.post("/get-city", function (request, response) {
         }
     });
 });
+router.post("/payment/payment-redirect", function (request, response) {
+    response.send("hello world");
+});
 exports.default = router;
