@@ -23,6 +23,7 @@ app.use("/misc",misc)
 app.use("/payment",payment)
 app.use('/', tender_desc.default);
 app.use('',login.default)
+app.use('/',crud_admin.default);
 
 app.listen(port,()=>{
     console.log( `Server started on port ${port}`)
