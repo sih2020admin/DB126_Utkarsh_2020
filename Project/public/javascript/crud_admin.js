@@ -321,12 +321,12 @@ var response;
             	var ref_no = document.getElementById("ref_no").value
             	var title = document.getElementById("title").value
             	var fee = document.getElementById("fee").value
-				var closing_date = document.getElementById("closing_date").value
-				var bid_opening_date = document.getElementById("bid_opening_date").value
+				var closing_date = new Date(document.getElementById("closing_date").value)
+				var bid_opening_date =new Date( document.getElementById("bid_opening_date").value)
 				var link = document.getElementById("link").value
 				var description = document.getElementById("description").value
 
-				console.log("add tender called"+ref_no.length)
+				console.log("add tender called"+ref_no.length+(closing_date.getTime() > bid_opening_date.getTime())+Date(closing_date)+Date(bid_opening_date))
 
 				if(ref_no.length<1){
 					alert("Enter Reference number")
@@ -352,31 +352,38 @@ var response;
 					alert("Enter Description")
 					return false
 				}
+				else if (closing_date.getTime() > bid_opening_date.getTime()) {
+					console.log("wrong date seq")
+					alert("Bid opening date must be after closing date")
 
-				var xhr = new XMLHttpRequest();
-				xhr.withCredentials = true;
+					return false
+				}else{
 
-				xhr.addEventListener("readystatechange", function() {
-				  if(this.readyState === 4) {
-				    console.log(this.responseText);
-				    window.location.href = "http://localhost:8081/CRUD_admin.html";
-				    alert("successfully added")
+					var xhr = new XMLHttpRequest();
+					xhr.withCredentials = true;
 
-				  }
-				});
+					xhr.addEventListener("readystatechange", function() {
+					  if(this.readyState === 4) {
+					    console.log(this.responseText);
+					    window.location.href = "http://localhost:8081/CRUD_admin.html";
+					    alert("successfully added")
 
-				xhr.open("POST", "http://localhost:8081/create_tender");
-				xhr.setRequestHeader("Content-Type", "application/json");
+					  }
+					});
 
-				xhr.send(JSON.stringify({"et_title":title,
-					"et_tender_fee":fee,
-					"et_tender_ref_no":ref_no,
-					"et_tender_desc":description,
-					"et_last_date_apply":closing_date,
-					"et_bidding_date":bid_opening_date,
-					"et_file_uri":link,
-					"dept_id":1}));
+					xhr.open("POST", "http://localhost:8081/create_tender");
+					xhr.setRequestHeader("Content-Type", "application/json");
+
+					xhr.send(JSON.stringify({"et_title":title,
+						"et_tender_fee":fee,
+						"et_tender_ref_no":ref_no,
+						"et_tender_desc":description,
+						"et_last_date_apply":document.getElementById("closing_date").value,
+						"et_bidding_date":document.getElementById("bid_opening_date").value,
+						"et_file_uri":link,
+						"dept_id":1}));
 				//imp here dept id is fixed for now but it shoud be taken from cookies
+				}
 
             }
 
