@@ -41,6 +41,22 @@ input{
     margin: 10px;
     color: var(--main_color);
 }
+input[type=date]::-webkit-inner-spin-button {
+    appearance: none;
+    display: none;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"]{
+    padding: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+}
 select, input[type="date"]{
     //border-style: dashed;
     border-width: 1.5px;
@@ -49,6 +65,8 @@ select, input[type="date"]{
     height: 30px;
     margin: 10px;
     color: var(--main_color);
+    padding: 0;
+    padding-left: 10px;
 }
 .select-selected {
     background-color: var(--main_color);
