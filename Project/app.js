@@ -20,6 +20,7 @@ app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use(express_1.default.static(path_1.default.join(__dirname, 'public')));
 app.use(express_1.default.static(path_1.default.join(__dirname, 'views/user')));
+app.use(express_1.default.static(path_1.default.join(__dirname, 'views/admin')));
 app.use('/register', register.default);
 app.use("/misc", misc_1.default);
 app.use("/payment", payment_server_1.default);
