@@ -47,14 +47,17 @@ body{
 
         input{
             // border-style: dashed;
-            border-width: 1.5px;
+            border-width: 0.4px;
             border-radius: 3px;
             border-color: var(--main_color);
             height: 30px;
-            width: 550px;
+            width: 80%;
             padding: 10px;
             margin: 10px 10px 10px 0;
             color: var(--main_color);
+            overflow: hidden;
+            outline: none;
+
         }
         button{
             width: 80px;
@@ -66,6 +69,7 @@ body{
             border: none;
             outline: none;
             color: #ffffff;
+            display: inline-block;
         }
         button:hover{
             cursor: pointer;
@@ -107,7 +111,22 @@ body{
             padding: 10px;
             margin: 10px;
             color: var(--main_color);
+            box-shadow: none !important;
+
         }
+        input[type=number]{
+            appearance: textfield;
+            padding: 0px;
+            padding-left: 10px;
+        }
+        input[type=date]{
+            padding: 0;
+            padding-left: 10px;
+        }
+        input[type=date]::-webkit-inner-spin-button {
+            appearance: none;
+            display: none;
+        }        
 
         textarea{
             // border-style: dashed;
@@ -208,7 +227,11 @@ body{
 button:hover{
     opacity: 0.5;
 }
+
+
 //Update Alert Box
+
+
 .swal2-title{
     color: var(--main_color);
 }
@@ -271,6 +294,7 @@ button:hover{
 }
 
 //Delete Alert Box
+
 .swal2-icon.swal2-warning, .swal2-icon.swal2-warning.swal2-icon-show{
     color: var(--main_color);
     border-color: var(--main_color);
