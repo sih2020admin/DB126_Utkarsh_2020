@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
 var cors_1 = __importDefault(require("cors"));
+var bodyParser = __importDefault( require('body-parser'));
 var path_1 = __importDefault(require("path"));
 var misc_1 = __importDefault(require("./routes/misc"));
 var payment_server_1 = __importDefault(require("./routes/payment-server"));
@@ -17,6 +18,7 @@ var tenderlist = require("./routes/list_tender");
 //var port = process.env.PORT || 8080
 
 var port = 8081;
+app.use(bodyParser.default.json()); 
 app.use(cors_1.default());
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
@@ -27,7 +29,7 @@ app.use('/register', register.default);
 app.use("/misc", misc_1.default);
 app.use("/payment", payment_server_1.default);
 app.use('/', tender_desc.default);
-app.use('', login.default);
+app.use('', login.default);	
 app.use('/', crud_admin.default);
 app.use('',tenderlist.default);
 app.listen(port, function () {

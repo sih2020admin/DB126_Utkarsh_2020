@@ -48,7 +48,7 @@ router.post('/create_tender', function (req, res) {
 
 router.post('/update_tender', function (req, res) {
 
-	console.log("update tender called",req.body.et_title)
+	console.log("update tender called",req.body.et_id)
 	var et_id = req.body.et_id	
 	var et_title	 = req.body.et_title
 	var et_tender_fee	 = req.body.et_tender_fee
