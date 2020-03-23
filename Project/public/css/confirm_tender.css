@@ -1,0 +1,100 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Montserrat:500&display=swap");
+:root {
+  --main_color: #663EFD;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  padding: 0;
+}
+
+body {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+h1, h3, label {
+  color: var(--main_color);
+  text-align: center;
+}
+
+h1 {
+  margin-top: 20px;
+}
+
+.cont {
+  background-color: white;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  min-width: 800px;
+  height: auto;
+  padding: 20px;
+  margin: auto;
+  margin-top: 20px;
+  border-radius: 10px;
+  -webkit-box-shadow: 3px 4px 6px -6px rgba(103, 62, 253, 0.507), -3px -4px 6px -6px rgba(103, 62, 253, 0.507);
+          box-shadow: 3px 4px 6px -6px rgba(103, 62, 253, 0.507), -3px -4px 6px -6px rgba(103, 62, 253, 0.507);
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+}
+
+.payment_details, .upload_documents {
+  margin: 40px;
+}
+
+.payment_details table, .upload_documents table {
+  margin: auto;
+  max-width: 100%;
+  border-radius: 1em;
+  border-collapse: collapse;
+  overflow: hidden;
+  -webkit-box-shadow: 3px 4px 6px -6px rgba(103, 62, 253, 0.507), -3px -4px 6px -6px rgba(103, 62, 253, 0.507);
+          box-shadow: 3px 4px 6px -6px rgba(103, 62, 253, 0.507), -3px -4px 6px -6px rgba(103, 62, 253, 0.507);
+}
+
+.payment_details tr:nth-child(odd), .upload_documents tr:nth-child(odd) {
+  background-color: rgba(141, 111, 251, 0.061);
+}
+
+.payment_details th, .upload_documents th {
+  background-color: var(--main_color);
+  color: #fff;
+  font-weight: lighter;
+}
+
+.payment_details th, .payment_details td, .upload_documents th, .upload_documents td {
+  padding: 0.5em 1em;
+}
+
+.submit_button {
+  text-align: center;
+}
+
+.submit_button button {
+  width: 100px;
+  height: 35px;
+  font-size: 16px;
+  font-weight: 300;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  border-radius: 10px;
+  background-color: var(--main_color);
+  border: none;
+  color: #ffffff;
+}
+
+.submit_button button:hover {
+  cursor: pointer;
+  background-color: #ffffff;
+  color: var(--main_color);
+  border: solid;
+  border-width: 0.4px;
+  border-color: var(--main_color);
+}
+/*# sourceMappingURL=confirm_tender.css.map */
