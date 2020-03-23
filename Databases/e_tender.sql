@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 4.6.6deb5
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Mar 20, 2020 at 05:14 PM
--- Server version: 10.4.10-MariaDB
--- PHP Version: 7.3.12
+-- Host: localhost:3306
+-- Generation Time: Mar 23, 2020 at 11:43 AM
+-- Server version: 5.7.28-0ubuntu0.19.04.2
+-- PHP Version: 7.2.24-0ubuntu0.19.04.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -882,17 +880,34 @@ CREATE TABLE `e_tender_details` (
   `et_tender_desc` text NOT NULL,
   `et_last_date_apply` date NOT NULL,
   `et_bidding_date` date NOT NULL,
-  `et_file_uri` text NOT NULL,
+  `et_file_uri` text,
   `is_delete` tinyint(4) NOT NULL,
-  `dept_id` int(4) NOT NULL
+  `dept_id` int(4) NOT NULL,
+  `is_approved` tinyint(4) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `e_tender_details`
 --
 
-INSERT INTO `e_tender_details` (`et_id`, `et_title`, `et_tender_fee`, `et_tender_ref_no`, `et_tender_desc`, `et_last_date_apply`, `et_bidding_date`, `et_file_uri`, `is_delete`, `dept_id`) VALUES
-(123, 'Procurement of computers', '1200', 'ITC123', 'Procurement of Computers, Software and Services. The purpose of this policy is to provide a defined process for both the new and recurring procurement (through purchase or lease) of computer hardware, software and services using Washington University funds or grant funds administered by Washington University.', '2020-03-11', '2020-03-14', 'https://www.youtube.com/watch?v=u8XFFTWwSvY&feature=youtu.be', 0, 1);
+INSERT INTO `e_tender_details` (`et_id`, `et_title`, `et_tender_fee`, `et_tender_ref_no`, `et_tender_desc`, `et_last_date_apply`, `et_bidding_date`, `et_file_uri`, `is_delete`, `dept_id`, `is_approved`) VALUES
+(123, 'Procurement of computers', '1200', 'ITC123', 'Procurement of Computers, Software and Services. The purpose of this policy is to provide a defined process for both the new and recurring procurement (through purchase or lease) of computer hardware, software and services using Washington University funds or grant funds administered by Washington University.', '2020-03-10', '2020-03-13', 'https://www.youtube.com/watch?v=u8XFFTWwSvY&feature=youtu.be', 0, 1, 0),
+(124, 'hello title', '1200', 'ITC56', 'hello description', '2020-03-03', '2020-03-05', 'https://www.youtube.com/watch?v=fyMhvkC3A84', 0, 1, 0),
+(125, 'Procurement of computers', '1200', 'ITC123', 'Procurement of Computers, Software and Services. The purpose of this policy is to provide a defined process for both the new and recurring procurement (through purchase or lease) of computer hardware, software and services using Washington University funds or grant funds administered by Washington University.', '2020-03-10', '2020-03-13', 'https://www.youtube.com/watch?v=u8XFFTWwSvY&feature=youtu.be', 0, 1, 0),
+(126, 'testing', '-8', 'ITC98', 'console.log(\"add tender called\")', '2020-03-02', '2020-03-06', 'console.log(\"add tender called\")', 1, 1, 0),
+(127, 'hello testing all ', '', 'IT69', 'isNaN(x) || x < 1', '2020-03-06', '2020-03-07', '', 1, 1, 0),
+(128, '1', '', '1', 'asdfg', '2020-03-04', '2020-03-07', 'asdfgh', 1, 1, 0),
+(129, 'a', '2', 'a', 'sdfg', '2019-11-28', '2020-03-04', 'asdfg', 1, 1, 0),
+(130, 'testing', '9', 'testing', 'asdfghjk', '2020-03-30', '2020-03-31', 'asdfghj', 1, 1, 0),
+(131, 'sdfgh', '8', 'sdfgh', 'sdfg', '2020-03-23', '2020-03-22', 'asdfgh', 1, 1, 0),
+(132, 'asdfg', '2', 'asdf', 'zxcv', '2020-03-23', '2020-03-22', 'sdf', 1, 1, 0),
+(133, 'gasdfg', '5', 'asdf', 'sdfghjm', '2020-03-22', '2020-03-15', 'asdfg', 1, 1, 0),
+(134, 'asdf', '2', 'asdfg', 'sdfg', '2020-03-22', '2020-03-15', 'sdf', 1, 1, 0),
+(135, 'sdfgh', '0', 'asdfg', 'Asdfghjk', '2020-03-22', '2020-03-15', 'ASDFG', 1, 1, 0),
+(136, 'zxcvb', '4', 'scvbn', 'xcvb', '2020-03-22', '2020-03-15', 'dfg', 1, 1, 0),
+(137, 'qwertyuiop', '89', 'IT345', 'WERTYUI', '2020-03-22', '2020-03-23', 'qwertyuiop', 0, 1, 0),
+(138, 'testing', '4500', 'T123', 'QWERTYUIO', '2020-03-15', '2020-03-16', '', 0, 1, 0),
+(139, 'Procurement of computers', '1200', 'ITC123', 'Procurement of Computers, Software and Services. The purpose of this policy is to provide a defined process for both the new and recurring procurement (through purchase or lease) of computer hardware, software and services using Washington University funds or grant funds administered by Washington University.', '2020-03-10', '2020-03-13', 'https://www.youtube.com/watch?v=u8XFFTWwSvY&feature=youtu.be', 0, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -909,6 +924,13 @@ CREATE TABLE `e_tender_vendor` (
   `is_approved` varchar(1) NOT NULL,
   `date_of_approval` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `e_tender_vendor`
+--
+
+INSERT INTO `e_tender_vendor` (`etd_id`, `et_id`, `vd_id`, `vcd_id`, `bidding_amt`, `is_approved`, `date_of_approval`) VALUES
+(1, 123, 1, 1, '1200', '0', '');
 
 -- --------------------------------------------------------
 
@@ -1095,7 +1117,7 @@ CREATE TABLE `vendor_details` (
   `v_reg_no` varchar(10) NOT NULL,
   `v_state_id` tinyint(4) NOT NULL,
   `v_dist_id` tinyint(4) NOT NULL,
-  `v_city_id` int(11) NOT NULL,
+  `v_city_id` smallint(4) NOT NULL,
   `v_pincode` varchar(6) NOT NULL,
   `v_legal_id` varchar(1) NOT NULL,
   `v_pan` varchar(10) NOT NULL,
@@ -1126,7 +1148,7 @@ INSERT INTO `vendor_details` (`vd_id`, `v_name`, `v_address`, `v_yoe`, `v_email`
 
 CREATE TABLE `vendor_file` (
   `vd_id` int(11) NOT NULL,
-  `file_uri` text NOT NULL,
+  `file_uri` varchar(35) NOT NULL,
   `file_type` varchar(35) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1267,6 +1289,7 @@ ALTER TABLE `tendor_req`
 --
 ALTER TABLE `vendor_details`
   ADD PRIMARY KEY (`vd_id`),
+  ADD UNIQUE KEY `v_reg_no` (`v_reg_no`),
   ADD UNIQUE KEY `v_pan` (`v_pan`),
   ADD UNIQUE KEY `v_gst` (`v_gst`);
 
@@ -1292,49 +1315,46 @@ ALTER TABLE `v_contact_details`
 --
 ALTER TABLE `admin_detail`
   MODIFY `ad_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 --
 -- AUTO_INCREMENT for table `districts`
 --
 ALTER TABLE `districts`
   MODIFY `d_id` tinyint(4) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `e_tender_details`
 --
 ALTER TABLE `e_tender_details`
-  MODIFY `et_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
-
+  MODIFY `et_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=140;
+--
+-- AUTO_INCREMENT for table `e_tender_vendor`
+--
+ALTER TABLE `e_tender_vendor`
+  MODIFY `etd_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `file_uri`
 --
 ALTER TABLE `file_uri`
   MODIFY `furi_id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `log_in_details`
 --
 ALTER TABLE `log_in_details`
   MODIFY `login_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
 --
 -- AUTO_INCREMENT for table `states`
 --
 ALTER TABLE `states`
   MODIFY `st_id` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
-
 --
 -- AUTO_INCREMENT for table `vendor_details`
 --
 ALTER TABLE `vendor_details`
   MODIFY `vd_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
-
 --
 -- AUTO_INCREMENT for table `v_contact_details`
 --
 ALTER TABLE `v_contact_details`
   MODIFY `vcd_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
 --
 -- Constraints for dumped tables
 --
@@ -1378,18 +1398,10 @@ ALTER TABLE `log_in_details`
   ADD CONSTRAINT `log_in_details_ibfk_2` FOREIGN KEY (`ad_id`) REFERENCES `admin_detail` (`ad_id`);
 
 --
--- Constraints for table `tendor_req`
---
-ALTER TABLE `tendor_req`
-  ADD CONSTRAINT `tendor_req_ibfk_1` FOREIGN KEY (`tei_id`) REFERENCES `e_tender_details` (`et_id`),
-  ADD CONSTRAINT `tendor_req_ibfk_2` FOREIGN KEY (`trd_id`) REFERENCES `documents` (`doc_id`);
-
---
 -- Constraints for table `v_contact_details`
 --
 ALTER TABLE `v_contact_details`
   ADD CONSTRAINT `v_contact_details_ibfk_1` FOREIGN KEY (`vd_id`) REFERENCES `vendor_details` (`vd_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

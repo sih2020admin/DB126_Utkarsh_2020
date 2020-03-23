@@ -4,18 +4,12 @@ var table = document.getElementById("content_table");
 var tabCell;
 var response;
 // var create_form = document.getElementById("create_input_details");
+	
+	
+	var xhr = new XMLHttpRequest();
+	xhr.withCredentials = true;
 
-
-
-
-
-
-		
-
-			var xhr2 = new XMLHttpRequest();
-			xhr2.withCredentials = true;
-
-			xhr2.onload = function(){
+	xhr.onload = function(){
 			if(this.status==200){
 
 				console.log(this.responseText);
@@ -55,19 +49,25 @@ var response;
 		            }
 
 			}
-			else if (this.status==400){
-				
+			else if (this.status==404){
+				alert("No tenders to show");
 			}
 			else{	
 				alert("Check Network")
 			}
 		};
 
-			xhr2.open("POST", "http://localhost:8081/gettenderlist");
-			var data2 = JSON.stringify({"dept_id":1});
-			console.log(data2)
-			xhr2.send(data2);
-			//as of now dept_id is 1 take it from cookies
+	xhr.open("POST", "http://localhost:8081/tender_dept");
+	xhr.setRequestHeader("Content-Type", "application/json");
+	var data = JSON.stringify({"dept_id":1});
+	//dept id should be take from cookies
+
+	xhr.send(data);
+
+
+
+
+
 
 
 	function display_form() {
