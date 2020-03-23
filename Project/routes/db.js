@@ -7,7 +7,7 @@ var mysql_1 = __importDefault(require("mysql"));
 var connection = mysql_1.default.createConnection({
     host: 'localhost',
     user: 'winston',
-    password: 'W',
+    password: 'Winston@99',
     database: 'e_tender',
     multipleStatements: true
 });
