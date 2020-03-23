@@ -9,7 +9,7 @@ var login = require("./routes/login");
 var register = require("./routes/register-server");
 var tender_desc = require("./routes/tender_desc");
 var crud_admin = require("./routes/crud_admin");
-
+var list_tender = require("./routes/list_tender");
 //var port = process.env.PORT || 8080
 var port = 8081
 app.use(cors())
@@ -18,14 +18,13 @@ app.use(express.urlencoded({extended:true}))
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'views/user')));
 app.use(express.static(path.join(__dirname, 'views/admin')));
-
-
 app.use('/register',register.default)
 app.use("/misc",misc)
 app.use("/payment",payment)
 app.use('/', tender_desc.default);
 app.use('', login.default);
 app.use('/', crud_admin.default);
+app.use('/', list_tender.default);
 
 app.listen(port,()=>{
     console.log( `Server started on port ${port}`)
