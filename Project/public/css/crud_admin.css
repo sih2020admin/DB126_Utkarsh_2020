@@ -133,6 +133,7 @@ body {
           appearance: textfield;
   padding: 0px;
   padding-left: 10px;
+  padding-right: 10px;
 }
 
 .container1 .input_details input[type=date] {
