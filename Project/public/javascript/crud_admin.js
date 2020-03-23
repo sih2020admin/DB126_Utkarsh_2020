@@ -31,7 +31,10 @@ var response;
 		                tr.setAttribute('id', response[i]['et_id']);          //
 
 		                tabCell= tr.insertCell(-1);
-		                tabCell.innerHTML = response[i]['et_tender_ref_no'];
+		                if(response[i]['is_approved'] == 1){
+		               		 tabCell.innerHTML = response[i]['et_tender_ref_no']+`<sup>approved</sup>`;
+		               		}
+		                else tabCell.innerHTML = response[i]['et_tender_ref_no'];
 		                tabCell = tr.insertCell(-1);
 		                tabCell.innerHTML = response[i]['et_title'];
 		                tabCell = tr.insertCell(-1);
@@ -45,7 +48,11 @@ var response;
 		                tabCell = tr.insertCell(-1);
 		                tabCell.innerHTML = '<a href='+response[i]['et_file_uri']+' target="_blank">link</a>';
 		                tabCell = tr.insertCell(-1);
-		                tabCell.innerHTML = "<button class='update' id="+i+" onclick='update_td("+i+")'><i class='far fa-edit' style='color:#663EFD; font-size:20px;'></i></button><button class='delete' id="+i+" onclick='delete_td("+i+")'><i class='far fa-trash-alt' style='color:#663EFD; font-size:20px;'></i></button>";
+		                if(response[i]['is_approved'] == 1){
+		                	}
+		                else {
+		                	tabCell.innerHTML = "<button class='update' id="+i+" onclick='update_td("+i+")'><i class='far fa-edit' style='color:#663EFD; font-size:20px;'></i></button><button class='delete' id="+i+" onclick='delete_td("+i+")'><i class='far fa-trash-alt' style='color:#663EFD; font-size:20px;'></i></button>";
+		            	}
 		            }
 
 			}
@@ -87,9 +94,7 @@ var response;
 		}
 
             function update_td(clicked_id) {
-            	// console.log(response[clicked_id].et_tender_desc ,response[clicked_id].et_title)
-            	// var desc = response[clicked_id].et_tender_desc;
-
+            	
             	Swal.mixin({
 				  
 				  confirmButtonText: 'Next &rarr;',
@@ -118,7 +123,7 @@ var response;
 				},
 				 { 
 				 	title:'Closing Date',
-				 inputValue :response[clicked_id].et_last_date_apply,
+				 inputValue :response[clicked_id].et_last_date_apply.slice(0,10),
 				 input: 'text',
 				 inputPlaceholder: 'YYYY-MM-DD'
 				 ,
@@ -129,7 +134,7 @@ var response;
 				{
 					input: 'text',
 				  title:'Bid opening date',
-				  inputValue :response[clicked_id].et_bidding_date,
+				  inputValue :response[clicked_id].et_bidding_date.slice(0,10),
 				 inputPlaceholder: 'YYYY-MM-DD'
 				 ,
 					  inputValidator: (value) => {
@@ -155,17 +160,56 @@ var response;
 				      html: `
 				        <h3>Updated Tender:</h3>
 				        
-				        <h4>Tender Reference No:</h4>${result.value[0]}
-				        <h4>Tender Title:</h4>${result.value[1]}
-				        <h4>Tender Description:</h4>${result.value[2]}	
-				        <h4>Tender Closing Date:</h4>${result.value[3]}
-				        <h4>Tender Bid Opening Date:</h4>${result.value[4]}
-				        <h4>Tender Fee:</h4>${result.value[5]}
-				        <h4>Reference file uri:</h4>${result.value[6]}
+				        <h4>Tender Reference No:</h4>${result.value[0]}<br>
+				        <h4>Tender Title:</h4>${result.value[1]}<br>
+				        <h4>Tender Description:</h4>${result.value[2]}<br>	
+				        <h4>Tender Closing Date:</h4>${result.value[3]}<br>
+				        <h4>Tender Bid Opening Date:</h4>${result.value[4]}<br>
+				        <h4>Tender Fee:</h4>${result.value[5]}<br>
+				        <h4>Reference file uri:</h4>${result.value[6]}<br>
 
 				      `,
-				      confirmButtonText: 'Lovely!'
-				    })
+				      confirmButtonText: 'Confirm',
+				      showCancelButton:true	
+				    }).then((result2) => {
+				  if (result2.value) {
+
+						console.log(result,result2);	
+
+						// var data = JSON.stringify({
+						// 	"et_id":response[clicked_id]['et_id'] ,
+						// 	"et_title": result.value[1],
+						// 	"et_tender_fee":result.value[5] ,
+						// 	"et_tender_ref_no":result.value[0] ,
+						// 	"et_tender_desc":result.value[2] ,
+						// 	"et_last_date_apply":result.value[3] ,
+						// 	"et_bidding_date":result.value[4] ,
+						// 	"et_file_uri":result.value[6] ,
+						// });
+
+						var data = "{\n    \"et_id\":"+response[clicked_id]['et_id']+",\n    \"et_title\": \""+result.value[1]+"\",\n    \"et_tender_fee\": \""+result.value[5]+"\",\n    \"et_tender_ref_no\": \""+result.value[0]+"\",\n    \"et_tender_desc\": \""+result.value[2]+"\",\n    \"et_last_date_apply\": \""+result.value[3]+"\",\n    \"et_bidding_date\": \""+result.value[4]+"\",\n    \"et_file_uri\": \""+result.value[6]+"\"\n}";
+						console.log(data)
+
+						var xhr = new XMLHttpRequest();
+						xhr.withCredentials = true;
+
+						xhr.onload = function(){
+							if(this.status==200){
+								alert("updated");
+							}
+							
+							else{	
+								alert("failed");
+							}
+						};
+
+						xhr.open("POST", "http://localhost:8081/update_tender");
+
+						xhr.send(data);
+					    
+					  }
+					})
+
 				  }
 				})
 
@@ -231,86 +275,87 @@ var response;
 
 
             function add_td() {
+            	display_form()	
 
-            	Swal.mixin({
+    //         	Swal.mixin({
 				  
-				  confirmButtonText: 'Next &rarr;',
-				  progressSteps: ['1', '2', '3','4','5','6','7'],
-				  showCancelButton: true,
-					  inputValidator: (value) => {
-					    if (!value) {
-					      return 'Empty feild!'
-					    }
-					  }
+				//   confirmButtonText: 'Next &rarr;',
+				//   progressSteps: ['1', '2', '3','4','5','6','7'],
+				//   showCancelButton: true,
+				// 	  inputValidator: (value) => {
+				// 	    if (!value) {
+				// 	      return 'Empty feild!'
+				// 	    }
+				// 	  }
 
-				}).queue([
-				{
-					input: 'text',
-				  	title: 'Tender Refernce number', 
-				  	// inputValue : response[clicked_id].et_tender_ref_no
-				},
-				  {
-				  	input: 'textarea',
-				  	title: 'Tender Title',
-				    // inputValue : response[clicked_id].et_title,
-				},  
-				{
-					input: 'textarea',
-				  title:'Tender Description', 
-				  // inputValue : response[clicked_id].et_tender_desc		
-				},
-				 { 
-				 	title:'Closing Date',
-				 // inputValue :response[clicked_id].et_last_date_apply,
-				 input: 'text',
-				 inputPlaceholder: 'YYYY-MM-DD'
-				 ,
-					  inputValidator: (value) => {
-					    if(!isValidDate(value)) return 'Enter valid date format YYYY-MM-DD'
-					  }
-				},  
-				{
-					input: 'text',
-				  title:'Bid opening date',
-				  // inputValue :response[clicked_id].et_bidding_date,
-				 inputPlaceholder: 'YYYY-MM-DD'
-				 ,
-					  inputValidator: (value) => {
-					    if(!isValidDate(value)) return 'Enter valid date format YYYY-MM-DD'
-					  }
-				},
-				{
-					input: 'number',	
-				  	title:'Tender Fee',
-				  	// inputValue :response[clicked_id].et_tender_fee
-				},
-				{
-					input: 'textarea',
-				  title:'Reference File url',
-				  // inputValue :response[clicked_id].et_file_uri
-				}
-				]).then((result) => {
-				  if (result.value) {
-				    const answers = JSON.stringify(result.value)
-				    console.log(result.value)
-				    Swal.fire({
-				      title: 'All done!',
-				      html: `
-				        <h3>Preview Tender:</h3>
+				// }).queue([
+				// {
+				// 	input: 'text',
+				//   	title: 'Tender Refernce number', 
+				//   	// inputValue : response[clicked_id].et_tender_ref_no
+				// },
+				//   {
+				//   	input: 'textarea',
+				//   	title: 'Tender Title',
+				//     // inputValue : response[clicked_id].et_title,
+				// },  
+				// {
+				// 	input: 'textarea',
+				//   title:'Tender Description', 
+				//   // inputValue : response[clicked_id].et_tender_desc		
+				// },
+				//  { 
+				//  	title:'Closing Date',
+				//  // inputValue :response[clicked_id].et_last_date_apply,
+				//  input: 'text',
+				//  inputPlaceholder: 'YYYY-MM-DD'
+				//  ,
+				// 	  inputValidator: (value) => {
+				// 	    if(!isValidDate(value)) return 'Enter valid date format YYYY-MM-DD'
+				// 	  }
+				// },  
+				// {
+				// 	input: 'text',
+				//   title:'Bid opening date',
+				//   // inputValue :response[clicked_id].et_bidding_date,
+				//  inputPlaceholder: 'YYYY-MM-DD'
+				//  ,
+				// 	  inputValidator: (value) => {
+				// 	    if(!isValidDate(value)) return 'Enter valid date format YYYY-MM-DD'
+				// 	  }
+				// },
+				// {
+				// 	input: 'number',	
+				//   	title:'Tender Fee',
+				//   	// inputValue :response[clicked_id].et_tender_fee
+				// },
+				// {
+				// 	input: 'textarea',
+				//   title:'Reference File url',
+				//   // inputValue :response[clicked_id].et_file_uri
+				// }
+				// ]).then((result) => {
+				//   if (result.value) {
+				//     const answers = JSON.stringify(result.value)
+				//     console.log(result.value)
+				//     Swal.fire({
+				//       title: 'All done!',
+				//       html: `
+				//         <h3>Preview Tender:</h3>
 				        
-				        <h4>Tender Reference No:</h4>${result.value[0]}
-				        <h4>Tender Title:</h4>${result.value[1]}
-				        <h4>Tender Description:</h4>${result.value[2]}	
-				        <h4>Tender Closing Date:</h4>${result.value[3]}
-				        <h4>Tender Bid Opening Date:</h4>${result.value[4]}
-				        <h4>Tender Fee:</h4>${result.value[5]}
-				        <h4>Reference file uri:</h4>${result.value[6]}
+				//         <h4>Tender Reference No:</h4>${result.value[0]}
+				//         <h4>Tender Title:</h4>${result.value[1]}
+				//         <h4>Tender Description:</h4>${result.value[2]}	
+				//         <h4>Tender Closing Date:</h4>${result.value[3]}
+				//         <h4>Tender Bid Opening Date:</h4>${result.value[4]}
+				//         <h4>Tender Fee:</h4>${result.value[5]}
+				//         <h4>Reference file uri:</h4>${result.value[6]}
 
-				      `,
-				      confirmButtonText: 'Lovely!'
-				    })
-				  }
-				})
+				//       `,
+				//       confirmButtonText: 'Lovely!'
+				//     })
+				//   }
+				// })
 
 
             	

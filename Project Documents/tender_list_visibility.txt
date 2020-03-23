@@ -1,0 +1,9 @@
+vendor POV
+	1.vendor can see tender where closing date is ahead (in see tender or apply tender page)
+	2.vendor ca see for which they have applied (in vendor dashboard page)
+
+Admin POV
+	1.Admin can see all tender department wise (i.e. only thier department tender) (whatever may be closing and bid date) in CRUD page where he can delete
+		for simplicity of action we can show him is this tender passed i.e approved or not for any vendor
+	2.Admin can see tender whos bid date is passed and opened for bidding (deaprtment wise) and not yet approved any vendor in approve application page
+	3.Admin can see all approved tenders and their approved bidders and status in Admin tender status page
