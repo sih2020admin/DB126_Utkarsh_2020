@@ -11,6 +11,7 @@ $("#tender_select_button").on("click",()=>{
         success:(response)=>{
             var count = 1
             for (let x of response){
+                console.log(x)
                 $( "<div></div>", {
                     class:"tender_content",
                     id:count,
