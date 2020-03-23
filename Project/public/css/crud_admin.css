@@ -252,6 +252,10 @@ button:hover {
   opacity: 0.5;
 }
 
+sup {
+  color: green;
+}
+
 .swal2-title {
   color: var(--main_color);
 }
