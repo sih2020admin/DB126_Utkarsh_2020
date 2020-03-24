@@ -42,6 +42,6 @@ $("#tender_select_button").on("click",()=>{
 
 function apply(value:string){
     var value1= $(`#et_id${value}`).text()
-    open(`vendor.html?id=${value1}`,"_blank")
+    open(`approve_vendor_w.html?id=${value1}`,"_blank")
 }
 
