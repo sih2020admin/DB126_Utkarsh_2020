@@ -24,17 +24,18 @@ router.post('/get_application', function (req, res) {  // to be call from see te
 		if (error) {
 	      		console.log("error",error);
 	      		res.sendStatus(400);
-	      		// console.log("gettenderlist called0")	
+	      		console.log("gettenderlist called0")	
 	     	}
 	     else{
 	       		if(results.length >0){
-	       			// console.log("gettenderlist called1")	
-		  			res.send(results);
+					   //console.log("gettenderlist called1")
+					   //console.log(results)
+		  			   res.send(results);
 
        			}
        			else{
          			
-         			// console.log("gettenderlist called2")	
+         			console.log("gettenderlist called2")	
          			res.sendStatus(404);
        			}
       		}

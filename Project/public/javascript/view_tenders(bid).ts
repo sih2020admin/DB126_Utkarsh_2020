@@ -11,7 +11,6 @@ $("#tender_select_button").on("click",()=>{
         success:(response)=>{
             var count = 1
             for (let x of response){
-                console.log(x)
                 $( "<div></div>", {
                     class:"tender_content",
                     id:count,
@@ -23,7 +22,7 @@ $("#tender_select_button").on("click",()=>{
                             <label for="et_last_date_apply${count}">Last Date for Applying</label><p id="et_last_date_apply${count}"> ${x.et_last_date_apply}</p>
                             <label for="et_file_uri${count}">File URL</label><p id="et_file_uri${count}"> <a href=${x.et_file_uri} target="_blank">Link</a></p>
                             <label for="et_bidding_date${count}">Tender Bidding Date</label><p id="et_bidding_date${count}"> ${x.et_bidding_date}</p>
-                            <button class="tender_button" onclick=apply(${count})>click me</button>`
+                            <button class="tender_button" onclick=apply(${count})>View Applications</button>`
                   }).appendTo("#tender_list");
                   count ++
             }
@@ -42,6 +41,7 @@ $("#tender_select_button").on("click",()=>{
 })
 
 function apply(value:string){
-    open("payment.html","_blank")
+    var value1= $(`#et_id${value}`).text()
+    open(`vendor.html?id=${value1}`,"_blank")
 }
 
