@@ -42,7 +42,7 @@ router.post('/gettenderlist', function (req, res) {  // to be call from see tend
 router.post('/gettenderlist_bid', function (req, res) {  // to be call from admin approve tender
 
 	var dept_id = req.body.dept_id
-	console.log("gettenderlist_dept called ",dept_id,req.body)	
+	console.log("gettenderlist_bid called ",dept_id,req.body)	
 
 	db_1.default.query('SELECT `et_id`, `et_title`, `et_tender_fee`, `et_tender_ref_no`, `et_tender_desc`, `et_last_date_apply`, `et_bidding_date`, `et_file_uri` FROM `e_tender_details` INNER JOIN department ON e_tender_details.dept_id = department.dept_id WHERE is_delete = 0 and e_tender_details.dept_id = ? and e_tender_details.et_bidding_date <= CURRENT_DATE and is_approved = 0',[dept_id], function (error, results, fields) {
 		if (error) {

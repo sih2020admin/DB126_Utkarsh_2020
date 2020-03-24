@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 23, 2020 at 11:43 AM
+-- Generation Time: Mar 23, 2020 at 02:50 PM
 -- Server version: 5.7.28-0ubuntu0.19.04.2
 -- PHP Version: 7.2.24-0ubuntu0.19.04.2
 
@@ -891,9 +891,9 @@ CREATE TABLE `e_tender_details` (
 --
 
 INSERT INTO `e_tender_details` (`et_id`, `et_title`, `et_tender_fee`, `et_tender_ref_no`, `et_tender_desc`, `et_last_date_apply`, `et_bidding_date`, `et_file_uri`, `is_delete`, `dept_id`, `is_approved`) VALUES
-(123, 'Procurement of computers', '1200', 'ITC123', 'Procurement of Computers, Software and Services. The purpose of this policy is to provide a defined process for both the new and recurring procurement (through purchase or lease) of computer hardware, software and services using Washington University funds or grant funds administered by Washington University.', '2020-03-10', '2020-03-13', 'https://www.youtube.com/watch?v=u8XFFTWwSvY&feature=youtu.be', 0, 1, 0),
-(124, 'hello title', '1200', 'ITC56', 'hello description', '2020-03-03', '2020-03-05', 'https://www.youtube.com/watch?v=fyMhvkC3A84', 0, 1, 0),
-(125, 'Procurement of computers', '1200', 'ITC123', 'Procurement of Computers, Software and Services. The purpose of this policy is to provide a defined process for both the new and recurring procurement (through purchase or lease) of computer hardware, software and services using Washington University funds or grant funds administered by Washington University.', '2020-03-10', '2020-03-13', 'https://www.youtube.com/watch?v=u8XFFTWwSvY&feature=youtu.be', 0, 1, 0),
+(123, 'Procurement of computers', '1200', 'ITC123', 'Procurement of Computers, Software and Services. The purpose of this policy is to provide a defined process for both the new and recurring procurement (through purchase or lease) of computer hardware, software and services using Washington University funds or grant funds administered by Washington University.', '2020-03-07', '2020-03-10', 'https://www.youtube.com/watch?v=u8XFFTWwSvY&feature=youtu.be', 0, 1, 0),
+(124, 'hello titleU', '1200', 'ITC56U', 'hello descriptionU', '2020-03-02', '2020-03-04', 'https://www.youtube.com/watch?v=fyMhvkC3A84U', 0, 1, 0),
+(125, 'Procurement of computers', '1200', 'ITC123', 'Procurement of Computers, Software and Services. The purpose of this policy is to provide a defined process for both the new and recurring procurement (through purchase or lease) of computer hardware, software and services using Washington University funds or grant funds administered by Washington University.', '2020-03-10', '2020-03-13', 'https://www.youtube.com/watch?v=u8XFFTWwSvY&feature=youtu.be', 0, 1, 1),
 (126, 'testing', '-8', 'ITC98', 'console.log(\"add tender called\")', '2020-03-02', '2020-03-06', 'console.log(\"add tender called\")', 1, 1, 0),
 (127, 'hello testing all ', '', 'IT69', 'isNaN(x) || x < 1', '2020-03-06', '2020-03-07', '', 1, 1, 0),
 (128, '1', '', '1', 'asdfg', '2020-03-04', '2020-03-07', 'asdfgh', 1, 1, 0),
@@ -905,7 +905,7 @@ INSERT INTO `e_tender_details` (`et_id`, `et_title`, `et_tender_fee`, `et_tender
 (134, 'asdf', '2', 'asdfg', 'sdfg', '2020-03-22', '2020-03-15', 'sdf', 1, 1, 0),
 (135, 'sdfgh', '0', 'asdfg', 'Asdfghjk', '2020-03-22', '2020-03-15', 'ASDFG', 1, 1, 0),
 (136, 'zxcvb', '4', 'scvbn', 'xcvb', '2020-03-22', '2020-03-15', 'dfg', 1, 1, 0),
-(137, 'qwertyuiop', '89', 'IT345', 'WERTYUI', '2020-03-22', '2020-03-23', 'qwertyuiop', 0, 1, 0),
+(137, 'qwertyuiop', '89', 'IT345U', 'WERTYUI', '2020-03-21', '2020-03-22', 'qwertyuiop', 0, 1, 0),
 (138, 'testing', '4500', 'T123', 'QWERTYUIO', '2020-03-15', '2020-03-16', '', 0, 1, 0),
 (139, 'Procurement of computers', '1200', 'ITC123', 'Procurement of Computers, Software and Services. The purpose of this policy is to provide a defined process for both the new and recurring procurement (through purchase or lease) of computer hardware, software and services using Washington University funds or grant funds administered by Washington University.', '2020-03-10', '2020-03-13', 'https://www.youtube.com/watch?v=u8XFFTWwSvY&feature=youtu.be', 0, 1, 0);
 

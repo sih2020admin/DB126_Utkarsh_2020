@@ -55,14 +55,16 @@ body {
 }
 
 .container1 .main_bar input {
-  border-width: 1.5px;
+  border-width: 0.4px;
   border-radius: 3px;
-  border-color: #663EFD;
+  border-color: var(--main_color);
   height: 30px;
-  width: 550px;
+  width: 80%;
   padding: 10px;
   margin: 10px 10px 10px 0;
-  color: #663EFD;
+  color: var(--main_color);
+  overflow: hidden;
+  outline: none;
 }
 
 .container1 .main_bar button {
@@ -71,20 +73,20 @@ body {
   font-size: 16px;
   font-weight: 300;
   border-radius: 5px;
-  background-color: #663EFD;
+  background-color: var(--main_color);
   border: none;
   outline: none;
-  margin-bottom: 10px;
   color: #ffffff;
+  display: inline-block;
 }
 
 .container1 .main_bar button:hover {
   cursor: pointer;
   background-color: #ffffff;
-  color: #663EFD;
+  color: var(--main_color);
   border: solid;
   border-width: 0.2px;
-  border-color: #663EFD;
+  border-color: var(--main_color);
 }
 
 .container1 .input_details {
@@ -115,23 +117,45 @@ body {
 .container1 .input_details input {
   border-width: 1.5px;
   border-radius: 3px;
-  border-color: #663EFD;
+  border-color: var(--main_color);
   height: 30px;
   width: auto;
   padding: 10px;
   margin: 10px;
-  color: #663EFD;
+  color: var(--main_color);
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
+.container1 .input_details input[type=number] {
+  -webkit-appearance: textfield;
+     -moz-appearance: textfield;
+          appearance: textfield;
+  padding: 0px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.container1 .input_details input[type=date] {
+  padding: 0;
+  padding-left: 10px;
+}
+
+.container1 .input_details input[type=date]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+          appearance: none;
+  display: none;
 }
 
 .container1 .input_details textarea {
   border-width: 1.5px;
   border-radius: 3px;
-  border-color: #663EFD;
+  border-color: var(--main_color);
   height: 60px;
   padding: 10px;
   margin: 10px;
   font-size: 14px;
-  color: #663EFD;
+  color: var(--main_color);
 }
 
 .container1 .input_details button {
@@ -142,7 +166,7 @@ body {
   margin-top: 10px;
   margin-right: 10px;
   border-radius: 5px;
-  background-color: #663EFD;
+  background-color: var(--main_color);
   border: none;
   color: #ffffff;
 }
@@ -150,10 +174,10 @@ body {
 .container1 .input_details button:hover {
   cursor: pointer;
   background-color: #ffffff;
-  color: #663EFD;
+  color: var(--main_color);
   border: solid;
   border-width: 0.4px;
-  border-color: #663EFD;
+  border-color: var(--main_color);
 }
 
 .container2 {
@@ -193,7 +217,120 @@ body {
   padding: 0.5em 1em;
 }
 
+.container3 {
+  margin: 30px;
+}
+
+.container3 button {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 10px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  font-size: 16px;
+  font-weight: 300;
+  margin-top: 10px;
+  margin-right: 10px;
+  border-radius: 5px;
+  background-color: var(--main_color);
+  border: none;
+  color: #ffffff;
+}
+
+.container3 button:hover {
+  cursor: pointer;
+  background-color: #ffffff;
+  color: var(--main_color);
+  border: solid;
+  border-width: 0.4px;
+  border-color: var(--main_color);
+}
+
 button:hover {
   opacity: 0.5;
+}
+
+sup {
+  color: green;
+}
+
+.swal2-title {
+  color: var(--main_color);
+}
+
+.swal2-confirm.swal2-styled {
+  width: 190px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  font-size: 16px;
+  font-weight: 300;
+  border-radius: 5px;
+  background-color: var(--main_color);
+  border: none;
+  outline: none;
+  overflow: hidden;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+  color: #ffffff;
+}
+
+.swal2-cancel.swal2-styled {
+  width: 125px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  font-size: 16px;
+  font-weight: 300;
+  border-radius: 5px;
+  background-color: #cccccc;
+  border: none;
+  outline: none;
+  color: #ffffff;
+}
+
+.swal2-input {
+  border-width: 1.5px;
+  border-radius: 3px;
+  border-color: var(--main_color);
+  height: 30px;
+  padding: 10px;
+  margin: 10px 10px 10px 0;
+  color: var(--main_color);
+  outline: none;
+  overflow: hidden;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
+.swal2-input[type=number] {
+  -webkit-appearance: textfield;
+     -moz-appearance: textfield;
+          appearance: textfield;
+  padding: 0;
+  padding-left: 10px;
+  max-width: 100%;
+}
+
+.swal2-textarea {
+  border-width: 1.5px;
+  border-radius: 3px;
+  border-color: var(--main_color);
+  padding: 10px;
+  resize: none;
+  color: var(--main_color);
+}
+
+.swal2-input:focus, .swal2-textarea:focus {
+  -webkit-box-shadow: 0 0 5px c3bbe0;
+          box-shadow: 0 0 5px c3bbe0;
+  border: 1px solid #c3bbe0;
+}
+
+.swal2-icon.swal2-warning, .swal2-icon.swal2-warning.swal2-icon-show {
+  color: var(--main_color);
+  border-color: var(--main_color);
 }
 /*# sourceMappingURL=crud_admin.css.map */
