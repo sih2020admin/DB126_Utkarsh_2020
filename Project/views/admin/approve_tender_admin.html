@@ -1,52 +1,24 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Details</title>
-    
-  <style>
-
-       table,th,td
-        {
-            
-            font: 17px Calibri;
-             border: solid 1px ;
-            text-align: center;
-        }
-       #back{
-          display: none;
-          width: 100%;
-          height: 100%;
-          position: fixed;
-         }
-      #box{ 
-        background-color: gray;
-          display: none;
-          position: fixed;
-          width: 480px;
-          border-radius: 20px;
-          height: 30%;
-        }
-      #box-body , #box-footer{
-         font-size: 25px;
-          padding: 30px;
-          margin: 0 10px 0 10px;
-          }
-  </style>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/approve_tender_admin.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <title>Details</title> 
 </head>
+  <header>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Tender</a>
+      <a href="login.html">Profile</a>
+    </nav>
+  </header>
 
-    <header>
-      <nav>
-          <a href="#">Home</a>
-          <a href="#">Tender</a>
-          <a href="login.html">Profile</a>
-      </nav>
-    </header>
-
-    <body>
-      <div id="back"></div>
-      <h1>Organisation Details</h1>
-      <div>
-        <table border="1px" width="100%" id="approve_table">
+  <body>
+    <h1>Organisation Details</h1>
+    <div class="approve_table">
+      <table id="approve_table">
         <tr>
           <th>Vendor ID</th>
           <th>Company Name</th>
@@ -58,19 +30,18 @@
           <td><a href="https://www.microsoft.com/en-in" target="_blank"> Microsoft</a></td>
           <td><a href="e_tender_details.sql" target="_blank">Uploaded Files</a> </td>
         </tr> -->
-       </table> 
-      </div></br></br></br></br>
-    
-      <div><button type="button" onclick="back()">Back</button></div> 
-      
-      <div id="box" >
-        <div id="box-body">Do you want to approve this company?</div>
-          <div id="box-footer">
-            <button onclick="approve()">Approve</button>
-            <button onclick="approve()">Cancel</button>
-          </div>
+      </table> 
+    </div>
+    <div id="box" >
+      <div id="box-body">Do you want to approve this company?</div>
+      <div id="box-footer">
+        <button onclick="back()">Back</button>
+        <button onclick="approve()">Approve</button>
+        <button onclick="approve()">Cancel</button>
       </div>
+    </div>
     </body>
+
     <script>
 
       function back() {
