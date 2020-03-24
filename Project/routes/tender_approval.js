@@ -42,4 +42,27 @@ router.post('/get_application', function (req, res) {  // to be call from see te
 });
 
 
+router.post('/approve_tender_application', function (req, res) {  // to be call from see tender or apply tender
+
+	var et_id = req.body.et_id;
+	var etd_id = req.body.etd_id;
+	console.log("approve applications called"+et_id+etd_id)	
+
+
+	db_1.default.query('UPDATE `e_tender_vendor` SET `is_approved` = 1 WHERE etd_id =  ?',
+	 [etd_id],function (error, results, fields) {
+		if (error) {
+	      		console.log("error",error);
+	      		res.sendStatus(400);
+	      		// console.log("gettenderlist called0")	
+	     	}
+	     else{
+         			// console.log("gettenderlist called2")	
+         			res.sendStatus(200);
+       			
+      		}
+    	});
+});
+
+
 exports.default = router;
