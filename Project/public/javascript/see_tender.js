@@ -42,7 +42,8 @@ xhr.send(data);
 
 function apply(i) {
     console.log("apply")
-    alert(response[i].et_title)
+    window.location.href = "/apply_tender.html?et_id="+response[i].et_id;
+    // alert(response[i].et_title)
     // body...
 }
 

@@ -1,0 +1,108 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Montserrat:500&display=swap");
+:root {
+  --main_color: #663EFD;
+}
+
+body {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+h1, h3, label {
+  color: var(--main_color);
+  text-align: center;
+}
+
+h1 {
+  margin-top: 20px;
+}
+
+.approve_table {
+  margin: 40px;
+}
+
+.approve_table table {
+  text-align: center;
+  margin: auto;
+  max-width: 100%;
+  border-radius: 1em;
+  border-collapse: collapse;
+  overflow: hidden;
+  -webkit-box-shadow: 3px 4px 6px -6px rgba(103, 62, 253, 0.507), -3px -4px 6px -6px rgba(103, 62, 253, 0.507);
+          box-shadow: 3px 4px 6px -6px rgba(103, 62, 253, 0.507), -3px -4px 6px -6px rgba(103, 62, 253, 0.507);
+}
+
+.approve_table table a {
+  text-decoration: none;
+}
+
+.approve_table table button {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 5px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  font-size: 16px;
+  font-weight: 300;
+  margin: 5px;
+  border-radius: 5px;
+  background-color: var(--main_color);
+  border: 0.4px solid var(--main_color);
+  color: #ffffff;
+}
+
+.approve_table table button:hover {
+  cursor: pointer;
+  background-color: #ffffff;
+  color: var(--main_color);
+  border: 0.4px solid var(--main_color);
+}
+
+.approve_table tr:nth-child(odd) {
+  background-color: rgba(141, 111, 251, 0.061);
+}
+
+.approve_table th {
+  background-color: var(--main_color);
+  color: #fff;
+  font-weight: lighter;
+}
+
+.approve_table th, .approve_table td {
+  padding: 0.5em 1em;
+}
+
+#box {
+  margin: auto;
+  color: var(--main_color);
+  text-align: center;
+}
+
+#box button {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 5px 10px 5px 10px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  font-size: 16px;
+  font-weight: 300;
+  margin-top: 20px;
+  border-radius: 5px;
+  background-color: var(--main_color);
+  border: 0.4px solid var(--main_color);
+  color: #ffffff;
+}
+
+#box button:hover {
+  cursor: pointer;
+  background-color: #ffffff;
+  color: var(--main_color);
+  border: 0.4px solid var(--main_color);
+}
+/*# sourceMappingURL=approve_tender_admin.css.map */
