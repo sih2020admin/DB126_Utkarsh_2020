@@ -23,6 +23,10 @@ h1, h3, label {
   text-align: center;
 }
 
+h1 {
+  margin-top: 20px;
+}
+
 .cont {
   background-color: white;
   width: -webkit-fit-content;
@@ -40,79 +44,57 @@ h1, h3, label {
   transition: all .2s ease-in-out;
 }
 
-input {
-  border-width: 1.5px;
-  border-radius: 3px;
-  border-color: var(--main_color);
-  height: 30px;
-  width: auto;
-  padding: 10px;
-  margin: 10px;
-  color: var(--main_color);
+.payment_details, .upload_documents {
+  margin: 40px;
 }
 
-input[type=date]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-          appearance: none;
-  display: none;
+.payment_details table, .upload_documents table {
+  margin: auto;
+  max-width: 100%;
+  border-radius: 1em;
+  border-collapse: collapse;
+  overflow: hidden;
+  -webkit-box-shadow: 3px 4px 6px -6px rgba(103, 62, 253, 0.507), -3px -4px 6px -6px rgba(103, 62, 253, 0.507);
+          box-shadow: 3px 4px 6px -6px rgba(103, 62, 253, 0.507), -3px -4px 6px -6px rgba(103, 62, 253, 0.507);
 }
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+.payment_details tr:nth-child(odd), .upload_documents tr:nth-child(odd) {
+  background-color: rgba(141, 111, 251, 0.061);
 }
 
-input[type="number"] {
-  padding: 0;
-  padding-left: 10px;
-  padding-right: 10px;
-  -webkit-appearance: none;
-  -moz-appearance: textfield;
-}
-
-select, input[type="date"] {
-  border-width: 1.5px;
-  border-radius: 3px;
-  border-color: var(--main_color);
-  height: 30px;
-  margin: 10px;
-  color: var(--main_color);
-  padding: 0;
-  padding-left: 10px;
-}
-
-.select-selected {
+.payment_details th, .upload_documents th {
   background-color: var(--main_color);
+  color: #fff;
+  font-weight: lighter;
 }
 
-button {
-  width: 100px;
-  height: 30px;
-  font-size: 16px;
-  font-weight: 300;
-  border-radius: 10px;
-  background-color: var(--main_color);
-  border: none;
-  outline: none;
-  color: #ffffff;
-}
-
-button:hover {
-  cursor: pointer;
-  background-color: #ffffff;
-  color: var(--main_color);
-  border: solid;
-  border-width: 0.2px;
-  border-color: var(--main_color);
+.payment_details th, .payment_details td, .upload_documents th, .upload_documents td {
+  padding: 0.5em 1em;
 }
 
 .submit_button {
   text-align: center;
-  margin: 40px;
 }
 
-.button_div {
-  text-align: center;
+.submit_button button {
+  width: 100px;
+  height: 35px;
+  font-size: 16px;
+  font-weight: 300;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  border-radius: 10px;
+  background-color: var(--main_color);
+  border: none;
+  color: #ffffff;
 }
-/*# sourceMappingURL=apply_tender.css.map */
+
+.submit_button button:hover {
+  cursor: pointer;
+  background-color: #ffffff;
+  color: var(--main_color);
+  border: solid;
+  border-width: 0.4px;
+  border-color: var(--main_color);
+}
+/*# sourceMappingURL=confirm_tender.css.map */
