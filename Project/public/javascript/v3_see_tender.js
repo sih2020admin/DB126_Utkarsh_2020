@@ -4,34 +4,40 @@ var response;
 var xhr = new XMLHttpRequest();
 
 
-xhr.addEventListener("readystatechange", function() {
-  if(this.readyState === 4) {
+xhr.onload = function () {
+  if (this.status === 200) {
             console.log(this.responseText);
 
             response = JSON.parse(this.responseText);
 
             var cont_div = document.getElementById('cont');
 
-            for (var i = 0; i < response.length; i++) {
+                for (var i = 0; i < response.length; i++) {
 
-                var div=`<div class="cont" id="`+i+`">
-                    <p class="heading">`+response[i].et_title+`</p><br>
-                    <div class="Tdetails">
-                        <p class="RnoLabel"><strong>Ref No:</strong></p>
-                        <p >`+response[i].et_tender_ref_no+`</p>
-                        <p class="OdateLabel"><strong>Closing Date:</strong></p>
-                        <p id="Odate">`+response[i].et_last_date_apply+`</p>
-                        <p class="BdateLabel"><strong>Bid Opening Date:</strong></p>
-                        <p id="Bdate">`+response[i].et_bidding_date+`</p>
-                    </div><br>  
-                    <p class="para">`+response[i].et_tender_desc+`</p>
-                    <br><input type="button" name="apply" value='apply' class="apply" onclick="apply(`+i+`)">
-                </div>`;
-                
-                cont_div.insertAdjacentHTML('beforeend', div);
-        }
+                    var div=`<div class="cont" id="`+i+`">
+                        <p class="heading">`+response[i].et_title+`</p><br>
+                        <div class="Tdetails">
+                            <p class="RnoLabel"><strong>Ref No:</strong></p>
+                            <p >`+response[i].et_tender_ref_no+`</p>
+                            <p class="OdateLabel"><strong>Closing Date:</strong></p>
+                            <p id="Odate">`+response[i].et_last_date_apply+`</p>
+                            <p class="BdateLabel"><strong>Bid Opening Date:</strong></p>
+                            <p id="Bdate">`+response[i].et_bidding_date+`</p>
+                        </div><br>  
+                        <p class="para">`+response[i].et_tender_desc+`</p>
+                        <br><input type="button" name="apply" value='apply' class="apply" onclick="apply(`+i+`)">
+                    </div>`;
+                    
+                    cont_div.insertAdjacentHTML('beforeend', div);
+            }
           }
-});
+          else if (this.status == 404) {  
+        alert("No tender to show");
+    }
+    else{
+        alert("Check Network!");
+    }
+}
 
 xhr.open("POST", "http://localhost:8081/gettenderlist");
 
@@ -42,7 +48,7 @@ xhr.send(data);
 
 function apply(i) {
     console.log("apply")
-    window.location.href = "/apply_tender.html?et_id="+response[i].et_id;
+    window.location.href = "/v4_apply_tender.html?et_id="+response[i].et_id;
     // alert(response[i].et_title)
     // body...
 }

@@ -58,7 +58,7 @@ function show()
 							document.getElementById("tc2").innerHTML="Directing to Relogin";
 							document.getElementById("otp").disabled=true;
 							setTimeout(function(){
-    								location="login.html"
+    								location="v1_login.html"
 							},5000);
 						}
 						else{	

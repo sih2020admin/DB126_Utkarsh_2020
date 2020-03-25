@@ -43,9 +43,9 @@ $.ajax({
         }
     },
     error: function (xhr, error_type, exception) {
-        if (xhr.status == 0) {
+        if (xhr.status == 404) {
             console.log("No response from Server");
-            alert("No response from server");
+            alert("No application");
         }
         if (xhr.status == 400) {
             console.log("Bad Request");
@@ -63,7 +63,7 @@ function approve(value) {
             etd_id: $("#etd_id" + value).val()
         },
         success: function (response) {
-            if (response === "ok") {
+            if (response === "ok" ) {
                 alert("this tender has been approved and no further approval can be performed on this tendor");
             }
         },

@@ -215,7 +215,7 @@ var response;
 					    alert("updated");
 
 					    window.setTimeout(function(){
-				        window.location.href = "/CRUD_admin.html";
+				        window.location.href = "/2CRUD_admin.html";
 				   			 }, 200);
 					   }
 					});
@@ -284,7 +284,7 @@ var response;
 							      'success'
 							    )
 							   window.setTimeout(function(){
-				       		 window.location.href = "/CRUD_admin.html";
+				       		 window.location.href = "/2CRUD_admin.html";
 				   			 }, 200);
 
 							}
@@ -453,7 +453,7 @@ var response;
 					    
 					    alert("successfully added");
 					    window.setTimeout(function(){
-				        window.location.href = "/CRUD_admin.html";
+				        window.location.href = "/2CRUD_admin.html";
 				   			 }, 200);
 
 					  }
