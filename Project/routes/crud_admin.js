@@ -27,7 +27,7 @@ router.post('/create_tender', function (req, res) {
 
 
 
-	db_1.default.query('INSERT INTO `e_tender_details` ( `et_title`, `et_tender_fee`, `et_tender_ref_no`, `et_tender_desc`, `et_last_date_apply`, `et_bidding_date`, `et_file_uri`, `is_delete`, `dept_id`) VALUES ( ?, ?, ?,?,?,?, ?, 0, ?);',[et_title ,et_tender_fee ,et_tender_ref_no ,et_tender_desc ,et_last_date_apply ,et_bidding_date ,et_file_uri ,dept_id] ,function (error, results, fields) {
+	db_1.default.query('BEGIN TRANSACTION INSERT INTO `e_tender_details` ( `et_title`, `et_tender_fee`, `et_tender_ref_no`, `et_tender_desc`, `et_last_date_apply`, `et_bidding_date`, `et_file_uri`, `is_delete`, `dept_id`) VALUES ( ?, ?, ?,?,?,?, ?, 0, ?); COMMIT',[et_title ,et_tender_fee ,et_tender_ref_no ,et_tender_desc ,et_last_date_apply ,et_bidding_date ,et_file_uri ,dept_id] ,function (error, results, fields) {
 		if (error) {
 	      		console.log("error",error);
 	      		if (error.code == "ER_DUP_ENTRY") {
