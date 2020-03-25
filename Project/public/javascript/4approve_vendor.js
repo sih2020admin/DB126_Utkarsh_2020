@@ -11,6 +11,7 @@ var __values = (this && this.__values) || function(o) {
     throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
 };
 var et_id = location.toString().split("=%20")[1];
+//declare var alertify:any
 console.log(et_id);
 $.ajax({
     url: "http://localhost:8081/get_application",
@@ -43,9 +44,9 @@ $.ajax({
         }
     },
     error: function (xhr, error_type, exception) {
-        if (xhr.status == 404) {
+        if (xhr.status == 0) {
             console.log("No response from Server");
-            alert("No application");
+            alert("No response from server");
         }
         if (xhr.status == 400) {
             console.log("Bad Request");
@@ -54,6 +55,8 @@ $.ajax({
     }
 });
 function approve(value) {
+    /* alertify.confirm('Final Confirmation', 'Confirm Message', function(){ alertify.success('Ok') }
+                , function(){ alertify.error('Cancel')}); */
     $.ajax({
         url: "http://localhost:8081/approve_tender_application",
         async: true,
@@ -63,7 +66,7 @@ function approve(value) {
             etd_id: $("#etd_id" + value).val()
         },
         success: function (response) {
-            if (response === "ok" ) {
+            if (response === "ok") {
                 alert("this tender has been approved and no further approval can be performed on this tendor");
             }
         },
