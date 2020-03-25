@@ -50,7 +50,7 @@ router.post('/approve_tender_application', function (req, res) {  // to be call 
 	console.log("approve applications called"+et_id+etd_id)	
 
 
-	db_1.default.query('UPDATE `e_tender_details` SET `is_approved` = 1 WHERE et_id =  ?; UPDATE `e_tender_vendor` SET `is_approved` = 1 WHERE etd_id =  ?;',
+	db_1.default.query('START TRANSACTION ; UPDATE `e_tender_details` SET `is_approved` = 1 WHERE et_id =  ?; UPDATE `e_tender_vendor` SET `is_approved` = 1 WHERE etd_id =  ?; COMMIT;',
 	 [et_id,etd_id],function (error, results, fields) {
 		if (error) {
 	      		console.log("error",error);
