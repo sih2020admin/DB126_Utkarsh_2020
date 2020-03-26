@@ -13,16 +13,17 @@ $("#tender_select_button").on("click",()=>{
             for (let x of response){
                 $( "<div></div>", {
                     class:"tender_content",
-                    id:count,
-                    html:`  <label for="et_id${count}">Tender No.</label><p id="et_id${count}"> ${x.et_id}</p>
-                            <label for="et_title${count}">Tender Title</label><p id="et_title${count}"> ${x.et_title}</p>
-                            <label for="et_tender_ref_no${count}">Tender No.</label><p id="et_tender_ref_no${count}"> ${x.et_tender_ref_no}</p>
-                            <label for="et_tender_desc${count}">Tender Description</label><p id="et_tender_desc${count}"> ${x.et_tender_desc}</p>
-                            <label for="et_tender_fee${count}">Tender Fee</label><p id="et_tender_fee${count}"> ${x.et_tender_fee}</p>
-                            <label for="et_last_date_apply${count}">Last Date for Applying</label><p id="et_last_date_apply${count}"> ${x.et_last_date_apply}</p>
-                            <label for="et_file_uri${count}">File URL</label><p id="et_file_uri${count}"> <a href=${x.et_file_uri} target="_blank">Link</a></p>
-                            <label for="et_bidding_date${count}">Tender Bidding Date</label><p id="et_bidding_date${count}"> ${x.et_bidding_date}</p>
-                            <button class="tender_button" onclick=apply(${count})>View Applications</button><br>`
+                    id:count, 
+                    html:`  <div class='tender_list2'>
+                            <label for="et_id${count}"><b>Tender No</b></label><p id="et_id${count}"> ${x.et_id}</p>\n<br>
+                            <label for="et_title${count}"><b>Tender Title</b></label><p id="et_title${count}"> ${x.et_title}</p>\n<br>
+                            <label for="et_tender_ref_no${count}"><b>Tender No</b></label><p id="et_tender_ref_no${count}"> ${x.et_tender_ref_no}</p>\n<br>
+                            <label for="et_tender_desc${count}"><b>Tender Description</b></label><p id="et_tender_desc${count}"> ${x.et_tender_desc}</p>\n<br>
+                            <label for="et_tender_fee${count}"><b>Tender Fee</b></label><p id="et_tender_fee${count}">₹${x.et_tender_fee}</p>\n<br>
+                            <label for="et_last_date_apply${count}"><b>Last Date for Applying</b></label><p id="et_last_date_apply${count}"> ${x.et_last_date_apply}</p>\n<br>
+                            <label for="et_file_uri${count}"><b>File URL</b></label><p id="et_file_uri${count}"> <a href=${x.et_file_uri} target="_blank">Link</a></p>\n<br>
+                            <label for="et_bidding_date${count}"><b>Tender Bidding Date</b></label><p id="et_bidding_date${count}"> ${x.et_bidding_date}</p>\n<br>
+                            <button class="tender_button" onclick=apply(${count})>View Applications</button><br><br></div>`
                   }).appendTo("#tender_list");
                   count ++
             }
