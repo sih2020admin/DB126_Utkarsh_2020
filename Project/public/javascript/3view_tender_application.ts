@@ -22,7 +22,7 @@ $("#tender_select_button").on("click",()=>{
                             <label for="et_last_date_apply${count}">Last Date for Applying</label><p id="et_last_date_apply${count}"> ${x.et_last_date_apply}</p>
                             <label for="et_file_uri${count}">File URL</label><p id="et_file_uri${count}"> <a href=${x.et_file_uri} target="_blank">Link</a></p>
                             <label for="et_bidding_date${count}">Tender Bidding Date</label><p id="et_bidding_date${count}"> ${x.et_bidding_date}</p>
-                            <button class="tender_button" onclick=apply(${count})>View Applications</button>`
+                            <button class="tender_button" onclick=apply(${count})>View Applications</button><br>`
                   }).appendTo("#tender_list");
                   count ++
             }
