@@ -1,5 +1,5 @@
 var et_id = location.toString().split("=%20")[1]
-//declare var alertify:any
+declare var alertify:any
 
 console.log(et_id)
 $.ajax({
@@ -45,31 +45,38 @@ $.ajax({
     })
 
 function approve(value:string){
-    /* alertify.confirm('Final Confirmation', 'Confirm Message', function(){ alertify.success('Ok') }
-                , function(){ alertify.error('Cancel')}); */
-    $.ajax({
-        url:"http://localhost:8081/approve_tender_application",
-        async:true,
-        method:"POST",
-        data:{
-            et_id:$(`#et_id${value}`).val(),
-            etd_id:$(`#etd_id${value}`).val()
-        },
-        success:(response)=>{
-            if (response === "ok"){
-                    alert("this tender has been approved and no further approval can be performed on this tendor")
-            }
+    alertify.confirm('Final Confirmation', 'Would you like to approve this application for this tender?', function(){ 
+        $.ajax({
+            url:"http://localhost:8081/approve_tender_application",
+            async:true,
+            method:"POST",
+            data:{
+                et_id:$(`#et_id${value}`).val(),
+                etd_id:$(`#etd_id${value}`).val()
             },
-        error:(xhr,error_type,exception)=>{
-            if (xhr.status == 0){
-                console.log("No response from Server")
-                alert("No response from server")
+            success:(response)=>{
+                alertify.success('Done')
+
+                /* if (response === "ok"){
+                    alertify.success('Done')
+                        //alert("this tender has been approved and no further approval can be performed on this tendor")
+                } */
+                },
+            error:(xhr,error_type,exception)=>{
+                if (xhr.status == 0){
+                    console.log("No response from Server")
+                    alertify.error('No response from server')
+                    //alert("No response from server")
+                }
+                if(xhr.status == 400 ){
+                    console.log("Bad Request")
+                    alertify.error('Bad Request')
+                    //alert("Bad Request")
+                }
             }
-            if(xhr.status == 400 ){
-                console.log("Bad Request")
-                alert("Bad Request")
-            }
-        }
-    })
+        })
+         },
+         function(){ alertify.error('Cancel')}).set('labels', {ok:'Yes', cancel:'No'});
+    
                
 }
