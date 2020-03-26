@@ -1,0 +1,80 @@
+:root {
+  --main_color: #663EFD;
+}
+
+body {
+  text-align: center;
+  color: var(--main_color);
+}
+
+form {
+  background-color: white;
+  height: auto;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 20px;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  -webkit-box-shadow: 3px 4px 6px -6px rgba(103, 62, 253, 0.507), -3px -4px 6px -6px rgba(103, 62, 253, 0.507);
+          box-shadow: 3px 4px 6px -6px rgba(103, 62, 253, 0.507), -3px -4px 6px -6px rgba(103, 62, 253, 0.507);
+  text-align: center;
+  display: inline-block;
+}
+
+input {
+  border-width: 1.1px;
+  border-radius: 3px;
+  border-color: var(--main_color);
+  height: 30px;
+  width: auto;
+  padding: 10px;
+  margin: 10px;
+  color: var(--main_color);
+}
+
+input[type="number"] {
+  padding: 0;
+  padding-left: 10px;
+  padding-right: 10px;
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+#bg_tsc_button {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  font-size: 16px;
+  font-weight: 300;
+  border-radius: 10px;
+  background-color: var(--main_color);
+  border: 0.4px solid var(--main_color);
+  outline: none;
+  padding: 6px 20px 6px 20px;
+  color: #ffffff;
+}
+
+#bg_tsc_button:hover {
+  cursor: pointer;
+  background-color: #ffffff;
+  color: var(--main_color);
+  border: 0.4px solid var(--main_color);
+}
+
+#error-para {
+  color: red;
+  font-style: italic;
+  font-size: smaller;
+}
+/*# sourceMappingURL=payment.css.map */

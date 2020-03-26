@@ -2,18 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/payment.css">
     <title>Document</title>
 </head>
 <body>
+    <header>
+        <nav>
+            <a href="#">Home</a>
+            <a href="v3_see_tender.html">Tender</a>
+            <a href="v1_login.html">Profile</a>
+        </nav>
+	</header>
     <form id="body_content" method="POST" action="http://localhost:8081/payment">
         <!-- <div class="content">
             <label for="tscid">Transcation/Order ID</label>
             <input type="text" id="tscid" name="tscid">
         </div> -->
         <div class="content">
-            <label for="amount">Amount</label>
-            <input type="text" id="amount" name="amount">
-        </div>
+            <h1>Payment</h1><br>
+            <table style="text-align:left;">
+                <tr>
+                    <td><label for="amount">Amount</label></td>
+                    <td><input type="number" id="amount" name="amount" placeholder="Enter Amount"></td>
+                </tr>
+       
         <!-- <div class="content">
             <label for="product_info">Product Info</label>
             <input id="product_info" type="text">
@@ -22,13 +36,17 @@
             <label for="first_name">First Name</label>
             <input id="first_name" type="text">
         </div> -->
-        <div class="content">
-            <label for="email">Email ID</label>
-            <input id="email" type="text" name="email">
-        </div>
-        <div class="content">
-            <label for="mobile">Mobile/Cell Number</label>
-            <input id="mobile" type="text" name="mobile">
+        
+                <tr>
+                    <td><label for="email">Email ID</label></td>
+                    <td><input id="email" type="email" name="email" placeholder="Enter Email"></td>
+                </tr>
+          
+                <tr>
+                    <td><label for="mobile">Mobile/Cell Number</label>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td><input id="mobile" type="number" name="mobile" placeholder="Enter Mobile/Cell Number"></td>
+                </tr>
+            </table>
         </div>
         <input type="submit" value="submit" id="bg_tsc_button">
         <!-- <button id="bg_tsc_button">Begin Transaction</button> -->
