@@ -14,8 +14,9 @@ body{
     margin-top: 20px;   
     margin-bottom: 10px;
     border-radius: 10px; 
-    box-shadow: 3px 4px 6px -6px rgba(103, 62, 253, 0.507),
-                -3px -4px 6px -6px rgba(103, 62, 253, 0.507);
+    // box-shadow: 3px 4px 6px -6px rgba(103, 62, 253, 0.507),
+    //             -3px -4px 6px -6px rgba(103, 62, 253, 0.507);
+    box-shadow: 0 0 6px 0 rgba(103, 62, 253, 0.307);
     text-align: center;
     display: inline-block;
 }
