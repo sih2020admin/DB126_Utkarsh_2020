@@ -29,7 +29,7 @@ app.use('/register', register.default);
 app.use("/misc", misc_1.default);
 app.use("/payment", payment_server_1.default);
 app.use('/', tender_desc.default);
-app.use('', login.default);
+app.use('/', login.default);
 app.use('/', crud_admin.default);
 app.use('/', list_tender.default);
 app.use('/', tender_approval.default);

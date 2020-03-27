@@ -9,12 +9,12 @@ var router = express_1.default.Router();
 var unirest = require('unirest');
 
 
-router.post('/', function (req, res) {
+router.post('/login', function (req, res) {
 
     var username= req.body.username;
 	var password= req.body.password;
-				
-	db_1.default.query('SELECT * FROM  log_in_details WHERE user_name = ?',[username], function (error, results, fields) {
+	console.log("login called",username)			
+	db_1.default.query('SELECT * FROM  log_in_details WHERE user_name = ?;',[username], function (error, results, fields) {
 		if (error) {
 	      		//console.log("error");
 	      		res.status(400);
@@ -24,26 +24,27 @@ router.post('/', function (req, res) {
 					//password  matched
 		     			var aadharno;
 					//console.log(results[0].vcd_id);
-		     			var vcd = results[0].vcd_id;
+		     			var vcd_id = results[0].vcd_id;
 					
 		     			//fetch aadhar number
-					db_1.default.query('SELECT vcd_aadhar FROM  v_contact_details WHERE vcd_id = ?',[vcd], function (error, results, fields) {
+					db_1.default.query('SELECT vcd_aadhar,vd_id FROM  v_contact_details WHERE vcd_id = ?;',[vcd_id], function (error, results, fields) {
 						if (error) {
 					      		//console.log(error);
 					      		res.status(400);
 				     		}else{
 				     			aadharno= results[0].vcd_aadhar;
+				     			var vd_id = results[0].vd_id;
 				     			//console.log("fetched "+aadharno);
 
 					     		//send to aadhar api
 					     		var req = unirest('POST', 'http://localhost:8082/verify').headers({'Content-Type': 'application/json'})
 									.send(JSON.stringify({"aadharno":aadharno})).end(function (resp) { 
-									  	if (res.error){
+									  	if (resp.error){
 											throw new Error(resp.error);
 									    		res.sendStatus(400); 
 										}
 										//console.log(resp.raw_body);	
-									    	res.status(200).send({"aadhar":aadharno});
+									    	res.status(200).send({"aadhar":aadharno,"vd_id":vd_id,"vcd_id":vcd_id});
 									  });
 					     }
 					});
