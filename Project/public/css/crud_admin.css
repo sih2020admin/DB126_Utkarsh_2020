@@ -47,7 +47,8 @@ body {
 }
 
 .container1 .main_bar {
-  border: 0.4px solid var(--main_color);
+  -webkit-box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.1);
+          box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.1);
   border-radius: 10px;
   margin: auto;
   padding: 20px;
@@ -85,7 +86,7 @@ body {
   background-color: #ffffff;
   color: var(--main_color);
   border: solid;
-  border-width: 0.2px;
+  border-width: 0.4px;
   border-color: var(--main_color);
 }
 
@@ -99,8 +100,8 @@ body {
   margin: auto;
   margin-top: 40px;
   border-radius: 10px;
-  -webkit-box-shadow: 3px 4px 6px -6px rgba(103, 62, 253, 0.507), -3px -4px 6px -6px rgba(103, 62, 253, 0.507);
-          box-shadow: 3px 4px 6px -6px rgba(103, 62, 253, 0.507), -3px -4px 6px -6px rgba(103, 62, 253, 0.507);
+  -webkit-box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.07);
+          box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.07);
   -webkit-transition: ease-in-out 0.3s;
   transition: ease-in-out 0.3s;
 }
@@ -189,8 +190,8 @@ body {
   border-radius: 1em;
   border-collapse: collapse;
   overflow: hidden;
-  -webkit-box-shadow: 3px 4px 6px -6px rgba(103, 62, 253, 0.507), -3px -4px 6px -6px rgba(103, 62, 253, 0.507);
-          box-shadow: 3px 4px 6px -6px rgba(103, 62, 253, 0.507), -3px -4px 6px -6px rgba(103, 62, 253, 0.507);
+  -webkit-box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
+          box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
 }
 
 .container2 table a {
@@ -211,6 +212,19 @@ body {
   background-color: var(--main_color);
   color: #fff;
   font-weight: lighter;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+}
+
+.container2 th::after {
+  content: '';
+  width: 100%;
+  height: initial;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: black;
 }
 
 .container2 th, .container2 td {
