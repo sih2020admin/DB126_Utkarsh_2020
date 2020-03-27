@@ -17,9 +17,10 @@ body{
     font-weight: 900;
     letter-spacing: 20px;
     background-color: #000000;
-background-image: linear-gradient(147deg, #000000 0%, #2c3e50 74%);
--webkit-text-fill-color: transparent;
--webkit-background-clip: text;
+    background-image: linear-gradient(147deg, #000000 0%, #2c3e50 74%);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    
 }
 .container h2{
     font-size: 30px;

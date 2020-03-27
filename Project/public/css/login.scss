@@ -1,31 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Montserrat:500&display=swap');
-*{
-    box-sizing: border-box;
-    margin: 0;
-    font-family: 'Montserrat', sans-serif;
-    padding: 0;
-}
-header{
-    height: 60px;
-    box-shadow: 3px 4px 6px -6px rgba(103, 62, 253, 0.507);
-    border: black;
-}
-nav{
-    a{
-        text-decoration: none;
-        color: #663EFD;
-        font-size: 20px;
-        margin-left: 60px;
-    }
-}
-a:hover{
-    color: rgba(103, 62, 253, 0.24);
-}
-nav{
-    margin-left: -30px;
-    padding: 20px;
-    display: flex;
+:root{
+    --main_color: #663EFD;
 }
 body{
     text-align: center;
@@ -44,7 +20,7 @@ body{
     display: inline-block;
 }
 h2, label{
-    color: #663EFD;
+    color: var(--main_color);
 }
 #tc, #tc1{
     font-size: 12px;
@@ -92,12 +68,12 @@ input{
     // border-style: dashed;
     border-width: 1.5px;
     border-radius: 3px;
-    border-color: #663EFD;
+    border-color: var(--main_color);
     height: 30px;
     width: auto;
     padding: 10px;
     margin: 10px;
-    color: #663EFD;
+    color: var(--main_color);
 }
 button{
     width: 100px;
@@ -105,7 +81,7 @@ button{
     font-size: 16px;
     font-weight: 300;
     border-radius: 10px; 
-    background-color: #663EFD;
+    background-color: var(--main_color);
     border: none;
     outline: none;
     margin-bottom: 10px;
@@ -114,10 +90,10 @@ button{
  button:hover{
     cursor: pointer;
     background-color: #ffffff;
-    color: #663EFD;
+    color: var(--main_color);
     border: solid;
     border-width: 0.2px;
-    border-color: #663EFD;
+    border-color: var(--main_color);
 }
 #not_registered{
     font-size: 13px;
@@ -125,7 +101,7 @@ button{
 }
 #enter_otp{
     margin-top: 10px;
-    color: #663EFD;
+    color: var(--main_color);
 }
 table.center{
     margin-left:auto; 
