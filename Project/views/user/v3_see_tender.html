@@ -8,17 +8,28 @@
 </head>
 <body>
     <header>
-        <nav>
+        <nav id="nav_bar">
             <a href="#">Home</a>
             <a href="v3_see_tender.html">Tender</a>
-            <a href="v1_login.html">Profile</a>
+            <a id="log_a" href="v1_login.html">Login</a>
         </nav>
     </header>
 <div class="container" id='cont'>
     
 </div>
 </body>
+<script  src="javascript/cookies.js"></script>
 <script type="text/javascript" src="javascript/v3_see_tender.js">
 	
+</script>
+<script type="text/javascript">
+    var log_a = document.getElementById("log_a")
+    var nav_bar = document.getElementById("nav_bar")
+    if(get_cookie("vcd_id") != "")
+        {
+            log_a.setAttribute("href", "v6_profile.html");
+            log_a.innerHTML ="Profile"
+            nav_bar.insertAdjacentHTML('beforeend','<a id="log_a" href="v1_login.html">Log out</a>');
+        }
 </script>
 </html>
