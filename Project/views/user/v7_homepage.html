@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/nav.css">
+	<link rel="stylesheet" href="css/login.css">
+	<title>HomePage</title>
+</head>
+<body>
+	 <header>
+        <nav id="nav_bar">
+            <!-- <a href="#">Home</a> -->
+            <a id="log_a" href="v1_login.html">Login</a>
+        </nav>
+    </header>
+	<div class="cont">
+	<h2>Homepage</h2><br>
+	
+	
+	</div>
+</body>
+<script  src="javascript/cookies.js"></script>
+<script type="text/javascript">
+    var log_a = document.getElementById("log_a")
+    var nav_bar = document.getElementById("nav_bar")
+    if(get_cookie("vcd_id") != "")
+        {
+
+            log_a.setAttribute("href", "v6_profile.html");
+            log_a.innerHTML ="Profile"
+            nav_bar.insertAdjacentHTML('beforeend','<a href="v3_see_tender.html">Tender</a>');
+            nav_bar.insertAdjacentHTML('beforeend','<a  href="v1_login.html">Log out</a>');
+        }
+        else if(get_cookie("ad_id") != "")
+        {
+            log_a.setAttribute("href", "5admin_profile.html");
+            log_a.innerHTML ="Profile"
+            nav_bar.insertAdjacentHTML('beforeend','<a href="2CRUD_admin.html">Tender</a>');
+            nav_bar.insertAdjacentHTML('beforeend','<a href="3view_tender_application.html">Applications</a>');
+            nav_bar.insertAdjacentHTML('beforeend','<a href="1admin_login.html">Log out</a>');
+            
+        }
+        else {
+            nav_bar.insertAdjacentHTML('beforeend','<a href="v3_see_tender.html">Tender</a>');
+        }
+</script>
+
+
+</html>

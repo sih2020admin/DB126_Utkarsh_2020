@@ -1,3 +1,4 @@
+delete_cookies();
 document.getElementById('username').value = "";
 function show() 
 {
@@ -25,9 +26,15 @@ function show()
 				var message = JSON.parse(this.responseText);
 				// document.cookie="cookie="+message+";";
 				// console.log(document.cookie);
+				var ad_id_c =message.ad_id;
+				var ad_dept_id_c=message.ad_dept_id;
+				var ad_org_id_c=message.ad_org_id;
+				add_to_cookie("ad_id",ad_id_c);
+				add_to_cookie("ad_dept_id",ad_dept_id_c);
+				add_to_cookie("ad_org_id",ad_org_id_c);				
 				setTimeout(function(){
-						location="error.html"
-				},3000);
+						location="2CRUD_admin.html"
+				},1000);
 
 			}
 			else if (this.status==400){

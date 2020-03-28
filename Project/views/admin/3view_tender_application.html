@@ -9,23 +9,26 @@
 </head>
 <body>
     <header>
-        <nav>
-            <a href="#">Home</a>
-            <a href="v3_see_tender.html">Tender</a>
-            <a href="v1_login.html">Profile</a>
+        <nav  id='nav_bar'>   
+            <a href="v7_homepage.html">Home</a>
+            <a href="2CRUD_admin.html">Tender</a>
+            <a href="5admin_profile.html">Profile</a>
+            <!-- <a href="3view_tender_application.html">Applications</a> -->
+            <a href="1admin_login.html">Log out</a>
         </nav>
-	</header>
+    </header>
     <div id="body_content">
-        <div id="department_selection">
+        <!-- <div id="department_selection">
             <select id="department">
                 <option value="0">All</option>
                 <option value="1">IT</option>
             </select>
             <button id="tender_select_button">GO</button>
-        </div>
+        </div> -->
         <div id="tender_list"></div>
     </div>
 </body>
 </html>
 <script src="javascript/jquery-3.4.1.min.js"></script>
+<script  src="javascript/cookies.js"></script>
 <script src="javascript/3view_tender_application.js"></script>

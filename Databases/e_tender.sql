@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 23, 2020 at 02:50 PM
+-- Generation Time: Mar 28, 2020 at 02:25 PM
 -- Server version: 5.7.28-0ubuntu0.19.04.2
 -- PHP Version: 7.2.24-0ubuntu0.19.04.2
 
@@ -41,7 +41,7 @@ CREATE TABLE `admin_detail` (
 --
 
 INSERT INTO `admin_detail` (`ad_id`, `ad_name`, `ad_contact`, `ad_email`, `ad_dept_id`, `ad_addr`, `ad_org_id`) VALUES
-(1, 'admin', '7894561230', 'admintest@gmail.com', 0, 'kurla', 1);
+(1, 'admin', '7894561230', 'admintest@gmail.com', 1, 'kurla', 1);
 
 -- --------------------------------------------------------
 
@@ -907,7 +907,10 @@ INSERT INTO `e_tender_details` (`et_id`, `et_title`, `et_tender_fee`, `et_tender
 (136, 'zxcvb', '4', 'scvbn', 'xcvb', '2020-03-22', '2020-03-15', 'dfg', 1, 1, 0),
 (137, 'qwertyuiop', '89', 'IT345U', 'WERTYUI', '2020-03-21', '2020-03-22', 'qwertyuiop', 0, 1, 0),
 (138, 'testing', '4500', 'T123', 'QWERTYUIO', '2020-03-15', '2020-03-16', '', 0, 1, 0),
-(139, 'Procurement of computers', '1200', 'ITC123', 'Procurement of Computers, Software and Services. The purpose of this policy is to provide a defined process for both the new and recurring procurement (through purchase or lease) of computer hardware, software and services using Washington University funds or grant funds administered by Washington University.', '2020-03-10', '2020-03-13', 'https://www.youtube.com/watch?v=u8XFFTWwSvY&feature=youtu.be', 0, 1, 0);
+(139, 'Procurement of computers', '1200', 'ITC123', 'Procurement of Computers, Software and Services. The purpose of this policy is to provide a defined process for both the new and recurring procurement (through purchase or lease) of computer hardware, software and services using Washington University funds or grant funds administered by Washington University.', '2020-03-10', '2020-03-13', 'https://www.youtube.com/watch?v=u8XFFTWwSvY&feature=youtu.be', 0, 1, 0),
+(140, 'new tender', '1233', 'ITNEW', 'qwertyui', '2020-03-31', '2020-04-01', 'qwertyu', 0, 1, 0),
+(141, 'Procurement of  with transaction', '1200', 'ITC123', 'Procurement of Computers, Software and Services. The purpose of this policy is to provide a defined process for both the new and recurring procurement (through purchase or lease) of computer hardware, software and services using Washington University funds or grant funds administered by Washington University.', '2020-03-10', '2020-03-13', 'https://www.youtube.com/watch?v=u8XFFTWwSvY&feature=youtu.be', 0, 1, 0),
+(142, '6969', '69', 'IT6969', '6969', '2020-03-28', '2020-03-29', '', 0, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -921,7 +924,7 @@ CREATE TABLE `e_tender_vendor` (
   `vd_id` int(11) NOT NULL,
   `vcd_id` int(11) NOT NULL,
   `bidding_amt` varchar(10) NOT NULL,
-  `is_approved` varchar(1) NOT NULL,
+  `is_approved` varchar(1) NOT NULL DEFAULT '0',
   `date_of_approval` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -930,7 +933,9 @@ CREATE TABLE `e_tender_vendor` (
 --
 
 INSERT INTO `e_tender_vendor` (`etd_id`, `et_id`, `vd_id`, `vcd_id`, `bidding_amt`, `is_approved`, `date_of_approval`) VALUES
-(1, 123, 1, 1, '1200', '0', '');
+(1, 123, 1, 1, '1200', '0', ''),
+(2, 123, 40, 13, '13500', '0', ''),
+(4, 123, 25, 7, '15000', '0', '');
 
 -- --------------------------------------------------------
 
@@ -1138,7 +1143,8 @@ INSERT INTO `vendor_details` (`vd_id`, `v_name`, `v_address`, `v_yoe`, `v_email`
 (38, 'seueria industry', 'andheri', '2019', 'sequeria@gmail.com', '7894561230', 'N', 1, -1, 109, '400708', '1', 'Q', '0', 'N'),
 (40, 'seueria industry', 'andheri', '2019', 'sequeria@gmail.com', '7894561230', 'N1', 11, -1, 109, '400708', '1', 'Q1', '0', 'N1'),
 (41, 'viraj', 'viraj', '2017', 'viraj@gmail.com', '7894561230', 'ASDFGHJK', 21, -1, 2134, '400708', '3', 'QWERTYU', '0', 'QWERTYU'),
-(43, 'z', 'z', '2011', 'z@gmail.com', '7894561212', 'z', 11, -1, 1113, '478554', '3', 'z', '0', 'z');
+(43, 'z', 'z', '2011', 'z@gmail.com', '7894561212', 'z', 11, -1, 1113, '478554', '3', 'z', '0', 'z'),
+(56, 'high', 'high', '2018', 'high@gmail.com', '7894561230', 'z1', 1, -1, 101, '789456', '2', 'QWERTY123p', '0', 'QWERTY1234QWERp');
 
 -- --------------------------------------------------------
 
@@ -1181,7 +1187,8 @@ INSERT INTO `v_contact_details` (`vcd_id`, `vcd_name`, `vcd_title`, `vcd_dob`, `
 (9, 'winston sequeria', 'Mr', '1999-16-6', '456745674567', '7894561230', 'winstonsequeria@gmail.com', 'CEO', 35),
 (10, 'winston sequeria', 'Mr', '1999-16-6', '456745674567', '7894561230', 'winstonsequeria@gmail.com', 'CEO', 36),
 (11, 'winston sequeria', 'Mr', '1999-16-6', '456745674567', '7894561230', 'winstonsequeria@gmail.com', 'CEO', 38),
-(13, 'winston sequeria', 'Mr', '1999-16-6', '456745674567', '7894561230', 'winstonsequeria@gmail.com', 'CEO', 40);
+(13, 'winston sequeria', 'Mr', '1999-16-6', '456745674567', '7894561230', 'winstonsequeria@gmail.com', 'CEO', 40),
+(18, 'viraj', 'Mr', '2020-03-03', '456745674567', '7894561230', 'viraj@gmail.com', 'CEO', 56);
 
 --
 -- Indexes for dumped tables
@@ -1324,12 +1331,12 @@ ALTER TABLE `districts`
 -- AUTO_INCREMENT for table `e_tender_details`
 --
 ALTER TABLE `e_tender_details`
-  MODIFY `et_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=140;
+  MODIFY `et_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=143;
 --
 -- AUTO_INCREMENT for table `e_tender_vendor`
 --
 ALTER TABLE `e_tender_vendor`
-  MODIFY `etd_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `etd_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `file_uri`
 --
@@ -1349,12 +1356,12 @@ ALTER TABLE `states`
 -- AUTO_INCREMENT for table `vendor_details`
 --
 ALTER TABLE `vendor_details`
-  MODIFY `vd_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `vd_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 --
 -- AUTO_INCREMENT for table `v_contact_details`
 --
 ALTER TABLE `v_contact_details`
-  MODIFY `vcd_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `vcd_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- Constraints for dumped tables
 --

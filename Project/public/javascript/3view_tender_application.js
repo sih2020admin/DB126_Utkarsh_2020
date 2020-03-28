@@ -1,4 +1,13 @@
 "use strict";
+if(get_cookie('ad_id') == '')
+    {
+        window.location.href = "/1admin_login.html";
+    }
+var ad_id =get_cookie('ad_id')
+var ad_dept_id =get_cookie('ad_dept_id')
+var ad_org_id =get_cookie('ad_org_id')
+
+
 var __values = (this && this.__values) || function(o) {
     var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
     if (m) return m.call(o);
@@ -10,16 +19,16 @@ var __values = (this && this.__values) || function(o) {
     };
     throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
 };
-$("#tender_select_button").on("click", function () {
-    var _a;
-    var dept_id = (_a = $("#department").val()) === null || _a === void 0 ? void 0 : _a.toString();
+// $("#tender_select_button").on("click", function () {
+    // var _a;
+    // var dept_id = (_a = $("#department").val()) === null || _a === void 0 ? void 0 : _a.toString();
     $("#tender_list").empty();
     $.ajax({
         url: "http://localhost:8081/gettenderlist_bid",
         method: "POST",
         async: true,
         data: {
-            dept_id: dept_id
+            dept_id: ad_dept_id
         },
         success: function (response) {
             var e_1, _a;
@@ -54,8 +63,8 @@ $("#tender_select_button").on("click", function () {
             }
         }
     });
-});
+// });
 function apply(value) {
     var value1 = $("#et_id" + value).text();
-    open("4approve_vendor.html?id=" + value1, "_blank");
+    open("4approve_vendor.html?id=" + value1, "_self");
 }
