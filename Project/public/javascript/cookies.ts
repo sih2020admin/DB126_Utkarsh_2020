@@ -1,6 +1,6 @@
 "use strict";
 console.log("hello cookies");
-function get_cookie(cname) {
+function get_cookie(cname:string) {
     var name = cname + "=";
     var ca = document.cookie.split(';');
     for (var i = 0; i < ca.length; i++) {
@@ -25,12 +25,12 @@ function delete_cookies() {
     document.cookie = "ad_org_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
     console.log("written to cookie ", decodeURIComponent(document.cookie));
 }
-function delete_cookies_feild(feild) {
+function delete_cookies_feild(feild:string) {
     // body...
     document.cookie = feild + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
     console.log("written to cookie ", decodeURIComponent(document.cookie));
 }
-function add_to_cookie(name, value) {
+function add_to_cookie(name:string, value:string) {
     // body...
     var d = new Date();
     d.setTime(d.getTime() + (1 * 24 * 60 * 60 * 1000));

@@ -1,5 +1,4 @@
 "use strict";
-delete_cookies();
 var __values = (this && this.__values) || function(o) {
     var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
     if (m) return m.call(o);
@@ -233,9 +232,6 @@ $("#submit_button").on("click", function () {
                 error: function (xhr, error_type, exception) {
                     var error_message = xhr.responseText;
                     alert("" + error_message);
-                    window.setTimeout(function(){
-                        window.location.href = "/v1_login.html";
-                             }, 2000);
                 }
             });
         }

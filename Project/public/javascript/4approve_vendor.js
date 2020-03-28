@@ -1,13 +1,4 @@
 "use strict";
-if(get_cookie('ad_id') == '')
-    {
-        window.location.href = "/1admin_login.html";
-    }
-var ad_id =get_cookie('ad_id')
-var ad_dept_id =get_cookie('ad_dept_id')
-var ad_org_id =get_cookie('ad_org_id')
-
-
 var __values = (this && this.__values) || function(o) {
     var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
     if (m) return m.call(o);
@@ -74,11 +65,6 @@ function approve(value) {
             },
             success: function (response) {
                 alertify.success('Done');
-                
-                window.setTimeout(function(){
-                        window.location.href = "/3view_tender_application.html";
-                             }, 2000);
-                
                 /* if (response === "ok"){
                     alertify.success('Done')
                         //alert("this tender has been approved and no further approval can be performed on this tendor")
