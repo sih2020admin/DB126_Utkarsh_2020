@@ -64,10 +64,11 @@ router.post('/login', function (req, res) {
     	});
 });
 
-router.post('/admin', function (req, res) {
+router.post('/login/admin', function (req, res) {
 	var username= req.body.username;
     var password= req.body.password;
-			
+	console.log("admin login called",username)	
+
 	db_1.default.query('SELECT * FROM  log_in_details WHERE role_id= 1 and user_name = ?',[username], function (error, results, fields) {
      	if (error) {
       		res.status(400);
@@ -76,10 +77,10 @@ router.post('/admin', function (req, res) {
           		//User exists
           		if(results[0].password == password){
 					//Users password match
-					var ad_id = results[0].vcd_id;
+					var ad_id = results[0].ad_id;
 
 					//fetch aadhar number
-					db_1.default.query('SELECT * FROM `admin_detail` WHERE ad_id = 1; ',[ad_id], function (error, results, fields) {
+					db_1.default.query('SELECT ad_id,ad_dept_id, ad_org_id FROM `admin_detail` WHERE ad_id = ?; ',[ad_id], function (error, results, fields) {
 						if (error) {
 							res.status(400);
 						}else{

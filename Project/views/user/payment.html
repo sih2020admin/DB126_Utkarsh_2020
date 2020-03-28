@@ -9,10 +9,10 @@
 </head>
 <body>
     <header>
-        <nav>
-            <a href="#">Home</a>
+        <nav id="nav_bar">
+            <a href="v7_homepage.html">Home</a>
             <a href="v3_see_tender.html">Tender</a>
-            <a href="v1_login.html">Profile</a>
+            <a id="log_a" href="v1_login.html">Login</a>
         </nav>
 	</header>
     <form id="body_content" method="POST" action="http://localhost:8081/payment">
@@ -55,4 +55,16 @@
 </body>
 </html>
 <script src="javascript/jquery-3.4.1.min.js"></script>
+<script  src="javascript/cookies.js"></script>
+
+<script type="text/javascript">
+    var log_a = document.getElementById("log_a")
+    var nav_bar = document.getElementById("nav_bar")
+    if(get_cookie("vcd_id") != "")
+        {
+            log_a.setAttribute("href", "v6_profile.html");
+            log_a.innerHTML ="Profile"
+            nav_bar.insertAdjacentHTML('beforeend','<a id="log_a" href="v1_login.html">Log out</a>');
+        }
+</script>
 <script src="javascript/payment.js" ></script>
