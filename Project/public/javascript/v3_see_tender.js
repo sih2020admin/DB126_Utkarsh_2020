@@ -1,5 +1,7 @@
 var data = "";
 var response;
+var vd_id =get_cookie('vd_id')
+var vcd_id =get_cookie('vcd_id')
 
 var xhr = new XMLHttpRequest();
 
@@ -47,8 +49,13 @@ xhr.send(data);
 
 
 function apply(i) {
+    if(vd_id != ""){
     console.log("apply")
     window.location.href = "/v4_apply_tender.html?et_id="+response[i].et_id;
+}
+    else{
+        alert("Login to apply")
+    }
     // alert(response[i].et_title)
     // body...
 }

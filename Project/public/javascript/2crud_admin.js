@@ -1,9 +1,18 @@
-var tr;
-var col = [];
-var table = document.getElementById("content_table");
-var tabCell;
-var response;
+if(get_cookie('ad_id') == '')
+	{
+		window.location.href = "/1admin_login.html";
+	}
+	var tr;
+	var col = [];
+	var table = document.getElementById("content_table");
+	var tabCell;
+	var response;
+	var ad_id =get_cookie('ad_id')
+	var ad_dept_id =get_cookie('ad_dept_id')
+	var ad_org_id =get_cookie('ad_org_id')
 // var create_form = document.getElementById("create_input_details");
+
+
 	
 	
 	var xhr = new XMLHttpRequest();
@@ -66,7 +75,7 @@ var response;
 
 	xhr.open("POST", "http://localhost:8081/tender_dept");
 	xhr.setRequestHeader("Content-Type", "application/json");
-	var data = JSON.stringify({"dept_id":1});
+	var data = JSON.stringify({"dept_id":ad_dept_id});
 	//dept id should be take from cookies
 
 	xhr.send(data);
@@ -93,7 +102,7 @@ var response;
 		  return d.toISOString().slice(0,10) === dateString;
 		}
 
-            function update_td(clicked_id) {
+    function update_td(clicked_id) {
             	
             	Swal.mixin({
 				  
@@ -236,7 +245,7 @@ var response;
 
             }
 
-
+        	//not used just for refernce
             function update_td1(clicked_id) {
             	// body...
             	var data = JSON.stringify({"et_id":123,"et_title":"Procurement of computers","et_tender_fee":"1200","et_tender_ref_no":"ITC123","et_tender_desc":"Procurement of Computers, Software and Services. The purpose of this policy is to provide a defined process for both the new and recurring procurement (through purchase or lease) of computer hardware, software and services using Washington University funds or grant funds administered by Washington University.","et_last_date_apply":"2020-03-10","et_bidding_date":"2020-03-13","et_file_uri":"https://www.youtube.com/watch?v=u8XFFTWwSvY&feature=youtu.be"});
@@ -469,7 +478,7 @@ var response;
 						"et_last_date_apply":document.getElementById("closing_date").value,
 						"et_bidding_date":document.getElementById("bid_opening_date").value,
 						"et_file_uri":link,
-						"dept_id":1}));
+						"dept_id":ad_dept_id}));
 				//imp here dept id is fixed for now but it shoud be taken from cookies
 				}
 

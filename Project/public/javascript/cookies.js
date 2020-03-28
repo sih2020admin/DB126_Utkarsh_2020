@@ -20,6 +20,16 @@ function delete_cookies() {
   // body...
   document.cookie = "vcd_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
   document.cookie = "vd_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+  document.cookie = "ad_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+  document.cookie = "ad_dept_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+  document.cookie = "ad_org_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+  console.log("written to cookie ",decodeURIComponent(document.cookie));
+}
+
+function delete_cookies_feild(feild) {
+  // body...
+  document.cookie = feild+"=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+  
   console.log("written to cookie ",decodeURIComponent(document.cookie));
 }
 

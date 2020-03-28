@@ -14,7 +14,7 @@ router.post('/login', function (req, res) {
     var username= req.body.username;
 	var password= req.body.password;
 	console.log("login called",username)			
-	db_1.default.query('SELECT * FROM  log_in_details WHERE user_name = ?;',[username], function (error, results, fields) {
+	db_1.default.query('SELECT * FROM  log_in_details WHERE role_id=2 and user_name = ?;',[username], function (error, results, fields) {
 		if (error) {
 	      		//console.log("error");
 	      		res.status(400);
