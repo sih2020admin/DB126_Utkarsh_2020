@@ -19,14 +19,14 @@
       <table class="center">
       <tr>
       <td><label for="username">Username</label></td>
-      <td><input id="username" type="text" placeholder="Enter Username"></td></tr>
+      <td><input id="username" type="text" placeholder="Enter Username" maxlength="15"></td></tr>
       <tr>
       <td><label for="password">Password</label></td>
-      <td><input id="password" type="password" placeholder="min 5 characters"></td>
+      <td><input id="password" type="password" placeholder="min 5 characters" maxlength="15"></td>
       </tr>
       <tr>
       <td><label for="confirm_password">Confirm Password</label></td>
-      <td><input type="password" id="confirm_password" placeholder="Renter Password"></td>
+      <td><input type="password" id="confirm_password" placeholder="Renter Password" maxlength="15"></td>
       </tr><br>
     </table>
        <button id="account_button">Next</button>
@@ -46,7 +46,7 @@
         <td><label for="company_email">Company Email Address</label></td>
         <td><input id="company_email" type="email" placeholder="Enter Your Company Email"></td>
         <td><label for="mobile_number">Mobile Number</label></td>
-        <td><input id="mobile_number" type="number" placeholder="Enter Your Company Mobile No"></td>
+        <td><input id="mobile_number" type="text" placeholder="Enter Your Company Mobile No" maxlength="10"></td>
         </tr>
         <tr>
           <td><label for="registration_number">Company Registration Number</label></td>
@@ -68,7 +68,7 @@
         </tr>
         <tr>
           <td><label for="pincode">Pincode</label></td>
-          <td><input id="pincode" type="number" placeholder="Enter Your Area Pincode"></td>
+          <td><input id="pincode" type="text" placeholder="Enter Your Area Pincode" maxlength="6"></td>
           <td><label for="legal_status">Legal Status</label></td>
           <td><select id="legal_status"> 
             <option value="select" selected>--select--</option>
@@ -76,9 +76,9 @@
         </tr>
         <tr>
           <td><label for="pan_number">Pan Number</label></td>
-          <td><input id="pan_number" type="text" placeholder="Enter Your Pan No">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+          <td><input id="pan_number" type="text" placeholder="Enter Your Pan No" maxlength="10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
           <td><label for="gst_register_number">GST Registration Number</label></td>
-          <td><input id="gst_register_number" type="text" placeholder="Enter Your GST Reg No"></td>
+          <td><input id="gst_register_number" type="text" placeholder="Enter Your GST Reg No" maxlength="15"></td>
         </tr>
     </table>
     <br>
@@ -100,7 +100,7 @@
             <option value="Sri">Sri</option>
           </select></td>
           <td><label for="contact_name">Contact Name</label></td>
-          <td><input id="contact_name" type="text" placeholder="Enter Your Contact Number"></td>
+          <td><input id="contact_name" type="text" placeholder="Enter Your Contact Name"></td>
         </tr>
         <tr>
           <td><label for="date_of_birth">Date Of Birth(DD/MM/YYYY)</label></td>
@@ -112,12 +112,12 @@
           <td><label for="contact_email">Correspondence Email Address</label>
           <td><input id="contact_email" type="email" placeholder="Enter Correspondence Email"></td>
           <td><label for="contact_contact">Mobile Number</label></td>
-          <td><input  id="contact_contact" type="number" placeholder="Enter Your Mobile Number"></td>
+          <td><input  id="contact_contact" type="text" placeholder="Enter Your Mobile Number" maxlength="10"></td>
         </tr>
         <tr>
           <td><label for="aadhaar_number">Aadhaar Number</label></td>
-          <td><input id="aadhaar_number" type="number" placeholder="Enter Your Aadhar Number"><button id="verify_button">Verify</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-          <td><input id="otp" placeholder="Enter OTP" type="number" style="display: none;"><button id="otp_button" style="display: none;">Confirm</button>
+          <td><input id="aadhaar_number" type="text" placeholder="Enter Your Aadhar Number" maxlength="12"><button id="verify_button">Verify</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+          <td><input id="otp" placeholder="Enter OTP" type="text" style="display: none;"><button id="otp_button" style="display: none;">Confirm</button>
           </td>
         </tr>
     </table>
