@@ -172,9 +172,9 @@ body{
 
     table {
         max-width: 100%;
-        border-radius: 1em;
+        border-radius: 15px;
         border-collapse: collapse;
-        overflow: hidden;
+        // overflow: hidden;
         // box-shadow: 3px 4px 6px -6px rgba(103, 62, 253, 0.507),
         // -3px -4px 6px -6px rgba(103, 62, 253, 0.507);
         box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
@@ -199,6 +199,13 @@ body{
         position: sticky;
         position: -webkit-sticky;
         top: 0;
+    }
+    
+    .first_th{
+        border-top-left-radius: 15px;
+    }
+    .last_th{
+        border-top-right-radius: 15px;
     }
     
     th::after{

@@ -187,9 +187,8 @@ body {
 
 .container2 table {
   max-width: 100%;
-  border-radius: 1em;
+  border-radius: 15px;
   border-collapse: collapse;
-  overflow: hidden;
   -webkit-box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
           box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
 }
@@ -215,6 +214,14 @@ body {
   position: sticky;
   position: -webkit-sticky;
   top: 0;
+}
+
+.container2 .first_th {
+  border-top-left-radius: 15px;
+}
+
+.container2 .last_th {
+  border-top-right-radius: 15px;
 }
 
 .container2 th::after {
