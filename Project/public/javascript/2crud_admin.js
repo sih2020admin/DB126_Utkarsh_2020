@@ -482,7 +482,7 @@ if(get_cookie('ad_id') == '')
 				//imp here dept id is fixed for now but it shoud be taken from cookies
 				}
 
-            }
+			}
 
 
 
