@@ -200,13 +200,14 @@ body{
         position: -webkit-sticky;
         top: 0;
     }
-    
+
     .first_th{
         border-top-left-radius: 15px;
     }
     .last_th{
         border-top-right-radius: 15px;
     }
+    
     
     th::after{
         content: '';
