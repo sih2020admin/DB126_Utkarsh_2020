@@ -21,7 +21,6 @@ var fs_1 = __importDefault(require("fs"));
 var connection;
 if (os_1.default.platform() === "linux" && os_1.default.hostname() === "ubuntu" && os_1.default.userInfo().username === "winston") {
     var database, user, password;
-    console.log("hhhh");
     var array = fs_1.default.readFileSync('/etc/mysql/my.cnf').toString().split("\n");
     try {
         for (var array_1 = __values(array), array_1_1 = array_1.next(); !array_1_1.done; array_1_1 = array_1.next()) {

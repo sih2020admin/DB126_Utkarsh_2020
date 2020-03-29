@@ -5,7 +5,6 @@ import fs from "fs"
 var connection:Connection;
 if (os.platform() === "linux" && os.hostname() === "ubuntu" && os.userInfo().username === "winston"){
     var database,user,password
-    console.log("hhhh")
     var array = fs.readFileSync('/etc/mysql/my.cnf').toString().split("\n");
     for (var x of  array){
         if (x.match("database")){
