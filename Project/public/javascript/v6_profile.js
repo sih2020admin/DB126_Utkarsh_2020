@@ -1,9 +1,8 @@
-add_to_cookie("vd_id","1")
-add_to_cookie("vcd_id", "1")
 var vd_id =get_cookie('vd_id')
 var vcd_id =get_cookie('vcd_id')
-if(vd_id ==""){
+if(vd_id == ""){
     window.location.href = "/v1_login.html";
+    console.log("directed to login")
 }
 // get vd_id vcd_id from cookies    
 var response;
