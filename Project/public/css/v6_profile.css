@@ -15,6 +15,12 @@ h3, h2 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-line-pack: justify;
+      align-content: space-between;
   font-family: sans-serif;
   margin-top: 40px;
   border: none;
@@ -22,6 +28,13 @@ h3, h2 {
 }
 
 .tab {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   width: 20%;
   height: 620px;
   margin-left: 20px;
@@ -45,6 +58,8 @@ h3, h2 {
   padding: 6px 20px 6px 20px;
   color: #ffffff;
   margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .tab button:hover {
@@ -57,9 +72,10 @@ h3, h2 {
 .tabcontent {
   -webkit-box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
           box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
-  margin: auto 40px 40px 350px;
+  margin: auto 40px 40px 23%;
   padding: 0 10px 10px 10px;
   width: 85%;
+  max-width: 1200px;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;

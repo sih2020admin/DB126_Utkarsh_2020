@@ -10,6 +10,8 @@ h3,h2{
 }
 .main{
     display: flex;
+    flex-direction: row;
+    align-content: space-between;
     font-family: sans-serif;
     margin-top: 40px;
     border: none;   
@@ -17,6 +19,8 @@ h3,h2{
   }
 
 .tab{
+    display: flex;
+    flex-direction: column;
     width: 20%;
     height: 620px;
     margin-left: 20px;
@@ -39,6 +43,8 @@ h3,h2{
         padding: 6px 20px 6px 20px;
         color: #ffffff;
         margin-top: 20px;
+        margin-left: auto;
+        margin-right: auto;
     }
     button:hover{
         cursor: pointer;
@@ -53,9 +59,10 @@ h3,h2{
 .tabcontent {
     box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);  
     // border: 0.4px solid var(--main_color);
-    margin: auto 40px 40px 350px; 
+    margin: auto 40px 40px 23%; 
     padding: 0 10px 10px 10px; 
     width: 85%;
+    max-width: 1200px;
     height: fit-content;
     min-height: 620px;
     border-radius: 10px;

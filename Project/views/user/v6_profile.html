@@ -15,42 +15,46 @@
     </nav>
   </header>
 
-<div class="main">
-  <div class="tab">
-    <h3>Personal Details</h3>
-    <button class="tablinks" onclick="operation('Profile')">My Profile</button>
-    <h3>Bid Details</h3>
-    <button class="tablinks" onclick="operation('Tenders')">My Tenders</button>
-    <button class="tablinks" onclick="operation('Approved')">Approved Tenders</button>
-    <button class="tablinks" onclick="operation('Docs')">Downloaded Documents</button>
-    <button class="tablinks" onclick="operation('Search')">Search Tenders</button>
-  </div>
-
-  <div id="Profile" class="tabcontent">
-    <h2>My Profile</h2>
-    <h4>Welcome Ms./Mr. xyz</h4>
+  <div class="main">
+    <div class="tab">
+      <h3>Personal Details</h3>
+      <button class="tablinks" onclick="operation('Profile')">My Profile</button>
+      <h3>Bid Details</h3>
+      <button class="tablinks" onclick="operation('Tenders')">My Tenders</button>
+      <button class="tablinks" onclick="operation('Approved')">Approved Tenders</button>
+      <button class="tablinks" onclick="operation('Docs')">Downloaded Documents</button>
+      <button class="tablinks" onclick="operation('Search')">Search Tenders</button>
     </div>
 
-  <div id="Tenders" class="tabcontent" style="display: none;">
-    <h2>My Tenders</h2>
-    <p>The list of tenders :</p> 
+    <div id="Profile" class="tabcontent">
+      <h2>My Profile</h2>
+      <h4>Welcome Ms./Mr. xyz</h4>
+      </div>
+
+    <div id="Tenders" class="tabcontent" style="display: none;">
+      <h2>My Tenders</h2>
+      <p>The list of tenders :</p> 
+    </div>
+
+    <div id="Approved" class="tabcontent" style="display: none;">
+      <h2>Approved Tenders</h2>
+      <p>The list of approved tenders.</p>
+    </div>
+
+    <div id="Docs" class="tabcontent" style="display: none;">
+      <h2>Downloaded Documents</h2>
+      <p>The list of vendor downloaded documents.</p>
+    </div>
+
+    <div id="Search" class="tabcontent" style="display: none;">
+      <h2>Search Tenders</h2>
+      <p>The list of matching tenders.</p>    
+    </div>
   </div>
 
-  <div id="Approved" class="tabcontent" style="display: none;">
-    <h2>Approved Tenders</h2>
-    <p>The list of approved tenders.</p>
-  </div>
 
-  <div id="Docs" class="tabcontent" style="display: none;">
-    <h2>Downloaded Documents</h2>
-     <p>The list of vendor downloaded documents.</p>
-  </div>
 
-  <div id="Search" class="tabcontent" style="display: none;">
-    <h2>Search Tenders</h2>
-     <p>The list of matching tenders.</p>    
-  </div>
-</div>
+
 <script type="text/javascript" src="javascript/cookies.js"></script>
 <script type="text/javascript" src="javascript/v6_profile.js"></script>
 </body>
