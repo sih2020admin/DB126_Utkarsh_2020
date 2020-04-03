@@ -14,9 +14,11 @@ html{
 
 header {
   height: 60px;
+  width: 100%;
   -webkit-box-shadow: 3px 4px 6px -6px rgba(103, 62, 253, 0.507);
           box-shadow: 3px 4px 6px -6px rgba(103, 62, 253, 0.507);
   border: black;
+  background-color: white;
 }
 
 header a {

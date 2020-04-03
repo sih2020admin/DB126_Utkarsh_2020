@@ -13,9 +13,10 @@ h3,h2{
     flex-direction: row;
     align-content: space-between;
     font-family: sans-serif;
-    margin-top: 40px;
+    margin-top: 100px;
     border: none;   
     outline: none;
+
   }
 
 .tab{
@@ -26,7 +27,7 @@ h3,h2{
     margin-left: 20px;
     border-radius: 10px;
     box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3); 
-    position: fixed;  
+    position: fixed; 
     // border: 0.4px solid var(--main_color);
 }
 
