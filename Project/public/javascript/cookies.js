@@ -23,6 +23,7 @@ function delete_cookies() {
     document.cookie = "ad_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
     document.cookie = "ad_dept_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
     document.cookie = "ad_org_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+    document.cookie = "digi_access=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
     console.log("written to cookie ", decodeURIComponent(document.cookie));
 }
 function delete_cookies_feild(feild) {

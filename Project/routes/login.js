@@ -27,13 +27,14 @@ router.post('/login', function (req, res) {
 		     			var vcd_id = results[0].vcd_id;
 					
 		     			//fetch aadhar number
-					db_1.default.query('SELECT vcd_aadhar,vd_id FROM  v_contact_details WHERE vcd_id = ?;',[vcd_id], function (error, results, fields) {
+					db_1.default.query('SELECT vcd_aadhar,vd_id ,digi_access FROM  v_contact_details WHERE vcd_id = ?;',[vcd_id], function (error, results, fields) {
 						if (error) {
 					      		//console.log(error);
 					      		res.status(400);
 				     		}else{
 				     			aadharno= results[0].vcd_aadhar;
 				     			var vd_id = results[0].vd_id;
+				     			var digi_access =results[0].digi_access
 				     			//console.log("fetched "+aadharno);
 
 					     		//send to aadhar api
@@ -44,7 +45,7 @@ router.post('/login', function (req, res) {
 									    		res.sendStatus(400); 
 										}
 										//console.log(resp.raw_body);	
-									    	res.status(200).send({"aadhar":aadharno,"vd_id":vd_id,"vcd_id":vcd_id});
+									    	res.status(200).send({"aadhar":aadharno,"vd_id":vd_id,"vcd_id":vcd_id,"digi_access":digi_access});
 									  });
 					     }
 					});
