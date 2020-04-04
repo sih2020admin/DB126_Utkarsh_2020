@@ -22,7 +22,7 @@ else {
     dept_id = get_cookie('ad_dept_id');
 }
 $.ajax({
-    url: "http://localhost:8081/gettenderlist_bid",
+    url: "http://"+IP+":8081/gettenderlist_bid",
     method: "POST",
     async: true,
     data: {
@@ -65,7 +65,7 @@ $.ajax({
     var dept_id = $("#department").val()?.toString()!
     $("#tender_list").empty()
     $.ajax({
-        url:"http://localhost:8081/gettenderlist_bid",
+        url:"http://"+IP+":8081/gettenderlist_bid",
         method:"POST",
         async:true,
         data:{

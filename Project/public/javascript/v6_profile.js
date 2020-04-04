@@ -237,7 +237,7 @@ xhr.onload = function () {
     }
 }  
 
-xhr.open("POST", "http://localhost:8081/vendor_dashboard");
+xhr.open("POST", "http://"+IP+":8081/vendor_dashboard");
 xhr.setRequestHeader("Content-Type", "application/json");
 xhr.setRequestHeader("Cookie", "PHPSESSID=qs1c0qdet862lrfn217cvqr70b");
 

@@ -60,7 +60,7 @@ xhr.onload = function () {
     }
 }  
 
-xhr.open("POST", "http://localhost:8081/tender_desc");
+xhr.open("POST", "http://"+IP+":8081/tender_desc");
 xhr.setRequestHeader("Content-Type", "application/json");
 
 xhr.send(data);
