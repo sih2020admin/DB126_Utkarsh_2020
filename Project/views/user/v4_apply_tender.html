@@ -5,7 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/nav.css">
     <link rel="stylesheet" href="css/apply_tender.css">
+<<<<<<< HEAD
         <link rel="stylesheet" href="css/payment.css">
+=======
+    <script  src="javascript/cookies.js"></script>
+>>>>>>> 6f2fd3c03fd2392fe8448ce262563d770756fd8f
     <title>apply tender</title>
 </head>
 <body>
@@ -75,8 +79,8 @@
       </div>
       <div class="cont">
         <h3>Upload Documents(process not yet finalised for uplaoding )</h3><br>
-        <label>Techincal Files <a href="#">(pdf format) </label></a> </br></br> 
-        <label>Financial Files <a href="#">(xls format) </label></a> <br><br>
+        <label>Techincal Files <button onclick="openModal()">(pdf format) </button></label> </br></br> 
+        <label>Financial Files <button onclick="openModal()">(xls format) </button></label> <br><br>
         <div class="button_div"><button type="submit">Save</button></div>
       </div>
         
@@ -86,7 +90,7 @@
     </div>
 </div>
 </body>
-<script  src="javascript/cookies.js"></script>
+<!-- <script  src="javascript/cookies.js"></script> -->
 
 <script type="text/javascript">
     var log_a = document.getElementById("log_a")
@@ -100,5 +104,27 @@
 </script>
 <script src="javascript/jquery-3.4.1.min.js"></script>
 <script src="javascript/payment.js" ></script>
+<!-- --------------------------- Start of digilocker html code -------------------------------- -->
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>Modal Header</h2>
+    </div>
+    <div class="modal-body">
+      <p>Some text in the Modal Body</p>
+      <p>Some other text...</p>
+    </div>
+    <div class="modal-footer">
+      <h3>Modal Footer</h3>
+    </div>
+  </div>
+
+<!-- --------------------------- End of digilocker html code -------------------------------- -->
+
 <script type="text/javascript" src="javascript/v4_apply_tender.js"></script>
 </html>

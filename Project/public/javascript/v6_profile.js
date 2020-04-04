@@ -1,9 +1,8 @@
-add_to_cookie("vd_id","1")
-add_to_cookie("vcd_id", "1")
 var vd_id =get_cookie('vd_id')
 var vcd_id =get_cookie('vcd_id')
-if(vd_id ==""){
+if(vd_id == ""){
     window.location.href = "/v1_login.html";
+    console.log("directed to login")
 }
 // get vd_id vcd_id from cookies    
 var response;
@@ -238,7 +237,7 @@ xhr.onload = function () {
     }
 }  
 
-xhr.open("POST", "http://localhost:8081/vendor_dashboard");
+xhr.open("POST", "http://"+IP+":8081/vendor_dashboard");
 xhr.setRequestHeader("Content-Type", "application/json");
 xhr.setRequestHeader("Cookie", "PHPSESSID=qs1c0qdet862lrfn217cvqr70b");
 

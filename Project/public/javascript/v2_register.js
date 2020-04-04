@@ -50,7 +50,7 @@ function load_years() {
 // loading states from database
 function load_states() {
     $.ajax({
-        url: "http://localhost:8081/misc/get-state",
+        url: "http://"+IP+":8081/misc/get-state",
         method: "POST",
         async: true,
         success: function (response) {
@@ -87,7 +87,7 @@ function load_states() {
 // loading cities dynamically by taking checking state field after each change
 function load_cities(state_code) {
     $.ajax({
-        url: "http://localhost:8081/misc/get-city",
+        url: "http://"+IP+":8081/misc/get-city",
         method: "POST",
         contentType: "application/json; charset=utf-8",
         data: JSON.stringify({
@@ -138,7 +138,7 @@ $("#state").change(function () {
 // loading legal status field from databse
 function load_legal_status() {
     $.ajax({
-        url: "http://localhost:8081/misc/get-legal-status",
+        url: "http://"+IP+":8081/misc/get-legal-status",
         method: "POST",
         async: true,
         success: function (response) {
@@ -220,7 +220,7 @@ $("#submit_button").on("click", function () {
                 }
             };
             $.ajax({
-                url: "http://localhost:8081/register/register-data",
+                url: "http://"+IP+":8081/register/register-data",
                 method: "POST",
                 contentType: "application/json; charset=utf-8",
                 data: JSON.stringify(abc),
@@ -285,7 +285,7 @@ $("#verify_button").on("click", function () {
         $("#otp_button").show();
         $("#aadhaar_number").prop("disabled", true);
         $.ajax({
-            url: "http://localhost:8082/verify",
+            url: "http://"+IP+":8082/verify",
             method: "POST",
             async: true,
             contentType: "application/json; charset=utf-8",
@@ -310,7 +310,7 @@ $("#otp_button").on("click", function () {
     var otp = (_b = $("#otp").val()) === null || _b === void 0 ? void 0 : _b.toString();
     console.log(aadhar, otp);
     $.ajax({
-        url: "http://localhost:8082/verifyOTP",
+        url: "http://"+IP+":8082/verifyOTP",
         method: "POST",
         async: true,
         contentType: "application/json; charset=utf-8",

@@ -6,6 +6,10 @@
   margin: 0;
   font-family: 'Montserrat', sans-serif;
   padding: 0;
+  scroll-behavior: smooth;
+}
+html{
+  scroll-behavior: smooth;
 }
 
 header {

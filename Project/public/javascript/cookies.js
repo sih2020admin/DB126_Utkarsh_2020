@@ -1,5 +1,15 @@
 "use strict";
 console.log("hello cookies");
+
+//if ur developing on server uncomment this IP
+// var IP="165.22.210.37"
+
+
+//if ur developing in ur pc uncomment this IP
+var IP="localhost" 
+
+
+
 function get_cookie(cname) {
     var name = cname + "=";
     var ca = document.cookie.split(';');
@@ -23,6 +33,7 @@ function delete_cookies() {
     document.cookie = "ad_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
     document.cookie = "ad_dept_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
     document.cookie = "ad_org_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+    document.cookie = "digi_access=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
     console.log("written to cookie ", decodeURIComponent(document.cookie));
 }
 function delete_cookies_feild(feild) {

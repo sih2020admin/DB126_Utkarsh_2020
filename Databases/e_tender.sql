@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.6deb5
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Mar 28, 2020 at 02:25 PM
--- Server version: 5.7.28-0ubuntu0.19.04.2
--- PHP Version: 7.2.24-0ubuntu0.19.04.2
+-- Host: localhost
+-- Generation Time: Apr 03, 2020 at 11:32 AM
+-- Server version: 10.4.10-MariaDB
+-- PHP Version: 7.3.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -880,10 +882,10 @@ CREATE TABLE `e_tender_details` (
   `et_tender_desc` text NOT NULL,
   `et_last_date_apply` date NOT NULL,
   `et_bidding_date` date NOT NULL,
-  `et_file_uri` text,
+  `et_file_uri` text DEFAULT NULL,
   `is_delete` tinyint(4) NOT NULL,
   `dept_id` int(4) NOT NULL,
-  `is_approved` tinyint(4) NOT NULL DEFAULT '0'
+  `is_approved` tinyint(4) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -908,7 +910,7 @@ INSERT INTO `e_tender_details` (`et_id`, `et_title`, `et_tender_fee`, `et_tender
 (137, 'qwertyuiop', '89', 'IT345U', 'WERTYUI', '2020-03-21', '2020-03-22', 'qwertyuiop', 0, 1, 0),
 (138, 'testing', '4500', 'T123', 'QWERTYUIO', '2020-03-15', '2020-03-16', '', 0, 1, 0),
 (139, 'Procurement of computers', '1200', 'ITC123', 'Procurement of Computers, Software and Services. The purpose of this policy is to provide a defined process for both the new and recurring procurement (through purchase or lease) of computer hardware, software and services using Washington University funds or grant funds administered by Washington University.', '2020-03-10', '2020-03-13', 'https://www.youtube.com/watch?v=u8XFFTWwSvY&feature=youtu.be', 0, 1, 0),
-(140, 'new tender', '1233', 'ITNEW', 'qwertyui', '2020-03-31', '2020-04-01', 'qwertyu', 0, 1, 0),
+(140, 'new tender', '1233', 'ITNEW', 'qwertyui', '2020-04-29', '2020-04-30', 'qwertyu', 0, 1, 0),
 (141, 'Procurement of  with transaction', '1200', 'ITC123', 'Procurement of Computers, Software and Services. The purpose of this policy is to provide a defined process for both the new and recurring procurement (through purchase or lease) of computer hardware, software and services using Washington University funds or grant funds administered by Washington University.', '2020-03-10', '2020-03-13', 'https://www.youtube.com/watch?v=u8XFFTWwSvY&feature=youtu.be', 0, 1, 0),
 (142, '6969', '69', 'IT6969', '6969', '2020-03-28', '2020-03-29', '', 0, 1, 0);
 
@@ -997,7 +999,8 @@ INSERT INTO `log_in_details` (`login_id`, `user_name`, `password`, `role_id`, `v
 (5, 'new1', 'new', 2, 9, NULL),
 (7, 'new12', 'new', 2, 11, NULL),
 (9, 'new123', 'new', 2, 13, NULL),
-(10, 'admin', 'admin', 1, NULL, 1);
+(10, 'admin', 'admin', 1, NULL, 1),
+(11, 'sankey123', '1234567', 2, 19, NULL);
 
 -- --------------------------------------------------------
 
@@ -1144,7 +1147,8 @@ INSERT INTO `vendor_details` (`vd_id`, `v_name`, `v_address`, `v_yoe`, `v_email`
 (40, 'seueria industry', 'andheri', '2019', 'sequeria@gmail.com', '7894561230', 'N1', 11, -1, 109, '400708', '1', 'Q1', '0', 'N1'),
 (41, 'viraj', 'viraj', '2017', 'viraj@gmail.com', '7894561230', 'ASDFGHJK', 21, -1, 2134, '400708', '3', 'QWERTYU', '0', 'QWERTYU'),
 (43, 'z', 'z', '2011', 'z@gmail.com', '7894561212', 'z', 11, -1, 1113, '478554', '3', 'z', '0', 'z'),
-(56, 'high', 'high', '2018', 'high@gmail.com', '7894561230', 'z1', 1, -1, 101, '789456', '2', 'QWERTY123p', '0', 'QWERTY1234QWERp');
+(56, 'high', 'high', '2018', 'high@gmail.com', '7894561230', 'z1', 1, -1, 101, '789456', '2', 'QWERTY123p', '0', 'QWERTY1234QWERp'),
+(57, 'sankey solutions', 'bhandup', '2000', 'meetsanket24@gmail.com', '9702717188', 'ckmkb', 21, -1, 2120, '400078', '0', '5656565656', '0', '464646464646464');
 
 -- --------------------------------------------------------
 
@@ -1173,22 +1177,24 @@ CREATE TABLE `v_contact_details` (
   `vcd_contact` varchar(10) NOT NULL,
   `vcd_email` varchar(25) NOT NULL,
   `vcd_designation` varchar(20) NOT NULL,
-  `vd_id` int(11) NOT NULL
+  `vd_id` int(11) NOT NULL,
+  `digi_access` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `v_contact_details`
 --
 
-INSERT INTO `v_contact_details` (`vcd_id`, `vcd_name`, `vcd_title`, `vcd_dob`, `vcd_aadhar`, `vcd_contact`, `vcd_email`, `vcd_designation`, `vd_id`) VALUES
-(1, 'winston sequeria', 'Mr.', '16-6-1999', '456745674567', '8975647845', 'winstonsequeria@gmail.com', 'CEO', 1),
-(7, 'winston sequeria', 'Mr', '1999-16-6', '456745674567', '7894561230', 'winstonsequeria@gmail.com', 'CEO', 25),
-(8, 'winston sequeria', 'Mr', '1999-16-6', '456745674567', '7894561230', 'winstonsequeria@gmail.com', 'CEO', 33),
-(9, 'winston sequeria', 'Mr', '1999-16-6', '456745674567', '7894561230', 'winstonsequeria@gmail.com', 'CEO', 35),
-(10, 'winston sequeria', 'Mr', '1999-16-6', '456745674567', '7894561230', 'winstonsequeria@gmail.com', 'CEO', 36),
-(11, 'winston sequeria', 'Mr', '1999-16-6', '456745674567', '7894561230', 'winstonsequeria@gmail.com', 'CEO', 38),
-(13, 'winston sequeria', 'Mr', '1999-16-6', '456745674567', '7894561230', 'winstonsequeria@gmail.com', 'CEO', 40),
-(18, 'viraj', 'Mr', '2020-03-03', '456745674567', '7894561230', 'viraj@gmail.com', 'CEO', 56);
+INSERT INTO `v_contact_details` (`vcd_id`, `vcd_name`, `vcd_title`, `vcd_dob`, `vcd_aadhar`, `vcd_contact`, `vcd_email`, `vcd_designation`, `vd_id`, `digi_access`) VALUES
+(1, 'winston sequeria', 'Mr.', '16-6-1999', '456745674567', '8975647845', 'winstonsequeria@gmail.com', 'CEO', 1, 0),
+(7, 'winston sequeria', 'Mr', '1999-16-6', '456745674567', '7894561230', 'winstonsequeria@gmail.com', 'CEO', 25, 0),
+(8, 'winston sequeria', 'Mr', '1999-16-6', '456745674567', '7894561230', 'winstonsequeria@gmail.com', 'CEO', 33, 0),
+(9, 'winston sequeria', 'Mr', '1999-16-6', '456745674567', '7894561230', 'winstonsequeria@gmail.com', 'CEO', 35, 0),
+(10, 'winston sequeria', 'Mr', '1999-16-6', '456745674567', '7894561230', 'winstonsequeria@gmail.com', 'CEO', 36, 0),
+(11, 'winston sequeria', 'Mr', '1999-16-6', '456745674567', '7894561230', 'winstonsequeria@gmail.com', 'CEO', 38, 0),
+(13, 'winston sequeria', 'Mr', '1999-16-6', '456745674567', '7894561230', 'winstonsequeria@gmail.com', 'CEO', 40, 0),
+(18, 'viraj', 'Mr', '2020-03-03', '456745674567', '7894561230', 'viraj@gmail.com', 'CEO', 56, 0),
+(19, 'Sanket Deshmukh', 'Mr', '2000-05-13', '070707070707', '9702717188', 'meetsanket24@gmail.com', 'Manager', 57, 0);
 
 --
 -- Indexes for dumped tables
@@ -1322,46 +1328,55 @@ ALTER TABLE `v_contact_details`
 --
 ALTER TABLE `admin_detail`
   MODIFY `ad_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `districts`
 --
 ALTER TABLE `districts`
   MODIFY `d_id` tinyint(4) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `e_tender_details`
 --
 ALTER TABLE `e_tender_details`
   MODIFY `et_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=143;
+
 --
 -- AUTO_INCREMENT for table `e_tender_vendor`
 --
 ALTER TABLE `e_tender_vendor`
   MODIFY `etd_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT for table `file_uri`
 --
 ALTER TABLE `file_uri`
   MODIFY `furi_id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `log_in_details`
 --
 ALTER TABLE `log_in_details`
-  MODIFY `login_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `login_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
 --
 -- AUTO_INCREMENT for table `states`
 --
 ALTER TABLE `states`
   MODIFY `st_id` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+
 --
 -- AUTO_INCREMENT for table `vendor_details`
 --
 ALTER TABLE `vendor_details`
-  MODIFY `vd_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `vd_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+
 --
 -- AUTO_INCREMENT for table `v_contact_details`
 --
 ALTER TABLE `v_contact_details`
-  MODIFY `vcd_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `vcd_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
 --
 -- Constraints for dumped tables
 --
@@ -1409,6 +1424,7 @@ ALTER TABLE `log_in_details`
 --
 ALTER TABLE `v_contact_details`
   ADD CONSTRAINT `v_contact_details_ibfk_1` FOREIGN KEY (`vd_id`) REFERENCES `vendor_details` (`vd_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

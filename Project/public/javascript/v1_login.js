@@ -2,6 +2,7 @@ var x = document.getElementById("enter_otp");
 var y = document.getElementById("otp");
 var z = document.getElementById("confirm");
 var login_button = document.getElementById("login");
+var message;
 document.getElementById('username').value = "";
 console.log("hello v1_login")
 delete_cookies();
@@ -20,7 +21,7 @@ function show()
 	}
 	else{
 		var xhr = new XMLHttpRequest();
-		var url = "http://localhost:8081/login/";
+		var url = "http://"+IP+":8081/login/";
 		xhr.open("POST" ,url);
 		xhr.setRequestHeader('Content-Type','application/json');
 		xhr.send(JSON.stringify({"username":userid,"password": passw}));
@@ -30,7 +31,7 @@ function show()
 
 		xhr.onload = function(){
 			if(this.status==200){
-				var message = JSON.parse(this.responseText);
+				message = JSON.parse(this.responseText);
 				//alert(message.aadhar);
 				document.getElementById("username").disabled=true;
 				document.getElementById("pass").disabled=true;
@@ -42,13 +43,9 @@ function show()
 				y.style.display = "inline-block";
 				z.style.display = "";
 
-				var vcd_id_c =message.vcd_id;
-				var vd_id_c=message.vd_id;
-				add_to_cookie("vcd_id",vcd_id_c);
-				add_to_cookie("vd_id",vd_id_c);
-
+				
 				document.getElementById("confirm").onclick = function(){
-					var url = "http://localhost:8082/verifyOTP";
+					var url = "http://"+IP+":8082/verifyOTP";
 					xhr.open("POST" ,url);
 					xhr.setRequestHeader('Content-Type','application/json');
 					xhr.send(JSON.stringify({"aadharno":message.aadhar,"OTP": y.value}));
@@ -57,6 +54,13 @@ function show()
 						if(this.status == 200){
 							//alert("OTP verified");
 							document.getElementById("otp").disabled=true;
+							var vcd_id_c =message.vcd_id;
+							var vd_id_c=message.vd_id;
+							var digi_access=message.digi_access;
+							add_to_cookie("vcd_id",vcd_id_c);
+							add_to_cookie("vd_id",vd_id_c);
+							add_to_cookie("digi_access",digi_access);
+
 
 							setTimeout(function(){
     								location="v3_see_tender.html"
