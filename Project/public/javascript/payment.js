@@ -3,7 +3,7 @@ $("#bg_tsc_button").on("click", function (e) {
     var _a, _b, _c;
     e.preventDefault();
     var check_form = 0;
-    var amount = (_a = $("#amount").val()) === null || _a === void 0 ? void 0 : _a.toString();
+    var amount = (_a = $("#amount1").val()) === null || _a === void 0 ? void 0 : _a.toString();
     var email = (_b = $("#email").val()) === null || _b === void 0 ? void 0 : _b.toString();
     var mobile = (_c = $("#mobile").val()) === null || _c === void 0 ? void 0 : _c.toString();
     check_form = form_validate(amount, email, mobile);

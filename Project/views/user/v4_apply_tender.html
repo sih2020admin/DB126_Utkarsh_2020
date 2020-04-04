@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/nav.css">
     <link rel="stylesheet" href="css/apply_tender.css">
+        <link rel="stylesheet" href="css/payment.css">
     <title>apply tender</title>
 </head>
 <body>
@@ -47,7 +48,31 @@
           </table>
         <br><div class="button_div"><button type="submit" class="save_button">Save</button></div>
       </div>
-
+      <div class="cont2">
+        <form id="body_content" method="POST" action="http://localhost:8081/payment">
+          <div class="content">
+              <h1>Payment</h1><br>
+              <table style="text-align:left;">
+                  <tr>
+                      <td><label for="amount1">Amount</label></td>
+                      <td><input type="number" id="amount1" name="amount" placeholder="Enter Amount"></td>
+                  </tr>
+                  <tr>
+                      <td><label for="email">Email ID</label></td>
+                      <td><input id="email" type="email" name="email" placeholder="Enter Email"></td>
+                  </tr>
+            
+                  <tr>
+                      <td><label for="mobile">Mobile/Cell Number</label>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                      <td><input id="mobile" type="number" name="mobile" placeholder="Enter Mobile/Cell Number"></td>
+                  </tr>
+              </table>
+          </div>
+          <input type="submit" value="submit" id="bg_tsc_button">
+          <!-- <button id="bg_tsc_button">Begin Transaction</button> -->
+      </form>
+      <p id="error-para"></p>
+      </div>
       <div class="cont">
         <h3>Upload Documents(process not yet finalised for uplaoding )</h3><br>
         <label>Techincal Files <a href="#">(pdf format) </label></a> </br></br> 
@@ -73,5 +98,7 @@
             nav_bar.insertAdjacentHTML('beforeend','<a id="log_a" href="v1_login.html">Log out</a>');
         }
 </script>
+<script src="javascript/jquery-3.4.1.min.js"></script>
+<script src="javascript/payment.js" ></script>
 <script type="text/javascript" src="javascript/v4_apply_tender.js"></script>
 </html>
