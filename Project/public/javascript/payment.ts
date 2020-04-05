@@ -3,7 +3,7 @@
 $("#bg_tsc_button").on("click",(e)=>{
     e.preventDefault()
     let check_form = 0
-    let amount = $("#amount").val()?.toString()! 
+    let amount = $("#amount1").val()?.toString()! 
     let email = $("#email").val()?.toString()!
     let mobile = $("#mobile").val()?.toString()!
     check_form = form_validate(amount,email,mobile)

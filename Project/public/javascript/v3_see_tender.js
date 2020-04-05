@@ -41,7 +41,7 @@ xhr.onload = function () {
     }
 }
 
-xhr.open("POST", "http://localhost:8081/gettenderlist");
+xhr.open("POST", "http://"+IP+":8081/gettenderlist");
 
 xhr.send(data);
 
