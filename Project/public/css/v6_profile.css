@@ -12,11 +12,17 @@ body {
   color: var(--text_color);
 }
 
-h4, h3, h2 {
+h4, h2 {
   margin-top: 20px;
   font-family: 'Montserrat', 'sans serif';
   color: var(--main_color);
   text-align: center;
+}
+
+h3 {
+  margin-top: 20px;
+  font-family: 'Montserrat', 'sans serif';
+  color: var(--main_color);
 }
 
 .main {
