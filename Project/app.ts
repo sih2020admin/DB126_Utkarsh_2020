@@ -14,7 +14,7 @@ var crud_admin = require("./routes/crud_admin");
 var list_tender = require("./routes/list_tender");
 var tender_approval = require("./routes/tender_approval")
 var vendor_dashboard = require("./routes/vendor_dashboard")
-var port = process.env.PORT
+var port = 8081 || process.env.PORT
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
