@@ -13,7 +13,7 @@ var __values = (this && this.__values) || function(o) {
 var et_id = location.toString().split("=%20")[1];
 console.log(et_id);
 $.ajax({
-    url: "http://localhost:8081/get_application",
+    url: "http://"+IP+":8081/get_application",
     async: true,
     method: "POST",
     data: {
@@ -56,7 +56,7 @@ $.ajax({
 function approve(value) {
     alertify.confirm('Final Confirmation', 'Would you like to approve this application for this tender?', function () {
         $.ajax({
-            url: "http://localhost:8081/approve_tender_application",
+            url: "http://"+IP+":8081/approve_tender_application",
             async: true,
             method: "POST",
             data: {
