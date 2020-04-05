@@ -1,9 +1,11 @@
 import { Application } from "express"
 import express from "express"
+import dotenv from "dotenv"
 import cors from "cors"
 import path from "path"
 import misc from './routes/misc'
 import payment from "./routes/payment-server"
+dotenv.config()
 const app:Application = express()
 var login = require("./routes/login");
 var register = require("./routes/register-server");
@@ -12,8 +14,8 @@ var crud_admin = require("./routes/crud_admin");
 var list_tender = require("./routes/list_tender");
 var tender_approval = require("./routes/tender_approval")
 var vendor_dashboard = require("./routes/vendor_dashboard")
-//var port = process.env.PORT || 8080
-var port = 8081
+var port = process.env.PORT
+console.log(process.env.HOST)
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
