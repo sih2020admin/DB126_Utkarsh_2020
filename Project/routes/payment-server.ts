@@ -1,84 +1,13 @@
-/* import express from 'express'
-import { Router, Request, Response } from "express"
+import express,{ Router, Request, Response } from 'express'
+import https from 'https'
 const checksum = require("./paytm/checksum.js")
 
 const router:Router = express.Router()
-const salt:string = "rTyIgCQYeh5YQzSm";
-var params = new Map<string,string>()
-params.set("MID","jiitCC65479360829906")
-params.set("WEBSITE","WEBSTAGING")
-params.set("INDUSTRY_TYPE_ID","Retail")
-params.set("CHANNEL_ID","WEB")
-params.set("ORDER_ID","")
-params.set("CUST_ID","")
-params.set("MOBILE_NO","")
-params.set("EMAIL","")
-params.set("TXN_AMOUNT","")
-params.set("CALLBACK_URL","http://165.22.210.37:8080/redirect")
-
-var params1= {
-    "MID" : "jiitCC65479360829906",
-    "WEBSITE" : "WEBSTAGING",
-    "INDUSTRY_TYPE_ID" : "Retail",
-    "CHANNEL_ID" : "WEB",
-    "ORDER_ID" : "",
-    "CUST_ID" : "",
-    "MOBILE_NO" : "",
-    "EMAIL" : "",
-    "TXN_AMOUNT" : "",
-    "CALLBACK_URL" : "http://165.22.210.37:8080/redirect",
-}; 
-router.post("/",(request:Request,response:Response)=>{
-    params.set("ORDER_ID","ORD" + Math.floor(Math.random()*10**10).toString())
-    params.set("CUST_ID","CUST" + Math.floor(Math.random()*10**10).toString())
-    params.set("MOBILE_NO",request.body.mobile)
-    params.set("EMAIL",request.body.email)
-    params.set("TXN_AMOUNT",request.body.amount)
-    
-    params1["ORDER_ID"] = "ORD" + Math.floor(Math.random()*10**10).toString()
-    params1["CUST_ID"] = "CUST" + Math.floor(Math.random()*10**10).toString()
-    params1["MOBILE_NO"] = request.body.mobile
-    params1["EMAIL"] = request.body.email
-    params1["TXN_AMOUNT"] = request.body.amount
-    console.log(params1)
-    checksum.genchecksum(params1,salt,(error:any,result:any)=>{
-        var url:string = "https://securegw-stage.paytm.in/order/process"
-        response.writeHead(200, {'Content-Type': 'text/html'});
-		response.write('<html>');
-		response.write('<head>');
-		response.write('<title>Merchant Checkout Page</title>');
-		response.write('</head>');
-		response.write('<body>');
-		response.write('<center><h1>Please do not refresh this page...</h1></center>');
-		response.write('<form method="post" action="' + url + '" name="paytm_form">');
-        for(var x of params){
-            response.write('<input type="hidden" name="' + x[0].toString() + '" value="' + x[1].toString() + '">')
-    
-        }   
-		response.write('<input type="hidden" name="CHECKSUMHASH" value="' + result + '">');
-		response.write('</form>');
-		response.write('<script type="text/javascript">');
-		response.write('document.paytm_form.submit();');
-		response.write('</script>');
-		response.write('</body>');
-		response.write('</html>');
-        response.end();
-	
-    })
-
-})
-
-export default router */
-import express from 'express'
-import { Router, Request, Response } from "express"
-const checksum = require("./paytm/checksum.js")
-
-const router:Router = express.Router()
-const salt:string = "rTyIgCQYeh5YQzSm";
-
+const salt:string = process.env.KEY!;
+console.log()
 
 var params= {
-    "MID" : "jiitCC65479360829906",
+    "MID" : process.env.MID!,
     "WEBSITE" : "WEBSTAGING",
     "INDUSTRY_TYPE_ID" : "Retail",
     "CHANNEL_ID" : "WEB",
@@ -89,6 +18,13 @@ var params= {
     "TXN_AMOUNT" : "",
     "CALLBACK_URL" : "http://165.22.210.37:8080/redirect",
 };
+
+var verify_params = {
+    "MID":process.env.MID!,
+    "ORDERID":"",
+    "CHECKSUMHASH":""
+
+}
 router.post("/",(request:Request,response:Response)=>{
     params["ORDER_ID"] = "ORD" + Math.floor(Math.random()*10**10).toString()
     params["CUST_ID"] = "CUST" + Math.floor(Math.random()*10**10).toString()
@@ -121,6 +57,41 @@ router.post("/",(request:Request,response:Response)=>{
 	
     })
 
+})
+
+router.post("/redirect",(request:Request,resp:Response)=>{
+    verify_params["ORDERID"] = params['ORDER_ID'];
+    checksum.genchecksum(verify_params, salt, function(err:any, checksum:any){
+    verify_params["CHECKSUMHASH"] = checksum;
+    var post_data = JSON.stringify(verify_params);
+    var options = {
+        /* for Staging */
+        hostname: 'securegw-stage.paytm.in',
+        /* for Production */
+        // hostname: 'securegw.paytm.in',
+        port: 443,
+        path: '/order/status',
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Content-Length': post_data.length
+        }
+    };
+    var response = "";
+    var post_req = https.request(options, function(post_res) {
+        post_res.on('data', function (chunk) {
+            response += chunk;
+        });
+
+        post_res.on('end', function(){
+            console.log('Response: ', response);
+        });
+    });
+
+    // post the data
+    post_req.write(post_data);
+    post_req.end();
+});
 })
 
 export default router

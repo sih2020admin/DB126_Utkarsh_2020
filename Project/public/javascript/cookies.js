@@ -1,4 +1,5 @@
 "use strict";
+var IP = "localhost";
 console.log("hello cookies");
 function get_cookie(cname) {
     var name = cname + "=";
