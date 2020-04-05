@@ -1,6 +1,7 @@
 :root{
     --main_color: #663EFD;
     --text_color: #000000;
+    --accent-color: #a6a6a6;
 }
 .container{
     width: 100%;
@@ -45,17 +46,17 @@ p{
     display: inline-flex;
 }
 .RnoLabel{
-    color: #A6A6A6;
+    color: var(--accent-color);
     font-family: 'Montserrat', 'sans-serif';
 }
 .OdateLabel{
     margin-left: 90px;
-    color: #A6A6A6;
+    color: var(--accent-color);
     font-family: 'Montserrat', 'sans-serif';
 }
 .BdateLabel{
     margin-left: 90px;
-    color: #A6A6A6;
+    color: var(--accent-color);
     font-family: 'Montserrat', 'sans-serif';
 }
 .para{
