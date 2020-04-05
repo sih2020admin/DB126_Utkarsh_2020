@@ -1,5 +1,5 @@
 
-if(get_cookie('ad_id') == '')
+/* if(get_cookie('ad_id') == '')
 {
         window.location.href = "/1admin_login.html";
     }
@@ -11,7 +11,8 @@ if(get_cookie("ad_dept_id") === ""){
 else{
     dept_id = get_cookie('ad_dept_id')
 }
-
+ */
+var dept_id = "1"
 $.ajax({
     url:"http://localhost:8081/gettenderlist_bid",
     method:"POST",
