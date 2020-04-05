@@ -1,6 +1,6 @@
 :root {
   --main_color: #663EFD;
-  --text_color: #663EFD;
+  --text_color: #000000;
 }
 
 .container {
@@ -52,6 +52,7 @@ p {
   font-weight: bold;
   font-size: 25px;
   font-family: 'Montserrat', 'sans-serif';
+  color: var(--main_color);
 }
 
 .Tdetails p {
@@ -61,16 +62,19 @@ p {
 }
 
 .RnoLabel {
+  color: #A6A6A6;
   font-family: 'Montserrat', 'sans-serif';
 }
 
 .OdateLabel {
   margin-left: 90px;
+  color: #A6A6A6;
   font-family: 'Montserrat', 'sans-serif';
 }
 
 .BdateLabel {
   margin-left: 90px;
+  color: #A6A6A6;
   font-family: 'Montserrat', 'sans-serif';
 }
 
