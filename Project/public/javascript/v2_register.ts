@@ -1,3 +1,4 @@
+var baseURL:string = `${location.protocol}//${location.host}`
 var username:string;
 var password:string;
 var title:string;
@@ -39,7 +40,7 @@ function load_years(){
 // loading states from database
 function load_states(){
     $.ajax({
-        url:"http://localhost:8081/misc/get-state",
+        url:`${baseURL}/misc/get-state`,
         method:"POST",
         async:true,
         success:(response)=>{
@@ -66,7 +67,7 @@ function load_states(){
 // loading cities dynamically by taking checking state field after each change
 function load_cities(state_code:string){
     $.ajax({
-        url:"http://localhost:8081/misc/get-city",
+        url:`${baseURL}/misc/get-city`,
         method:"POST",
         contentType:"application/json; charset=utf-8",
         data:JSON.stringify({
@@ -109,7 +110,7 @@ $("#state").change(()=>{
 // loading legal status field from databse
 function load_legal_status(){
     $.ajax({
-        url:"http://localhost:8081/misc/get-legal-status",
+        url:`${baseURL}/misc/get-legal-status`,
         method:"POST",
         async:true,
         success:(response)=>{
@@ -180,7 +181,7 @@ $("#submit_button").on("click",()=>{
                 }
             }
             $.ajax({
-                url:"http://localhost:8081/register/register-data",
+                url:`${baseURL}/register/register-data`,
                 method:"POST",
                 contentType:"application/json; charset=utf-8",
                 data:JSON.stringify(abc),
@@ -250,7 +251,7 @@ $("#verify_button").on("click",()=>{
         $("#otp_button").show()
         $("#aadhaar_number").prop("disabled", true);
         $.ajax({
-            url:"http://localhost:8082/verify",
+            url:`${location.protocol}//${location.hostname}:8082/verify`,
             method:"POST",
             async:true,
             contentType:"application/json; charset=utf-8",

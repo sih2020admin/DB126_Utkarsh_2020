@@ -11,9 +11,9 @@ var __values = (this && this.__values) || function(o) {
     throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
 };
 var et_id = location.toString().split("=%20")[1];
-console.log(et_id);
+var baseURL = location.protocol + "//" + location.host;
 $.ajax({
-    url: "http://localhost:8081/get_application",
+    url: baseURL + "/get_application",
     async: true,
     method: "POST",
     data: {
@@ -56,7 +56,7 @@ $.ajax({
 function approve(value) {
     alertify.confirm('Final Confirmation', 'Would you like to approve this application for this tender?', function () {
         $.ajax({
-            url: "http://localhost:8081/approve_tender_application",
+            url: baseURL + "/approve_tender_application",
             async: true,
             method: "POST",
             data: {

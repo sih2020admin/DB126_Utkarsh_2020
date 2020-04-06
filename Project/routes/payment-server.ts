@@ -21,10 +21,43 @@ var params= {
 
 var verify_params = {
     "MID":process.env.MID!,
-    "ORDERID":"",
+    "ORDERID":"ORD9548155614",
     "CHECKSUMHASH":""
 
 }
+
+checksum.genchecksum(verify_params, salt, function(err:any, checksum:any){
+verify_params["CHECKSUMHASH"] = checksum;
+var post_data = JSON.stringify(verify_params);
+var options = {
+    /* for Staging */
+    hostname: 'securegw-stage.paytm.in',
+    /* for Production */
+    // hostname: 'securegw.paytm.in',
+    port: 443,
+    path: '/order/status',
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'Content-Length': post_data.length
+    }
+};
+var response = "";
+var post_req = https.request(options, function(post_res) {
+    post_res.on('data', function (chunk) {
+        response += chunk;
+    });
+
+    post_res.on('end', function(){
+        console.log('Response: ', response);
+    });
+});
+
+// post the data
+post_req.write(post_data);
+post_req.end();
+});
+    
 router.post("/",(request:Request,response:Response)=>{
     params["ORDER_ID"] = "ORD" + Math.floor(Math.random()*10**10).toString()
     params["CUST_ID"] = "CUST" + Math.floor(Math.random()*10**10).toString()

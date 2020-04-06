@@ -1,9 +1,8 @@
 var et_id = location.toString().split("=%20")[1]
 declare var alertify:any
-
-console.log(et_id)
+var baseURL:string = `${location.protocol}//${location.host}`
 $.ajax({
-    url:"http://localhost:8081/get_application",
+    url:`${baseURL}/get_application`,
     async:true,
     method:"POST",
     data:{
@@ -47,7 +46,7 @@ $.ajax({
 function approve(value:string){
     alertify.confirm('Final Confirmation', 'Would you like to approve this application for this tender?', function(){ 
         $.ajax({
-            url:"http://localhost:8081/approve_tender_application",
+            url:`${baseURL}/approve_tender_application`,
             async:true,
             method:"POST",
             data:{
