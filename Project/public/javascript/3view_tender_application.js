@@ -10,19 +10,22 @@ var __values = (this && this.__values) || function(o) {
     };
     throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
 };
-if (get_cookie('ad_id') == '') {
-    window.location.href = "/1admin_login.html";
+/* if(get_cookie('ad_id') == '')
+{
+        window.location.href = "/1admin_login.html";
+    }
+var dept_id:string
+if(get_cookie("ad_dept_id") === ""){
+    console.log("123")
+    dept_id = "1"
 }
-var dept_id;
-if (get_cookie("ad_dept_id") === "") {
-    console.log("123");
-    dept_id = "1";
+else{
+    dept_id = get_cookie('ad_dept_id')
 }
-else {
-    dept_id = get_cookie('ad_dept_id');
-}
+ */
+var dept_id = "1";
 $.ajax({
-    url: "http://"+IP+":8081/gettenderlist_bid",
+    url: "http://localhost:8081/gettenderlist_bid",
     method: "POST",
     async: true,
     data: {
@@ -65,7 +68,7 @@ $.ajax({
     var dept_id = $("#department").val()?.toString()!
     $("#tender_list").empty()
     $.ajax({
-        url:"http://"+IP+":8081/gettenderlist_bid",
+        url:"http://localhost:8081/gettenderlist_bid",
         method:"POST",
         async:true,
         data:{

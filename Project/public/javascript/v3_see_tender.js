@@ -27,7 +27,7 @@ xhr.onload = function () {
                             <p id="Bdate">`+response[i].et_bidding_date+`</p>
                         </div><br>  
                         <p class="para">`+response[i].et_tender_desc+`</p>
-                        <br><input type="button" name="apply" value='apply' class="apply" onclick="apply(`+i+`)">
+                        <br><button name="apply" value='apply' class="apply" onclick="apply(`+i+`)">Apply</button>
                     </div>`;
                     
                     cont_div.insertAdjacentHTML('beforeend', div);

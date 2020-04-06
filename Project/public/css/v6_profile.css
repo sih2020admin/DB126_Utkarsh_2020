@@ -1,14 +1,29 @@
 :root {
   --main_color: #663EFD;
+  --text_color: #000000;
+  --accent-color: #a6a6a6;
+}
+
+* {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
 }
 
 body {
-  text-align: center;
-  color: var(--main_color);
+  color: var(--text_color);
 }
 
-h3, h2 {
+h4, h2 {
   margin-top: 20px;
+  font-family: 'Montserrat', 'sans serif';
+  color: var(--main_color);
+  text-align: center;
+}
+
+h3 {
+  margin-top: 20px;
+  font-family: 'Montserrat', 'sans serif';
+  color: var(--main_color);
 }
 
 .main {
@@ -22,7 +37,7 @@ h3, h2 {
   -ms-flex-line-pack: justify;
       align-content: space-between;
   font-family: sans-serif;
-  margin-top: 40px;
+  margin-top: 60px;
   border: none;
   outline: none;
 }
@@ -36,50 +51,96 @@ h3, h2 {
       -ms-flex-direction: column;
           flex-direction: column;
   width: 20%;
-  height: 620px;
-  margin-left: 20px;
-  border-radius: 10px;
-  -webkit-box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
-          box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
+  height: 100%;
+  margin-left: 0;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background-color: var(--main_color);
   position: fixed;
 }
 
 .tab button {
-  width: 200px;
+  font-family: 'Montserrat', 'sans-serif';
+  width: 100%;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
   font-size: 16px;
   font-weight: 300;
-  border-radius: 5px;
   background-color: var(--main_color);
-  border: 0.4px solid var(--main_color);
+  border: none;
   outline: none;
-  padding: 6px 20px 6px 20px;
+  padding: 6px 40px 6px 10%;
   color: #ffffff;
   margin-top: 20px;
   margin-left: auto;
   margin-right: auto;
+  text-align: left;
+  position: relative;
 }
 
 .tab button:hover {
   cursor: pointer;
   background-color: #ffffff;
   color: var(--main_color);
-  border: 0.4px solid var(--main_color);
+  border: none;
+}
+
+.tab .button:after {
+  position: absolute;
+  bottom: 0;
+  height: 0;
+  width: 0;
+  right: 0;
+  border: 25px solid transparent;
+  border-bottom-color: red;
+  border-right-color: red;
+  content: "";
 }
 
 .tabcontent {
   -webkit-box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
           box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
-  margin: auto 40px 40px 23%;
-  padding: 0 10px 10px 10px;
-  width: 85%;
+  margin: 30px 40px 40px 22%;
+  padding: 10px 10px 10px 40px;
+  width: 100%;
   max-width: 1200px;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
   min-height: 620px;
   border-radius: 10px;
+}
+
+strong, .RnoLabel, .Id, .OdateLabel {
+  font-family: 'Open Sans', 'Sans serif';
+  font-weight: 100;
+  color: var(--accent-color);
+  size: .5rem;
+}
+
+table {
+  width: 100%;
+  text-align: left;
+}
+
+table td {
+  padding: 10px;
+}
+
+.mytender {
+  margin-top: 20px;
+  margin-right: 50px;
+  width: 100%;
+  text-align: left;
+  border-radius: 15px;
+  -webkit-box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
+          box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
+  border: 1px solid var(--main_color);
+}
+
+.mytender td:nth-child(1) {
+  white-space: nowrap;
+  padding: 10px;
 }
 /*# sourceMappingURL=v6_profile.css.map */
