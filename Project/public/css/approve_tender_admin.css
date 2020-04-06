@@ -1,7 +1,12 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
-@import url("https://fonts.googleapis.com/css?family=Montserrat:500&display=swap");
 :root {
   --main_color: #663EFD;
+  --text_color: #000000;
+  --accent-color: #a6a6a6;
+}
+
+* {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
 }
 
 body {
@@ -10,96 +15,74 @@ body {
           align-items: center;
 }
 
-h1, h3, label {
-  color: var(--main_color);
-  text-align: center;
+p {
+  display: inline;
+  color: var(--text_color);
 }
 
-h1 {
-  margin-top: 20px;
+label {
+  font-size: medium;
+  color: var(--accent-color);
 }
 
-.approve_table {
+#main_content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-flow: row wrap;
+      flex-flow: row wrap;
+  -ms-flex-line-pack: end;
+      align-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   margin: 40px;
 }
 
-.approve_table table {
+.approve_details {
+  background-color: white;
+  width: 350px;
+  height: auto;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
+          box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
+  -webkit-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
+}
+
+.button_div {
   text-align: center;
-  margin: auto;
-  max-width: 100%;
-  border-radius: 1em;
-  border-collapse: collapse;
-  overflow: hidden;
-  -webkit-box-shadow: 3px 4px 6px -6px rgba(103, 62, 253, 0.507), -3px -4px 6px -6px rgba(103, 62, 253, 0.507);
-          box-shadow: 3px 4px 6px -6px rgba(103, 62, 253, 0.507), -3px -4px 6px -6px rgba(103, 62, 253, 0.507);
 }
 
-.approve_table table a {
-  text-decoration: none;
-}
-
-.approve_table table button {
+.button_div button {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  padding: 5px;
+  padding: 5px 10px;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
   font-size: 16px;
   font-weight: 300;
-  margin: 5px;
+  margin: 20px auto 0 auto;
   border-radius: 5px;
   background-color: var(--main_color);
   border: 0.4px solid var(--main_color);
   color: #ffffff;
 }
 
-.approve_table table button:hover {
-  cursor: pointer;
-  background-color: #ffffff;
-  color: var(--main_color);
-  border: 0.4px solid var(--main_color);
-}
-
-.approve_table tr:nth-child(odd) {
-  background-color: rgba(141, 111, 251, 0.061);
-}
-
-.approve_table th {
-  background-color: var(--main_color);
-  color: #fff;
-  font-weight: lighter;
-}
-
-.approve_table th, .approve_table td {
-  padding: 0.5em 1em;
-}
-
-#box {
-  margin: auto;
-  color: var(--main_color);
-  text-align: center;
-}
-
-#box button {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  padding: 5px 10px 5px 10px;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
-  font-size: 16px;
-  font-weight: 300;
-  margin-top: 20px;
-  border-radius: 5px;
-  background-color: var(--main_color);
-  border: 0.4px solid var(--main_color);
-  color: #ffffff;
-}
-
-#box button:hover {
+.button_div button:hover {
   cursor: pointer;
   background-color: #ffffff;
   color: var(--main_color);

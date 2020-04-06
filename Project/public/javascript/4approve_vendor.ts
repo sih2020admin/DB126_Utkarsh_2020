@@ -15,18 +15,19 @@ $.ajax({
             $( "<div></div>", {
                 class:"vendor_details",
                 id:count,
-                html:`  <div class="hello"><label for="v_name${count}">Name</label><p id="v_name${count}"> ${x.v_name}</p></div>
-                        <label for="v_mobile${count}">Mobile Number</label><p id="v_mobile${count}"> ${x.v_mobile}</p>
-                        <label for="v_reg_no${count}">Register Number</label><p id="v_reg_no${count}"> ${x.v_reg_no}</p>
-                        <label for="v_email${count}">Email Address</label><p id="v_email${count}"> ${x.v_email}</p>
-                        <label for="v_gst${count}">GST Number</label><p id="v_gst${count}"> ${x.v_gst}</p>
-                        <label for="v_pan${count}">Pan Number</label><p id="v_pan${count}"> ${x.v_pan}</p>
-                        <label for="v_yoe${count}">Year of Establishment</label><p id="v_yoe${count}"> ${x.v_yoe}</p>
-                        <label for="v_address${count}">Address</label><p id="v_address${count}"> ${x.v_address}</p>
+                html:`  <div class="approve_details">
+                        <label for="v_name${count}">Name</label><p id="v_name${count}"> ${x.v_name}</p><br>
+                        <label for="v_mobile${count}">Mobile Number</label><p id="v_mobile${count}"> ${x.v_mobile}</p><br>
+                        <label for="v_reg_no${count}">Register Number</label><p id="v_reg_no${count}"> ${x.v_reg_no}</p><br>
+                        <label for="v_email${count}">Email Address</label><p id="v_email${count}"> ${x.v_email}</p><br>
+                        <label for="v_gst${count}">GST Number</label><p id="v_gst${count}"> ${x.v_gst}</p><br>
+                        <label for="v_pan${count}">Pan Number</label><p id="v_pan${count}"> ${x.v_pan}</p><br>
+                        <label for="v_yoe${count}">Year of Establishment</label><p id="v_yoe${count}"> ${x.v_yoe}</p><br>
+                        <label for="v_address${count}">Address</label><p id="v_address${count}"> ${x.v_address}</p><br>
                         <input type="hidden" id="et_id${count}" value="${x.et_id}">                       
-                         <input type="hidden" id="etd_id${count}" value="${x.etd_id}">
-                        <label for="v_pincode${count}">Pincode</label><p id="v_pincode${count}"> ${x.v_pincode}</p>
-                        <button id=approve_button${count} onclick=approve(${count})>Approve</button>`
+                        <input type="hidden" id="etd_id${count}" value="${x.etd_id}">
+                        <label for="v_pincode${count}">Pincode</label><p id="v_pincode${count}"> ${x.v_pincode}</p><br>
+                        <div class="button_div"><button id=approve_button${count} onclick=approve(${count})>Approve</button></div></div>`
               }).appendTo("#main_content");
               count ++
         }

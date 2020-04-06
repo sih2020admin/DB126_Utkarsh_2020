@@ -1,5 +1,12 @@
 :root {
   --main_color: #663EFD;
+  --text_color: #000000;
+  --accent-color: #a6a6a6;
+}
+
+* {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
 }
 
 body {
@@ -8,10 +15,12 @@ body {
 
 p {
   display: inline;
+  color: var(--text_color);
 }
 
 label {
   font-size: medium;
+  color: var(--accent-color);
 }
 
 .tender_list2 {
@@ -21,12 +30,13 @@ label {
   height: auto;
   padding: 20px;
   margin: 40px;
-  margin-top: 20px;
+  margin-top: 40px;
+  margin-bottom: 0;
   border-radius: 10px;
-  -webkit-box-shadow: 3px 4px 6px -6px rgba(103, 62, 253, 0.507), -3px -4px 6px -6px rgba(103, 62, 253, 0.507);
-          box-shadow: 3px 4px 6px -6px rgba(103, 62, 253, 0.507), -3px -4px 6px -6px rgba(103, 62, 253, 0.507);
-  -webkit-transition: all .2s ease-in-out;
-  transition: all .2s ease-in-out;
+  -webkit-box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
+          box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
+  -webkit-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
   color: var(--main_color);
 }
 
@@ -47,16 +57,16 @@ select {
 }
 
 button {
-  background-color: #663EFD;
+  background-color: var(--main_color);
   color: #ffffff;
   font-size: 1rem;
   border-radius: 3px;
-  border: 0.3px solid #663EFD;
+  border: 0.3px solid var(--main_color);
   height: 30px;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  padding: 5px;
+  padding: 5px 10px 5px 10px;
   -webkit-transition: 3sec;
   transition: 3sec;
   margin-top: 20px;
@@ -64,8 +74,8 @@ button {
 
 button:hover {
   background-color: #ffffff;
-  color: #663EFD;
-  border: 0.3px solid #663EFD;
+  color: var(--main_color);
+  border: 0.4px solid var(--main_color);
   cursor: pointer;
 }
 /*# sourceMappingURL=3view_tender_application.css.map */

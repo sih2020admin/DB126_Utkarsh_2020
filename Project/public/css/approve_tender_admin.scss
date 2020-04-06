@@ -1,94 +1,65 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Montserrat:500&display=swap');
 :root{
     --main_color: #663EFD;
+    --text_color: #000000;
+    --accent-color: #a6a6a6;
+}  
+*{
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
 }
 body{
     align-items: center;
 }
-h1,h3, label{
-    color: var(--main_color);
-    text-align: center;
+p{
+    display:inline;
+    color: var(--text_color)
 }
-h1{
-    margin-top: 20px;
+label{
+    font-size: medium;
+    color: var(--accent-color);
 }
-.approve_table{
+#main_content{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-flow: row wrap;
+    align-content: flex-end;
+    align-items: center;
+    justify-content: center;
     margin: 40px;
-    table {
-        text-align: center;
-        margin: auto;
-        max-width: 100%;
-        border-radius: 1em;
-        border-collapse: collapse;
-        overflow: hidden;
-        box-shadow: 3px 4px 6px -6px rgba(103, 62, 253, 0.507),
-        -3px -4px 6px -6px rgba(103, 62, 253, 0.507);
-
-        a{
-            text-decoration: none;
-        }
-
-        button{
-        width: fit-content;
-        padding: 5px;
-        height: fit-content;
-        font-size: 16px;
-        font-weight: 300;
-        margin: 5px;
-        border-radius: 5px; 
-        background-color: var(--main_color);
-        border: 0.4px solid var(--main_color);
-        color: #ffffff;
-        }
-
-        button:hover{
-            cursor: pointer;
-            // opacity: 0.5;
-            background-color: #ffffff;
-            color: var(--main_color);
-            border: 0.4px solid var(--main_color);
-        }
-
-    }
-
-    tr:nth-child(odd) {
-    background-color: rgba(141, 111, 251, 0.061)
-    }
-
-    th {
-    background-color: var(--main_color);
-    color: #fff;
-    font-weight: lighter;
-
-    }
-
-    th,td {
-    padding: 0.5em 1em;
-    }
 }
-#box{
-    margin: auto;
-    color: var(--main_color);
+.approve_details{
+    
+    background-color: rgb(255, 255, 255);
+    width: 350px;
+    height: auto;   
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px; 
+    box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
+    // border: 1px solid var(--main_color);
+    transition: all .5s ease-in-out; 
+}
+.button_div{
     text-align: center;
     button{
         width: fit-content;
-        padding: 5px 10px 5px 10px;
+        padding: 5px 10px;
         height: fit-content;
         font-size: 16px;
         font-weight: 300;
-        margin-top: 20px;
+        margin: 20px auto 0 auto;
         border-radius: 5px; 
         background-color: var(--main_color);
         border: 0.4px solid var(--main_color);
         color: #ffffff;
-        }
+    }
 
-        button:hover{
-            cursor: pointer;
-            // opacity: 0.5;
-            background-color: #ffffff;
-            color: var(--main_color);
-            border: 0.4px solid var(--main_color);
-        }
+    button:hover{
+        cursor: pointer;
+        // opacity: 0.5;
+        background-color: #ffffff;
+        color: var(--main_color);
+        border: 0.4px solid var(--main_color);
+    }
 }
