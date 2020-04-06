@@ -40,6 +40,9 @@ $.ajax({
                 console.log("Bad Request")
                 alert("Bad Request")
             }
+            if (xhr.responseText === "Not Found"){
+                alert("No applications")
+            }
         }
     })
 
@@ -72,6 +75,7 @@ function approve(value:string){
                     alertify.error('Bad Request')
                     //alert("Bad Request")
                 }
+            
             }
         })
          },
