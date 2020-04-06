@@ -1,38 +1,17 @@
 :root{
     --main_color: #663EFD;
+    --text_color: #000000;
+    --accent-color: #a6a6a6;
 }
-@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Montserrat:500&display=swap');
 *{
-    box-sizing: border-box;
-    margin: 0;
-    font-family: 'Montserrat', sans-serif;
-    padding: 0;
-    color: var(--main_color);
-
-}
-header{
-    height: 60px;
-    box-shadow: 3px 4px 6px -6px rgba(103, 62, 253, 0.507);
-    border: black;
-}
-nav{
-    a{
-        text-decoration: none;
-        font-size: 20px;
-        margin-left: 60px;
-    }
-}
-a:hover{
-    color: rgba(103, 62, 253, 0.24);
-}
-nav{
-    margin-left: -30px;
-    padding: 20px;
-    display: flex;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
 }
 body{
     text-align: center;
+}
+h1{
+    color: var(--main_color);
 }
 
 .container1{
@@ -40,7 +19,7 @@ body{
 
     .main_bar{
         // border: 0.4px solid var(--main_color);
-        box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.1);
+        box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
         border-radius: 10px;
         margin: auto;
         padding: 20px;
@@ -55,7 +34,7 @@ body{
             width: 80%;
             padding: 10px;
             margin: 10px 10px 10px 0;
-            color: var(--main_color);
+            color: var(--text_color);
             overflow: hidden;
             outline: none;
 
@@ -112,7 +91,7 @@ body{
             width: auto;
             padding: 10px;
             margin: 10px;
-            color: var(--main_color);
+            color: var(--text_color);
             box-shadow: none !important;
 
         }
@@ -169,11 +148,12 @@ body{
 .container2 {
 
     margin: 40px;
-
     table {
         max-width: 100%;
         border-radius: 15px;
         border-collapse: collapse;
+        margin-left: auto;
+        margin-right: auto;
         // overflow: hidden;
         // box-shadow: 3px 4px 6px -6px rgba(103, 62, 253, 0.507),
         // -3px -4px 6px -6px rgba(103, 62, 253, 0.507);
@@ -187,9 +167,8 @@ body{
             background-color: inherit;
         }
     }
-
     tr:nth-child(odd) {
-        background-color: rgba(141, 111, 251, 0.061)
+        background-color: rgba(141, 111, 251, 0.06)
     }
 
     th {
@@ -199,13 +178,14 @@ body{
         position: sticky;
         position: -webkit-sticky;
         top: 0;
+        white-space: nowrap;
     }
 
     .first_th{
-        border-top-left-radius: 15px;
+        border-top-left-radius: 10px;
     }
     .last_th{
-        border-top-right-radius: 15px;
+        border-top-right-radius: 10px;
     }
     
     
@@ -220,7 +200,7 @@ body{
     }
 
     th,td {
-    padding: 0.5em 1em;
+    padding: 1em 1em;
     }
 
     
