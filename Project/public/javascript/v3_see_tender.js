@@ -51,7 +51,7 @@ xhr.send(data);
 function apply(i) {
     if(vd_id != ""){
     console.log("apply")
-    window.location.href = "/v4_apply_tender.html?et_id="+response[i].et_id;
+    window.location.href = "/v4_apply_tender_s1.html?et_id="+response[i].et_id;
 }
     else{
         alert("Login to apply")

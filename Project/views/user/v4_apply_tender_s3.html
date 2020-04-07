@@ -5,11 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/nav.css">
     <link rel="stylesheet" href="css/apply_tender.css">
-<<<<<<< HEAD
-        <link rel="stylesheet" href="css/payment.css">
-=======
+    <link rel="stylesheet" href="css/payment.css">
     <script  src="javascript/cookies.js"></script>
->>>>>>> 6f2fd3c03fd2392fe8448ce262563d770756fd8f
     <title>apply tender</title>
 </head>
 <body>
@@ -21,10 +18,19 @@
         </nav>
     </header>
 
-<div class="cont" id="cont">
+
+
+<!-- tender deatils code is here ------------------------------------------------------------------------>
+
+<!-- <div class="cont" id="cont">
   <h3>Tender Details</h3><br>
-</div>
-      <div class="cont">
+</div> -->
+<!-- tender deatils code is till here ------------------------------------------------------------------------>
+
+
+<!-- payment deatils code is here ------------------------------------------------------------------------>
+
+      <!-- <div class="cont">
         <h3>Payment Details(winston modify urs payment gateway here)</h3><br>
           <table>
             <tr>
@@ -73,10 +79,16 @@
               </table>
           </div>
           <input type="submit" value="submit" id="bg_tsc_button">
-          <!-- <button id="bg_tsc_button">Begin Transaction</button> -->
+          <button id="bg_tsc_button">Begin Transaction</button>
       </form>
       <p id="error-para"></p>
-      </div>
+      </div> -->
+
+<!-- payment deatils code is till here ------------------------------------------------------------------------>
+
+
+<!-- document deatils code is till here ------------------------------------------------------------------------>
+
       <div class="cont">
         <h3>Upload Documents(process not yet finalised for uplaoding )</h3><br>
         <label>Techincal Files <button onclick="openModal()">(pdf format) </button></label> </br></br> 
@@ -89,21 +101,14 @@
 
     </div>
 </div>
+
+<!-- documnet code is till here ------------------------------------------------------------------------>
+<button value="back" onclick="back()">back</button>
+<button value="next" onclick="done()">done</button>
 </body>
 <!-- <script  src="javascript/cookies.js"></script> -->
 
-<script type="text/javascript">
-    var log_a = document.getElementById("log_a")
-    var nav_bar = document.getElementById("nav_bar")
-    if(get_cookie("vcd_id") != "")
-        {
-            log_a.setAttribute("href", "v6_profile.html");
-            log_a.innerHTML ="Profile"
-            nav_bar.insertAdjacentHTML('beforeend','<a id="log_a" href="v1_login.html">Log out</a>');
-        }
-</script>
-<script src="javascript/jquery-3.4.1.min.js"></script>
-<script src="javascript/payment.js" ></script>
+
 <!-- --------------------------- Start of digilocker html code -------------------------------- -->
 
 <!-- The Modal -->
@@ -126,5 +131,18 @@
 
 <!-- --------------------------- End of digilocker html code -------------------------------- -->
 
-<script type="text/javascript" src="javascript/v4_apply_tender.js"></script>
+
+<script type="text/javascript">
+    var log_a = document.getElementById("log_a")
+    var nav_bar = document.getElementById("nav_bar")
+    if(get_cookie("vcd_id") != "")
+        {
+            log_a.setAttribute("href", "v6_profile.html");
+            log_a.innerHTML ="Profile"
+            nav_bar.insertAdjacentHTML('beforeend','<a id="log_a" href="v1_login.html">Log out</a>');
+        }
+</script>
+<script src="javascript/jquery-3.4.1.min.js"></script>
+<script src="javascript/payment.js" ></script>
+<script type="text/javascript" src="javascript/v4_apply_tender_s3.js"></script>
 </html>

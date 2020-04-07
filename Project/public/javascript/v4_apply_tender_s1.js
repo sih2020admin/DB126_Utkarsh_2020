@@ -93,3 +93,10 @@ window.onclick = function(event) {
 }
 
 /* ---------------------------- Start of Digilocker js code -------------------------------------- */
+
+
+function next() {
+    // body...
+    console.log(et_id);
+    window.location.href = "/v4_apply_tender_s2.html?et_id="+et_id;
+}
