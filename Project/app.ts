@@ -30,7 +30,6 @@ app.use('/', crud_admin.default);
 app.use('/', list_tender.default);
 app.use('/',tender_approval.default)
 app.use('/',vendor_dashboard.default)
-
 app.listen(port,()=>{
     console.log( `Server started on port ${port}`)
 })

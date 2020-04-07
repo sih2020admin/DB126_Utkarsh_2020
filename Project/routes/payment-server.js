@@ -1,20 +1,56 @@
 "use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
 var axios_1 = __importDefault(require("axios"));
+var debug = require('debug')('payment');
 var checksum = require("./paytm/checksum.js");
-var TransactionData = /** @class */ (function () {
-    function TransactionData(payment_mode) {
-        this.payment_mode = payment_mode;
+var Transaction = /** @class */ (function () {
+    function Transaction(txn_id, order_id, amount, status_message, status_code, refund_amount, timestamp) {
+        this.txn_id = txn_id;
+        this.order_id = order_id;
+        this.amount = amount;
+        this.status_message = status_message;
+        this.status_code = status_code;
+        this.refund_amount = refund_amount;
+        this.timestamp = timestamp;
     }
-    return TransactionData;
+    return Transaction;
 }());
-var app = new TransactionData("DC");
-app.payment_mode;
-console.log(app.payment_mode);
+var TransactionFailure = /** @class */ (function (_super) {
+    __extends(TransactionFailure, _super);
+    function TransactionFailure(txn_id, order_id, amount, status_message, status_code, refund_amount, timestamp) {
+        return _super.call(this, txn_id, order_id, amount, status_message, status_code, refund_amount, timestamp) || this;
+    }
+    return TransactionFailure;
+}(Transaction));
+var TransactionSuccess = /** @class */ (function (_super) {
+    __extends(TransactionSuccess, _super);
+    function TransactionSuccess(txn_id, order_id, amount, status_message, status_code, refund_amount, timestamp, bank_txn_id, gateway_name, bank_name, payment_mode) {
+        var _this = _super.call(this, txn_id, order_id, amount, status_message, status_code, refund_amount, timestamp) || this;
+        _this.bank_txn_id = bank_txn_id;
+        _this.gateway_name = gateway_name;
+        _this.bank_name = bank_name;
+        _this.payment_mode = payment_mode;
+        return _this;
+    }
+    return TransactionSuccess;
+}(Transaction));
 var router = express_1.default.Router();
 var salt = process.env.KEY;
 var params = {
@@ -41,7 +77,7 @@ checksum.genchecksum(verify_params, salt, function (err, checksum) {
         url: "https://securegw-stage.paytm.in/order/status",
         data: JSON.stringify(verify_params)
     }).then(function (response) {
-        console.log(response);
+        debug(response.data);
     });
 });
 router.post("/", function (request, response) {
@@ -51,7 +87,6 @@ router.post("/", function (request, response) {
     params["EMAIL"] = request.body.email;
     params["MOBILE_NO"] = request.body.mobile;
     params["TXN_AMOUNT"] = request.body.amount;
-    console.log(params);
     checksum.genchecksum(params, salt, function (error, result) {
         var url = "https://securegw-stage.paytm.in/order/process";
         response.writeHead(200, { 'Content-Type': 'text/html' });
@@ -84,7 +119,7 @@ router.post("/redirect", function (request, resp) {
             url: "https://securegw-stage.paytm.in/order/status",
             data: JSON.stringify(verify_params)
         }).then(function (response) {
-            console.log(response);
+            //console.log(response)
         });
     });
 });
