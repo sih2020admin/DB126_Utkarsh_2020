@@ -1,12 +1,19 @@
 import express,{ Router, Request, Response } from 'express'
-import https from 'https'
+import axios from 'axios'
 const checksum = require("./paytm/checksum.js")
 
+class TransactionData{
+    readonly payment_mode:string
+    constructor(payment_mode:string){
+        this.payment_mode = payment_mode
+    }
+}
+const app = new TransactionData("DC")
+app.payment_mode
+console.log(app.payment_mode)
 const router:Router = express.Router()
 const salt:string = process.env.KEY!;
-console.log()
-
-var params= {
+var params : { [key: string]: string }= {
     "MID" : process.env.MID!,
     "WEBSITE" : "WEBSTAGING",
     "INDUSTRY_TYPE_ID" : "Retail",
@@ -18,7 +25,6 @@ var params= {
     "TXN_AMOUNT" : "",
     "CALLBACK_URL" : "http://165.22.210.37:8080/redirect",
 };
-
 var verify_params = {
     "MID":process.env.MID!,
     "ORDERID":"ORD9548155614",
@@ -28,34 +34,13 @@ var verify_params = {
 
 checksum.genchecksum(verify_params, salt, function(err:any, checksum:any){
 verify_params["CHECKSUMHASH"] = checksum;
-var post_data = JSON.stringify(verify_params);
-var options = {
-    /* for Staging */
-    hostname: 'securegw-stage.paytm.in',
-    /* for Production */
-    // hostname: 'securegw.paytm.in',
-    port: 443,
-    path: '/order/status',
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-        'Content-Length': post_data.length
-    }
-};
-var response = "";
-var post_req = https.request(options, function(post_res) {
-    post_res.on('data', function (chunk) {
-        response += chunk;
-    });
-
-    post_res.on('end', function(){
-        console.log('Response: ', response);
-    });
-});
-
-// post the data
-post_req.write(post_data);
-post_req.end();
+axios({
+    method:"POST",
+    url:"https://securegw-stage.paytm.in/order/status",
+    data:JSON.stringify(verify_params)
+}).then(function(response){
+    console.log(response)
+})
 });
     
 router.post("/",(request:Request,response:Response)=>{
@@ -95,36 +80,16 @@ router.post("/",(request:Request,response:Response)=>{
 router.post("/redirect",(request:Request,resp:Response)=>{
     verify_params["ORDERID"] = params['ORDER_ID'];
     checksum.genchecksum(verify_params, salt, function(err:any, checksum:any){
-    verify_params["CHECKSUMHASH"] = checksum;
-    var post_data = JSON.stringify(verify_params);
-    var options = {
-        /* for Staging */
-        hostname: 'securegw-stage.paytm.in',
-        /* for Production */
-        // hostname: 'securegw.paytm.in',
-        port: 443,
-        path: '/order/status',
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Content-Length': post_data.length
-        }
-    };
-    var response = "";
-    var post_req = https.request(options, function(post_res) {
-        post_res.on('data', function (chunk) {
-            response += chunk;
+        verify_params["CHECKSUMHASH"] = checksum;
+        axios({
+            method:"POST",
+            url:"https://securegw-stage.paytm.in/order/status",
+            data:JSON.stringify(verify_params)
+        }).then(function(response){
+            console.log(response)
+        })
         });
-
-        post_res.on('end', function(){
-            console.log('Response: ', response);
-        });
-    });
-
-    // post the data
-    post_req.write(post_data);
-    post_req.end();
-});
+    
 })
 
 export default router

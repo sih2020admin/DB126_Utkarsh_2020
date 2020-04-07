@@ -67,5 +67,5 @@ $.ajax({
 });
 function apply(value) {
     var value1 = $("#et_id" + value).text();
-    open("4approve_vendor.html?id=" + value1, "_blank");
+    location.href = "4approve_vendor.html?id=" + value1;
 }
