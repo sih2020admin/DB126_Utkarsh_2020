@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/apply_tender.css">
+<<<<<<< HEAD
+        <link rel="stylesheet" href="css/payment.css">
+=======
+    <script  src="javascript/cookies.js"></script>
+>>>>>>> 6f2fd3c03fd2392fe8448ce262563d770756fd8f
+    <title>apply tender</title>
+</head>
+<body>
+    <header>
+        <nav id="nav_bar">
+            <a href="v7_homepage.html">Home</a>
+            <a href="v3_see_tender.html">Tender</a>
+            <a id="log_a" href="v1_login.html">Login</a>
+        </nav>
+    </header>
+
+<div class="cont" id="cont">
+  <h3>Tender Details</h3><br>
+</div>
+      <div class="cont">
+        <h3>Payment Details(winston modify urs payment gateway here)</h3><br>
+          <table>
+            <tr>
+              <td><label for="mode">Instrument type</label></td>
+              <td><select id="mode">
+                <option>DD</option>
+                <option>FD</option>
+                <option>Others</option>
+              </select></td>
+              <td><label for="ints_no">Instrument No</label></td>
+              <td><input type="Text" placeholder="Enter Instrument Number" id="inst_no"></td>
+            </tr>
+            <tr>
+              <td><label for="issued_date">Issued date</label></td>
+              <td><input type="date" id="issued_date"></td>
+              <td><label for="expiry_date">Expiry date</label></td>
+              <td><input type="date" id="expiry_date"></td>
+            </tr>
+            <tr>
+              <td><label for="acc_no">Account No</label></td>
+              <td><input type="Text" placeholder="Enter Account Number" id="acc_no">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+              <td><label for="amount">Amount</label></td>
+              <td><input type="number" placeholder="Enter Amount" id="amount"></td>
+            </tr>
+          </table>
+        <br><div class="button_div"><button type="submit" class="save_button">Save</button></div>
+      </div>
+      <div class="cont2">
+        <form id="body_content" method="POST" action="http://localhost:8081/payment">
+          <div class="content">
+              <h1>Payment</h1><br>
+              <table style="text-align:left;">
+                  <tr>
+                      <td><label for="amount1">Amount</label></td>
+                      <td><input type="number" id="amount1" name="amount" placeholder="Enter Amount"></td>
+                  </tr>
+                  <tr>
+                      <td><label for="email">Email ID</label></td>
+                      <td><input id="email" type="email" name="email" placeholder="Enter Email"></td>
+                  </tr>
+            
+                  <tr>
+                      <td><label for="mobile">Mobile/Cell Number</label>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                      <td><input id="mobile" type="number" name="mobile" placeholder="Enter Mobile/Cell Number"></td>
+                  </tr>
+              </table>
+          </div>
+          <input type="submit" value="submit" id="bg_tsc_button">
+          <!-- <button id="bg_tsc_button">Begin Transaction</button> -->
+      </form>
+      <p id="error-para"></p>
+      </div>
+      <div class="cont">
+        <h3>Upload Documents(process not yet finalised for uplaoding )</h3><br>
+        <label>Techincal Files <button onclick="openModal()">(pdf format) </button></label> </br></br> 
+        <label>Financial Files <button onclick="openModal()">(xls format) </button></label> <br><br>
+        <div class="button_div"><button type="submit">Save</button></div>
+      </div>
+        
+    <div class="submit_button">
+      <button type="button" onclick="next()">NEXT</button>
+
+    </div>
+</div>
+</body>
+<!-- <script  src="javascript/cookies.js"></script> -->
+
+<script type="text/javascript">
+    var log_a = document.getElementById("log_a")
+    var nav_bar = document.getElementById("nav_bar")
+    if(get_cookie("vcd_id") != "")
+        {
+            log_a.setAttribute("href", "v6_profile.html");
+            log_a.innerHTML ="Profile"
+            nav_bar.insertAdjacentHTML('beforeend','<a id="log_a" href="v1_login.html">Log out</a>');
+        }
+</script>
+<script src="javascript/jquery-3.4.1.min.js"></script>
+<script src="javascript/payment.js" ></script>
+<!-- --------------------------- Start of digilocker html code -------------------------------- -->
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>Modal Header</h2>
+    </div>
+    <div class="modal-body">
+      <p>Some text in the Modal Body</p>
+      <p>Some other text...</p>
+    </div>
+    <div class="modal-footer">
+      <h3>Modal Footer</h3>
+    </div>
+  </div>
+
+<!-- --------------------------- End of digilocker html code -------------------------------- -->
+
+<script type="text/javascript" src="javascript/v4_apply_tender.js"></script>
+</html>
