@@ -19,25 +19,25 @@ var os_1 = __importDefault(require("os"));
 var mysql_1 = __importDefault(require("mysql"));
 var fs_1 = __importDefault(require("fs"));
 var connection;
-if (os_1.default.platform() === "linux" && os_1.default.hostname() === "ubuntu" && os_1.default.userInfo().username === "winston") {
+if (os_1.default.platform() === 'linux' && os_1.default.hostname() === 'ubuntu' && os_1.default.userInfo().username === 'winston') {
     var database, user, password;
-    var array = fs_1.default.readFileSync('/etc/mysql/my.cnf').toString().split("\n");
+    var array = fs_1.default.readFileSync('/etc/mysql/my.cnf').toString().split('\n');
     try {
         for (var array_1 = __values(array), array_1_1 = array_1.next(); !array_1_1.done; array_1_1 = array_1.next()) {
             var x = array_1_1.value;
-            if (x.match("database")) {
-                if (x.split("=")[1] != undefined) {
-                    database = x.split("=")[1].trim();
+            if (x.match('database')) {
+                if (x.split('=')[1] != undefined) {
+                    database = x.split('=')[1].trim();
                 }
             }
-            if (x.match("user")) {
-                if (x.split("=")[1] != undefined) {
-                    user = x.split("=")[1].trim();
+            if (x.match('user')) {
+                if (x.split('=')[1] != undefined) {
+                    user = x.split('=')[1].trim();
                 }
             }
-            if (x.match("password")) {
-                if (x.split("=")[1] != undefined) {
-                    password = x.split("=")[1].trim();
+            if (x.match('password')) {
+                if (x.split('=')[1] != undefined) {
+                    password = x.split('=')[1].trim();
                 }
             }
         }
@@ -54,7 +54,7 @@ if (os_1.default.platform() === "linux" && os_1.default.hostname() === "ubuntu" 
         user: user,
         password: password,
         database: database,
-        multipleStatements: true
+        multipleStatements: true,
     });
 }
 else {
@@ -63,7 +63,7 @@ else {
         user: 'root',
         password: '',
         database: 'e_tender',
-        multipleStatements: true
+        multipleStatements: true,
     });
 }
 exports.default = connection;

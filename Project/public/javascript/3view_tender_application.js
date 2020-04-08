@@ -24,13 +24,13 @@ else{
 }
  */
 var baseURL = location.protocol + "//" + location.host;
-var dept_id = "1";
+var dept_id = '1';
 $.ajax({
     url: baseURL + "/gettenderlist_bid",
-    method: "POST",
+    method: 'POST',
     async: true,
     data: {
-        dept_id: dept_id
+        dept_id: dept_id,
     },
     success: function (response) {
         var e_1, _a;
@@ -38,11 +38,11 @@ $.ajax({
         try {
             for (var response_1 = __values(response), response_1_1 = response_1.next(); !response_1_1.done; response_1_1 = response_1.next()) {
                 var x = response_1_1.value;
-                $("<div></div>", {
-                    class: "tender_content",
+                $('<div></div>', {
+                    class: 'tender_content',
                     id: count,
-                    html: "  <div class='tender_list2'>\n                        <label for=\"et_id" + count + "\"><b>Tender No</b></label><p id=\"et_id" + count + "\"> " + x.et_id + "</p>\n                        <br><label for=\"et_title" + count + "\"><b>Tender Title</b></label><p id=\"et_title" + count + "\"> " + x.et_title + "</p>\n                        <br><label for=\"et_tender_ref_no" + count + "\"><b>Tender No</b></label><p id=\"et_tender_ref_no" + count + "\"> " + x.et_tender_ref_no + "</p>\n                        <br><label for=\"et_tender_desc" + count + "\"><b>Tender Description</b></label><p id=\"et_tender_desc" + count + "\"> " + x.et_tender_desc + "</p>\n                        <br><label for=\"et_tender_fee" + count + "\"><b>Tender Fee</b></label><p id=\"et_tender_fee" + count + "\">\u20B9" + x.et_tender_fee + "</p>\n                        <br><label for=\"et_last_date_apply" + count + "\"><b>Last Date for Applying</b></label><p id=\"et_last_date_apply" + count + "\"> " + x.et_last_date_apply + "</p>\n                        <br><label for=\"et_file_uri" + count + "\"><b>File URL</b></label><p id=\"et_file_uri" + count + "\"> <a href=" + x.et_file_uri + " target=\"_blank\">Link</a></p>\n                        <br><label for=\"et_bidding_date" + count + "\"><b>Tender Bidding Date</b></label><p id=\"et_bidding_date" + count + "\"> " + x.et_bidding_date + "</p>\n                        <br><button class=\"tender_button\" onclick=apply(" + count + ")>View Applications</button><br><br></div>"
-                }).appendTo("#tender_list");
+                    html: "  <div class='tender_list2'>\n                        <label for=\"et_id" + count + "\"><b>Tender No</b></label><p id=\"et_id" + count + "\"> " + x.et_id + "</p>\n                        <br><label for=\"et_title" + count + "\"><b>Tender Title</b></label><p id=\"et_title" + count + "\"> " + x.et_title + "</p>\n                        <br><label for=\"et_tender_ref_no" + count + "\"><b>Tender No</b></label><p id=\"et_tender_ref_no" + count + "\"> " + x.et_tender_ref_no + "</p>\n                        <br><label for=\"et_tender_desc" + count + "\"><b>Tender Description</b></label><p id=\"et_tender_desc" + count + "\"> " + x.et_tender_desc + "</p>\n                        <br><label for=\"et_tender_fee" + count + "\"><b>Tender Fee</b></label><p id=\"et_tender_fee" + count + "\">\u20B9" + x.et_tender_fee + "</p>\n                        <br><label for=\"et_last_date_apply" + count + "\"><b>Last Date for Applying</b></label><p id=\"et_last_date_apply" + count + "\"> " + x.et_last_date_apply + "</p>\n                        <br><label for=\"et_file_uri" + count + "\"><b>File URL</b></label><p id=\"et_file_uri" + count + "\"> <a href=" + x.et_file_uri + " target=\"_blank\">Link</a></p>\n                        <br><label for=\"et_bidding_date" + count + "\"><b>Tender Bidding Date</b></label><p id=\"et_bidding_date" + count + "\"> " + x.et_bidding_date + "</p>\n                        <br><button class=\"tender_button\" onclick=apply(" + count + ")>View Applications</button><br><br></div>",
+                }).appendTo('#tender_list');
                 count++;
             }
         }
@@ -56,14 +56,14 @@ $.ajax({
     },
     error: function (xhr, error_type, exception) {
         if (xhr.status == 0) {
-            console.log("No response from Server");
-            alert("No response from server");
+            console.log('No response from Server');
+            alert('No response from server');
         }
         if (xhr.status == 400) {
-            console.log("Bad Request");
-            alert("Bad Request");
+            console.log('Bad Request');
+            alert('Bad Request');
         }
-    }
+    },
 });
 function apply(value) {
     var value1 = $("#et_id" + value).text();
