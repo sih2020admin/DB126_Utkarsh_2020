@@ -1,11 +1,10 @@
 import express, { Router, Request, Response } from 'express'
 import axios from 'axios'
 const debug = require('debug')('payment')
-import { TransactionSuccess, TransactionFailure , Queue } from './data-structure'
+import { TransactionSuccess, TransactionFailure, Queue  } from './data-structure'
 const checksum = require('./paytm/checksum.js')
-
 debug('Started Debugging process of payment-server\nLocation : routes/payment-server.ts')
- 
+var queue = new Queue()
 const router: Router = express.Router()
 const salt: string = process.env.KEY!
 var params: { [key: string]: string } = {
@@ -18,14 +17,14 @@ var params: { [key: string]: string } = {
     MOBILE_NO: '',
     EMAIL: '',
     TXN_AMOUNT: '',
-    CALLBACK_URL: 'http://165.22.210.37:8080/redirect',
+    CALLBACK_URL: 'http://192.168.1.106:8081/payment/redirect',
 }
-var verify_params = {
+/* var verify_params = {
     MID: process.env.MID!,
-    ORDERID: 'ORD335093582', //ORD335093582 fail ORD9548155614 success
+    ORDERID: 'ORD9548155614', //ORD335093582 fail ORD9548155614 success
     CHECKSUMHASH: '',
-}
-checksum.genchecksum(verify_params, salt, function (err: any, checksum: string) {
+} */
+/* checksum.genchecksum(verify_params, salt, function (err: any, checksum: string) {
     verify_params['CHECKSUMHASH'] = checksum
     axios({
         method: 'POST',
@@ -36,7 +35,7 @@ checksum.genchecksum(verify_params, salt, function (err: any, checksum: string) 
         var code: string = result.RESPCODE
         debug(`Status Code of transaction is ${code}`)
         if (response.data.RESPCODE === '01') {
-            debug(`Transaction is successful`)
+            debug(`\nTransaction is successful`)
             var transaction_success = new TransactionSuccess(
                 result.TXNID,
                 result.ORDERID,
@@ -52,31 +51,34 @@ checksum.genchecksum(verify_params, salt, function (err: any, checksum: string) 
             )
             debug('Transaction success object :', transaction_success)
         } else if (code === '400' || code === '402') {
-            debug('Transaction is pending')
-            debug('Transaction Pending object',response.data)
+            debug('\nTransaction is pending')
+            debug('Transaction Pending object', result)
         } else {
-            debug('Transaction has failed')
-            var transaction_fail = new TransactionFailure(
-                result.TXNID,
-                result.ORDERID,
-                result.TXNAMOUNT,
-                result.STATUS,
-                result.RESPCODE,
-                result.REFUNDAMT,
-                result.TXNDATE,
-                result.RESPMSG
-            )
-            debug('Transaction Failure Object :', transaction_fail)
+            debug('\nTransaction has failed')
+            if (result.RESPCODE === '334') {
+                debug('Invalid Order ID')
+            } else {
+                var transaction_fail = new TransactionFailure(
+                    result.TXNID,
+                    result.ORDERID,
+                    result.TXNAMOUNT,
+                    result.STATUS,
+                    result.RESPCODE,
+                    result.REFUNDAMT,
+                    result.TXNDATE,
+                    result.RESPMSG
+                )
+                debug('Transaction Failure Object :', transaction_fail)
+            }
         }
     })
-})
+}) */
 router.post('/', (request: Request, response: Response) => {
     params['ORDER_ID'] = 'ORD' + Math.floor(Math.random() * 10 ** 10).toString()
     params['CUST_ID'] = 'CUST' + Math.floor(Math.random() * 10 ** 10).toString()
     params['TXN_AMOUNT'] = request.body.amount
     params['EMAIL'] = request.body.email
     params['MOBILE_NO'] = request.body.mobile
-    params['TXN_AMOUNT'] = request.body.amount
     checksum.genchecksum(params, salt, (error: any, result: any) => {
         var url: string = 'https://securegw-stage.paytm.in/order/process'
         response.writeHead(200, { 'Content-Type': 'text/html' })
@@ -101,16 +103,55 @@ router.post('/', (request: Request, response: Response) => {
     })
 })
 
-router.post('/redirect', (request: Request, resp: Response) => {
-    verify_params['ORDERID'] = params['ORDER_ID']
-    checksum.genchecksum(verify_params, salt, function (err: any, checksum: any) {
-        verify_params['CHECKSUMHASH'] = checksum
-        axios({
-            method: 'POST',
-            url: 'https://securegw-stage.paytm.in/order/status',
-            data: JSON.stringify(verify_params),
-        }).then(function (response) {})
-    })
+router.post('/redirect', (request: Request, response: Response) => {
+    var result = request.body
+    var isValidChecksum = checksum.verifychecksum(params, salt, result.CHECKSUMHASH)
+    if (isValidChecksum) {
+        console.log('Checksum Matched')
+    } else {
+        console.log('Checksum Mismatched')
+    }
+    var code: string = result.RESPCODE
+    debug(`Status Code of transaction is ${code}`)
+    if (code === '01') {
+        debug(`\nTransaction is successful\n`)
+        var transaction_success = new TransactionSuccess(
+            result.TXNID,
+            result.ORDERID,
+            result.TXNAMOUNT,
+            result.STATUS,
+            result.RESPCODE,
+            result.REFUNDAMT,
+            result.TXNDATE,
+            result.BANKTXNID,
+            result.GATEWAYNAME,
+            result.BANKNAME,
+            result.PAYMENTMODE
+        )
+        debug('Transaction success object :', transaction_success)
+        response.send("Payment Details" + JSON.stringify(transaction_success))
+
+    } else if (code === '400' || code === '402') {
+        debug('\nTransaction is pending\n')
+        debug('Transaction Pending object', result)
+    } else {
+        debug('\nTransaction has failed\n')
+        if (result.RESPCODE === '334') {
+            debug('Invalid Order ID')
+        } else {
+            var transaction_fail = new TransactionFailure(
+                result.TXNID,
+                result.ORDERID,
+                result.TXNAMOUNT,
+                result.STATUS,
+                result.RESPCODE,
+                result.REFUNDAMT,
+                result.TXNDATE,
+                result.RESPMSG
+            )
+            debug('Transaction Failure Object :', transaction_fail)
+        }
+    }
 })
 
 export default router
