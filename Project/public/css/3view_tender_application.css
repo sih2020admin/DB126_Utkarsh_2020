@@ -23,6 +23,10 @@ label {
   color: var(--accent-color);
 }
 
+button, input {
+  font-family: 'Open sans','sans serif';
+}
+
 .tender_list2 {
   text-align: left;
   background-color: white;
@@ -60,13 +64,15 @@ button {
   background-color: var(--main_color);
   color: #ffffff;
   font-size: 1rem;
-  border-radius: 3px;
+  border-radius: 5px;
   border: 0.3px solid var(--main_color);
-  height: 30px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  padding: 5px 10px 5px 10px;
+  padding: 6px 10px;
   -webkit-transition: 3sec;
   transition: 3sec;
   margin-top: 20px;

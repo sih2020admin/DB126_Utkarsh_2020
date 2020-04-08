@@ -15,6 +15,11 @@ body {
 
 h1 {
   color: var(--main_color);
+  font-family: 'Montserrat','sans serif';
+}
+
+button, input {
+  font-family: 'Open sans','sans serif';
 }
 
 .container1 {

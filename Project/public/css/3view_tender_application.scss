@@ -18,6 +18,7 @@ label{
     font-size: medium;
     color: var(--accent-color);
 }
+
 .tender_list2{
     text-align: left;
     background-color: rgb(255, 255, 255);
@@ -52,11 +53,11 @@ button{
     background-color: var(--main_color);
     color: #ffffff;
     font-size: 1rem;
-    border-radius: 3px;
+    border-radius: 5px;
     border: 0.3px solid var(--main_color);
-    height: 30px;
+    height: fit-content;
     width: fit-content;
-    padding: 5px 10px 5px 10px;
+    padding: 6px 10px;
     transition: 3sec;
     margin-top: 20px;
 }
