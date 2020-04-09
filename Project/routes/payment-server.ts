@@ -1,6 +1,7 @@
 import express, { Router, Request, Response } from 'express'
 import axios from 'axios'
-import mysql from 'mysql'
+import connection from './db'
+
 const debug = require('debug')('payment')
 import { TransactionSuccess, TransactionFailure, Queue } from './data-structure'
 const checksum = require('./paytm/checksum.js')
@@ -39,10 +40,10 @@ demo().then(function(result){
  */
 /* var verify_params = {
     MID: process.env.MID!,
-    ORDERID: 'ORD9548155614', //ORD335093582 fail ORD9548155614 success
+    ORDERID: 'ORD335093582', //ORD335093582 fail ORD9548155614 success
     CHECKSUMHASH: '',
-} */
-/* checksum.genchecksum(verify_params, salt, function (err: any, checksum: string) {
+}
+checksum.genchecksum(verify_params, salt, function (err: any, checksum: string) {
     verify_params['CHECKSUMHASH'] = checksum
     axios({
         method: 'POST',
@@ -54,20 +55,17 @@ demo().then(function(result){
         debug(`Status Code of transaction is ${code}`)
         if (response.data.RESPCODE === '01') {
             debug(`\nTransaction is successful`)
-            var transaction_success = new TransactionSuccess(
-                result.TXNID,
-                result.ORDERID,
-                result.TXNAMOUNT,
-                result.STATUS,
-                result.RESPCODE,
-                result.REFUNDAMT,
-                result.TXNDATE,
-                result.BANKTXNID,
-                result.GATEWAYNAME,
-                result.BANKNAME,
-                result.PAYMENTMODE
-            )
+            var transaction_success = new TransactionSuccess(result)
             debug('Transaction success object :', transaction_success)
+            //connection.query("truncate payment_table")
+            connection.query("INSERT INTO payment_table VALUES (?,?,?,?,?,?,?,?,?,?,?)",transaction_success.to_array(),(error,result)=>{
+                if(error){
+                    debug("Mysql insertion error",error)
+                }
+                else(
+                    debug("Result",result)
+                )
+            })
         } else if (code === '400' || code === '402') {
             debug('\nTransaction is pending')
             debug('Transaction Pending object', result)
@@ -77,14 +75,7 @@ demo().then(function(result){
                 debug('Invalid Order ID')
             } else {
                 var transaction_fail = new TransactionFailure(
-                    result.TXNID,
-                    result.ORDERID,
-                    result.TXNAMOUNT,
-                    result.STATUS,
-                    result.RESPCODE,
-                    result.REFUNDAMT,
-                    result.TXNDATE,
-                    result.RESPMSG
+                    result
                 )
                 debug('Transaction Failure Object :', transaction_fail)
             }
@@ -133,23 +124,8 @@ router.post('/redirect', (request: Request, response: Response) => {
     debug(`Status Code of transaction is ${code}`)
     if (code === '01') {
         debug(`\nTransaction is successful\n`)
-        var transaction_success = new TransactionSuccess(
-            result.TXNID,
-            result.ORDERID,
-            result.TXNAMOUNT,
-            result.STATUS,
-            result.RESPCODE,
-            result.REFUNDAMT,
-            result.TXNDATE,
-            result.BANKTXNID,
-            result.GATEWAYNAME,
-            result.BANKNAME,
-            result.PAYMENTMODE
-        )
+        var transaction_success = new TransactionSuccess(request)
         debug('Transaction success object :', transaction_success)
-        response.sendFile('/home/winston/Desktop/new/V-victory/Project/views/user/v4_apply_tender_s2.html')
-
-        //response.send("Payment Details" + JSON.stringify(transaction_success))
     } else if (code === '400' || code === '402') {
         debug('\nTransaction is pending\n')
         debug('Transaction Pending object', result)
@@ -158,16 +134,7 @@ router.post('/redirect', (request: Request, response: Response) => {
         if (result.RESPCODE === '334') {
             debug('Invalid Order ID')
         } else {
-            var transaction_fail = new TransactionFailure(
-                result.TXNID,
-                result.ORDERID,
-                result.TXNAMOUNT,
-                result.STATUS,
-                result.RESPCODE,
-                result.REFUNDAMT,
-                result.TXNDATE,
-                result.RESPMSG
-            )
+            var transaction_fail = new TransactionFailure(request)
             debug('Transaction Failure Object :', transaction_fail)
         }
     }
