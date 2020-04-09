@@ -23,6 +23,23 @@ var params = {
     TXN_AMOUNT: '',
     CALLBACK_URL: 'http://192.168.1.106:8081/payment/redirect',
 };
+/* var data =2
+function demo(){
+    return new Promise(function(result,error){
+        if (data == 1){
+            error("error")
+        }
+        else{
+            result(data)
+        }
+    })
+}
+demo().then(function(result){
+    console.log(result)
+}).catch(error=>{
+    console.log(error)
+})
+ */
 /* var verify_params = {
     MID: process.env.MID!,
     ORDERID: 'ORD9548155614', //ORD335093582 fail ORD9548155614 success
@@ -108,20 +125,20 @@ router.post('/', function (request, response) {
 });
 router.post('/redirect', function (request, response) {
     var result = request.body;
-    var isValidChecksum = checksum.verifychecksum(params, salt, result.CHECKSUMHASH);
+    /* var isValidChecksum = checksum.verifychecksum(params, salt, result.CHECKSUMHASH)
     if (isValidChecksum) {
-        console.log('Checksum Matched');
-    }
-    else {
-        console.log('Checksum Mismatched');
-    }
+        console.log('Checksum Matched')
+    } else {
+        console.log('Checksum Mismatched')
+    } */
     var code = result.RESPCODE;
     debug("Status Code of transaction is " + code);
     if (code === '01') {
         debug("\nTransaction is successful\n");
         var transaction_success = new data_structure_1.TransactionSuccess(result.TXNID, result.ORDERID, result.TXNAMOUNT, result.STATUS, result.RESPCODE, result.REFUNDAMT, result.TXNDATE, result.BANKTXNID, result.GATEWAYNAME, result.BANKNAME, result.PAYMENTMODE);
         debug('Transaction success object :', transaction_success);
-        response.send("Payment Details" + JSON.stringify(transaction_success));
+        response.sendFile('/home/winston/Desktop/new/V-victory/Project/views/user/v4_apply_tender_s2.html');
+        //response.send("Payment Details" + JSON.stringify(transaction_success))
     }
     else if (code === '400' || code === '402') {
         debug('\nTransaction is pending\n');

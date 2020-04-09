@@ -1,7 +1,8 @@
 import express, { Router, Request, Response } from 'express'
 import axios from 'axios'
+import mysql from 'mysql'
 const debug = require('debug')('payment')
-import { TransactionSuccess, TransactionFailure, Queue  } from './data-structure'
+import { TransactionSuccess, TransactionFailure, Queue } from './data-structure'
 const checksum = require('./paytm/checksum.js')
 debug('Started Debugging process of payment-server\nLocation : routes/payment-server.ts')
 var queue = new Queue()
@@ -19,6 +20,23 @@ var params: { [key: string]: string } = {
     TXN_AMOUNT: '',
     CALLBACK_URL: 'http://192.168.1.106:8081/payment/redirect',
 }
+/* var data =2
+function demo(){
+    return new Promise(function(result,error){
+        if (data == 1){
+            error("error")
+        }
+        else{
+            result(data)
+        }
+    })
+}
+demo().then(function(result){
+    console.log(result)
+}).catch(error=>{
+    console.log(error)
+})
+ */
 /* var verify_params = {
     MID: process.env.MID!,
     ORDERID: 'ORD9548155614', //ORD335093582 fail ORD9548155614 success
@@ -105,12 +123,12 @@ router.post('/', (request: Request, response: Response) => {
 
 router.post('/redirect', (request: Request, response: Response) => {
     var result = request.body
-    var isValidChecksum = checksum.verifychecksum(params, salt, result.CHECKSUMHASH)
+    /* var isValidChecksum = checksum.verifychecksum(params, salt, result.CHECKSUMHASH)
     if (isValidChecksum) {
         console.log('Checksum Matched')
     } else {
         console.log('Checksum Mismatched')
-    }
+    } */
     var code: string = result.RESPCODE
     debug(`Status Code of transaction is ${code}`)
     if (code === '01') {
@@ -129,8 +147,9 @@ router.post('/redirect', (request: Request, response: Response) => {
             result.PAYMENTMODE
         )
         debug('Transaction success object :', transaction_success)
-        response.send("Payment Details" + JSON.stringify(transaction_success))
+        response.sendFile('/home/winston/Desktop/new/V-victory/Project/views/user/v4_apply_tender_s2.html')
 
+        //response.send("Payment Details" + JSON.stringify(transaction_success))
     } else if (code === '400' || code === '402') {
         debug('\nTransaction is pending\n')
         debug('Transaction Pending object', result)
