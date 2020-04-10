@@ -4,38 +4,94 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
-var https_1 = __importDefault(require("https"));
-var checksum = require("./paytm/checksum.js");
+var debug = require('debug')('payment');
+var data_structure_1 = require("./data-structure");
+var checksum = require('./paytm/checksum.js');
+debug('Started Debugging process of payment-server\nLocation : routes/payment-server.ts');
+var queue = new data_structure_1.Queue();
 var router = express_1.default.Router();
 var salt = process.env.KEY;
-console.log();
 var params = {
-    "MID": process.env.MID,
-    "WEBSITE": "WEBSTAGING",
-    "INDUSTRY_TYPE_ID": "Retail",
-    "CHANNEL_ID": "WEB",
-    "ORDER_ID": "",
-    "CUST_ID": "",
-    "MOBILE_NO": "",
-    "EMAIL": "",
-    "TXN_AMOUNT": "",
-    "CALLBACK_URL": "http://165.22.210.37:8080/redirect",
+    MID: process.env.MID,
+    WEBSITE: 'WEBSTAGING',
+    INDUSTRY_TYPE_ID: 'Retail',
+    CHANNEL_ID: 'WEB',
+    ORDER_ID: '',
+    CUST_ID: '',
+    MOBILE_NO: '',
+    EMAIL: '',
+    TXN_AMOUNT: '',
+    CALLBACK_URL: 'http://192.168.1.106:8081/payment/redirect',
 };
-var verify_params = {
-    "MID": process.env.MID,
-    "ORDERID": "",
-    "CHECKSUMHASH": ""
-};
-router.post("/", function (request, response) {
-    params["ORDER_ID"] = "ORD" + Math.floor(Math.random() * Math.pow(10, 10)).toString();
-    params["CUST_ID"] = "CUST" + Math.floor(Math.random() * Math.pow(10, 10)).toString();
-    params["TXN_AMOUNT"] = request.body.amount;
-    params["EMAIL"] = request.body.email;
-    params["MOBILE_NO"] = request.body.mobile;
-    params["TXN_AMOUNT"] = request.body.amount;
-    console.log(params);
+/* var data =2
+function demo(){
+    return new Promise(function(result,error){
+        if (data == 1){
+            error("error")
+        }
+        else{
+            result(data)
+        }
+    })
+}
+demo().then(function(result){
+    console.log(result)
+}).catch(error=>{
+    console.log(error)
+})
+ */
+/* var verify_params = {
+    MID: process.env.MID!,
+    ORDERID: 'ORD335093582', //ORD335093582 fail ORD9548155614 success
+    CHECKSUMHASH: '',
+}
+checksum.genchecksum(verify_params, salt, function (err: any, checksum: string) {
+    verify_params['CHECKSUMHASH'] = checksum
+    axios({
+        method: 'POST',
+        url: 'https://securegw-stage.paytm.in/order/status',
+        data: JSON.stringify(verify_params),
+    }).then(function (response) {
+        var result = response.data
+        var code: string = result.RESPCODE
+        debug(`Status Code of transaction is ${code}`)
+        if (response.data.RESPCODE === '01') {
+            debug(`\nTransaction is successful`)
+            var transaction_success = new TransactionSuccess(result)
+            debug('Transaction success object :', transaction_success)
+            //connection.query("truncate payment_table")
+            connection.query("INSERT INTO payment_table VALUES (?,?,?,?,?,?,?,?,?,?,?)",transaction_success.to_array(),(error,result)=>{
+                if(error){
+                    debug("Mysql insertion error",error)
+                }
+                else(
+                    debug("Result",result)
+                )
+            })
+        } else if (code === '400' || code === '402') {
+            debug('\nTransaction is pending')
+            debug('Transaction Pending object', result)
+        } else {
+            debug('\nTransaction has failed')
+            if (result.RESPCODE === '334') {
+                debug('Invalid Order ID')
+            } else {
+                var transaction_fail = new TransactionFailure(
+                    result
+                )
+                debug('Transaction Failure Object :', transaction_fail)
+            }
+        }
+    })
+}) */
+router.post('/', function (request, response) {
+    params['ORDER_ID'] = 'ORD' + Math.floor(Math.random() * Math.pow(10, 10)).toString();
+    params['CUST_ID'] = 'CUST' + Math.floor(Math.random() * Math.pow(10, 10)).toString();
+    params['TXN_AMOUNT'] = request.body.amount;
+    params['EMAIL'] = request.body.email;
+    params['MOBILE_NO'] = request.body.mobile;
     checksum.genchecksum(params, salt, function (error, result) {
-        var url = "https://securegw-stage.paytm.in/order/process";
+        var url = 'https://securegw-stage.paytm.in/order/process';
         response.writeHead(200, { 'Content-Type': 'text/html' });
         response.write('<html>');
         response.write('<head>');
@@ -57,36 +113,34 @@ router.post("/", function (request, response) {
         response.end();
     });
 });
-router.post("/redirect", function (request, resp) {
-    verify_params["ORDERID"] = params['ORDER_ID'];
-    checksum.genchecksum(verify_params, salt, function (err, checksum) {
-        verify_params["CHECKSUMHASH"] = checksum;
-        var post_data = JSON.stringify(verify_params);
-        var options = {
-            /* for Staging */
-            hostname: 'securegw-stage.paytm.in',
-            /* for Production */
-            // hostname: 'securegw.paytm.in',
-            port: 443,
-            path: '/order/status',
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Content-Length': post_data.length
-            }
-        };
-        var response = "";
-        var post_req = https_1.default.request(options, function (post_res) {
-            post_res.on('data', function (chunk) {
-                response += chunk;
-            });
-            post_res.on('end', function () {
-                console.log('Response: ', response);
-            });
-        });
-        // post the data
-        post_req.write(post_data);
-        post_req.end();
-    });
+router.post('/redirect', function (request, response) {
+    var result = request.body;
+    /* var isValidChecksum = checksum.verifychecksum(params, salt, result.CHECKSUMHASH)
+    if (isValidChecksum) {
+        console.log('Checksum Matched')
+    } else {
+        console.log('Checksum Mismatched')
+    } */
+    var code = result.RESPCODE;
+    debug("Status Code of transaction is " + code);
+    if (code === '01') {
+        debug("\nTransaction is successful\n");
+        var transaction_success = new data_structure_1.TransactionSuccess(request);
+        debug('Transaction success object :', transaction_success);
+    }
+    else if (code === '400' || code === '402') {
+        debug('\nTransaction is pending\n');
+        debug('Transaction Pending object', result);
+    }
+    else {
+        debug('\nTransaction has failed\n');
+        if (result.RESPCODE === '334') {
+            debug('Invalid Order ID');
+        }
+        else {
+            var transaction_fail = new data_structure_1.TransactionFailure(request);
+            debug('Transaction Failure Object :', transaction_fail);
+        }
+    }
 });
 exports.default = router;
