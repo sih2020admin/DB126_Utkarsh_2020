@@ -21,7 +21,7 @@ var params = {
     MOBILE_NO: '',
     EMAIL: '',
     TXN_AMOUNT: '',
-    CALLBACK_URL: 'http://192.168.1.106:8081/payment/redirect',
+    CALLBACK_URL: 'http://192.168.0.6:8081/payment/redirect',
 };
 /* var data =2
 function demo(){
