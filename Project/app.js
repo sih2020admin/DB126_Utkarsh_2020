@@ -19,7 +19,7 @@ var tender_approval = require("./routes/tender_approval");
 var vendor_dashboard = require("./routes/vendor_dashboard");
 var apply_tender= require("./routes/apply_tender");
 var port = 8081	;
-console.log(process.env.HOST);
+//console.log(process.env.HOST);
 app.use(cors_1.default());
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));

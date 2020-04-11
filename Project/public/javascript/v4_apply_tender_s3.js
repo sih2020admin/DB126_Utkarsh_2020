@@ -64,6 +64,66 @@ console.log(et_id);
 
 // xhr.send(data);
 
+/* ---------------------------- Start of E-sign code -------------------------------------- */
+
+document.getElementById('name').value = "";
+document.getElementById('email').value = "";
+document.getElementById('reason').value = "";
+document.getElementById('location').value = "";
+document.getElementById('upload').value = "";
+
+var preview = document.getElementById("preview");
+    preview.style.display = "none";
+    
+    var formdata;
+    function browse(){
+        browse = document.getElementById('upload');
+        upload(browse.files);
+    } 
+    var upload = function(files){
+        formdata = new FormData();
+        for( var x = 0;x < files.length;x = x+1){
+            formdata.append('file',files[x]);
+        }
+        //console.log(formdata.get('file'));
+        alert("Uploaded");
+    }
+    
+    function send() 
+    {
+        var name = document.getElementById("name").value;
+        var email = document.getElementById("email").value;
+        var reason = document.getElementById("reason").value;
+        var location = document.getElementById("location").value;
+
+        formdata.append('name',name);
+        formdata.append('email',email);
+        formdata.append('reason',reason);
+        formdata.append('location',location);
+
+        var xhr = new XMLHttpRequest();
+        var url = "http://165.22.210.37:8091/sign";
+        xhr.open("POST" ,url);
+        xhr.send(formdata);
+        xhr.onload = function(){
+            if(this.status==200){
+                alert("SuccesFully Signed");
+                preview.href = window.URL.createObjectURL(this.response);
+                preview.download = "signed.pdf";
+                preview.style.display = '';
+            }
+            else if (this.status==400){
+                alert(400);
+            }
+            else{	
+                alert("Some Error Occured");
+            }
+        };
+        xhr.responseType = 'blob';
+    }
+
+/* ---------------------------- End of E-sign code -------------------------------------- */
+
 /* ---------------------------- Start of Digilocker js code -------------------------------------- */
 
 // Get the modal
