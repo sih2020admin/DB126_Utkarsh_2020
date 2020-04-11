@@ -72,7 +72,7 @@ router.post('/get_etd_id', function (req, res) {
        			}
        			else{
          			//does not exists
-         			res.sendStatus(400);
+         			res.sendStatus(404);
        			}
       		}
     	});

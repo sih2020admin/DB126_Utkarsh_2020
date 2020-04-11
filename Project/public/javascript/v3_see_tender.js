@@ -49,10 +49,51 @@ xhr.send(data);
 
 
 function apply(i) {
+    console.log("applied click")
     if(vd_id != ""){
+
+    var data = JSON.stringify({"et_id":response[i].et_id,"vd_id":vd_id});
+
+    var xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
+
+    xhr.onload = function () {
+      if (this.status === 200) {
+            var res =  JSON.parse(this.responseText);
+            var status = res.status;
+            if(status=="100"){
+                alert("all ready applied , complete process")
+                window.location.href = "/v4_apply_tender_s2.html?etd_id="+res.etd_id;
+            }
+            else if(status=="110"){
+                alert("all ready applied , complete process")
+                window.location.href = "/v4_apply_tender_s3.html?etd_id="+res.etd_id;
+            }
+            else if(status=="111"){
+                alert("All ready applied check preview but saddly we need to make preview page wait");
+
+            }
+
+      }
+    else if (this.status === 404) {
+        window.location.href = "/v4_apply_tender_s1.html?et_id="+response[i].et_id;
+
+    }
+    else{
+        alert("Check Network")
+    }
+    }
+
+    xhr.open("POST", "http://"+IP+":8081/get_etd_id");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader("Cookie", "PHPSESSID=qs1c0qdet862lrfn217cvqr70b");
+
+    xhr.send(data);
     console.log("apply")
-    window.location.href = "/v4_apply_tender_s1.html?et_id="+response[i].et_id;
+    
 }
+
+
     else{
         alert("Login to apply")
     }
