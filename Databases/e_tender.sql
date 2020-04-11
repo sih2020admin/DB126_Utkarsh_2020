@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 10, 2020 at 10:44 AM
+-- Generation Time: Apr 11, 2020 at 06:10 PM
 -- Server version: 5.7.28-0ubuntu0.19.04.2
 -- PHP Version: 7.2.24-0ubuntu0.19.04.2
 
@@ -1646,7 +1646,7 @@ CREATE TABLE `e_tender_details` (
 --
 
 INSERT INTO `e_tender_details` (`et_id`, `et_title`, `et_tender_fee`, `et_tender_ref_no`, `et_tender_desc`, `et_last_date_apply`, `et_bidding_date`, `et_file_uri`, `is_delete`, `dept_id`, `is_approved`) VALUES
-(123, 'Procurement of computers', '1200', 'ITC123', 'Procurement of Computers, Software and Services. The purpose of this policy is to provide a defined process for both the new and recurring procurement (through purchase or lease) of computer hardware, software and services using Washington University funds or grant funds administered by Washington University.', '2020-03-07', '2020-03-10', 'https://www.youtube.com/watch?v=u8XFFTWwSvY&feature=youtu.be', 0, 1, 0),
+(123, 'Procurement of computers', '1200', 'ITC123', 'Procurement of Computers, Software and Services. The purpose of this policy is to provide a defined process for both the new and recurring procurement (through purchase or lease) of computer hardware, software and services using Washington University funds or grant funds administered by Washington University.', '2020-05-05', '2020-05-06', 'https://www.youtube.com/watch?v=u8XFFTWwSvY&feature=youtu.be', 0, 1, 0),
 (124, 'hello titleU', '1200', 'ITC56U', 'hello descriptionU', '2020-03-02', '2020-03-04', 'https://www.youtube.com/watch?v=fyMhvkC3A84U', 1, 1, 0),
 (125, 'Procurement of computers', '1200', 'ITC123', 'Procurement of Computers, Software and Services. The purpose of this policy is to provide a defined process for both the new and recurring procurement (through purchase or lease) of computer hardware, software and services using Washington University funds or grant funds administered by Washington University.', '2020-04-10', '2020-04-13', 'https://www.youtube.com/watch?v=u8XFFTWwSvY&feature=youtu.be', 0, 1, 1),
 (126, 'testing', '-8', 'ITC98', 'console.log(\"add tender called\")', '2020-03-02', '2020-03-06', 'console.log(\"add tender called\")', 1, 1, 0),
@@ -1680,19 +1680,34 @@ CREATE TABLE `e_tender_vendor` (
   `vcd_id` int(11) NOT NULL,
   `bidding_amt` varchar(10) NOT NULL,
   `is_approved` varchar(1) NOT NULL DEFAULT '0',
-  `date_of_approval` varchar(10) NOT NULL
+  `date_of_approval` varchar(10) DEFAULT NULL,
+  `status` varchar(5) NOT NULL DEFAULT '100'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `e_tender_vendor`
 --
 
-INSERT INTO `e_tender_vendor` (`etd_id`, `et_id`, `vd_id`, `vcd_id`, `bidding_amt`, `is_approved`, `date_of_approval`) VALUES
-(1, 123, 1, 1, '1200', '0', ''),
-(2, 123, 40, 13, '13500', '0', ''),
-(4, 123, 25, 7, '15000', '0', ''),
-(5, 124, 1, 1, '12000', '0', ''),
-(6, 125, 1, 1, '100', '0', '');
+INSERT INTO `e_tender_vendor` (`etd_id`, `et_id`, `vd_id`, `vcd_id`, `bidding_amt`, `is_approved`, `date_of_approval`, `status`) VALUES
+(1, 123, 1, 1, '1200', '0', '', '100'),
+(2, 123, 40, 13, '13500', '0', '', '100'),
+(4, 123, 25, 7, '15000', '0', '', '100'),
+(5, 124, 1, 1, '12000', '0', '', '100'),
+(6, 125, 1, 1, '100', '0', '', '100'),
+(7, 123, 1, 1, '1299', '0', NULL, '100'),
+(8, 123, 1, 1, '1299', '0', NULL, '100'),
+(9, 123, 1, 1, '1299', '0', NULL, '100'),
+(10, 123, 1, 1, '1299', '0', NULL, '100'),
+(11, 123, 1, 1, '1299', '0', NULL, '100'),
+(12, 123, 1, 1, '1299', '0', NULL, '100'),
+(13, 123, 1, 1, '1299', '0', NULL, '100'),
+(14, 123, 1, 1, '1299', '0', NULL, '100'),
+(15, 123, 1, 1, '1299', '0', NULL, '100'),
+(16, 123, 1, 1, '1299', '0', NULL, '100'),
+(17, 125, 1, 1, '12000', '0', NULL, '100'),
+(18, 125, 1, 1, '12000', '0', NULL, '100'),
+(19, 125, 1, 1, '12000', '0', NULL, '100'),
+(20, 123, 1, 1, '12000', '0', NULL, '100');
 
 -- --------------------------------------------------------
 
@@ -2130,7 +2145,7 @@ ALTER TABLE `e_tender_details`
 -- AUTO_INCREMENT for table `e_tender_vendor`
 --
 ALTER TABLE `e_tender_vendor`
-  MODIFY `etd_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `etd_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `file_uri`
 --
