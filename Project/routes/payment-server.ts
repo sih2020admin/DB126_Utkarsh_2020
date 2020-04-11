@@ -1,12 +1,11 @@
 import express, { Router, Request, Response } from 'express'
 import axios from 'axios'
 import connection from './db'
-
+import { TransactionSuccess, TransactionFailure, Queue, Params } from './data-structure'
 const debug = require('debug')('payment')
-import { TransactionSuccess, TransactionFailure, Queue } from './data-structure'
 const checksum = require('./paytm/checksum.js')
 debug('Started Debugging process of payment-server\nLocation : routes/payment-server.ts')
-var queue = new Queue()
+var queue:Array<Params> = []
 const router: Router = express.Router()
 const salt: string = process.env.KEY!
 var params: { [key: string]: string } = {
@@ -21,6 +20,7 @@ var params: { [key: string]: string } = {
     TXN_AMOUNT: '',
     CALLBACK_URL: 'http://192.168.1.106:8081/payment/redirect',
 }
+
 /* var data =2
 function demo(){
     return new Promise(function(result,error){
@@ -38,57 +38,60 @@ demo().then(function(result){
     console.log(error)
 })
  */
-/* var verify_params = {
+var verify_params = {
     MID: process.env.MID!,
-    ORDERID: 'ORD335093582', //ORD335093582 fail ORD9548155614 success
+    ORDERID: 'ORD9548155614', //ORD335093582 fail ORD9548155614 success
     CHECKSUMHASH: '',
 }
-checksum.genchecksum(verify_params, salt, function (err: any, checksum: string) {
-    verify_params['CHECKSUMHASH'] = checksum
-    axios({
-        method: 'POST',
-        url: 'https://securegw-stage.paytm.in/order/status',
-        data: JSON.stringify(verify_params),
-    }).then(function (response) {
-        var result = response.data
-        var code: string = result.RESPCODE
-        debug(`Status Code of transaction is ${code}`)
-        if (response.data.RESPCODE === '01') {
-            debug(`\nTransaction is successful`)
-            var transaction_success = new TransactionSuccess(result)
-            debug('Transaction success object :', transaction_success)
-            //connection.query("truncate payment_table")
-            connection.query("INSERT INTO payment_table VALUES (?,?,?,?,?,?,?,?,?,?,?)",transaction_success.to_array(),(error,result)=>{
-                if(error){
-                    debug("Mysql insertion error",error)
-                }
-                else(
-                    debug("Result",result)
-                )
-            })
-        } else if (code === '400' || code === '402') {
-            debug('\nTransaction is pending')
-            debug('Transaction Pending object', result)
-        } else {
-            debug('\nTransaction has failed')
-            if (result.RESPCODE === '334') {
-                debug('Invalid Order ID')
+
+function get_transaction_status() {
+    checksum.genchecksum(verify_params, salt, function (err: any, checksum: string) {
+        verify_params['CHECKSUMHASH'] = checksum
+        axios({
+            method: 'POST',
+            url: 'https://securegw-stage.paytm.in/order/status',
+            data: JSON.stringify(verify_params),
+        }).then(function (response) {
+            var result = response.data
+            var code: string = result.RESPCODE
+            debug(`Status Code of transaction is ${code}`)
+            if (response.data.RESPCODE === '01') {
+                debug(`\nTransaction is successful`)
+                var transaction_success = new TransactionSuccess(result)
+                debug('Transaction success object :', transaction_success)
+
+                connection.query('truncate payment_transactions')
+                connection.query('INSERT INTO payment_transactions VALUES (?,?)', ['4', transaction_success.to_array()], (error, result) => {
+                    if (error) {
+                        debug('Mysql insertion error', error)
+                    } else debug('Result', result)
+                })
+            } else if (code === '400' || code === '402') {
+                debug('\nTransaction is pending')
+                debug('Transaction Pending object', result)
             } else {
-                var transaction_fail = new TransactionFailure(
-                    result
-                )
-                debug('Transaction Failure Object :', transaction_fail)
+                debug('\nTransaction has failed')
+                if (result.RESPCODE === '334') {
+                    debug('Invalid Order ID')
+                } else {
+                    var transaction_fail = new TransactionFailure(result)
+                    debug('Transaction Failure Object :', transaction_fail)
+                }
             }
-        }
+        })
     })
-}) */
+}
+
+//get_transaction_status()
+
 router.post('/', (request: Request, response: Response) => {
     params['ORDER_ID'] = 'ORD' + Math.floor(Math.random() * 10 ** 10).toString()
     params['CUST_ID'] = 'CUST' + Math.floor(Math.random() * 10 ** 10).toString()
     params['TXN_AMOUNT'] = request.body.amount
     params['EMAIL'] = request.body.email
     params['MOBILE_NO'] = request.body.mobile
-    checksum.genchecksum(params, salt, (error: any, result: any) => {
+    queue.push(new Params(request, params['ORDER_ID'], params['CUST_ID']))
+    /* checksum.genchecksum(params, salt, (error: any, result: any) => {
         var url: string = 'https://securegw-stage.paytm.in/order/process'
         response.writeHead(200, { 'Content-Type': 'text/html' })
         response.write('<html>')
@@ -109,7 +112,7 @@ router.post('/', (request: Request, response: Response) => {
         response.write('</body>')
         response.write('</html>')
         response.end()
-    })
+    }) */
 })
 
 router.post('/redirect', (request: Request, response: Response) => {
@@ -122,19 +125,29 @@ router.post('/redirect', (request: Request, response: Response) => {
     } */
     var code: string = result.RESPCODE
     debug(`Status Code of transaction is ${code}`)
-    if (code === '01') {
-        debug(`\nTransaction is successful\n`)
-        var transaction_success = new TransactionSuccess(request)
+    if (result.RESPCODE === '01') {
+        debug(`\nTransaction is successful`)
+        var transaction_success = new TransactionSuccess(result)
         debug('Transaction success object :', transaction_success)
+        for (var i of queue) {
+            if (i.order_id == transaction_success.order_id) {
+                connection.query('INSERT INTO payment_transactions VALUES (?,?)', [i.etd_id, transaction_success.to_array()], (error, result) => {
+                    if (error) {
+                        debug('Mysql insertion error', error)
+                    } else debug('Result', result)
+                })
+            }
+        }
+        //connection.query('truncate payment_transactions')
     } else if (code === '400' || code === '402') {
-        debug('\nTransaction is pending\n')
+        debug('\nTransaction is pending')
         debug('Transaction Pending object', result)
     } else {
-        debug('\nTransaction has failed\n')
+        debug('\nTransaction has failed')
         if (result.RESPCODE === '334') {
             debug('Invalid Order ID')
         } else {
-            var transaction_fail = new TransactionFailure(request)
+            var transaction_fail = new TransactionFailure(result)
             debug('Transaction Failure Object :', transaction_fail)
         }
     }

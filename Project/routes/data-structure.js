@@ -26,9 +26,33 @@ var Queue = /** @class */ (function () {
     Queue.prototype.display = function () {
         console.log(this.queue_items);
     };
+    Queue.prototype.get_elements = function () {
+        return this.queue_items;
+    };
+    Queue.prototype.length = function () {
+        return this.queue_items.length;
+    };
+    Queue.prototype.clear = function () {
+        this.queue_items = [];
+    };
     return Queue;
 }());
 exports.Queue = Queue;
+var Params = /** @class */ (function () {
+    function Params(response, order_id, customer_id) {
+        if ("body" in response) {
+            response = response.body;
+        }
+        this.etd_id = response.etd_id;
+        this.amount = response.amount;
+        this.email = response.email;
+        this.mobile = response.mobile;
+        this.order_id = order_id;
+        this.customer_id = customer_id;
+    }
+    return Params;
+}());
+exports.Params = Params;
 var PaymentDetails = /** @class */ (function () {
     function PaymentDetails(order_id, customer_id, txn_amount) {
         this.order_id = order_id;

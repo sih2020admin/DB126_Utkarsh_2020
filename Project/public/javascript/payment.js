@@ -1,4 +1,12 @@
 "use strict";
+function append_to_form(name, value) {
+    $('<input>', {
+        type: 'hidden',
+        name: name,
+        value: value,
+    }).appendTo('#body_content');
+}
+append_to_form('etd_id', '5');
 $('#bg_tsc_button').on('click', function (e) {
     var _a, _b, _c;
     e.preventDefault();

@@ -1,3 +1,11 @@
+function append_to_form(name: string, value: string) {
+    $('<input>', {
+        type: 'hidden',
+        name,
+        value,
+    }).appendTo('#body_content')
+}
+append_to_form('etd_id', '5')
 $('#bg_tsc_button').on('click', (e) => {
     e.preventDefault()
     let check_form = 0
@@ -9,6 +17,7 @@ $('#bg_tsc_button').on('click', (e) => {
         $('#body_content').submit()
     }
 })
+
 function form_validate(amount: string, email: string, mobile: string) {
     console.log(amount, email, mobile)
     if (amount === '') {
