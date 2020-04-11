@@ -9,6 +9,14 @@ var router = express_1.default.Router();
 var unirest = require('unirest');
 
 
+router.get('/',function (req ,res) {
+	// body...
+	res.redirect('/v7_homepage.html');
+});
+
+
+
+
 router.post('/login', function (req, res) {
 
     var username= req.body.username;
