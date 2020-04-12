@@ -3,7 +3,7 @@ var IP = "localhost";
 console.log("hello cookies");
 
 //if ur developing on server uncomment this IP
-var IP="192.168.0.6"
+//var IP="192.168.0.6"
 
 
 //if ur developing in ur pc uncomment this IP
