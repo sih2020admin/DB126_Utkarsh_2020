@@ -9,43 +9,61 @@
     <title>HomePage</title>
 </head>
 <body>
-    <img src="home.png" style="width: 80%; height: 70px; margin: 0px;">
 
      <header>
         <nav id="nav_bar" style=" margin: 0px;">
-            <!-- <a href="#">Home</a> -->
             <a id="log_a" href="v1_login.html">Login</a>
         </nav>
     </header>
 
-    <div class="cont" style="width: 100%; height: 100px;  margin: 0px; ">
-        <p>E-tendering website(name of our website) offers a medium to view, select and apply for tenders in a safest manner. From selecting a tender to bidding and payment, everything is simple, fast and secure. A good user-interface environment along with easy navigation and customer service is provided. </p>
+    <div class="cont" style="width: 100%; height: 20%;  margin: 0px; ">
+        <p>E-tendering website(name of our website) offers a medium to view, select and apply for tenders in a safest manner. From selecting a tender to bidding and payment, everything is simple, fast and secure. A good user-interface environment along with easy navigation and customer service is provided. </p><br>
+        Welcome to Electronic Tendering System of Government of Maharashtra. This System is intended to be used by all Departments, Agencies and Corporations of Maharashtra for processing of the Tenders online. Suppliers and Contractors intending to do business with those Departments, Agencies and Corporations of Maharashtra who have migrated their processes online are invited to register on the Electronic Tendering System. New Suppliers and Contractors, click here to enroll.<br>
     </div>
 
     <div class="cont" id="cont" style="float: left; height:300px; width: 70%;  margin: 0px; overflow: scroll; padding: 0px;">
         <h4> Fresh Tenders</h4>
     </div>
 
-    <div class="cont" style="float: right; margin: 0px; height: 300px;">
+    <div class="cont" style="float: right; margin: 0px; height: 420px; width: 28%">
+        <h4 style="color: blue">Login</h4>
         <input type="radio" id="a_id" name="user" value="Admin">
-        <label for="admin" style="color: black;"><b>Admin</b></label>
-        <input type="radio" id="v_id" name="user" value="vendor">
-        <label for="vendor" style="color: black;"><b>Vendor</b></label><br>
-        <label>Username :</label> 
-        <input type="text" placeholder="Enter Username"><br>
-        <label>Password :</label>  
-        <input type="password" placeholder="Enter Username"><br>
-        <button type="button" onclick="decide()">LOGIN</button><br><br>
-        <p>New User??<a href="v2_register.html">Register here</a></p>
+            <label for="admin" style="color: black;"><b>Admin</b></label>
+            <input type="radio" id="v_id" name="user" value="vendor">
+            <label for="vendor" style="color: black;"><b>Vendor</b></label><br>
+        <table class="center">
+            <tr>
+                <td><label for="email_id">Username</label></td>
+                <td><input type="text" id="username" placeholder="Enter username" ></td></tr>
+            <tr><td><label for="password">Password</label></td>
+                <td><input type="password" id="pass" placeholder="Enter password" ></td>
+        </table>
+        <p id="tc"></p><br>
+        <p id="tc3"></p>
+        <!input type="Password" placeholder="Enter Password" required="">
+        <button class="login" id="login" onclick="show()">Login</button>
+        <p id="not_registered">Don't have an account? <a href="v2_register.html" >Register</a></p>
+        <table style="margin: auto;">
+            </tr>
+            <tr><td><label id="enter_otp" style="display: none;">Enter OTP</label></td>
+            <td><input type="password" id="otp" placeholder="Enter OTP" style="display: none;"></td>
+            </tr>
+        </table>
+        <p id="tc1"></p>
+        <p id="tc2"></p><br>
+        <button class="login" id="confirm" style="display: none;">Confirm</button>
+        
     </div>
     
-    <div class="cont" style="height: 50px; width: 100%; margin: 0px; height: 120px;">
+    <footer>
+    <div class="cont" style="height: 15%; width: 70%; float: left; margin: 0px; height: 120px;">
         <h4 style="color: blue;">CONTACT US : Facing any queries? Get in touch and get it solved.</h4>
         <p><b>Contact No:</b> 0251-0251  &nbsp&nbsp &nbsp &nbsp <b>Email:</b> tripura@1234.com</p>
         <P>Monday - Friday</P>
         <p>8:30am - 5:30pm IST</p>
-
     </div>
+    </footer>
+
 </body>
 
 <script type="text/javascript">
@@ -89,6 +107,103 @@
         
 </script>
 
+<script type="text/javascript">
+
+    var v = document.getElementById("v_id");
+    var a = document.getElementById("a_id");
+    var x = document.getElementById("enter_otp");
+    var y = document.getElementById("otp");
+    var z = document.getElementById("confirm");
+    var login_button = document.getElementById("login");
+    var message;
+    document.getElementById('username').value = "";
+    console.log("hello v1_login")
+    delete_cookies();
+
+    function show() 
+    {
+        var userid= document.getElementById("username").value;
+        var passw = document.getElementById("pass").value;
+        if (userid.length == 0 ){
+            document.getElementById("tc").innerHTML="Username cannot be Empty";
+        }
+        else if (passw.length == 0){
+            document.getElementById("tc").innerHTML="Password cannot be Empty";
+        }
+        else{
+            var xhr = new XMLHttpRequest();
+            var url = "http://localhost:8081/login/";
+            xhr.open("POST" ,url);
+            xhr.setRequestHeader('Content-Type','application/json');
+            xhr.send(JSON.stringify({"username":userid,"password": passw}));
+
+            document.getElementById('username').value = "";
+            document.getElementById('pass').value = "";
+
+            xhr.onload = function(){
+                if(this.status==200){
+                    message = JSON.parse(this.responseText);
+                    //alert(message.aadhar);
+                    document.getElementById("username").disabled=true;
+                    document.getElementById("pass").disabled=true;
+                    login_button.style.visibility="hidden";
+                    document.getElementById("tc").innerHTML="";
+                    document.getElementById("tc3").innerHTML="OTP has been send to Email";
+
+                    x.style.display = "";
+                    y.style.display = "inline-block";
+                    z.style.display = "";
+
+                    
+                    document.getElementById("confirm").onclick = function(){
+                        var url = "http://localhost:8082/verifyOTP";
+                        xhr.open("POST" ,url);
+                        xhr.setRequestHeader('Content-Type','application/json');
+                        xhr.send(JSON.stringify({"aadharno":message.aadhar,"OTP": y.value}));
+                        document.getElementById('otp').value = "";
+                        xhr.onload = function(){
+                            if(this.status == 200){
+                                //alert("OTP verified");
+                                document.getElementById("otp").disabled=true;
+                                var vcd_id_c =message.vcd_id;
+                                var vd_id_c=message.vd_id;
+                                var digi_access=message.digi_access;
+                                add_to_cookie("vcd_id",vcd_id_c);
+                                add_to_cookie("vd_id",vd_id_c);
+                                add_to_cookie("digi_access",digi_access);
+
+
+                                setTimeout(function(){
+                                        location="v3_see_tender.html"
+                                },1500);
+                            }
+                            else if(this.status == 400){
+                                document.getElementById("tc1").innerHTML="Invalid OTP ";
+                                document.getElementById("tc2").style.display = "inline-block";
+                                document.getElementById("tc2").innerHTML="Directing to Relogin";
+                                document.getElementById("otp").disabled=true;
+                                setTimeout(function(){
+                                        location="v7_homepage.html"
+                                },5000);
+                            }
+                            else{   
+                                document.getElementById("tc1").innerHTML="Some Error Occured";
+                            }
+                        };
+                    }
+
+                }
+                else if (this.status==400){
+                    document.getElementById("tc").innerHTML="Invalid Username or Password";
+                }
+                else{   
+                    document.getElementById("tc").innerHTML="Some Error Occured";
+                }
+            };
+        }
+    }
+</script>
+
 <script type="text/javascript" >
 var data = "";
 var response;
@@ -129,7 +244,7 @@ xhr.onload = function () {
     }
 }
 
-xhr.open("POST", "http://"+IP+":8081/gettenderlist");
+xhr.open("POST", "http://localhost:8081/gettenderlist");
 
 xhr.send(data);
 
@@ -141,8 +256,6 @@ function apply(i) {
     else{
         alert("Login to apply")
     }
-    // alert(response[i].et_title)
-    // body...
 }
     
 </script>
