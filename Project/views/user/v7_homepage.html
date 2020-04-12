@@ -22,21 +22,16 @@
     </div>
 
     <div class="cont" id="cont" style="float: left; height:300px; width: 70%;  margin: 0px; overflow: scroll; padding: 0px;">
-        <h4> Fresh Tenders</h4>
-    </div>
+        <h4> Fresh Tenders</h4> </div>
 
     <div class="cont" style="float: right; margin: 0px; height: 420px; width: 28%">
-        <h4 style="color: blue">Login</h4>
-        <input type="radio" id="a_id" name="user" value="Admin">
-            <label for="admin" style="color: black;"><b>Admin</b></label>
-            <input type="radio" id="v_id" name="user" value="vendor">
-            <label for="vendor" style="color: black;"><b>Vendor</b></label><br>
+        <h2>Login</h2>
         <table class="center">
             <tr>
                 <td><label for="email_id">Username</label></td>
                 <td><input type="text" id="username" placeholder="Enter username" ></td></tr>
             <tr><td><label for="password">Password</label></td>
-                <td><input type="password" id="pass" placeholder="Enter password" ></td>
+                <td><input type="password" id="pass" placeholder="Enter password" ></td></tr>
         </table>
         <p id="tc"></p><br>
         <p id="tc3"></p>
@@ -52,7 +47,6 @@
         <p id="tc1"></p>
         <p id="tc2"></p><br>
         <button class="login" id="confirm" style="display: none;">Confirm</button>
-        
     </div>
     
     <footer>
@@ -66,22 +60,10 @@
 
 </body>
 
+<script src="javascript/v1_login.js"></script>
+<script type="text/javascript" src="javascript/v3_see_tender.js" ></script>
+
 <script type="text/javascript">
-
-    function decide() {
-            var v = document.getElementById("v_id");
-            var a = document.getElementById("a_id");
-            if (v.checked == true) {
-                window.location.href = "/v6_profile.html";
-            }
-             else if(a.checked == true){
-                window.location.href = "/5admin_profile.html";
-            }
-            else{
-                alert("Please select vendor or admin!!");
-            }
-        }
-
     var log_a = document.getElementById("log_a")
     var nav_bar = document.getElementById("nav_bar")
     if(get_cookie("vcd_id") != "")
@@ -106,64 +88,4 @@
         }
         
 </script>
-
-<script src="javacript/1admin_login.js"></script>
-<script src="javascript/v1_login.js"></script>
-
-<script type="text/javascript" >
-var data = "";
-var response;
-var xhr = new XMLHttpRequest();
-
-xhr.onload = function () {
-  if (this.status === 200) {
-            console.log(this.responseText);
-
-            response = JSON.parse(this.responseText);
-
-            var cont_div = document.getElementById('cont');
-
-                for (var i = 0; i < response.length; i++) {
-
-                    var div=`<div class="cont" style="width:100%; " id="`+i+`">
-                        <p class="heading" style="color:blue;">`+response[i].et_title+`</p><br>
-                        <div class="Tdetails">
-                            <p class="RnoLabel"><strong>Ref No:</strong></p>
-                            <p >`+response[i].et_tender_ref_no+`</p>
-                            <p class="OdateLabel"><strong>Closing Date:</strong></p>
-                            <p id="Odate">`+response[i].et_last_date_apply+`</p>
-                            <p class="BdateLabel"><strong>Bid Opening Date:</strong></p>
-                            <p id="Bdate">`+response[i].et_bidding_date+`</p>
-                        </div><br>  
-                        <p class="para">`+response[i].et_tender_desc+`</p>
-                        <br><input type="button" name="apply" value='apply' class="apply" onclick="apply(`+i+`)">
-                    </div>`;
-                    
-                    cont_div.insertAdjacentHTML('beforeend', div);
-            }
-          }
-          else if (this.status == 404) {  
-        alert("No tender to show");
-    }
-    else{
-        alert("Check Network!");
-    }
-}
-
-xhr.open("POST", "http://localhost:8081/gettenderlist");
-
-xhr.send(data);
-
-function apply(i) {
-    if(vd_id != ""){
-    console.log("apply")
-    window.location.href = "/v4_apply_tender.html?et_id="+response[i].et_id;
-}
-    else{
-        alert("Login to apply")
-    }
-}
-    
-</script>
-
 </html>
