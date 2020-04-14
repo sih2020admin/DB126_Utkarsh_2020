@@ -9,38 +9,113 @@
     <script  src="javascript/cookies.js"></script>
     <title>E-sign</title>
 </head>
+<header>
+  <nav id="nav_bar">
+      <a href="v7_homepage.html">Home</a>
+      <a href="v3_see_tender.html">Tender</a>
+      <a id="log_a" href="v1_login.html">Login</a>
+  </nav>
+</header>
 
 <!-- -----------------------------------E-signing code------------------------------------------------------------------------>
 <body>
-    <header>
-      <nav id="nav_bar">
-          <a href="v7_homepage.html">Home</a>
-          <a href="v3_see_tender.html">Tender</a>
-          <a id="log_a" href="v1_login.html">Login</a>
-      </nav>
-    </header>
-    <label for="name">Name</label>
-    <input type="text" id="name"><br><br>
-    <label for="email">Email</label>
-    <input type="email" id="email"><br><br>
-    <label for="reason">Reason</label>
-    <input type="text" id="reason"><br><br>
-    <label for="location">Location</label>
-    <input type="location" id="location"><br><br>
-    <label for="file">Upload</label>
-    <input type="file" id="upload" onchange="browse()"><br><br>
-    <a target="blank" id ="preview">Click To Preview</a>
-    <div class="submit_button">
-      <button type="button" onclick="send()">SUBMIT</button>
-
-    </div>
+  <div class="cont">
+    <h3>E-sign Details</h3><br>
+    <table>
+      <tr>
+        <td>
+          <label for="name">Name</label>
+          <input type="text" id="name">
+        </td>
+        <td>
+          <label for="email">Email</label>
+          <input type="email" id="email">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="reason">Reason</label>
+          <input type="text" id="reason">
+        </td>
+        <td>
+          <label for="location">Location</label>
+          <input type="location" id="location">
+        </td>
+      </tr>
+    </table><br>
+    <p id="tc"></p><br>
+    <div class="button_div"><button type="submit" class="save_button" onclick="save()">Save</button></div>
+  </div>
+    <!-- <label for="file">Upload Files</label><br><br> -->
+  <div class="cont">
+    <h3>Documents Upload</h3><br>
+    <table>
+      <tr>
+        <td>
+          <div class="cont" style="min-width: 350px;">
+            <table>
+              <tr>
+                <td>
+                  <label for="file">Technical Document</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input type="file" id="upload" onchange="browse()">
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a target="blank" id ="preview1">Click To Preview</a>
+                </td>
+              </tr>
+              <tr></tr><tr></tr><tr></tr><tr></tr>
+              <tr>
+                <td>
+                  <button type="button" onclick="send()">Digilocker</button>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </td>
+        <td>
+          <div class="cont" style="min-width: 350px;">
+            <table>
+              <tr>
+                <td>
+                  <label for="file">BOQ Document</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input type="file" id="upload" onchange="browse()">
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a target="blank" id ="preview1">Click To Preview</a>
+                </td>
+              </tr>
+              <tr></tr><tr></tr><tr></tr><tr></tr>
+              <tr>
+                <td>
+                  <button type="button" onclick="send()">Digilocker</button>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
 </body>
 
 <!-- ---------------------------- End of E-sign code --------------------------------------  -->
 
 <!-- documnet code is till here ------------------------------------------------------------------------>
-<button value="back" onclick="back()">back</button>
-<button value="next" onclick="done()">done</button>
+<br>
+<button value="back" onclick="back()">Back</button>
+<button value="next" onclick="done()">Done</button>
 </body>
 <!-- <script  src="javascript/cookies.js"></script> -->
 
@@ -48,10 +123,10 @@
 <!-- --------------------------- Start of digilocker html code -------------------------------- -->
 
 <!-- The Modal -->
-<div id="myModal" class="modal">
+<!-- <div id="myModal" class="modal"> -->
 
   <!-- Modal content -->
-  <div class="modal-content">
+  <!-- <div class="modal-content">
     <div class="modal-header">
       <span class="close">&times;</span>
       <h2>Modal Header</h2>
@@ -63,7 +138,7 @@
     <div class="modal-footer">
       <h3>Modal Footer</h3>
     </div>
-  </div>
+  </div> -->
 
 <!-- --------------------------- End of digilocker html code -------------------------------- -->
 

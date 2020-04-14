@@ -72,55 +72,67 @@ document.getElementById('reason').value = "";
 document.getElementById('location').value = "";
 document.getElementById('upload').value = "";
 
+function save(){
+    if(document.getElementById('name').value == "" || document.getElementById('email').value == "" ||
+    document.getElementById('reason').value == "" || document.getElementById('location').value == "")
+    document.getElementById("tc").innerHTML="Input Field Cannot be Left Empty";
+    else{
+        document.getElementById("tc").innerHTML="";
+        document.getElementById('name').disabled = true;
+        document.getElementById('email').disabled = true;
+        document.getElementById('reason').disabled = true;
+        document.getElementById('location').disabled = true;
+    }
+}
+
 var preview = document.getElementById("preview");
-    preview.style.display = "none";
+preview.style.display = "none";
+
     
-    var formdata;
-    function browse(){
-        browse = document.getElementById('upload');
-        upload(browse.files);
-    } 
-    var upload = function(files){
-        formdata = new FormData();
-        for( var x = 0;x < files.length;x = x+1){
-            formdata.append('file',files[x]);
+var formdata;
+var upload = function(files){
+    formdata = new FormData();
+    for( var x = 0;x < files.length;x = x+1){
+        formdata.append('file',files[x]);
+    }
+    //console.log(formdata.get('file'));
+    alert("Uploaded");
+
+    var name = document.getElementById("name").value;
+    var email = document.getElementById("email").value;
+    var reason = document.getElementById("reason").value;
+    var location = document.getElementById("location").value;
+
+    formdata.append('name',name);
+    formdata.append('email',email);
+    formdata.append('reason',reason);
+    formdata.append('location',location);
+
+    var xhr = new XMLHttpRequest();
+    var url = "http://165.22.210.37:8091/sign";
+    xhr.open("POST" ,url);
+    xhr.send(formdata);
+    xhr.onload = function(){
+        if(this.status==200){
+            alert("SuccesFully Signed");
+            preview.href = window.URL.createObjectURL(this.response);
+            preview.download = "signed.pdf";
+            preview.style.display = '';
         }
-        //console.log(formdata.get('file'));
-        alert("Uploaded");
-    }
-    
-    function send() 
-    {
-        var name = document.getElementById("name").value;
-        var email = document.getElementById("email").value;
-        var reason = document.getElementById("reason").value;
-        var location = document.getElementById("location").value;
+        else if (this.status==400){
+            alert(400);
+        }
+        else{	
+            alert("Some Error Occured");
+        }
+    };
+    xhr.responseType = 'blob';
+}
 
-        formdata.append('name',name);
-        formdata.append('email',email);
-        formdata.append('reason',reason);
-        formdata.append('location',location);
-
-        var xhr = new XMLHttpRequest();
-        var url = "http://165.22.210.37:8091/sign";
-        xhr.open("POST" ,url);
-        xhr.send(formdata);
-        xhr.onload = function(){
-            if(this.status==200){
-                alert("SuccesFully Signed");
-                preview.href = window.URL.createObjectURL(this.response);
-                preview.download = "signed.pdf";
-                preview.style.display = '';
-            }
-            else if (this.status==400){
-                alert(400);
-            }
-            else{	
-                alert("Some Error Occured");
-            }
-        };
-        xhr.responseType = 'blob';
-    }
+function browse(){
+    browse = document.getElementById('upload');
+    upload(browse.files);
+}
 
 /* ---------------------------- End of E-sign code -------------------------------------- */
 

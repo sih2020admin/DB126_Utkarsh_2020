@@ -40,6 +40,11 @@ h1, h3, label {
   transition: all .2s ease-in-out;
 }
 
+#tc {
+  font-size: 12px;
+  font-style: italic;
+  color: #fd0000;
+}
 input {
   border-width: 1.5px;
   border-radius: 3px;
