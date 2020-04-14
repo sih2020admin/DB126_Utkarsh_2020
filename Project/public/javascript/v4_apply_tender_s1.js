@@ -38,13 +38,13 @@ if(et_id == null && etd_id != null){
         //progress bar code------------------------------------------------------
               
             var i = 0;
-            if(status === 100){
+            if(status === "100"){
                 move1()
             }
-            else if(status === 110){
+            else if(status === "110"){
                 move2()
             }
-            else if(status === 111){
+            else if(status === "111"){
                 move3()
             }
 
