@@ -104,18 +104,61 @@ button{
     text-align: center;
 }
 
-#pbar_bg {
+.pBarCont {
     width: 100%;
-    background-color: #ddd;
-    border-radius: 5px;
-}
-  
-#pbar {
-    width: 0%;
+    background-color: transparent;
+    display: flex;
+  }
+
+.pBar {
+    width: 0px;
     height: 30px;
     background-color: #4CAF50;
+    color: white;
     text-align: center;
     line-height: 30px;
+  }
+.pBaredge1{
+    width: 0;
+    height: 1;
+    line-height: 30px;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+  /*   border-right: 15px solid blue; */
+    border-left: 15px solid #4CAF50;
+  }
+  
+.pBar2 {
+    width: 0;
+    height: 30px;
+    background-color: #4CAF50;
     color: white;
-    border-radius: 5px;
-}
+    text-align: center;
+    line-height: 30px;
+  }
+.pBaredge2{
+    width: 0;
+    height: 0;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+  /*   border-right: 15px solid blue; */
+    border-left: 15px solid #4CAF50;
+  }
+  
+.pBar3 {
+    width: 0;
+    height: 30px;
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    line-height: 30px;
+  }
+.pBaredge3{
+    width: 0;
+    height: 0;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+  /*   border-right: 15px solid blue; */
+    border-left: 15px solid #4CAF50;
+  }
+
