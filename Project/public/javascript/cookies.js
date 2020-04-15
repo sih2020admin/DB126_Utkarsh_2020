@@ -1,8 +1,4 @@
 "use strict";
-<<<<<<< HEAD
-=======
-
->>>>>>> 6d5013a5e4b824771473aee807b10585f61b3f59
 console.log("hello cookies");
 
 //if ur developing on server uncomment this IP
