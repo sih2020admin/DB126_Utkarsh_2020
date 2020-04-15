@@ -55,4 +55,27 @@ router.post('/filled_tender_desc', function (req, res) {
     	});
 });
 
+router.post('/get_etd_id', function (req, res) {
+
+    	var et_id= req.body.et_id;
+    	var vd_id= req.body.vd_id;
+    	console.log("tender desc called "+et_id)
+	
+				
+	db_1.default.query('SELECT * FROM  e_tender_vendor WHERE et_id = ? and vd_id=?',[et_id,vd_id], function (error, results, fields) {
+		if (error) {
+	      		//console.log("error");
+	      		res.sendStatus(400);
+	     	}else{
+	       		if(results.length >0){
+	       			res.send(results[0]);
+       			}
+       			else{
+         			//does not exists
+         			res.sendStatus(404);
+       			}
+      		}
+    	});
+});
+
 exports.default = router;

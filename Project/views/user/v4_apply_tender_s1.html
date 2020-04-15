@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/nav.css">
     <link rel="stylesheet" href="css/apply_tender.css">
-  <link rel="stylesheet" href="css/payment.css">
+    <!-- <link rel="stylesheet" href="css/payment.css"> -->
     <script  src="javascript/cookies.js"></script>
     <title>apply tender</title>
 </head>
@@ -17,16 +17,26 @@
             <a id="log_a" href="v1_login.html">Login</a>
         </nav>
     </header>
+    <div class="pBarCont">
+
+        <div id="pBar" class="pBar">Step1</div>
+        <div id="arr1" class="pBaredge1" style="display:none;"></div>
+        <div id="pBar2" class="pBar2">Step2</div>
+        <div id="arr2" class="pBaredge2" style="display:none;"></div>
+        <div id="pBar3" class="pBar3">Step3</div>
+        <div id="arr3" class="pBaredge3" style="display:none;"></div>
+      
+    </div>
 
 <!-- tender deatils code is here ------------------------------------------------------------------------>
 
-    <div class="cont" id="cont">
+    <div class="conts" id="conts">
         
     </div>
 
-    <div class="cont">
+    <div class="conts">
          <button id="apply_button" value="Apply" onclick="apply()">Apply</button>
-         <button id="next_button"  display:  none value="next" onclick="next()">next</button>
+         <button id="next_button"  display:  none value="next" onclick="next()">Next</button>
     </div>
  
   </body>

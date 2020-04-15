@@ -1,4 +1,4 @@
-delete_cookies();
+delete_cookies();	
 document.getElementById('username').value = "";
 function show() 
 {

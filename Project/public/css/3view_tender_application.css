@@ -23,10 +23,6 @@ label {
   color: var(--accent-color);
 }
 
-button, input {
-  font-family: 'Open sans','sans serif';
-}
-
 .tender_list2 {
   text-align: left;
   background-color: white;

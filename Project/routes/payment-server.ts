@@ -91,7 +91,7 @@ router.post('/', (request: Request, response: Response) => {
     params['EMAIL'] = request.body.email
     params['MOBILE_NO'] = request.body.mobile
     queue.push(new Params(request, params['ORDER_ID'], params['CUST_ID']))
-    /* checksum.genchecksum(params, salt, (error: any, result: any) => {
+    checksum.genchecksum(params, salt, (error: any, result: any) => {
         var url: string = 'https://securegw-stage.paytm.in/order/process'
         response.writeHead(200, { 'Content-Type': 'text/html' })
         response.write('<html>')
@@ -112,7 +112,7 @@ router.post('/', (request: Request, response: Response) => {
         response.write('</body>')
         response.write('</html>')
         response.end()
-    }) */
+    })
 })
 
 router.post('/redirect', (request: Request, response: Response) => {
@@ -138,6 +138,7 @@ router.post('/redirect', (request: Request, response: Response) => {
                 })
             }
         }
+        response.redirect("http://192.168.1.106:8081/v4_apply_tender_s3.html")
         //connection.query('truncate payment_transactions')
     } else if (code === '400' || code === '402') {
         debug('\nTransaction is pending')

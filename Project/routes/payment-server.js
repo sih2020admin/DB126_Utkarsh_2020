@@ -34,7 +34,7 @@ var params = {
     MOBILE_NO: '',
     EMAIL: '',
     TXN_AMOUNT: '',
-    CALLBACK_URL: 'http://192.168.0.6:8081/payment/redirect',
+    CALLBACK_URL: 'http://192.168.1.106:8081/payment/redirect',
 };
 /* var data =2
 function demo(){
@@ -107,28 +107,28 @@ router.post('/', function (request, response) {
     params['EMAIL'] = request.body.email;
     params['MOBILE_NO'] = request.body.mobile;
     queue.push(new data_structure_1.Params(request, params['ORDER_ID'], params['CUST_ID']));
-    /* checksum.genchecksum(params, salt, (error: any, result: any) => {
-        var url: string = 'https://securegw-stage.paytm.in/order/process'
-        response.writeHead(200, { 'Content-Type': 'text/html' })
-        response.write('<html>')
-        response.write('<head>')
-        response.write('<title>Merchant Checkout Page</title>')
-        response.write('</head>')
-        response.write('<body>')
-        response.write('<center><h1>Please do not refresh this page...</h1></center>')
-        response.write('<form method="post" action="' + url + '" name="paytm_form">')
+    checksum.genchecksum(params, salt, function (error, result) {
+        var url = 'https://securegw-stage.paytm.in/order/process';
+        response.writeHead(200, { 'Content-Type': 'text/html' });
+        response.write('<html>');
+        response.write('<head>');
+        response.write('<title>Merchant Checkout Page</title>');
+        response.write('</head>');
+        response.write('<body>');
+        response.write('<center><h1>Please do not refresh this page...</h1></center>');
+        response.write('<form method="post" action="' + url + '" name="paytm_form">');
         for (var x in params) {
-            response.write('<input type="hidden" name="' + x + '" value="' + params[x] + '">')
+            response.write('<input type="hidden" name="' + x + '" value="' + params[x] + '">');
         }
-        response.write('<input type="hidden" name="CHECKSUMHASH" value="' + result + '">')
-        response.write('</form>')
-        response.write('<script type="text/javascript">')
-        response.write('document.paytm_form.submit();')
-        response.write('</script>')
-        response.write('</body>')
-        response.write('</html>')
-        response.end()
-    }) */
+        response.write('<input type="hidden" name="CHECKSUMHASH" value="' + result + '">');
+        response.write('</form>');
+        response.write('<script type="text/javascript">');
+        response.write('document.paytm_form.submit();');
+        response.write('</script>');
+        response.write('</body>');
+        response.write('</html>');
+        response.end();
+    });
 });
 router.post('/redirect', function (request, response) {
     var e_1, _a;
@@ -140,7 +140,8 @@ router.post('/redirect', function (request, response) {
         console.log('Checksum Mismatched')
     } */
     var code = result.RESPCODE;
-    debug("Status Code of transaction is " + code);
+    var debug;
+    ("Status Code of transaction is " + code);
     if (result.RESPCODE === '01') {
         debug("\nTransaction is successful");
         var transaction_success = new data_structure_1.TransactionSuccess(result);
@@ -166,6 +167,7 @@ router.post('/redirect', function (request, response) {
             }
             finally { if (e_1) throw e_1.error; }
         }
+        response.redirect("http://192.168.1.106:8081/v4_apply_tender_s3.html");
         //connection.query('truncate payment_transactions')
     }
     else if (code === '400' || code === '402') {

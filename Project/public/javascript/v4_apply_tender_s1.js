@@ -10,6 +10,7 @@ const urlParams = new URLSearchParams(queryString);
 
 
 var et_id  = urlParams.get('et_id')
+var status = "000"
 var etd_id  = urlParams.get('etd_id')
 console.log(et_id,etd_id);
 if(et_id == null && etd_id != null){
@@ -26,14 +27,96 @@ if(et_id == null && etd_id != null){
             console.log(this.responseText);
 
             response = JSON.parse(this.responseText);
-            var cont_div = document.getElementById('cont');
+            var cont_div = document.getElementById('conts');
 
-    
+            status = response.status
+            // 000 = 0
+            // 100 = step1
+            // 110 = step2
+            // 111 = step3
+
+        //progress bar code------------------------------------------------------
+              
+            var i = 0;
+            if(status === "100"){
+                move1()
+            }
+            else if(status === "110"){
+                move2()
+            }
+            else if(status === "111"){
+                move3()
+            }
+
+            function move1() {
+                if (i == 0) {
+                    i = 1;
+                    var elem = document.getElementById("pBar");
+                    document.getElementById("arr1").style.display = "";
+                    var width = 10;
+                    var id = setInterval(frame, 20);
+              
+                    function frame() {
+                        if (width >= (100 / 3)) {
+                            clearInterval(id);
+                            i = 0;
+                        } 
+                        else {
+                            width++;
+                            elem.style.width = width + "%";
+                        }   
+                    }
+                }
+            }
+              
+            function move2() {
+                if (i == 0) {
+                  i = 1;
+                  var elem = document.getElementById("pBar2");
+                      document.getElementById("arr2").style.display = "";
+                  var width = 10;
+                  var id = setInterval(frame, 20);
+              
+                  function frame() {
+                    if (width >= (100 / 3)) {
+                      clearInterval(id);
+                      i = 0;
+                    } else {
+                      width++;
+                      elem.style.width = width + "%";
+                    }
+                  }
+                }
+              }
+              
+              
+            function move3() {
+              document.getElementById("arr3").style.display = "";
+                if (i == 0) {
+                  i = 1;
+                  var elem = document.getElementById("pBar3");
+                  
+                  var width = 10;
+                  var id = setInterval(frame, 20);
+              
+                  function frame() {
+                    if (width >= (100 / 3)) {
+                      clearInterval(id);
+                      i = 0;
+                    } else {
+                      width++;
+                      elem.style.width = width + "%";
+                    }
+                  }
+                }
+              }
+
+        //progress bar code over-------------------------------------------------
 
         var div=`<div class="cont" id="">
-                <h3>Filled Tender Details</h3><br>
-            <label><strong>Title:</strong></label>
-            <label class="heading">`+response.et_title+`</label><br><br>
+                <h2>Filled Tender Details</h2><br>
+                <label><strong>Title:</strong></label>  
+                <label class="heading">`+response.et_title+`</label><br><br>
                 <label class="RnoLabel"><strong>Department:</strong></label>
                 <label>`+response.dept_id+`</label><br><br>
                 <label class="RnoLabel"><strong>Ref No:</strong></label>
@@ -49,9 +132,9 @@ if(et_id == null && etd_id != null){
                 <label class="OdateLabel"><strong>Bid Date:</strong></label>
                 <label id="Odate">`+response.et_bidding_date.slice(0,10)+`</label><br><br>
                 <label class="OdateLabel"><strong>File URL:</strong></label>
-                <label id="Odate">`+response.et_file_uri+`</label><br>
+                <label id="Odate">`+response.et_file_uri+`</label><br><br>
                 <label class="OdateLabel"><strong>Status:</strong></label>
-                <label id="Odate">`+response.status+`</label><br>
+                <label id="Odate">`+response.status+`</label><br><br>
                 <label class="OdateLabel"><strong>Bidding amount:</strong></label>
                 <label id="Odate">`+response.bidding_amt+`</label><br>
             <br>  

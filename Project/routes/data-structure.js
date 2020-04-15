@@ -40,7 +40,7 @@ var Queue = /** @class */ (function () {
 exports.Queue = Queue;
 var Params = /** @class */ (function () {
     function Params(response, order_id, customer_id) {
-        if ("body" in response) {
+        if ('body' in response) {
             response = response.body;
         }
         this.etd_id = response.etd_id;
@@ -78,14 +78,14 @@ var TransactionFailure = /** @class */ (function (_super) {
     __extends(TransactionFailure, _super);
     function TransactionFailure(response) {
         var _this = this;
-        if ("data" in response) {
+        if ('data' in response) {
             response = response.data;
         }
-        if ("body" in response) {
+        if ('body' in response) {
             response = response.body;
         }
         if (response.REFUNDAMT == undefined) {
-            response.REFUNDAMT = "0.00";
+            response.REFUNDAMT = '0.00';
         }
         _this = _super.call(this, response.TXNID, response.ORDERID, response.TXNAMOUNT, response.STATUS, response.RESPCODE, response.REFUNDAMT, response.TXNDATE) || this;
         _this.resp_message = response.RESPMSG;
@@ -98,14 +98,14 @@ var TransactionSuccess = /** @class */ (function (_super) {
     __extends(TransactionSuccess, _super);
     function TransactionSuccess(response) {
         var _this = this;
-        if ("data" in response) {
+        if ('data' in response) {
             response = response.data;
         }
-        if ("body" in response) {
+        if ('body' in response) {
             response = response.body;
         }
         if (response.REFUNDAMT == undefined) {
-            response.REFUNDAMT = "0.00";
+            response.REFUNDAMT = '0.00';
         }
         _this = _super.call(this, response.TXNID, response.ORDERID, response.TXNAMOUNT, response.STATUS, response.RESPCODE, response.REFUNDAMT, response.TXNDATE) || this;
         _this.bank_txn_id = response.BANKTXNID;
@@ -115,19 +115,7 @@ var TransactionSuccess = /** @class */ (function (_super) {
         return _this;
     }
     TransactionSuccess.prototype.to_array = function () {
-        return [
-            this.txn_id,
-            this.order_id,
-            this.amount,
-            this.status_message,
-            this.status_code,
-            this.refund_amount,
-            this.timestamp,
-            this.bank_txn_id,
-            this.gateway_name,
-            this.bank_name,
-            this.payment_mode,
-        ];
+        return [this.txn_id, this.order_id, this.amount, this.status_message, this.status_code, this.refund_amount, this.timestamp, this.bank_txn_id, this.gateway_name, this.bank_name, this.payment_mode];
     };
     return TransactionSuccess;
 }(Transaction));
