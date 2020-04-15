@@ -1,3 +1,5 @@
 .env
 *.scss
 *.ts
+.prettierrc
+*.pug
