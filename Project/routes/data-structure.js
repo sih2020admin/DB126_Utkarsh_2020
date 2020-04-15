@@ -43,6 +43,7 @@ var Params = /** @class */ (function () {
         if ('body' in response) {
             response = response.body;
         }
+        this.et_id = response.et_id;
         this.etd_id = response.etd_id;
         this.amount = response.amount;
         this.email = response.email;

@@ -51,8 +51,8 @@ xhr.send(data);
 function apply(i) {
     console.log("applied click")
     if(vd_id != ""){
-
-    var data = JSON.stringify({"et_id":response[i].et_id,"vd_id":vd_id});
+    var et_id=response[i].et_id;
+    var data = JSON.stringify({"et_id":et_id,"vd_id":vd_id});
 
     var xhr = new XMLHttpRequest();
     xhr.withCredentials = true;
@@ -63,11 +63,11 @@ function apply(i) {
             var status = res.status;
             if(status=="100"){
                 alert("all ready applied , complete process")
-                window.location.href = "/v4_apply_tender_s2.html?etd_id="+res.etd_id;
+                window.location.href = "/v4_apply_tender_s2.html?et_id="+et_id+"&etd_id="+res.etd_id;
             }
             else if(status=="110"){
                 alert("all ready applied , complete process")
-                window.location.href = "/v4_apply_tender_s3.html?etd_id="+res.etd_id;
+                window.location.href = "/v4_apply_tender_s3.html?et_id="+et_id+"&etd_id="+res.etd_id;
             }
             else if(status=="111"){
                 alert("All ready applied check preview but saddly we need to make preview page wait");
@@ -86,7 +86,7 @@ function apply(i) {
 
     xhr.open("POST", "http://"+IP+":8081/get_etd_id");
     xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.setRequestHeader("Cookie", "PHPSESSID=qs1c0qdet862lrfn217cvqr70b");
+    
 
     xhr.send(data);
     console.log("apply")

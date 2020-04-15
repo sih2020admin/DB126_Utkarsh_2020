@@ -5,7 +5,7 @@ import { TransactionSuccess, TransactionFailure, Queue, Params } from './data-st
 const debug = require('debug')('payment')
 const checksum = require('./paytm/checksum.js')
 debug('Started Debugging process of payment-server\nLocation : routes/payment-server.ts')
-var queue:Array<Params> = []
+var queue: Array<Params> = []
 const router: Router = express.Router()
 const salt: string = process.env.KEY!
 var params: { [key: string]: string } = {
@@ -43,7 +43,6 @@ var verify_params = {
     ORDERID: 'ORD9548155614', //ORD335093582 fail ORD9548155614 success
     CHECKSUMHASH: '',
 }
-
 function get_transaction_status() {
     checksum.genchecksum(verify_params, salt, function (err: any, checksum: string) {
         verify_params['CHECKSUMHASH'] = checksum
@@ -134,11 +133,20 @@ router.post('/redirect', (request: Request, response: Response) => {
                 connection.query('INSERT INTO payment_transactions VALUES (?,?)', [i.etd_id, transaction_success.to_array()], (error, result) => {
                     if (error) {
                         debug('Mysql insertion error', error)
-                    } else debug('Result', result)
+                    } else {
+                        debug('Successfully inserted in payment database')
+                        connection.query(`update e_tender_vendor set status=110 where et_id=${i.et_id} and etd_id=${i.etd_id}`, (error, result) => {
+                            if (error) {
+                                debug('Error in updating in e-tender-vendor')
+                            } else {
+                                debug('Successfully updated e_tender_vendor table')
+                            }
+                        })
+                    }
                 })
+                response.redirect(`http://192.168.1.106:8081/v4_apply_tender_s3.html?et_id=${i.et_id}&etd_id=${i.etd_id}`)
             }
         }
-        response.redirect("http://192.168.1.106:8081/v4_apply_tender_s3.html")
         //connection.query('truncate payment_transactions')
     } else if (code === '400' || code === '402') {
         debug('\nTransaction is pending')
@@ -150,8 +158,16 @@ router.post('/redirect', (request: Request, response: Response) => {
         } else {
             var transaction_fail = new TransactionFailure(result)
             debug('Transaction Failure Object :', transaction_fail)
+            for (var i of queue) {
+                if (i.order_id == transaction_fail.order_id) {
+                    response.redirect(`http://192.168.1.106:8081/v4_apply_tender_s2.html?et_id=${i.et_id}&etd_id=${i.etd_id}&code=0`)
+                }
+            }
         }
     }
 })
 
+setInterval(() => {
+    debug('The status of queue is ', queue)
+}, 8000)
 export default router

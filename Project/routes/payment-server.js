@@ -131,7 +131,7 @@ router.post('/', function (request, response) {
     });
 });
 router.post('/redirect', function (request, response) {
-    var e_1, _a;
+    var e_1, _a, e_2, _b;
     var result = request.body;
     /* var isValidChecksum = checksum.verifychecksum(params, salt, result.CHECKSUMHASH)
     if (isValidChecksum) {
@@ -140,8 +140,7 @@ router.post('/redirect', function (request, response) {
         console.log('Checksum Mismatched')
     } */
     var code = result.RESPCODE;
-    var debug;
-    ("Status Code of transaction is " + code);
+    debug("Status Code of transaction is " + code);
     if (result.RESPCODE === '01') {
         debug("\nTransaction is successful");
         var transaction_success = new data_structure_1.TransactionSuccess(result);
@@ -154,9 +153,19 @@ router.post('/redirect', function (request, response) {
                         if (error) {
                             debug('Mysql insertion error', error);
                         }
-                        else
-                            debug('Result', result);
+                        else {
+                            debug('Successfully inserted in payment database');
+                            db_1.default.query("update e_tender_vendor set status=110 where et_id=" + i.et_id + " and etd_id=" + i.etd_id, function (error, result) {
+                                if (error) {
+                                    debug('Error in updating in e-tender-vendor');
+                                }
+                                else {
+                                    debug('Successfully updated e_tender_vendor table');
+                                }
+                            });
+                        }
                     });
+                    response.redirect("http://192.168.1.106:8081/v4_apply_tender_s3.html?et_id=" + i.et_id + "&etd_id=" + i.etd_id);
                 }
             }
         }
@@ -167,7 +176,6 @@ router.post('/redirect', function (request, response) {
             }
             finally { if (e_1) throw e_1.error; }
         }
-        response.redirect("http://192.168.1.106:8081/v4_apply_tender_s3.html");
         //connection.query('truncate payment_transactions')
     }
     else if (code === '400' || code === '402') {
@@ -182,7 +190,25 @@ router.post('/redirect', function (request, response) {
         else {
             var transaction_fail = new data_structure_1.TransactionFailure(result);
             debug('Transaction Failure Object :', transaction_fail);
+            try {
+                for (var queue_2 = __values(queue), queue_2_1 = queue_2.next(); !queue_2_1.done; queue_2_1 = queue_2.next()) {
+                    var i = queue_2_1.value;
+                    if (i.order_id == transaction_fail.order_id) {
+                        response.redirect("http://192.168.1.106:8081/v4_apply_tender_s2.html?et_id=" + i.et_id + "&etd_id=" + i.etd_id + "&code=0");
+                    }
+                }
+            }
+            catch (e_2_1) { e_2 = { error: e_2_1 }; }
+            finally {
+                try {
+                    if (queue_2_1 && !queue_2_1.done && (_b = queue_2.return)) _b.call(queue_2);
+                }
+                finally { if (e_2) throw e_2.error; }
+            }
         }
     }
 });
+setInterval(function () {
+    debug('The status of queue is ', queue);
+}, 8000);
 exports.default = router;
