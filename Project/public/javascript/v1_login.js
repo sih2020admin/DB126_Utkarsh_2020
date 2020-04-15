@@ -21,7 +21,7 @@ function show()
 	}
 	else{
 		var xhr = new XMLHttpRequest();
-		var url = "http://localhost:8081/login/";
+		var url = "http://"+IP+":8081/login/";
 		xhr.open("POST" ,url);
 		xhr.setRequestHeader('Content-Type','application/json');
 		xhr.send(JSON.stringify({"username":userid,"password": passw}));
@@ -45,7 +45,7 @@ function show()
 
 				
 				document.getElementById("confirm").onclick = function(){
-					var url = "http://localhost:8082/verifyOTP";
+					var url = "http://"+IP+":8082/verifyOTP";
 					xhr.open("POST" ,url);
 					xhr.setRequestHeader('Content-Type','application/json');
 					xhr.send(JSON.stringify({"aadharno":message.aadhar,"OTP": y.value}));

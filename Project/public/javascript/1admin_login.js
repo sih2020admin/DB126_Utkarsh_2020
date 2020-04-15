@@ -1,4 +1,4 @@
-delete_cookies();
+delete_cookies();	
 document.getElementById('username').value = "";
 function show() 
 {
@@ -12,7 +12,7 @@ function show()
 	}
 	else{
 		var xhr = new XMLHttpRequest();
-		var url = "http://localhost:8081/login/admin";
+		var url = "http://"+IP+":8081/login/admin";
 		xhr.open("POST" ,url);
 		xhr.setRequestHeader('Content-Type','application/json');
 		xhr.send(JSON.stringify({"username":userid,"password": passw}));
