@@ -25,15 +25,16 @@ strong {
 }
 
 .cont {
-  text-align: left;
+  text-align: center; /*saurabh change*/
   background-color: white;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  min-width: 600px;
+  min-width: 800px;/*saurabh change*/
   height: auto;
   padding: 20px;
-  margin: 40px;
+  margin: auto; /*saurabh change*/
+  /* margin: 40px; */
   margin-top: 20px;
   border-radius: 10px;
   -webkit-box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.2);
@@ -42,6 +43,12 @@ strong {
   transition: all .2s ease-in-out;
 }
 
+#tc {
+  font-size: 12px;
+  font-style: italic;
+  color: #fd0000;
+  text-align: center;
+}
 button {
   margin: auto;
 }
@@ -122,19 +129,66 @@ button:hover {
   text-align: center;
 }
 
-#pbar_bg {
+.pBarCont {
   width: 100%;
-  background-color: #ddd;
-  border-radius: 5px;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
-#pbar {
-  width: 0%;
+.pBar {
+  width: 0px;
   height: 30px;
   background-color: #4CAF50;
+  color: white;
   text-align: center;
   line-height: 30px;
+}
+
+.pBaredge1 {
+  width: 0;
+  height: 1;
+  line-height: 30px;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  /*   border-right: 15px solid blue; */
+  border-left: 15px solid #4CAF50;
+}
+
+.pBar2 {
+  width: 0;
+  height: 30px;
+  background-color: #4CAF50;
   color: white;
-  border-radius: 5px;
+  text-align: center;
+  line-height: 30px;
+}
+
+.pBaredge2 {
+  width: 0;
+  height: 0;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  /*   border-right: 15px solid blue; */
+  border-left: 15px solid #4CAF50;
+}
+
+.pBar3 {
+  width: 0;
+  height: 30px;
+  background-color: #4CAF50;
+  color: white;
+  text-align: center;
+  line-height: 30px;
+}
+
+.pBaredge3 {
+  width: 0;
+  height: 0;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  /*   border-right: 15px solid blue; */
+  border-left: 15px solid #4CAF50;
 }
 /*# sourceMappingURL=apply_tender.css.map */

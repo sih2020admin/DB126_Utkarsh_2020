@@ -51,57 +51,65 @@ if(et_id == null && etd_id != null){
             function move1() {
                 if (i == 0) {
                     i = 1;
-                    var elem = document.getElementById("pbar");
-                    var width = 0;
-                    var id = setInterval(frame, 10);
+                    var elem = document.getElementById("pBar");
+                    document.getElementById("arr1").style.display = "";
+                    var width = 10;
+                    var id = setInterval(frame, 20);
+              
                     function frame() {
-                        if (width >= 33) {
+                        if (width >= (100 / 3)) {
                             clearInterval(id);
                             i = 0;
                         } 
                         else {
                             width++;
                             elem.style.width = width + "%";
-                        }
+                        }   
                     }
                 }
-             }
-
+            }
+              
             function move2() {
                 if (i == 0) {
-                    i = 1;
-                    var elem = document.getElementById("pbar");
-                    var width = 33;
-                    var id = setInterval(frame, 10);
-                    function frame() {
-                        if (width >= 66) {
-                            clearInterval(id);
-                            i = 0;
-                        } else {
-                            width++;
-                            elem.style.width = width + "%";
-                        }
+                  i = 1;
+                  var elem = document.getElementById("pBar2");
+                      document.getElementById("arr2").style.display = "";
+                  var width = 10;
+                  var id = setInterval(frame, 20);
+              
+                  function frame() {
+                    if (width >= (100 / 3)) {
+                      clearInterval(id);
+                      i = 0;
+                    } else {
+                      width++;
+                      elem.style.width = width + "%";
                     }
+                  }
                 }
-            }
-
+              }
+              
+              
             function move3() {
+              document.getElementById("arr3").style.display = "";
                 if (i == 0) {
-                    i = 1;
-                    var elem = document.getElementById("pbar");
-                    var width = 66;
-                    var id = setInterval(frame, 10);
-                    function frame() {
-                        if (width >= 100) {
-                            clearInterval(id);
-                            i = 0;
-                        } else {
-                            width++;
-                            elem.style.width = width + "%";
-                        }
+                  i = 1;
+                  var elem = document.getElementById("pBar3");
+                  
+                  var width = 10;
+                  var id = setInterval(frame, 20);
+              
+                  function frame() {
+                    if (width >= (100 / 3)) {
+                      clearInterval(id);
+                      i = 0;
+                    } else {
+                      width++;
+                      elem.style.width = width + "%";
                     }
+                  }
                 }
-            }
+              }
 
         //progress bar code over-------------------------------------------------
 
