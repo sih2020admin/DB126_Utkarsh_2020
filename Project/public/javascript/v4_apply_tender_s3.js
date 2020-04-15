@@ -71,6 +71,12 @@ document.getElementById('email').value = "";
 document.getElementById('reason').value = "";
 document.getElementById('location').value = "";
 document.getElementById('upload').value = "";
+document.getElementById('upload1').value = "";
+
+var preview = document.getElementById("preview");
+preview.style.display = "none";
+var preview1 = document.getElementById("preview1");
+preview1.style.display = "none";
 
 function save(){
     if(document.getElementById('name').value == "" || document.getElementById('email').value == "" ||
@@ -84,12 +90,8 @@ function save(){
         document.getElementById('location').disabled = true;
     }
 }
-
-var preview = document.getElementById("preview");
-preview.style.display = "none";
-
     
-var formdata;
+var formdata,fileName,flag=0;
 var upload = function(files){
     formdata = new FormData();
     for( var x = 0;x < files.length;x = x+1){
@@ -107,7 +109,7 @@ var upload = function(files){
     formdata.append('email',email);
     formdata.append('reason',reason);
     formdata.append('location',location);
-
+    
     var xhr = new XMLHttpRequest();
     var url = "http://165.22.210.37:8091/sign";
     xhr.open("POST" ,url);
@@ -115,9 +117,18 @@ var upload = function(files){
     xhr.onload = function(){
         if(this.status==200){
             alert("SuccesFully Signed");
-            preview.href = window.URL.createObjectURL(this.response);
-            preview.download = "signed.pdf";
-            preview.style.display = '';
+            if(flag == 0){
+                preview.href = window.URL.createObjectURL(this.response);
+                fileName = formdata.get('file').name.slice(0,-4) + "_signed.pdf";
+                preview.download = fileName;
+                preview.style.display = '';
+            }
+            else{
+                preview1.href = window.URL.createObjectURL(this.response);
+                fileName = formdata.get('file').name.slice(0,-4) + "_signed.pdf";
+                preview1.download = fileName;
+                preview1.style.display = '';
+            }
         }
         else if (this.status==400){
             alert(400);
@@ -131,6 +142,11 @@ var upload = function(files){
 
 function browse(){
     browse = document.getElementById('upload');
+    upload(browse.files);
+}
+function browse1(){
+    flag=1;
+    browse = document.getElementById('upload1');
     upload(browse.files);
 }
 

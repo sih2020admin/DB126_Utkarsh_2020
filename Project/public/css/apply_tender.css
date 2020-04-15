@@ -25,15 +25,16 @@ strong {
 }
 
 .cont {
-  text-align: left;
+  text-align: center; /*saurabh change*/
   background-color: white;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  min-width: 600px;
+  min-width: 800px;/*saurabh change*/
   height: auto;
   padding: 20px;
-  margin: 40px;
+  margin: auto; /*saurabh change*/
+  /* margin: 40px; */
   margin-top: 20px;
   border-radius: 10px;
   -webkit-box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.2);
@@ -46,6 +47,7 @@ strong {
   font-size: 12px;
   font-style: italic;
   color: #fd0000;
+  text-align: center;
 }
 button {
   margin: auto;
