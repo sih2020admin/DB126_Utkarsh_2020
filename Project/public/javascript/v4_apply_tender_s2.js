@@ -10,6 +10,8 @@ const urlParams = new URLSearchParams(queryString);
 
 
 var et_id  = urlParams.get('et_id')
+var etd_id  = urlParams.get('etd_id')
+console.log(et_id,etd_id);
 
 console.log(et_id);
 // var data = JSON.stringify({"et_id":et_id});
@@ -95,11 +97,11 @@ window.onclick = function(event) {
 
 function next() {
     // body...
-    console.log(et_id);
-    window.location.href = "/v4_apply_tender_s3.html?et_id="+et_id;
+    console.log(et_id,etd_id);
+    window.location.href = "/v4_apply_tender_s3.html?et_id="+et_id+"&etd_id="+etd_id;
 }
 function back() {
     // body...
-    console.log(et_id);
-    window.location.href = "/v4_apply_tender_s1.html?et_id="+et_id;
+    console.log(et_id,etd_id);
+    window.location.href = "/v4_apply_tender_s1.html?et_id="+et_id+"&etd_id="+etd_id;
 }
