@@ -1,5 +1,5 @@
 "use strict";
-var IP = "localhost";
+// var IP = "localhost";
 console.log("hello cookies");
 
 //if ur developing on server uncomment this IP
