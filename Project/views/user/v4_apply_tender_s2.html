@@ -19,7 +19,7 @@
       <a id="log_a" href="v1_login.html">Login</a>
     </nav>
   </header>
-
+  <h1 id="tsc_status"></h1>
   <div class="cont">
     <h3>Payment Details(winston modify urs payment gateway here)</h3>
     <br />
@@ -55,14 +55,14 @@
     <div class="button_div"><button type="submit" class="save_button">Save</button></div>
   </div>
   <div class="cont2">
-    <form id="body_content" method="POST" action="http://192.168.0.6:8081/payment">
+    <form id="body_content" method="POST" action="http://localhost:8081/payment">
       <div class="content">
         <h1>Payment</h1>
         <br />
         <table style="text-align: left;">
           <tr>
             <td><label for="amount1">Amount</label></td>
-            <td><input type="number" id="amount1" name="amount" placeholder="Enter Amount" /></td>
+            <td><input type="text" id="amount1" name="amount" disabled/></td>
           </tr>
           <tr>
             <td><label for="email">Email ID</label></td>
@@ -83,7 +83,6 @@
     <p id="error-para"></p>
   </div>
 
-  <!-- documnet code is till here ------------------------------------------------------------------------>
   <button value="back" onclick="back()">back</button>
   <button value="done" onclick="next()">next</button>
 </body>
@@ -99,6 +98,5 @@
 </script>
 <script src="javascript/jquery-3.4.1.min.js"></script>
 <script src="javascript/v4_apply_tender_s2.js"></script>
-<script src="javascript/payment.js"></script>
 
 </html>

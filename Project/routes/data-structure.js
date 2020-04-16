@@ -26,9 +26,34 @@ var Queue = /** @class */ (function () {
     Queue.prototype.display = function () {
         console.log(this.queue_items);
     };
+    Queue.prototype.get_elements = function () {
+        return this.queue_items;
+    };
+    Queue.prototype.length = function () {
+        return this.queue_items.length;
+    };
+    Queue.prototype.clear = function () {
+        this.queue_items = [];
+    };
     return Queue;
 }());
 exports.Queue = Queue;
+var Params = /** @class */ (function () {
+    function Params(response, order_id, customer_id) {
+        if ('body' in response) {
+            response = response.body;
+        }
+        this.et_id = response.et_id;
+        this.etd_id = response.etd_id;
+        this.amount = response.amount;
+        this.email = response.email;
+        this.mobile = response.mobile;
+        this.order_id = order_id;
+        this.customer_id = customer_id;
+    }
+    return Params;
+}());
+exports.Params = Params;
 var PaymentDetails = /** @class */ (function () {
     function PaymentDetails(order_id, customer_id, txn_amount) {
         this.order_id = order_id;
@@ -54,14 +79,14 @@ var TransactionFailure = /** @class */ (function (_super) {
     __extends(TransactionFailure, _super);
     function TransactionFailure(response) {
         var _this = this;
-        if ("data" in response) {
+        if ('data' in response) {
             response = response.data;
         }
-        if ("body" in response) {
+        if ('body' in response) {
             response = response.body;
         }
         if (response.REFUNDAMT == undefined) {
-            response.REFUNDAMT = "0.00";
+            response.REFUNDAMT = '0.00';
         }
         _this = _super.call(this, response.TXNID, response.ORDERID, response.TXNAMOUNT, response.STATUS, response.RESPCODE, response.REFUNDAMT, response.TXNDATE) || this;
         _this.resp_message = response.RESPMSG;
@@ -74,14 +99,14 @@ var TransactionSuccess = /** @class */ (function (_super) {
     __extends(TransactionSuccess, _super);
     function TransactionSuccess(response) {
         var _this = this;
-        if ("data" in response) {
+        if ('data' in response) {
             response = response.data;
         }
-        if ("body" in response) {
+        if ('body' in response) {
             response = response.body;
         }
         if (response.REFUNDAMT == undefined) {
-            response.REFUNDAMT = "0.00";
+            response.REFUNDAMT = '0.00';
         }
         _this = _super.call(this, response.TXNID, response.ORDERID, response.TXNAMOUNT, response.STATUS, response.RESPCODE, response.REFUNDAMT, response.TXNDATE) || this;
         _this.bank_txn_id = response.BANKTXNID;
@@ -91,19 +116,7 @@ var TransactionSuccess = /** @class */ (function (_super) {
         return _this;
     }
     TransactionSuccess.prototype.to_array = function () {
-        return [
-            this.txn_id,
-            this.order_id,
-            this.amount,
-            this.status_message,
-            this.status_code,
-            this.refund_amount,
-            this.timestamp,
-            this.bank_txn_id,
-            this.gateway_name,
-            this.bank_name,
-            this.payment_mode,
-        ];
+        return [this.txn_id, this.order_id, this.amount, this.status_message, this.status_code, this.refund_amount, this.timestamp, this.bank_txn_id, this.gateway_name, this.bank_name, this.payment_mode];
     };
     return TransactionSuccess;
 }(Transaction));

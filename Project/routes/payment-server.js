@@ -1,14 +1,27 @@
 "use strict";
+var __values = (this && this.__values) || function(o) {
+    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
+    if (m) return m.call(o);
+    if (o && typeof o.length === "number") return {
+        next: function () {
+            if (o && i >= o.length) o = void 0;
+            return { value: o && o[i++], done: !o };
+        }
+    };
+    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
-var debug = require('debug')('payment');
+var axios_1 = __importDefault(require("axios"));
+var db_1 = __importDefault(require("./db"));
 var data_structure_1 = require("./data-structure");
+var debug = require('debug')('payment');
 var checksum = require('./paytm/checksum.js');
 debug('Started Debugging process of payment-server\nLocation : routes/payment-server.ts');
-var queue = new data_structure_1.Queue();
+var queue = [];
 var router = express_1.default.Router();
 var salt = process.env.KEY;
 var params = {
@@ -21,7 +34,7 @@ var params = {
     MOBILE_NO: '',
     EMAIL: '',
     TXN_AMOUNT: '',
-    CALLBACK_URL: 'http://192.168.0.6:8081/payment/redirect',
+    CALLBACK_URL: 'http://192.168.1.106:8081/payment/redirect',
 };
 /* var data =2
 function demo(){
@@ -40,56 +53,60 @@ demo().then(function(result){
     console.log(error)
 })
  */
-/* var verify_params = {
-    MID: process.env.MID!,
-    ORDERID: 'ORD335093582', //ORD335093582 fail ORD9548155614 success
+var verify_params = {
+    MID: process.env.MID,
+    ORDERID: 'ORD9548155614',
     CHECKSUMHASH: '',
-}
-checksum.genchecksum(verify_params, salt, function (err: any, checksum: string) {
-    verify_params['CHECKSUMHASH'] = checksum
-    axios({
-        method: 'POST',
-        url: 'https://securegw-stage.paytm.in/order/status',
-        data: JSON.stringify(verify_params),
-    }).then(function (response) {
-        var result = response.data
-        var code: string = result.RESPCODE
-        debug(`Status Code of transaction is ${code}`)
-        if (response.data.RESPCODE === '01') {
-            debug(`\nTransaction is successful`)
-            var transaction_success = new TransactionSuccess(result)
-            debug('Transaction success object :', transaction_success)
-            //connection.query("truncate payment_table")
-            connection.query("INSERT INTO payment_table VALUES (?,?,?,?,?,?,?,?,?,?,?)",transaction_success.to_array(),(error,result)=>{
-                if(error){
-                    debug("Mysql insertion error",error)
-                }
-                else(
-                    debug("Result",result)
-                )
-            })
-        } else if (code === '400' || code === '402') {
-            debug('\nTransaction is pending')
-            debug('Transaction Pending object', result)
-        } else {
-            debug('\nTransaction has failed')
-            if (result.RESPCODE === '334') {
-                debug('Invalid Order ID')
-            } else {
-                var transaction_fail = new TransactionFailure(
-                    result
-                )
-                debug('Transaction Failure Object :', transaction_fail)
+};
+function get_transaction_status() {
+    checksum.genchecksum(verify_params, salt, function (err, checksum) {
+        verify_params['CHECKSUMHASH'] = checksum;
+        axios_1.default({
+            method: 'POST',
+            url: 'https://securegw-stage.paytm.in/order/status',
+            data: JSON.stringify(verify_params),
+        }).then(function (response) {
+            var result = response.data;
+            var code = result.RESPCODE;
+            debug("Status Code of transaction is " + code);
+            if (response.data.RESPCODE === '01') {
+                debug("\nTransaction is successful");
+                var transaction_success = new data_structure_1.TransactionSuccess(result);
+                debug('Transaction success object :', transaction_success);
+                db_1.default.query('truncate payment_transactions');
+                db_1.default.query('INSERT INTO payment_transactions VALUES (?,?)', ['4', transaction_success.to_array()], function (error, result) {
+                    if (error) {
+                        debug('Mysql insertion error', error);
+                    }
+                    else
+                        debug('Result', result);
+                });
             }
-        }
-    })
-}) */
+            else if (code === '400' || code === '402') {
+                debug('\nTransaction is pending');
+                debug('Transaction Pending object', result);
+            }
+            else {
+                debug('\nTransaction has failed');
+                if (result.RESPCODE === '334') {
+                    debug('Invalid Order ID');
+                }
+                else {
+                    var transaction_fail = new data_structure_1.TransactionFailure(result);
+                    debug('Transaction Failure Object :', transaction_fail);
+                }
+            }
+        });
+    });
+}
+//get_transaction_status()
 router.post('/', function (request, response) {
     params['ORDER_ID'] = 'ORD' + Math.floor(Math.random() * Math.pow(10, 10)).toString();
     params['CUST_ID'] = 'CUST' + Math.floor(Math.random() * Math.pow(10, 10)).toString();
     params['TXN_AMOUNT'] = request.body.amount;
     params['EMAIL'] = request.body.email;
     params['MOBILE_NO'] = request.body.mobile;
+    queue.push(new data_structure_1.Params(request, params['ORDER_ID'], params['CUST_ID']));
     checksum.genchecksum(params, salt, function (error, result) {
         var url = 'https://securegw-stage.paytm.in/order/process';
         response.writeHead(200, { 'Content-Type': 'text/html' });
@@ -114,6 +131,7 @@ router.post('/', function (request, response) {
     });
 });
 router.post('/redirect', function (request, response) {
+    var e_1, _a, e_2, _b;
     var result = request.body;
     /* var isValidChecksum = checksum.verifychecksum(params, salt, result.CHECKSUMHASH)
     if (isValidChecksum) {
@@ -123,24 +141,74 @@ router.post('/redirect', function (request, response) {
     } */
     var code = result.RESPCODE;
     debug("Status Code of transaction is " + code);
-    if (code === '01') {
-        debug("\nTransaction is successful\n");
-        var transaction_success = new data_structure_1.TransactionSuccess(request);
+    if (result.RESPCODE === '01') {
+        debug("\nTransaction is successful");
+        var transaction_success = new data_structure_1.TransactionSuccess(result);
         debug('Transaction success object :', transaction_success);
+        try {
+            for (var queue_1 = __values(queue), queue_1_1 = queue_1.next(); !queue_1_1.done; queue_1_1 = queue_1.next()) {
+                var i = queue_1_1.value;
+                if (i.order_id == transaction_success.order_id) {
+                    db_1.default.query('INSERT INTO payment_transactions VALUES (?,?)', [i.etd_id, transaction_success.to_array()], function (error, result) {
+                        if (error) {
+                            debug('Mysql insertion error', error);
+                        }
+                        else {
+                            debug('Successfully inserted in payment database');
+                            db_1.default.query("update e_tender_vendor set status=110 where et_id=" + i.et_id + " and etd_id=" + i.etd_id, function (error, result) {
+                                if (error) {
+                                    debug('Error in updating in e-tender-vendor');
+                                }
+                                else {
+                                    debug('Successfully updated e_tender_vendor table');
+                                }
+                            });
+                        }
+                    });
+                    response.redirect("http://192.168.1.106:8081/v4_apply_tender_s3.html?et_id=" + i.et_id + "&etd_id=" + i.etd_id);
+                }
+            }
+        }
+        catch (e_1_1) { e_1 = { error: e_1_1 }; }
+        finally {
+            try {
+                if (queue_1_1 && !queue_1_1.done && (_a = queue_1.return)) _a.call(queue_1);
+            }
+            finally { if (e_1) throw e_1.error; }
+        }
+        //connection.query('truncate payment_transactions')
     }
     else if (code === '400' || code === '402') {
-        debug('\nTransaction is pending\n');
+        debug('\nTransaction is pending');
         debug('Transaction Pending object', result);
     }
     else {
-        debug('\nTransaction has failed\n');
+        debug('\nTransaction has failed');
         if (result.RESPCODE === '334') {
             debug('Invalid Order ID');
         }
         else {
-            var transaction_fail = new data_structure_1.TransactionFailure(request);
+            var transaction_fail = new data_structure_1.TransactionFailure(result);
             debug('Transaction Failure Object :', transaction_fail);
+            try {
+                for (var queue_2 = __values(queue), queue_2_1 = queue_2.next(); !queue_2_1.done; queue_2_1 = queue_2.next()) {
+                    var i = queue_2_1.value;
+                    if (i.order_id == transaction_fail.order_id) {
+                        response.redirect("http://192.168.1.106:8081/v4_apply_tender_s2.html?et_id=" + i.et_id + "&etd_id=" + i.etd_id + "&code=0");
+                    }
+                }
+            }
+            catch (e_2_1) { e_2 = { error: e_2_1 }; }
+            finally {
+                try {
+                    if (queue_2_1 && !queue_2_1.done && (_b = queue_2.return)) _b.call(queue_2);
+                }
+                finally { if (e_2) throw e_2.error; }
+            }
         }
     }
 });
+setInterval(function () {
+    debug('The status of queue is ', queue);
+}, 8000);
 exports.default = router;
