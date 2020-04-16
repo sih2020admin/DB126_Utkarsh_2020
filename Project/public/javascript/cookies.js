@@ -6,7 +6,7 @@ var IP="165.22.210.37"
 
 
 //if ur developing in ur pc uncomment this IP
-var IP="localhost" 
+//var IP="localhost" 
 
 
 

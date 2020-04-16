@@ -1,3 +1,8 @@
+//Below variables are used in v4_apply_tender_digilocker.js file
+//don't delete below 2 variables
+var Technical_file_name;
+var BOQ_file_name;
+
 /* var vd_id =get_cookie('vd_id')
 var vcd_id =get_cookie('vcd_id')
 if(vd_id ==""){
@@ -120,12 +125,14 @@ var upload = function(files){
             if(flag == 0){
                 preview.href = window.URL.createObjectURL(this.response);
                 fileName = formdata.get('file').name.slice(0,-4) + "_signed.pdf";
+                Technical_file_name = formdata.get('file').name.slice(0,-4) + "_signed.pdf";
                 preview.download = fileName;
                 preview.style.display = '';
             }
             else{
                 preview1.href = window.URL.createObjectURL(this.response);
                 fileName = formdata.get('file').name.slice(0,-4) + "_signed.pdf";
+                BOQ_file_name = formdata.get('file').name.slice(0,-4) + "_signed.pdf";
                 preview1.download = fileName;
                 preview1.style.display = '';
             }
