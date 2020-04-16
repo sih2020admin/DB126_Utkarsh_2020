@@ -49,6 +49,59 @@ strong {
   color: #fd0000;
   text-align: center;
 }
+
+#tc2,#tc3 {
+  font-size: 12px;
+  font-style: italic;
+  display: none;
+}
+
+#tc2:after,#tc3:after {
+  content: ' .';
+  -webkit-animation: dots 1s steps(5, end) infinite;
+  animation: dots 1s steps(5, end) infinite;
+}
+@-webkit-keyframes dots {
+  0%, 20% {
+    color: black;
+    text-shadow: 0.25em 0 0 rgba(0, 0, 0, 0), 0.5em 0 0 rgba(0, 0, 0, 0);
+  }
+  40% {
+    color: black;
+    text-shadow: 0.25em 0 0 rgba(0, 0, 0, 0), 0.5em 0 0 rgba(0, 0, 0, 0);
+  }
+  60% {
+    color: black;
+    text-shadow: 0.25em 0 0 black, 0.5em 0 0 rgba(0, 0, 0, 0);
+  }
+  80%, 100% {
+    color: black;
+    text-shadow: .25em 0 0 black,
+ .5em 0 0 black;
+  }
+}
+
+@keyframes dots {
+  0%, 20% {
+    color: black;
+    text-shadow: 0.25em 0 0 rgba(0, 0, 0, 0), 0.5em 0 0 rgba(0, 0, 0, 0);
+  }
+  40% {
+    color: black;
+    text-shadow: 0.25em 0 0 rgba(0, 0, 0, 0), 0.5em 0 0 rgba(0, 0, 0, 0);
+  }
+  60% {
+    color: black;
+    text-shadow: 0.25em 0 0 black, 0.5em 0 0 rgba(0, 0, 0, 0);
+  }
+  80%, 100% {
+    color: black;
+    text-shadow: .25em 0 0 black,
+ .5em 0 0 black;
+  }
+}
+
+
 button {
   margin: auto;
 }

@@ -42,7 +42,7 @@
           <input type="location" id="location">
         </td>
       </tr>
-    </table><br>
+    </table>
     <p id="tc"></p><br>
     <div class="button_div"><button type="submit" class="save_button" onclick="save()">Save</button></div>
   </div>
@@ -60,7 +60,8 @@
               </tr>
               <tr>
                 <td>
-                  <input type="file" id="upload" onchange="browse()">
+                  <input type="file" id="upload"  accept="application/pdf" onchange="browse()"><br>
+                  <p id="tc2"></p>
                 </td>
               </tr>
               <tr>
@@ -69,11 +70,6 @@
                 </td>
               </tr>
               <tr></tr><tr></tr><tr></tr><tr></tr>
-              <tr>
-                <td>
-                  <button type="button" onclick="send()">Digilocker</button>
-                </td>
-              </tr>
             </table>
           </div>
         </td>
@@ -87,7 +83,8 @@
               </tr>
               <tr>
                 <td>
-                  <input type="file" id="upload1" onchange="browse1()">
+                  <input type="file" id="upload1" accept="application/pdf" onchange="browse1()"><br>
+                  <p id="tc3"></p>
                 </td>
               </tr>
               <tr>
@@ -96,23 +93,20 @@
                 </td>
               </tr>
               <tr></tr><tr></tr><tr></tr><tr></tr>
-              <tr>
-                <td>
-                  <button type="button" onclick="send()">Digilocker</button>
-                </td>
-              </tr>
             </table>
           </div>
         </td>
       </tr>
     </table>
+    <br>
+    <button type="button" onclick="send()">Digilocker</button>
   </div>
 </body>
 
 <!-- ---------------------------- End of E-sign code --------------------------------------  -->
 
 <!-- documnet code is till here ------------------------------------------------------------------------>
-<br><br>
+<br>
 <button value="back" onclick="back()">Back</button>
 <button value="next" onclick="done()">Done</button>
 </body>
