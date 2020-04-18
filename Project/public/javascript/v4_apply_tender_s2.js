@@ -67,3 +67,6 @@ function form_validate(amount, email, mobile) {
     $('#error-para').text('Success');
     return 1;
 }
+function next(){
+
+}

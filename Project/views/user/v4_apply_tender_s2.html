@@ -55,7 +55,7 @@
     <div class="button_div"><button type="submit" class="save_button">Save</button></div>
   </div>
   <div class="cont2">
-    <form id="body_content" method="POST" action="http://localhost:8081/payment">
+    <form id="body_content" method="POST" action="http://165.22.210.37:8081/payment">
       <div class="content">
         <h1>Payment</h1>
         <br />
@@ -77,14 +77,13 @@
           </tr>
         </table>
       </div>
+      <p id="error-para"></p>
       <input type="submit" value="submit" id="bg_tsc_button" />
-      <button id="bg_tsc_button">Begin Transaction</button>
     </form>
-    <p id="error-para"></p>
   </div>
-
+  <br>
   <button value="back" onclick="back()">back</button>
-  <button value="done" onclick="next()">next</button>
+  <br><br>
 </body>
 
 <script type="text/javascript">
