@@ -75,6 +75,9 @@ document.getElementById('location').value = "";
 document.getElementById('upload').value = "";
 document.getElementById('upload1').value = "";
 
+document.getElementById("upload").disabled = true;
+document.getElementById("upload1").disabled = true;
+
 var preview = document.getElementById("preview");
 preview.style.display = "none";
 var preview1 = document.getElementById("preview1");
@@ -90,6 +93,7 @@ function save(){
         document.getElementById('email').disabled = true;
         document.getElementById('reason').disabled = true;
         document.getElementById('location').disabled = true;
+        document.getElementById("upload").disabled = false;
     }
 }
     
@@ -125,6 +129,7 @@ var upload = function(files){
                 Technical_file_name = formdata.get('file').name.slice(0,-4) + "_signed.pdf";
                 preview.download = Technical_file_name;
                 preview.style.display = '';
+                document.getElementById("upload1").disabled = false;
             }
             else{
                 document.getElementById("tc3").style.display = "none";
@@ -145,6 +150,7 @@ var upload = function(files){
 }
 
 function browse(){
+    
     document.getElementById("tc2").style.display = "inline-block";
     document.getElementById("tc2").innerHTML="Signing";
     browse = document.getElementById('upload');
@@ -152,6 +158,8 @@ function browse(){
 }
 function browse1(){
     flag=1;
+    document.getElementById("upload1").disabled = false;
+    document.getElementById("upload").disabled = true;
     document.getElementById("tc3").style.display = "inline-block";
     document.getElementById("tc3").innerHTML="Signing";
     browse = document.getElementById('upload1');
