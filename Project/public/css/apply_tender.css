@@ -346,7 +346,7 @@ ul {
   /* Modal Content */
   .modal-content {
   position: relative;
-  background-color: #09c3f1;
+  background-color: white;
   margin: auto;
   padding: 0;
   border: 1px solid #888;
@@ -400,7 +400,7 @@ ul {
   
   .modal-header {
   padding: 2px 16px;
-  background-color: #5cb85c;
+  background-color: #663EFD;
   color: white;
   }
   
@@ -410,7 +410,7 @@ ul {
   
   .modal-footer {
   padding: 2px 16px;
-  background-color: #5cb85c;
+  background-color: #663EFD;
   color: white;
   }
   

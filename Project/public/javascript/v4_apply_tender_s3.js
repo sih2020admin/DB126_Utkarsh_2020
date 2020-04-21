@@ -104,7 +104,7 @@ var upload = function(files){
         formdata.append('file',files[x]);
     }
     //console.log(formdata.get('file'));
-    alert("Uploaded");
+    alert("Document Uploaded,Press OK to Sign the Document");
 
     var name = document.getElementById("name").value;
     var email = document.getElementById("email").value;
