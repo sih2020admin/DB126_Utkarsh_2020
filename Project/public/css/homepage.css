@@ -1,0 +1,247 @@
+:root {
+  --main_color: #663EFD;
+  --text_color: #000000;
+  --accent-color: #a6a6a6;
+  --accent-dark-color: #848DA7;
+}
+
+* {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h3, h2, h4 {
+  font-family: 'Montserrat', 'open sans';
+  color: var(--main_color);
+  text-align: center;
+}
+
+.intro {
+  margin: 60px 40px;
+  color: var(--accent-dark-color);
+}
+
+.conts {
+  margin-left: 40px;
+  margin-bottom: 40px;
+  overflow-y: auto;
+  height: 300px;
+  max-width: 65%;
+  /* width */
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
+}
+
+.conts::-webkit-scrollbar {
+  width: 10px;
+}
+
+.conts::-webkit-scrollbar-track {
+  border: 0.4px solid #848DA7;
+  border-radius: 10px;
+}
+
+.conts::-webkit-scrollbar-thumb {
+  background: #663EFD;
+  border-radius: 10px;
+}
+
+.conts::-webkit-scrollbar-thumb:hover {
+  background: #A790FC;
+}
+
+.cont {
+  -webkit-box-shadow: 0 0 3px 0 rgba(103, 62, 253, 0.3);
+          box-shadow: 0 0 3px 0 rgba(103, 62, 253, 0.3);
+  border-radius: 10px;
+  margin: 20px 10px;
+  padding: 20px;
+}
+
+.cont p {
+  display: inline-block;
+}
+
+.cont p.heading {
+  color: var(--main_color);
+  font-weight: bold;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.cont button {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-top: 5px;
+  padding: 3px 20px;
+  border-radius: 4px;
+  background-color: var(--main_color);
+  border: 0.4px solid var(--main_color);
+  color: #ffffff;
+  font-size: 17px;
+}
+
+.cont button:hover {
+  cursor: pointer;
+  background-color: #ffffff;
+  color: var(--main_color);
+  border: 0.4px solid var(--main_color);
+}
+
+.login_div {
+  -webkit-box-shadow: 0 0 3px 0 rgba(103, 62, 253, 0.3);
+          box-shadow: 0 0 3px 0 rgba(103, 62, 253, 0.3);
+  border-radius: 10px;
+  margin-right: 40px;
+  margin-bottom: 20px;
+  width: 38%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.login_div button {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-top: 20px;
+  padding: 3px 20px;
+  border-radius: 4px;
+  background-color: var(--main_color);
+  border: 0.4px solid var(--main_color);
+  color: #ffffff;
+  font-size: 17px;
+}
+
+.login_div button:hover {
+  cursor: pointer;
+  background-color: #ffffff;
+  color: var(--main_color);
+  border: 0.4px solid var(--main_color);
+}
+
+.login_div table {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  width: 70%;
+}
+
+.login_div table th, .login_div table td {
+  padding: 10px 0;
+}
+
+.login_div input {
+  border-width: 0.4px;
+  border-radius: 3px;
+  border-color: var(--main_color);
+  height: 30px;
+  width: 80%;
+  padding: 10px;
+  color: var(--text_color);
+  overflow: hidden;
+  outline: none;
+}
+
+.login_div label#not_registered {
+  display: block;
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--accent-dark-color);
+}
+
+.login_div label#enter_otp {
+  font-size: 16px;
+  color: black;
+  display: inline;
+}
+
+footer {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #fafafc;
+  padding: 20px 40px;
+  font-size: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  color: var(--accent-dark-color);
+}
+
+footer b {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  color: black;
+}
+
+footer label {
+  display: block;
+  margin-top: 20px;
+}
+
+footer input {
+  border-width: 0.4px;
+  border-radius: 3px;
+  border-color: var(--main_color);
+  height: 30px;
+  width: 80%;
+  padding: 10px;
+  margin-top: 20px;
+  color: var(--text_color);
+  overflow: hidden;
+  outline: none;
+}
+
+footer button {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-top: 20px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  background-color: var(--main_color);
+  border: 0.4px solid var(--main_color);
+  color: #ffffff;
+}
+
+footer button:hover {
+  cursor: pointer;
+  background-color: #ffffff;
+  color: var(--main_color);
+  border: 0.4px solid var(--main_color);
+}
+
+footer a {
+  display: block;
+  text-decoration: none;
+  color: var(--accent-dark-color);
+  margin-top: 20px;
+}
+
+footer .icons {
+  margin-top: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+footer .icons a {
+  margin-top: 0px;
+  display: inline;
+}
+
+footer .icons img {
+  width: 60%;
+}
+/*# sourceMappingURL=homepage.css.map */
