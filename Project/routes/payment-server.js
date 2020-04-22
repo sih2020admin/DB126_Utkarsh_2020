@@ -112,6 +112,7 @@ router.post('/', function (request, response) {
     params['TXN_AMOUNT'] = request.body.amount;
     params['EMAIL'] = request.body.email;
     params['MOBILE_NO'] = request.body.mobile;
+console.log(params)
     queue.push(new data_structure_1.Params(request, params['ORDER_ID'], params['CUST_ID']));
     checksum.genchecksum(params, salt, function (error, result) {
         var url = 'https://securegw-stage.paytm.in/order/process';

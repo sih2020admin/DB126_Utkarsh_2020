@@ -37,5 +37,5 @@ app.use('/', tender_approval.default);
 app.use('/', vendor_dashboard.default);
 app.use('/', apply_tender.default);
 app.listen(port, function () {
-    //console.log(`Server started on port ${port}`)
+    console.log(`Server started on port ${port}`)
 });

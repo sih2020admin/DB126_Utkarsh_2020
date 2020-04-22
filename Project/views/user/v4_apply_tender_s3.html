@@ -17,6 +17,7 @@
   </nav>
 </header>
 
+
 <!-- -----------------------------------E-signing code------------------------------------------------------------------------>
 <body>
   <div class="cont">
@@ -42,7 +43,7 @@
           <input type="location" id="location">
         </td>
       </tr>
-    </table><br>
+    </table>
     <p id="tc"></p><br>
     <div class="button_div"><button type="submit" class="save_button" onclick="save()">Save</button></div>
   </div>
@@ -60,7 +61,8 @@
               </tr>
               <tr>
                 <td>
-                  <input type="file" id="upload" onchange="browse()">
+                  <input type="file" id="upload"  accept="application/pdf" onchange="browse()"><br>
+                  <p id="tc2"></p>
                 </td>
               </tr>
               <tr>
@@ -68,12 +70,7 @@
                   <a target="blank" id ="preview">Click To Preview</a>
                 </td>
               </tr>
-              <tr></tr><tr></tr><tr></tr><tr></tr>
-              <tr>
-                <td>
-                  <button type="button" onclick="send()">Digilocker</button>
-                </td>
-              </tr>
+	            <tr></tr><tr></tr><tr></tr><tr></tr>
             </table>
           </div>
         </td>
@@ -87,7 +84,8 @@
               </tr>
               <tr>
                 <td>
-                  <input type="file" id="upload1" onchange="browse1()">
+                  <input type="file" id="upload1" accept="application/pdf" onchange="browse1()"><br>
+                  <p id="tc3"></p>
                 </td>
               </tr>
               <tr>
@@ -96,48 +94,50 @@
                 </td>
               </tr>
               <tr></tr><tr></tr><tr></tr><tr></tr>
-              <tr>
-                <td>
-                  <button type="button" onclick="send()">Digilocker</button>
-                </td>
-              </tr>
             </table>
           </div>
         </td>
       </tr>
     </table>
+    <br>
+    <button type="button" onclick="openModal()">Digilocker</button>
   </div>
 </body>
 
 <!-- ---------------------------- End of E-sign code --------------------------------------  -->
 
 <!-- documnet code is till here ------------------------------------------------------------------------>
-<br><br>
+<br>
 <button value="back" onclick="back()">Back</button>
 <button value="next" onclick="done()">Done</button>
 </body>
 <!-- <script  src="javascript/cookies.js"></script> -->
 
-
 <!-- --------------------------- Start of digilocker html code -------------------------------- -->
 
 <!-- The Modal -->
-<!-- <div id="myModal" class="modal"> -->
+<div id="myModal" class="modal">
 
   <!-- Modal content -->
-  <!-- <div class="modal-content">
-    <div class="modal-header">
-      <span class="close">&times;</span>
-      <h2>Modal Header</h2>
-    </div>
-    <div class="modal-body">
-      <p>Some text in the Modal Body</p>
-      <p>Some other text...</p>
-    </div>
-    <div class="modal-footer">
-      <h3>Modal Footer</h3>
-    </div>
-  </div> -->
+  <div class="modal-content">
+      <div class="modal-header">
+          <span class="close">&times;</span>
+          <h2>Digilocker</h2>
+          <p id="cur_dir">Current Directory is : </p>
+      </div>
+      <div class="modal-body">
+          <ul id="directory">
+          </ul>
+      </div>
+      <div class="modal-footer">
+          <div class="wrapper">
+              <button id="back">Back</button>
+              <br>
+              <button id="uploadDigi" onclick="uploadFiles()">Upload Here</button>
+          </div>
+      </div>
+  </div>
+</div>
 
 <!-- --------------------------- End of digilocker html code -------------------------------- -->
 
@@ -156,4 +156,5 @@
 <script src="javascript/jquery-3.4.1.min.js"></script>
 <script src="javascript/payment.js" ></script>
 <script type="text/javascript" src="javascript/v4_apply_tender_s3.js"></script>
+<script type="text/javascript" src="javascript/v4_apply_tender_digilocker.js"></script>
 </html>

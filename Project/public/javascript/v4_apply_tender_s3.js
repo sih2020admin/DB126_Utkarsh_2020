@@ -1,3 +1,5 @@
+//Below variables are used in v4_apply_tender_digilocker.js file
+//don't delete below 2 variables
 /* var vd_id =get_cookie('vd_id')
 var vcd_id =get_cookie('vcd_id')
 if(vd_id ==""){
@@ -73,6 +75,9 @@ document.getElementById('location').value = "";
 document.getElementById('upload').value = "";
 document.getElementById('upload1').value = "";
 
+document.getElementById("upload").disabled = true;
+document.getElementById("upload1").disabled = true;
+
 var preview = document.getElementById("preview");
 preview.style.display = "none";
 var preview1 = document.getElementById("preview1");
@@ -88,17 +93,18 @@ function save(){
         document.getElementById('email').disabled = true;
         document.getElementById('reason').disabled = true;
         document.getElementById('location').disabled = true;
+        document.getElementById("upload").disabled = false;
     }
 }
     
-var formdata,fileName,flag=0;
+var formdata,Technical_file_name,BOQ_file_name,flag=0;
 var upload = function(files){
     formdata = new FormData();
     for( var x = 0;x < files.length;x = x+1){
         formdata.append('file',files[x]);
     }
     //console.log(formdata.get('file'));
-    alert("Uploaded");
+    alert("Document Uploaded,Press OK to Sign the Document");
 
     var name = document.getElementById("name").value;
     var email = document.getElementById("email").value;
@@ -118,15 +124,18 @@ var upload = function(files){
         if(this.status==200){
             alert("SuccesFully Signed");
             if(flag == 0){
+                document.getElementById("tc2").style.display = "none";
                 preview.href = window.URL.createObjectURL(this.response);
-                fileName = formdata.get('file').name.slice(0,-4) + "_signed.pdf";
-                preview.download = fileName;
+                Technical_file_name = formdata.get('file').name.slice(0,-4) + "_signed.pdf";
+                preview.download = Technical_file_name;
                 preview.style.display = '';
+                document.getElementById("upload1").disabled = false;
             }
             else{
+                document.getElementById("tc3").style.display = "none";
                 preview1.href = window.URL.createObjectURL(this.response);
-                fileName = formdata.get('file').name.slice(0,-4) + "_signed.pdf";
-                preview1.download = fileName;
+                BOQ_file_name = formdata.get('file').name.slice(0,-4) + "_signed.pdf";
+                preview1.download = BOQ_file_name;
                 preview1.style.display = '';
             }
         }
@@ -141,11 +150,18 @@ var upload = function(files){
 }
 
 function browse(){
+    
+    document.getElementById("tc2").style.display = "inline-block";
+    document.getElementById("tc2").innerHTML="Signing";
     browse = document.getElementById('upload');
     upload(browse.files);
 }
 function browse1(){
     flag=1;
+    document.getElementById("upload1").disabled = false;
+    document.getElementById("upload").disabled = true;
+    document.getElementById("tc3").style.display = "inline-block";
+    document.getElementById("tc3").innerHTML="Signing";
     browse = document.getElementById('upload1');
     upload(browse.files);
 }

@@ -20,12 +20,7 @@ h1, h3, h2 {
   color: var(--main_color);
 }
 
-strong {
-  color: var(--accent-color);
-}
-
 .cont {
-  text-align: left;
   background-color: white;
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -33,17 +28,37 @@ strong {
   min-width: 600px;
   height: auto;
   padding: 20px;
-  margin: 40px;
+  margin: auto;
   margin-top: 20px;
   border-radius: 10px;
   -webkit-box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.2);
           box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.2);
-  -webkit-transition: all .2s ease-in-out;
-  transition: all .2s ease-in-out;
+}
+
+.cont table {
+  text-align: left;
 }
 
 button {
+  width: 100px;
+  height: 30px;
+  font-size: 16px;
+  font-weight: 300;
+  border-radius: 5px;
+  background-color: var(--main_color);
+  border: none;
+  outline: none;
+  color: #ffffff;
   margin: auto;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: #ffffff;
+  color: var(--main_color);
+  border: solid;
+  border-width: 0.2px;
+  border-color: var(--main_color);
 }
 
 input {
@@ -90,36 +105,6 @@ select, input[type="date"] {
 
 .select-selected {
   background-color: var(--main_color);
-}
-
-button {
-  width: 100px;
-  height: 30px;
-  font-size: 16px;
-  font-weight: 300;
-  border-radius: 5px;
-  background-color: var(--main_color);
-  border: none;
-  outline: none;
-  color: #ffffff;
-}
-
-button:hover {
-  cursor: pointer;
-  background-color: #ffffff;
-  color: var(--main_color);
-  border: solid;
-  border-width: 0.2px;
-  border-color: var(--main_color);
-}
-
-.submit_button {
-  text-align: center;
-  margin: 40px;
-}
-
-.button_div {
-  text-align: center;
 }
 
 .pBarCont {
@@ -184,4 +169,4 @@ button:hover {
   /*   border-right: 15px solid blue; */
   border-left: 15px solid #4CAF50;
 }
-/*# sourceMappingURL=apply_tender.css.map */
+/*# sourceMappingURL=apply_tenders2.css.map */
