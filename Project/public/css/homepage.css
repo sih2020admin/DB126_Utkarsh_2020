@@ -97,6 +97,7 @@ h1, h3, h2, h4 {
   margin-right: 40px;
   margin-bottom: 20px;
   width: 35%;
+  max-width: 380px;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
@@ -128,11 +129,11 @@ h1, h3, h2, h4 {
   margin-left: auto;
   margin-right: auto;
   margin-top: 20px;
-  width: 70%;
+  width: 80%;
 }
 
 .login_div table th, .login_div table td {
-  padding: 10px 0;
+  padding: 5px 0;
 }
 
 .login_div input {
