@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.6deb5
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Apr 15, 2020 at 08:01 PM
--- Server version: 5.7.29-0ubuntu0.18.04.1
--- PHP Version: 7.2.24-0ubuntu0.18.04.3
+-- Host: localhost
+-- Generation Time: Apr 18, 2020 at 01:38 PM
+-- Server version: 10.3.16-MariaDB
+-- PHP Version: 7.3.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -40,7 +42,8 @@ CREATE TABLE `access_token` (
 --
 
 INSERT INTO `access_token` (`id`, `name`, `access`, `refresh`, `date`, `time`) VALUES
-(19, 'Sanket', 'cc54c896621d03940ad928baf6f9f693afc42736', '88272612b6df89c1d2780b8cefa26ffa00a19e09', '14/4/2020', '12:54:0');
+(7, 'Sanket', 'ce500d34312bb4faa53cbafd5df11b37801d840b', '49094755806e529f107547a7de8138276b985574', '16/4/2020', '19:30:59'),
+(19, 'Sanket', '1fe2aa007fe1a1a1780b03212810f73ca3c9d155', 'a9216bbb485faabf522d96f295322920e5d5e72e', '16/4/2020', '21:12:58');
 
 -- --------------------------------------------------------
 
@@ -1657,10 +1660,10 @@ CREATE TABLE `e_tender_details` (
   `et_tender_desc` text NOT NULL,
   `et_last_date_apply` date NOT NULL,
   `et_bidding_date` date NOT NULL,
-  `et_file_uri` text,
+  `et_file_uri` text DEFAULT NULL,
   `is_delete` tinyint(4) NOT NULL,
   `dept_id` int(4) NOT NULL,
-  `is_approved` tinyint(4) NOT NULL DEFAULT '0'
+  `is_approved` tinyint(4) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -1668,7 +1671,7 @@ CREATE TABLE `e_tender_details` (
 --
 
 INSERT INTO `e_tender_details` (`et_id`, `et_title`, `et_tender_fee`, `et_tender_ref_no`, `et_tender_desc`, `et_last_date_apply`, `et_bidding_date`, `et_file_uri`, `is_delete`, `dept_id`, `is_approved`) VALUES
-(123, 'Procurement of computers', '1200', 'ITC123', 'Procurement of Computers, Software and Services. The purpose of this policy is to provide a defined process for both the new and recurring procurement (through purchase or lease) of computer hardware, software and services using Washington University funds or grant funds administered by Washington University.', '2020-05-05', '2020-05-06', 'https://www.youtube.com/watch?v=u8XFFTWwSvY&feature=youtu.be', 0, 1, 0),
+(123, 'Procurement of computers', '1200', 'ITC123', 'Procurement of Computers, Software and Services. The purpose of this policy is to provide a defined process for both the new and recurring procurement (through purchase or lease) of computer hardware, software and services using Washington University funds or grant funds administered by Washington University.', '2020-04-15', '2020-04-16', 'https://www.youtube.com/watch?v=u8XFFTWwSvY&feature=youtu.be', 0, 1, 0),
 (124, 'hello titleU', '1200', 'ITC56U', 'hello descriptionU', '2020-03-02', '2020-03-04', 'https://www.youtube.com/watch?v=fyMhvkC3A84U', 1, 1, 0),
 (125, 'Procurement of computers', '1200', 'ITC123', 'Procurement of Computers, Software and Services. The purpose of this policy is to provide a defined process for both the new and recurring procurement (through purchase or lease) of computer hardware, software and services using Washington University funds or grant funds administered by Washington University.', '2020-04-10', '2020-04-13', 'https://www.youtube.com/watch?v=u8XFFTWwSvY&feature=youtu.be', 0, 1, 1),
 (126, 'testing', '-8', 'ITC98', 'console.log(\"add tender called\")', '2020-03-02', '2020-03-06', 'console.log(\"add tender called\")', 1, 1, 0),
@@ -1687,7 +1690,8 @@ INSERT INTO `e_tender_details` (`et_id`, `et_title`, `et_tender_fee`, `et_tender
 (139, 'Procurement of computers', '1200', 'ITC123', 'Procurement of Computers, Software and Services. The purpose of this policy is to provide a defined process for both the new and recurring procurement (through purchase or lease) of computer hardware, software and services using Washington University funds or grant funds administered by Washington University.', '2020-03-10', '2020-03-13', 'https://www.youtube.com/watch?v=u8XFFTWwSvY&feature=youtu.be', 0, 1, 0),
 (140, 'new tender', '1233', 'ITNEW', 'qwertyui', '2020-03-31', '2020-04-01', 'qwertyu', 0, 1, 0),
 (141, 'Procurement of  with transaction', '1200', 'ITC123', 'Procurement of Computers, Software and Services. The purpose of this policy is to provide a defined process for both the new and recurring procurement (through purchase or lease) of computer hardware, software and services using Washington University funds or grant funds administered by Washington University.', '2020-03-10', '2020-03-13', 'https://www.youtube.com/watch?v=u8XFFTWwSvY&feature=youtu.be', 0, 1, 0),
-(142, '6969', '69', 'IT6969', '6969', '2020-03-28', '2020-03-29', '', 0, 1, 0);
+(142, '6969', '69', 'IT6969', '6969', '2020-03-28', '2020-03-29', '', 1, 1, 0),
+(143, 'TEST', '100', 'ITC6969', 'TEST', '2020-11-05', '2020-11-06', '', 0, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -1711,7 +1715,7 @@ CREATE TABLE `e_tender_vendor` (
 --
 
 INSERT INTO `e_tender_vendor` (`etd_id`, `et_id`, `vd_id`, `vcd_id`, `bidding_amt`, `is_approved`, `date_of_approval`, `status`) VALUES
-(1, 123, 1, 1, '1200', '0', '', '110'),
+(1, 123, 1, 1, '1200', '0', '', '100'),
 (2, 123, 40, 13, '13500', '0', '', '100'),
 (4, 123, 25, 7, '15000', '0', '', '100'),
 (5, 124, 1, 1, '12000', '0', '', '100'),
@@ -1729,7 +1733,10 @@ INSERT INTO `e_tender_vendor` (`etd_id`, `et_id`, `vd_id`, `vcd_id`, `bidding_am
 (17, 125, 1, 1, '12000', '0', NULL, '100'),
 (18, 125, 1, 1, '12000', '0', NULL, '100'),
 (19, 125, 1, 1, '12000', '0', NULL, '100'),
-(20, 123, 1, 1, '12000', '0', NULL, '100');
+(20, 123, 1, 1, '12000', '0', NULL, '100'),
+(21, 123, 57, 19, '12000', '0', NULL, '100'),
+(22, 143, 1, 1, '12000', '0', NULL, '100'),
+(23, 143, 25, 7, '12000', '0', NULL, '100');
 
 -- --------------------------------------------------------
 
@@ -2007,7 +2014,7 @@ CREATE TABLE `v_contact_details` (
   `vcd_email` varchar(25) NOT NULL,
   `vcd_designation` varchar(20) NOT NULL,
   `vd_id` int(11) NOT NULL,
-  `digi_access` tinyint(4) NOT NULL DEFAULT '0'
+  `digi_access` tinyint(4) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -2016,7 +2023,7 @@ CREATE TABLE `v_contact_details` (
 
 INSERT INTO `v_contact_details` (`vcd_id`, `vcd_name`, `vcd_title`, `vcd_dob`, `vcd_aadhar`, `vcd_contact`, `vcd_email`, `vcd_designation`, `vd_id`, `digi_access`) VALUES
 (1, 'winston sequeria', 'Mr.', '16-6-1999', '456745674567', '8975647845', 'winstonsequeria@gmail.com', 'CEO', 1, 0),
-(7, 'winston sequeria', 'Mr', '1999-16-6', '456745674567', '7894561230', 'winstonsequeria@gmail.com', 'CEO', 25, 0),
+(7, 'winston sequeria', 'Mr', '1999-16-6', '123412341234', '7894561230', 'winstonsequeria@gmail.com', 'CEO', 25, 1),
 (8, 'winston sequeria', 'Mr', '1999-16-6', '456745674567', '7894561230', 'winstonsequeria@gmail.com', 'CEO', 33, 0),
 (9, 'winston sequeria', 'Mr', '1999-16-6', '456745674567', '7894561230', 'winstonsequeria@gmail.com', 'CEO', 35, 0),
 (10, 'winston sequeria', 'Mr', '1999-16-6', '456745674567', '7894561230', 'winstonsequeria@gmail.com', 'CEO', 36, 0),
@@ -2169,46 +2176,55 @@ ALTER TABLE `v_contact_details`
 --
 ALTER TABLE `admin_detail`
   MODIFY `ad_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `districts`
 --
 ALTER TABLE `districts`
   MODIFY `d_id` tinyint(4) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `e_tender_details`
 --
 ALTER TABLE `e_tender_details`
-  MODIFY `et_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=143;
+  MODIFY `et_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=144;
+
 --
 -- AUTO_INCREMENT for table `e_tender_vendor`
 --
 ALTER TABLE `e_tender_vendor`
-  MODIFY `etd_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `etd_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
 --
 -- AUTO_INCREMENT for table `file_uri`
 --
 ALTER TABLE `file_uri`
   MODIFY `furi_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT for table `log_in_details`
 --
 ALTER TABLE `log_in_details`
   MODIFY `login_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
 --
 -- AUTO_INCREMENT for table `states`
 --
 ALTER TABLE `states`
   MODIFY `st_id` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+
 --
 -- AUTO_INCREMENT for table `vendor_details`
 --
 ALTER TABLE `vendor_details`
   MODIFY `vd_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+
 --
 -- AUTO_INCREMENT for table `v_contact_details`
 --
 ALTER TABLE `v_contact_details`
   MODIFY `vcd_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
 --
 -- Constraints for dumped tables
 --
@@ -2262,6 +2278,7 @@ ALTER TABLE `payment_transactions`
 --
 ALTER TABLE `v_contact_details`
   ADD CONSTRAINT `v_contact_details_ibfk_1` FOREIGN KEY (`vd_id`) REFERENCES `vendor_details` (`vd_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
