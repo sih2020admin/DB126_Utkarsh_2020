@@ -2,14 +2,38 @@ import express, { Router, Request, Response } from 'express'
 import axios from 'axios'
 import chai from 'chai'
 import connection from './db'
-import { TransactionSuccess, TransactionFailure, Params, AddressError } from './data-structure'
+import { TransactionSuccess, TransactionFailure, Params, AddressError, MIDError, KeyError } from './data-structure'
 const debug = require('debug')('payment')
 const checksum = require('./paytm/checksum.js')
 debug('Started Debugging process of payment-server\nLocation : routes/payment-server.ts')
-if (process.env.ADDRESS === undefined || process.env.ADDRESS == '') {
-    throw new AddressError('Address has not been set in .env file or has wrong name\nSet it in .env file eg: ADDRESS=your ip address')
+try {
+    if (process.env.ADDRESS === undefined || process.env.ADDRESS == '') {
+        throw new AddressError('Address has not been set in .env file or has wrong name\nSet it in .env file eg: ADDRESS=your ip address')
+    }
+    if (process.env.MID === undefined || process.env.MID == '') {
+        throw new MIDError('MID has not been set in .env file or has wrong name\nSet it in .env file eg: MID=your MID')
+    }
+    if (process.env.KEY === undefined || process.env.KEY == '') {
+        throw new KeyError('Key has not been set in .env file or has wrong name\nSet it in .env file eg: KEY=your ip key')
+    }
+} catch (error) {
+    if (error instanceof AddressError) {
+        debug('Address has not been set in .env file or has wrong name\nSet it in .env file eg: ADDRESS=your ip address')
+        debug('Exiting from server......')
+        process.exit(0)
+    } else if (error instanceof MIDError) {
+        debug('MID has not been set in .env file or has wrong name\nSet it in .env file eg: MID=your mid')
+        debug('Extiing from server......')
+        process.exit(0)
+    } else if (error instanceof KeyError) {
+        debug('Key has not been set in .env file or has wrong name\nSet it in .env file eg: KEY=your key')
+        debug('Extiing from server......')
+
+        process.exit(0)
+    }
 }
-var address: string = process.env.ADDRESS
+
+var address: string = process.env.ADDRESS!
 debug(`IP Address set in payment files  is ${address}`)
 debug(`Port number set in  payment files is ${process.env.PORT}`)
 var queue: Array<Params> = []

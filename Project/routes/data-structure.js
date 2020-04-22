@@ -41,11 +41,33 @@ exports.Queue = Queue;
 var AddressError = /** @class */ (function (_super) {
     __extends(AddressError, _super);
     function AddressError(message) {
-        return _super.call(this, message) || this;
+        var _this = _super.call(this, message) || this;
+        Object.setPrototypeOf(_this, AddressError.prototype);
+        return _this;
     }
     return AddressError;
 }(Error));
 exports.AddressError = AddressError;
+var KeyError = /** @class */ (function (_super) {
+    __extends(KeyError, _super);
+    function KeyError(message) {
+        var _this = _super.call(this, message) || this;
+        Object.setPrototypeOf(_this, KeyError.prototype);
+        return _this;
+    }
+    return KeyError;
+}(Error));
+exports.KeyError = KeyError;
+var MIDError = /** @class */ (function (_super) {
+    __extends(MIDError, _super);
+    function MIDError(message) {
+        var _this = _super.call(this, message) || this;
+        Object.setPrototypeOf(_this, MIDError.prototype);
+        return _this;
+    }
+    return MIDError;
+}(Error));
+exports.MIDError = MIDError;
 var Params = /** @class */ (function () {
     function Params(response, order_id, customer_id) {
         if ('body' in response) {
