@@ -2,4 +2,5 @@
 *.scss
 *.ts
 .prettierrc
+node_modules
 *.pug
