@@ -1,10 +1,17 @@
 import express, { Router, Request, Response } from 'express'
 import axios from 'axios'
+import chai from 'chai'
 import connection from './db'
-import { TransactionSuccess, TransactionFailure, Queue, Params } from './data-structure'
+import { TransactionSuccess, TransactionFailure, Params, AddressError } from './data-structure'
 const debug = require('debug')('payment')
 const checksum = require('./paytm/checksum.js')
 debug('Started Debugging process of payment-server\nLocation : routes/payment-server.ts')
+if (process.env.ADDRESS === undefined || process.env.ADDRESS == '') {
+    throw new AddressError('Address has not been set in .env file or has wrong name\nSet it in .env file eg: ADDRESS=your ip address')
+}
+var address: string = process.env.ADDRESS
+debug(`IP Address set in payment files  is ${address}`)
+debug(`Port number set in  payment files is ${process.env.PORT}`)
 var queue: Array<Params> = []
 const router: Router = express.Router()
 const salt: string = process.env.KEY!
@@ -18,9 +25,8 @@ var params: { [key: string]: string } = {
     MOBILE_NO: '',
     EMAIL: '',
     TXN_AMOUNT: '',
-    CALLBACK_URL: 'http://192.168.1.106:8081/payment/redirect',
+    CALLBACK_URL: `http://${address}:8081/payment/redirect`,
 }
-
 /* var data =2
 function demo(){
     return new Promise(function(result,error){
@@ -144,7 +150,7 @@ router.post('/redirect', (request: Request, response: Response) => {
                         })
                     }
                 })
-                response.redirect(`http://192.168.1.106:8081/v4_apply_tender_s3.html?et_id=${i.et_id}&etd_id=${i.etd_id}`)
+                response.redirect(`http://${address}:8081/v4_apply_tender_s3.html?et_id=${i.et_id}&etd_id=${i.etd_id}`)
             }
         }
         //connection.query('truncate payment_transactions')
@@ -160,7 +166,7 @@ router.post('/redirect', (request: Request, response: Response) => {
             debug('Transaction Failure Object :', transaction_fail)
             for (var i of queue) {
                 if (i.order_id == transaction_fail.order_id) {
-                    response.redirect(`http://192.168.1.106:8081/v4_apply_tender_s2.html?et_id=${i.et_id}&etd_id=${i.etd_id}&code=0`)
+                    response.redirect(`http://${address}:8081/v4_apply_tender_s2.html?et_id=${i.et_id}&etd_id=${i.etd_id}&code=0`)
                 }
             }
         }

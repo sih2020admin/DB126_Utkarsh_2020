@@ -21,6 +21,12 @@ var data_structure_1 = require("./data-structure");
 var debug = require('debug')('payment');
 var checksum = require('./paytm/checksum.js');
 debug('Started Debugging process of payment-server\nLocation : routes/payment-server.ts');
+if (process.env.ADDRESS === undefined || process.env.ADDRESS == '') {
+    throw new data_structure_1.AddressError('Address has not been set in .env file or has wrong name\nSet it in .env file eg: ADDRESS=your ip address');
+}
+var address = process.env.ADDRESS;
+debug("IP Address set in payment files  is " + address);
+debug("Port number set in  payment files is " + process.env.PORT);
 var queue = [];
 var router = express_1.default.Router();
 var salt = process.env.KEY;
@@ -34,7 +40,7 @@ var params = {
     MOBILE_NO: '',
     EMAIL: '',
     TXN_AMOUNT: '',
-    CALLBACK_URL: 'http://192.168.1.106:8081/payment/redirect',
+    CALLBACK_URL: "http://" + address + ":8081/payment/redirect",
 };
 /* var data =2
 function demo(){
@@ -165,7 +171,7 @@ router.post('/redirect', function (request, response) {
                             });
                         }
                     });
-                    response.redirect("http://192.168.1.106:8081/v4_apply_tender_s3.html?et_id=" + i.et_id + "&etd_id=" + i.etd_id);
+                    response.redirect("http://" + address + ":8081/v4_apply_tender_s3.html?et_id=" + i.et_id + "&etd_id=" + i.etd_id);
                 }
             }
         }
@@ -194,7 +200,7 @@ router.post('/redirect', function (request, response) {
                 for (var queue_2 = __values(queue), queue_2_1 = queue_2.next(); !queue_2_1.done; queue_2_1 = queue_2.next()) {
                     var i = queue_2_1.value;
                     if (i.order_id == transaction_fail.order_id) {
-                        response.redirect("http://192.168.1.106:8081/v4_apply_tender_s2.html?et_id=" + i.et_id + "&etd_id=" + i.etd_id + "&code=0");
+                        response.redirect("http://" + address + ":8081/v4_apply_tender_s2.html?et_id=" + i.et_id + "&etd_id=" + i.etd_id + "&code=0");
                     }
                 }
             }

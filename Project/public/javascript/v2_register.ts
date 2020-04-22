@@ -139,15 +139,7 @@ $('#submit_button').on('click', () => {
     aadhaar_number = $('#aadhaar_number').val()?.toString()!
     contact_email = $('#contact_email').val()?.toString()!
     contact_contact = $('#contact_contact').val()?.toString()!
-    var check_contact = contact_validate(
-        title,
-        contact_name,
-        date_of_birth,
-        designation,
-        aadhaar_number,
-        contact_email,
-        contact_contact
-    )
+    var check_contact = contact_validate(title, contact_name, date_of_birth, designation, aadhaar_number, contact_email, contact_contact)
     console.log(title)
     if (check_contact === 1) {
         console.log(is_verified)
@@ -227,20 +219,7 @@ $('#company_button').on('click', () => {
     legal_status = $('#legal_status').val()?.toString()!
     pan_number = $('#pan_number').val()?.toString()!
     gst_register_number = $('#gst_register_number').val()?.toString()!
-    var check_company = company_validate(
-        company_name,
-        company_address,
-        company_email,
-        mobile_number,
-        registration_number,
-        state,
-        city,
-        establishment_year,
-        pincode,
-        legal_status,
-        pan_number,
-        gst_register_number
-    )
+    var check_company = company_validate(company_name, company_address, company_email, mobile_number, registration_number, state, city, establishment_year, pincode, legal_status, pan_number, gst_register_number)
     if (check_company === 1) {
         $('.company_details').hide()
         $('.contact__details').fadeTo('fast', 1)
@@ -435,15 +414,7 @@ function company_validate(
     return 1
 }
 
-function contact_validate(
-    title: string,
-    contact_name: string,
-    date_of_birth: string,
-    designation: string,
-    aadhaar_number: string,
-    contact_email: string,
-    contact_contact: string
-): number {
+function contact_validate(title: string, contact_name: string, date_of_birth: string, designation: string, aadhaar_number: string, contact_email: string, contact_contact: string): number {
     if (title === 'select') {
         $('#error_para').text('Error : Title field has an inappropriate value')
         return 0

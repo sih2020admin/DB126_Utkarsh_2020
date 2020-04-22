@@ -38,6 +38,14 @@ var Queue = /** @class */ (function () {
     return Queue;
 }());
 exports.Queue = Queue;
+var AddressError = /** @class */ (function (_super) {
+    __extends(AddressError, _super);
+    function AddressError(message) {
+        return _super.call(this, message) || this;
+    }
+    return AddressError;
+}(Error));
+exports.AddressError = AddressError;
 var Params = /** @class */ (function () {
     function Params(response, order_id, customer_id) {
         if ('body' in response) {

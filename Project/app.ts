@@ -15,7 +15,6 @@ var list_tender = require('./routes/list_tender')
 var tender_approval = require('./routes/tender_approval')
 var vendor_dashboard = require('./routes/vendor_dashboard')
 var apply_tender= require("./routes/apply_tender");
-
 var port = 8081 || process.env.PORT
 app.use(cors())
 app.use(express.json())
