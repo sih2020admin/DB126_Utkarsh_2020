@@ -46,6 +46,7 @@
     </table>
     <p id="tc"></p><br>
     <div class="button_div"><button type="submit" class="save_button" onclick="save()">Save</button></div>
+    <!-- <div class="button_div"><button type="submit" class="save_button" onclick="otpmodal()">Save</button></div> -->
   </div>
   <div class="cont">
     <h3>Documents Upload</h3>
@@ -102,6 +103,34 @@
     <br>
     <button type="button" onclick="openModal()">Digilocker</button>
   </div>
+
+  <!-- Modal-->
+  <!-- <div id="e-sign" class="modal">
+  <div class="modal-content" style="width: 40%; height:42%; font-size: 14px;">
+      <div class="modal-header">
+          <span class="close">&times;</span><br>
+          <h2 style="color: white;" >E-sign</h2>
+          <p id="cur_dir">Current Directory is o: </p>
+       </div>
+      <div class="modal-body">
+        <div id="note" style="text-align : left;">
+          <p><u>Note</u></p>
+          <p>1. This Page lets you Sign the Uploaded Document through Aadhar Based OTP.</p>
+          <p>2. Enter The OTP recieved on E-mail.</p>
+        </div><br><br>
+         <label for="OTP">Enter OTP</label>
+         <input type="password" name="OTP"><br><br>
+         <button value="cancel" onclick="">Cancel</button>
+         <button value="Submit" onclick="">Submit</button> -->
+      <!-- </div> -->
+      <!-- <div class="modal-footer">
+          <div class="wrapper">
+              <button id="back">Back</button>
+              <br>
+              <button id="uploadDigi" onclick="uploadFiles()">Upload Here</button>
+          </div>
+      </div> -->
+  <!-- </div> --> 
 </body>
 
 <!-- ---------------------------- End of E-sign code --------------------------------------  -->
@@ -122,20 +151,21 @@
   <div class="modal-content">
       <div class="modal-header">
           <span class="close">&times;</span>
-          <h2>Digilocker</h2>
+          <h2 style="color: white;">Digilocker</h2>
           <p id="cur_dir">Current Directory is : </p>
       </div>
       <div class="modal-body">
-          <ul id="directory">
-          </ul>
+          <ul id="directory"></ul><br>
+          <!-- <button id="back">Back</button> -->
+          <button id="back" onclick="">Back</button>
+          <!-- <button id="uploadDigi" onclick="uploadFiles()">Upload Here</button> -->
+          <button id="uploadDigi" onclick="uploadFiles()">Upload</button>
       </div>
-      <div class="modal-footer">
+      <!-- <div class="modal-footer">
           <div class="wrapper">
-              <button id="back">Back</button>
-              <br>
-              <button id="uploadDigi" onclick="uploadFiles()">Upload Here</button>
+              
           </div>
-      </div>
+      </div> -->
   </div>
 </div>
 

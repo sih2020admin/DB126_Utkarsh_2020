@@ -105,6 +105,7 @@ var upload = function(files){
     }
     //console.log(formdata.get('file'));
     alert("Document Uploaded,Press OK to Sign the Document");
+    otpmodal();
 
     var name = document.getElementById("name").value;
     var email = document.getElementById("email").value;
@@ -164,6 +165,16 @@ function browse1(){
     document.getElementById("tc3").innerHTML="Signing";
     browse = document.getElementById('upload1');
     upload(browse.files);
+}
+
+function otpmodal(){
+    var modal = document.getElementById("e-sign");
+    modal.style.display = "block";
+
+    var span = document.getElementsByClassName("close")[0];
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
 }
 
 /* ---------------------------- End of E-sign code -------------------------------------- */
