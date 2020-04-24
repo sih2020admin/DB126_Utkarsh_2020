@@ -18,9 +18,40 @@ var express_1 = __importDefault(require("express"));
 var axios_1 = __importDefault(require("axios"));
 var db_1 = __importDefault(require("./db"));
 var data_structure_1 = require("./data-structure");
-var debug = require('debug')('payment');
+var debug = require('debug')('service:payment');
 var checksum = require('./paytm/checksum.js');
 debug('Started Debugging process of payment-server\nLocation : routes/payment-server.ts');
+// try {
+//     if (process.env.ADDRESS === undefined || process.env.ADDRESS == '') {
+//         throw new data_structure_1.AddressError('Address has not been set in .env file or has wrong name\nSet it in .env file eg: ADDRESS=your ip address');
+//     }
+//     if (process.env.MID === undefined || process.env.MID == '') {
+//         throw new data_structure_1.MIDError('MID has not been set in .env file or has wrong name\nSet it in .env file eg: MID=your MID');
+//     }
+//     if (process.env.KEY === undefined || process.env.KEY == '') {
+//         throw new data_structure_1.KeyError('Key has not been set in .env file or has wrong name\nSet it in .env file eg: KEY=your ip key');
+//     }
+// }
+// catch (error) {
+//     if (error instanceof data_structure_1.AddressError) {
+//         debug('Address has not been set in .env file or has wrong name\nSet it in .env file eg: ADDRESS=your ip address');
+//         debug('Exiting from server......');
+//         process.exit(0);
+//     }
+//     else if (error instanceof data_structure_1.MIDError) {
+//         debug('MID has not been set in .env file or has wrong name\nSet it in .env file eg: MID=your mid');
+//         debug('Extiing from server......');
+//         process.exit(0);
+//     }
+//     else if (error instanceof data_structure_1.KeyError) {
+//         debug('Key has not been set in .env file or has wrong name\nSet it in .env file eg: KEY=your key');
+//         debug('Extiing from server......');
+//         process.exit(0);
+//     }
+// }
+var address = process.env.ADDRESS;
+debug("IP Address set in payment files  is " + address);
+debug("Port number set in  payment files is " + process.env.PORT);
 var queue = [];
 var router = express_1.default.Router();
 var salt = process.env.KEY;
@@ -34,7 +65,7 @@ var params = {
     MOBILE_NO: '',
     EMAIL: '',
     TXN_AMOUNT: '',
-    CALLBACK_URL: 'http://165.22.210.37:8081/payment/redirect',
+    CALLBACK_URL: "http://" + address + ":8081/payment/redirect",
 };
 /* var data =2
 function demo(){
@@ -106,7 +137,6 @@ router.post('/', function (request, response) {
     params['TXN_AMOUNT'] = request.body.amount;
     params['EMAIL'] = request.body.email;
     params['MOBILE_NO'] = request.body.mobile;
-console.log(params)
     queue.push(new data_structure_1.Params(request, params['ORDER_ID'], params['CUST_ID']));
     checksum.genchecksum(params, salt, function (error, result) {
         var url = 'https://securegw-stage.paytm.in/order/process';
@@ -166,7 +196,7 @@ router.post('/redirect', function (request, response) {
                             });
                         }
                     });
-                    response.redirect("http://165.22.210.37:8081/v4_apply_tender_s3.html?et_id=" + i.et_id + "&etd_id=" + i.etd_id);
+                    response.redirect("http://" + address + ":8081/v4_apply_tender_s3.html?et_id=" + i.et_id + "&etd_id=" + i.etd_id);
                 }
             }
         }
@@ -195,7 +225,7 @@ router.post('/redirect', function (request, response) {
                 for (var queue_2 = __values(queue), queue_2_1 = queue_2.next(); !queue_2_1.done; queue_2_1 = queue_2.next()) {
                     var i = queue_2_1.value;
                     if (i.order_id == transaction_fail.order_id) {
-                        response.redirect("http://165.22.210.37:8081/v4_apply_tender_s2.html?et_id=" + i.et_id + "&etd_id=" + i.etd_id + "&code=0");
+                        response.redirect("http://" + address + ":8081/v4_apply_tender_s2.html?et_id=" + i.et_id + "&etd_id=" + i.etd_id + "&code=0");
                     }
                 }
             }

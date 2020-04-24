@@ -25,16 +25,15 @@ strong {
 }
 
 .cont {
-  text-align: center; /*saurabh change*/
+  /* text-align: left; */
   background-color: white;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  min-width: 800px;/*saurabh change*/
+  min-width: 800px;
   height: auto;
   padding: 20px;
-  margin: auto; /*saurabh change*/
-  /* margin: 40px; */
+  margin: auto;
   margin-top: 20px;
   border-radius: 10px;
   -webkit-box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.2);
@@ -47,7 +46,6 @@ strong {
   font-size: 12px;
   font-style: italic;
   color: #fd0000;
-  text-align: center;
 }
 
 #tc2,#tc3 {
@@ -59,8 +57,9 @@ strong {
 #tc2:after,#tc3:after {
   content: ' .';
   -webkit-animation: dots 1s steps(5, end) infinite;
-  animation: dots 1s steps(5, end) infinite;
+          animation: dots 1s steps(5, end) infinite;
 }
+
 @-webkit-keyframes dots {
   0%, 20% {
     color: black;
@@ -100,7 +99,6 @@ strong {
  .5em 0 0 black;
   }
 }
-
 
 button {
   margin: auto;
@@ -416,3 +414,4 @@ ul {
   
   /* -------------------------- End of Digilocker CSS code ------------------------------------ */
   
+/*# sourceMappingURL=apply_tender.css.map */
