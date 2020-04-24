@@ -19,6 +19,7 @@ var os_1 = __importDefault(require("os"));
 var fs_1 = __importDefault(require("fs"));
 var dotenv_1 = __importDefault(require("dotenv"));
 var debug = require('debug')('service:loader');
+debug.color = 1;
 var list_of_IPV4_address = [];
 var server = 0;
 var server_address = '165.22.210.37';
@@ -26,6 +27,8 @@ var production_folder_path = 'env/production';
 var production_env_path = 'env/production/.env';
 var development_folder_path = 'env/development';
 var development_env_path = 'env/development/.env';
+var env_object = '';
+debug('Fetching object from loader.json');
 try {
     var loader_json = JSON.parse(fs_1.default.readFileSync('loader.json').toString());
 }
@@ -34,9 +37,13 @@ catch (error) {
     debug('Exiting');
     process.exit(0);
 }
-var env_object = "MID=" + loader_json.key.MID + "\nKEY=" + loader_json.key.KEY + "\nEMAIL=" + loader_json.credentials.email + "\nPASS=" + loader_json.credentials.password + "\n";
-debug(env_object);
-debug('Initalizing env folder');
+for (var i_1 in loader_json) {
+    for (var j_1 in loader_json[i_1]) {
+        env_object = env_object + (j_1.toUpperCase() + "=" + loader_json[i_1][j_1] + "\n");
+    }
+}
+debug('Finished fetching object from loader.json');
+debug('\nInitalizing env folder');
 function create_production_folder() {
     debug("Couldn't find production folder in env folder");
     fs_1.default.mkdirSync(production_folder_path);
