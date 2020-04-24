@@ -18,7 +18,7 @@ var express_1 = __importDefault(require("express"));
 var axios_1 = __importDefault(require("axios"));
 var db_1 = __importDefault(require("./db"));
 var data_structure_1 = require("./data-structure");
-var debug = require('debug')('payment');
+var debug = require('debug')('service:payment');
 var checksum = require('./paytm/checksum.js');
 debug('Started Debugging process of payment-server\nLocation : routes/payment-server.ts');
 try {
