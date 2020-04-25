@@ -2,6 +2,8 @@ var vcd_id = get_cookie('vcd_id');   //will be used everywhere in digilocker cod
 var et_id;                           //to store current et_id
 var etd_id;                          //to store current etd_id
 
+var is_upload = 0;    //check if upload button is clicked
+
 //to decide which document is to be uploaded in digilocker depending upon flag
 var Technical_or_BOQ = 0;  //0 = no document uploaded yet, 1 = technical document uploaded, 2 = BOQ uploaded
 
@@ -94,8 +96,6 @@ window.onload = function () {
 //below variables will store directory ID's from digilocker
 var current_id = "";  //id of current directory
 var parent_id = [];   //id of ancesstors of current directory (required to backtrace)
-
-var is_upload = 0;    //check if upload button is clicked
 
 //onclick function on "li" element of modal
 function some() {
@@ -315,7 +315,6 @@ $(document).ready(function () {
     //on click of back button
     $("#back").click(function () {
         is_upload = 0;
-        console.log(fileName);
         var dir_element = document.getElementById("cur_dir");
         console.log(dir_element.innerHTML);
         if (dir_element.innerHTML != "Current Directory is : /") {

@@ -3,9 +3,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+require("./loader");
 var express_1 = __importDefault(require("express"));
-var dotenv_1 = __importDefault(require("dotenv"));
-dotenv_1.default.config();
 var cors_1 = __importDefault(require("cors"));
 var path_1 = __importDefault(require("path"));
 var misc_1 = __importDefault(require("./routes/misc"));

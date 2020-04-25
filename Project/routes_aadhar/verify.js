@@ -87,7 +87,7 @@ router.post('/verifyOTP',(req,res)=>{
 
 	var usrn= Number(req.body.aadharno);
 	var d = new Date(Date.now()).toISOString().slice(0, 19).replace('T', ' ');
-	//console.log("verify OTP called :"+req.body.aadharno+"  req body otp: "+req.body.OTP,d);
+	console.log("verify OTP called :"+req.body.aadharno+"  req body otp: "+req.body.OTP,d);
 
 	con.query('Select validtill , otp , otpid from OTP where isused = 0 and aadharno= ? and validtill > ?',[usrn,d],function(error,results,fields){
 		if (error) {
