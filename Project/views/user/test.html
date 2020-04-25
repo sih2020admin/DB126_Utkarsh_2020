@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="content">
+        <h1>Payment</h1>
+
+        <label for="amount1">Amount</label>
+        <input type="text" id="amount1" name="amount" />
+
+        <label for="email">Email ID</label>
+        <input id="email" type="email" name="email" placeholder="Enter Email" />
+
+        <label for="mobile">Mobile/Cell Number</label>&nbsp;&nbsp;&nbsp;&nbsp;
+
+        <input id="mobile" type="number" name="mobile" placeholder="Enter Mobile/Cell Number" />
+    </div>
+    <p id="error-para"></p>
+    <button id="payu">Submit</button>
+</body>
+
+</html>
+<script src="javascript/jquery-3.4.1.min.js"></script>
+<script>
+    $("#payu").on('click', () => {
+        $.ajax({
+            url: "http://localhost:8081/payment",
+            method: 'POST',
+            async: true,
+            data: {
+                et_id: '12',
+                etd_id: "123",
+                amount: $("#amount1").val(),
+                email: $("#email").val(),
+                mobile: $("#mobile").val(),
+            },
+            success: function (response) {
+                $("body").html(response)
+            },
+            error: function (xhr, error_type, exception) {
+                var error_message = xhr.responseText;
+                if (xhr.status == 400) {
+                    alert('Provide valid URL');
+                }
+                else {
+                    alert("Problem connecting with " + error_message);
+                }
+            },
+        })
+    })
+</script>

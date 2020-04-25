@@ -1,6 +1,9 @@
 .env
 *.scss
 *.ts
+test
 .prettierrc
-node_modules
 *.pug
+env
+tsconfig.json
+loader.json
