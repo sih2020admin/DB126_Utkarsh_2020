@@ -40,6 +40,12 @@ input {
     color: var(--main_color);
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 button {
     width: 100px;
     height: 30px;
