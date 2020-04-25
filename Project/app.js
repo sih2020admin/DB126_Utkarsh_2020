@@ -35,9 +35,13 @@ app.use('/', tender_approval.default);
 app.use('/', vendor_dashboard.default);
 app.use('/', apply_tender.default);
 app.use('/misc', misc_1.default);
+app.get('/home', function (request, response) {
+    response.sendStatus(200);
+});
 app.get('*', function (request, response) {
     response.sendFile(__dirname + '/views/user/error.html');
 });
 app.listen(port, function () {
-    console.log(`Server started on port ${port}`)
+    console.log("Server started on port " + port);
 });
+module.exports = app;
