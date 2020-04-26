@@ -7,4 +7,6 @@ test
 env
 tsconfig.json
 loader.json
+IP.js
 node_modules
+nodemon.json

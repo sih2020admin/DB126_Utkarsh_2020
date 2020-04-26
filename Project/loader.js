@@ -16,8 +16,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 var e_1, _a, e_2, _b;
 Object.defineProperty(exports, "__esModule", { value: true });
 var os_1 = __importDefault(require("os"));
-var fs_1 = __importDefault(require("fs"));
 var dotenv_1 = __importDefault(require("dotenv"));
+var fs_extra_1 = __importDefault(require("fs-extra"));
 var debug = require('debug')('service:loader');
 debug.color = 1;
 var list_of_IPV4_address = [];
@@ -28,13 +28,17 @@ var production_env_path = 'env/production/.env';
 var development_folder_path = 'env/development';
 var development_env_path = 'env/development/.env';
 var env_object = '';
+var ip_object = '';
+var loader_json;
 debug('Fetching object from loader.json');
 try {
-    var loader_json = JSON.parse(fs_1.default.readFileSync('loader.json').toString());
+    loader_json = JSON.parse(fs_extra_1.default.readFileSync('loader.json').toString());
 }
 catch (error) {
     debug("Couldn't find loader.json for loading environment variables");
     debug('Exiting');
+    console.log("Couldn't find loader.json for loading environment variables");
+    console.log('Exiting');
     process.exit(0);
 }
 for (var i_1 in loader_json) {
@@ -46,26 +50,26 @@ debug('Finished fetching object from loader.json');
 debug('\nInitalizing env folder');
 function create_production_folder() {
     debug("Couldn't find production folder in env folder");
-    fs_1.default.mkdirSync(production_folder_path);
+    fs_extra_1.default.mkdirSync(production_folder_path);
     debug('Creating .env file in production folder');
-    fs_1.default.writeFileSync(production_env_path, '');
+    fs_extra_1.default.writeFileSync(production_env_path, '');
 }
 function create_development_folder() {
     debug("Couldn't find development folder in env folder");
-    fs_1.default.mkdirSync(development_folder_path);
+    fs_extra_1.default.mkdirSync(development_folder_path);
     debug('Creating .env file in development folder');
-    fs_1.default.writeFileSync(development_env_path, '');
+    fs_extra_1.default.writeFileSync(development_env_path, '');
 }
 function create_both_folder() {
     debug('Create both folder function called');
     debug('Creating production folder in env folder');
-    fs_1.default.mkdirSync(production_folder_path);
+    fs_extra_1.default.mkdirSync(production_folder_path);
     debug('Creating .env file in production folder');
-    fs_1.default.writeFileSync(production_env_path, '');
+    fs_extra_1.default.writeFileSync(production_env_path, '');
     debug('Creating development folder in env folder');
-    fs_1.default.mkdirSync(development_folder_path);
+    fs_extra_1.default.mkdirSync(development_folder_path);
     debug('Creating .env file in development folder');
-    fs_1.default.writeFileSync(development_env_path, '');
+    fs_extra_1.default.writeFileSync(development_env_path, '');
 }
 function write_env_development(path) {
     var e_3, _a;
@@ -85,7 +89,7 @@ function write_env_development(path) {
         }
         finally { if (e_3) throw e_3.error; }
     }
-    fs_1.default.writeFileSync(path, env_object + ("ADDRESS=" + ip_development));
+    fs_extra_1.default.writeFileSync(path, env_object + ("ADDRESS=" + ip_development));
 }
 function write_env_production(path) {
     var e_4, _a;
@@ -105,34 +109,34 @@ function write_env_production(path) {
         }
         finally { if (e_4) throw e_4.error; }
     }
-    fs_1.default.writeFileSync(path, env_object + ("ADDRESS=" + ip_production));
+    fs_extra_1.default.writeFileSync(path, env_object + ("ADDRESS=" + ip_production));
 }
-if (fs_1.default.existsSync('env')) {
+if (fs_extra_1.default.existsSync('env')) {
     debug('Detected env folder in current directory');
-    if (fs_1.default.existsSync(production_folder_path) === false && fs_1.default.existsSync(development_folder_path) === false) {
+    if (fs_extra_1.default.existsSync(production_folder_path) === false && fs_extra_1.default.existsSync(development_folder_path) === false) {
         debug('Could not find production and development folder in env folder\nCreating them');
         create_both_folder();
     }
     else {
-        if (fs_1.default.existsSync(production_folder_path)) {
-            if (fs_1.default.existsSync(production_env_path)) {
+        if (fs_extra_1.default.existsSync(production_folder_path)) {
+            if (fs_extra_1.default.existsSync(production_env_path)) {
                 debug('.env file present in production folder');
             }
             else {
                 debug('Creating .env file in production folder');
-                fs_1.default.writeFileSync(production_env_path, '');
+                fs_extra_1.default.writeFileSync(production_env_path, '');
             }
         }
         else {
             create_production_folder();
         }
-        if (fs_1.default.existsSync(development_folder_path)) {
-            if (fs_1.default.existsSync(development_env_path)) {
+        if (fs_extra_1.default.existsSync(development_folder_path)) {
+            if (fs_extra_1.default.existsSync(development_env_path)) {
                 debug('.env file present in development folder');
             }
             else {
                 debug('Creating .env file in development folder');
-                fs_1.default.writeFileSync(development_env_path, '');
+                fs_extra_1.default.writeFileSync(development_env_path, '');
             }
         }
         else {
@@ -142,7 +146,7 @@ if (fs_1.default.existsSync('env')) {
 }
 else {
     debug('Creating env folder');
-    fs_1.default.mkdirSync('env');
+    fs_extra_1.default.mkdirSync('env');
     create_both_folder();
 }
 debug('Finished initializing env folder');
@@ -192,20 +196,6 @@ if (server === 1) {
 else {
     write_env_development(development_env_path);
 }
-//fs.writeFileSync('')
-/* if (fs.existsSync('./.env') && server === 0) {
-    debug(`\nDetected .env file in current directory`)
-    
-    debug('Fetching contents from the file')
-    var file_contents = fs.readFileSync('./.env').toString().split('\n')
-    debug('Finished fetching contents from the file')
-    debug('Determining address used in the file')
-    for (var i of file_contents) {
-        if (i.includes('ADDRESS') === true) {
-            debug('Found address in the file')
-        }
-    }
-} */
 debug('Loading of .env file');
 if (server === 1) {
     debug("Loading .env file in production folder");
@@ -218,4 +208,12 @@ else {
     dotenv_1.default.config({ path: development_env_path });
 }
 debug(process.env.ADDRESS);
+debug('Generating IP.js file');
+for (var i in process.env) {
+    if (i.includes('PORT')) {
+        ip_object = ip_object + ("var IP" + i.split('T')[1] + "='http://" + process.env.ADDRESS + ":" + process.env[i] + "'\n");
+    }
+}
+fs_extra_1.default.writeFileSync("public/javascript/IP.js", ip_object);
+debug("Finished generating IP.js");
 debug('Finished loading of .env file');
