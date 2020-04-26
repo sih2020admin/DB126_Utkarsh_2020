@@ -3,3 +3,7 @@
 *.ts
 .prettierrc
 *.pug
+env
+tsconfig.json
+loader.json
+node_modolues

@@ -33,21 +33,21 @@ h1, h3, h2, h4 {
   /* Handle on hover */
 }
 
-.conts::-webkit-scrollbar {
+.conts ::-webkit-scrollbar {
   width: 10px;
 }
 
-.conts::-webkit-scrollbar-track {
+.conts ::-webkit-scrollbar-track {
   border: 0.4px solid #848DA7;
   border-radius: 10px;
 }
 
-.conts::-webkit-scrollbar-thumb {
+.conts ::-webkit-scrollbar-thumb {
   background: #663EFD;
   border-radius: 10px;
 }
 
-.conts::-webkit-scrollbar-thumb:hover {
+.conts ::-webkit-scrollbar-thumb:hover {
   background: #A790FC;
 }
 
@@ -96,8 +96,7 @@ h1, h3, h2, h4 {
   border-radius: 10px;
   margin-right: 40px;
   margin-bottom: 20px;
-  width: 35%;
-  max-width: 380px;
+  width: 29%;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
