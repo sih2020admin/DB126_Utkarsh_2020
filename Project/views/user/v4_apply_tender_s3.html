@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/nav.css">
-    <link rel="stylesheet" href="css/apply_tender.css">
+    <link rel="stylesheet" href="css/v4_apply_tender_s3.css">
     <link rel="stylesheet" href="css/payment.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script  src="javascript/cookies.js"></script>
     <title>E-sign</title>
 </head>
@@ -16,7 +17,6 @@
       <a id="log_a" href="v1_login.html">Login</a>
   </nav>
 </header>
-
 
 <!-- -----------------------------------E-signing code------------------------------------------------------------------------>
 <body>
@@ -46,6 +46,7 @@
     </table>
     <p id="tc"></p><br>
     <div class="button_div"><button type="submit" class="save_button" onclick="save()">Save</button></div>
+    <!-- <div class="button_div"><button type="submit" class="save_button" onclick="otpmodal()">Save</button></div> -->
   </div>
   <div class="cont">
     <h3>Documents Upload</h3>
@@ -102,16 +103,40 @@
     <br>
     <button type="button" onclick="openModal()">Digilocker</button>
   </div>
+
+  <!-- Modal-->
+  <!-- <div id="e-sign" class="modal">
+  <div class="modal-content" style="width: 40%; height:42%; font-size: 14px;">
+      <div class="modal-header">
+          <span class="close">&times;</span><br>
+          <h2 style="color: white;" >E-sign</h2>
+          <p id="cur_dir">Current Directory is o: </p>
+       </div>
+      <div class="modal-body">
+        <div id="note" style="text-align : left;">
+          <p><u>Note</u></p>
+          <p>1. This Page lets you Sign the Uploaded Document through Aadhar Based OTP.</p>
+          <p>2. Enter The OTP recieved on E-mail.</p>
+        </div><br><br>
+         <label for="OTP">Enter OTP</label>
+         <input type="password" name="OTP"><br><br>
+         <button value="cancel" onclick="">Cancel</button>
+         <button value="Submit" onclick="">Submit</button> -->
+      <!-- </div> -->
+      <!-- <div class="modal-footer">
+          <div class="wrapper">
+              <button id="back">Back</button>
+              <br>
+              <button id="uploadDigi" onclick="uploadFiles()">Upload Here</button>
+          </div>
+      </div> -->
+  <!-- </div> --> 
+  <br>
+  <button value="back" onclick="back()">Back</button>
+  <button value="next" onclick="done()">Done</button>
 </body>
 
 <!-- ---------------------------- End of E-sign code --------------------------------------  -->
-
-<!-- documnet code is till here ------------------------------------------------------------------------>
-<br>
-<button value="back" onclick="back()">Back</button>
-<button value="next" onclick="done()">Done</button>
-</body>
-<!-- <script  src="javascript/cookies.js"></script> -->
 
 <!-- --------------------------- Start of digilocker html code -------------------------------- -->
 
@@ -122,20 +147,21 @@
   <div class="modal-content">
       <div class="modal-header">
           <span class="close">&times;</span>
-          <h2>Digilocker</h2>
+          <h2 style="color: white;">Digilocker</h2>
           <p id="cur_dir">Current Directory is : </p>
       </div>
       <div class="modal-body">
-          <ul id="directory">
-          </ul>
+          <ul id="directory"></ul><br>
+          <!-- <button id="back">Back</button> -->
+          <button id="back" onclick="">Back</button>
+          <!-- <button id="uploadDigi" onclick="uploadFiles()">Upload Here</button> -->
+          <button id="uploadDigi" onclick="uploadFiles()">Upload</button>
       </div>
-      <div class="modal-footer">
+      <!-- <div class="modal-footer">
           <div class="wrapper">
-              <button id="back">Back</button>
-              <br>
-              <button id="uploadDigi" onclick="uploadFiles()">Upload Here</button>
+              
           </div>
-      </div>
+      </div> -->
   </div>
 </div>
 
@@ -154,7 +180,5 @@
 </script>
 <script src="javascript/v4_apply_tender_s3.js"></script>
 <script src="javascript/jquery-3.4.1.min.js"></script>
-<script src="javascript/payment.js" ></script>
-<script type="text/javascript" src="javascript/v4_apply_tender_s3.js"></script>
 <script type="text/javascript" src="javascript/v4_apply_tender_digilocker.js"></script>
 </html>

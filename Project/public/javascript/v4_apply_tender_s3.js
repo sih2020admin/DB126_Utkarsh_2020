@@ -1,70 +1,10 @@
-//Below variables are used in v4_apply_tender_digilocker.js file
-//don't delete below 2 variables
-/* var vd_id =get_cookie('vd_id')
-var vcd_id =get_cookie('vcd_id')
-if(vd_id ==""){
-    window.location.href = "/v1_login.html";
-}
- */
 const queryString = window.location.search;
 console.log(queryString);
 const urlParams = new URLSearchParams(queryString);
 
-
 var et_id  = urlParams.get('et_id')
 
 console.log(et_id);
-// var data = JSON.stringify({"et_id":et_id});
-// var xhr = new XMLHttpRequest();
-// xhr.withCredentials = true;
-
-// xhr.onload = function () {
-//   if (this.status === 200) {
-//     console.log(this.responseText);
-
-//     response = JSON.parse(this.responseText);
-//     var cont_div = document.getElementById('cont');
-
-    
-
-//         var div=`<div class="cont" id="">
-//             <label><strong>Title:</strong></label>
-//             <label class="heading">`+response.et_title+`</label><br><br>
-//                 <label class="RnoLabel"><strong>Department:</strong></label>
-//                 <label>`+response.dept_name+`</label><br><br>
-//                 <label class="RnoLabel"><strong>Ref No:</strong></label>
-//                 <label>`+response.et_tender_ref_no+`</label><br><br>
-//                 <label class="Id"><strong>Tender ID:</strong></label>
-//                 <label>`+response.et_id+`</label><br><br>
-//                 <label class="Id"><strong>Tender fee:</strong></label>
-//                 <label>`+response.et_tender_fee+`</label><br><br>
-//                 <label class="Id"><strong>Tender Description:</strong></label>
-//                 <label>`+response.et_tender_desc+`</label><br><br>
-//                 <label class="OdateLabel"><strong>Closing Date:</strong></label>
-//                 <label id="Odate">`+response.et_last_date_apply.slice(0,10)+`</label><br><br>
-//                 <label class="OdateLabel"><strong>Bid Date:</strong></label>
-//                 <label id="Odate">`+response.et_bidding_date.slice(0,10)+`</label><br><br>
-//                 <label class="OdateLabel"><strong>File URL:</strong></label>
-//                 <label id="Odate">`+response.et_file_url+`</label><br>
-//             <br>  
-         
-//         </div>`;
-        
-//         cont_div.insertAdjacentHTML('beforeend', div);   
-    
-//   }
-//     else if (this.status == 400) {  
-//         alert("Some error occured!");
-//     }
-//     else{
-//         alert("Check Network!");
-//     }
-// }  
-
-// xhr.open("POST", "http://"+IP+":8081/tender_desc");
-// xhr.setRequestHeader("Content-Type", "application/json");
-
-// xhr.send(data);
 
 /* ---------------------------- Start of E-sign code -------------------------------------- */
 
@@ -105,6 +45,7 @@ var upload = function(files){
     }
     //console.log(formdata.get('file'));
     alert("Document Uploaded,Press OK to Sign the Document");
+    // otpmodal();
 
     var name = document.getElementById("name").value;
     var email = document.getElementById("email").value;
@@ -130,6 +71,7 @@ var upload = function(files){
                 preview.download = Technical_file_name;
                 preview.style.display = '';
                 document.getElementById("upload1").disabled = false;
+                document.getElementById("upload").disabled = true;
             }
             else{
                 document.getElementById("tc3").style.display = "none";
@@ -137,6 +79,7 @@ var upload = function(files){
                 BOQ_file_name = formdata.get('file').name.slice(0,-4) + "_signed.pdf";
                 preview1.download = BOQ_file_name;
                 preview1.style.display = '';
+                document.getElementById("upload1").disabled = true;
             }
         }
         else if (this.status==400){
@@ -165,6 +108,16 @@ function browse1(){
     browse = document.getElementById('upload1');
     upload(browse.files);
 }
+
+// function otpmodal(){
+//     var modal = document.getElementById("e-sign");
+//     modal.style.display = "block";
+
+//     var span = document.getElementsByClassName("close")[0];
+//     span.onclick = function() {
+//         modal.style.display = "none";
+//     }
+// }
 
 /* ---------------------------- End of E-sign code -------------------------------------- */
 
@@ -195,7 +148,6 @@ window.onclick = function(event) {
   }
 }
 
-/* ---------------------------- Start of Digilocker js code -------------------------------------- */
 function done() {
     // body...
     alert("done function"+et_id)
@@ -205,3 +157,4 @@ function back() {
     console.log(et_id);
     window.location.href = "/v4_apply_tender_s2.html?et_id="+et_id;
 }
+/* ---------------------------- End of Digilocker js code -------------------------------------- */

@@ -1,9 +1,14 @@
 .env
 *.scss
 *.ts
+test
 .prettierrc
 *.pug
 env
 tsconfig.json
 loader.json
+<<<<<<< HEAD
 node_modolues
+=======
+node_modules
+>>>>>>> 0d7fb72524657b1a7606c7b018660133327b935e

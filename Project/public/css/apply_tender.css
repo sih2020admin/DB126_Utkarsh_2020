@@ -33,7 +33,7 @@ strong {
   min-width: 600px;
   height: auto;
   padding: 20px;
-  margin: 40px;
+  margin: auto;
   margin-top: 20px;
   border-radius: 10px;
   -webkit-box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.2);
@@ -184,4 +184,5 @@ button:hover {
   /*   border-right: 15px solid blue; */
   border-left: 15px solid #4CAF50;
 }
-/*# sourceMappingURL=apply_tender.css.map */
+/*# sourceMappingURL=apply_tender.css.map */  
+
