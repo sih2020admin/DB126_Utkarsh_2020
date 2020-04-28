@@ -23,7 +23,7 @@ if(etd_id != null){
     var data = JSON.stringify({"et_id":et_id,"etd_id":etd_id});
 
         var xhr = new XMLHttpRequest();
-        xhr.withCredentials = true;
+        // xhr.withCredentials = true;
 
         xhr.onload = function () {
           if (this.status === 200) {
@@ -93,7 +93,7 @@ else{
     var data = JSON.stringify({"et_id":et_id});
 
         var xhr = new XMLHttpRequest();
-        xhr.withCredentials = true;
+        // xhr.withCredentials = true;
 
         xhr.onload = function () {
           if (this.status === 200) {
@@ -156,7 +156,7 @@ function apply() {
     var data = JSON.stringify({"et_id":et_id,"vd_id":vd_id,"vcd_id":vcd_id,"bid_amt":"12000"});
             //bid ammounnt to take from user
     var xhr = new XMLHttpRequest();
-    xhr.withCredentials = true;
+    // xhr.withCredentials = true;
 
     xhr.onload = function () {
   if (this.status === 200) {

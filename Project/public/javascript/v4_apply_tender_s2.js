@@ -4,7 +4,7 @@ function next(){
 var status = "100"
 
 var data = JSON.stringify({"et_id":et_id,"etd_id":etd_id});var xhr = new XMLHttpRequest();
-        xhr.withCredentials = true;
+        // xhr.withCredentials = true;
 
         xhr.onload = function () {
           if (this.status === 200) {

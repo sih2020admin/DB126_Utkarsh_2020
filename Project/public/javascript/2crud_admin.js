@@ -16,7 +16,7 @@ if(get_cookie('ad_id') == '')
 	
 	
 	var xhr = new XMLHttpRequest();
-	xhr.withCredentials = true;
+	// xhr.withCredentials = true;
 
 	xhr.onload = function(){
 			if(this.status==200){
@@ -216,7 +216,7 @@ if(get_cookie('ad_id') == '')
 						var data = JSON.stringify({"et_id":response[clicked_id]['et_id'],"et_title":result.value[1],"et_tender_fee":result.value[5],"et_tender_ref_no":result.value[0],"et_tender_desc":result.value[2],"et_last_date_apply":result.value[3],"et_bidding_date":result.value[4],"et_file_uri":result.value[6]});
 
 					var xhr = new XMLHttpRequest();
-					xhr.withCredentials = true;
+					// xhr.withCredentials = true;
 
 					xhr.addEventListener("readystatechange", function() {
 					  if(this.readyState === 4) {
@@ -251,7 +251,7 @@ if(get_cookie('ad_id') == '')
             	var data = JSON.stringify({"et_id":123,"et_title":"Procurement of computers","et_tender_fee":"1200","et_tender_ref_no":"ITC123","et_tender_desc":"Procurement of Computers, Software and Services. The purpose of this policy is to provide a defined process for both the new and recurring procurement (through purchase or lease) of computer hardware, software and services using Washington University funds or grant funds administered by Washington University.","et_last_date_apply":"2020-03-10","et_bidding_date":"2020-03-13","et_file_uri":"https://www.youtube.com/watch?v=u8XFFTWwSvY&feature=youtu.be"});
 
 					var xhr = new XMLHttpRequest();
-					xhr.withCredentials = true;
+					// xhr.withCredentials = true;
 
 					xhr.addEventListener("readystatechange", function() {
 					  if(this.readyState === 4) {
@@ -282,7 +282,7 @@ if(get_cookie('ad_id') == '')
 				  if (result.value) {
 
 						var xhr = new XMLHttpRequest();
-						xhr.withCredentials = true;
+						// xhr.withCredentials = true;
 
 						xhr.onload = function(){
 							if(this.status==200){
@@ -454,7 +454,7 @@ if(get_cookie('ad_id') == '')
 				}else{
 
 					var xhr = new XMLHttpRequest();
-					xhr.withCredentials = true;
+					// xhr.withCredentials = true;
 
 					xhr.addEventListener("readystatechange", function() {
 					  if(this.readyState === 4) {
