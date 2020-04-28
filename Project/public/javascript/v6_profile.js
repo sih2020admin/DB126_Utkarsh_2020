@@ -22,7 +22,7 @@ console.log(vcd_id);
 var data = JSON.stringify({"vd_id":"1","vcd_id":"1"});
 
 var xhr = new XMLHttpRequest();
-xhr.withCredentials = true;
+// xhr.withCredentials = true;
 
 xhr.onload = function () {
   if (this.status === 200) {

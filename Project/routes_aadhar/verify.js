@@ -33,6 +33,7 @@ function getRandomInt() {
 
 router.post('/verify', (req, res, next) => {
     var usrn = Number(req.body.aadharno)
+    console.log("verify called "+usrn)
     con.query('Select * from aadhar_details where aadharno= ?', [usrn], function (error, results, fields) {
         if (error) {
             //console.log("error");
