@@ -202,4 +202,3 @@ var IPv6 = /** @class */ (function (_super) {
     return IPv6;
 }(IP));
 exports.IPv6 = IPv6;
-console.log(new IPv4().get());
