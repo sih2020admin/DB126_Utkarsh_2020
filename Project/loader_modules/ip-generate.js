@@ -12,7 +12,7 @@ var IPFile = /** @class */ (function () {
         if (server === true) {
             for (var i in process.env) {
                 if (i.includes('PORT')) {
-                    ip_object = ip_object + ("var IP" + i.split('T')[1] + "='http://" + process.env.ADDRESS + ":" + process.env[i] + "'\n'");
+                    ip_object = ip_object + ("var IP" + i.split('T')[1] + "='http://" + process.env.ADDRESS + ":" + process.env[i] + "'\n");
                 }
             }
         }
