@@ -194,11 +194,3 @@ var IPv4 = /** @class */ (function (_super) {
     return IPv4;
 }(IP));
 exports.IPv4 = IPv4;
-var IPv6 = /** @class */ (function (_super) {
-    __extends(IPv6, _super);
-    function IPv6() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    return IPv6;
-}(IP));
-exports.IPv6 = IPv6;
