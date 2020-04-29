@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var fs_extra_1 = __importDefault(require("fs-extra"));
+var fs_1 = __importDefault(require("fs"));
 var IPFile = /** @class */ (function () {
     function IPFile() {
     }
@@ -23,7 +23,7 @@ var IPFile = /** @class */ (function () {
                 }
             }
         }
-        fs_extra_1.default.writeFileSync("public/javascript/IP.js", ip_object);
+        fs_1.default.writeFileSync("public/javascript/IP.js", ip_object);
     };
     return IPFile;
 }());
