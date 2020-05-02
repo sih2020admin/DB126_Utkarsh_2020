@@ -76,7 +76,7 @@ button:hover {
     text-align: center;
 }
 
-#tc {
+#tc,#tc4,#tc5,#tc6 {
     font-size: 12px;
     font-style: italic;
     color: #fd0000;
@@ -287,7 +287,21 @@ ul li:hover {
   text-decoration: none;
   cursor: pointer;
 }
+ 
+.closeotp {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
   
+.closeotp:hover,
+.closeotp:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 .modal-header {
   padding: 2px 16px;
   background-color: #663EFD;
