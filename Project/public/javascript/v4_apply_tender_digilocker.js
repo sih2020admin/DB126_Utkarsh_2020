@@ -277,7 +277,7 @@ var span = document.getElementsByClassName("close")[0];    // Get the <span> ele
 
 // When the user clicks the button, open the modal 
 function openModal() {
-    
+
     //Checking For Document Upload
     if(document.getElementById("upload").value=="" || document.getElementById("upload1").value=="")
     document.getElementById("tc5").innerHTML="Documents Not Uploaded";
