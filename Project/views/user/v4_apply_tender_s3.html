@@ -101,37 +101,34 @@
       </tr>
     </table>
     <br>
+    <p id="tc5"></p><br>
     <button type="button" onclick="openModal()">Digilocker</button>
   </div>
 
   <!-- Modal-->
-  <!-- <div id="e-sign" class="modal">
-  <div class="modal-content" style="width: 40%; height:42%; font-size: 14px;">
+  <div id="e-sign" class="modal">
+    <div class="modal-content" style="width: 40%; height:80%; font-size: 14px;">
       <div class="modal-header">
-          <span class="close">&times;</span><br>
+          <span class="closeotp">&times;</span><br>
           <h2 style="color: white;" >E-sign</h2>
-          <p id="cur_dir">Current Directory is o: </p>
        </div>
       <div class="modal-body">
         <div id="note" style="text-align : left;">
           <p><u>Note</u></p>
           <p>1. This Page lets you Sign the Uploaded Document through Aadhar Based OTP.</p>
           <p>2. Enter The OTP recieved on E-mail.</p>
+          <p>3. For Testing Enter OTP as 123456.</p>
         </div><br><br>
          <label for="OTP">Enter OTP</label>
-         <input type="password" name="OTP"><br><br>
-         <button value="cancel" onclick="">Cancel</button>
-         <button value="Submit" onclick="">Submit</button> -->
-      <!-- </div> -->
-      <!-- <div class="modal-footer">
-          <div class="wrapper">
-              <button id="back">Back</button>
-              <br>
-              <button id="uploadDigi" onclick="uploadFiles()">Upload Here</button>
-          </div>
-      </div> -->
-  <!-- </div> --> 
+         <input type="password" id= "otp" name="OTP"><br>
+         <p id="tc4"></p><br>
+         <button value="cancel" id="cancel">Cancel</button>
+         <button value="Submit" onclick="otp()">Submit</button>
+      </div>
+    </div>
+  </div>
   <br>
+  <p id ="tc6"></p><br>
   <button value="back" onclick="back()">Back</button>
   <button value="next" onclick="done()">Done</button>
 </body>
