@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="/css/nav.css" />
   <link rel="stylesheet" href="/css/apply_tenders2.css" />
   <link rel="stylesheet" href="/css/payment.css" />
-  <title>Payment</title>
+  <title>apply tender</title>
 </head>
 
 <body>
@@ -97,14 +97,14 @@
 
 
 </html>
-<script src="{{ url }}/javascript/cookies.js"></script>
+<script src="/javascript/cookies.js"></script>
 <script >
   var log_a = document.getElementById('log_a')
   var nav_bar = document.getElementById('nav_bar')
   if (get_cookie('vcd_id') != '') {
     log_a.setAttribute('href', 'v6_profile.html')
     log_a.innerHTML = 'Profile'
-    nav_bar.insertAdjacentHTML('beforeend', '<a id="log_a" href="v1_login.html">Log out</a>')
+    nav_bar.insertAdjacentHTML('beforeend', '<a id="log_a" href="/v1_login.html">Log out</a>')
   }
 </script>
 <script src="/javascript/jquery-3.4.1.min.js"></script>
