@@ -162,7 +162,7 @@ function apply() {
   if (this.status === 200) {
     var resp= JSON.parse(this.responseText);
     var etd_id =resp.etd_id;
-    window.location.href = "/payment/tender?et_id="+et_id+"&etd_id="+etd_id;
+    window.location.href = "http:"+IP +":8081/payment/tender?et_id="+et_id+"&etd_id="+etd_id;
   }
   else{
     alert("Some error")
@@ -178,7 +178,7 @@ xhr.send(data);
 
 function next() {
     // body...
-    window.location.href = "/payment/tender?et_id="+et_id+"&etd_id="+etd_id;
+    window.location.href = "http:"+IP +":8081/payment/tender?et_id="+et_id+"&etd_id="+etd_id;
     }
 
 
