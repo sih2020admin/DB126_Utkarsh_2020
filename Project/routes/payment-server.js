@@ -103,7 +103,7 @@ function get_transaction_status() {
     });
 }
 if (process.env.ADDRESS === '165.22.210.37') {
-    url = "";
+    url = "http://165.22.210.37:8081";
 
 console.log(url)}
 //get_transaction_status()
