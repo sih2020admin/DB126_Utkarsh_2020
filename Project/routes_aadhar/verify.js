@@ -49,6 +49,7 @@ router.post('/verify', (req, res, next) => {
                     subject: 'Aadhar Authentication OTP',
                     text: ' Aadhar OTP  for authentication is ' + otp,
                 }
+                console.log(otp)
                 transporter.sendMail(mailOptions, function (error, info) {
                     if (error) {
                         console.log(error)

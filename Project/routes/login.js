@@ -46,7 +46,7 @@ router.post('/login', function (req, res) {
 				     			//console.log("fetched "+aadharno);
 
 					     		//send to aadhar api
-					     		var req = unirest('POST', 'http://165.22.210.37:8082/verify').headers({'Content-Type': 'application/json'})
+					     		var req = unirest('POST', 'http://localhost:8082/verify').headers({'Content-Type': 'application/json'})
 									.send(JSON.stringify({"aadharno":aadharno})).end(function (resp) { 
 									  	if (resp.error){
 											throw new Error(resp.error); 

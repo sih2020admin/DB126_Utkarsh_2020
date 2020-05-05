@@ -63,7 +63,7 @@ function apply(i) {
             var status = res.status;
             if(status=="100"){
                 alert("all ready applied , complete process")
-                window.location.href = "/v4_apply_tender_s2.html?et_id="+et_id+"&etd_id="+res.etd_id;
+                window.location.href = "/payment/tender?et_id="+et_id+"&etd_id="+res.etd_id;
             }
             else if(status=="110"){
                 alert("all ready applied , complete process")
