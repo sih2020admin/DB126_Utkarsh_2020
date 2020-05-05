@@ -182,7 +182,8 @@ function show_files(str) {
                     }
                 }
                 else if (Technical_or_BOQ == 2) {
-                    // console.log("Testing sankey => " + item_array[i].name + "=>" + Technical_file_name + "=>" + is_upload);
+                    Technical_or_BOQ = 0;
+                    console.log("Testing sankey => " + item_array[i].name + "=>" + Technical_file_name + "=>" + is_upload);
                     if (item_array[i].name == BOQ_file_name && is_upload) {
 
                         BOQ_file_uri = item_array[i].uri;
@@ -490,7 +491,7 @@ function uploadFiles() {
             get_files();
             if (Technical_or_BOQ == 2) {
                 //reset flag
-                Technical_or_BOQ = 0;
+                // Technical_or_BOQ = 0;
 
                 //ask user if he/she wants to revoke token
                 alert("Do you want to revoke your digilocker token?");
