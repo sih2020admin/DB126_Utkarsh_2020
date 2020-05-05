@@ -11,4 +11,6 @@ IP.js
 node_modules
 nodemon.json
 server.json
+routes.json
 .vscode
+ecosystem.config.js

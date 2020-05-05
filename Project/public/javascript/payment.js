@@ -16,26 +16,6 @@ var code = urlParams.get('code');
 if (code !== null) {
     $('#tsc_status').text('Transaction has failed');
 }
-$.ajax({
-    url: baseURL + "/tender_desc",
-    method: 'POST',
-    async: true,
-    data: {
-        et_id: et_id,
-    },
-    success: function (response) {
-        $('#amount1').val("" + response.et_tender_fee);
-    },
-    error: function (xhr, error_type, exception) {
-        var error_message = xhr.responseText;
-        if (xhr.status == 400) {
-            alert('Provide valid URL');
-        }
-        else {
-            alert("Problem connecting with " + error_message);
-        }
-    },
-});
 append_to_form('etd_id', etd_id);
 append_to_form('et_id', et_id);
 $('#bg_tsc_button').on('click', function (e) {

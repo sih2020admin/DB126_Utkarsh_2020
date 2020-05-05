@@ -1,8 +1,8 @@
- var vd_id =get_cookie('vd_id')
+/*  var vd_id =get_cookie('vd_id')
 var vcd_id =get_cookie('vcd_id')
 if(vd_id ==""){
     window.location.href = "/v1_login.html";
-}
+} */
  
 const queryString = window.location.search;
 console.log(queryString);
@@ -178,7 +178,7 @@ xhr.send(data);
 
 function next() {
     // body...
-    window.location.href = "/v4_apply_tender_s2.html?et_id="+et_id+"&etd_id="+etd_id;
+    window.location.href = "/payment/tender?et_id="+et_id+"&etd_id="+etd_id;
     }
 
 

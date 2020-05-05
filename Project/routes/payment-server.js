@@ -21,35 +21,9 @@ var data_structure_1 = require("./data-structure");
 var debug = require('debug')('service:payment-loader');
 var checksum = require('./paytm/checksum.js');
 debug('Started Debugging process of payment-server\nLocation : routes/payment-server.ts');
-/* try {
-    if (process.env.ADDRESS === undefined || process.env.ADDRESS == '') {
-        throw new AddressError('Address has not been set in .env file or has wrong name\nSet it in .env file eg: ADDRESS=your ip address')
-    }
-    if (process.env.MID === undefined || process.env.MID == '') {
-        throw new MIDError('MID has not been set in .env file or has wrong name\nSet it in .env file eg: MID=your MID')
-    }
-    if (process.env.KEY === undefined || process.env.KEY == '') {
-        throw new KeyError('Key has not been set in .env file or has wrong name\nSet it in .env file eg: KEY=your ip key')
-    }
-} catch (error) {
-    if (error instanceof AddressError) {
-        debug('Address has not been set in .env file or has wrong name\nSet it in .env file eg: ADDRESS=your ip address')
-        debug('Exiting from server......')
-        process.exit(0)
-    } else if (error instanceof MIDError) {
-        debug('MID has not been set in .env file or has wrong name\nSet it in .env file eg: MID=your mid')
-        debug('Extiing from server......')
-        process.exit(0)
-    } else if (error instanceof KeyError) {
-        debug('Key has not been set in .env file or has wrong name\nSet it in .env file eg: KEY=your key')
-        debug('Extiing from server......')
-
-        process.exit(0)
-    }
-} */
 var address = process.env.ADDRESS;
 debug("IP Address set in payment files  is " + address);
-debug("Port number set in  payment files is " + process.env.PORT);
+var url = "http://localhost:" + process.env.PORT;
 var queue = [];
 var router = express_1.default.Router();
 var salt = process.env.KEY;
@@ -128,7 +102,31 @@ function get_transaction_status() {
         });
     });
 }
+if (process.env.ADDRESS === '165.22.210.37') {
+    url = "http;//" + process.env.ADDRESS + ":" + process.env.PORT;
+}
 //get_transaction_status()
+router.get('/tender', function (request, response) {
+    var et_id = request.query.et_id;
+    if (et_id === undefined) {
+        response.send('Cannot find tenders with undefined et_id');
+    }
+    else {
+        db_1.default.query('SELECT * FROM  e_tender_details INNER JOIN department ON e_tender_details.dept_id = department.dept_id WHERE et_id = ?', [et_id], function (error, result) {
+            if (error) {
+                debug('error');
+            }
+            else {
+                if (result.length > 0) {
+                    response.render('user/home', { layout: false, url: url, amount: result[0].et_tender_fee });
+                }
+                else {
+                    response.send('No such tender with et_id exists');
+                }
+            }
+        });
+    }
+});
 router.post('/', function (request, response) {
     params['ORDER_ID'] = 'ORD' + Math.floor(Math.random() * Math.pow(10, 10)).toString();
     params['CUST_ID'] = 'CUST' + Math.floor(Math.random() * Math.pow(10, 10)).toString();
