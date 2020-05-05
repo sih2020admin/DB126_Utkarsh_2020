@@ -3,8 +3,9 @@ console.log(queryString);
 const urlParams = new URLSearchParams(queryString);
 
 var et_id  = urlParams.get('et_id')
+var etd_id = urlParams.get('etd_id')
 
-console.log(et_id);
+console.log(et_id,etd_id);
 
 /* ---------------------------- Start of E-sign code -------------------------------------- */
 
@@ -166,5 +167,5 @@ function done() {
 }
 function back() {
     console.log(et_id);
-    window.location.href = "/v4_apply_tender_s2.html?et_id="+et_id;
+    window.location.href = "/v4_apply_tender_s2.html?et_id="+et_id+"&etd_id="+etd_id;
 }

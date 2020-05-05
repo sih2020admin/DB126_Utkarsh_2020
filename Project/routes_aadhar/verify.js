@@ -6,8 +6,8 @@ const assert = require('assert')
 var mysql = require('mysql')
 var con = mysql.createConnection({
     host: 'localhost',
-    user: process.env.DBUSER,
-    password: process.env.DBPASS,
+    user: "root",
+    password: "",
     database: 'aadharDB',
 })
 con.connect(function (err) {
@@ -49,6 +49,7 @@ router.post('/verify', (req, res, next) => {
                     subject: 'Aadhar Authentication OTP',
                     text: ' Aadhar OTP  for authentication is ' + otp,
                 }
+                console.log(otp)
                 transporter.sendMail(mailOptions, function (error, info) {
                     if (error) {
                         console.log(error)

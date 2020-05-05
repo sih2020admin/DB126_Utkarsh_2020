@@ -4,19 +4,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="css/nav.css" />
-  <link rel="stylesheet" href="css/apply_tenders2.css" />
-  <link rel="stylesheet" href="css/payment.css" />
-  <script src="javascript/cookies.js"></script>
+  <link rel="stylesheet" href="/css/nav.css" />
+  <link rel="stylesheet" href="/css/apply_tenders2.css" />
+  <link rel="stylesheet" href="/css/payment.css" />
   <title>apply tender</title>
 </head>
 
 <body>
   <header>
     <nav id="nav_bar">
-      <a href="v7_homepage.html">Home</a>
-      <a href="v3_see_tender.html">Tender</a>
-      <a id="log_a" href="v1_login.html">Login</a>
+      <a href="/v7_homepage.html">Home</a>
+      <a href="/v3_see_tender.html">Tender</a>
+      <a id="log_a" href="/v1_login.html">Login</a>
     </nav>
   </header>
   <div class="pBarCont">
@@ -65,14 +64,17 @@
     <div class="button_div"><button type="submit" class="save_button">Save</button></div>
   </div>
   <div class="cont2">
-    <form id="body_content" method="POST" action="http://localhost:8081/payment">
+
+    
+    <form id="body_content" method="POST" action="{{ url }}/payment">
+
       <div class="content">
         <h1>Payment</h1>
         <br />
         <table style="text-align: left;">
           <tr>
             <td><label for="amount1">Amount</label></td>
-            <td><input type="text" id="amount1" name="amount" disabled/></td>
+            <td><input type="text" id="amount1" name="amount" value={{ amount }} disabled/></td>
           </tr>
           <tr>
             <td><label for="email">Email ID</label></td>
@@ -96,27 +98,19 @@
   <br><br>
 </body>
 
-<script type="text/javascript">
+
+</html>
+<script src="/javascript/cookies.js"></script>
+<script >
   var log_a = document.getElementById('log_a')
   var nav_bar = document.getElementById('nav_bar')
   if (get_cookie('vcd_id') != '') {
     log_a.setAttribute('href', 'v6_profile.html')
     log_a.innerHTML = 'Profile'
-    nav_bar.insertAdjacentHTML('beforeend', '<a id="log_a" href="v1_login.html">Log out</a>')
+    nav_bar.insertAdjacentHTML('beforeend', '<a id="log_a" href="/v1_login.html">Log out</a>')
   }
 </script>
-<script src="javascript/jquery-3.4.1.min.js"></script>
-<script src="javascript/payment.js"></script>
-<script src="javascript/v4_apply_tender_s2.js"></script>
+<script src="/javascript/jquery-3.4.1.min.js"></script>
+<script src="/javascript/payment.js"></script>
+<script src="/javascript/v4_apply_tender_s2.js"></script>
 
-</html>
-<script>
- /*  $.getScript("http://localhost:8081/javascript/v4_apply_tender_s2.js")
-  .done(function(script, textStatus) {
-    console.log(textStatus);
-    console.log('Javascirpt')
-  })
-  .fail(function(jqxhr, settings, exception) {
-    console.log("loading script failed.");
-  }); */
-</script>
