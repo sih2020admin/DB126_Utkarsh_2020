@@ -269,7 +269,7 @@ app.post('/fetch_files', (req, res) => {
 //upload files to digilocker
 app.post('/upload_files', function (req, res) {
     var file_name = req.body.filename; 
-    console.log(file_name);
+    //console.log(file_name);
 
     //joining path of directory
     /*var path = require('path');
@@ -277,17 +277,17 @@ app.post('/upload_files', function (req, res) {
     */
     const directoryPath = '/root/e-sign/uploaded_documents/'+file_name;
 
-    console.log(directoryPath);
+    //console.log(directoryPath);
     var data = fs.readFileSync(directoryPath);
-    console.log(data);
+    //console.log(data);
 
-    console.log(req.body);     //show form data
+    //console.log(req.body);     //show form data
     //console.log(req.files); //show form file
-    console.log(req.headers); //show headers
+    //console.log(req.headers); //show headers
 
     var vcd_id = req.header('vcd_id');
     var pathDigi = req.header('path');
-    console.log(vcd_id, pathDigi);
+    //console.log(vcd_id, pathDigi);
 
     //Algorithm to be used for HMAC
     var algorithm = 'sha256';
@@ -300,7 +300,7 @@ app.post('/upload_files', function (req, res) {
     hmac.update(data);
     //generate hmac
     var gen_hmac = hmac.digest('base64')
-    console.log('Hmac generated using ' + algorithm + ' \nHashed output is :  ' + gen_hmac + ' \nFile name is :  ' + file_name);
+    //console.log('Hmac generated using ' + algorithm + ' \nHashed output is :  ' + gen_hmac + ' \nFile name is :  ' + file_name);
 
     //Get access token from database
     var sql = "SELECT access FROM access_token WHERE id="+vcd_id;
@@ -309,7 +309,7 @@ app.post('/upload_files', function (req, res) {
             res.status(400).send({ error: "Database query failed" });
         };
         access_token = result[0].access;
-        console.log("Data received");
+        //console.log("Data received");
 
         var options = {
             method: 'POST',
