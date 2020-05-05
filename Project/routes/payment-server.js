@@ -118,7 +118,7 @@ router.get('/tender', function (request, response) {
             }
             else {
                 if (result.length > 0) {
-                    response.render('user/home', { layout: false, url: url, amount: result[0].et_tender_fee });
+                    response.render('user/v4_apply_tender_s2', { layout: false, url: url, amount: result[0].et_tender_fee });
                 }
                 else {
                     response.send('No such tender with et_id exists');
