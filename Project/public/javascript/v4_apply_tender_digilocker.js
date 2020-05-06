@@ -390,18 +390,24 @@ function uploadFiles() {
                 console.log("Your file has been uploaded successfully.");
                 if (Technical_or_BOQ == 0) {
                     Technical_or_BOQ = 1;
+                    console.log("TECHNICAL get file START");
                     get_files();
+                    console.log("TECHNICAL get file STOP");
                     alert("Your Technical document has been uploaded successfully with hash =>" + this.responseText);
                 }
                 else if (Technical_or_BOQ == 1) {
                     Technical_or_BOQ = 2;
+                    console.log("BOQ get file START");
                     get_files();
+                    console.log("BOQ get file STOP");
                     alert("Your BOQ document has been uploaded successfully with hash =>" + this.responseText);
                 }
                 current_id = "";
                 parent_id = [];
                 is_upload = 0;
+                console.log("RESET get file START");
                 get_files();
+                console.log("RESET get file STOP");
             }
             else if (this.status == 400) {
                 alert(temp.error);
