@@ -162,7 +162,7 @@ function show_files(str) {
 
                         Technical_file_uri = item_array[i].uri;
                         is_upload = 0; //update is_upload status
-                        //console.log("File URI for Technical Document is => " + item_array[i].uri);
+                        console.log("File URI for Technical Document is => " + item_array[i].uri);
                         alert("Your Technical doc has been uploaded successfully with uri =>", Technical_file_uri);
 
                         /*//send Technical doc URI to DB
@@ -189,7 +189,7 @@ function show_files(str) {
 
                         BOQ_file_uri = item_array[i].uri;
                         is_upload = 0;
-                        //console.log("File URI for BOQ document is => " + item_array[i].uri);
+                        console.log("File URI for BOQ document is => " + item_array[i].uri);
                         alert("Your BOQ doc uploaded successfully with uri => ", BOQ_file_uri);
 
                         /*//send BOQ doc URI
