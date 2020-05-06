@@ -29,7 +29,7 @@ var transporter = nodemailer.createTransport({
 
 //SMS
 const accountSid = 'ACb6efbe87d9f5fca5440bbc802d064fe9'; 
-const authToken = 'd1b07df60676e3b0de4a73ccdd5d30d9'; 
+const authToken = '4664d67664a57f3b6b6fd4055ed2f825'; 
 const client = require('twilio')(accountSid, authToken); 
 
 //OTP Generation
