@@ -166,6 +166,34 @@ function show_files(str) {
                         console.log("File URI for BOQ document is => " + item_array[i].uri);
                         console.log("Technical URI => ", Technical_file_uri);
                         console.log("BOQ URI =>", BOQ_file_uri);
+                        
+                        var data = JSON.stringify({ "etd_id": etd_id, "f_type": "link", "f_uri": Technical_file_uri });
+
+                        var xhr = new XMLHttpRequest();
+                        xhr.addEventListener("readystatechange", function () {
+                            if (this.readyState === 4) {
+                                console.log(this.responseText);
+                                var data = JSON.stringify({ "etd_id": etd_id, "f_type": "link", "f_uri": BOQ_file_uri });
+
+                                var xhr = new XMLHttpRequest();
+
+                                xhr.addEventListener("readystatechange", function () {
+                                    if (this.readyState === 4) {
+                                        console.log(this.responseText);
+                                    }
+                                });
+
+                                xhr.open("POST", "http://165.22.210.37:8081/enter_file_uri2_db");
+                                xhr.setRequestHeader("Content-Type", "application/json");
+
+                                xhr.send(data);
+                            }
+                        });
+
+                        xhr.open("POST", "http://165.22.210.37:8081/enter_file_uri1_db");
+                        xhr.setRequestHeader("Content-Type", "application/json");
+
+                        xhr.send(data);
                     }
                 }
 
@@ -415,7 +443,7 @@ function uploadFiles() {
                 console.log("RESET get file START");
                 get_files();
                 console.log("RESET get file STOP");
-                
+
             }
             else if (this.status == 400) {
                 alert(temp.error);
