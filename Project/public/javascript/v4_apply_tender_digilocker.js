@@ -115,7 +115,7 @@ function some() {
                 parent_id.push(p_id);
 
                 //get files from above updated "current_id"
-                get_files(true);
+                get_files();
             }
             else { //clicked li element is file
                 alert("This is file");
@@ -182,7 +182,7 @@ function show_files(str) {
                     }
                 }
                 else if (Technical_or_BOQ == 2) {
-                    // Technical_or_BOQ = 0;
+                    Technical_or_BOQ = 0;
                     console.log("Testing sankey => " + item_array[i].name + "=>" + Technical_file_name + "=>" + is_upload);
                     if (item_array[i].name == BOQ_file_name && is_upload) {
 
@@ -260,12 +260,12 @@ function show_files(str) {
 
 //This function will get content of a directory (using it's id)from digilocker
 //will fetch self_uploaded documents from digilocker
-function get_files(async) {
+function get_files() {
 
     //creating xhr request for api call
     var xhr = new XMLHttpRequest();
     url = "http://165.22.210.37:8085/fetch_files";
-    xhr.open("POST", url, async);
+    xhr.open("POST", url, true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     // var vcd_id = get_cookie('vcd_id');
     xhr.send(JSON.stringify({
@@ -350,7 +350,7 @@ function openModal() {
 
                 //on success display modal and fetch files;
                 modal.style.display = "block";
-                get_files(true);
+                get_files();
             }
             else if (this.status == 400) {
                 alert(temp.error);
@@ -373,7 +373,7 @@ $(document).ready(function () {
         console.log(dir_element.innerHTML);
         if (dir_element.innerHTML != "Current Directory is : /") {
             current_id = parent_id.pop();
-            get_files(true);
+            get_files();
         }
     });
 });
@@ -444,7 +444,7 @@ function uploadFiles() {
             console.log("Your file has been uploaded successfully.");
             if (Technical_or_BOQ == 0) {
                 Technical_or_BOQ = 1;
-                get_files(true);
+                get_files();
 
                 //console.log("checking etd_id value", etd_id, "uri", Technical_file_uri);
                 /*var data = JSON.stringify({ "etd_id": etd_id, "f_type": "link", "f_uri": Technical_file_uri });
@@ -465,7 +465,7 @@ function uploadFiles() {
             }
             else if (Technical_or_BOQ == 1) {
                 Technical_or_BOQ = 2;
-                get_files(false);
+                get_files();
 
                 //console.log("checking etd_id value", etd_id, "uri", BOQ_file_uri);
                 /*var data = JSON.stringify({ "etd_id": etd_id, "f_type": "link", "f_uri": BOQ_file_uri });
@@ -488,10 +488,10 @@ function uploadFiles() {
             current_id = "";
             parent_id = [];
             // is_upload = 0;
-            get_files(false);
+            get_files();
             if (Technical_or_BOQ == 2) {
                 //reset flag
-                Technical_or_BOQ = 0;
+                // Technical_or_BOQ = 0;
 
                 //ask user if he/she wants to revoke token
                 alert("Do you want to revoke your digilocker token?");
