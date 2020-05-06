@@ -2,6 +2,10 @@ var vcd_id = get_cookie('vcd_id');   //will be used everywhere in digilocker cod
 var et_id;                           //to store current et_id
 var etd_id;                          //to store current etd_id
 
+//global variables for storing file URI's
+var Technical_file_uri;
+var BOQ_file_uri;
+
 //to decide which document is to be uploaded in digilocker depending upon flag
 var Technical_or_BOQ = 0;  //0 = no document uploaded yet, 1 = technical document uploaded, 2 = BOQ uploaded
 
@@ -151,13 +155,17 @@ function show_files(str) {
                     // console.log("Testing sankey => " + item_array[i].name + "=>" + Technical_file_name + "=>" + is_upload);
                     if (item_array[i].name == Technical_file_name && is_upload) {
                         // document.getElementById("fileURI").innerHTML = item_array[i].uri;
+                        Technical_file_uri = item_array[i].uri;
                         console.log("File URI for Technical Document is => " + item_array[i].uri);
                     }
                 }
                 else if (Technical_or_BOQ == 2) {
                     if (item_array[i].name == BOQ_file_name && is_upload) {
                         // document.getElementById("fileURI").innerHTML = item_array[i].uri;
+                        BOQ_file_uri = item_array[i].uri;
                         console.log("File URI for BOQ document is => " + item_array[i].uri);
+                        console.log("Technical URI => ", Technical_file_uri);
+                        console.log("BOQ URI =>", BOQ_file_uri);
                     }
                 }
 
@@ -407,6 +415,7 @@ function uploadFiles() {
                 console.log("RESET get file START");
                 get_files();
                 console.log("RESET get file STOP");
+                
             }
             else if (this.status == 400) {
                 alert(temp.error);
