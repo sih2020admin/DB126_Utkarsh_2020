@@ -103,7 +103,7 @@ function get_transaction_status() {
     });
 }
 if (process.env.ADDRESS === '165.22.210.37') {
-    url = "http;//" + process.env.ADDRESS + ":" + process.env.PORT + "/payment";
+    url = "";
 }
 //get_transaction_status()
 router.get('/tender', function (request, response) {
