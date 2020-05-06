@@ -163,7 +163,7 @@ function show_files(str) {
                         Technical_file_uri = item_array[i].uri;
                         is_upload = 0; //update is_upload status
                         console.log("File URI for Technical Document is => " + item_array[i].uri);
-                        alert("Your Technical doc has been uploaded successfully with uri =>", Technical_file_uri);
+                        //alert("Your Technical doc has been uploaded successfully with uri =>", Technical_file_uri);
 
                         /*//send Technical doc URI to DB
                         console.log("checking etd_id value", etd_id, "uri", Technical_file_uri);
@@ -190,7 +190,7 @@ function show_files(str) {
                         BOQ_file_uri = item_array[i].uri;
                         is_upload = 0;
                         console.log("File URI for BOQ document is => " + item_array[i].uri);
-                        alert("Your BOQ doc uploaded successfully with uri => ", BOQ_file_uri);
+                        //alert("Your BOQ doc uploaded successfully with uri => ", BOQ_file_uri);
 
                         /*//send BOQ doc URI
                         console.log("checking etd_id value", etd_id, "uri", BOQ_file_uri);
@@ -263,6 +263,7 @@ function show_files(str) {
 //This function will get content of a directory (using it's id)from digilocker
 //will fetch self_uploaded documents from digilocker
 function get_files() {
+    console.log("Current id =>", current_id,",Parent id =>",parent_id);
 
     //creating xhr request for api call
     var xhr = new XMLHttpRequest();
