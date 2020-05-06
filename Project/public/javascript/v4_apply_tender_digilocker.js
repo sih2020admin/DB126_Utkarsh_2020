@@ -202,34 +202,6 @@ function show_files(str) {
                                 console.log(this.responseText);
                                 alert("Your BOQ document has been uploaded successfully");
                                 modal.style.display = "none";
-
-                                alert("Do you want to revoke your digilocker token?");
-
-                                //update tender status API call
-                                var data = JSON.stringify({ "etd_id": etd_id });
-                                var xhr = new XMLHttpRequest();
-                                xhr.addEventListener("readystatechange", function () {
-                                    if (this.readyState === 4) {
-                                        console.log(this.responseText);
-                                    }
-                                });
-
-                                xhr.open("POST", "http://165.22.210.37:8081/apply_tender_s3");
-                                xhr.setRequestHeader("Content-Type", "application/json");
-
-                                xhr.send(data);
-
-                                xhr.onload = function () {
-                                    if (this.status == 200) {
-                                        window.location.href = "http://165.22.210.37:8081/v5_confirm_tender.html?et_id=" + et_id + "&etd_id=" + etd_id;
-                                    }
-                                    else if (this.status == 400) {
-                                        alert(temp.error);
-                                    }
-                                    else {
-                                        alert("Some Other Error ", xhr.status, " with statusText ", xhr.statusText);
-                                    }
-                                }
                             }
                         });
 
@@ -517,7 +489,7 @@ function uploadFiles() {
             parent_id = [];
             // is_upload = 0;
             get_files();
-            /*if (Technical_or_BOQ == 2) {
+            if (Technical_or_BOQ == 2) {
                 //reset flag
                 // Technical_or_BOQ = 0;
 
@@ -549,7 +521,7 @@ function uploadFiles() {
                         alert("Some Other Error ", xhr.status, " with statusText ", xhr.statusText);
                     }
                 }
-            }*/
+            }
         }
         else if (this.status == 400) {
             alert(temp.error);
