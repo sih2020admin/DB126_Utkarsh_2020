@@ -149,7 +149,7 @@ function show_files(str) {
         //append files and folders to list
         function add_to_list(file_type) {
 
-            //console.log("Technical_or_BOQ = " + Technical_or_BOQ); //testing purpose
+            console.log("Technical_or_BOQ = " + Technical_or_BOQ); //testing purpose
 
             for (i = 0; i < item_array.length; i++) {
 
@@ -162,10 +162,9 @@ function show_files(str) {
 
                         Technical_file_uri = item_array[i].uri;
                         is_upload = 0; //update is_upload status
-                        //console.log("File URI for Technical Document is => " + item_array[i].uri);
-                        alert("Your Technical doc has been uploaded successfully with uri =>", Technical_file_uri);
+                        console.log("File URI for Technical Document is => " + item_array[i].uri);
 
-                        /*//send Technical doc URI to DB
+                        //send Technical doc URI to DB
                         console.log("checking etd_id value", etd_id, "uri", Technical_file_uri);
                         var data = JSON.stringify({ "etd_id": etd_id, "f_type": "link", "f_uri": Technical_file_uri });
 
@@ -179,20 +178,19 @@ function show_files(str) {
                             }
                         });
 
-                        xhr.send(data);*/
+                        xhr.send(data);
                     }
                 }
                 else if (Technical_or_BOQ == 2) {
-                    //Technical_or_BOQ = 0;
-                    //console.log("Testing sankey => " + item_array[i].name + "=>" + Technical_file_name + "=>" + is_upload);
+                    Technical_or_BOQ = 0;
+                    console.log("Testing sankey => " + item_array[i].name + "=>" + Technical_file_name + "=>" + is_upload);
                     if (item_array[i].name == BOQ_file_name && is_upload) {
 
                         BOQ_file_uri = item_array[i].uri;
                         is_upload = 0;
-                        //console.log("File URI for BOQ document is => " + item_array[i].uri);
-                        alert("Your BOQ doc uploaded successfully with uri => ", BOQ_file_uri);
+                        console.log("File URI for BOQ document is => " + item_array[i].uri);
 
-                        /*//send BOQ doc URI
+                        //send BOQ doc URI
                         console.log("checking etd_id value", etd_id, "uri", BOQ_file_uri);
                         var data = JSON.stringify({ "etd_id": etd_id, "f_type": "link", "f_uri": BOQ_file_uri });
 
@@ -207,7 +205,7 @@ function show_files(str) {
                             }
                         });
 
-                        xhr.send(data);*/
+                        xhr.send(data);
                     }
                 }
 
@@ -403,7 +401,13 @@ window.onclick = function (event) {
 
 /* ------------------------------- Start of Upload file to digilocker Code ---------------------------------------- */
 function uploadFiles() {
-    
+    //If Both files are uploaded to digilocker
+    //ask user if he/she wants to revoke access token;
+    //if (Technical_or_BOQ != 2) {
+    // Technical_or_BOQ = 0;
+    // alert("Do you want to revoke your digilocker token?");
+    //}
+    //else {
     //update "upload" status
     is_upload = 1;
 
@@ -487,12 +491,12 @@ function uploadFiles() {
             get_files();
             if (Technical_or_BOQ == 2) {
                 //reset flag
-                Technical_or_BOQ = 0;
+                // Technical_or_BOQ = 0;
 
                 //ask user if he/she wants to revoke token
                 alert("Do you want to revoke your digilocker token?");
 
-                /*//update tender status API call
+                //update tender status API call
                 var data = JSON.stringify({ "etd_id": etd_id });
                 var xhr = new XMLHttpRequest();
                 xhr.addEventListener("readystatechange", function () {
@@ -516,7 +520,7 @@ function uploadFiles() {
                     else {
                         alert("Some Other Error ", xhr.status, " with statusText ", xhr.statusText);
                     }
-                }*/
+                }
             }
         }
         else if (this.status == 400) {
