@@ -162,7 +162,7 @@ function show_files(str) {
 
                         Technical_file_uri = item_array[i].uri;
                         is_upload = 0; //update is_upload status
-                        //console.log("File URI for Technical Document is => " + item_array[i].uri);
+                        console.log("File URI for Technical Document is => " + item_array[i].uri);
                         alert("Your Technical doc has been uploaded successfully with uri =>", Technical_file_uri);
 
                         /*//send Technical doc URI to DB
@@ -189,7 +189,7 @@ function show_files(str) {
 
                         BOQ_file_uri = item_array[i].uri;
                         is_upload = 0;
-                        //console.log("File URI for BOQ document is => " + item_array[i].uri);
+                        console.log("File URI for BOQ document is => " + item_array[i].uri);
                         alert("Your BOQ doc uploaded successfully with uri => ", BOQ_file_uri);
 
                         /*//send BOQ doc URI
@@ -485,14 +485,14 @@ function uploadFiles() {
             parent_id = [];
             // is_upload = 0;
             get_files();
-            if (Technical_or_BOQ == 2) {
+            /*if (Technical_or_BOQ == 2) {
                 //reset flag
                 Technical_or_BOQ = 0;
 
                 //ask user if he/she wants to revoke token
                 alert("Do you want to revoke your digilocker token?");
 
-                /*//update tender status API call
+                /*update tender status API call
                 var data = JSON.stringify({ "etd_id": etd_id });
                 var xhr = new XMLHttpRequest();
                 xhr.addEventListener("readystatechange", function () {
@@ -516,8 +516,8 @@ function uploadFiles() {
                     else {
                         alert("Some Other Error ", xhr.status, " with statusText ", xhr.statusText);
                     }
-                }*/
-            }
+                }
+            }*/
         }
         else if (this.status == 400) {
             alert(temp.error);
