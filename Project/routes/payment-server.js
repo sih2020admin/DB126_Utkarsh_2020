@@ -103,9 +103,8 @@ function get_transaction_status() {
     });
 }
 if (process.env.ADDRESS === '165.22.210.37') {
-    url = "http://165.22.210.37:8081";
-
-console.log(url)}
+    url = "http;//" + process.env.ADDRESS + ":" + process.env.PORT;
+}
 //get_transaction_status()
 router.get('/tender', function (request, response) {
     var et_id = request.query.et_id;

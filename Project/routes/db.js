@@ -5,8 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var mysql_1 = __importDefault(require("mysql"));
 var connection;
-/*
- if (os.platform() === 'linux' && os.hostname() === 'ubuntu' && os.userInfo().username === 'winston') {
+/* if (os.platform() === 'linux' && os.hostname() === 'ubuntu' && os.userInfo().username === 'winston') {
     var database, user, password
     var array = fs.readFileSync('/etc/mysql/my.cnf').toString().split('\n')
     for (var x of array) {
@@ -41,9 +40,8 @@ var connection;
 connection = mysql_1.default.createConnection({
     host: 'localhost',
     user: process.env.DBUSER,
-    password:process.env.DBPASS,
+    password: process.env.DBPASS,
     database: 'e_tender',
     multipleStatements: true,
 });
-//console.log(connection);
 exports.default = connection;

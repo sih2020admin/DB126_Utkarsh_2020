@@ -20,7 +20,6 @@ var tender_approval = require('./routes/tender_approval');
 var vendor_dashboard = require('./routes/vendor_dashboard');
 var apply_tender = require('./routes/apply_tender');
 var port = process.env.PORT;
-//app.set('trust proxy','165.22.210.37')
 app.engine('.hbs', express_handlebars_1.default({ extname: '.hbs' }));
 app.set('view engine', '.hbs');
 app.use(cors_1.default({
