@@ -315,7 +315,6 @@ $(document).ready(function () {
     //on click of back button
     $("#back").click(function () {
         is_upload = 0;
-        console.log(fileName);
         var dir_element = document.getElementById("cur_dir");
         console.log(dir_element.innerHTML);
         if (dir_element.innerHTML != "Current Directory is : /") {
