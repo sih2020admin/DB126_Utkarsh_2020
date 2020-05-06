@@ -1,6 +1,6 @@
-var express = require('express')
-var router = express.Router()
-const assert = require('assert')
+var express = require('express');
+var router = express.Router();
+const assert = require('assert');
 
 //MySql Connection
 var mysql = require('mysql')
@@ -9,68 +9,94 @@ var con = mysql.createConnection({
     user: "root",
     password: "",
     database: 'aadharDB',
-})
+});
 con.connect(function (err) {
-    if (err) throw err
-    console.log('Connected!')
-})
-console.log()
+    if (err){
+	console.log("Not Connected To Mysql!!!");
+    }
+    console.log('Connected To Mysql !!!');
+});
+
 //Email
-var nodemailer = require('nodemailer')
+var nodemailer = require('nodemailer');
 var transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
         user: process.env.EMAIL,
         pass: process.env.PASS,
     },
-})
+});
 
+//SMS
+const accountSid = 'ACb6efbe87d9f5fca5440bbc802d064fe9'; 
+const authToken = 'd1b07df60676e3b0de4a73ccdd5d30d9'; 
+const client = require('twilio')(accountSid, authToken); 
+
+//OTP Generation
 function getRandomInt() {
-    min = Math.ceil(100000)
-    max = Math.floor(999999)
-    return Math.floor(Math.random() * (max - min)) + min //The maximum is exclusive and the minimum is inclusive
+    min = Math.ceil(100000);
+    max = Math.floor(999999);
+    return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
 }
 
-router.post('/verify', (req, res, next) => {
-    var usrn = Number(req.body.aadharno)
-    console.log("verify called "+usrn)
-    con.query('Select * from aadhar_details where aadharno= ?', [usrn], function (error, results, fields) {
+router.post('/verify',(req,res)=>{
+    var usrn = Number(req.body.aadharno);
+    console.log("verify called "+usrn);
+
+    con.query('SELECT * FROM aadhar_details WHERE aadharno= ? ',[usrn],function (error,results){
         if (error) {
-            //console.log("error");
-            res.sendStatus(400)
+            console.log("error");
+            res.sendStatus(400);
         } else {
             if (results.length > 0) {
-                //console.log("number",results[0].phone_number," email",results[0].email)
-                const otp = getRandomInt()
+                //console.log("number",results[0].phone_number," email",results[0].email);
+                const otp = getRandomInt();
+                
+                //SMS sending
+                var smsOptions = {
+                    from: '+17622142266',       
+                    to: '+91' + results[0].phone_number, 
+                    body: 'Aadhar OTP  for Authentication is ' + otp + 'is valid till 5 minutes', 
+                }
+                client.messages.create(smsOptions,function(error,message){
+                    if(error){
+                        console.log("error");
+                        res.sendStatus(400);
+                    }else{
+                        console.log("SMS sent:" + message.sid);
+                    }
+                });
 
+                //Email sending
                 var mailOptions = {
                     from: 'Aadhar UIDAI',
                     to: results[0].email,
                     subject: 'Aadhar Authentication OTP',
-                    text: ' Aadhar OTP  for authentication is ' + otp,
+                    text: ' Aadhar OTP  for Authentication is ' + otp + 'is valid till 5 minutes',
                 }
-                console.log(otp)
+                //console.log(otp);
                 transporter.sendMail(mailOptions, function (error, info) {
                     if (error) {
-                        console.log(error)
+                        console.log(error);
+                        res.sendStatus(400);
                     } else {
-                        console.log('Email sent: ' + info.response)
+                        console.log('Email sent: ' + info.response);
                     }
-                })
+                });
 
-                // database part
-                var dt = new Date(Date.now() + 90000)
-                dt = dt.toISOString().slice(0, 19).replace('T', ' ')
+                // Database part
+                var dt = new Date(Date.now() + 300000);
+                dt = dt.toISOString().slice(0, 19).replace('T', ' ');
                 //console.log(dt, new Date(Date.now()))
                 con.query('INSERT INTO `OTP` (`aadharno`, `otp`, `validtill`, `isUsed`, `reference_id`) VALUES (?,?,?, 0 , 1)', [usrn, otp, dt], function (error, results, fields) {
                     if (error) {
                         //console.log("error: otp db ",error);
-                        res.sendStatus(400)
+                        res.sendStatus(400);
                     } else {
                         //console.log("session ",usrn,otp);
-                        console.log('Aadhar OTP:', otp)
+                        console.log('Aadhar OTP:', otp);
                         //console.log("sucess otp db ");
-                        res.sendStatus(200)
+                        res.sendStatus(200);
                     }
                 })
             } else {
