@@ -23,7 +23,7 @@ var checksum = require('./paytm/checksum.js');
 debug('Started Debugging process of payment-server\nLocation : routes/payment-server.ts');
 var address = process.env.ADDRESS;
 debug("IP Address set in payment files  is " + address);
-var url = "http://localhost:" + process.env.PORT;
+var url = "http://localhost:" + process.env.PORT + "/payment";
 var queue = [];
 var router = express_1.default.Router();
 var salt = process.env.KEY;
@@ -103,7 +103,7 @@ function get_transaction_status() {
     });
 }
 if (process.env.ADDRESS === '165.22.210.37') {
-    url = "http;//" + process.env.ADDRESS + ":" + process.env.PORT;
+    url = "";
 }
 //get_transaction_status()
 router.get('/tender', function (request, response) {
