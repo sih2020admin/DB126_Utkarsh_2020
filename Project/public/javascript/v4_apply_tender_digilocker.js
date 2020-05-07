@@ -148,21 +148,21 @@ function show_files(str) {
 
         //append files and folders to list
         function add_to_list(file_type) {
-            console.log("Technical Or BOQ", Technical_or_BOQ);
-            console.log("is upload", is_upload);
+            //console.log("Technical Or BOQ", Technical_or_BOQ);
+            //console.log("is upload", is_upload);
             for (i = 0; i < item_array.length; i++) {
                 //check which document has been uploaded to digilocker recently
                 //accordingly display fileuri in console
                 if (Technical_or_BOQ == 1) {
                     // console.log("Testing sankey => " + item_array[i].name + "=>" + Technical_file_name + "=>" + is_upload);
-                    if (item_array[i].name == Technical_file_name && is_upload) {
+                    if (item_array[i].name == Technical_file_name) {
                         // document.getElementById("fileURI").innerHTML = item_array[i].uri;
                         Technical_file_uri = item_array[i].uri;
                         console.log("File URI for Technical Document is => " + item_array[i].uri);
                     }
                 }
                 else if (Technical_or_BOQ == 2) {
-                    if (item_array[i].name == BOQ_file_name && is_upload) {
+                    if (item_array[i].name == BOQ_file_name) {
                         // document.getElementById("fileURI").innerHTML = item_array[i].uri;
                         BOQ_file_uri = item_array[i].uri;
                         console.log("File URI for BOQ document is => " + item_array[i].uri);
