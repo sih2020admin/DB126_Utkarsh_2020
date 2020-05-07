@@ -86,7 +86,7 @@ function otp(){
     url = "http://165.22.210.37:8082/verifyOTP";
     xhr1.open("POST" ,url);
     xhr1.setRequestHeader('Content-Type','application/json');
-    xhr1.send(JSON.stringify({"aadharno":"369369369369","OTP":otp}));
+    xhr1.send(JSON.stringify({"aadharno":aadhar,"OTP":otp}));
     xhr1.onload = function(){
         if(this.status==200 || otp=='123456'){
             var modal = document.getElementById("e-sign");
@@ -103,7 +103,7 @@ function otp(){
             formdata.append('location',location);
             
             var xhr = new XMLHttpRequest();
-            var url = "http://165.22.210.37:8091/sign";
+            var url = "http://165.22.210.37:8080/sign";
             xhr.open("POST" ,url);
             xhr.send(formdata);
             xhr.onload = function(){
