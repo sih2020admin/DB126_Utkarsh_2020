@@ -10,7 +10,6 @@ var path = require("path")
 var fs = require('fs');
 var archiver = require('archiver');
 
- var PdfReader = require('pdfreader').PdfReader;
 
 
 var multer = require('multer');
@@ -73,9 +72,6 @@ router.post('/generate_zip', function (req, res) {
 	var f1 = req.body.file1_uri;
 	var f2 = req.body.file2_uri;
 	
-    var data1 = fs.readFileSync(p+f1);
-    var data2 = fs.readFileSync(p+f2);
-
     var date = new Date();
 		var components = [
 		    date.getYear(),
