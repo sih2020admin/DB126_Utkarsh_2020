@@ -314,35 +314,38 @@ var span = document.getElementsByClassName("close")[0];    // Get the <span> ele
 // When the user clicks the button, open the modal 
 function openModal() {
 
-    //REfresh token API
-    var xhr = new XMLHttpRequest();
-    url = "http://165.22.210.37:8085/refresh_token";
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader('Content-Type', 'application/json');
+    if(document.getElementById('upload').value =="" || document.getElementById('upload1').value =="")
+        document.getElementById('tc5').innerHTML="Documents Not Uploaded";
+    else{
+        //REfresh token API
+        var xhr = new XMLHttpRequest();
+        url = "http://165.22.210.37:8085/refresh_token";
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
 
-    xhr.send(JSON.stringify({
+        xhr.send(JSON.stringify({
         // "id": vcd_id
         "id": vcd_id
-    }));
+        }));
 
-    //xhr repsonse handling
-    xhr.onload = function () {
-        var temp = JSON.parse(this.responseText);
-        if (this.status == 200) {
-            console.log("Your token has been refreshed successfully.");
+        //xhr repsonse handling
+        xhr.onload = function () {
+            var temp = JSON.parse(this.responseText);
+            if (this.status == 200) {
+                console.log("Your token has been refreshed successfully.");
 
-            //on success display modal and fetch files;
-            modal.style.display = "block";
-            get_files();
-        }
-        else if (this.status == 400) {
-            alert(temp.error);
-        }
-        else {
-            alert("Some Other Error ", xhr.status, " with statusText ", xhr.statusText);
+                //on success display modal and fetch files;
+                modal.style.display = "block";
+                get_files();
+            }
+            else if (this.status == 400) {
+                alert(temp.error);
+            }
+            else {
+                alert("Some Other Error ", xhr.status, " with statusText ", xhr.statusText);
+            }
         }
     }
-
 }
 
 //back button function of modal
