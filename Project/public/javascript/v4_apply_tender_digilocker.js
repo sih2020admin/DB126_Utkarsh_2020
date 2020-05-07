@@ -148,6 +148,8 @@ function show_files(str) {
 
         //append files and folders to list
         function add_to_list(file_type) {
+            console.log("Technical Or BOQ", Technical_or_BOQ);
+            console.log("is upload", is_upload);
             for (i = 0; i < item_array.length; i++) {
                 //check which document has been uploaded to digilocker recently
                 //accordingly display fileuri in console
