@@ -6,8 +6,113 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
 var db_1 = __importDefault(require("./db"));
 var router = express_1.default.Router();
+var path = require("path")
+var fs = require('fs');
+var archiver = require('archiver');
+
+ var PdfReader = require('pdfreader').PdfReader;
 
 
+var multer = require('multer');
+var postStorage = multer.diskStorage({
+    destination: function(req, file, callback) {
+        callback(null, './uploads');
+    },
+    filename: function(req, file, callback) {
+        let fileName = '', postName;
+        if(typeof req.body.postName !== "undefined") {
+            postName = req.body.postName.toLowerCase().replace(/ /g, '-');
+            filename += postName;
+        }
+        var date = new Date();
+		var components = [
+		    date.getYear(),
+		    date.getMonth(),
+		    date.getDate(),
+		    date.getHours(),
+		    date.getMinutes(),
+		    date.getSeconds(),
+		    date.getMilliseconds()
+		];
+
+		var id = components.join("");
+        fileName +=id;
+        fileName += ".pdf";
+        callback(null, fileName);
+    }
+});
+function get_data(f) {
+	// body...
+
+fs.readFile('uploads/'+f, 'utf8', function (err,data) {
+		// body...
+		if(err) console.log(err);
+		return data;
+	})
+}
+
+
+router.post('/fileupload', function (req, res) {
+
+	console.log("file_upload called");
+	var uploadPost = multer({storage: postStorage}).single('tender_pdf');
+	uploadPost(req, res, function(err) {
+        if(err) {
+        	console.log(err)
+            return res.end("error uploading file");
+        }
+        console.log(req.file.filename)
+        res.send(`{"filename":"`+req.file.filename+`"}`);
+    });
+	
+});
+
+router.post('/generate_zip', function (req, res) {
+	var p=path.resolve(__dirname, '..')+'/uploads/';
+	console.log("generate zip called "+p);
+	var f1 = req.body.file1_uri;
+	var f2 = req.body.file2_uri;
+	
+    var data1 = fs.readFileSync(p+f1);
+    var data2 = fs.readFileSync(p+f2);
+
+    var date = new Date();
+		var components = [
+		    date.getYear(),
+		    date.getMonth(),
+		    date.getDate(),
+		    date.getHours(),
+		    date.getMinutes(),
+		    date.getSeconds(),
+		    date.getMilliseconds()
+		];
+
+		var id = components.join("");
+    
+	var output = fs.createWriteStream(p+'/'+id+'.zip');
+	var archive = archiver('zip', {
+	    gzip: true,
+	    zlib: { level: 9 } // Sets the compression level.
+	});
+
+	archive.on('error', function(err) {
+	  throw err;
+	});
+
+	// pipe archive data to the output file
+	archive.pipe(output);
+
+	// append files
+	archive.file(p+f1, {name: 'technical.pdf'});
+	archive.file(p+f2, {name: 'BOQ.pdf'});
+
+	//
+	archive.finalize();	
+	// fs.unlinkSync(p+f1);
+	// fs.unlinkSync(p+f2);
+	res.end(`{"zip_link":"uploads/`+id+`.zip"}`);
+	
+});
 
 
 

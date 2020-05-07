@@ -23,17 +23,8 @@
             <a href="1admin_login.html">Log out</a>
         </nav>
     </header>
-    <div class="container1">
-        <h1>CRUD ADMIN</h1><br><br>
-        <div class="main_bar">
-                <label for="search_bar"></label>
-                <input type="text" name="sear_bar" id="search_bar" placeholder="Enter Title">
-                <button id="search_button" class="search_button">Search</button>
-                <button id="create_tender_button" class="create_tender_button" onclick="display_form()">Create</button>
-        </div>
-        <div class="input_details" id="create_input_details" style="display:none;">
-            <h1>Create Tender</h1><br><br>
-            <table>
+    <div class="input_details" id="create_input_details">
+        <table>
                 <tr>
                     <td><label for="ref_no">Ref No</label></td>
                     <td><input id="ref_no" type="text"  placeholder="Enter Ref no" required></td>
@@ -58,43 +49,102 @@
                     <td><label for="description">Description</label></td>
                     <td><textarea id="description" name="" cols="30" rows="10" style="resize: none;" placeholder="Enter Description" required></textarea></td>
                 </tr>
+
             </table>
-            <button id="get_link" style="display:none;" onclick="get_link()">Generate Link</button>
-            <button id="create_t" style="display:none;" onclick="add_tender()">Create</button>
-        </div>
+
+            <!-- <form id        =  "uploadForm"
+             enctype   =  "multipart/form-data"
+             action    =  "/fileupload"
+             method    =  "post"
+        >
+        <input type="file" name="tender_tech" />
+
+        <input type="file" name="tender_BOQ" />
+        <input type="submit" value="Upload" name="submit">
+        </form> -->
+            <button onclick="file()">Create</button>
     </div>
-    <div class="container2">
-    	<table id="content_table">
-    		<tr>
-	    		<th class="first_th">Tender Refernce no</th>
-	    		<th>Tender title</th>
-	    		<th>Tender Description</th>
-	    		<th>Department</th>
-	    		<th>Closing date</th>
-	    		<th>Bid opening Date</th>
-	    		<th>File link</th>
-	    		<th class="last_th">Operations</th>
-            </tr>
-    		<!-- <tr>
-    			<td>1234</td>
-    			<td>Procurement of computers</td>
-    			<td>Procurement of Computers, Software and Services. The purpose of this policy is to provide a defined process for both the new and recurring procurement (through purchase or lease) of computer hardware, software and services using Washington University funds or grant funds administered by Washington University.</td>
-    			<td>IT ,Roorkee</td>
-    			<td>2019-05-26</td>
-    			<td>2019-05-27</td>
-    			<td><a href="https://youtu.be/u8XFFTWwSvY" target="_blank">link</a></td>
-    			<td>
-    				<button class='update' id="1234" onclick="update_td(this.id)">update</button>
-    				<button class='delete' id="1234" onclick="delete_td(this.id)">Delete</button>
-    			</td>
-    		</tr> -->
-    	</table>
-    	<div class="container3">
-    		<button class="create_tender_button" onclick="add_td()">Create tender</button>
-    	</div>
-    </div>
+
+
+
+
+
+
+
+
+
+
 </body>
 <!-- <script  src="javascript/cookies.js"></script> -->
-<script type="text/javascript" src="javascript/2crud_admin.js"></script>
+<!-- <script type="text/javascript" src="javascript/2crud_admin.js"></script> -->
+<script type="text/javascript">
+//     function file(argument) {
+//         // body...
+    
+//     var file1=document.getElementById("file1").value
+//     var file2=document.getElementById("file2").value
+//     console.log(file1,file2)
+//     var zip = new JSZip();
+//     zip.file(file1, "Hello World\n");
+//     // var img = zip.folder("images");
+//     // img.file("smile.gif", imgData, {base64: true});
+//     zip.generateAsync({type:"blob"})
+//     .then(function(content) {
+//         // see FileSaver.js
+//         saveAs(content, "example.zip");
+//     });
+// }
+
+
+jQuery('document').ready(function(){
+    var input = document.getElementById("file1");
+    var formdata = false;
+    if (window.FormData) {
+        formdata = new FormData();
+    }
+    input.addEventListener("change", function (evt) {
+        var i = 0, len = this.files.length, img, reader, file;
+
+        for ( ; i < len; i++ ) {
+            file = this.files[i];
+
+            if (!!file.type.match(/pdf.*/)) {
+                if ( window.FileReader ) {
+                    reader = new FileReader();
+                    reader.onloadend = function (e) {
+                        //showUploadedItem(e.target.result, file.fileName);
+                    };
+                    reader.readAsDataURL(file);
+                }
+
+                if (formdata) {
+                    formdata.append('tender_pdf', file);
+                    formdata.append("extra",'extra-data');
+                }
+
+                if (formdata) {
+                    
+
+                    jQuery.ajax({
+                        url: "fileupload",
+                        type: "POST",
+                        data: formdata,
+                        processData: false,
+                        contentType: false,
+                        success: function (res) {
+                         jQuery('div#response').html("Successfully uploaded");
+                        }
+                    });
+                }
+            }
+            else
+            {
+                alert('Not a vaild pdf!');
+            }
+        }
+
+    }, false);
+});
+</script>
 </html>
   
