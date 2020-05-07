@@ -337,6 +337,8 @@ app.post('/upload_files', function (req, res) {
 //revoke digilocker token
 app.post('/revoke_token', function (req, res) {
     console.log("Revoke called");
+    console.log(req.body);
+    console.log(req.body.vcd_id);
     var vcd_id = req.body.vcd_id;
 
     //Get access token from database
