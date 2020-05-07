@@ -19,7 +19,7 @@ console.log(vcd_id);
 // var data = JSON.stringify({"vd_id":vd_id,"vcd_id":vcd_id}); //changed here proper json object
 
 
-var data = JSON.stringify({"vd_id":"1","vcd_id":"1"});
+var data = JSON.stringify({"vd_id":vd_id,"vcd_id":vcd_id});
 
 var xhr = new XMLHttpRequest();
 // xhr.withCredentials = true;
@@ -209,7 +209,7 @@ xhr.onload = function () {
 			}
 		}
 		else {
-			tender_div.insertAdjacentHTML('beforeend',`<label class="RnoLabel"><strong>NO TENDER APPLIED YET ! APPLY FOR TENDER <a href="v3_see_tender.html"></strong></label>`); 
+			tender_div.insertAdjacentHTML('beforeend',`<label class="RnoLabel"><strong>NO TENDER APPLIED YET ! APPLY FOR TENDER <a href="v3_see_tender.html">here</a></strong></label>`); 
 		}
         // var div=`<div class="main" id="Approved">
         // <label><strong>Title:</strong></label>
@@ -280,7 +280,6 @@ xhr.onload = function () {
 
 xhr.open("POST", "http://"+IP+":8081/vendor_dashboard");
 xhr.setRequestHeader("Content-Type", "application/json");
-xhr.setRequestHeader("Cookie", "PHPSESSID=qs1c0qdet862lrfn217cvqr70b");
 
 xhr.send(data);
 console.log(xhr)

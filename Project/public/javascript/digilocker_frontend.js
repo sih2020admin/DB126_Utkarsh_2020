@@ -2,7 +2,9 @@ var vcd_id = get_cookie('vcd_id');   //will be used everywhere in digilocker cod
 var et_id;                           //to store current et_id
 var etd_id;                          //to store current etd_id
 
-//global variables for storing file URI's
+var is_upload = 0;    //check if upload button is clicked
+
+//global variables to store file URI's
 var Technical_file_uri;
 var BOQ_file_uri;
 
@@ -99,15 +101,13 @@ window.onload = function () {
 var current_id = "";  //id of current directory
 var parent_id = [];   //id of ancesstors of current directory (required to backtrace)
 
-var is_upload = 0;    //check if upload button is clicked
-
 //onclick function on "li" element of modal
 function some() {
     $(document).ready(function () {
         $("li").click(function () { //if any li element is clicked
             var span_i_class = $(this).find('i').attr('class'); //get details of image (whether a folder or file)
             if (span_i_class == "fa fa-folder") {  //if clicked li element is folder
-                is_upload = 0; //update "upload" status to 0
+                //is_upload = 0; //update "upload" status to 0
 
                 //update "current_id" and "parent_id"
                 current_id = $(this).find('#file_id').text();
@@ -148,52 +148,62 @@ function show_files(str) {
 
         //append files and folders to list
         function add_to_list(file_type) {
-            console.log("Technical Or BOQ", Technical_or_BOQ);
-            console.log("is upload", is_upload);
+
+            console.log("Technical_or_BOQ = " + Technical_or_BOQ); //testing purpose
+
             for (i = 0; i < item_array.length; i++) {
+
                 //check which document has been uploaded to digilocker recently
-                //accordingly display fileuri in console
+                //accordingly display fileuri in console & send to DB
                 if (Technical_or_BOQ == 1) {
-                    // console.log("Testing sankey => " + item_array[i].name + "=>" + Technical_file_name + "=>" + is_upload);
+
+                    //get file URI from list of files
                     if (item_array[i].name == Technical_file_name && is_upload) {
-                        // document.getElementById("fileURI").innerHTML = item_array[i].uri;
+
                         Technical_file_uri = item_array[i].uri;
+                        is_upload = 0; //update is_upload status
                         console.log("File URI for Technical Document is => " + item_array[i].uri);
-                    }
-                }
-                else if (Technical_or_BOQ == 2) {
-                    if (item_array[i].name == BOQ_file_name && is_upload) {
-                        // document.getElementById("fileURI").innerHTML = item_array[i].uri;
-                        BOQ_file_uri = item_array[i].uri;
-                        console.log("File URI for BOQ document is => " + item_array[i].uri);
-                        console.log("Technical URI => ", Technical_file_uri);
-                        console.log("BOQ URI =>", BOQ_file_uri);
-                        
+
+                        //send Technical doc URI to DB
+                        console.log("checking etd_id value", etd_id, "uri", Technical_file_uri);
                         var data = JSON.stringify({ "etd_id": etd_id, "f_type": "link", "f_uri": Technical_file_uri });
 
                         var xhr = new XMLHttpRequest();
+                        xhr.open("POST", "http://165.22.210.37:8081/enter_file_uri1_db");
+                        xhr.setRequestHeader("Content-Type", "application/json");
                         xhr.addEventListener("readystatechange", function () {
                             if (this.readyState === 4) {
                                 console.log(this.responseText);
-                                var data = JSON.stringify({ "etd_id": etd_id, "f_type": "link", "f_uri": BOQ_file_uri });
-
-                                var xhr = new XMLHttpRequest();
-
-                                xhr.addEventListener("readystatechange", function () {
-                                    if (this.readyState === 4) {
-                                        console.log(this.responseText);
-                                    }
-                                });
-
-                                xhr.open("POST", "http://165.22.210.37:8081/enter_file_uri2_db");
-                                xhr.setRequestHeader("Content-Type", "application/json");
-
-                                xhr.send(data);
+                                alert("Your Technical document has been uploaded successfully");
                             }
                         });
 
-                        xhr.open("POST", "http://165.22.210.37:8081/enter_file_uri1_db");
+                        xhr.send(data);
+                    }
+                }
+                else if (Technical_or_BOQ == 2) {
+                    Technical_or_BOQ = 0;
+                    console.log("Testing sankey => " + item_array[i].name + "=>" + Technical_file_name + "=>" + is_upload);
+                    if (item_array[i].name == BOQ_file_name && is_upload) {
+
+                        BOQ_file_uri = item_array[i].uri;
+                        is_upload = 0;
+                        console.log("File URI for BOQ document is => " + item_array[i].uri);
+
+                        //send BOQ doc URI
+                        console.log("checking etd_id value", etd_id, "uri", BOQ_file_uri);
+                        var data = JSON.stringify({ "etd_id": etd_id, "f_type": "link", "f_uri": BOQ_file_uri });
+
+                        var xhr = new XMLHttpRequest();
+                        xhr.open("POST", "http://165.22.210.37:8081/enter_file_uri2_db");
                         xhr.setRequestHeader("Content-Type", "application/json");
+                        xhr.addEventListener("readystatechange", function () {
+                            if (this.readyState === 4) {
+                                console.log(this.responseText);
+                                alert("Your BOQ document has been uploaded successfully");
+                                modal.style.display = "none";
+                            }
+                        });
 
                         xhr.send(data);
                     }
@@ -316,9 +326,11 @@ var span = document.getElementsByClassName("close")[0];    // Get the <span> ele
 // When the user clicks the button, open the modal 
 function openModal() {
 
-    if(document.getElementById('upload').value =="" || document.getElementById('upload1').value =="")
-        document.getElementById('tc5').innerHTML="Documents Not Uploaded";
-    else{
+    //Checking For Document Upload
+    if (document.getElementById("upload").value == "" || document.getElementById("upload1").value == "")
+        document.getElementById("tc5").innerHTML = "Documents Not Uploaded";
+
+    else {
         //REfresh token API
         var xhr = new XMLHttpRequest();
         url = "http://165.22.210.37:8085/refresh_token";
@@ -326,8 +338,8 @@ function openModal() {
         xhr.setRequestHeader('Content-Type', 'application/json');
 
         xhr.send(JSON.stringify({
-        // "id": vcd_id
-        "id": vcd_id
+            // "id": vcd_id
+            "id": vcd_id
         }));
 
         //xhr repsonse handling
@@ -348,6 +360,7 @@ function openModal() {
             }
         }
     }
+
 }
 
 //back button function of modal
@@ -355,7 +368,7 @@ $(document).ready(function () {
 
     //on click of back button
     $("#back").click(function () {
-        is_upload = 0;
+        //is_upload = 0;
         var dir_element = document.getElementById("cur_dir");
         console.log(dir_element.innerHTML);
         if (dir_element.innerHTML != "Current Directory is : /") {
@@ -390,74 +403,134 @@ window.onclick = function (event) {
 function uploadFiles() {
     //If Both files are uploaded to digilocker
     //ask user if he/she wants to revoke access token;
-    if (Technical_or_BOQ == 2) {
-        Technical_or_BOQ = 0;
-        alert("Do you want to revoke your digilocker token?");
+    //if (Technical_or_BOQ != 2) {
+    // Technical_or_BOQ = 0;
+    // alert("Do you want to revoke your digilocker token?");
+    //}
+    //else {
+    //update "upload" status
+    is_upload = 1;
+
+    //get digilocker path where file needs to be uploaded
+    var dir_element = document.getElementById("cur_dir");
+    var temp = dir_element.innerHTML;
+    temp = temp.split("Current Directory is : /");
+    temp = temp[1];
+
+    //call Upload File API
+    var xhr = new XMLHttpRequest();
+    url = "http://165.22.210.37:8085/upload_files";
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.setRequestHeader('vcd_id', vcd_id);
+    xhr.setRequestHeader('path', temp);
+
+    //check which file to be uploaded and send that file name through xhr
+    if (Technical_or_BOQ == 0) {
+        xhr.send(JSON.stringify({
+            "filename": Technical_file_name
+        }));
     }
-    else {
-        //update "upload" status
-        is_upload = 1;
+    else if (Technical_or_BOQ == 1) {
+        xhr.send(JSON.stringify({
+            "filename": BOQ_file_name
+        }));
+    }
 
-        //get digilocker path where file needs to be uploaded
-        var dir_element = document.getElementById("cur_dir");
-        var temp = dir_element.innerHTML;
-        temp = temp.split("Current Directory is : /");
-        temp = temp[1];
-
-        //call Upload File API
-        var xhr = new XMLHttpRequest();
-        url = "http://165.22.210.37:8085/upload_files";
-        xhr.open("POST", url, true);
-        xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.setRequestHeader('vcd_id', vcd_id);
-        xhr.setRequestHeader('path', temp);
-
-        //check which file to be uploaded and send that file name through xhr
-        if (Technical_or_BOQ == 0) {
-            xhr.send(JSON.stringify({
-                "filename": Technical_file_name
-            }));
-        }
-        else if (Technical_or_BOQ == 1) {
-            xhr.send(JSON.stringify({
-                "filename": BOQ_file_name
-            }));
-        }
-
-        //xhr repsonse handling
-        xhr.onload = function () {
-            if (this.status == 200) {
-                console.log("Your file has been uploaded successfully.");
-                if (Technical_or_BOQ == 0) {
-                    Technical_or_BOQ = 1;
-                    console.log("TECHNICAL get file START");
-                    get_files();
-                    console.log("TECHNICAL get file STOP");
-                    alert("Your Technical document has been uploaded successfully with hash =>" + this.responseText);
-                }
-                else if (Technical_or_BOQ == 1) {
-                    Technical_or_BOQ = 2;
-                    console.log("BOQ get file START");
-                    get_files();
-                    console.log("BOQ get file STOP");
-                    alert("Your BOQ document has been uploaded successfully with hash =>" + this.responseText);
-                }
-                current_id = "";
-                parent_id = [];
-                is_upload = 0;
-                console.log("RESET get file START");
+    //xhr repsonse handling
+    xhr.onload = function () {
+        if (this.status == 200) {
+            var hash_response = this.responseText;
+            console.log("Your file has been uploaded successfully.");
+            if (Technical_or_BOQ == 0) {
+                Technical_or_BOQ = 1;
                 get_files();
-                console.log("RESET get file STOP");
 
+                //console.log("checking etd_id value", etd_id, "uri", Technical_file_uri);
+                /*var data = JSON.stringify({ "etd_id": etd_id, "f_type": "link", "f_uri": Technical_file_uri });
+
+                var xhr = new XMLHttpRequest();
+
+                xhr.addEventListener("readystatechange", function () {
+                    if (this.readyState === 4) {
+                        console.log(this.responseText);
+                        alert("Your Technical document has been uploaded successfully with hash =>" + hash_response);
+                    }
+                });
+
+                xhr.open("POST", "http://165.22.210.37:8081/enter_file_uri1_db");
+                xhr.setRequestHeader("Content-Type", "application/json");
+
+                xhr.send(data);*/
             }
-            else if (this.status == 400) {
-                alert(temp.error);
+            else if (Technical_or_BOQ == 1) {
+                Technical_or_BOQ = 2;
+                get_files();
+
+                //console.log("checking etd_id value", etd_id, "uri", BOQ_file_uri);
+                /*var data = JSON.stringify({ "etd_id": etd_id, "f_type": "link", "f_uri": BOQ_file_uri });
+
+                var xhr = new XMLHttpRequest();
+
+                xhr.addEventListener("readystatechange", function () {
+                    if (this.readyState === 4) {
+                        console.log(this.responseText);
+                        alert("Your BOQ document has been uploaded successfully with hash =>" + hash_response);
+                        modal.style.display = "none";
+                    }
+                });
+
+                xhr.open("POST", "http://165.22.210.37:8081/enter_file_uri2_db");
+                xhr.setRequestHeader("Content-Type", "application/json");
+
+                xhr.send(data);*/
             }
-            else {
-                alert("Some Other Error ", xhr.status, " with statusText ", xhr.statusText);
+            current_id = "";
+            parent_id = [];
+            // is_upload = 0;
+            get_files();
+            if (Technical_or_BOQ == 2) {
+                //reset flag
+                // Technical_or_BOQ = 0;
+
+                //ask user if he/she wants to revoke token
+                alert("Do you want to revoke your digilocker token?");
+
+                //update tender status API call
+                var data = JSON.stringify({ "etd_id": etd_id });
+                var xhr = new XMLHttpRequest();
+                xhr.addEventListener("readystatechange", function () {
+                    if (this.readyState === 4) {
+                        console.log(this.responseText);
+                    }
+                });
+
+                xhr.open("POST", "http://165.22.210.37:8081/apply_tender_s3");
+                xhr.setRequestHeader("Content-Type", "application/json");
+
+                xhr.send(data);
+
+                xhr.onload = function () {
+                    if (this.status == 200) {
+                        window.location.href = "http://165.22.210.37:8081/v5_confirm_tender.html?et_id=" + et_id + "&etd_id=" + etd_id;
+                    }
+                    else if (this.status == 400) {
+                        alert(temp.error);
+                    }
+                    else {
+                        alert("Some Other Error ", xhr.status, " with statusText ", xhr.statusText);
+                    }
+                }
             }
         }
+        else if (this.status == 400) {
+            alert(temp.error);
+        }
+        else {
+            alert("Some Other Error ", xhr.status, " with statusText ", xhr.statusText);
+        }
     }
+    //}
 }
 
 /* ---------------------------- End of Digilocker js code -------------------------------------- */
