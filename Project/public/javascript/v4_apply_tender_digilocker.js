@@ -466,6 +466,34 @@ function uploadFiles() {
 
 /* ------------------------------ Start of revoke digilocker token ------------------------------ */
 
+function revoke() {
+    //update tender status API call
+    var data = JSON.stringify({ "etd_id": etd_id });
+    var xhr = new XMLHttpRequest();
+    xhr.addEventListener("readystatechange", function () {
+        if (this.readyState === 4) {
+            console.log(this.responseText);
+        }
+    });
+
+    xhr.open("POST", "http://165.22.210.37:8081/apply_tender_s3");
+    xhr.setRequestHeader("Content-Type", "application/json");
+
+    xhr.send(data);
+
+    xhr.onload = function () {
+        if (this.status == 200) {
+            window.location.href = "http://165.22.210.37:8081/v5_confirm_tender.html?et_id=" + et_id + "&etd_id=" + etd_id;
+        }
+        else if (this.status == 400) {
+            alert(temp.error);
+        }
+        else {
+            alert("Some Other Error ", xhr.status, " with statusText ", xhr.statusText);
+        }
+    }
+}
+
 //on click of done button in s3.html page
 function done() {
     if (document.getElementById("name").value == "" || document.getElementById("email").value == "" ||
@@ -490,7 +518,8 @@ function done() {
             xhr.onload = function () {
                 var temp = JSON.parse(this.responseText);
                 if (this.status == 200) {
-                    alert("Your token has been revoked successfully")
+                    alert("Your token has been revoked successfully");
+                    revoke();
                 }
                 else if (this.status == 400) {
                     alert(temp.error);
@@ -501,31 +530,7 @@ function done() {
             }
         } else {
             console.log("Token revocking process cancelled");
-        }
-        //update tender status API call
-        var data = JSON.stringify({ "etd_id": etd_id });
-        var xhr = new XMLHttpRequest();
-        xhr.addEventListener("readystatechange", function () {
-            if (this.readyState === 4) {
-                console.log(this.responseText);
-            }
-        });
-
-        xhr.open("POST", "http://165.22.210.37:8081/apply_tender_s3");
-        xhr.setRequestHeader("Content-Type", "application/json");
-
-        xhr.send(data);
-
-        xhr.onload = function () {
-            if (this.status == 200) {
-                window.location.href = "http://165.22.210.37:8081/v5_confirm_tender.html?et_id=" + et_id + "&etd_id=" + etd_id;
-            }
-            else if (this.status == 400) {
-                alert(temp.error);
-            }
-            else {
-                alert("Some Other Error ", xhr.status, " with statusText ", xhr.statusText);
-            }
+            revoke();
         }
     }
 }
