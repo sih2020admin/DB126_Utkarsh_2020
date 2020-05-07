@@ -27,6 +27,7 @@ app.use(cors_1.default({
     origin: '*',
     methods: ['GET', 'POST'],
 }));
+app.use(cook())
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use(function (request, response, next) {

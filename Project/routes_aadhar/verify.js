@@ -114,7 +114,7 @@ router.post('/verifyOTP', (req, res) => {
 
     con.query('Select validtill , otp , otpid from OTP where isused = 0 and aadharno= ? and validtill > ?', [usrn, d], function (error, results, fields) {
         if (error) {
-            //console.log("error: otp db ",error)
+            console.log("error: otp db ",error)
             res.sendStatus(400)
         } else {
             var n = results.length - 1
@@ -122,13 +122,14 @@ router.post('/verifyOTP', (req, res) => {
                 //console.log(Date.now(),'\n',	results[0].validtill,'\n' , Date.now() < Date(results[0].validtill))
                 con.query('UPDATE OTP SET isUsed = "1" WHERE OTP.otpid = ? ', [results[n].otpid], function (error, results2, fields) {
                     if (error) {
-                        //console.log("error: otp db ",error);
+                        console.log("error: otp db ",error);
                     } else {
-                        //console.log("updated");
+                        console.log("updated");
                         res.sendStatus(200)
                     }
                 })
             } else {
+		console.log("hello");
                 res.sendStatus(400)
             }
         }

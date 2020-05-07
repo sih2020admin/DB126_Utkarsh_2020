@@ -311,7 +311,7 @@ $('#otp_button').on('click', function () {
     var otp = (_b = $('#otp').val()) === null || _b === void 0 ? void 0 : _b.toString();
     console.log(aadhar, otp);
     $.ajax({
-        url: 'http://165.22.210.37:8082/verifyOTP',
+        url: 'http://lo:8082/verifyOTP',
         method: 'POST',
         async: true,
         contentType: 'application/json; charset=utf-8',
