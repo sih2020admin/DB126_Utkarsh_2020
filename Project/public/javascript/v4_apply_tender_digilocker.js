@@ -466,7 +466,7 @@ function uploadFiles() {
 
 /* ------------------------------ Start of revoke digilocker token ------------------------------ */
 
-function revoke() {
+function redirect_to_confirm_page() {
     //update tender status API call
     var data = JSON.stringify({ "etd_id": etd_id });
     var xhr = new XMLHttpRequest();
@@ -519,7 +519,7 @@ function done() {
                 var temp = JSON.parse(this.responseText);
                 if (this.status == 200) {
                     alert("Your token has been revoked successfully");
-                    revoke();
+                    redirect_to_confirm_page();
                 }
                 else if (this.status == 400) {
                     alert(temp.error);
@@ -530,7 +530,7 @@ function done() {
             }
         } else {
             console.log("Token revocking process cancelled");
-            revoke();
+            redirect_to_confirm_page();
         }
     }
 }
