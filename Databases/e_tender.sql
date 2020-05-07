@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.29, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.30, for Linux (x86_64)
 --
 -- Host: localhost    Database: e_tender
 -- ------------------------------------------------------
--- Server version	5.7.29-0ubuntu0.18.04.1
+-- Server version	5.7.30-0ubuntu0.18.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -39,7 +39,7 @@ CREATE TABLE `access_token` (
 
 LOCK TABLES `access_token` WRITE;
 /*!40000 ALTER TABLE `access_token` DISABLE KEYS */;
-INSERT INTO `access_token` VALUES (1,'Sanket','c7e8ef36126c31226ddd84ef0ee788b77e53fc12','642cb78c93deb5dd80886ef0a9153940075b5ee6','1/5/2020','20:28:2'),(7,'Sanket','ce500d34312bb4faa53cbafd5df11b37801d840b','49094755806e529f107547a7de8138276b985574','16/4/2020','19:30:59'),(19,'Sanket','addfea585790c4afbb78f68bd92fa75a892da473','b5174c36893784dae01be525386e4ae8b05e4293','2/5/2020','12:57:19');
+INSERT INTO `access_token` VALUES (1,'Sanket','c2728c1b0b0291e3a686f9ad1a77885605d1d286','4bb6d560adcc6df86d4a255fc151d9f3ed7d08a1','4/5/2020','11:49:55'),(7,'Sanket','ce500d34312bb4faa53cbafd5df11b37801d840b','49094755806e529f107547a7de8138276b985574','16/4/2020','19:30:59'),(19,'Sanket','601666782a7aeaf93919b7ebb45da7e0ac3625af','38348971960c5f9deac59774ea205447bbf16169','7/5/2020','11:45:42'),(22,'Sanket','0c2330c67805242f28475ad69d72d7bf15dbd329','72f89adee796ba151dfa00e3bdfc176aa8023452','7/5/2020','11:12:51'),(23,'Sanket','5ec253fe1df813273b395b695d7a87b6b2b5722b','35db9c073c5960e45211b1915a2444f0b7436d86','7/5/2020','12:8:6');
 /*!40000 ALTER TABLE `access_token` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -198,7 +198,7 @@ CREATE TABLE `e_tender_details` (
   PRIMARY KEY (`et_id`),
   KEY `dept_id` (`dept_id`),
   CONSTRAINT `e_tender_details_ibfk_1` FOREIGN KEY (`dept_id`) REFERENCES `department` (`dept_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=145 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=150 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -207,7 +207,7 @@ CREATE TABLE `e_tender_details` (
 
 LOCK TABLES `e_tender_details` WRITE;
 /*!40000 ALTER TABLE `e_tender_details` DISABLE KEYS */;
-INSERT INTO `e_tender_details` VALUES (123,'Procurement of computers','1200','ITC123','Procurement of Computers, Software and Services. The purpose of this policy is to provide a defined process for both the new and recurring procurement (through purchase or lease) of computer hardware, software and services using Washington University funds or grant funds administered by Washington University.','2020-04-15','2020-04-16','https://www.youtube.com/watch?v=u8XFFTWwSvY&feature=youtu.be',0,1,0),(124,'hello titleU','1200','ITC56U','hello descriptionU','2020-03-02','2020-03-04','https://www.youtube.com/watch?v=fyMhvkC3A84U',1,1,0),(125,'Procurement of computers','1200','ITC123','Procurement of Computers, Software and Services. The purpose of this policy is to provide a defined process for both the new and recurring procurement (through purchase or lease) of computer hardware, software and services using Washington University funds or grant funds administered by Washington University.','2020-04-10','2020-04-13','https://www.youtube.com/watch?v=u8XFFTWwSvY&feature=youtu.be',0,1,1),(126,'testing','-8','ITC98','console.log(\"add tender called\")','2020-03-02','2020-03-06','console.log(\"add tender called\")',1,1,0),(127,'hello testing all ','','IT69','isNaN(x) || x < 1','2020-04-14','2020-04-15','',1,1,0),(128,'1','','1','asdfg','2020-03-04','2020-03-07','asdfgh',1,1,0),(129,'a','2','a','sdfg','2019-11-28','2020-03-04','asdfg',1,1,0),(130,'testing','9','testing','asdfghjk','2020-03-30','2020-03-31','asdfghj',1,1,0),(131,'sdfgh','8','sdfgh','sdfg','2020-03-23','2020-03-22','asdfgh',1,1,0),(132,'asdfg','2','asdf','zxcv','2020-03-23','2020-03-22','sdf',1,1,0),(133,'gasdfg','5','asdf','sdfghjm','2020-03-22','2020-03-15','asdfg',1,1,0),(134,'asdf','2','asdfg','sdfg','2020-03-22','2020-03-15','sdf',1,1,0),(135,'sdfgh','0','asdfg','Asdfghjk','2020-03-22','2020-03-15','ASDFG',1,1,0),(136,'zxcvb','4','scvbn','xcvb','2020-03-22','2020-03-15','dfg',1,1,0),(137,'qwertyuiop','89','IT345U','WERTYUI','2020-03-21','2020-03-22','qwertyuiop',0,1,0),(138,'testing','4500','T123','QWERTYUIO','2020-03-15','2020-03-16','',0,1,0),(139,'Procurement of computers','1200','ITC123','Procurement of Computers, Software and Services. The purpose of this policy is to provide a defined process for both the new and recurring procurement (through purchase or lease) of computer hardware, software and services using Washington University funds or grant funds administered by Washington University.','2020-03-10','2020-03-13','https://www.youtube.com/watch?v=u8XFFTWwSvY&feature=youtu.be',0,1,0),(140,'new tender','1233','ITNEW','qwertyui','2020-03-31','2020-04-01','qwertyu',0,1,0),(141,'Procurement of  with transaction','1200','ITC123','Procurement of Computers, Software and Services. The purpose of this policy is to provide a defined process for both the new and recurring procurement (through purchase or lease) of computer hardware, software and services using Washington University funds or grant funds administered by Washington University.','2020-03-10','2020-03-13','https://www.youtube.com/watch?v=u8XFFTWwSvY&feature=youtu.be',0,1,0),(142,'6969','69','IT6969','6969','2020-03-28','2020-03-29','',1,1,0),(143,'TEST','100','ITC6969','TEST','2020-11-05','2020-11-06','',0,1,0),(144,'Payment','101','250998','How\'s the Josh.......High sir!!!\nHow\'s the Josh.......High sir!!!\nHow\'s the Josh.......High sir!!!','2020-09-25','2020-10-27','',0,1,0);
+INSERT INTO `e_tender_details` VALUES (123,'Procurement of computers','1200','ITC123','Procurement of Computers, Software and Services. The purpose of this policy is to provide a defined process for both the new and recurring procurement (through purchase or lease) of computer hardware, software and services using Washington University funds or grant funds administered by Washington University.','2020-04-15','2020-04-16','https://www.youtube.com/watch?v=u8XFFTWwSvY&feature=youtu.be',0,1,1),(124,'hello titleU','1200','ITC56U','hello descriptionU','2020-03-02','2020-03-04','https://www.youtube.com/watch?v=fyMhvkC3A84U',1,1,0),(143,'TEST','100','ITC6969','TEST','2020-03-05','2020-04-05','ashjkl',0,1,1),(144,'Payment','101','250998','How\'s the Josh.......High sir!!!\nHow\'s the Josh.......High sir!!!\nHow\'s the Josh.......High sir!!!','2020-09-25','2020-10-27','',0,1,0),(145,'testing','12','456','asdfghjkl','2020-05-04','2020-05-05','asdfjkl',0,1,0),(146,'testing from sanket login 5','12','51','dfgm 5','2000-05-31','2020-05-05','asdfghjk',1,1,0),(147,'Lockdown 3.0','20000','123567','This is another minimal theme for desktop. I tried to keep it kind of simple to match the beautiful wallpaper. I hope you guys like it.','2020-05-19','2020-05-25','https://www.youtube.com/watch?v=xHj0juUACFk',0,2,0),(148,'Lockdown 3.0','2000','1234567','This is another minimal theme for desktop. I tried to keep it kind of simple to match the beautiful wallpaper. Hope you guys like it.','2020-05-05','2020-05-04','https://www.youtube.com/watch?v=xHj0juUACFk',0,2,0),(149,'srfws','8651','845','xcgedgd','2020-05-07','2020-05-16','tesdex',0,1,0);
 /*!40000 ALTER TABLE `e_tender_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -231,7 +231,7 @@ CREATE TABLE `e_tender_vendor` (
   KEY `et_id` (`et_id`),
   KEY `vd_id` (`vd_id`),
   KEY `vcd_id` (`vcd_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -240,7 +240,7 @@ CREATE TABLE `e_tender_vendor` (
 
 LOCK TABLES `e_tender_vendor` WRITE;
 /*!40000 ALTER TABLE `e_tender_vendor` DISABLE KEYS */;
-INSERT INTO `e_tender_vendor` VALUES (1,123,1,1,'1200','0','','110'),(2,123,40,13,'13500','0','','111'),(4,123,25,7,'15000','0','','100'),(5,124,1,1,'12000','0','','100'),(6,125,1,1,'100','0','','100'),(7,123,1,1,'1299','0',NULL,'100'),(8,123,1,1,'1299','0',NULL,'100'),(9,123,1,1,'1299','0',NULL,'100'),(10,123,1,1,'1299','0',NULL,'100'),(11,123,1,1,'1299','0',NULL,'100'),(12,123,1,1,'1299','0',NULL,'100'),(13,123,1,1,'1299','0',NULL,'100'),(14,123,1,1,'1299','0',NULL,'100'),(15,123,1,1,'1299','0',NULL,'100'),(16,123,1,1,'1299','0',NULL,'100'),(17,125,1,1,'12000','0',NULL,'100'),(18,125,1,1,'12000','0',NULL,'100'),(19,125,1,1,'12000','0',NULL,'100'),(20,123,1,1,'12000','0',NULL,'100'),(21,123,57,19,'12000','0',NULL,'100'),(22,143,1,1,'12000','0',NULL,'110'),(23,143,25,7,'12000','0',NULL,'100'),(24,144,1,1,'12000','0',NULL,'110'),(25,143,57,19,'12000','0',NULL,'100');
+INSERT INTO `e_tender_vendor` VALUES (1,123,1,1,'1200','1','','110'),(5,124,1,1,'12000','0','','100'),(21,123,57,19,'12000','0',NULL,'100'),(22,143,1,1,'12000','0',NULL,'110'),(24,144,1,1,'12000','0',NULL,'110'),(25,143,57,19,'12000','0',NULL,'100'),(26,143,60,21,'12000','0',NULL,'100'),(27,143,60,21,'12000','0',NULL,'100'),(28,143,60,21,'12000','0',NULL,'100'),(29,143,63,22,'12000','1',NULL,'111'),(30,143,63,22,'12000','0',NULL,'100'),(31,143,63,22,'12000','0',NULL,'100'),(32,144,57,19,'12000','0',NULL,'111'),(33,147,91,23,'12000','0',NULL,'111'),(34,145,57,19,'12000','0',NULL,'110'),(35,147,96,24,'12000','0',NULL,'110'),(36,144,63,22,'12000','0',NULL,'110'),(37,147,57,19,'12000','0',NULL,'111'),(38,147,60,21,'12000','0',NULL,'100'),(39,144,60,21,'12000','0',NULL,'100'),(40,144,96,24,'12000','0',NULL,'100'),(41,147,1,1,'12000','0',NULL,'110'),(42,147,1,1,'12000','0',NULL,'100'),(43,147,1,1,'12000','0',NULL,'100'),(44,147,1,1,'12000','0',NULL,'100'),(45,147,1,1,'12000','0',NULL,'100'),(46,148,91,23,'12000','0',NULL,'111'),(47,148,96,24,'12000','0',NULL,'100'),(48,148,57,19,'12000','0',NULL,'110'),(49,149,57,19,'12000','0',NULL,'110'),(50,149,96,24,'12000','0',NULL,'110'),(51,149,57,19,'12000','0',NULL,'100'),(52,144,91,23,'12000','0',NULL,'110'),(53,149,63,22,'12000','0',NULL,'110');
 /*!40000 ALTER TABLE `e_tender_vendor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -253,13 +253,13 @@ DROP TABLE IF EXISTS `file_uri`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `file_uri` (
   `furi_id` int(11) NOT NULL AUTO_INCREMENT,
-  `furi` text NOT NULL,
+  `furi1` text,
+  `furi2` text,
   `etd_id` int(11) NOT NULL,
   `f_type` varchar(50) NOT NULL,
   PRIMARY KEY (`furi_id`),
-  KEY `etd_id` (`etd_id`),
-  CONSTRAINT `file_uri_ibfk_1` FOREIGN KEY (`etd_id`) REFERENCES `e_tender_vendor` (`etd_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+  UNIQUE KEY `etd_id` (`etd_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -268,7 +268,7 @@ CREATE TABLE `file_uri` (
 
 LOCK TABLES `file_uri` WRITE;
 /*!40000 ALTER TABLE `file_uri` DISABLE KEYS */;
-INSERT INTO `file_uri` VALUES (1,'https://www.youtube.com/watch?v=yKNxeF4KMsY',1,'link'),(2,'https://www.youtube.com/watch?v=yKNxeF4KMsY',2,'link'),(4,'https://www.youtube.com/watch?v=yKNxeF4KMsY',4,'link');
+INSERT INTO `file_uri` VALUES (1,'https://www.youtube.com/watch?v=yKNxeF4KMsY','https://stackoverflow.com/questions/57548512/sql-query-to-find-all-combinations-of-grouped-values',1,'link'),(2,'https://www.youtube.com/watch?v=yKNxeF4KMsY','https://stackoverflow.com/questions/57548512/sql-query-to-find-all-combinations-of-grouped-values',2,'link'),(4,'https://www.youtube.com/watch?v=yKNxeF4KMsY','https://stackoverflow.com/questions/57548512/sql-query-to-find-all-combinations-of-grouped-values',4,'link'),(5,'uri1','uri2',10,'link'),(7,'uri1','uri2',11,'link'),(8,'uri1','uri2',29,'link'),(9,NULL,NULL,34,'link'),(10,NULL,NULL,33,'link'),(11,NULL,NULL,36,'link'),(28,'in.gov.digilocker-OTHER-1c101c18904b44fd06b260b9a6889e42',NULL,48,'link'),(29,'in.gov.digilocker-OTHER-c0df47b58048793906e4903f528c8046',NULL,46,'link'),(31,'in.gov.digilocker-OTHER-3cef77c6b53465dc38bc51e4f0d9712c',NULL,51,'link'),(38,'in.gov.digilocker-OTHER-0d41eec5175d23b9e7c7cdc0787b35af','in.gov.digilocker-OTHER-2bb315fe5df3db4accaafa7b31f17472',52,'link'),(42,'in.gov.digilocker-OTHER-974a4488f4c16f446e483be9caa4ca22','in.gov.digilocker-OTHER-cc64f13b0e8b7412485b1aa0d5e99095',35,'link'),(46,'in.gov.digilocker-OTHER-a95670616cb3b196126f59c8ed0b8494','in.gov.digilocker-OTHER-7f59363f116fc6ed27cdab603305ee9e',53,'link'),(48,'in.gov.digilocker-OTHER-2eb3e3d172b07ea1d5bb4a01c5ed5cae','in.gov.digilocker-OTHER-88c5ccb6d9f8425c80b39105aec6908b',49,'link');
 /*!40000 ALTER TABLE `file_uri` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -317,7 +317,7 @@ CREATE TABLE `log_in_details` (
   KEY `ad_id` (`ad_id`),
   CONSTRAINT `log_in_details_ibfk_1` FOREIGN KEY (`vcd_id`) REFERENCES `v_contact_details` (`vcd_id`),
   CONSTRAINT `log_in_details_ibfk_2` FOREIGN KEY (`ad_id`) REFERENCES `admin_detail` (`ad_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -326,7 +326,7 @@ CREATE TABLE `log_in_details` (
 
 LOCK TABLES `log_in_details` WRITE;
 /*!40000 ALTER TABLE `log_in_details` DISABLE KEYS */;
-INSERT INTO `log_in_details` VALUES (1,'winu','winu',2,1,NULL),(3,'new','new',2,7,NULL),(5,'new1','new',2,9,NULL),(7,'new12','new',2,11,NULL),(9,'new123','new',2,13,NULL),(10,'admin','admin',1,NULL,1),(11,'sankey123','1234567',2,19,NULL),(12,'sankey_admin','1234567',1,NULL,2),(13,'afif','9876543210',1,NULL,3);
+INSERT INTO `log_in_details` VALUES (1,'winu','winu',2,1,NULL),(10,'admin','admin',1,NULL,1),(11,'sankey123','1234567',2,19,NULL),(12,'sankey_admin','1234567',1,NULL,2),(13,'afif','9876543210',1,NULL,3),(15,'priya99','priya',2,21,NULL),(16,'viraj456','1234567',2,22,NULL),(17,'100rabhyadav98','250998',2,23,NULL),(18,'winston99','qwerty',2,24,NULL);
 /*!40000 ALTER TABLE `log_in_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -391,7 +391,7 @@ CREATE TABLE `payment_transactions` (
 
 LOCK TABLES `payment_transactions` WRITE;
 /*!40000 ALTER TABLE `payment_transactions` DISABLE KEYS */;
-INSERT INTO `payment_transactions` VALUES (1,'20200415111212800110168578401467177','ORD4483446283','1200.00','TXN_SUCCESS','01','0.00','2020-04-15 19:55:40.0','777001075408515','HDFC','Bank','DC'),(22,'20200418111212800110168135101464148','ORD67799611','100.00','TXN_SUCCESS','01','0.00','2020-04-18 17:37:45.0','777001317925377','HDFC','Bank','DC'),(24,'20200418111212800110168952101448203','ORD1614919355','101.00','TXN_SUCCESS','01','0.00','2020-04-18 18:02:33.0','777001314779128','HDFC','Bank','DC'),(1,'20200424111212800110168285901481333','ORD2716104451','1200.00','TXN_SUCCESS','01','0.00','2020-04-24 22:38:40.0','777001212985127','HDFC','Bank of Bahrain and Kuwait','DC');
+INSERT INTO `payment_transactions` VALUES (1,'20200415111212800110168578401467177','ORD4483446283','1200.00','TXN_SUCCESS','01','0.00','2020-04-15 19:55:40.0','777001075408515','HDFC','Bank','DC'),(22,'20200418111212800110168135101464148','ORD67799611','100.00','TXN_SUCCESS','01','0.00','2020-04-18 17:37:45.0','777001317925377','HDFC','Bank','DC'),(24,'20200418111212800110168952101448203','ORD1614919355','101.00','TXN_SUCCESS','01','0.00','2020-04-18 18:02:33.0','777001314779128','HDFC','Bank','DC'),(1,'20200424111212800110168285901481333','ORD2716104451','1200.00','TXN_SUCCESS','01','0.00','2020-04-24 22:38:40.0','777001212985127','HDFC','Bank of Bahrain and Kuwait','DC'),(29,'20200504111212800110168549801490826','ORD4763326651','100.00','TXN_SUCCESS','01','0.00','2020-05-04 11:49:25.0','777001680335387','HDFC','Bank of Bahrain and Kuwait','DC'),(29,'20200504111212800110168549801490826','ORD4763326651','100.00','TXN_SUCCESS','01','0.00','2020-05-04 11:49:25.0','777001680335387','HDFC','Bank of Bahrain and Kuwait','DC'),(32,'20200504111212800110168411801500377','ORD8672028146','101.00','TXN_SUCCESS','01','0.00','2020-05-04 17:25:04.0','777001030806540','HDFC','Bank of Bahrain and Kuwait','DC'),(33,'20200504111212800110168076601507314','ORD4614618640','20000.00','TXN_SUCCESS','01','0.00','2020-05-04 19:42:04.0','777001052938800','HDFC','Bank of Bahrain and Kuwait','DC'),(34,'20200504111212800110168721601533234','ORD2096940788','12.00','TXN_SUCCESS','01','0.00','2020-05-04 19:57:52.0','777001339258128','HDFC','Bank of Bahrain and Kuwait','DC'),(35,'20200504111212800110168306501595363','ORD145294840','20000.00','TXN_SUCCESS','01','0.00','2020-05-04 20:01:07.0','777001778185378','HDFC','Bank of Bahrain and Kuwait','DC'),(35,'20200504111212800110168306501595363','ORD145294840','20000.00','TXN_SUCCESS','01','0.00','2020-05-04 20:01:07.0','777001778185378','HDFC','Bank of Bahrain and Kuwait','DC'),(36,'20200505111212800110168600901504481','ORD1781242141','101.00','TXN_SUCCESS','01','0.00','2020-05-05 11:13:28.0','777001625537001','HDFC','Bank of Bahrain and Kuwait','DC'),(37,'20200505111212800110168466601517046','ORD1163760418','20000.00','TXN_SUCCESS','01','0.00','2020-05-05 11:48:12.0','777001863942072','HDFC','Bank of Bahrain and Kuwait','DC'),(41,'20200505111212800110168205501509053','ORD6992552340','20000.00','TXN_SUCCESS','01','0.00','2020-05-05 16:14:24.0','777001157372823','HDFC','Bank of Bahrain and Kuwait','DC'),(48,'20200505111212800110168303801596642','ORD7851913508','2000.00','TXN_SUCCESS','01','0.00','2020-05-05 17:58:54.0','777001900183488','HDFC','Bank of Bahrain and Kuwait','DC'),(46,'20200505111212800110168255501507386','ORD4539973453','2000.00','TXN_SUCCESS','01','0.00','2020-05-05 20:16:10.0','777001769027516','HDFC','Bank of Bahrain and Kuwait','DC'),(51,'20200506111212800110168471401504503','ORD1074744782','8651.00','TXN_SUCCESS','01','0.00','2020-05-06 13:41:24.0','777001203999392','HDFC','Bank of Bahrain and Kuwait','DC'),(49,'20200506111212800110168977801524459','ORD4691705110','8651.00','TXN_SUCCESS','01','0.00','2020-05-06 17:02:09.0','777001494471983','HDFC','Bank of Bahrain and Kuwait','DC'),(52,'20200506111212800110168278501515214','ORD6277750790','101.00','TXN_SUCCESS','01','0.00','2020-05-06 22:12:03.0','777001439519861','HDFC','Bank of Bahrain and Kuwait','DC'),(53,'20200506111212800110168510801721931','ORD4470802148','8651.00','TXN_SUCCESS','01','0.00','2020-05-06 22:11:49.0','777001623342677','HDFC','Bank of Bahrain and Kuwait','DC'),(53,'20200507111212800110168675901508953','ORD1443098049','8651.00','TXN_SUCCESS','01','0.00','2020-05-07 11:35:03.0','777001030848977','HDFC','Bank of Bahrain and Kuwait','DC');
 /*!40000 ALTER TABLE `payment_transactions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -481,14 +481,14 @@ CREATE TABLE `v_contact_details` (
   `vcd_dob` varchar(10) NOT NULL,
   `vcd_aadhar` varchar(12) NOT NULL,
   `vcd_contact` varchar(10) NOT NULL,
-  `vcd_email` varchar(25) NOT NULL,
+  `vcd_email` varchar(30) DEFAULT NULL,
   `vcd_designation` varchar(20) NOT NULL,
   `vd_id` int(11) NOT NULL,
   `digi_access` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`vcd_id`),
   KEY `vd_id` (`vd_id`),
   CONSTRAINT `v_contact_details_ibfk_1` FOREIGN KEY (`vd_id`) REFERENCES `vendor_details` (`vd_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -497,7 +497,7 @@ CREATE TABLE `v_contact_details` (
 
 LOCK TABLES `v_contact_details` WRITE;
 /*!40000 ALTER TABLE `v_contact_details` DISABLE KEYS */;
-INSERT INTO `v_contact_details` VALUES (1,'winston sequeria','Mr.','16-6-1999','456745674567','8975647845','winstonsequeria@gmail.com','CEO',1,0),(7,'winston sequeria','Mr','1999-16-6','123412341234','7894561230','winstonsequeria@gmail.com','CEO',25,1),(8,'winston sequeria','Mr','1999-16-6','456745674567','7894561230','winstonsequeria@gmail.com','CEO',33,0),(9,'winston sequeria','Mr','1999-16-6','456745674567','7894561230','winstonsequeria@gmail.com','CEO',35,0),(10,'winston sequeria','Mr','1999-16-6','456745674567','7894561230','winstonsequeria@gmail.com','CEO',36,0),(11,'winston sequeria','Mr','1999-16-6','456745674567','7894561230','winstonsequeria@gmail.com','CEO',38,0),(13,'winston sequeria','Mr','1999-16-6','456745674567','7894561230','winstonsequeria@gmail.com','CEO',40,0),(18,'viraj','Mr','2020-03-03','456745674567','7894561230','viraj@gmail.com','CEO',56,0),(19,'Sanket Deshmukh','Mr','2000-05-13','070707070707','9702717188','meetsanket24@gmail.com','CEO',57,1);
+INSERT INTO `v_contact_details` VALUES (1,'winston sequeria','Mr.','16-6-1999','456745674567','8975647845','winstonsequeria@gmail.com','CEO',1,0),(19,'Sanket Deshmukh','Mr','2000-05-13','070707070707','9702717188','meetsanket24@gmail.com','CEO',57,1),(20,'asdfghj','Mr','2020-05-25','123412341234','8976853951','v@gmail.com','ceo',58,0),(21,'Priya Singh','Ms','1999-10-27','147147147147','8329779783','spriya1252012@gmail.com','Operations manager',60,0),(22,'asdfghj','Mr','2020-05-25','123412341234','8976853951','v@gmail.com','ceo',63,1),(23,'Saurabh Yadav','Sri','1998-09-25','369369369369','9640278397','yadavsaurabh2509@gmail.com','Managing Director',91,1),(24,'Winston Sequeira','Dr','1999-06-19','753753753753','9987039417','winstonsequeira@gmail.com','Company Executive',96,0);
 /*!40000 ALTER TABLE `v_contact_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -528,7 +528,7 @@ CREATE TABLE `vendor_details` (
   UNIQUE KEY `v_reg_no` (`v_reg_no`),
   UNIQUE KEY `v_pan` (`v_pan`),
   UNIQUE KEY `v_gst` (`v_gst`)
-) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=97 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -537,7 +537,7 @@ CREATE TABLE `vendor_details` (
 
 LOCK TABLES `vendor_details` WRITE;
 /*!40000 ALTER TABLE `vendor_details` DISABLE KEYS */;
-INSERT INTO `vendor_details` VALUES (1,'sequeria industry','andheri east','1999','ws@gmail.com','7894561230','D123N67',5,4,10,'400706','1','Rf234Rt','0','789456'),(25,'seueria industry','andheri','2019','sequeria@gmail.com','7894561230','N123W',1,-1,109,'400708','1','QWer123','0','741852'),(33,'seueria industry','andheri','2019','sequeria@gmail.com','7894561230','N123WT',1,-1,109,'400708','1','QWer123T','0','N123WT'),(35,'seueria industry','andheri','2019','sequeria@gmail.com','7894561230','N123WT1',1,-1,109,'400708','1','QWer123T1','0','N123WT1'),(36,'seueria industry','andheri','2019','sequeria@gmail.com','7894561230','N123WT12',1,-1,109,'400708','1','QWer123T12','0','N123WT12'),(38,'seueria industry','andheri','2019','sequeria@gmail.com','7894561230','N',1,-1,109,'400708','1','Q','0','N'),(40,'seueria industry','andheri','2019','sequeria@gmail.com','7894561230','N1',11,-1,109,'400708','1','Q1','0','N1'),(41,'viraj','viraj','2017','viraj@gmail.com','7894561230','ASDFGHJK',21,-1,2134,'400708','3','QWERTYU','0','QWERTYU'),(43,'z','z','2011','z@gmail.com','7894561212','z',11,-1,1113,'478554','3','z','0','z'),(56,'high','high','2018','high@gmail.com','7894561230','z1',1,-1,101,'789456','2','QWERTY123p','0','QWERTY1234QWERp'),(57,'sankey soln','bhandup','2000','meetsanket24@gmail.com','9702717188','9876543210',21,-1,2120,'400078','0','4654867465','0','548454365748654');
+INSERT INTO `vendor_details` VALUES (1,'sequeria industry','andheri east','1999','ws@gmail.com','7894561230','D123N67',5,4,10,'400706','1','Rf234Rt','0','789456'),(57,'sankey soln','bhandup','2000','meetsanket24@gmail.com','9702717188','9876543210',21,-1,2120,'400078','0','4654867465','0','548454365748654'),(58,'fghjk','dfghjk','2020','v@gmail.com','7894561230','werty',21,-1,2127,'456789','0','7894561230','0','789456123012345'),(60,'ABC','near vidyavihar stn.','2010','abc@gmail.com','8329779783','123456',21,-1,2118,'421005','4','ABCD123456','0','123456789012345'),(63,'fghjk','dfghjk','2020','v@gmail.com','7894561230','bhunji',21,-1,2127,'456789','0','6894561230','0','789456123012352'),(91,'Sky Info Tech Ltd.','Near Gateway Of India,Colaba','1998','skytech2509@gmail.com','9876543210','DOB250998',21,-1,2119,'400005','1','ASDFG25099','0','27AAAAA0000A1Z5'),(96,'Sequiera L&T ','Near Band Stand,Bandra','1999','generixteam2019@gmaii.com','9876543210','DOB190699',17,-1,1728,'123456','2','QWERT19069','0','27AAAAA0000A1Z6');
 /*!40000 ALTER TABLE `vendor_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -574,4 +574,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-02 16:30:59
+-- Dump completed on 2020-05-07  6:48:25

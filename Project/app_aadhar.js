@@ -7,6 +7,7 @@ var app = express();
 
 require('./loader')
 var verify = require('./routes_aadhar/verify');
+var sms = require('./routes_aadhar/sms');
 //var port = process.env.PORT || 8080
 var port = 8082;
 app.use(cors());
@@ -14,6 +15,7 @@ app.use(express.json());
 //app.use(express.urlencoded({extended:false}))
 
 app.use('', verify);
+app.use('/sms', sms);
 //app.use('/',index)
 app.listen(port, function () {
     console.log("Server started on port " + port);

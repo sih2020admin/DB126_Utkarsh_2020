@@ -32,6 +32,7 @@
     "request": "^2.88.2",
     "request-promise": "^4.2.5",
     "supertest": "^4.0.2",
+    "twilio": "^3.43.0",
     "unirest": "^0.6.0",
     "winston": "^3.2.1"
   },
