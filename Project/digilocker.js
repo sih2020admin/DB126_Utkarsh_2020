@@ -334,6 +334,11 @@ app.post('/upload_files', function (req, res) {
     });
 });
 
+//revoke digilocker token
+app.post('/revoke_token', function(req, res) {
+    console.log("Revoke called");
+});
+
 app.listen(8085, (req, res) => {
     console.log("Listening on 8085");
 });

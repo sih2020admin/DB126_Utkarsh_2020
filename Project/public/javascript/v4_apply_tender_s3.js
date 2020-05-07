@@ -54,6 +54,9 @@ function save(){
         document.getElementById("tc").innerHTML="";
         document.getElementById('location').disabled = true;
         document.getElementById("upload").disabled = false;
+        document.getElementById("upload_label_id").className = "upload_label2"; 
+        document.getElementById("upload_label_id2").className = "upload_label2"; 
+
     }
 }
     
@@ -195,17 +198,8 @@ function otpmodal(){
 
 /* ---------------------------- End of E-sign code -------------------------------------- */
 
+//You will find done function in v4_apply_tender_digilocker.js
 
-function done() {
-    if(document.getElementById("name").value=="" || document.getElementById("email").value=="" ||
-    document.getElementById("reason").value=="" || document.getElementById("location").value=="" ||
-    document.getElementById("upload").value=="" || document.getElementById("upload1").value=="")
-    document.getElementById("tc6").innerHTML = "Form Is Incomplete";
-    else{
-        document.getElementById("tc6").innerHTML = "";
-        alert("done function"+et_id);
-    }
-}
 function back() {
     console.log(et_id);
     window.location.href = "/v4_apply_tender_s2.html?et_id="+et_id+"&etd_id="+etd_id;

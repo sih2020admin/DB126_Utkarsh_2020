@@ -168,7 +168,7 @@ function show_files(str) {
                         console.log("File URI for BOQ document is => " + item_array[i].uri);
                         console.log("Technical URI => ", Technical_file_uri);
                         console.log("BOQ URI =>", BOQ_file_uri);
-                        
+
                         var data = JSON.stringify({ "etd_id": etd_id, "f_type": "link", "f_uri": Technical_file_uri });
 
                         var xhr = new XMLHttpRequest();
@@ -182,6 +182,8 @@ function show_files(str) {
                                 xhr.addEventListener("readystatechange", function () {
                                     if (this.readyState === 4) {
                                         console.log(this.responseText);
+                                        modal.style.display = "none";
+                                        document.getElementById("digilocker").disabled = true;
                                     }
                                 });
 
@@ -316,9 +318,9 @@ var span = document.getElementsByClassName("close")[0];    // Get the <span> ele
 // When the user clicks the button, open the modal 
 function openModal() {
 
-    if(document.getElementById('upload').value =="" || document.getElementById('upload1').value =="")
-        document.getElementById('tc5').innerHTML="Documents Not Uploaded";
-    else{
+    if (document.getElementById('upload').value == "" || document.getElementById('upload1').value == "")
+        document.getElementById('tc5').innerHTML = "Documents Not Uploaded";
+    else {
         //REfresh token API
         var xhr = new XMLHttpRequest();
         url = "http://165.22.210.37:8085/refresh_token";
@@ -326,8 +328,8 @@ function openModal() {
         xhr.setRequestHeader('Content-Type', 'application/json');
 
         xhr.send(JSON.stringify({
-        // "id": vcd_id
-        "id": vcd_id
+            // "id": vcd_id
+            "id": vcd_id
         }));
 
         //xhr repsonse handling
@@ -459,5 +461,74 @@ function uploadFiles() {
         }
     }
 }
+
+/* ------------------------------- End of Upload file to digilocker Code ---------------------------------------- */
+
+/* ------------------------------ Start of revoke digilocker token ------------------------------ */
+
+//on click of done button in s3.html page
+function done() {
+    if (document.getElementById("name").value == "" || document.getElementById("email").value == "" ||
+        document.getElementById("reason").value == "" || document.getElementById("location").value == "" ||
+        document.getElementById("upload").value == "" || document.getElementById("upload1").value == "")
+        document.getElementById("tc6").innerHTML = "Form Is Incomplete";
+    else {
+        document.getElementById("tc6").innerHTML = "";
+        //alert("done function"+et_id);
+        if (confirm("Do you want to revoke digilocker token?")) {
+
+            //creating xhr request for api call
+            var xhr = new XMLHttpRequest();
+            url = "http://165.22.210.37:8085/revoke_token";
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.send(JSON.stringify({
+                "vcd_id": vcd_id
+            }));
+
+            //xhr repsonse handling
+            xhr.onload = function () {
+                var temp = JSON.parse(this.responseText);
+                if (this.status == 200) {
+                    alert("Your token has been revoked successfully")
+                }
+                else if (this.status == 400) {
+                    alert(temp.error);
+                }
+                else {
+                    alert("Some Other Error ", xhr.status, " with statusText ", xhr.statusText);
+                }
+            }
+        } else {
+            console.log("Token revocking process cancelled");
+        }
+        //update tender status API call
+        var data = JSON.stringify({ "etd_id": etd_id });
+        var xhr = new XMLHttpRequest();
+        xhr.addEventListener("readystatechange", function () {
+            if (this.readyState === 4) {
+                console.log(this.responseText);
+            }
+        });
+
+        xhr.open("POST", "http://165.22.210.37:8081/apply_tender_s3");
+        xhr.setRequestHeader("Content-Type", "application/json");
+
+        xhr.send(data);
+
+        xhr.onload = function () {
+            if (this.status == 200) {
+                window.location.href = "http://165.22.210.37:8081/v5_confirm_tender.html?et_id=" + et_id + "&etd_id=" + etd_id;
+            }
+            else if (this.status == 400) {
+                alert(temp.error);
+            }
+            else {
+                alert("Some Other Error ", xhr.status, " with statusText ", xhr.statusText);
+            }
+        }
+    }
+}
+/* ------------------------------ End of revoke digilocker token ------------------------------ */
 
 /* ---------------------------- End of Digilocker js code -------------------------------------- */
