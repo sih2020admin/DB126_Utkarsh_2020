@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/nav.css">
     <link rel="stylesheet" href="css/v4_apply_tender_s3.css">
-    <link rel="stylesheet" href="css/payment.css">
+    <!-- <link rel="stylesheet" href="css/payment.css"> -->
+    <script src="https://kit.fontawesome.com/523ff21025.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script  src="javascript/cookies.js"></script>
     <title>E-sign</title>
@@ -24,24 +25,16 @@
     <h3>E-sign Details</h3><br>
     <table>
       <tr>
-        <td>
-          <label for="name">Name</label>
-          <input type="text" id="name">
-        </td>
-        <td>
-          <label for="email">Email</label>
-          <input type="email" id="email">
-        </td>
+        <td><label for="name">Name</label></td>
+        <td><input type="text" id="name"></td>
+        <td><label for="email">Email</label></td>
+        <td><input type="email" id="email"></td>
       </tr>
       <tr>
-        <td>
-          <label for="reason">Reason</label>
-          <input type="text" id="reason">
-        </td>
-        <td>
-          <label for="location">Place</label>
-          <input type="location" id="location">
-        </td>
+        <td><label for="reason">Reason</label></td>
+        <td><input type="text" id="reason"></td>
+        <td><label for="location">Place</label></td>
+        <td><input type="location" id="location"></td>
       </tr>
     </table>
     <p id="tc"></p><br>
@@ -50,57 +43,19 @@
   </div>
   <div class="cont">
     <h3>Documents Upload</h3>
-    <table>
-      <tr>
-        <td>
-          <div class="cont" style="min-width: 350px;">
-            <table>
-              <tr>
-                <td>
-                  <label for="file">Technical Document</label>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <input type="file" id="upload"  accept="application/pdf" onchange="browse()"><br>
-                  <p id="tc2"></p>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <a target="blank" id ="preview">Click To Preview</a>
-                </td>
-              </tr>
-	            <tr></tr><tr></tr><tr></tr><tr></tr>
-            </table>
-          </div>
-        </td>
-        <td>
-          <div class="cont" style="min-width: 350px;">
-            <table>
-              <tr>
-                <td>
-                  <label for="file">BOQ Document</label>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <input type="file" id="upload1" accept="application/pdf" onchange="browse1()"><br>
-                  <p id="tc3"></p>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <a target="blank" id ="preview1">Click To Preview</a>
-                </td>
-              </tr>
-              <tr></tr><tr></tr><tr></tr><tr></tr>
-            </table>
-          </div>
-        </td>
-      </tr>
-    </table>
     <br>
+        <label for="file">Technical Document</label><br><br>
+          <input type="file" id=".
+          " accept="application/pdf" onchange="browse()">
+          <label for="upload" id="upload_label_id" class="upload_label"><i class="fas fa-upload"></i>&nbsp;&nbsp;Choose a Document</label><br>
+          <p id="tc2"></p><br>
+          <a target="blank" id ="preview">Click To Preview</a><br>
+          <hr><br>
+        <label for="file">BOQ Document</label><br><br>
+          <input type="file" id="upload1" accept="application/pdf" onchange="browse1()">
+          <label for="upload1" id="upload_label_id2" class="upload_label"><i class="fas fa-upload"></i>&nbsp;&nbsp;Choose a Document</label><br>
+          <p id="tc3"></p><br>
+          <a target="blank" id ="preview1">Click To Preview</a><br>
     <p id="tc5"></p><br>
     <button id="digilocker" type="button" onclick="openModal()">Digilocker</button>
   </div>
@@ -129,8 +84,8 @@
   </div>
   <br>
   <p id ="tc6"></p><br>
-  <button value="back" onclick="back()">Back</button>
-  <button value="next" onclick="done()">Done</button>
+  <button value="back" class="buttons" onclick="back()">Back</button>
+  <button value="next" class="buttons" onclick="done()">Done</button>
 </body>
 
 <!-- ---------------------------- End of E-sign code --------------------------------------  -->
@@ -177,5 +132,5 @@
 </script>
 <script src="javascript/v4_apply_tender_s3.js"></script>
 <script src="javascript/jquery-3.4.1.min.js"></script>
-<script type="text/javascript" src="javascript/v4_apply_tender_digilocker.js"></script>
+<!-- <script type="text/javascript" src="javascript/v4_apply_tender_digilocker.js"></script> -->
 </html>

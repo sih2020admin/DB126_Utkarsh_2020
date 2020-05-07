@@ -54,6 +54,9 @@ function save(){
         document.getElementById("tc").innerHTML="";
         document.getElementById('location').disabled = true;
         document.getElementById("upload").disabled = false;
+        document.getElementById("upload_label_id").className = "upload_label2"; 
+        document.getElementById("upload_label_id2").className = "upload_label2"; 
+
     }
 }
     

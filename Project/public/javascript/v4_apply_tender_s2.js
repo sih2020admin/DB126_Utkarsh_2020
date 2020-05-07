@@ -22,10 +22,10 @@ var data = JSON.stringify({"et_id":et_id,"etd_id":etd_id});var xhr = new XMLHttp
     
               }
                 else if (this.status == 400) {  
-                    alert("Some error occured!");
+                   // alert("Some error occured!");
                 }
                 else{
-                    alert("Check Network!");
+                   // alert("Check Network!");
                 }
             }  
 
