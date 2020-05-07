@@ -348,7 +348,7 @@ app.post('/revoke_token', function (req, res) {
             res.status(400).send({ error: "Database query failed" });
         };
         access_token = result[0].access;
-        console.log("Data received", typeof (access_token));
+        //console.log("Data received", typeof (access_token));
         var options = {
             method: 'POST',
             uri: 'https://api.digitallocker.gov.in/public/oauth2/1/revoke',
@@ -364,7 +364,24 @@ app.post('/revoke_token', function (req, res) {
         rp(options)
             .then(function (body) {
                 console.log('Success');
-                res.sendStatus(200);
+
+                //delete access_token from database;
+                var sql = "DELETE FROM access_token WHERE id=" + vcd_id;
+                con.query(sql, function (err, result) {
+                    if (err) {
+                        res.status(400).send({ error: "Database query failed" });
+                    };
+
+                    //update digi_access status in database
+                    var sql = 'UPDATE v_contact_details SET digi_access="0" where vcd_id=' + vcd_id;
+                    con.query(sql, function (err, result) {
+                        if (err) {
+                            res.status(400).send({ error: "Database query failed" });
+                        };
+                        res.sendStatus(200);
+                    });
+                });
+                
             })
             .catch(function (err) {
                 console.log('Failure', err);
