@@ -356,7 +356,7 @@ app.post('/revoke_token', function (req, res) {
                 token: access_token,
             },
             headers: {
-                'Authorization': 'Basic REM4RkI4Q0Y6YzBhZjE2NjFlZDA1Mjk0YjhmODM=' + access_token,
+                'Authorization': 'Basic REM4RkI4Q0Y6YzBhZjE2NjFlZDA1Mjk0YjhmODM=',
                 'Content-Type': "application/x-www-form-urlencoded",
             },
             json: true
