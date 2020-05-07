@@ -23,9 +23,10 @@ var checksum = require('./paytm/checksum.js');
 debug('Started Debugging process of payment-server\nLocation : routes/payment-server.ts');
 var address = process.env.ADDRESS;
 debug("IP Address set in payment files  is " + address);
-var url = "http://localhost:" + process.env.PORT + "/payment";
+//var url: string = `http://localhost:${process.env.PORT}/payment`
 var queue = [];
 var router = express_1.default.Router();
+var allow = true;
 var salt = process.env.KEY;
 var params = {
     MID: process.env.MID,
@@ -103,7 +104,7 @@ function get_transaction_status() {
     });
 }
 if (process.env.ADDRESS === '165.22.210.37') {
-    url = "";
+    allow = false;
 }
 //get_transaction_status()
 router.get('/tender', function (request, response) {
@@ -118,7 +119,7 @@ router.get('/tender', function (request, response) {
             }
             else {
                 if (result.length > 0) {
-                    response.render('user/v4_apply_tender_s2', { layout: false, url: url, amount: result[0].et_tender_fee });
+                    response.render('user/v4_apply_tender_s2', { layout: false, amount: result[0].et_tender_fee, allow: allow });
                 }
                 else {
                     response.send('No such tender with et_id exists');
