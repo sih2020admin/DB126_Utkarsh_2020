@@ -17,19 +17,11 @@ con.connect(function (err) {
     console.log('Connected To Mysql !!!');
 });
 
-//Email
-var nodemailer = require('nodemailer');
-var transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: process.env.EMAIL,
-        pass: process.env.PASS,
-    },
-});
+
 
 //SMS
-const accountSid = 'ACb6efbe87d9f5fca5440bbc802d064fe9'; 
-const authToken = '4664d67664a57f3b6b6fd4055ed2f825'; 
+const accountSid = process.env.EMAIL; 
+const authToken = process.env.PASS; 
 const client = require('twilio')(accountSid, authToken); 
 
 //OTP Generation
