@@ -348,7 +348,7 @@ app.post('/revoke_token', function (req, res) {
             res.status(400).send({ error: "Database query failed" });
         };
         access_token = result[0].access;
-        console.log("Data received", typeof(access_token));
+        console.log("Data received", typeof (access_token));
         var options = {
             method: 'POST',
             uri: 'https://api.digitallocker.gov.in/public/oauth2/1/revoke',
@@ -358,7 +358,8 @@ app.post('/revoke_token', function (req, res) {
             headers: {
                 'Authorization': 'Basic REM4RkI4Q0Y6YzBhZjE2NjFlZDA1Mjk0YjhmODM=' + access_token,
                 'Content-Type': "application/x-www-form-urlencoded",
-            }
+            },
+            json: true
         };
 
         rp(options)
