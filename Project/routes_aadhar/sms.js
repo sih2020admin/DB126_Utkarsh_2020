@@ -20,8 +20,8 @@ con.connect(function (err) {
 
 
 //SMS
-const accountSid = process.env.EMAIL; 
-const authToken = process.env.PASS; 
+const accountSid = process.env.SID;
+const authToken = process.env.AUTH_TOKEN;
 const client = require('twilio')(accountSid, authToken); 
 
 //OTP Generation
