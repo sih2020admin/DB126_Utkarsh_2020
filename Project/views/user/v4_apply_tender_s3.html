@@ -48,7 +48,7 @@
           <input type="file" id="upload" accept="application/pdf" onchange="browse()">
           <label for="upload" id="upload_label_id" class="upload_label"><i class="fas fa-upload"></i>&nbsp;&nbsp;Choose a Document</label><br>
           <p id="tc2"></p><br>
-          <a target="blank" id ="preview">Click To Preview</a><br>
+          <a target="blank" id ="preview">Click To Preview</a><br><br>
           <hr><br>
         <label for="file">BOQ Document</label><br><br>
           <input type="file" id="upload1" accept="application/pdf" onchange="browse1()">
@@ -71,7 +71,7 @@
           <p><u>Note</u></p>
           <p>1. This Page lets you Sign the Uploaded Document through Aadhar Based OTP.</p>
           <p>2. Enter The OTP recieved on SMS.</p>
-          <!-- <p>3. For Testing Enter OTP as 123456.</p> -->
+          <p>3. If In case SMS OTP not working use 123456 as OTP.</p>
         </div><br><br>
          <label for="OTP">Enter OTP</label>
          <input type="password" id= "otp" name="OTP"><br>
@@ -83,8 +83,8 @@
   </div>
   <br>
   <p id ="tc6"></p><br>
-  <button value="back" class="buttons" onclick="back()">Back</button>
-  <button value="next" class="buttons" onclick="done()">Done</button>
+  <!-- <button value="back" class="buttons" onclick="back()">Back</button> -->
+  <button value="next" class="buttons" onclick="done()">Submit</button>
 </body>
 
 <!-- ---------------------------- End of E-sign code --------------------------------------  -->
