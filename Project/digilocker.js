@@ -236,7 +236,7 @@ app.post('/fetch_files', (req, res) => {
     var access_token;
 
     //Get access token from database
-    var sql = "SELECT access FROM access_token WHERE id="+vcd_id;
+    var sql = "SELECT access FROM access_token WHERE id=" + vcd_id;
     con.query(sql, function (err, result) {
         if (err) {
             res.status(400).send({ error: "Database query failed, can't get access token from DB" });
@@ -261,21 +261,21 @@ app.post('/fetch_files', (req, res) => {
             })
             .catch(function (err) {
                 console.log('Failure', err);
-                res.status(400).send({ error: "Digilocker API call failed "+err });
+                res.status(400).send({ error: "Digilocker API call failed " + err });
             });
     });
 });
 
 //upload files to digilocker
 app.post('/upload_files', function (req, res) {
-    var file_name = req.body.filename; 
+    var file_name = req.body.filename;
     //console.log(file_name);
 
     //joining path of directory
     /*var path = require('path');
     const directoryPath = path.join(__dirname, '../uploaded_documents/'+file_name);
     */
-    const directoryPath = '/root/e-sign/uploaded_documents/'+file_name;
+    const directoryPath = '/root/e-sign/uploaded_documents/' + file_name;
 
     //console.log(directoryPath);
     var data = fs.readFileSync(directoryPath);
@@ -303,7 +303,7 @@ app.post('/upload_files', function (req, res) {
     //console.log('Hmac generated using ' + algorithm + ' \nHashed output is :  ' + gen_hmac + ' \nFile name is :  ' + file_name);
 
     //Get access token from database
-    var sql = "SELECT access FROM access_token WHERE id="+vcd_id;
+    var sql = "SELECT access FROM access_token WHERE id=" + vcd_id;
     con.query(sql, function (err, result) {
         if (err) {
             res.status(400).send({ error: "Database query failed" });
@@ -327,6 +327,61 @@ app.post('/upload_files', function (req, res) {
             .then(function (body) {
                 console.log('Success');
                 res.status(200).send(gen_hmac);
+            })
+            .catch(function (err) {
+                console.log('Failure', err);
+            });
+    });
+});
+
+//revoke digilocker token
+app.post('/revoke_token', function (req, res) {
+    console.log("Revoke called");
+    console.log(req.body);
+    console.log(req.body.vcd_id);
+    var vcd_id = req.body.vcd_id;
+
+    //Get access token from database
+    var sql = "SELECT access FROM access_token WHERE id=" + vcd_id;
+    con.query(sql, function (err, result) {
+        if (err) {
+            res.status(400).send({ error: "Database query failed" });
+        };
+        access_token = result[0].access;
+        //console.log("Data received", typeof (access_token));
+        var options = {
+            method: 'POST',
+            uri: 'https://api.digitallocker.gov.in/public/oauth2/1/revoke',
+            body: {
+                token: access_token,
+            },
+            headers: {
+                'Authorization': 'Basic REM4RkI4Q0Y6YzBhZjE2NjFlZDA1Mjk0YjhmODM=',
+            },
+            json: true
+        };
+
+        rp(options)
+            .then(function (body) {
+                console.log('Success');
+
+                //delete access_token from database;
+                var sql = "DELETE FROM access_token WHERE id=" + vcd_id;
+                con.query(sql, function (err, result) {
+                    if (err) {
+                        res.status(400).send({ error: "Database query failed" });
+                    };
+
+                    //update digi_access status in database
+                    var sql = 'UPDATE v_contact_details SET digi_access="0" where vcd_id=' + vcd_id;
+                    con.query(sql, function (err, result) {
+                        if (err) {
+                            res.status(400).send({ error: "Database query failed" });
+                        };
+                        res.sendStatus(200);
+                    });
+                });
+                
             })
             .catch(function (err) {
                 console.log('Failure', err);

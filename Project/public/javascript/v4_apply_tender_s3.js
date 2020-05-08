@@ -13,7 +13,7 @@ var xhr1 = new XMLHttpRequest();
 
 /* ---------------------------- Start of E-sign code -------------------------------------- */
 
-document.getElementById('reason').value = "E-Tender"; 
+document.getElementById('reason').value = "E-Tendering"; 
 document.getElementById('location').value = "";
 document.getElementById('upload').value = "";
 document.getElementById('upload1').value = "";
@@ -55,7 +55,6 @@ function save(){
         document.getElementById('location').disabled = true;
         document.getElementById("upload").disabled = false;
         document.getElementById("upload_label_id").className = "upload_label2"; 
-        document.getElementById("upload_label_id2").className = "upload_label2"; 
 
     }
 }
@@ -118,8 +117,11 @@ function otp(){
                         Technical_file_name = formdata.get('file').name.slice(0,-4) + "_signed.pdf";
                         preview.download = Technical_file_name;
                         preview.style.display = '';
-                        document.getElementById("upload1").disabled = false;
+                        document.getElementById("upload_label_id2").className = "upload_label2";
+                        document.getElementById("upload1").disabled = false; 
+                        document.getElementById("upload_label_id").className = "upload_label";
                         document.getElementById("upload").disabled = true;
+
                     }
                     else{
                         document.getElementById("tc3").style.display = "none";
@@ -129,6 +131,7 @@ function otp(){
                         preview1.download = BOQ_file_name;
                         preview1.style.display = '';
                         document.getElementById("upload1").disabled = true;
+                        document.getElementById("upload_label_id2").className = "upload_label";
                     }
                 }
                 else if (this.status==400){
@@ -156,8 +159,6 @@ function browse(){
 }
 function browse1(){
     flag=1;
-    document.getElementById("upload1").disabled = false;
-    document.getElementById("upload").disabled = true;
     document.getElementById("tc3").style.display = "inline-block";
     document.getElementById("tc3").innerHTML="Signing";
     browse = document.getElementById('upload1');
@@ -198,18 +199,9 @@ function otpmodal(){
 
 /* ---------------------------- End of E-sign code -------------------------------------- */
 
+//You will find done function in v4_apply_tender_digilocker.js
 
-function done() {
-    if(document.getElementById("name").value=="" || document.getElementById("email").value=="" ||
-    document.getElementById("reason").value=="" || document.getElementById("location").value=="" ||
-    document.getElementById("upload").value=="" || document.getElementById("upload1").value=="")
-    document.getElementById("tc6").innerHTML = "Form Is Incomplete";
-    else{
-        document.getElementById("tc6").innerHTML = "";
-        alert("done function"+et_id);
-    }
-}
-function back() {
-    console.log(et_id);
-    window.location.href = "/v4_apply_tender_s2.html?et_id="+et_id+"&etd_id="+etd_id;
-}
+// function back() {
+//     console.log(et_id);
+//     window.location.href = "/v4_apply_tender_s2.html?et_id="+et_id+"&etd_id="+etd_id;
+// }

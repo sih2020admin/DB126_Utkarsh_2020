@@ -60,7 +60,7 @@ router.post('/verify',(req,res)=>{
                 }
                 client.messages.create(smsOptions,function(error,message){
                     if(error){
-                        console.log("error");
+                        console.log("SMS Error");
                         //res.sendStatus(400);
                     }else{
                         console.log("SMS sent:" + message.sid);
