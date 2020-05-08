@@ -16,18 +16,17 @@ h1, h3, h2{
     font-family: 'Montserrat', 'open sans';
     color: var(--main_color);
 }
-
 strong{
     color: var(--accent-color);
 }
 .cont{
     text-align: left;
     background-color: rgb(255, 255, 255);
-    width: fit-content;
+    width: 60%;
     min-width: 600px;
     height: auto;
     padding: 20px;
-    margin: 40px;
+    margin: 40px auto;
     margin-top: 20px;   
     border-radius: 10px; 
     box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.2);
@@ -87,6 +86,7 @@ button{
     border: none;
     outline: none;
     color: #ffffff;
+    margin-bottom: 30px;
 }
  button:hover{
     cursor: pointer;
