@@ -52,7 +52,7 @@ router.post('/verify',(req,res)=>{
                 //console.log("number",results[0].phone_number," email",results[0].email);
                 const otp = getRandomInt();
                 
-                //SMS sending
+                SMS sending
                 var smsOptions = {
                     from: '+17622142266',       
                     to: '+91' + results[0].phone_number, 
