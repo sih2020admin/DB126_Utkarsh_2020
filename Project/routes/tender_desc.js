@@ -12,16 +12,18 @@ var unirest = require('unirest');
 router.post('/tender_desc', function (req, res) {
 
     	var id= req.body.et_id;
+      var vcd_id= req.body.vcd_id;
+      var vd_id= req.body.vd_id;
     	console.log("tender desc called "+id)
 	
 				
-	db_1.default.query('SELECT * FROM  e_tender_details INNER JOIN department ON e_tender_details.dept_id = department.dept_id WHERE et_id = ?',[id], function (error, results, fields) {
+	db_1.default.query('SELECT * FROM  e_tender_details INNER JOIN department ON e_tender_details.dept_id = department.dept_id WHERE et_id = ? ; SELECT  `vcd_name`, `vcd_title`, `vcd_dob`, `vcd_contact`, `vcd_email`, `vcd_designation` FROM `v_contact_details` WHERE vcd_id=?; SELECT `v_name`, `v_address`, `v_yoe`, `v_email`, `v_mobile`, `v_reg_no`, `v_state_id`, `v_dist_id`, `v_city_id`, `v_pincode`, `v_legal_id`, `v_pan`, `v_is_verified`, `v_gst` FROM `vendor_details` WHERE vd_id=?',[id,vcd_id,vd_id], function (error, results, fields) {
 		if (error) {
 	      		//console.log("error");
 	      		res.sendStatus(400);
 	     	}else{
 	       		if(results.length >0){
-	       			res.send(results[0]);
+	       			res.send(results);
        			}
        			else{
          			//does not exists

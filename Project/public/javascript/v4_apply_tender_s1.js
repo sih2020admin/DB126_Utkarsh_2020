@@ -15,82 +15,11 @@ var etd_id  = urlParams.get('etd_id')
 console.log(et_id,etd_id);
 
 var cont_div = document.getElementById('conts');
-
-if(etd_id != null){
-    document.getElementById("apply_button").style.display = "none";
-    document.getElementById("next_button").style.display = "visible";
-
-    var data = JSON.stringify({"et_id":et_id,"etd_id":etd_id});
-
-        var xhr = new XMLHttpRequest();
-        // xhr.withCredentials = true;
-
-        xhr.onload = function () {
-          if (this.status === 200) {
-            console.log(this.responseText);
-
-            response = JSON.parse(this.responseText);
-            // var cont_div = document.getElementById('conts');
-
-            status = response.status
-            // 000 = 0
-            // 100 = step1
-            // 110 = step2
-            // 111 = step3
-
-        
-
-        var div=`<div class="cont" id="">
-                <h2>Filled Tender Details</h2><br>
-                <label><strong>Title:</strong></label>  
-                <label class="heading">`+response.et_title+`</label><br><br>
-                <label class="RnoLabel"><strong>Department:</strong></label>
-                <label>`+response.dept_id+`</label><br><br>
-                <label class="RnoLabel"><strong>Ref No:</strong></label>
-                <label>`+response.et_tender_ref_no+`</label><br><br>
-                <label class="Id"><strong>Tender ID:</strong></label>
-                <label>`+response.et_id+`</label><br><br>
-                <label class="Id"><strong>Tender fee:</strong></label>
-                <label>`+response.et_tender_fee+`</label><br><br>
-                <label class="Id"><strong>Tender Description:</strong></label>
-                <label>`+response.et_tender_desc+`</label><br><br>
-                <label class="OdateLabel"><strong>Closing Date:</strong></label>
-                <label id="Odate">`+response.et_last_date_apply.slice(0,10)+`</label><br><br>
-                <label class="OdateLabel"><strong>Bid Date:</strong></label>
-                <label id="Odate">`+response.et_bidding_date.slice(0,10)+`</label><br><br>
-                <label class="OdateLabel"><strong>File URL:</strong></label>
-                <label id="Odate">`+response.et_file_uri+`</label><br><br>
-                <label class="OdateLabel"><strong>Status:</strong></label>
-                <label id="Odate">`+response.status+`</label><br><br>
-                <label class="OdateLabel"><strong>Bidding amount:</strong></label>
-                <label id="Odate">`+response.bidding_amt+`</label><br>
-            <br>  
-         
-        </div>`;
-        
-        cont_div.insertAdjacentHTML('beforeend', div);  
-        progess_bar() 
-    
-              }
-                else if (this.status == 400) {  
-                    alert("Some error occured!");
-                }
-                else{
-                    alert("Check Network!");
-                }
-            }  
-
-            xhr.open("POST", "http://"+IP+":8081/filled_tender_desc");
-            xhr.setRequestHeader("Content-Type", "application/json");
-
-            xhr.send(data);
-}
-else{
-    document.getElementById("next_button").style.display = "none";
+document.getElementById("next_button").style.display = "none";
 
 
 
-    var data = JSON.stringify({"et_id":et_id});
+    var data = JSON.stringify({"et_id":et_id,"vd_id":vd_id,"vcd_id":vcd_id});
 
         var xhr = new XMLHttpRequest();
         // xhr.withCredentials = true;
@@ -104,31 +33,83 @@ else{
 
     
 
-        var div=`<div class="cont" id="">
-                <h3>Tendor Details</h3><br>
+        var div=`<div class="cont" id="c1">
+                <h3>Tender Details</h3><br>
             <label><strong>Title:</strong></label>
-            <label class="heading">`+response.et_title+`</label><br><br>
+            <label class="heading">`+response[0][0].et_title+`</label><br><br>
                 <label class="RnoLabel"><strong>Department:</strong></label>
-                <label>`+response.dept_name+`</label><br><br>
+                <label>`+response[0][0].dept_name+`</label><br><br>
                 <label class="RnoLabel"><strong>Ref No:</strong></label>
-                <label>`+response.et_tender_ref_no+`</label><br><br>
+                <label>`+response[0][0].et_tender_ref_no+`</label><br><br>
                 <label class="Id"><strong>Tender ID:</strong></label>
-                <label>`+response.et_id+`</label><br><br>
+                <label>`+response[0][0].et_id+`</label><br><br>
                 <label class="Id"><strong>Tender fee:</strong></label>
-                <label>`+response.et_tender_fee+`</label><br><br>
+                <label>`+response[0][0].et_tender_fee+`</label><br><br>
                 <label class="Id"><strong>Tender Description:</strong></label>
-                <label>`+response.et_tender_desc+`</label><br><br>
+                <label>`+response[0][0].et_tender_desc+`</label><br><br>
                 <label class="OdateLabel"><strong>Closing Date:</strong></label>
-                <label id="Odate">`+response.et_last_date_apply.slice(0,10)+`</label><br><br>
+                <label id="Odate">`+response[0][0].et_last_date_apply.slice(0,10)+`</label><br><br>
                 <label class="OdateLabel"><strong>Bid Date:</strong></label>
-                <label id="Odate">`+response.et_bidding_date.slice(0,10)+`</label><br><br>
+                <label id="Odate">`+response[0][0].et_bidding_date.slice(0,10)+`</label><br><br>
                 <label class="OdateLabel"><strong>File URL:</strong></label>
-                <label id="Odate">`+response.et_file_uri+`</label><br>
+                <a id="Odate" href="`+response[0][0].et_file_uri+`">files</a><br>
             <br>  
          
         </div>`;
         
-        cont_div.insertAdjacentHTML('beforeend', div);   
+        cont_div.insertAdjacentHTML('beforeend', div); 
+
+        var div2=`<div class="cont" id="c2">
+                <h3>Vendor Contact Details</h3><br>
+            <label><strong>Name:</strong></label>
+            <label class="heading">`+response[1][0].vcd_title+response[1][0].vcd_name+`</label><br><br>
+                <label class="RnoLabel"><strong>Designation:</strong></label>
+                <label>`+response[1][0].vcd_designation+`</label><br><br>
+                <label class="RnoLabel"><strong>Date Of Birth:</strong></label>
+                <label>`+response[1][0].vcd_dob+`</label><br><br>
+                <label class="Id"><strong>Contact:</strong></label>
+                <label>`+response[1][0].vcd_contact+`</label><br><br>
+                <label class="Id"><strong>Email:</strong></label>
+                <label>`+response[1][0].vcd_email+`</label><br><br>
+            <br>  
+         
+        </div>`;
+        
+        cont_div.insertAdjacentHTML('beforeend', div2);
+
+        var div3=`<div class="cont" id="c1">
+                <h3>Company Details</h3><br>
+            <label><strong>Company Name:</strong></label>
+            <label class="heading">`+response[2][0].v_name+`</label><br><br>
+                <label class="RnoLabel"><strong>Address:</strong></label>
+                <label>`+response[2][0].v_address+`</label><br><br>
+                <label class="RnoLabel"><strong>Year Of Establishment:</strong></label>
+                <label>`+response[2][0].v_yoe+`</label><br><br>
+                <label class="Id"><strong>Company Email:</strong></label>
+                <label>`+response[2][0].v_email+`</label><br><br>
+                <label class="Id"><strong>Mobile NO:</strong></label>
+                <label>`+response[2][0].v_mobile+`</label><br><br>
+                <label class="Id"><strong>Registration Number:</strong></label>
+                <label>`+response[2][0].v_reg_no+`</label><br><br>
+                 <label class="Id"><strong>State:</strong></label>
+                <label>`+response[2][0].v_state_id+`</label><br><br>
+                <label class="Id"><strong>City:</strong></label>
+                <label>`+response[2][0].v_city_id+`</label><br><br>
+                <label class="Id"><strong>Pincode:</strong></label>
+                <label>`+response[2][0].v_pincode+`</label><br><br>
+                <label class="Id"><strong>Legal status:</strong></label>
+                <label>`+response[2][0].v_legal_id+`</label><br><br>
+                <label class="Id"><strong>PAN Number:</strong></label>
+                <label>`+response[2][0].v_pan+`</label><br><br>
+                <label class="Id"><strong>Verification Status:</strong></label>
+                <label>`+response[2][0].v_is_verified+`</label><br><br>
+                <label class="Id"><strong>GST No:</strong></label>
+                <label>`+response[2][0].v_gst+`</label><br><br>
+            <br>  
+         
+        </div>`;
+        
+        cont_div.insertAdjacentHTML('beforeend', div3);   
         progess_bar()
     
               }
@@ -144,7 +125,7 @@ else{
             xhr.setRequestHeader("Content-Type", "application/json");
 
             xhr.send(data);
-}
+
 
 
 
