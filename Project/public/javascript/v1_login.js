@@ -45,7 +45,7 @@ function show()
 
 				
 				document.getElementById("confirm").onclick = function(){
-					var url = "http://"+IP+":8082/verifyOTP";
+					var url = "http://165.22.210.37:8082/verifyOTP";
 					xhr.open("POST" ,url);
 					xhr.setRequestHeader('Content-Type','application/json');
 					xhr.send(JSON.stringify({"aadharno":message.aadhar,"OTP": y.value}));
