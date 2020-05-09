@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/v4_apply_tender_s3.css">
     <script src="https://kit.fontawesome.com/523ff21025.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script  src="javascript/cookies.js"></script>
     <title>E-sign</title>
 </head>
@@ -114,7 +115,7 @@
         {
             log_a.setAttribute("href", "v6_profile.html");
             log_a.innerHTML ="Profile"
-            nav_bar.insertAdjacentHTML('beforeend','<a id="log_a" href="v1_login.html">Log out</a>');
+            nav_bar.insertAdjacentHTML('beforeend','<a id="log_a" onclick="return theFunctionV();">Log out</a>');
         }
 </script>
 <script src="javascript/v4_apply_tender_s3.js"></script>

@@ -13,6 +13,7 @@ if(get_cookie('ad_id') == '')
 	var file1_uri = null;
 	var file2_uri = null;
 	var zip_link = null;
+
 // var create_form = document.getElementById("create_input_details");
 
 
@@ -86,7 +87,7 @@ if(get_cookie('ad_id') == '')
 
 // file upload 1
 jQuery('document').ready(function(){
-	console.log("file 1 uploading");
+	// console.log("file 1 uploading");
     var input = document.getElementById("file1");
     var formdata = false;
     if (window.FormData) {
@@ -126,7 +127,7 @@ jQuery('document').ready(function(){
                          res=JSON.parse(res)
                          file1_uri=res.filename
                          if(file2_uri != null && file1_uri != null){
-                         	$( "#get_link" ).toggle();
+                         	document.getElementById("get_link").style.display = "block";
                          }
                         }
                     });
@@ -145,7 +146,7 @@ jQuery('document').ready(function(){
 //file 2 upload
 
 jQuery('document').ready(function(){
-	console.log("file 1 uploading");
+	// console.log("file 1 uploading");
     var input2 = document.getElementById("file2");
     // input.display = none;
     var formdata2 = false;
@@ -186,7 +187,7 @@ jQuery('document').ready(function(){
                          res=JSON.parse(res)
                          file2_uri=res.filename
                          if(file2_uri != null && file1_uri != null){
-                         	$( "#get_link" ).toggle();
+                         	document.getElementById("get_link").style.display = "block";
                          }
                         }
                     });
@@ -615,8 +616,8 @@ function get_link() {
 	xhr.onload = function(){
 			if(this.status==200){
 	    console.log(this.responseText);
-	    $( "#get_link" ).toggle();
-	    $( "#create_t" ).toggle();
+	    document.getElementById("get_link").style.display = "none";
+	    document.getElementById("create_t").style.display = "block";
 	    var res = JSON.parse(this.responseText);
 	    zip_link = res.zip_link;
 	  }
@@ -629,6 +630,31 @@ function get_link() {
 	xhr.setRequestHeader("Content-Type", "application/json");
 
 	xhr.send(data);
+}
+function select_files(value) {
+	// body...
+	if(value == '0'){
+		zip_link = "uploads/sample.zip"
+		document.getElementById("create_t").style.display = "block";
+	}else if(value == '1'){
+		file2_uri=" "
+		file1_uri=null;
+		document.getElementById("create_t").style.display = "none";
+		document.getElementById("div_f1").style.display = "block";
+		document.getElementById("div_f2").style.display = "none";
+	}else if(value =='2'){
+		file1_uri=' '
+		file2_uri=null;
+		document.getElementById("create_t").style.display = "none";
+		document.getElementById("div_f1").style.display = "none";
+		document.getElementById("div_f2").style.display = "block";
+	}else if(value == '3'){
+		file1_uri=null;
+		file2_uri=null;
+		document.getElementById("create_t").style.display = "none";
+		document.getElementById("div_f1").style.display = "block";
+		document.getElementById("div_f2").style.display = "block";
+	}
 }
 
 

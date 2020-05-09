@@ -2,11 +2,11 @@
 console.log("hello cookies");
 
 //if ur developing on server uncomment this IP
-// var IP="165.22.210.37"
+var IP="165.22.210.37"
 
 
 //if ur developing in ur pc uncomment this IP
-var IP="165.22.210.37" 
+// var IP="192.168.0.6" 
 // var IP="localhost"
     
 
@@ -49,4 +49,37 @@ function add_to_cookie(name, value) {
     var expires = "expires=" + d.toUTCString();
     document.cookie = name + "=" + value + ";" + expires + ";"; //save in cookie
     console.log("written to cookie", decodeURIComponent(document.cookie));
+}
+function theFunctionA(){
+    console.log("the function called   A ")
+    Swal.fire({
+  title: 'Do You want to Logout?',
+  text: "will redirect to login",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Logout'
+}).then((result) => {
+  if (result.value) {
+    window.location.href="1admin_login.html"
+  }
+})
+}
+
+function theFunctionV(){
+    console.log("the function called    V")
+    Swal.fire({
+  title: 'Do You want to Logout?',
+  text: "will redirect to login",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Logout'
+}).then((result) => {
+  if (result.value) {
+    window.location.href="v1_login.html"
+  }
+})
 }
