@@ -516,7 +516,6 @@ function done() {
 
             //xhr repsonse handling
             xhr.onload = function () {
-                var temp = JSON.parse(this.responseText);
                 if (this.status == 200) {
                     alert("Your token has been revoked successfully");
                     redirect_to_confirm_page();

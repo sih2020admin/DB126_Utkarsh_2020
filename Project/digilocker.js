@@ -229,6 +229,14 @@ app.post('/refresh_token', (req, res) => {
     get_refresh_token(res, vcd_id);
 });
 
+app.get('/get_files', (req, res) => {
+    var furi = req.query.furi;
+    var vd_id = req.query.vd_id;
+    var vcd_id = req.query.vcd_id;
+
+    console.log(furi, vd_id, vcd_id);
+});
+
 //fetches self_uploaded files from digilocker
 app.post('/fetch_files', (req, res) => {
     var current_id = req.body.id;
