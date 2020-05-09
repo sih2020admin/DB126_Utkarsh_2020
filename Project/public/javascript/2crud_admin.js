@@ -87,7 +87,7 @@ if(get_cookie('ad_id') == '')
 
 // file upload 1
 jQuery('document').ready(function(){
-	console.log("file 1 uploading");
+	// console.log("file 1 uploading");
     var input = document.getElementById("file1");
     var formdata = false;
     if (window.FormData) {
@@ -146,7 +146,7 @@ jQuery('document').ready(function(){
 //file 2 upload
 
 jQuery('document').ready(function(){
-	console.log("file 1 uploading");
+	// console.log("file 1 uploading");
     var input2 = document.getElementById("file2");
     // input.display = none;
     var formdata2 = false;

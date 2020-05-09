@@ -50,3 +50,36 @@ function add_to_cookie(name, value) {
     document.cookie = name + "=" + value + ";" + expires + ";"; //save in cookie
     console.log("written to cookie", decodeURIComponent(document.cookie));
 }
+function theFunctionA(){
+    console.log("the function called   A ")
+    Swal.fire({
+  title: 'Do You want to Logout?',
+  text: "will redirect to login",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Logout'
+}).then((result) => {
+  if (result.value) {
+    window.location.href="1admin_login.html"
+  }
+})
+}
+
+function theFunctionV(){
+    console.log("the function called    V")
+    Swal.fire({
+  title: 'Do You want to Logout?',
+  text: "will redirect to login",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Logout'
+}).then((result) => {
+  if (result.value) {
+    window.location.href="v1_login.html"
+  }
+})
+}
