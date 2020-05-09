@@ -235,6 +235,59 @@ app.get('/get_files', (req, res) => {
     var vcd_id = req.query.vcd_id;
 
     console.log(furi, vd_id, vcd_id);
+
+    //Get access token from database
+    var sql = "SELECT access FROM access_token WHERE id=" + vcd_id;
+    con.query(sql, function (err, result) {
+        if (err) {
+            res.status(400).send({ error: "Database query failed, can't get access token from DB" });
+        };
+        console.log("Data received");
+        access_token = result[0].access;
+
+        //creating options parameter for external server call
+        var options = {
+            method: 'POST',
+            uri: 'http://165.22.210.37/refresh_token',
+            body: {
+                id: vcd_id
+            },
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            json: true
+        };
+
+        //sending request with above options to digilocker to get list of files 
+        rp(options)
+            .then(function (body) {
+                console.log('Success');
+
+                // //creating options parameter for external server call
+                // var options = {
+                //     method: 'GET',
+                //     uri: 'https://api.digitallocker.gov.in/public/oauth2/1/files/' + current_id,
+                //     headers: {
+                //         'Authorization': 'Bearer ' + access_token,
+                //     }
+                // };
+
+                // //sending request with above options to digilocker to get list of files 
+                // rp(options)
+                //     .then(function (body) {
+                //         console.log('Success');
+                //         res.status(200).send(body);
+                //     })
+                //     .catch(function (err) {
+                //         console.log('Failure', err);
+                //         res.status(400).send({ error: "Digilocker API call failed " + err });
+                //     });
+            })
+            .catch(function (err) {
+                console.log('Failure', err);
+                res.status(400).send({ error: "Digilocker API call failed " + err });
+            });
+    });
 });
 
 //fetches self_uploaded files from digilocker
@@ -389,7 +442,7 @@ app.post('/revoke_token', function (req, res) {
                         res.sendStatus(200);
                     });
                 });
-                
+
             })
             .catch(function (err) {
                 console.log('Failure', err);
