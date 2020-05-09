@@ -37,7 +37,7 @@ function show()
 				document.getElementById("pass").disabled=true;
 				login_button.style.visibility="hidden";
 				document.getElementById("tc").innerHTML="";
-				document.getElementById("tc3").innerHTML="OTP has been send to Email";
+				document.getElementById("tc3").innerHTML="OTP has been successfully sent";
 
 				x.style.display = "";
 				y.style.display = "inline-block";
@@ -45,7 +45,8 @@ function show()
 
 				
 				document.getElementById("confirm").onclick = function(){
-					var url = "http://165.22.210.37:8082/verifyOTP";
+					document.getElementById("icon").className = "fa fa-spinner fa-spin";
+					var url = "http://"+IP+":8082/verifyOTP";
 					xhr.open("POST" ,url);
 					xhr.setRequestHeader('Content-Type','application/json');
 					xhr.send(JSON.stringify({"aadharno":message.aadhar,"OTP": y.value}));
