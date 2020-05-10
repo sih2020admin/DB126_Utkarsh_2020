@@ -13,6 +13,8 @@ xhr.onload = function () {
             response = JSON.parse(this.responseText);
 
             var cont_div = document.getElementById('cont');
+            var cont_div2 = document.getElementById('cont2');
+
 
                 for (var i = 0; i < response.length; i++) {
 
@@ -31,6 +33,7 @@ xhr.onload = function () {
                     </div>`;
                     
                     cont_div.insertAdjacentHTML('beforeend', div);
+                    cont_div2.insertAdjacentHTML('beforeend', div);
             }
           }
           else if (this.status == 404) {  
