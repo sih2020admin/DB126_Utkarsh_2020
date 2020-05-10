@@ -55,7 +55,7 @@
                     <td><textarea id="description" name="" cols="30" rows="10" style="resize: none;" placeholder="Enter Description" required></textarea></td>
                 </tr>
                 <tr>
-                    <td><a href="uploads/sample_tender_document.zip">Sample_tender_document</a></td>
+                    <td><a href="uploads/sample.zip">Sample_tender_document</a></td>
                     <br>
                 </tr>
                 <tr>    
@@ -66,12 +66,14 @@
                 
                     
                     <td id='div_f2' style="display:none;" ><label for="link">BOQ Document</label><input id="file2" type="file" /></td>
+                    <td><button id="get_link"  onclick="get_link()">Generate Link</button></td>
                     
                 </tr>
                 
             </table>
-            <button id="get_link" style="display:none;" onclick="get_link()">Generate Link</button>
-            <button id="create_t" style="display:none;" onclick="add_tender()">Create</button>
+            
+
+            <button id="create_t"  onclick="add_tender()">Create</button>
         </div>
     </div>
     <div class="container2">

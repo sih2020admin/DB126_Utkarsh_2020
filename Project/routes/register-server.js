@@ -7,6 +7,16 @@ var express_1 = __importDefault(require("express"));
 var db_1 = __importDefault(require("./db"));
 var router = express_1.default.Router();
 
+var nodemailer = require('nodemailer');
+var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: process.env.EMAIL,
+        pass: process.env.PASS,
+    },
+});
+
+
 router.post('/register-data', function (request, response) {
     console.log("register data called" );
     
@@ -55,6 +65,24 @@ router.post('/register-data', function (request, response) {
                 }     
             }
             else {
+
+                var mailOptions = {
+                    from: 'E-Tendering',
+                    to: correspondence_email_id,
+                    subject: 'Registration Confirmation on E-tendering Site',
+                    text: 'Welcome to E-Tendering Site\n'+
+                    +'You are all set. Now you can apply for tenders from various departments to grow your business.\nLOG IN TO YOUR NEW ACCOUNT http://165.22.210.37:8081/v1_login.html \n'+
+                    +'Our best wishes,Team Utkarsh.',
+                }
+                transporter.sendMail(mailOptions, function (error, info) {
+                    if (error) {
+                        console.log(error);
+                        //res.sendStatus(400);
+                    } else {
+                        console.log('Email sent: ' + info.response);
+                    }
+                });
+
                response.status(400).send("Successfully registered"); 
             }
         });
