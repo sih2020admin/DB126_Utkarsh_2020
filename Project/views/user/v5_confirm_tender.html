@@ -8,86 +8,130 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script  src="javascript/cookies.js"></script>
   </head>
-      <header>
-        <nav id="nav_bar">
-            <a href="v7_homepage.html">Home</a>
-            <a href="v3_see_tender.html">Tender</a>
-            <a id="log_a" href="v1_login.html">Login</a>
-        </nav>
-    </header>
-    <body>
-
-    <h1>NOT COMPLETED (SHOWING hardcorde values) Confirm Tender</h1>
-      <div class="cont">
-        <h3>Basic Details</h3><br>
-        <label>Organisation Details :  Education centre</label> </br></br>
-        <label>Tender Reference No :  12345678</label> </br></br>
-        <label>Tender ID :  ABC123</label> </br></br>
-        <label>Tender title :  Library Management</label> </br></br>
-        <label>Bid Submission closing date :  12-12-2020</label> </br></br>
-      </div>
-
-      <div class="payment_details">
-        <h3>Tender Fee Payment Details</h3><br>
+  <header>
+    <nav id="nav_bar">
+      <a href="v7_homepage.html">Home</a>
+      <a href="v3_see_tender.html">Tender</a>
+      <a id="log_a" href="v1_login.html">Login</a>
+    </nav>
+  </header>
+  <body>
+    <div class="cont">
+      <br>
+      <h2>Summary Of Your Application</h2><br>
+      <h3 style="text-align: left;">Tender Details</h3>
       <table>
         <tr>
-          <th>Sr.No.</th>
-          <th>Instrument No</th>
-          <th>Instrument Name</th>
-          <th>Issued date</th>
-          <th>Expiry date</th>
-          <th>Account No</th>
-          <th>Amount</th>
-        </tr> 
+          <td><label><strong>Tender Id: </strong></label></td>
+          <td><label id="et_id"></label></td>
+          <td><label><strong>Reference No: </strong></label></td>
+          <td><label id="ref"></label></td>
+          <td><label><strong>Title: </strong></label></td>
+          <td><label id="title"></label></td>
+        </tr>
         <tr>
-          <td>1</td>
-          <td>2345</td>
-          <td>Mode name</td>
-          <td>1-1-2020</td>
-          <td>12-1-2020</td>
-          <td>23456</td>
-          <td>₹1234</td>
-        </tr> 
-       </table> 
-    </div>
-
+          <td><label><strong>Fee: </strong></label></td>
+          <td><label id="fee"></label></td>
+          <td><label><strong>Bidding Date: </strong></label></td>
+          <td><label id="bid"></label></td>
+        </tr>
+      </table><br><hr><br>
+      <h3 style="text-align: left;">Personal Details</h3>
+      <table>
+        <tr>
+          <td><label><strong>Name: </strong></label></td>
+          <td><label id="name"></label></td>
+          <td><label><strong>DOB: </strong></label></td>
+          <td><label id="dob"></label></td>
+          <td><label><strong>Designation: </strong></label></td>
+          <td><label id="desg"></label></td>
+        </tr>
+        <tr>
+          <td><label><strong>Aadhar No: </strong></label></td>
+          <td><label id="aadhar"></label></td>
+          <td><label><strong>Email: </strong></label></td>
+          <td><label id="email"></label></td>
+          <td><label><strong>Contact No: </strong></label></td>
+          <td><label id="contact"></label></td>
+        </tr>
+      </table><br><hr><br>
+      <h3 style="text-align: left;">Company Details</h3>
+      <table>
+        <tr>
+          <td><label><strong>Name: </strong></label></td>
+          <td><label id="cname"></label></td>
+          <td><label><strong>Legal Status: </strong></label></td>
+          <td><label id="legal"></label></td>
+          <td><label><strong>Estd Year: </strong></label></td>
+          <td><label id="yoe"></label></td>
+        </tr>
+        <tr>
+          <td><label><strong>Registration No: </strong></label></td>
+          <td><label id="register"></label></td>
+          <td><label><strong>GST No: </strong></label></td>
+          <td><label id="gst"></label></td>
+          <td><label><strong>PAN No: </strong></label></td>
+          <td><label id="pan"></label></td>
+        </tr>
+        <tr>
+          <td><label><strong>Email: </strong></label></td>
+          <td><label id="cemail"></label></td>
+          <td><label><strong>Contact No: </strong></label></td>
+          <td><label id="ccontact"></label></td>
+          <td><label><strong>Address: </strong></label></td>
+          <td><label id="address"></label></td>
+        </tr>
+      </table><br><hr><br>
       <div class="upload_documents">
-        <h3>Uploaded Documents</h3><br>
-      <table >
-        <tr>
-          <th>Sr.No.</th>
-          <th>File name</th>
-          <th>Description</th>
-          <th>File Size</th>
-          <th>Hmac generated</th>
-        </tr> 
-
-        <tr>
-          <td>1</td>
-          <td>Financial</td>
-          <td>Related info</td>
-          <td>120kb</td>
-          <td>srfguklknjhgf23456</td>
-        </tr> 
-
-        <tr>
-          <td>2</td>
-          <td>Technical</td>
-          <td>Related info</td>
-          <td>120kb</td>
-          <td>srfguklknjhgf23456</td>
-        </tr> 
+        <h3 style="text-align: left;">Uploaded Documents</h3><br>
+        <table>
+          <tr>
+            <th>Sr.No.</th>
+            <th>File name</th>
+            <th>File URI</th>
+            <th>File Link</th>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Tehnical</td>
+            <td id="file1"></td>
+            <td><a href="">Preview</a></td>
+          </tr> 
+          <tr>
+            <td>2</td>
+            <td>BOQ</td>
+            <td id="file2"></td>
+            <td><a href="">Preview</a></td>
+          </tr> 
         </table>  
+      </div><br><hr><br>
+      <div class="payment_details">
+        <h3  style="text-align: left;">Payment Details</h3><br>
+        <table>
+          <tr>
+            <th>Transaction ID</th>
+            <th>Amount</th>
+            <th>Date & Time</th>
+            <th>Bank Name</th>
+            <th>Payment Method</th>
+            <th>Status</th>
+          </tr> 
+          <tr>
+            <td id="transaction"></td>
+            <td id="amt"></td>
+            <td id="date"></td>
+            <td id="bank"></td>
+            <td >Debit Card</td>
+            <td id="status"></td>
+          </tr> 
+        </table> 
+      </div><br>
+      <div class="submit_button">
+        <!-- <button type="button" onclick="back()">Back</button> -->
+        <button type="submit">Freeze Bid</button>
+      </div>
     </div>
-
-    
-   <!-- <div class="submit_button">
-      <button type="button" onclick="back()">Back</button>
-      <button type="submit">Freeze Bid</button>
-    </div>-->
-</div>
-</body>
-<!-- <script  src="javascript/cookies.js"></script> -->
+  </body>
 
 <script type="text/javascript">
     var log_a = document.getElementById("log_a")
@@ -99,5 +143,5 @@
             nav_bar.insertAdjacentHTML('beforeend','<a id="log_a" onclick="return theFunctionV();">Log out</a>');
         }
 </script>
-
+<script type="text/javascript" src="javascript/v5_confirm_tender.js"></script>
 </html>
