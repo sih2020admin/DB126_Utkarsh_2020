@@ -38,6 +38,7 @@ function show()
 				login_button.style.visibility="hidden";
 				document.getElementById("tc").innerHTML="";
 				document.getElementById("tc3").innerHTML="OTP has been successfully sent";
+				document.getElementById("not_registered").innerHTML="";
 
 				x.style.display = "";
 				y.style.display = "inline-block";
