@@ -51,3 +51,19 @@ xhr.onload = function(){
     else
         alert("Some Error Occured");
 };
+function freeze(){
+    var url = "/confirm_tender_s5";
+    xhr.open("POST" ,url);
+    xhr.setRequestHeader('Content-Type','application/json');
+    xhr.send(JSON.stringify({"etd_id":etd_id}));
+    xhr.onload = function(){
+        if(this.status==200){
+            window.location.href="/v5_preview_tender.html?et_id="+et_id+"&etd_id="+etd_id;
+        }
+        else if(this.status==400)
+            alert("Error 400");
+        else
+            alert("Some Error Occured");
+    }
+ 
+}

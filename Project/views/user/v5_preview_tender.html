@@ -16,12 +16,12 @@
     </nav>
   </header>
   <body>
-    <div class="cont">
+    <div class="cont" style="height: 1300px;">
       <br>
-      <h2>Summary Of Your Application</h2><br>
+      <h2>Application</h2><br>
       <div style="text-align: right;">
         <p><strong>Application Status:</strong></p>
-        <p id= "app" class="status1">Not Submitted</p>
+        <p id= "app" class="status2">Submitted</p>
       </div>
       <h3 style="text-align: left;">Tender Details</h3>
       <table>
@@ -130,9 +130,23 @@
           </tr> 
         </table> 
       </div><br>
-      <div  class="submit_button">
+      <div id="download">
+        <div style="float: left;">
+            <p><strong>Place:</strong></p>
+            <p id="place">MUMBAI</p><br>
+            <p><strong>Date:</strong></p>
+            <p id="da_te"></p><br>
+            <p><strong>Time:</strong></p>
+            <p id="time"></p><br>
+          </div>
+          <div style="float: right;">
+            <a href="#"><img src="pdf.gif" width="55px" height="55px"></a><br>
+            <a href="#">Download</a>
+          </div><br>
+      </div>
+      <div  class="submit_button" style="display: none;">
         <!-- <button type="button" onclick="back()">Back</button> -->
-        <button id ="freeze" type="submit" onclick="freeze()" onchange="location.reload()">Freeze Bid</button>
+        <button id ="freeze" type="submit" onclick="freeze()">Freeze Bid</button>
       </div>
     </div>
   </body>
@@ -148,4 +162,9 @@
         }
 </script>
 <script type="text/javascript" src="javascript/v5_confirm_tender.js"></script>
+<script type="text/javascript">
+  var d = new Date();
+  document.getElementById("da_te").innerHTML = d.getDate() + "-" + d.getMonth() + "-" + d.getFullYear();
+  document.getElementById("time").innerHTML = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
+</script>
 </html>

@@ -29,6 +29,19 @@ h1, h2, h3, label {
 h1 {
   margin-top: 20px;
 }
+p {
+    display:inline;
+}
+
+.status1 {
+  font-family: 'Montserrat', sans-serif;
+  color: #fd0000;
+}
+
+.status2 {
+  font-family: 'Montserrat', sans-serif;
+  color: #008000;
+}
 
 .cont {
   background-color: white;
@@ -91,7 +104,7 @@ table td {
   font-weight: lighter;
 }
 .payment_details th, .payment_details td, .upload_documents th, .upload_documents td {
-  padding: 0.5em 1em;
+  padding: 0.5em 0.5em;
 }
 .submit_button {
   text-align: center;
