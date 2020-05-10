@@ -1,17 +1,6 @@
-const queryString = window.location.search;
-console.log(queryString);
-const urlParams = new URLSearchParams(queryString);
-
-var et_id  = urlParams.get('et_id')
-var etd_id = urlParams.get('etd_id')
-
-console.log(et_id,etd_id);
-
 var vcd_id = get_cookie('vcd_id');
 var aadhar;
 var xhr1 = new XMLHttpRequest();
-
-/* ---------------------------- Start of E-sign code -------------------------------------- */
 
 document.getElementById('reason').value = "E-Tendering"; 
 document.getElementById('location').value = "";
@@ -29,7 +18,7 @@ preview.style.display = "none";
 var preview1 = document.getElementById("preview1");
 preview1.style.display = "none";
 
-var url = "http://165.22.210.37:8081/details";
+var url = "/details";
 xhr1.open("POST" ,url);
 xhr1.setRequestHeader('Content-Type','application/json');
 xhr1.send(JSON.stringify({"vcd_id":vcd_id}));
@@ -68,7 +57,7 @@ var upload = function(files){
     }
     //console.log(formdata.get('file'));
     alert("Document Uploaded,Press OK to Sign the Document");
-    var url = "http://165.22.210.37:8082/sms/send";
+    var url = "http://"+location.hostname+":8082/sms/send";
     xhr1.open("POST" ,url);
     xhr1.setRequestHeader('Content-Type','application/json');
     xhr1.send(JSON.stringify({"aadharno":aadhar}));
@@ -85,7 +74,7 @@ var upload = function(files){
 function otp(){
     var otp = document.getElementById("otp").value;
     //var xhr1 = new XMLHttpRequest();
-    url = "http://165.22.210.37:8082/verifyOTP";
+    url = "http://"+location.hostname+":8082/verifyOTP";
     xhr1.open("POST" ,url);
     xhr1.setRequestHeader('Content-Type','application/json');
     xhr1.send(JSON.stringify({"aadharno":aadhar,"OTP":otp}));
@@ -105,7 +94,7 @@ function otp(){
             formdata.append('location',location);
             
             var xhr = new XMLHttpRequest();
-            var url = "http://165.22.210.37:8091/sign";
+            var url = "http://"+location.hostname+":8091/sign";
             xhr.open("POST" ,url);
             xhr.send(formdata);
             xhr.onload = function(){
@@ -197,7 +186,6 @@ function otpmodal(){
     }
 }
 
-/* ---------------------------- End of E-sign code -------------------------------------- */
 
 //You will find done function in v4_apply_tender_digilocker.js
 

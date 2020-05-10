@@ -45,7 +45,8 @@ router.post('/login', function (req, res) {
 				     			var digi_access =results[0].digi_access
 				     			//console.log("fetched "+aadharno);
 
-					     		//send to aadhar api
+								 //send to aadhar api
+								 console.log(process.env.ADDRESS);
 					     		var req = unirest('POST', 'http://'+process.env.ADDRESS+':8082/verify').headers({'Content-Type': 'application/json'})
 									.send(JSON.stringify({"aadharno":aadharno})).end(function (resp) { 
 									  	if (resp.error){

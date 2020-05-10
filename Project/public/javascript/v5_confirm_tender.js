@@ -6,7 +6,7 @@ var etd_id = urlParams.get('etd_id');
 var vd_id = get_cookie('vd_id');
 
 var xhr = new XMLHttpRequest();
-var url = "http://165.22.210.37:8081/view";
+var url = "/view";
 xhr.open("POST" ,url);
 xhr.setRequestHeader('Content-Type','application/json');
 xhr.send(JSON.stringify({"et_id":et_id,"etd_id":etd_id,"vd_id":vd_id}));
