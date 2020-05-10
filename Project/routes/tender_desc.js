@@ -9,7 +9,6 @@ var router = express_1.default.Router();
 var unirest = require('unirest');
 
 
-<<<<<<< HEAD
 router.post('/tender_desc', function (req, res) {
 
     	var id= req.body.et_id;
@@ -60,11 +59,27 @@ router.post('/filled_tender_desc', function (req, res) {
 
 router.post('/get_etd_id', function (req, res) {
 
-    	var et_id= req.body.et_id;
-    	var vd_id= req.body.vd_id;
-    	console.log("tender desc called "+et_id)
+	var et_id= req.body.et_id;
+	var vd_id= req.body.vd_id;
+	console.log("tender desc called "+et_id)
+
+			
+db_1.default.query('SELECT * FROM  e_tender_vendor WHERE et_id = ? and vd_id=?',[et_id,vd_id], function (error, results, fields) {
+	if (error) {
+			  //console.log("error");
+			  res.sendStatus(400);
+		 }else{
+			   if(results.length >0){
+				   res.send(results[0]);
+			   }
+			   else{
+				 //does not exists
+				 res.sendStatus(404);
+			   }
+		  }
+	});
+});
 	
-=======
 router.post('/view', function (req, res) {
 		var et= req.body.et_id;
 		var vd= req.body.vd_id;
@@ -92,7 +107,7 @@ router.post('/view', function (req, res) {
 					}
 				});
 			}
->>>>>>> 67e885085f8df2f6749e37a2a57c6226510e6352
+
 				
 		});
 });
