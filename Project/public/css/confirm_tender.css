@@ -2,6 +2,7 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:500&display=swap");
 :root {
   --main_color: #663EFD;
+  --accent-color: #a6a6a6;
 }
 
 * {
@@ -14,11 +15,13 @@
 
 body {
   -webkit-box-align: center;
+  -ms-flex-align: center;
+    align-items: center;
       -ms-flex-align: center;
           align-items: center;
 }
 
-h1, h3, label {
+h1, h2, h3, label {
   color: var(--main_color);
   text-align: center;
 }
@@ -30,8 +33,10 @@ h1 {
 .cont {
   background-color: white;
   width: -webkit-fit-content;
+  width: 100%;
   width: -moz-fit-content;
   width: fit-content;
+  max-width: 1000px;
   min-width: 800px;
   height: auto;
   padding: 20px;
@@ -44,7 +49,27 @@ h1 {
   transition: all .2s ease-in-out;
 }
 
+strong, .RnoLabel, .Id, .OdateLabel {
+  font-family: 'Open Sans', 'Sans serif';
+  font-weight: 500;
+  color: var(--accent-color);
+  size: .5rem;
+}
+label {
+ color: black;
+}
+table {
+  width: 100%;
+  text-align: left;
+}
+
+table td {
+  padding: 10px;
+}
+
 .payment_details, .upload_documents {
+  /* margin: 40px; */
+  padding: 5px;
   margin: 40px;
 }
 
@@ -57,25 +82,20 @@ h1 {
   -webkit-box-shadow: 3px 4px 6px -6px rgba(103, 62, 253, 0.507), -3px -4px 6px -6px rgba(103, 62, 253, 0.507);
           box-shadow: 3px 4px 6px -6px rgba(103, 62, 253, 0.507), -3px -4px 6px -6px rgba(103, 62, 253, 0.507);
 }
-
 .payment_details tr:nth-child(odd), .upload_documents tr:nth-child(odd) {
   background-color: rgba(141, 111, 251, 0.061);
 }
-
 .payment_details th, .upload_documents th {
   background-color: var(--main_color);
   color: #fff;
   font-weight: lighter;
 }
-
 .payment_details th, .payment_details td, .upload_documents th, .upload_documents td {
   padding: 0.5em 1em;
 }
-
 .submit_button {
   text-align: center;
 }
-
 .submit_button button {
   width: 100px;
   height: 35px;
@@ -88,7 +108,6 @@ h1 {
   border: none;
   color: #ffffff;
 }
-
 .submit_button button:hover {
   cursor: pointer;
   background-color: #ffffff;
