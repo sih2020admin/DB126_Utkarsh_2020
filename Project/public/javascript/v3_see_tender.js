@@ -69,7 +69,7 @@ function apply(i) {
                 alert("all ready applied , complete process")
                 window.location.href = "/v4_apply_tender_s3.html?et_id="+et_id+"&etd_id="+res.etd_id;
             }
-            else if(status=="111"){
+            else{
                 alert("All ready applied check preview but saddly we need to make preview page wait");
 		window.location.href= "/v5_confirm_tender.html?et_id="+et_id+"&etd_id="+res.etd_id;
 
