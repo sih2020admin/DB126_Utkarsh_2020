@@ -54,6 +54,26 @@ router.post('/apply_tender_s3', function (req, res) {
       });
 });
 
+router.post('/confirm_tender_s5', function (req, res) {
+
+  var etd_id= req.body.etd_id;
+
+  console.log("confirm tender called "+etd_id)
+
+    
+db_1.default.query('UPDATE `e_tender_vendor` SET `status` = "1111" WHERE `etd_id` = ?;',[etd_id], function (error, results, fields) {
+if (error) {
+        console.log("error",error);
+        res.sendStatus(400);
+    }
+else{
+        console.log(results)
+          res.sendStatus(200);
+    }
+  });
+});
+
+
 
 
 router.post('/enter_file_uri1_db', function (req, res) {
