@@ -19,7 +19,7 @@ var list_tender = require('./routes/list_tender');
 var tender_approval = require('./routes/tender_approval');
 var vendor_dashboard = require('./routes/vendor_dashboard');
 var apply_tender = require('./routes/apply_tender');
-var sign = require('./routes/sign');
+var cookie = require('cookie-parser');
 var port = process.env.PORT;
 app.engine('.hbs', express_handlebars_1.default({ extname: '.hbs' }));
 app.set('view engine', '.hbs');
@@ -33,6 +33,7 @@ app.use(function (request, response, next) {
     console.log(request.ip);
     next();
 });
+app.use(cookie());
 app.use(express_1.default.static(path_1.default.join(__dirname, 'public')));
 app.use(express_1.default.static(path_1.default.join(__dirname, 'views/user')));
 app.use(express_1.default.static(path_1.default.join(__dirname, 'views/admin')));
@@ -45,7 +46,6 @@ app.use('/', list_tender.default);
 app.use('/', tender_approval.default);
 app.use('/', vendor_dashboard.default);
 app.use('/', apply_tender.default);
-app.use('/', sign.default);
 app.use('/misc', misc_1.default);
 app.get('*', function (request, response) {
     response.sendFile(__dirname + '/views/user/error.html');

@@ -8,7 +8,6 @@ var data = JSON.stringify({"et_id":et_id,"etd_id":etd_id});var xhr = new XMLHttp
 
         xhr.onload = function () {
           if (this.status === 200) {
-            console.log(this.responseText);
 
             response = JSON.parse(this.responseText);
             // var cont_div = document.getElementById('conts');

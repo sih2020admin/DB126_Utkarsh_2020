@@ -30,7 +30,6 @@ router.post('/get-legal-status', function (request, response) {
 });
 router.post('/get-city', function (request, response) {
     var state_code = request.body.state_code;
-    console.log(state_code);
     db_1.default.query('select * from city where st_id=?', [state_code], function (error, result) {
         if (error) {
             console.log(error);
@@ -41,4 +40,61 @@ router.post('/get-city', function (request, response) {
         }
     });
 });
+router.post('/check-username', function (request, response) {
+    var username = request.body.username;
+    db_1.default.query("SELECT * FROM log_in_details WHERE user_name='" + username + "'", function (error, result) {
+        if (error) {
+            console.log(error);
+        }
+        else {
+            if (result.length !== 0) {
+                response.send('Username already exists<br>Use a different Username');
+            }
+            else {
+                response.send('ok');
+            }
+        }
+    });
+});
+router.post('/check-company', function (request, response) {
+    var gst_register_number = request.body.gst_register_number;
+    var pan_number = request.body.pan_number;
+    var registration_number = request.body.registration_number;
+    var result1 = '';
+    db_1.default.query("SELECT * FROM vendor_details where v_gst='" + gst_register_number + "'", function (error, result) {
+        if (error) {
+            console.log(error);
+            console.log('Error in getting GST Register Number');
+        }
+        else {
+            if (result.length !== 0) {
+                result1 = result1 + 'GST Register Number Already Exists<br>';
+            }
+            db_1.default.query("SELECT * FROM vendor_details where v_pan='" + pan_number + "'", function (error, result) {
+                if (error) {
+                    console.log('Error in getting Pan Number');
+                }
+                else {
+                    if (result.length !== 0) {
+                        result1 = result1 + 'Pan Number Already Exists<br>';
+                    }
+                    db_1.default.query("SELECT * FROM vendor_details where v_reg_no='" + registration_number + "'", function (error, result) {
+                        if (error) {
+                            console.log('Error in getting Register Number');
+                        }
+                        else {
+                            if (result.length !== 0) {
+                                result1 = result1 + 'Registration Number Already Exists<br>';
+                            }
+                            response.send(result1);
+                        }
+                    });
+                }
+            });
+        }
+    });
+});
+function check_company(gst_register_number, pan_number, registration_number) {
+    //return result1
+}
 exports.default = router;

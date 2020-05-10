@@ -10,7 +10,6 @@ var __values = (this && this.__values) || function(o) {
     };
     throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
 };
-var baseURL = location.protocol + "//" + location.host;
 var username;
 var password;
 var title;
@@ -37,6 +36,11 @@ load_years();
 load_states();
 load_legal_status();
 $('#city').prop('disabled', true);
+function clear_account_details() {
+    $('#username').val('');
+    $('#password').val('');
+    $('#confirm_password').val('');
+}
 // loading years
 function load_years() {
     var end_year = 1700;
@@ -51,7 +55,7 @@ function load_years() {
 // loading states from database
 function load_states() {
     $.ajax({
-        url: baseURL + "/misc/get-state",
+        url: "/misc/get-state",
         method: 'POST',
         async: true,
         success: function (response) {
@@ -88,7 +92,7 @@ function load_states() {
 // loading cities dynamically by taking checking state field after each change
 function load_cities(state_code) {
     $.ajax({
-        url: baseURL + "/misc/get-city",
+        url: "/misc/get-city",
         method: 'POST',
         contentType: 'application/json; charset=utf-8',
         data: JSON.stringify({
@@ -139,7 +143,7 @@ $('#state').change(function () {
 // loading legal status field from databse
 function load_legal_status() {
     $.ajax({
-        url: baseURL + "/misc/get-legal-status",
+        url: "/misc/get-legal-status",
         method: 'POST',
         async: true,
         success: function (response) {
@@ -221,7 +225,7 @@ $('#submit_button').on('click', function () {
                 },
             };
             $.ajax({
-                url: baseURL + "/register/register-data",
+                url: "/register/register-data",
                 method: 'POST',
                 contentType: 'application/json; charset=utf-8',
                 data: JSON.stringify(abc),
@@ -245,9 +249,34 @@ $('#account_button').on('click', function () {
     password = (_b = $('#password').val()) === null || _b === void 0 ? void 0 : _b.toString();
     var confirm_password = (_c = $('#confirm_password').val()) === null || _c === void 0 ? void 0 : _c.toString();
     var check_account = account_validate(username, password, confirm_password);
-    if (check_account === 1) {
-        $('.account_details').hide();
-        $('.company_details').fadeTo('fast', 1);
+    if (check_account === true) {
+        //clear_account_details()
+        $.ajax({
+            url: '/misc/check-username',
+            method: 'POST',
+            async: true,
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify({
+                username: username,
+            }),
+            success: function (response) {
+                if (response === 'ok') {
+                    $('.account_details').hide();
+                    $('.company_details').fadeTo('fast', 1);
+                    $('#error_para').html("");
+                }
+                else if (response === 'Username already exists') {
+                    $('#error_para').html(response);
+                }
+                else {
+                    $('#error_para').html(response);
+                }
+            },
+            error: function (xhr, error_type, exception) {
+                var error_message = xhr.responseText;
+                console.log("" + error_message);
+            },
+        });
     }
 });
 // validation of company details
@@ -267,9 +296,29 @@ $('#company_button').on('click', function () {
     gst_register_number = (_m = $('#gst_register_number').val()) === null || _m === void 0 ? void 0 : _m.toString();
     var check_company = company_validate(company_name, company_address, company_email, mobile_number, registration_number, state, city, establishment_year, pincode, legal_status, pan_number, gst_register_number);
     if (check_company === 1) {
-        $('.company_details').hide();
-        $('.contact__details').fadeTo('fast', 1);
-        $('.submit_button').fadeTo('fast', 1);
+        $.ajax({
+            url: '/misc/check-company',
+            method: 'POST',
+            async: true,
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify({
+                gst_register_number: gst_register_number, pan_number: pan_number, registration_number: registration_number,
+            }),
+            success: function (response) {
+                if (response === '') {
+                    $('.company_details').hide();
+                    $('.contact__details').fadeTo('fast', 1);
+                    $('.submit_button').fadeTo('fast', 1);
+                }
+                else {
+                    $('#error_para').html(response);
+                }
+            },
+            error: function (xhr, error_type, exception) {
+                var error_message = xhr.responseText;
+                console.log("" + error_message);
+            },
+        });
     }
 });
 $('#verify_button').on('click', function () {
@@ -311,7 +360,7 @@ $('#otp_button').on('click', function () {
     var otp = (_b = $('#otp').val()) === null || _b === void 0 ? void 0 : _b.toString();
     console.log(aadhar, otp);
     $.ajax({
-        url: 'http://localhost:8082/verifyOTP',
+        url: location.protocol + "//" + location.hostname + ":8082/verifyOTP",
         method: 'POST',
         async: true,
         contentType: 'application/json; charset=utf-8',
@@ -331,48 +380,48 @@ $('#otp_button').on('click', function () {
         },
     });
 });
-$('#contact__details_previous').on('click', function () {
-    $('.contact__details').hide();
-    $('.submit_button').hide();
-    $('.company_details').fadeTo('slow', 1);
-});
-$('#company_button_back').on('click', function () {
-    $('.company_details').hide();
-    $('.account_details').fadeTo('slow', 1);
-});
+/* $('#contact__details_previous').on('click', () => {
+    $('.contact__details').hide()
+    $('.submit_button').hide()
+    $('.company_details').fadeTo('slow', 1)
+})
+
+$('#company_button_back').on('click', () => {
+    $('.company_details').hide()
+    $('.account_details').fadeTo('slow', 1)
+}) */
 function account_validate(username, password, confirm_password) {
     if (username === '') {
         $('#error_para').text('Error : Username field cannot be empty');
         //$("#username").attr('style', "border-radius: 5px; border:#FF0000 1px solid;");
         //$("#username").focus()
-        return 0;
+        return false;
     }
     if (username.length < 7 || username.length > 15) {
         $('#error_para').text('Error : Username should be greater than six characters and less than 15 characters');
-        return 0;
+        return false;
     }
-    if (/[^a-zA-Z0-9]/.test(username) == true) {
+    if (username.match(/^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$/) === null) {
         $('#error_para').text('Error : Username contains inappropriate characters');
-        return 0;
+        return false;
     }
     if (password === '') {
         $('#error_para').text('Error : Password field cannot be empty');
-        return 0;
+        return false;
     }
-    if (password.length < 5 || password.length > 15) {
-        $('#error_para').text('Error : Password has to be greater than six characters and less than 15 characters');
-        return 0;
+    if (password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{7,15}/) === null) {
+        $('#error_para').html('Password Field should contain at least : <br> - One Uppercase Character [A-Z]<br> - One Lowercase Character [a-z]<br> - One Number [0-9]<br> - One Special Character <br> Length of Password should be around 7 to 15 Characters');
+        return false;
     }
     if (confirm_password === '') {
         $('#error_para').text('Error : Confirm Password field cannot be empty');
-        return 0;
+        return false;
     }
     if (password !== confirm_password) {
         $('#error_para').text('Error : Password and Confirm Password fields do not match each other');
-        return 0;
+        return false;
     }
-    $('#error_para').text('Success');
-    return 1;
+    return true;
 }
 function company_validate(company_name, company_address, company_email, mobile_number, registration_number, state, city, establishment_year, pincode, legal_status, pan_number, gst_register_number) {
     if (company_name === '') {
@@ -383,20 +432,20 @@ function company_validate(company_name, company_address, company_email, mobile_n
         $('#error_para').text('Error : Company Address field cannot be empty');
         return 0;
     }
-    if (company_email === '') {
-        $('#error_para').text('Error : Company Email Address cannot be empty');
+    if (company_email.match(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/) === null) {
+        $('#error_para').text('Error : Invalid Email Address');
         return 0;
     }
-    if (mobile_number === '') {
-        $('#error_para').text('Error :Company Mobile Number cannot be empty');
-        return 0;
-    }
-    if (mobile_number.length < 10 || mobile_number.length > 10) {
-        $('#error_para').text('Error : Mobile Number Field has inappropriate length');
+    if (mobile_number.match(/^\d{10}$/) === null) {
+        $('#error_para').text('Error : Invalid Mobile Number');
         return 0;
     }
     if (registration_number === '') {
-        $('#error_para').text('Error : Registration Number field cannot be empty');
+        $('#error_para').text('Error : Company Registration Number field cannot be empty');
+        return 0;
+    }
+    if (registration_number.length > 21 || registration_number.length < 21) {
+        $('#error_para').text('Error : Invalid Company Registration Number ');
         return 0;
     }
     if (state === 'select') {
@@ -411,12 +460,8 @@ function company_validate(company_name, company_address, company_email, mobile_n
         $('#error_para').text('Error : Establishment year field has inappropriate value');
         return 0;
     }
-    if (pincode === '') {
-        $('#error_para').text('Error : Pincode field cannot be empty');
-        return 0;
-    }
-    if (pincode.length < 6 || pincode.length > 6) {
-        $('#error_para').text('Error : Pincode Number has inappropriate length');
+    if (pincode.match(/^\d{6}$/) === null) {
+        $('#error_para').text('Error : Invalid Pincode Field');
         return 0;
     }
     if (legal_status === 'select') {
@@ -435,7 +480,7 @@ function company_validate(company_name, company_address, company_email, mobile_n
         $('#error_para').text('Error : GST Registration field  cannot be empty');
         return 0;
     }
-    if (gst_register_number.length < 15 || gst_register_number.length > 15) {
+    if (gst_register_number.length !== 15) {
         $('#error_para').text('Error : GST Registration Number has inappropriate length');
         return 0;
     }

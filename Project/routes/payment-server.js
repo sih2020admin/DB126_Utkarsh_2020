@@ -109,17 +109,25 @@ if (process.env.ADDRESS === '165.22.210.37') {
 //get_transaction_status()
 router.get('/tender', function (request, response) {
     var et_id = request.query.et_id;
+    var vcd_id = request.cookies.vcd_id;
     if (et_id === undefined) {
         response.send('Cannot find tenders with undefined et_id');
     }
     else {
         db_1.default.query('SELECT * FROM  e_tender_details INNER JOIN department ON e_tender_details.dept_id = department.dept_id WHERE et_id = ?', [et_id], function (error, result) {
             if (error) {
-                debug('error');
+                debug(error);
             }
             else {
                 if (result.length > 0) {
-                    response.render('user/v4_apply_tender_s2', { layout: false, amount: result[0].et_tender_fee, allow: allow });
+                    db_1.default.query("SELECT * FROM v_contact_details where vcd_id=" + vcd_id, function (err, res) {
+                        if (err) {
+                            debug(err);
+                        }
+                        else {
+                            response.render('user/v4_apply_tender_s2', { layout: false, amount: result[0].et_tender_fee, allow: allow, email: res[0].vcd_email, contact: res[0].vcd_contact });
+                        }
+                    });
                 }
                 else {
                     response.send('No such tender with et_id exists');
@@ -161,6 +169,7 @@ router.post('/', function (request, response) {
 router.post('/redirect', function (request, response) {
     var e_1, _a, e_2, _b;
     var result = request.body;
+    console.log(request.params);
     /* var isValidChecksum = checksum.verifychecksum(params, salt, result.CHECKSUMHASH)
     if (isValidChecksum) {
         console.log('Checksum Matched')
@@ -222,7 +231,8 @@ router.post('/redirect', function (request, response) {
                 for (var queue_2 = __values(queue), queue_2_1 = queue_2.next(); !queue_2_1.done; queue_2_1 = queue_2.next()) {
                     var i = queue_2_1.value;
                     if (i.order_id == transaction_fail.order_id) {
-                        response.redirect("http://" + address + ":8081/v4_apply_tender_s2.html?et_id=" + i.et_id + "&etd_id=" + i.etd_id + "&code=0");
+                        response.render('user/v4_apply_tender_s2', { layout: false, allow: allow });
+                        //response.redirect(`http://${address}:8081/v4_apply_tender_s2.html?et_id=${i.et_id}&etd_id=${i.etd_id}&code=0`)
                     }
                 }
             }

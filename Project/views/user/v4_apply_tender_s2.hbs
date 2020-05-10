@@ -74,17 +74,17 @@
         <table style="text-align: left;">
           <tr>
             <td><label for="amount1">Amount</label></td>
-            <td><input type="text" id="amount1" name="amount" value={{ amount }} disabled/></td>
+            <td><input type="text" id="amount1" name="amount" value={{ amount }} readonly/></td>
           </tr>
           <tr>
             <td><label for="email">Email ID</label></td>
-            <td><input id="email" type="email" name="email" placeholder="Enter Email" /></td>
+            <td><input id="email" type="email" name="email" placeholder="Enter Email" value={{ email }}></td>
           </tr>
 
           <tr>
             <td><label for="mobile">Mobile/Cell Number</label>&nbsp;&nbsp;&nbsp;&nbsp;</td>
             <td>
-              <input id="mobile" type="number" name="mobile" placeholder="Enter Mobile/Cell Number" />
+              <input id="mobile" type="number" name="mobile" placeholder="Enter Mobile/Cell Number" value={{ contact }}>
             </td>
           </tr>
         </table>

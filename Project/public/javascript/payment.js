@@ -27,7 +27,6 @@ $('#bg_tsc_button').on('click', function (e) {
     var mobile = (_c = $('#mobile').val()) === null || _c === void 0 ? void 0 : _c.toString();
     check_form = form_validate(amount, email, mobile);
     if (check_form === 1) {
-        $('#amount1').prop('disabled', false);
         $('#body_content').submit();
     }
 });
@@ -37,15 +36,11 @@ function form_validate(amount, email, mobile) {
         $('#error-para').text('Amount field cannot be empty');
         return 0;
     }
-    if (email === '') {
-        $('#error-para').text('Email field cannot be empty');
+    if (email.match(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/) === null) {
+        $('#error-para').text('Invalid Email Address');
         return 0;
     }
-    if (mobile === '') {
-        $('#error-para').text('Mobile field cannot be empty');
-        return 0;
-    }
-    if (mobile.length < 10 || mobile.length > 10) {
+    if (mobile.match(/^\d{10}$/) == null) {
         $('#error-para').text('Invalid Mobile Number');
         return 0;
     }

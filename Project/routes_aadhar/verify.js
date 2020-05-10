@@ -6,8 +6,8 @@ const assert = require('assert');
 var mysql = require('mysql')
 var con = mysql.createConnection({
     host: 'localhost',
-    user: "root",
-    password: "",
+    user: process.env.DBUSER,
+    password: process.env.DBPASS,
     database: 'aadharDB',
 });
 con.connect(function (err) {
