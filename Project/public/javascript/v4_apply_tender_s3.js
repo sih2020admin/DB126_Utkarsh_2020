@@ -1,5 +1,5 @@
 var vcd_id = get_cookie('vcd_id');
-var aadhar;
+var aadhar,host=location.hostname;
 var xhr1 = new XMLHttpRequest();
 
 document.getElementById('reason').value = "E-Tendering"; 
@@ -57,7 +57,7 @@ var upload = function(files){
     }
     //console.log(formdata.get('file'));
     alert("Document Uploaded,Press OK to Sign the Document");
-    var url = "http://"+location.hostname+":8082/sms/send";
+    var url = "http://"+host+":8082/sms/send";
     xhr1.open("POST" ,url);
     xhr1.setRequestHeader('Content-Type','application/json');
     xhr1.send(JSON.stringify({"aadharno":aadhar}));
@@ -74,7 +74,7 @@ var upload = function(files){
 function otp(){
     var otp = document.getElementById("otp").value;
     //var xhr1 = new XMLHttpRequest();
-    url = "http://"+location.hostname+":8082/verifyOTP";
+    url = "http://"+host+":8082/verifyOTP";
     xhr1.open("POST" ,url);
     xhr1.setRequestHeader('Content-Type','application/json');
     xhr1.send(JSON.stringify({"aadharno":aadhar,"OTP":otp}));
@@ -94,9 +94,7 @@ function otp(){
             formdata.append('location',location);
             
             var xhr = new XMLHttpRequest();
-            var url = "http://165.22.210.37:8091/sign";
-            console.log(location.hostname);
-            console.log(url);
+            var url = "http://"+host+":8091/sign";
             xhr.open("POST" ,url);
             xhr.send(formdata);
             xhr.onload = function(){
