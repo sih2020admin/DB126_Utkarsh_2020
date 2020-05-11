@@ -31,13 +31,26 @@ h1, h3, h2, h4 {
   color: var(--accent-dark-color);
 }
 
-.conts {
+.tender_label {
+  width: 45%;
+  display: inline-block;
+  margin-left: 40px;
+  margin-bottom: 10px;
+}
+
+.main_container {
   display: inline-block;
   margin-left: 40px;
   margin-bottom: 40px;
-  overflow-y: auto;
-  height: 300px;
   width: 45%;
+  overflow-y: hidden;
+}
+
+.conts {
+  display: inline-block;
+  height: 200px;
+  -webkit-animation: marquee 10s linear infinite;
+          animation: marquee 10s linear infinite;
   /* width */
   /* Track */
   /* Handle */
@@ -68,8 +81,6 @@ h1, h3, h2, h4 {
   border-radius: 10px;
   margin: 20px 10px;
   padding: 20px;
-  -webkit-animation: marquee 10s linear infinite;
-          animation: marquee 10s linear infinite;
 }
 
 .cont p {
@@ -123,6 +134,11 @@ h1, h3, h2, h4 {
     -webkit-transform: translate(0, -100%);
             transform: translate(0, -100%);
   }
+}
+
+.conts:hover {
+  -webkit-animation-play-state: paused;
+          animation-play-state: paused;
 }
 
 footer {
