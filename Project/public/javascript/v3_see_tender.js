@@ -61,6 +61,7 @@ function apply(i) {
       if (this.status === 200) {
             var res =  JSON.parse(this.responseText);
             var status = res.status;
+            console.log(res.status)
             if(status=="100"){
                 alert("all ready applied , complete process")
                 window.location.href = "/payment/tender?et_id="+et_id+"&etd_id="+res.etd_id;
@@ -69,9 +70,14 @@ function apply(i) {
                 alert("all ready applied , complete process")
                 window.location.href = "/v4_apply_tender_s3.html?et_id="+et_id+"&etd_id="+res.etd_id;
             }
-            else{
-                alert("All ready applied check preview but saddly we need to make preview page wait");
-		window.location.href= "/v5_confirm_tender.html?et_id="+et_id+"&etd_id="+res.etd_id;
+            else if(status=="111"){
+                alert("Process done Submit Tender");
+		    window.location.href= "/v5_confirm_tender.html?et_id="+et_id+"&etd_id="+res.etd_id;
+
+            }
+            else if(status=="1111"){
+                alert("Application submited redirecting to Application Preview page");
+		    window.location.href= "/v5_preview_tender.html?et_id="+et_id+"&etd_id="+res.etd_id;
 
             }
 
