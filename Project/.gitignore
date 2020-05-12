@@ -1,5 +1,4 @@
 .env
-*.scss
 *.ts
 test
 .prettierrc
