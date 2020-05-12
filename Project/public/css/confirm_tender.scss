@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:500&display=swap');
 :root{
     --main_color: #663EFD;
+    --accent_color: #a6a6a6;
 }
 *{
     box-sizing: border-box;
@@ -11,38 +12,54 @@
 
 }
 body{
-    align-items: center;
+    align-items: center; 
+    
 }
-h1,h3, label{
+h1, h2, h3, label {
     color: var(--main_color);
     text-align: center;
-}
+  }
+  
 h1{
     margin-top: 20px;
+}
+p{
+    display:inline;
+}
+
+.status1 {
+    font-family: 'Montserrat', sans-serif;
+    color: #fd0000;
+}
+  
+.status2 {
+    font-family: 'Montserrat', sans-serif;
+    color: #008000;
 }
 .cont{
     background-color: rgb(255, 255, 255);
     width: fit-content;
+    width: 100%;
     min-width: 800px;
+    max-width: 1000px;
     height: auto;
     padding: 20px;
     margin: auto;
     margin-top: 20px;   
     border-radius: 10px; 
-    box-shadow: 3px 4px 6px -6px rgba(103, 62, 253, 0.507),
-                -3px -4px 6px -6px rgba(103, 62, 253, 0.507);
+    box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
     transition: all .2s ease-in-out; 
 }
 .payment_details, .upload_documents{
     margin: 40px;
+    padding: 5px;
     table {
         margin: auto;
         max-width: 100%;
         border-radius: 1em;
         border-collapse: collapse;
         overflow: hidden;
-        box-shadow: 3px 4px 6px -6px rgba(103, 62, 253, 0.507),
-        -3px -4px 6px -6px rgba(103, 62, 253, 0.507);
+        box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
     }
 
     tr:nth-child(odd) {
@@ -62,21 +79,38 @@ h1{
 
 }
 
-.submit_button{
-    text-align: center;
-    button{
+strong, .RnoLabel, .Id, .OdateLabel {
+    font-family: 'Open Sans', 'Sans serif';
+    font-weight: 500;
+    color: var(--accent-color);
+    size: .5rem;
+}
+label {
+    color: black;
+}
+table {
+    width: 100%;
+    text-align: left;
+}
+table td {
+    padding: 10px;
+}
+
+.buttons {
+    margin-bottom: 15px;
+  }
+  
+button{
         width: 100px;
-        height: 35px;
+        height: 30px;
         font-size: 16px;
         font-weight: 300;
-        margin-bottom: 10px;
-        margin-right: 10px;
-        border-radius: 10px; 
+        border-radius: 5px; 
         background-color: var(--main_color);
         border: none;
         color: #ffffff;
     }
-    button:hover{
+button:hover{
         cursor: pointer;
         background-color: #ffffff;
         color: var(--main_color);
@@ -84,4 +118,8 @@ h1{
         border-width: 0.4px;
         border-color: var(--main_color);
     }
-}
+
+
+.button_div {
+    text-align: center;
+  }
