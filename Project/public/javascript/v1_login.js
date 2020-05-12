@@ -66,6 +66,7 @@ function show()
 							},1500);
 						}
 						else if(this.status == 400){
+							document.getElementById("icon").className = "";
 							document.getElementById("tc1").innerHTML="Invalid OTP ";
 							document.getElementById("tc2").style.display = "inline-block";
 							document.getElementById("tc2").innerHTML="Directing to Relogin";
@@ -75,6 +76,7 @@ function show()
 							},5000);
 						}
 						else{	
+							document.getElementById("icon").className = "";
 							document.getElementById("tc1").innerHTML="Some Error Occured";
 						}
 					};
@@ -82,14 +84,13 @@ function show()
 
 			}
 			else if (this.status==400){
-				document.getElementById("icon").className = "";
 				document.getElementById("tc").innerHTML="Invalid Username or Password";
 			}
 			else{	
-				document.getElementById("icon").className = "";
 				document.getElementById("tc").innerHTML="Some Error Occured";
 			}
 		};
 	}
 }
 
+document.getElementById("icon").className = " ";
