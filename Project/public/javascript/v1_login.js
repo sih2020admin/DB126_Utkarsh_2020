@@ -44,9 +44,7 @@ function show()
 
 				document.getElementById("confirm").onclick = function(){
 					document.getElementById("icon").className = "fa fa-spinner fa-spin";
-					// var url = "http://"+location.hostname+":8082/verifyOTP";
 					var url = "http://"+location.hostname+":8082/verifyOTP";
-					
 					xhr.open("POST" ,url);
 					xhr.setRequestHeader('Content-Type','application/json');
 					xhr.send(JSON.stringify({"aadharno":message.aadhar,"OTP": y.value}));
@@ -68,6 +66,7 @@ function show()
 							},1500);
 						}
 						else if(this.status == 400){
+							document.getElementById("icon").className = "";
 							document.getElementById("tc1").innerHTML="Invalid OTP ";
 							document.getElementById("tc2").style.display = "inline-block";
 							document.getElementById("tc2").innerHTML="Directing to Relogin";
@@ -77,6 +76,7 @@ function show()
 							},5000);
 						}
 						else{	
+							document.getElementById("icon").className = "";
 							document.getElementById("tc1").innerHTML="Some Error Occured";
 						}
 					};
@@ -93,3 +93,4 @@ function show()
 	}
 }
 
+document.getElementById("icon").className = " ";

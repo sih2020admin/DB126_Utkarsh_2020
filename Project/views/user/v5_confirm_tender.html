@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Preview</title>
+    <title>Confirm</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/confirm_tender.css">
     <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script  src="javascript/cookies.js"></script>
   </head>
@@ -126,13 +127,13 @@
             <td id="date"></td>
             <td id="bank"></td>
             <td >Debit Card</td>
-            <td id="status"></td>
+            <td id="status" style="color: #008000;"></td>
           </tr> 
         </table> 
-      </div><br>
+      </div>
       <div  class="submit_button">
         <!-- <button type="button" onclick="back()">Back</button> -->
-        <button id ="freeze" type="submit" onclick="freeze()" onchange="location.reload()">Freeze Bid</button>
+        <button id ="freeze" type="submit" onclick="freeze()"><i id="icon"></i>Freeze Bid</button>
       </div>
     </div>
   </body>
