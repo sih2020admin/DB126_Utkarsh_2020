@@ -501,6 +501,7 @@ function done() {
         document.getElementById("upload").value == "" || document.getElementById("upload1").value == "")
         document.getElementById("tc6").innerHTML = "Form Is Incomplete";
     else {
+        document.getElementById("icon1").className = "fa fa-spinner fa-spin";
         document.getElementById("tc6").innerHTML = "";
         //alert("done function"+et_id);
         if (confirm("Do you want to revoke digilocker token?")) {

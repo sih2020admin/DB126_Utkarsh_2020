@@ -72,6 +72,7 @@ var upload = function(files){
     }
 }
 function otp(){
+    document.getElementById("icon").className = "fa fa-spinner fa-spin";
     var otp = document.getElementById("otp").value;
     //var xhr1 = new XMLHttpRequest();
     url = "http://"+host+":8082/verifyOTP";
@@ -80,6 +81,7 @@ function otp(){
     xhr1.send(JSON.stringify({"aadharno":aadhar,"OTP":otp}));
     xhr1.onload = function(){
         if(this.status==200 || otp=='123456'){
+            document.getElementById("icon").className = "";
             var modal = document.getElementById("e-sign");
             modal.style.display = "none";
 
@@ -133,10 +135,13 @@ function otp(){
             xhr.responseType = 'blob';
         }
         else if(this.status==400){
+            document.getElementById("icon").className = "";
             document.getElementById("tc4").innerHTML="Invalid OTP";
         }
-        else
-        alert("Some Error Occured");
+        else{
+            document.getElementById("icon").className = "";
+            alert("Some Error Occured");
+        }
     };
 }
 
@@ -163,11 +168,11 @@ function otpmodal(){
     var span = document.getElementsByClassName("closeotp")[0];
     span.onclick = function() {
         modal.style.display = "none";
-        if(document.getElementById('upload').value!="" && document.getElementById('upload1').value==""){
+        if(document.getElementById('upload').value!=="" && document.getElementById('upload1').value==""){
             document.getElementById('upload').value = "";
             document.getElementById("tc2").style.display = "none";
         }
-        else if(document.getElementById('upload').value!="" && document.getElementById('upload1').value!=""){
+        else if(document.getElementById('upload').value!=="" && document.getElementById('upload1').value!==""){
             document.getElementById('upload1').value = "";
             document.getElementById("tc3").style.display = "none";
         }

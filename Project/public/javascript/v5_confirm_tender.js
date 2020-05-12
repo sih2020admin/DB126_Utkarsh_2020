@@ -52,6 +52,7 @@ xhr.onload = function(){
         alert("Some Error Occured");
 };
 function freeze(){
+    document.getElementById("icon").className = "fa fa-spinner fa-spin";
     var url = "/confirm_tender_s5";
     xhr.open("POST" ,url);
     xhr.setRequestHeader('Content-Type','application/json');
@@ -60,10 +61,14 @@ function freeze(){
         if(this.status==200){
             window.location.href="/v5_preview_tender.html?et_id="+et_id+"&etd_id="+etd_id;
         }
-        else if(this.status==400)
+        else if(this.status==400){
+            document.getElementById("icon").className = "";
             alert("Error 400");
-        else
+        }
+        else{
+            document.getElementById("icon").className = "";
             alert("Some Error Occured");
+        }
     }
  
 }
