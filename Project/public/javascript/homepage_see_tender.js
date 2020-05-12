@@ -1,40 +1,58 @@
-var data = "";
-var response;
-var vd_id =get_cookie('vd_id')
-var vcd_id =get_cookie('vcd_id')
+var response,data = "";
+var vd_id =get_cookie('vd_id');
+var vcd_id =get_cookie('vcd_id');
 
 var xhr = new XMLHttpRequest();
-
-
+var url =  "/gettenderlist";
+xhr.open("POST",url);
+xhr.send(data);
 xhr.onload = function () {
   if (this.status === 200) {
             console.log(this.responseText);
-
             response = JSON.parse(this.responseText);
 
-            var cont_div = document.getElementById('cont');
-            var cont_div2 = document.getElementById('cont2');
+            // var cont_div = document.getElementById('cont');
+            // var cont_div2 = document.getElementById('cont2');
 
+            var table1 = document.getElementById('current');
+            var table2 = document.getElementById('upcoming');
 
-                for (var i = 0; i < response.length; i++) {
+            //     for (var i = 0; i < response.length; i++) {
 
-                    var div=`<div class="cont" id="`+i+`">
-                        <p class="heading">`+response[i].et_title+`</p><br>
-                        <div class="Tdetails">
-                            <p class="RnoLabel"><strong>Ref No:</strong></p>
-                            <p >`+response[i].et_tender_ref_no+`</p>
-                            <p class="OdateLabel"><strong>Closing Date:</strong></p>
-                            <p id="Odate">`+response[i].et_last_date_apply+`</p>
-                            <p class="BdateLabel"><strong>Bid Opening Date:</strong></p>
-                            <p id="Bdate">`+response[i].et_bidding_date+`</p>
-                        </div><br>  
-                        <p class="para">`+response[i].et_tender_desc+`</p>
-                        <br><button name="apply" value='apply' class="apply" onclick="apply(`+i+`)">Apply</button>
-                    </div>`;
+            //         var div=`<div class="cont" id="`+i+`">
+            //             <p class="heading">`+response[i].et_title+`</p><br>
+            //             <div class="Tdetails">
+            //                 <p class="RnoLabel"><strong>Ref No:</strong></p>
+            //                 <p >`+response[i].et_tender_ref_no+`</p>
+            //                 <p class="OdateLabel"><strong>Closing Date:</strong></p>
+            //                 <p id="Odate">`+response[i].et_last_date_apply+`</p>
+            //                 <p class="BdateLabel"><strong>Bid Opening Date:</strong></p>
+            //                 <p id="Bdate">`+response[i].et_bidding_date+`</p>
+            //             </div><br>  
+            //             <p class="para">`+response[i].et_tender_desc+`</p>
+            //             <br><button name="apply" value='apply' class="apply" onclick="apply(`+i+`)">Apply</button>
+            //         </div>`;
                     
-                    cont_div.insertAdjacentHTML('beforeend', div);
-                    cont_div2.insertAdjacentHTML('beforeend', div);
-            }
+            //         cont_div.insertAdjacentHTML('beforeend', div);
+            //         cont_div2.insertAdjacentHTML('beforeend', div);
+            // }
+            for (var i = 0; i < response.length; i++) {
+                var tr1 =`<tr>
+                            <td>`+response[i].et_tender_ref_no+`</td>
+                            <td>`+response[i].et_title+`</td>
+                            <td><a href="v1_login.html">`+response[i].et_tender_desc+`</a></td>
+                            <td>`+response[i].et_last_date_apply.slice(0,-14)+`</td>
+                        </tr>`
+                var tr2 =`<tr>
+                            <td>`+response[i].et_tender_ref_no+`</td>
+                            <td>`+response[i].et_title+`</td>
+                            <td>`+response[i].et_tender_desc+`</td>
+                            <td>`+response[i].et_last_date_apply.slice(0,-14)+`</td>
+                        </tr>`
+                   
+                table1.insertAdjacentHTML('beforeend', tr1);
+                table2.insertAdjacentHTML('beforeend', tr2);
+        }
           }
           else if (this.status == 404) {  
         alert("No tender to show");
@@ -44,61 +62,48 @@ xhr.onload = function () {
     }
 }
 
-xhr.open("POST", "http://"+IP+":8081/gettenderlist");
-
-xhr.send(data);
-
-
-
-
 function apply(i) {
     console.log("applied click")
     if(vd_id != ""){
-    var et_id=response[i].et_id;
-    var data = JSON.stringify({"et_id":et_id,"vd_id":vd_id});
+        var et_id=response[i].et_id;
+        var data = JSON.stringify({"et_id":et_id,"vd_id":vd_id});
 
-    var xhr = new XMLHttpRequest();
-    // xhr.withCredentials = true;
-
-    xhr.onload = function () {
-      if (this.status === 200) {
+        var xhr = new XMLHttpRequest();
+        // xhr.withCredentials = true;
+        var url = "/get_etd_id"
+        xhr.open("POST",url);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.send(data);
+        xhr.onload = function () {
+        if (this.status === 200) {
             var res =  JSON.parse(this.responseText);
             var status = res.status;
             console.log(res.status)
             if(status=="100"){
-                alert("all ready applied , complete process")
+                alert("Application applied,Directing To Payment");
                 window.location.href = "/payment/tender?et_id="+et_id+"&etd_id="+res.etd_id;
             }
             else if(status=="110"){
-                alert("all ready applied , complete process")
+                alert("Application applied,Directing To E-sign")
                 window.location.href = "/v4_apply_tender_s3.html?et_id="+et_id+"&etd_id="+res.etd_id;
             }
             else if(status=="111"){
-                alert("Process done Submit Tender");
-		    window.location.href= "/v5_confirm_tender.html?et_id="+et_id+"&etd_id="+res.etd_id;
-
+                alert("Application applied,Freeze Bid");
+            window.location.href= "/v5_confirm_tender.html?et_id="+et_id+"&etd_id="+res.etd_id;
             }
             else if(status=="1111"){
-                alert("Application submited redirecting to Application Preview page");
-		    window.location.href= "/v5_preview_tender.html?et_id="+et_id+"&etd_id="+res.etd_id;
-
+                // alert("Application sSubmitted redirecting to Application Preview page");
+            window.location.href= "/v5_preview_tender.html?et_id="+et_id+"&etd_id="+res.etd_id;
             }
-
-      }
-    else if (this.status === 404) {
-        window.location.href = "/v4_apply_tender_s1.html?et_id="+response[i].et_id;
-
-    }
-    else{
-        alert("Check Network")
-    }
+        }
+        else if (this.status === 404) {
+            window.location.href = "/v4_apply_tender_s1.html?et_id="+response[i].et_id;
+        }
+        else{
+            alert("Check Network")
+        }
     }
 
-    xhr.open("POST", "http://"+IP+":8081/get_etd_id");
-    xhr.setRequestHeader("Content-Type", "application/json");
-    
-
-    xhr.send(data);
     console.log("apply")
     
 }

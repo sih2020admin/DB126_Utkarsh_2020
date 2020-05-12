@@ -32,6 +32,13 @@ p {
   display: inline;
 }
 
+strong, .RnoLabel, .Id, .OdateLabel {
+  font-family: 'Open Sans', 'Sans serif';
+  font-weight: 100;
+  color: var(--accent-color);
+  size: .5rem;
+}
+
 .status1 {
   font-family: 'Montserrat', sans-serif;
   color: #fd0000;
@@ -90,13 +97,6 @@ p {
   padding: 0.5em 1em;
 }
 
-strong, .RnoLabel, .Id, .OdateLabel {
-  font-family: 'Open Sans', 'Sans serif';
-  font-weight: 500;
-  color: var(--accent-color);
-  size: .5rem;
-}
-
 label {
   color: black;
 }
@@ -136,5 +136,10 @@ button:hover {
 
 .button_div {
   text-align: center;
+}
+
+.submit_button {
+  text-align: center;
+  margin: 40px;
 }
 /*# sourceMappingURL=confirm_tender.css.map */

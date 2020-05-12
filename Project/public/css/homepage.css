@@ -168,10 +168,6 @@ h1, h3, h2, h4 {
   font-size: 12px;
 }
 
-.table_cont tr:nth-child(odd) {
-  background-color: rgba(141, 111, 251, 0.06);
-}
-
 .table_cont th {
   background-color: var(--main_color);
   color: #fff;
