@@ -10,6 +10,10 @@ if(get_cookie('ad_id') == '')
 	var ad_id =get_cookie('ad_id')
 	var ad_dept_id =get_cookie('ad_dept_id')
 	var ad_org_id =get_cookie('ad_org_id')
+	var file1_uri = null;
+	var file2_uri = null;
+	var zip_link = null;
+
 // var create_form = document.getElementById("create_input_details");
 
 
@@ -81,7 +85,122 @@ if(get_cookie('ad_id') == '')
 	xhr.send(data);
 
 
+// file upload 1
+jQuery('document').ready(function(){
+	// console.log("file 1 uploading");
+    var input = document.getElementById("file1");
+    var formdata = false;
+    if (window.FormData) {
+        formdata = new FormData();
+    }
+    input.addEventListener("change", function (evt) {
+        var i = 0, len = this.files.length, img, reader, file;
 
+        for ( ; i < len; i++ ) {
+            file = this.files[i];
+
+            if (!!file.type.match(/pdf.*/)) {
+                if ( window.FileReader ) {
+                    reader = new FileReader();
+                    reader.onloadend = function (e) {
+                        //showUploadedItem(e.target.result, file.fileName);
+                    };
+                    reader.readAsDataURL(file);
+                }
+
+                if (formdata) {
+                    formdata.append('tender_pdf', file);
+                    formdata.append("extra",'extra-data');
+                }
+
+                if (formdata) {
+                    
+
+                    jQuery.ajax({
+                        url: "fileupload",
+                        type: "POST",
+                        data: formdata,
+                        processData: false,
+                        contentType: false,
+                        success: function (res) {
+                         alert("uploaded");
+                         res=JSON.parse(res)
+                         file1_uri=res.filename
+                         if(file2_uri != null && file1_uri != null){
+                         	// document.getElementById("get_link").style.display = "block";
+                         }
+                        }
+                    });
+                }
+            }
+            else
+            {
+                alert('Not a vaild pdf!');
+            }
+        }
+
+    }, false);
+});
+
+
+//file 2 upload
+
+jQuery('document').ready(function(){
+	// console.log("file 1 uploading");
+    var input2 = document.getElementById("file2");
+    // input.display = none;
+    var formdata2 = false;
+    if (window.FormData) {
+        formdata2 = new FormData();
+    }
+    input2.addEventListener("change", function (evt) {
+        var i = 0, len = this.files.length, img, reader, file;
+
+        for ( ; i < len; i++ ) {
+            file = this.files[i];
+
+            if (!!file.type.match(/pdf.*/)) {
+                if ( window.FileReader ) {
+                    reader = new FileReader();
+                    reader.onloadend = function (e) {
+                        //showUploadedItem(e.target.result, file.fileName);
+                    };
+                    reader.readAsDataURL(file);
+                }
+
+                if (formdata2) {
+                    formdata2.append('tender_pdf', file);
+                    formdata2.append("extra",'extra-data');
+                }
+
+                if (formdata2) {
+                    
+
+                    jQuery.ajax({
+                        url: "fileupload",
+                        type: "POST",
+                        data: formdata2,
+                        processData: false,
+                        contentType: false,
+                        success: function (res) {
+                         alert("uploaded");
+                         res=JSON.parse(res)
+                         file2_uri=res.filename
+                         if(file2_uri != null && file1_uri != null){
+                         	// document.getElementById("get_link").style.display = "block";
+                         }
+                        }
+                    });
+                }
+            }
+            else
+            {
+                alert('Not a vaild pdf!');
+            }
+        }
+
+    }, false);
+});
 
 
 
@@ -417,7 +536,7 @@ if(get_cookie('ad_id') == '')
             	var fee = document.getElementById("fee").value
 				var closing_date = new Date(document.getElementById("closing_date").value)
 				var bid_opening_date =new Date( document.getElementById("bid_opening_date").value)
-				var link = document.getElementById("link").value
+				// var link = document.getElementById("link").value
 				var description = document.getElementById("description").value
 
 				console.log("add tender called"+ref_no.length+(closing_date.getTime() > bid_opening_date.getTime())+Date(closing_date)+Date(bid_opening_date))
@@ -451,7 +570,12 @@ if(get_cookie('ad_id') == '')
 					alert("Bid opening date must be after closing date")
 
 					return false
-				}else{
+				}
+				else if(zip_link==null){
+					alert("Upload documents and Generate Link")
+					return false
+				}
+				else{
 
 					var xhr = new XMLHttpRequest();
 					// xhr.withCredentials = true;
@@ -477,7 +601,7 @@ if(get_cookie('ad_id') == '')
 						"et_tender_desc":description,
 						"et_last_date_apply":document.getElementById("closing_date").value,
 						"et_bidding_date":document.getElementById("bid_opening_date").value,
-						"et_file_uri":link,
+						"et_file_uri":zip_link,
 						"dept_id":ad_dept_id}));
 				//imp here dept id is fixed for now but it shoud be taken from cookies
 				}
@@ -488,7 +612,62 @@ if(get_cookie('ad_id') == '')
 
 
 
+function get_link() {
+	// body...
+	if(file1_uri==null && file2_uri==null){
+		alert("Upload File first to generate link")
+		return false
+	}
+	var data = JSON.stringify({"file1_uri":file1_uri,"file2_uri":file2_uri});
 
+	var xhr = new XMLHttpRequest();
+
+	xhr.onload = function(){
+			if(this.status==200){
+	    console.log(this.responseText);
+	    document.getElementById("get_link").style.display = "none";
+	    document.getElementById("create_t").style.display = "block";
+	    var res = JSON.parse(this.responseText);
+	    zip_link = res.zip_link;
+	  }
+	  else if(this.status==404){
+	    console.log(this.responseText);
+	  }
+	}
+
+	xhr.open("POST", "http://192.168.0.6:8081/generate_zip");
+	xhr.setRequestHeader("Content-Type", "application/json");
+
+	xhr.send(data);
+}
+function select_files(value) {
+	// body...
+	if(value == '0'){
+		zip_link = "uploads/sample.zip"
+		document.getElementById("get_link").style.display = "none";
+		document.getElementById("create_t").style.display = "block";
+		document.getElementById("div_f1").style.display = "none";
+		document.getElementById("div_f2").style.display = "none";
+	}else if(value == '1'){
+		file2_uri=" "
+		file1_uri=null;
+		// document.getElementById("create_t").style.display = "none";
+		document.getElementById("div_f1").style.display = "block";
+		document.getElementById("div_f2").style.display = "none";
+	}else if(value =='2'){
+		file1_uri=' '
+		file2_uri=null;
+		// document.getElementById("create_t").style.display = "none";
+		document.getElementById("div_f1").style.display = "none";
+		document.getElementById("div_f2").style.display = "block";
+	}else if(value == '3'){
+		file1_uri=null;
+		file2_uri=null;
+		// document.getElementById("create_t").style.display = "none";
+		document.getElementById("div_f1").style.display = "block";
+		document.getElementById("div_f2").style.display = "block";
+	}
+}
 
 
 

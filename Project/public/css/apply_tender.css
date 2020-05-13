@@ -27,13 +27,11 @@ strong {
 .cont {
   text-align: left;
   background-color: white;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
+  width: 60%;
   min-width: 600px;
   height: auto;
   padding: 20px;
-  margin: 40px;
+  margin: 40px auto;
   margin-top: 20px;
   border-radius: 10px;
   -webkit-box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.2);
@@ -102,6 +100,7 @@ button {
   border: none;
   outline: none;
   color: #ffffff;
+  margin-bottom: 30px;
 }
 
 button:hover {

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/apply_tender.css">
     <!-- <link rel="stylesheet" href="css/payment.css"> -->
     <script  src="javascript/cookies.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <title>apply tender</title>
 </head>
 <body>
@@ -31,15 +32,11 @@
 <!-- tender deatils code is here ------------------------------------------------------------------------>
 
     <div class="conts" id="conts">
-        
     </div>
 
-    <div class="conts">
-         <button id="apply_button" value="Apply" onclick="apply()">Apply</button>
-         <button id="next_button"  display:  none value="next" onclick="next()">Next</button>
-    </div>
- 
-  </body>
+    <button id="apply_button" value="Apply" onclick="apply()">Apply</button>
+    <button id="next_button"  display:  none value="next" onclick="next()">Next</button>
+</body>
 
 
 
@@ -51,7 +48,7 @@
         {
             log_a.setAttribute("href", "v6_profile.html");
             log_a.innerHTML ="Profile"
-            nav_bar.insertAdjacentHTML('beforeend','<a id="log_a" href="v1_login.html">Log out</a>');
+            nav_bar.insertAdjacentHTML('beforeend','<a id="log_a" onclick="return theFunctionV();">Log out</a>');
         }
 </script>
 <script src="javascript/jquery-3.4.1.min.js"></script>

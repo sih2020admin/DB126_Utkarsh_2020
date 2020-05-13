@@ -52,7 +52,7 @@ router.post('/send',(req,res)=>{
                 }
                 client.messages.create(smsOptions,function(error,message){
                     if(error){
-                        console.log("error");
+                        console.log("SMS Error");
                         //res.sendStatus(400);
                     }else{
                         console.log("SMS sent:" + message.sid);
@@ -63,7 +63,7 @@ router.post('/send',(req,res)=>{
                 var dt = new Date(Date.now() + 300000);
                 dt = dt.toISOString().slice(0, 19).replace('T', ' ');
                 //console.log(dt, new Date(Date.now()))
-                con.query('INSERT INTO `OTP` (`aadharno`, `otp`, `validtill`, `isUsed`, `reference_id`) VALUES (?,?,?, 0 , 1)', [usrn, otp, dt], function (error, results, fields) {
+                con.query('INSERT INTO `OTP` (`aadharno`, `otp`, `validtill`, `isUsed`, `reference_id`) VALUES (?,?,?, 0 , 2)', [usrn, otp, dt], function (error, results, fields) {
                     if (error) {
                         //console.log("error: otp db ",error);
                         res.sendStatus(400);

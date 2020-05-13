@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/nav.css">
     <link rel="stylesheet" href="css/v4_apply_tender_s3.css">
-    <!-- <link rel="stylesheet" href="css/payment.css"> -->
     <script src="https://kit.fontawesome.com/523ff21025.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script  src="javascript/cookies.js"></script>
     <title>E-sign</title>
 </head>
@@ -19,7 +19,6 @@
   </nav>
 </header>
 
-<!-- -----------------------------------E-signing code------------------------------------------------------------------------>
 <body>
   <div class="cont">
     <h3>E-sign Details</h3><br>
@@ -39,17 +38,15 @@
     </table>
     <p id="tc"></p><br>
     <div class="button_div"><button type="submit" class="save_button" onclick="save()">Save</button></div>
-    <!-- <div class="button_div"><button type="submit" class="save_button" onclick="otpmodal()">Save</button></div> -->
   </div>
   <div class="cont">
     <h3>Documents Upload</h3>
     <br>
         <label for="file">Technical Document</label><br><br>
-          <input type="file" id=".
-          " accept="application/pdf" onchange="browse()">
+          <input type="file" id="upload" accept="application/pdf" onchange="browse()">
           <label for="upload" id="upload_label_id" class="upload_label"><i class="fas fa-upload"></i>&nbsp;&nbsp;Choose a Document</label><br>
           <p id="tc2"></p><br>
-          <a target="blank" id ="preview">Click To Preview</a><br>
+          <a target="blank" id ="preview">Click To Preview</a><br><br>
           <hr><br>
         <label for="file">BOQ Document</label><br><br>
           <input type="file" id="upload1" accept="application/pdf" onchange="browse1()">
@@ -57,10 +54,10 @@
           <p id="tc3"></p><br>
           <a target="blank" id ="preview1">Click To Preview</a><br>
     <p id="tc5"></p><br>
-    <button type="button" onclick="openModal()">Digilocker</button>
+    <button id="digilocker" type="button" onclick="openModal()">Digilocker</button>
   </div>
 
-  <!-- Modal-->
+  <!-- E-sign Modal-->
   <div id="e-sign" class="modal">
     <div class="modal-content" style="width: 40%; height:80%; font-size: 14px;">
       <div class="modal-header">
@@ -72,7 +69,7 @@
           <p><u>Note</u></p>
           <p>1. This Page lets you Sign the Uploaded Document through Aadhar Based OTP.</p>
           <p>2. Enter The OTP recieved on SMS.</p>
-          <!-- <p>3. For Testing Enter OTP as 123456.</p> -->
+          <p>3. If In case SMS OTP not working use 123456 as OTP.</p>
         </div><br><br>
          <label for="OTP">Enter OTP</label>
          <input type="password" id= "otp" name="OTP"><br>
@@ -84,11 +81,9 @@
   </div>
   <br>
   <p id ="tc6"></p><br>
-  <button value="back" class="buttons" onclick="back()">Back</button>
-  <button value="next" class="buttons" onclick="done()">Done</button>
+  <!-- <button value="back" class="buttons" onclick="back()">Back</button> -->
+  <button value="next" class="buttons" onclick="done()">Submit</button>
 </body>
-
-<!-- ---------------------------- End of E-sign code --------------------------------------  -->
 
 <!-- --------------------------- Start of digilocker html code -------------------------------- -->
 
@@ -104,16 +99,9 @@
       </div>
       <div class="modal-body">
           <ul id="directory"></ul><br>
-          <!-- <button id="back">Back</button> -->
           <button id="back" onclick="">Back</button>
-          <!-- <button id="uploadDigi" onclick="uploadFiles()">Upload Here</button> -->
           <button id="uploadDigi" onclick="uploadFiles()">Upload</button>
       </div>
-      <!-- <div class="modal-footer">
-          <div class="wrapper">
-              
-          </div>
-      </div> -->
   </div>
 </div>
 
@@ -127,10 +115,10 @@
         {
             log_a.setAttribute("href", "v6_profile.html");
             log_a.innerHTML ="Profile"
-            nav_bar.insertAdjacentHTML('beforeend','<a id="log_a" href="v1_login.html">Log out</a>');
+            nav_bar.insertAdjacentHTML('beforeend','<a id="log_a" onclick="return theFunctionV();">Log out</a>');
         }
 </script>
 <script src="javascript/v4_apply_tender_s3.js"></script>
 <script src="javascript/jquery-3.4.1.min.js"></script>
-<!-- <script type="text/javascript" src="javascript/v4_apply_tender_digilocker.js"></script> -->
+<script type="text/javascript" src="javascript/v4_apply_tender_digilocker.js"></script>
 </html>

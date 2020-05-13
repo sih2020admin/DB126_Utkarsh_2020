@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="css/nav.css">
 	<link rel="stylesheet" href="css/login.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script  src="javascript/cookies.js"></script>
 	<title>Admin dashboard</title>
 </head>
@@ -12,10 +13,10 @@
 	 <header>
         <nav id='nav_bar'>   
             <a href="v7_homepage.html">Home</a>
-            <!-- <a href="2CRUD_admin.html">Tender</a> -->
+            <a href="2CRUD_admin.html">Tender</a>
             <a href="5admin_profile.html">Profile</a>
             <a href="3view_tender_application.html">Applications</a>
-            <a href="1admin_login.html">Log out</a>
+            <a onclick="return theFunctionA();">Log out</a>
         </nav>
     </header>
 	<div class="cont">
@@ -32,7 +33,7 @@
         {
             log_a.setAttribute("href", "v6_profile.html");
             log_a.innerHTML ="Profile"
-            nav_bar.insertAdjacentHTML('beforeend','<a id="log_a" href="v1_login.html">Log out</a>');
+            nav_bar.insertAdjacentHTML('beforeend','<a id="log_a" >Log out</a>');
         }
 </script>
 <script  src="javascript/5admin_profile.js"></script>

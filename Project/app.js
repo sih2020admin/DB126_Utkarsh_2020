@@ -29,14 +29,15 @@ app.use(cors_1.default({
 }));
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
-app.use(function (request, response, next) {
-    console.log(request.ip);
-    next();
-});
+/* app.use((request, response, next) => {
+    console.log(request.ip)
+    next()
+}) */
 app.use(cookie());
 app.use(express_1.default.static(path_1.default.join(__dirname, 'public')));
 app.use(express_1.default.static(path_1.default.join(__dirname, 'views/user')));
 app.use(express_1.default.static(path_1.default.join(__dirname, 'views/admin')));
+app.use('/uploads', express_1.default.static(path_1.default.join(__dirname, 'uploads')));
 app.use('/register', register.default);
 app.use('/payment', payment_server_1.default);
 app.use('/', tender_desc.default);

@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/nav.css">
     <link rel="stylesheet" href="css/register.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script  src="javascript/cookies.js"></script>
@@ -117,18 +118,21 @@
         </tr>
         <tr>
           <td><label for="aadhaar_number">Aadhaar Number</label></td>
-          <td><input id="aadhaar_number" type="text" placeholder="Enter Your Aadhar Number" maxlength="12"><button id="verify_button">Verify</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-          <td><input id="otp" placeholder="Enter OTP" type="text" style="display: none;"><button id="otp_button" style="display: none;">Confirm</button>
-          </td>
+          <td><input id="aadhaar_number" type="text" placeholder="Enter Your Aadhar Number" maxlength="12">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+          
         </tr>
     </table>
-    <br>
+    <br> 
 <!--     <button class="submit_button" id="contact__details_previous">Back</button>
- -->    <button class="submit_button" id="submit_button">Register</button>
+ -->
+            <button id="verify_button">Verify Aadhaar Number</button>    
+          <button class="submit_button" id="submit_button">Register</button>
     </div>
     <!-- <div class="submit_button" style="display: none;">
     </div> -->
     <h1 id="error_para" style="font-size: larger;"></h1>
+    <input id="otp" placeholder="Enter OTP" type="password" style="display: none;" maxlength="6"><br><button id="otp_button" style="display: none;">Confirm</button>
+
 
 </body></html>
 
