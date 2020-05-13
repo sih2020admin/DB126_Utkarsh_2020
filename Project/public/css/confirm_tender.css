@@ -2,7 +2,6 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:500&display=swap");
 :root {
   --main_color: #663EFD;
-  --accent_color: #a6a6a6;
 }
 
 * {
@@ -35,7 +34,7 @@ p {
 strong, .RnoLabel, .Id, .OdateLabel {
   font-family: 'Open Sans', 'Sans serif';
   font-weight: 100;
-  color: var(--accent-color);
+  color: #a6a6a6;
   size: .5rem;
 }
 
