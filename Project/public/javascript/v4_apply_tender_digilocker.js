@@ -272,7 +272,7 @@ function get_files() {
     xhr.onload = function () {
         var temp = JSON.parse(this.responseText);
         if (this.status == 200) {
-            document.getElementById("icon").style.display = "none";
+            document.getElementById("icon2").style.display = "none";
             some();
             show_files(temp);
         }
@@ -402,7 +402,7 @@ function uploadFiles() {
         alert("Do you want to revoke your digilocker token?");
     }
     else {
-        document.getElementById("icon3").display = "block";
+        document.getElementById("icon3").style.display = "block";
         //update "upload" status
         is_upload = 1;
 
