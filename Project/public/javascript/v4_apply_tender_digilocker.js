@@ -13,6 +13,9 @@ var Technical_or_BOQ = 0;  //0 = no document uploaded yet, 1 = technical documen
 
 //on window load check if user need to be redirected to digilocker sign in page
 window.onload = function () {
+    //on load of page... hide loader of back and upload button
+    document.getElementById("icon2").style.display = "none";
+    document.getElementById("icon3").style.display = "none";
 
     //get param "state" from current url
     var url_string = window.location.href;
@@ -269,6 +272,7 @@ function get_files() {
     xhr.onload = function () {
         var temp = JSON.parse(this.responseText);
         if (this.status == 200) {
+            document.getElementById("icon").style.display = "none";
             some();
             show_files(temp);
         }
@@ -357,6 +361,7 @@ $(document).ready(function () {
 
     //on click of back button
     $("#back").click(function () {
+        document.getElementById("icon2").style.display = "block";
         is_upload = 0;
         var dir_element = document.getElementById("cur_dir");
         console.log(dir_element.innerHTML);
@@ -397,6 +402,7 @@ function uploadFiles() {
         alert("Do you want to revoke your digilocker token?");
     }
     else {
+        document.getElementById("icon3").display = "block";
         //update "upload" status
         is_upload = 1;
 
@@ -430,6 +436,7 @@ function uploadFiles() {
         xhr.onload = function () {
             if (this.status == 200) {
                 console.log("Your file has been uploaded successfully.");
+                document.getElementById("icon3").style.display = "none";
                 if (Technical_or_BOQ == 0) {
                     Technical_or_BOQ = 1;
                     console.log("TECHNICAL get file START");
