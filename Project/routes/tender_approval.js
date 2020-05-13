@@ -7,6 +7,15 @@ var express_1 = __importDefault(require("express"));
 var db_1 = __importDefault(require("./db"));
 var router = express_1.default.Router();
 
+//Email
+var nodemailer = require('nodemailer');
+var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: process.env.EMAIL,
+        pass: process.env.PASS,
+    },
+});
 
 
 
@@ -53,15 +62,32 @@ router.post('/approve_tender_application', function (req, res) {  // to be call 
 	console.log("approve applications called"+et_id+etd_id)	
 
 
-	db_1.default.query('START TRANSACTION ; UPDATE `e_tender_details` SET `is_approved` = 1 WHERE et_id =  ?; UPDATE `e_tender_vendor` SET `is_approved` = 1 WHERE etd_id =  ?; COMMIT;',
-	 [et_id,etd_id],function (error, results, fields) {
+	db_1.default.query('START TRANSACTION ; UPDATE `e_tender_details` SET `is_approved` = 1 WHERE et_id =  ?; UPDATE `e_tender_vendor` SET `is_approved` = 1, `date_of_approval`=CURRENT_DATE  WHERE etd_id =  ?; 	SELECT `vcd_contact`, `vcd_email` FROM `v_contact_details` WHERE vcd_id IN (SELECT `vcd_id`FROM `e_tender_vendor` WHERE etd_id=?);	 COMMIT;',
+	 [et_id,etd_id,etd_id],function (error, results, fields) {
 		if (error) {
 	      		console.log("error",error);
 	      		res.sendStatus(400);
 	      		// console.log("gettenderlist called0")	
 	     	}
 	     else{
-         			// console.log("gettenderlist called2")	
+					 console.log("result ",results[3][0].vcd_email)
+					//  console.log("result2 ",results[1])
+					//  console.log("result3 ",results[3])	
+					   var mailOptions = {
+					    from: 'E-tender',
+					    to: results[3][0].vcd_email ,
+					    subject: 'Congratulations your tender has been approved',
+					    text: 'Your application has been approved for tender no: ET00'+et_id+'. Your application ID is AP00'+etd_id+' . \nThank You.',
+					}
+					
+					transporter.sendMail(mailOptions, function (error, info) {
+					    if (error) {
+					        console.log(error);
+					        //res.sendStatus(400);
+					    } else {
+					        console.log('Email sent: ' + info.response);
+					    }
+					});
          			res.sendStatus(200);
        			
       		}

@@ -8,6 +8,16 @@ var db_1 = __importDefault(require("./db"));
 var router = express_1.default.Router();
 var unirest = require('unirest');
 
+//Email
+var nodemailer = require('nodemailer');
+var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: process.env.EMAIL,
+        pass: process.env.PASS,
+    },
+});
+
 
 router.post('/apply_tender', function (req, res) {
 
@@ -42,7 +52,7 @@ router.post('/apply_tender_s3', function (req, res) {
       console.log("apply tender s3 called "+etd_id)
   
         
-  db_1.default.query('UPDATE `e_tender_vendor` SET `status` = "111" WHERE `etd_id` = ?;',[etd_id], function (error, results, fields) {
+  db_1.default.query('UPDATE `e_tender_vendor` SET `status` = "111" WHERE `etd_id` = ?; select v',[etd_id], function (error, results, fields) {
     if (error) {
             console.log("error",error);
             res.sendStatus(400);
@@ -68,6 +78,21 @@ if (error) {
     }
 else{
         console.log(results)
+        //   var mailOptions = {
+          //     from: 'E-tender',
+          //     to: ,
+          //     subject: 'Confirmation Of Your Application to tender',
+          //     text: 'Your application has been sucesfully submitted. Your application ID is AP00'+etd_id+' . \nThank You.',
+          // }
+        
+          // transporter.sendMail(mailOptions, function (error, info) {
+          //     if (error) {
+          //         console.log(error);
+          //         //res.sendStatus(400);
+          //     } else {
+          //         console.log('Email sent: ' + info.response);
+          //     }
+          // });
           res.sendStatus(200);
     }
   });
