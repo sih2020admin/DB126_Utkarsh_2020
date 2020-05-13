@@ -163,7 +163,7 @@ function otpmodal(){
     document.getElementById("otp").value="";
     document.getElementById("tc4").innerHTML="";
 
-    var modal = document.getElementById("e-sign");
+    var modal = doopeningcument.getElementById("e-sign");
     modal.style.display = "block";
     var span = document.getElementsByClassName("closeotp")[0];
     span.onclick = function() {
