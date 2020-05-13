@@ -1,17 +1,6 @@
-const queryString = window.location.search;
-console.log(queryString);
-const urlParams = new URLSearchParams(queryString);
-
-var et_id  = urlParams.get('et_id')
-var etd_id = urlParams.get('etd_id')
-
-console.log(et_id,etd_id);
-
 var vcd_id = get_cookie('vcd_id');
-var aadhar;
+var aadhar,host=location.hostname;
 var xhr1 = new XMLHttpRequest();
-
-/* ---------------------------- Start of E-sign code -------------------------------------- */
 
 document.getElementById('reason').value = "E-Tendering"; 
 document.getElementById('location').value = "";
@@ -29,7 +18,7 @@ preview.style.display = "none";
 var preview1 = document.getElementById("preview1");
 preview1.style.display = "none";
 
-var url = "http://165.22.210.37:8081/details";
+var url = "/details";
 xhr1.open("POST" ,url);
 xhr1.setRequestHeader('Content-Type','application/json');
 xhr1.send(JSON.stringify({"vcd_id":vcd_id}));
@@ -68,7 +57,7 @@ var upload = function(files){
     }
     //console.log(formdata.get('file'));
     alert("Document Uploaded,Press OK to Sign the Document");
-    var url = "http://165.22.210.37:8082/sms/send";
+    var url = "http://"+host+":8082/sms/send";
     xhr1.open("POST" ,url);
     xhr1.setRequestHeader('Content-Type','application/json');
     xhr1.send(JSON.stringify({"aadharno":aadhar}));
@@ -83,14 +72,16 @@ var upload = function(files){
     }
 }
 function otp(){
+    document.getElementById("icon").className = "fa fa-spinner fa-spin";
     var otp = document.getElementById("otp").value;
     //var xhr1 = new XMLHttpRequest();
-    url = "http://165.22.210.37:8082/verifyOTP";
+    url = "http://"+host+":8082/verifyOTP";
     xhr1.open("POST" ,url);
     xhr1.setRequestHeader('Content-Type','application/json');
     xhr1.send(JSON.stringify({"aadharno":aadhar,"OTP":otp}));
     xhr1.onload = function(){
         if(this.status==200 || otp=='123456'){
+            document.getElementById("icon").className = "";
             var modal = document.getElementById("e-sign");
             modal.style.display = "none";
 
@@ -105,7 +96,7 @@ function otp(){
             formdata.append('location',location);
             
             var xhr = new XMLHttpRequest();
-            var url = "http://165.22.210.37:8091/sign";
+            var url = "http://"+host+":8091/sign";
             xhr.open("POST" ,url);
             xhr.send(formdata);
             xhr.onload = function(){
@@ -144,10 +135,13 @@ function otp(){
             xhr.responseType = 'blob';
         }
         else if(this.status==400){
+            document.getElementById("icon").className = "";
             document.getElementById("tc4").innerHTML="Invalid OTP";
         }
-        else
-        alert("Some Error Occured");
+        else{
+            document.getElementById("icon").className = "";
+            alert("Some Error Occured");
+        }
     };
 }
 
@@ -169,16 +163,16 @@ function otpmodal(){
     document.getElementById("otp").value="";
     document.getElementById("tc4").innerHTML="";
 
-    var modal = document.getElementById("e-sign");
+    var modal = doopeningcument.getElementById("e-sign");
     modal.style.display = "block";
     var span = document.getElementsByClassName("closeotp")[0];
     span.onclick = function() {
         modal.style.display = "none";
-        if(document.getElementById('upload').value!="" && document.getElementById('upload1').value==""){
+        if(document.getElementById('upload').value!=="" && document.getElementById('upload1').value==""){
             document.getElementById('upload').value = "";
             document.getElementById("tc2").style.display = "none";
         }
-        else if(document.getElementById('upload').value!="" && document.getElementById('upload1').value!=""){
+        else if(document.getElementById('upload').value!=="" && document.getElementById('upload1').value!==""){
             document.getElementById('upload1').value = "";
             document.getElementById("tc3").style.display = "none";
         }
@@ -197,7 +191,6 @@ function otpmodal(){
     }
 }
 
-/* ---------------------------- End of E-sign code -------------------------------------- */
 
 //You will find done function in v4_apply_tender_digilocker.js
 

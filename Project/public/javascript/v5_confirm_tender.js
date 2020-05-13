@@ -6,7 +6,7 @@ var etd_id = urlParams.get('etd_id');
 var vd_id = get_cookie('vd_id');
 
 var xhr = new XMLHttpRequest();
-var url = "http://165.22.210.37:8081/view";
+var url = "/view";
 xhr.open("POST" ,url);
 xhr.setRequestHeader('Content-Type','application/json');
 xhr.send(JSON.stringify({"et_id":et_id,"etd_id":etd_id,"vd_id":vd_id}));
@@ -51,3 +51,24 @@ xhr.onload = function(){
     else
         alert("Some Error Occured");
 };
+function freeze(){
+    document.getElementById("icon").className = "fa fa-spinner fa-spin";
+    var url = "/confirm_tender_s5";
+    xhr.open("POST" ,url);
+    xhr.setRequestHeader('Content-Type','application/json');
+    xhr.send(JSON.stringify({"etd_id":etd_id}));
+    xhr.onload = function(){
+        if(this.status==200){
+            window.location.href="/v5_preview_tender.html?et_id="+et_id+"&etd_id="+etd_id;
+        }
+        else if(this.status==400){
+            document.getElementById("icon").className = "";
+            alert("Error 400");
+        }
+        else{
+            document.getElementById("icon").className = "";
+            alert("Some Error Occured");
+        }
+    }
+ 
+}

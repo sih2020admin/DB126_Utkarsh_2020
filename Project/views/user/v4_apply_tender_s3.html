@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/v4_apply_tender_s3.css">
     <script src="https://kit.fontawesome.com/523ff21025.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script  src="javascript/cookies.js"></script>
     <title>E-sign</title>
@@ -75,14 +76,14 @@
          <input type="password" id= "otp" name="OTP"><br>
          <p id="tc4"></p><br>
          <button value="cancel" id="cancel">Cancel</button>
-         <button value="Submit" onclick="otp()">Submit</button>
+         <button value="Submit" onclick="otp()"><i id="icon"></i>Confirm</button>
       </div>
     </div>
   </div>
   <br>
   <p id ="tc6"></p><br>
   <!-- <button value="back" class="buttons" onclick="back()">Back</button> -->
-  <button value="next" class="buttons" onclick="done()">Submit</button>
+  <button value="next" class="buttons" onclick="done()"><i id="icon1"></i>Submit</button>
 </body>
 
 <!-- --------------------------- Start of digilocker html code -------------------------------- -->
@@ -100,7 +101,7 @@
       <div class="modal-body">
           <ul id="directory"></ul><br>
           <button id="back" onclick="">Back</button>
-          <button id="uploadDigi" onclick="uploadFiles()">Upload</button>
+          <button id="uploadDigi" onclick="uploadFiles()"><i id="icon2"></i>Upload</button>
       </div>
   </div>
 </div>
