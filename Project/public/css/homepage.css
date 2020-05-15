@@ -38,112 +38,6 @@ h1, h3, h2, h4 {
   margin-bottom: 10px;
 }
 
-.main_container {
-  display: inline-block;
-  margin-left: 40px;
-  margin-bottom: 40px;
-  height: 240px;
-  width: 45%;
-  padding: 5px;
-  border: 2px solid var(--main_color);
-  border-radius: 10px;
-  overflow-y: hidden;
-}
-
-.conts {
-  display: inline-block;
-  -webkit-animation: marquee 10s linear infinite;
-          animation: marquee 10s linear infinite;
-  /* width */
-  /* Track */
-  /* Handle */
-  /* Handle on hover */
-}
-
-.conts ::-webkit-scrollbar {
-  width: 10px;
-}
-
-.conts ::-webkit-scrollbar-track {
-  border: 0.4px solid #848DA7;
-  border-radius: 10px;
-}
-
-.conts ::-webkit-scrollbar-thumb {
-  background: #663EFD;
-  border-radius: 10px;
-}
-
-.conts ::-webkit-scrollbar-thumb:hover {
-  background: #A790FC;
-}
-
-.cont {
-  -webkit-box-shadow: 0 0 3px 0 rgba(103, 62, 253, 0.3);
-          box-shadow: 0 0 3px 0 rgba(103, 62, 253, 0.3);
-  border-radius: 10px;
-  margin: 20px 10px;
-  padding: 20px;
-}
-
-.cont p {
-  display: inline-block;
-}
-
-.cont p.heading {
-  color: var(--main_color);
-  font-weight: bold;
-  display: inline-block;
-  margin-bottom: 10px;
-}
-
-.cont button {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  margin-top: 5px;
-  padding: 3px 20px;
-  border-radius: 4px;
-  background-color: var(--main_color);
-  border: 0.4px solid var(--main_color);
-  color: #ffffff;
-  font-size: 17px;
-}
-
-.cont button:hover {
-  cursor: pointer;
-  background-color: #ffffff;
-  color: var(--main_color);
-  border: 0.4px solid var(--main_color);
-}
-
-@-webkit-keyframes marquee {
-  0% {
-    -webkit-transform: translate(0, 0);
-            transform: translate(0, 0);
-  }
-  100% {
-    -webkit-transform: translate(0, -100%);
-            transform: translate(0, -100%);
-  }
-}
-
-@keyframes marquee {
-  0% {
-    -webkit-transform: translate(0, 0);
-            transform: translate(0, 0);
-  }
-  100% {
-    -webkit-transform: translate(0, -100%);
-            transform: translate(0, -100%);
-  }
-}
-
-.conts:hover {
-  -webkit-animation-play-state: paused;
-          animation-play-state: paused;
-}
-
 .table_cont {
   display: inline-block;
   margin-left: 40px;
@@ -199,6 +93,17 @@ h1, h3, h2, h4 {
 .table_cont .marquee_table tr:hover {
   -webkit-transform: scale(1.02);
           transform: scale(1.02);
+}
+
+@-webkit-keyframes marquee {
+  0% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+  100% {
+    -webkit-transform: translate(0, -100%);
+            transform: translate(0, -100%);
+  }
 }
 
 @keyframes marquee {
