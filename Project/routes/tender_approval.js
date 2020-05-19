@@ -39,7 +39,7 @@ router.post('/get_application', function (req, res) {  // to be call from see te
 	     	// console.log(results.length	,results)
 	       		if(results.length >0){
 					   //console.log("gettenderlist called1")
-					   //console.log(results)
+					   console.log("results", results)
 		  			   res.send(results);
 
        			}
