@@ -52,7 +52,7 @@ router.post('/apply_tender_s3', function (req, res) {
       console.log("apply tender s3 called "+etd_id)
   
         
-  db_1.default.query('UPDATE `e_tender_vendor` SET `status` = "111" WHERE `etd_id` = ?; select v',[etd_id], function (error, results, fields) {
+  db_1.default.query('UPDATE `e_tender_vendor` SET `status` = "111" WHERE `etd_id` = ?;',[etd_id], function (error, results, fields) {
     if (error) {
             console.log("error",error);
             res.sendStatus(400);

@@ -2,7 +2,7 @@
 console.log("hello cookies");
 
 //if ur developing on server uncomment this IP 
-var IP="165.22.210.37"
+// var IP="165.22.210.37"
 
 
 //if ur developing in ur pc uncomment this IP
