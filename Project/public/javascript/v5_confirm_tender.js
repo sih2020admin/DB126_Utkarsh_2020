@@ -4,6 +4,7 @@ const urlParams = new URLSearchParams(queryString);
 var et_id  = urlParams.get('et_id');
 var etd_id = urlParams.get('etd_id');
 var vd_id = get_cookie('vd_id');
+var message;
 
 var xhr = new XMLHttpRequest();
 var url = "/view";

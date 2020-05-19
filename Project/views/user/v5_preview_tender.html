@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script  src="javascript/cookies.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.js" integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM=" crossorigin="anonymous"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.js" integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM=" crossorigin="anonymous"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
-    <script type="text/javascript" src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+    <!-- <script type="text/javascript" src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script> -->
     <!-- <script src="html2pdf.bundle.min.js"></script> -->
     
   </head>
@@ -149,7 +149,7 @@
             <p><strong>Time:</strong></p>
             <p id="time"></p><br>
           </div>
-          <div style="float: right;"  onclick="print2 ()">
+          <div style="float: right;"  onclick="print3()">
             <a ><img src="pdf.gif" width="55px" height="55px"></a><br>
             <a>Download</a>
           </div><br>
@@ -260,6 +260,37 @@ function print2() {
     });
 
 
-	}
+  
+
+
+  }
+  
+
+
+
+  function print3(){
+    console.log(message)
+    var doc = new jsPDF('p', 'mm', [297, 210]);
+ 
+    // doc.text('Hello world!', 10, 10)
+    // doc.addPage();
+    // doc.setFontSize(22);
+    // doc.text(20, 20, 'Answers');
+    // doc.setFontSize(16);
+    doc.setFontSize(26);
+    doc.text('Application Form',70,10)
+    doc.setFontSize(22);
+    doc.setFont("times");
+    doc.setFontType("italic");
+    doc.text('Status: ',147,20)
+    doc.setTextColor(127,255,0);
+    doc.text('Submitted',170,20)
+
+    doc.setFontSize(15);
+    doc.setTextColor(30,144,255);
+    doc.text("E-tender refernce number : "+message.result0[0].et_tender_ref_no,20,30)
+
+    doc.save('preview.pdf')
+  }
 </script>
 </html>
