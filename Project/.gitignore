@@ -1,5 +1,5 @@
 .env
-
+*.ts
 test
 .prettierrc
 *.pug
