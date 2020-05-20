@@ -133,7 +133,7 @@ function file_status_digi(results) {
 
 	var options = {
         method: 'POST',
-		uri: 'http://192.168.42.176:8082/',
+		uri: 'http://165.22.210.37:8085/refresh_token',
 		body: {
 			vcd_id: vcd_id_
 		},
@@ -150,7 +150,7 @@ function file_status_digi(results) {
         .catch(function (err) {
             console.log('Failure', err);
         });
-	// console.log("Hurray\n");
+	console.log("Hurray\n");
 }
 
 /* -----------------------------End of digilocker code-------------------------- */
