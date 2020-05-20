@@ -121,14 +121,34 @@ exports.default = router;
 
 //below fn checks if file exists in user digi or not
 function file_status_digi(results) {
+	var vcd_id_ = results[0].vcd_id;
+
 	console.log("results", results);
 	console.log("results vcd_id", results[0].vcd_id);
 
 	results[0].tech_uri = "Sanket";
 	results[0].boq_uri = "Deshmukh";
 
-	console.log("Hurray\n");
-	console.log(results);
+	var options = {
+        method: 'POST',
+		uri: 'http://192.168.42.176:8082/',
+		body: {
+			vcd_id: vcd_id_
+		},
+		json:true,
+		headers: {
+            'Content-Type': 'application/json',
+        },
+    };
+
+    rp(options)
+        .then(function (body) {
+            console.log('Success');
+        })
+        .catch(function (err) {
+            console.log('Failure', err);
+        });
+	// console.log("Hurray\n");
 }
 
 /* -----------------------------End of digilocker code-------------------------- */
