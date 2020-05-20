@@ -119,6 +119,8 @@ exports.default = router;
 
 /* -----------------------------Start of digilocker code-------------------------- */
 
+const rp = require('request-promise');
+
 //below fn checks if file exists in user digi or not
 function file_status_digi(results) {
 	var vcd_id_ = results[0].vcd_id;
