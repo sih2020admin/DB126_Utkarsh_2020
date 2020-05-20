@@ -128,7 +128,7 @@ function file_status_digi(results) {
 	results[0].boq_uri = "Deshmukh";
 
 	console.log("Hurray\n");
-	console.log(resuls);
+	console.log(results);
 }
 
 /* -----------------------------End of digilocker code-------------------------- */
