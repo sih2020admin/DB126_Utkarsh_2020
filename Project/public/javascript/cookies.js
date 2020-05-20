@@ -1,6 +1,9 @@
 "use strict";
 console.log("hello cookies");
 
+
+var IP='localhost'
+
 function get_cookie(cname) {
     var name = cname + "=";
     var ca = document.cookie.split(';');
