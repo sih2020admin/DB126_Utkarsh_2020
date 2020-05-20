@@ -1,15 +1,6 @@
 "use strict";
 console.log("hello cookies");
 
-//if ur developing on server uncomment this IP
-//var IP="165.22.210.37"
-
-
-//if ur developing in ur pc uncomment this IP
-var IP="localhost"
-    
-
-
 function get_cookie(cname) {
     var name = cname + "=";
     var ca = document.cookie.split(';');

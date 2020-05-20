@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:500&display=swap');
 :root{
     --main_color: #663EFD;
-    --accent_color: #a6a6a6;
+    // --accent_color: #a6a6a6;
 }
 *{
     box-sizing: border-box;
@@ -29,7 +29,7 @@ p{
 strong, .RnoLabel, .Id, .OdateLabel{
     font-family: 'Open Sans', 'Sans serif';
     font-weight: 100;
-    color: var(--accent-color);
+    color:  #a6a6a6;
     size: .5rem;
 }
 .status1 {
@@ -122,7 +122,7 @@ button:hover{
     text-align: center;
   }
 
-  .submit_button {
+.submit_button {
     text-align: center;
     margin: 40px;
   }

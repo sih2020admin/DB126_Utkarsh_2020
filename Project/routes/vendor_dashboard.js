@@ -31,5 +31,39 @@ router.post('/vendor_dashboard', function (req, res) {
     	});
 });
 
+router.post('/edit/profile',function(req,res){
+
+	var vd_id= req.body.vd_id;
+
+	var name= req.body.name;
+	var dob= req.body.dob;
+	var desg= req.body.desg;
+	var email= req.body.email;
+	var mobile= req.body.mobile;
+
+	var cname= req.body.cname;
+	var legal= req.body.legal;
+	var yoe= req.body.yoe;
+	// var reg= req.body.reg;
+	// var gst= req.body.gst
+	// var pan= req.body.pan;
+	var mail= req.body.mail;
+	var ccontact= req.body.ccontact;
+	var add= req.body.add;
+
+	db_1.default.query('UPDATE v_contact_details,vendor_details SET vcd_name=?,vcd_dob=?,vcd_designation=?,vcd_email=?,vcd_contact=?,v_name=?,v_legal_id=?,v_yoe=?,v_email=?,v_mobile=?,v_address=? WHERE v_contact_details.vd_id=vendor_details.vd_id and vendor_details.vd_id=?',[name,dob,desg,email,mobile,cname,legal,yoe,mail,ccontact,add,vd_id],function (error){
+		if (error) {
+				console.log(error);
+	      		console.log("Profile Upadation Error");
+	      		// res.status(400);
+		}
+		else{
+			res.sendStatus(200);
+		}
+			  
+    });
+});
+
+
 
 exports.default = router;

@@ -8,6 +8,16 @@ var db_1 = __importDefault(require("./db"));
 var router = express_1.default.Router();
 var unirest = require('unirest');
 
+//Email
+var nodemailer = require('nodemailer');
+var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: process.env.EMAIL,
+        pass: process.env.PASS,
+    },
+});
+
 
 router.post('/apply_tender', function (req, res) {
 
@@ -68,6 +78,21 @@ if (error) {
     }
 else{
         console.log(results)
+        //   var mailOptions = {
+          //     from: 'E-tender',
+          //     to: ,
+          //     subject: 'Confirmation Of Your Application to tender',
+          //     text: 'Your application has been sucesfully submitted. Your application ID is AP00'+etd_id+' . \nThank You.',
+          // }
+        
+          // transporter.sendMail(mailOptions, function (error, info) {
+          //     if (error) {
+          //         console.log(error);
+          //         //res.sendStatus(400);
+          //     } else {
+          //         console.log('Email sent: ' + info.response);
+          //     }
+          // });
           res.sendStatus(200);
     }
   });
@@ -117,6 +142,48 @@ router.post('/enter_file_uri2_db', function (req, res) {
               res.sendStatus(200);
         }
       });
+});
+
+
+
+
+
+router.post('/preview_pdf', function (req, res) {
+
+  
+  console.log("prview pdf called ",req.body.result0[0].et_tender_ref_no)
+var et_ref = req.body.result0[0].et_tender_ref_no;
+var title = req.body.result0[0].et_title;    
+var fee = req.body.result0[0].et_tender_fee;
+var bid_date = req.body.result0[0].et_bidding_date;
+var vcd_name = req.body.result1[0].vcd_name;     
+var vcd_dob = req.body.result1[0].vcd_dob;      
+var vcd_designation = req.body.result1[0].vcd_designation;
+var vcd_aadhar = req.body.result1[0].vcd_aadhar;   
+var vcd_email = req.body.result1[0].vcd_email;    
+var vcd_contact = req.body.result1[0].vcd_contact;  
+var v_name = req.body.result1[0].v_name;
+var v_legal_id = req.body.result1[0].v_legal_id;
+var v_yoe = req.body.result1[0].v_yoe;
+var v_reg_no = req.body.result1[0].v_reg_no;
+var v_gst = req.body.result1[0].v_gst;
+var v_pan = req.body.result1[0].v_pan;
+var v_email = req.body.result1[0].v_email;
+var v_mobile = req.body.result1[0].v_mobile; 
+var v_address = req.body.result1[0].v_address;
+var furi1 = req.body.result2[0].furi1;
+var furi2 = req.body.result2[0].furi2;    
+var txn_id = req.body.result2[0].txn_id;
+var txn_amount = req.body.result2[0].txn_amount; 
+var txn_timestamp = req.body.result2[0].txn_timestamp;
+var bank_name = req.body.result2[0].bank_name;   
+var resp_message    = req.body.result2[0].resp_message;
+
+
+    
+
+    
+  res.sendStatus(200);  
 });
 
 

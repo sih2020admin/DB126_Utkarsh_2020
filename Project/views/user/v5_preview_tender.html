@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script  src="javascript/cookies.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.js" integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM=" crossorigin="anonymous"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.js" integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM=" crossorigin="anonymous"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
-    <script type="text/javascript" src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+    <!-- <script type="text/javascript" src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script> -->
     <!-- <script src="html2pdf.bundle.min.js"></script> -->
     
   </head>
@@ -22,7 +22,8 @@
     </nav>
   </header>
   <body>
-    <div id="pdf" class="cont" style="height: 1300px;">
+    <div  class="cont" style="height: 1300px;">
+      <div id='pdf'>
       <br>
       <h2>Application</h2><br>
       <div style="text-align: right;">
@@ -30,6 +31,7 @@
         <p id= "app" class="status2">Submitted</p>
       </div>
       <h3 style="text-align: left;">Tender Details</h3>
+      <div id="pdf1">
       <table id="t1">
         <tr>
           <td><label><strong>Tender Id: </strong></label></td>
@@ -92,6 +94,7 @@
           <td><label id="address"></label></td>
         </tr>
       </table><hr>
+    </div id='pdf2'>
       <div class="upload_documents">
         <h3 style="text-align: left;">Uploaded Documents</h3><br>
         <table>
@@ -115,7 +118,7 @@
           </tr> 
         </table>  
       </div><hr>
-      <div class="payment_details">
+      <div class="payment_details" id="pdf3">
         <h3  style="text-align: left;">Payment Details</h3><br>
         <table>
           <tr>
@@ -136,6 +139,7 @@
           </tr> 
         </table> 
       </div><br>
+    </div>
       <div id="download">
         <div style="float: left;">
             <p><strong>Place:</strong></p>
@@ -145,9 +149,9 @@
             <p><strong>Time:</strong></p>
             <p id="time"></p><br>
           </div>
-          <div style="float: right;" onclick="print()">
-            <a><img src="pdf.gif" width="55px" height="55px"></a><br>
-            <a href="">Download</a>
+          <div style="float: right;"  onclick="print3()">
+            <a ><img src="pdf.gif" width="55px" height="55px"></a><br>
+            <a>Download</a>
           </div><br>
       </div>
       <div  class="submit_button" style="display: none;">
@@ -181,7 +185,44 @@ margins = {
   document.getElementById("da_te").innerHTML = d.getDate() + "-" + d.getMonth() + "-" + d.getFullYear();
   document.getElementById("time").innerHTML = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
 
-  function print() {
+  function print() {const filename  = 'ThisIsYourPDFFilename.pdf';
+//   let pdf = new jsPDF('p', 'mm', 'a2');
+
+// html2canvas(document.querySelector('#pdf'), 
+//             {scale: 1}
+//          ).then(canvas => {
+//   pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 30, -190, 211, 298);
+//   pdf.save(filename);
+// });
+
+// var doc = new jsPDF();
+
+//    doc.fromHTML($('#pdf')[0], 15, 15, {
+//       width: 170
+//    }, function() {
+//       doc.save('sample-file.pdf');
+//    });
+// var cache_width = $('#pdf').width(); //Criado um cache do CSS
+//     var a4 = [595.28, 841.89]; // Widht e Height de uma folha a4
+
+    
+//         // Setar o width da div no formato a4
+//         $("#pdf").width((a4[0] * 1.33333) - 80).css('max-width', 'none');
+
+//         // Aqui ele cria a imagem e cria o pdf
+//         html2canvas($('#pdf'), {
+//             onrendered: function (canvas) {
+//                 var img = canvas.toDataURL("image/jpeg", 1.0);
+//                 //var doc = new jsPDF({ unit: 'px', format: 'a4' });//this line error
+//                 var doc = new jsPDF('landscape'); // default is portrait
+//                 doc.addImage(img, 'JPEG', 20, 20);
+//                 doc.save('NOME-DO-PDF.pdf');
+//                 //Retorna ao CSS normal
+//                 $('#pdf').width(cache_width);
+//             }
+//         });
+    
+
 		// const filename  = 'ThisIsYourPDFFilename.pdf';
 
 		// html2canvas(document.querySelector('#pdf')).then(canvas => {
@@ -192,72 +233,64 @@ margins = {
     
 
 
-    var doc = new jsPDF('p','mm', 'a2');
-    var header = [1,2,3,4];
-    doc.table(10, 10, $('#t1').get(0), header, {
-    left:10,
-    top:10,
-    bottom: 10,
-    width: 170,
-    autoSize:false,
-    printHeaders: true
-    });
-    doc.save('sample-file.pdf');
+    // var doc = new jsPDF('p','mm', 'a2');
+    // var header = [1,2,3,4];
+    // doc.table(10, 10, $('#t1').get(0), header, {
+    // left:10,
+    // top:10,
+    // bottom: 10,
+    // width: 170,
+    // autoSize:false,
+    // printHeaders: true
+    // });
+    // doc.save('sample-file.pdf');
 	}
 
 // Variant
 // This one lets you improve the PDF sharpness by scaling up the HTML node tree to render as an image before getting pasted on the PDF.
 function print2() {
-		// const filename  = 'ThisIsYourPDFFilename.pdf';
+		const filename  = 'ThisIsYourPDFFilename.pdf';
 
-		// html2canvas(document.querySelector('#pdf'), 
-		// 						{scale: 1}
-		// 				 ).then(canvas => {
-		// 	let pdf = new jsPDF('p', 'mm', 'a4');
-		// 	pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, 211, 298);
-		// 	pdf.save(filename);
-    // });
-
-
-
-    // var options = {
-		// //'width': 800,
-  	// };
-    // var pdf = new jsPDF('p', 'pt', 'a4');
-    // console.log($("#pdf"))
-  	// pdf.addHTML($("#pdf"), -1, 220, options, function() {
-    // 	pdf.save('admit_card.pdf');
-    // });
-    
-
-    // const element = document.getElementById("invoice");
-    //     // Choose the element and save the PDF for our user.
-    //     html2pdf()
-    //       .from(element)
-    //       .save();
+		html2canvas(document.querySelector('#pdf'), 
+								{scale: 1}
+						 ).then(canvas => {
+			let pdf = new jsPDF('p', 'mm', 'a2');
+			pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 10, 0, 350, 400);
+			pdf.save(filename);
+    });
 
 
-
-
-
-  //   var pdf = new jsPDF('p', 'pt', 'a4');
-  // pdf.setFontSize(18);
-  // pdf.fromHTML(document.getElementById('pdf'), 
-  //   margins.left, // x coord
-  //   margins.top,
-  //   {
-  //     // y coord
-  //     width: margins.width// max width of content on PDF
-  //   },function(dispose) {
-  //     headerFooterFormatting(pdf)
-  //   }, 
-  //   margins);
-    
-  // var iframe = document.createElement('iframe');
-  // iframe.setAttribute('style','position:absolute;right:0; top:0; bottom:0; height:100%; width:650px; padding:20px;');
-  // document.body.appendChild(iframe);
   
-  // iframe.src = pdf.output('datauristring');
-	}
+
+
+  }
+  
+
+
+
+  function print3(){
+    console.log(message)
+    var doc = new jsPDF('p', 'mm', [297, 210]);
+ 
+    // doc.text('Hello world!', 10, 10)
+    // doc.addPage();
+    // doc.setFontSize(22);
+    // doc.text(20, 20, 'Answers');
+    // doc.setFontSize(16);
+    doc.setFontSize(26);
+    doc.text('Application Form',70,10)
+    doc.setFontSize(22);
+    doc.setFont("times");
+    doc.setFontType("italic");
+    doc.text('Status: ',147,20)
+    doc.setTextColor(127,255,0);
+    doc.text('Submitted',170,20)
+
+    doc.setFontSize(15);
+    doc.setTextColor(30,144,255);
+    doc.text("E-tender refernce number : "+message.result0[0].et_tender_ref_no,20,30)
+
+    doc.save('preview.pdf')
+  }
 </script>
 </html>
