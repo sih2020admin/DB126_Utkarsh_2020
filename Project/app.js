@@ -5,12 +5,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 require("./loader");
 var express_handlebars_1 = __importDefault(require("express-handlebars"));
-var db_1 = __importDefault(require("./routes/db"));
+/* import connection from './routes/db' */
 var express_1 = __importDefault(require("express"));
 var cors_1 = __importDefault(require("cors"));
 var path_1 = __importDefault(require("path"));
-var session = require('express-session');
-var MySQLStore = require('express-mysql-session')(session);
+/* const session = require('express-session')
+var MySQLStore = require('express-mysql-session')(session) */
 var misc_1 = __importDefault(require("./routes/misc"));
 var payment_server_1 = __importDefault(require("./routes/payment-server"));
 var admin_profile_1 = __importDefault(require("./routes/admin-profile"));
@@ -34,7 +34,7 @@ app.use(cors_1.default({
 app.use(express_1.default.json());
 app.use(cookie());
 app.use(express_1.default.urlencoded({ extended: true }));
-var sessionStore = new MySQLStore({}, db_1.default);
+/* var sessionStore = new MySQLStore({}, connection)
 app.use(session({
     //key: 'session_cookie_name',
     secret: 'session_cookie_secret',
@@ -42,9 +42,10 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: {
-        maxAge: 1000 * 60 * 60 * 2
+        maxAge:1000*60*60*2
     }
-}));
+    
+})); */
 /* app.use((request:Request, response, next) => {
     console.log(request.session)
     next()

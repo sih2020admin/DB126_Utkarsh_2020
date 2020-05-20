@@ -54,5 +54,5 @@ $.ajax({
 
 function apply(value: string) {
     var value1 = $(`#et_id${value}`).text()
-    location.href = `4approve_vendor.html?id=${value1}`
+    location.href = `/4approve_vendor.html?id=${value1}`
 }

@@ -1,12 +1,12 @@
 import './loader'
 import { Application, Request, Response, } from 'express'
 import hbs from 'express-handlebars'
-import connection from './routes/db'
+/* import connection from './routes/db' */
 import express from 'express'
 import cors from 'cors'
 import path from 'path'
-const session = require('express-session')
-var MySQLStore = require('express-mysql-session')(session)
+/* const session = require('express-session')
+var MySQLStore = require('express-mysql-session')(session) */
 import misc from './routes/misc'
 import payment from './routes/payment-server'
 import admin_profile from './routes/admin-profile'
@@ -34,7 +34,7 @@ app.use(express.json())
 app.use(cookie())
 app.use(express.urlencoded({ extended: true }))
 
-var sessionStore = new MySQLStore({}, connection)
+/* var sessionStore = new MySQLStore({}, connection)
 app.use(session({
     //key: 'session_cookie_name',
     secret: 'session_cookie_secret',
@@ -45,7 +45,7 @@ app.use(session({
         maxAge:1000*60*60*2
     }
     
-}));
+})); */
 /* app.use((request:Request, response, next) => {
     console.log(request.session)
     next()
