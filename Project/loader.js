@@ -1,13 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var ip_address_1 = require("./loader_modules/ip-address");
-var ip_generate_1 = require("./loader_modules/ip-generate");
+//import { IPFile } from './loader_modules/ip-generate'
 var env_generate_1 = require("./loader_modules/env-generate");
 var debug = require('debug')('service:loader');
 debug.color = 1;
-var ip_js_path = 'public/javascript/IP.js';
+//var ip_js_path: string = 'public/javascript/IP.js'
 var ipv4 = new ip_address_1.IPv4();
-var ip_file = new ip_generate_1.IPFile();
+//var ip_file = new IPFile()
 var ipv4_address;
 var server_address = '165.22.210.37';
 var server = ipv4.search(server_address);
@@ -41,6 +41,6 @@ debug('Finished writing into .env file');
 debug('\nLoading of .env file');
 env.load(server);
 debug('Finished loading of .env file');
-debug('\nGenerating IP.js file');
-ip_file.create(server, ip_js_path);
-debug('Finished generating IP.js');
+/* debug('\nGenerating IP.js file')
+ip_file.create(server, ip_js_path)
+debug('Finished generating IP.js') */
