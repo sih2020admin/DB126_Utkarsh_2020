@@ -21,22 +21,33 @@ console.log(vcd_id);
 document.getElementById("edit1").onclick = function(){
     document.getElementById("edit1").style.display ="none";
 
-    document.getElementById("profil").removeAttribute("readonly");
+
+    document.getElementById("name").removeAttribute("readonly");
     document.getElementById("name").style.border = "2px solid #663EFD";
+    document.getElementById("dob").removeAttribute("readonly");
     document.getElementById("dob").style.border = "2px solid #663EFD";
+    document.getElementById("desg").removeAttribute("readonly");
     document.getElementById("desg").style.border = "2px solid #663EFD";
+    document.getElementById("email").removeAttribute("readonly");
     document.getElementById("email").style.border = "2px solid #663EFD";
+    document.getElementById("mobile").removeAttribute("readonly");
     document.getElementById("mobile").style.border = "2px solid #663EFD";
     // document.getElementById("aadhar").style.border = "2px solid #663EFD";
 
+    document.getElementById("cname").removeAttribute("readonly");
     document.getElementById("cname").style.border = "2px solid #663EFD";
+    document.getElementById("legal").removeAttribute("readonly");
     document.getElementById("legal").style.border = "2px solid #663EFD";
+    document.getElementById("yoe").removeAttribute("readonly");
     document.getElementById("yoe").style.border = "2px solid #663EFD";
     // document.getElementById("reg").style.border = "2px solid #663EFD";
     // document.getElementById("gst").style.border = "2px solid #663EFD";
     // document.getElementById("pan").style.border = "2px solid #663EFD";
+    document.getElementById("mail").removeAttribute("readonly");
     document.getElementById("mail").style.border = "2px solid #663EFD";
+    document.getElementById("ccontact").removeAttribute("readonly");
     document.getElementById("ccontact").style.border = "2px solid #663EFD";
+    document.getElementById("add").removeAttribute("readonly");
     document.getElementById("add").style.border = "2px solid #663EFD";
 
     document.getElementById("save").style.display = "inline-block";
