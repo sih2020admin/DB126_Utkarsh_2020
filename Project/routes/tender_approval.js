@@ -41,7 +41,7 @@ router.post('/get_application', function (req, res) {  // to be call from see te
 					//console.log("gettenderlist called1")
 					//console.log("results", results);
 					//console.log("results vcd_id", results[0].vcd_id);
-					file_status_digi(reults);
+					file_status_digi(results);
 		  			res.send(results);
 
        			}
