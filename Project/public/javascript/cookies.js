@@ -55,7 +55,7 @@ function theFunctionA(){
   confirmButtonText: 'Logout'
 }).then((result) => {
   if (result.value) {
-    window.location.href="1admin_login.html"
+    window.location.href="/1admin_login.html"
   }
 })
 }
@@ -72,7 +72,7 @@ function theFunctionV(){
   confirmButtonText: 'Logout'
 }).then((result) => {
   if (result.value) {
-    window.location.href="v1_login.html"
+    window.location.href="/v1_login.html"
   }
 })
 }

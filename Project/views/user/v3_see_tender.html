@@ -12,9 +12,9 @@
 <body>
     <header>
         <nav id="nav_bar">
-            <a href="v7_homepage.html">Home</a>
-            <a href="v3_see_tender.html">Tender</a>
-            <a id="log_a" href="v1_login.html">Login</a>
+            <a href="/v7_homepage.html">Home</a>
+            <a href="/v3_see_tender.html">Tender</a>
+            <a id="log_a" href="/v1_login.html">Login</a>
         </nav>
     </header>
 <div class="container" id='cont'>
@@ -30,7 +30,7 @@
     var nav_bar = document.getElementById("nav_bar")
     if(get_cookie("vcd_id") != "")
         {
-            log_a.setAttribute("href", "v6_profile.html");
+            log_a.setAttribute("href", "/v6_profile.html");
             log_a.innerHTML ="Profile"
             nav_bar.insertAdjacentHTML('beforeend','<a id="log_a" onclick="return theFunctionV();">Log out</a>');
         }
