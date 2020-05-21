@@ -38,7 +38,7 @@ xhr.onload = function () {
             // }
             for (var i = 0; i < response.length; i++) {
                 var tr1 =`<tr>
-                            <td><a href="v1_login.html">`+response[i].et_tender_ref_no+`</a></td>
+                            <td><a href="/v1_login.html">`+response[i].et_tender_ref_no+`</a></td>
                             <td>`+response[i].et_title+`</td>
                             <td>`+response[i].et_tender_desc+`</td>
                             <td>`+response[i].et_last_date_apply.slice(0,-14)+`</td>

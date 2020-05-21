@@ -15,9 +15,9 @@
   margin-bottom: 100px;
   top: 0;">
     <nav id="nav_bar" >
-      <a href="v7_homepage.html">Home</a>
-      <a href="v3_see_tender.html">Tender</a>
-      <a id="log_a" href="v1_login.html">Login</a>
+      <a href="/v7_homepage.html">Home</a>
+      <a href="/v3_see_tender.html">Tender</a>
+      <a id="log_a" href="/v1_login.html">Login</a>
     </nav>
   </header>
 
@@ -58,20 +58,20 @@
       <div style="width: 950px;">
         <h3 style="float: left;">Personal Details</h3><br>
       </div>
-      <table id="profil" aria-readonly="true">
+      <table>
         <tr>
           <td><label><strong>Name:</strong></label></td>
-          <td><input type="text" id="name"  autocomplete="off" ></td>
+          <td><input type="text" id="name"  autocomplete="off" readonly></td>
           <td><label ><strong>Date of birth:</strong></label></td>
-          <td><input type="text" id="dob" autocomplete="off"></td>
+          <td><input type="text" id="dob" autocomplete="off" readonly></td>
           <td><label><strong>Designation:</strong></label></td>
-          <td><input type="text" id="desg" autocomplete="off"></td>
+          <td><input type="text" id="desg" autocomplete="off" readonly></td>
         </tr>
         <tr>
           <td><label><strong>Email Id:</strong></label></td>
-          <td><input type="text" id="email" autocomplete="off"></td>
+          <td><input type="text" id="email" autocomplete="off" readonly></td>
           <td><label><strong>Mobile No:</strong></label></td>
-          <td><input type="text" id="mobile" autocomplete="off" ></td>
+          <td><input type="text" id="mobile" autocomplete="off" readonly></td>
           <td><label><strong>Aadhar No:</strong></label></td>
           <td><input type="text" id="aadhar" autocomplete="off" readonly></td>
         </tr>
@@ -80,11 +80,11 @@
         <table>
           <tr>
             <td><label><strong>Name:</strong></label></td>
-            <td><input type="text" id="cname"  autocomplete="off"></td>
+            <td><input type="text" id="cname"  autocomplete="off" readonly></td>
             <td><label><strong>Legal staus:</strong></label></td>
-            <td><input type="text" id="legal"  autocomplete="off"></td>
+            <td><input type="text" id="legal"  autocomplete="off" readonly></td>
             <td><label><strong>Estd Year:</strong></label></td>
-            <td><input type="text" id="yoe"  autocomplete="off"></td>
+            <td><input type="text" id="yoe"  autocomplete="off" readonly></td>
           </tr>
           <tr>
             <td><label><strong>Registration No:</strong></label></td>
@@ -96,16 +96,16 @@
           </tr>
           <tr>
             <td><label><strong>Email:</strong></label></td>
-            <td><input type="text" id="mail"  autocomplete="off"></td>
+            <td><input type="text" id="mail"  autocomplete="off" readonly></td>
             <td><label><strong>Contact No:</strong></label></td>
-            <td><input type="text" id="ccontact"  autocomplete="off"></td>
+            <td><input type="text" id="ccontact"  autocomplete="off" readonly></td>
             <td><label><strong>Address:</strong></label></td>
-            <td><input type="text" id="add"  autocomplete="off"></td>
+            <td><input type="text" id="add"  autocomplete="off" readonly></td>
           </tr>
         </table><br><br>
         <button id="edit1"><i class='fas fa-edit'></i>&nbspEdit</button>
         <button id="save" style="display: none;" onclick="save()"><i id="icon1"></i> &nbspSave</button>
-        <button id="cancel" style="display: none;" onclick="location='v6_profile.html'">Cancel</button>
+        <button id="cancel" style="display: none;" onclick="location='/v6_profile.html'">Cancel</button>
       </div>
   </div>
 
@@ -121,7 +121,7 @@
     var nav_bar = document.getElementById("nav_bar")
     if(get_cookie("vcd_id") != "")
         {
-            log_a.setAttribute("href", "v6_profile.html");
+            log_a.setAttribute("href", "/v6_profile.html");
             log_a.innerHTML ="Profile"
             nav_bar.insertAdjacentHTML('beforeend','<a id="log_a" onclick="return theFunctionV();">Log out</a>');
         }

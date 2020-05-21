@@ -21,22 +21,33 @@ console.log(vcd_id);
 document.getElementById("edit1").onclick = function(){
     document.getElementById("edit1").style.display ="none";
 
-    document.getElementById("profil").removeAttribute("readonly");
+
+    document.getElementById("name").removeAttribute("readonly");
     document.getElementById("name").style.border = "2px solid #663EFD";
+    document.getElementById("dob").removeAttribute("readonly");
     document.getElementById("dob").style.border = "2px solid #663EFD";
+    document.getElementById("desg").removeAttribute("readonly");
     document.getElementById("desg").style.border = "2px solid #663EFD";
+    document.getElementById("email").removeAttribute("readonly");
     document.getElementById("email").style.border = "2px solid #663EFD";
+    document.getElementById("mobile").removeAttribute("readonly");
     document.getElementById("mobile").style.border = "2px solid #663EFD";
     // document.getElementById("aadhar").style.border = "2px solid #663EFD";
 
+    document.getElementById("cname").removeAttribute("readonly");
     document.getElementById("cname").style.border = "2px solid #663EFD";
+    document.getElementById("legal").removeAttribute("readonly");
     document.getElementById("legal").style.border = "2px solid #663EFD";
+    document.getElementById("yoe").removeAttribute("readonly");
     document.getElementById("yoe").style.border = "2px solid #663EFD";
     // document.getElementById("reg").style.border = "2px solid #663EFD";
     // document.getElementById("gst").style.border = "2px solid #663EFD";
     // document.getElementById("pan").style.border = "2px solid #663EFD";
+    document.getElementById("mail").removeAttribute("readonly");
     document.getElementById("mail").style.border = "2px solid #663EFD";
+    document.getElementById("ccontact").removeAttribute("readonly");
     document.getElementById("ccontact").style.border = "2px solid #663EFD";
+    document.getElementById("add").removeAttribute("readonly");
     document.getElementById("add").style.border = "2px solid #663EFD";
 
     document.getElementById("save").style.display = "inline-block";
@@ -57,7 +68,7 @@ function save(){
     xhr1.onload = function(){
         if(this.status == 200){
             alert("Profile Successfully Updated");
-            location="v6_profile.html";
+            location="/v6_profile.html";
         }
         else if(this.status == 400)
         alert("Error 400");
@@ -276,7 +287,7 @@ xhr.onload = function () {
 			}
 		}
 		else {
-			tender_div.insertAdjacentHTML('beforeend',`<label class="RnoLabel"><strong>NO TENDER APPLIED YET ! APPLY FOR TENDER <a href="v3_see_tender.html">here</a></strong></label>`); 
+			tender_div.insertAdjacentHTML('beforeend',`<label class="RnoLabel"><strong>NO TENDER APPLIED YET ! APPLY FOR TENDER <a href="/v3_see_tender.html">here</a></strong></label>`); 
 		}
         // var div=`<div class="main" id="Approved">
         // <label><strong>Title:</strong></label>
@@ -332,7 +343,7 @@ xhr.onload = function () {
 				aprrove_tender_div.insertAdjacentHTML('beforeend',tender_content);   
 			} 
 		}else{
-			aprrove_tender_div.insertAdjacentHTML('beforeend',`<br><label class="RnoLabel"><strong>NO TENDER APPROVED YET ! APPLY FOR TENDER <a href="v3_see_tender.html">here</a></strong></label>`); 
+			aprrove_tender_div.insertAdjacentHTML('beforeend',`<br><label class="RnoLabel"><strong>NO TENDER APPROVED YET ! APPLY FOR TENDER <a href="/v3_see_tender.html">here</a></strong></label>`); 
 		}
    }		
     else if (this.status == 400) {  

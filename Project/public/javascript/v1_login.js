@@ -62,7 +62,7 @@ function show()
 
 
 							setTimeout(function(){
-    								location="v3_see_tender.html"
+    								location="/v3_see_tender.html"
 							},1500);
 						}
 						else if(this.status == 400){
@@ -72,7 +72,7 @@ function show()
 							document.getElementById("tc2").innerHTML="Directing to Relogin";
 							document.getElementById("otp").disabled=true;
 							setTimeout(function(){
-    								location="v1_login.html"
+    								location="/v1_login.html"
 							},5000);
 						}
 						else{	
