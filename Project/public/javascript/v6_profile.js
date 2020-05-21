@@ -68,7 +68,7 @@ function save(){
     xhr1.onload = function(){
         if(this.status == 200){
             alert("Profile Successfully Updated");
-            location="v6_profile.html";
+            location="/v6_profile.html";
         }
         else if(this.status == 400)
         alert("Error 400");
@@ -287,7 +287,7 @@ xhr.onload = function () {
 			}
 		}
 		else {
-			tender_div.insertAdjacentHTML('beforeend',`<label class="RnoLabel"><strong>NO TENDER APPLIED YET ! APPLY FOR TENDER <a href="v3_see_tender.html">here</a></strong></label>`); 
+			tender_div.insertAdjacentHTML('beforeend',`<label class="RnoLabel"><strong>NO TENDER APPLIED YET ! APPLY FOR TENDER <a href="/v3_see_tender.html">here</a></strong></label>`); 
 		}
         // var div=`<div class="main" id="Approved">
         // <label><strong>Title:</strong></label>
@@ -343,7 +343,7 @@ xhr.onload = function () {
 				aprrove_tender_div.insertAdjacentHTML('beforeend',tender_content);   
 			} 
 		}else{
-			aprrove_tender_div.insertAdjacentHTML('beforeend',`<br><label class="RnoLabel"><strong>NO TENDER APPROVED YET ! APPLY FOR TENDER <a href="v3_see_tender.html">here</a></strong></label>`); 
+			aprrove_tender_div.insertAdjacentHTML('beforeend',`<br><label class="RnoLabel"><strong>NO TENDER APPROVED YET ! APPLY FOR TENDER <a href="/v3_see_tender.html">here</a></strong></label>`); 
 		}
    }		
     else if (this.status == 400) {  

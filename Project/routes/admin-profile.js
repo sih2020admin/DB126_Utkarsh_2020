@@ -30,6 +30,7 @@ router.get('/profile', function (request, response) {
                     if (results.length > 0) {
                         approved_tenders_exists = true;
                     }
+                    console.log(results)
                     response.render('admin/admin_dashboard', { layout: false, admin_details_exists: admin_details_exists, approved_tenders_exists: approved_tenders_exists, admin: admin_details, tenders: results });
                 }
             });
