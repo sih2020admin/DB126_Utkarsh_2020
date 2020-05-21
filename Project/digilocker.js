@@ -277,6 +277,7 @@ app.post('/get_access_token', (req, res) => {
 //refreshes access token got from digilocker
 app.post('/refresh_token', (req, res) => {
     var vcd_id = req.body.id;
+    console.log("sanket testing",vcd_id)
     get_refresh_token(res, vcd_id);
 });
 
