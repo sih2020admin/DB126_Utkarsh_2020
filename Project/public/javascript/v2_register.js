@@ -499,7 +499,7 @@ function company_validate(company_name, company_address, company_email, mobile_n
         $('#error_para').text('Error : Company Registration Number field cannot be empty');
         return false;
     }
-    if (registration_number.length > 21 || registration_number.length < 21) {
+    if (registration_number.length > 21) {
         $('#error_para').text('Error : Invalid Company Registration Number ');
         return false;
     }
