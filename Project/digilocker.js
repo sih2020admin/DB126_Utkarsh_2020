@@ -62,7 +62,7 @@ function get_refresh_token(res, vcd_id) {
     var sql = "SELECT date, time FROM access_token WHERE id=" + vcd_id;
     con.query(sql, function (err, result) {
         if (err) {
-            res.status(400).send({ error: "Database connection failed, can't get timestamp of access token" + err });
+            res.status(400).send({ error: err });
         }
         else {
             console.log("data recieved");
