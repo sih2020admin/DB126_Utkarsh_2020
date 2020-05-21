@@ -53,7 +53,7 @@ app.use(session({
 }) */
 app.use(express_1.default.static(path_1.default.join(__dirname, 'public')));
 app.use(express_1.default.static(path_1.default.join(__dirname, 'views/user')));
-app.use(express_1.default.static(path_1.default.join(__dirname, 'views/admin')));
+app.use( express_1.default.static(path_1.default.join(__dirname, 'views/admin')));
 app.use('/uploads', express_1.default.static(path_1.default.join(__dirname, 'uploads')));
 app.use('/register', register.default);
 app.use('/payment', payment_server_1.default);

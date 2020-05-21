@@ -12,10 +12,10 @@
 <body>
 	 <header>
         <nav id='nav_bar'>   
-            <a href="v7_homepage.html">Home</a>
-            <a href="2CRUD_admin.html">Tender</a>
+            <a href="/v7_homepage.html">Home</a>
+            <a href="/2CRUD_admin.html">Tender</a>
             <a href="/admin/profile">Profile</a>
-            <a href="3view_tender_application.html">Applications</a>
+            <a href="/3view_tender_application.html">Applications</a>
             <a onclick="return theFunctionA();">Log out</a>
         </nav>
     </header>
@@ -255,12 +255,7 @@
 <script type="text/javascript">
     var log_a = document.getElementById("log_a")
     var nav_bar = document.getElementById("nav_bar")
-    if(get_cookie("vcd_id") != "")
-        {
-            log_a.setAttribute("href", "v6_profile.html");
-            log_a.innerHTML ="Profile"
-            nav_bar.insertAdjacentHTML('beforeend','<a id="log_a" >Log out</a>');
-        }
+   
 </script>
 <script src="/javascript/jquery-3.4.1.min.js"></script>
 <script src="/javascript/admin_dashboard.js"></script>

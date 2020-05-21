@@ -52,7 +52,7 @@ document.getElementById("next_button").style.display = "none";
                 <label class="OdateLabel"><strong>Bid Date:</strong></label>
                 <label id="Odate">`+response[0][0].et_bidding_date.slice(0,10)+`</label><br><br>
                 <label class="OdateLabel"><strong>File URL:</strong></label>
-                <a id="Odate" href="`+response[0][0].et_file_uri+`">files</a><br>
+                <a id="Odate" href="/`+response[0][0].et_file_uri+`">files</a><br>
             <br>  
          
         </div>`;
