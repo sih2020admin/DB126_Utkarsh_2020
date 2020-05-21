@@ -17,7 +17,7 @@
             <a id="tender_link" href="/v3_see_tender.html">Tenders</a>
             <a id="download_link" href="/">Download</a>
             <a id="miscellaneous_link" href="/">Miscellaneous</a>
-            <a id="register_link" class="right_link" href="/v2_register.html" style="text-align: right;">Register</a>
+            <!-- <a id="register_link" class="right_link" href="/v2_register.html" style="text-align: right;">Register</a> -->
             <a id="log_a" class="right_link" href="/v1_login.html" style="text-align: right;">Login</a>
         </nav>
     </header>
@@ -111,6 +111,9 @@
             nav_bar.insertAdjacentHTML('beforeend','<a href="/3view_tender_application.html">Applications</a>');
             nav_bar.insertAdjacentHTML('beforeend','<a  onclick="return theFunctionA();" >Log out</a>');
             
+        }
+        else{
+            nav_bar.insertAdjacentHTML('beforeend','<a id="register_link" class="right_link" href="/v2_register.html" style="text-align: right;">Register</a>')
         }
         
         
