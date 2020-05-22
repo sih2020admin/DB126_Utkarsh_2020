@@ -222,8 +222,8 @@ function file_status_digi(res, results) {
 			.then(function (body) {
 				console.log('Success');
 
-				console.log(vcd_id_, results[i].furi1, results[i].furi2, results)
-				results = check_file(vcd_id_, results[i].furi1, results[i].furi2, 1, results)
+				//console.log(vcd_id_, results[i].furi1, results[i].furi2, results)
+				check_file(vcd_id_, results[i].furi1, results[i].furi2, 1, results)
 
 				/*if (check_file(vcd_id_ ,results[0].furi1)){
 					console.log("tech", check_file(vcd_id_ ,results[0].furi1))
