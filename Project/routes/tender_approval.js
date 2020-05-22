@@ -219,7 +219,7 @@ function file_status_digi(results) {
 			.then(function (body) {
 				console.log('Success', typeof(i), typeof(results));
 				console.log("sam", typeof(results[i]))
-				console.log(results[0]);
+				console.log(results[0].furi1);
 
 				check_file(vcd_id_, results[i].furi1, results[i].furi2, 1, results)
 
