@@ -239,7 +239,9 @@ function file_status_digi(i, results) {
 
 			console.log("final results");
 			console.log("are", results);
-			file_status_digi(i+1, results);
+			if (i < (results.length - 1)) {
+				file_status_digi(i + 1, results);
+			}
 		})
 		.catch(function (err) {
 			console.log('Failure', err);
