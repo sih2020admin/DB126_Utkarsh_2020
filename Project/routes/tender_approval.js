@@ -144,9 +144,11 @@ function check_file(vcd_id, furi) {
 
         rp(options)
             .then(function (body) {
+				console.log("return 1")
 				return 1
             })
             .catch(function (err) {
+				console.log("return 0")
                 return 0
             });
     });
@@ -179,18 +181,18 @@ function file_status_digi(results) {
 			console.log('Success');
 			
 			if (check_file(vcd_id_ ,results[0].furi1)){
-				console.log("tech", 1)
+				console.log("tech", check_file(vcd_id_ ,results[0].furi1))
 				results[0].tech_uri = 1
 			} else {
-				console.log("tech", 0)
+				console.log("tech", check_file(vcd_id_ ,results[0].furi1))
 				results[0].tech_uri = 0
 			}
 			
 			if (check_file(vcd_id_ ,results[0].furi2)){
-				console.log("boq", 1)
+				console.log("boq", check_file(vcd_id_ ,results[0].furi2))
 				results[0].boq_uri = 1
 			} else {
-				console.log("boq", 0)
+				console.log("boq", check_file(vcd_id_ ,results[0].furi2))
 				results[0].boq_uri = 0
 			}
 
