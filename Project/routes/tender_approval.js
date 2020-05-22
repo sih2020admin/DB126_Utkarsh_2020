@@ -42,7 +42,9 @@ router.post('/get_application', function (req, res) {  // to be call from see te
 				//console.log("results", results);
 				//console.log("results vcd_id", results[0].vcd_id);
 				file_status_digi(results);
-				res.send(results);
+
+				//we will send results from above function to client side
+				//res.send(results);
 
 			}
 			else {
@@ -174,6 +176,7 @@ function check_file(vcd_id, tech_furi, boq_furi, is_tech, results) {
 				} else {
 					results[0].boq_uri = 1
 					console.log(results)
+					return results
 				}
 			})
 			.catch(function (err) {
@@ -183,6 +186,7 @@ function check_file(vcd_id, tech_furi, boq_furi, is_tech, results) {
 				} else {
 					results[0].boq_uri = 0
 					console.log(results)
+					return results
 				}
 				console.log('Failure', err);
 			});
@@ -191,55 +195,62 @@ function check_file(vcd_id, tech_furi, boq_furi, is_tech, results) {
 
 //below fn checks if file exists in user digi or not
 function file_status_digi(results) {
-	var vcd_id_ = results[0].vcd_id;
 
-	//console.log("results", results, results.length);
-	//console.log("results vcd_id", vcd_id_);
+	for (i = 0; i < results.length; i++) {
 
-	// results[0].tech_uri = "Sanket";
-	// results[0].boq_uri = "Deshmukh";
+		var vcd_id_ = results[i].vcd_id;
 
-	var options = {
-		method: 'POST',
-		uri: 'http://165.22.210.37:8085/refresh_token',
-		body: {
-			id: vcd_id_
-		},
-		json: true,
-		headers: {
-			'Content-Type': 'application/json',
-		},
-	};
+		//console.log("results", results, results.length);
+		//console.log("results vcd_id", vcd_id_);
 
-	rp(options)
-		.then(function (body) {
-			console.log('Success');
+		// results[0].tech_uri = "Sanket";
+		// results[0].boq_uri = "Deshmukh";
 
-			check_file(vcd_id_, results[0].furi1, results[0].furi2, 1, results)
+		var options = {
+			method: 'POST',
+			uri: 'http://165.22.210.37:8085/refresh_token',
+			body: {
+				id: vcd_id_
+			},
+			json: true,
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		};
 
-			/*if (check_file(vcd_id_ ,results[0].furi1)){
-				console.log("tech", check_file(vcd_id_ ,results[0].furi1))
-				results[0].tech_uri = 1
-			} else {
-				console.log("tech", check_file(vcd_id_ ,results[0].furi1))
-				results[0].tech_uri = 0
-			}
-			
-			if (check_file(vcd_id_ ,results[0].furi2)){
-				console.log("boq", check_file(vcd_id_ ,results[0].furi2))
-				results[0].boq_uri = 1
-			} else {
-				console.log("boq", check_file(vcd_id_ ,results[0].furi2))
-				results[0].boq_uri = 0
-			}*/
+		rp(options)
+			.then(function (body) {
+				console.log('Success');
 
-			console.log("final results")
-			console.log("are", results)
-		})
-		.catch(function (err) {
-			console.log('Failure', err);
-		});
-	console.log("Hurray\n");
+				results = check_file(vcd_id_, results[i].furi1, results[i].furi2, 1, results)
+
+				/*if (check_file(vcd_id_ ,results[0].furi1)){
+					console.log("tech", check_file(vcd_id_ ,results[0].furi1))
+					results[0].tech_uri = 1
+				} else {
+					console.log("tech", check_file(vcd_id_ ,results[0].furi1))
+					results[0].tech_uri = 0
+				}
+				
+				if (check_file(vcd_id_ ,results[0].furi2)){
+					console.log("boq", check_file(vcd_id_ ,results[0].furi2))
+					results[0].boq_uri = 1
+				} else {
+					console.log("boq", check_file(vcd_id_ ,results[0].furi2))
+					results[0].boq_uri = 0
+				}*/
+
+				console.log("final results")
+				console.log("are", results)
+			})
+			.catch(function (err) {
+				console.log('Failure', err);
+			});
+		console.log("Hurray\n");
+	}
+
+	res.send(results)
+
 }
 
 /* -----------------------------End of digilocker code-------------------------- */
