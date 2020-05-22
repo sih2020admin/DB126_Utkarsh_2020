@@ -626,7 +626,7 @@ function get_link() {
 			if(this.status==200){
 	    console.log(this.responseText);
 	    document.getElementById("get_link").style.display = "none";
-	    document.getElementById("create_t").style.display = "block";
+	    document.getElementById("create_t").style.display = "";
 	    var res = JSON.parse(this.responseText);
 	    zip_link = res.zip_link;
 	  }
@@ -645,27 +645,27 @@ function select_files(value) {
 	if(value == '0'){
 		zip_link = "uploads/sample.zip"
 		document.getElementById("get_link").style.display = "none";
-		document.getElementById("create_t").style.display = "block";
+		document.getElementById("create_t").style.display = "";
 		document.getElementById("div_f1").style.display = "none";
 		document.getElementById("div_f2").style.display = "none";
 	}else if(value == '1'){
 		file2_uri=" "
 		file1_uri=null;
 		// document.getElementById("create_t").style.display = "none";
-		document.getElementById("div_f1").style.display = "block";
+		document.getElementById("div_f1").style.display = "";
 		document.getElementById("div_f2").style.display = "none";
 	}else if(value =='2'){
 		file1_uri=' '
 		file2_uri=null;
 		// document.getElementById("create_t").style.display = "none";
 		document.getElementById("div_f1").style.display = "none";
-		document.getElementById("div_f2").style.display = "block";
+		document.getElementById("div_f2").style.display = "";
 	}else if(value == '3'){
 		file1_uri=null;
 		file2_uri=null;
 		// document.getElementById("create_t").style.display = "none";
-		document.getElementById("div_f1").style.display = "block";
-		document.getElementById("div_f2").style.display = "block";
+		document.getElementById("div_f1").style.display = "";
+		document.getElementById("div_f2").style.display = "";
 	}
 }
 

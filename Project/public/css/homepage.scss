@@ -134,9 +134,9 @@ h1, h3, h2, h4{
         font-size: 12px;
     }
 
-    tr:nth-child(odd) {
-        //background-color: rgba(141, 111, 251, 0.06);
-    }
+    // tr:nth-child(odd) {
+    //     background-color: rgba(141, 111, 251, 0.06);
+    // }
 
     th {
         background-color: var(--main_color);
@@ -261,7 +261,7 @@ footer{
         display: flex;
         justify-content: space-between;
         a{
-            margin-top: 0px;
+            //margin-top: 0px;
             display: inline;
         }
         img{
