@@ -121,7 +121,7 @@ exports.default = router;
 
 const rp = require('request-promise');
 
-function check_file(vcd_id, tech_furi, boq_furi, is_tech) {
+function check_file(vcd_id, tech_furi, boq_furi, is_tech, results) {
 	//Get access token from database
 	var furi;
 	if (is_tech == 1) {
@@ -155,6 +155,7 @@ function check_file(vcd_id, tech_furi, boq_furi, is_tech) {
 					check_file(vcd_id_, results[0].furi1, results[0].furi2, 0)
 				} else {
 					results[0].boq_uri = 1
+					console.log(results)
 				}
 			})
 			.catch(function (err) {
@@ -163,6 +164,7 @@ function check_file(vcd_id, tech_furi, boq_furi, is_tech) {
 					check_file(vcd_id_, results[0].furi1, results[0].furi2, 0)
 				} else {
 					results[0].boq_uri = 0
+					console.log(results)
 				}
 				console.log('Failure', err);
 			});
@@ -195,7 +197,7 @@ function file_status_digi(results) {
 		.then(function (body) {
 			console.log('Success');
 
-			check_file(vcd_id_, results[0].furi1, results[0].furi2, 1)
+			check_file(vcd_id_, results[0].furi1, results[0].furi2, 1, results)
 
 			/*if (check_file(vcd_id_ ,results[0].furi1)){
 				console.log("tech", check_file(vcd_id_ ,results[0].furi1))
