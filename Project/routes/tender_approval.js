@@ -148,11 +148,29 @@ function check_file(vcd_id, tech_furi, boq_furi, is_tech, results) {
 			resolveWithFullResponse: true
 		};
 
+		//Note: - Digilocker does not loads entire file and then sends to our server
+		//It does streaming of file while sending.. hence buffer data gets divided into chunks
+
+		var buffer_data; //to store entire buffer of file received from digilocker
+		var buffer_list = []; //append each chunk of buffer here as recieved
+
+		//keep below line for debugging purpose
+		//var writableStream = fs.createWriteStream('digi.pdf');
+
 		rp(options)
-			.then(function (body) {
+			.on('data', function (datachunk) {
+				buffer_list.push(datachunk); //appending chunks of buffers to buffer_list as recieved
+			})
+			.then(function () {
+				buffer_data = Buffer.concat(buffer_list); //concatinating all chunks of buffers
+
+				//keep below line for debugging purpose
+				//writableStream.write(buffer_data);
+			})
+			.then(function () {
 				if (is_tech == 1) {
 					results[0].tech_uri = 1
-					check_file(vcd_id_, results[0].furi1, results[0].furi2, 0)
+					check_file(vcd_id, results[0].furi1, results[0].furi2, 0)
 				} else {
 					results[0].boq_uri = 1
 					console.log(results)
@@ -161,7 +179,7 @@ function check_file(vcd_id, tech_furi, boq_furi, is_tech, results) {
 			.catch(function (err) {
 				if (is_tech == 1) {
 					results[0].tech_uri = 0
-					check_file(vcd_id_, results[0].furi1, results[0].furi2, 0)
+					check_file(vcd_id, results[0].furi1, results[0].furi2, 0)
 				} else {
 					results[0].boq_uri = 0
 					console.log(results)
