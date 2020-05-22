@@ -126,7 +126,7 @@ function file_status_digi(results) {
 	var vcd_id_ = results[0].vcd_id;
 
 	console.log("results", results);
-	console.log("results vcd_id", results[0].vcd_id);
+	console.log("results vcd_id", vcd_id_);
 
 	results[0].tech_uri = "Sanket";
 	results[0].boq_uri = "Deshmukh";
