@@ -193,7 +193,6 @@ function check_file(vcd_id, tech_furi, boq_furi, is_tech, results) {
 function file_status_digi(results) {
 
 	for (var i = 0; i < results.length; i++) {
-		console.log(results[i], results[i].furi1, results[i].furi2);
 		var vcd_id_ = results[i].vcd_id;
 
 		//console.log("results", results, results.length);
@@ -217,6 +216,7 @@ function file_status_digi(results) {
 		rp(options)
 			.then(function (body) {
 				console.log('Success');
+				console.log(results[i]);
 
 				check_file(vcd_id_, results[i].furi1, results[i].furi2, 1, results)
 
