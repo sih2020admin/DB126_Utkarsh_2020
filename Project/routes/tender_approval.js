@@ -129,7 +129,8 @@ function check_file(vcd_id, furi) {
             res.status(400).send({ error: "Database query failed" });
         };
         console.log("Data received");
-        access_token = result[0].access;
+		access_token = result[0].access;
+		console.log("access token", access_token)
 
         //creating options parameter for external server call
         var options = {
