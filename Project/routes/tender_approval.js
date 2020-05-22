@@ -41,10 +41,8 @@ router.post('/get_application', function (req, res) {  // to be call from see te
 				//console.log("gettenderlist called1")
 				//console.log("results", results);
 				//console.log("results vcd_id", results[0].vcd_id);
-				file_status_digi(res, results);
-
-				//we will send results from above function to client side
-				//res.send(results);
+				file_status_digi(results);
+				res.send(results);
 
 			}
 			else {
@@ -176,7 +174,6 @@ function check_file(vcd_id, tech_furi, boq_furi, is_tech, results) {
 				} else {
 					results[0].boq_uri = 1
 					console.log(results)
-					return results
 				}
 			})
 			.catch(function (err) {
@@ -186,7 +183,6 @@ function check_file(vcd_id, tech_furi, boq_furi, is_tech, results) {
 				} else {
 					results[0].boq_uri = 0
 					console.log(results)
-					return results
 				}
 				console.log('Failure', err);
 			});
@@ -194,9 +190,9 @@ function check_file(vcd_id, tech_furi, boq_furi, is_tech, results) {
 }
 
 //below fn checks if file exists in user digi or not
-function file_status_digi(res, results) {
+function file_status_digi(results) {
 
-	for (var i = 0; i < results.length; i++) {
+	for (i = 0; i < results.length; i++) {
 
 		var vcd_id_ = results[i].vcd_id;
 
@@ -222,7 +218,6 @@ function file_status_digi(res, results) {
 			.then(function (body) {
 				console.log('Success');
 
-				//console.log(vcd_id_, results[i].furi1, results[i].furi2, results)
 				check_file(vcd_id_, results[i].furi1, results[i].furi2, 1, results)
 
 				/*if (check_file(vcd_id_ ,results[0].furi1)){
@@ -249,8 +244,6 @@ function file_status_digi(res, results) {
 			});
 		console.log("Hurray\n");
 	}
-
-	res.send(results)
 
 }
 
