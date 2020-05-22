@@ -85,6 +85,10 @@ h1, h3, h2, h4 {
   position: relative;
 }
 
+.table_cont .marquee_table {
+  margin-top: 200px;
+}
+
 .table_cont .marquee_table tr {
   z-index: -99999999999999999999999999999999;
   position: relative;
@@ -101,8 +105,8 @@ h1, h3, h2, h4 {
             transform: translate(0, 0);
   }
   100% {
-    -webkit-transform: translate(0, -100%);
-            transform: translate(0, -100%);
+    -webkit-transform: translate(0, -300%);
+            transform: translate(0, -300%);
   }
 }
 
@@ -112,8 +116,8 @@ h1, h3, h2, h4 {
             transform: translate(0, 0);
   }
   100% {
-    -webkit-transform: translate(0, -100%);
-            transform: translate(0, -100%);
+    -webkit-transform: translate(0, -300%);
+            transform: translate(0, -300%);
   }
 }
 

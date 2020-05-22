@@ -133,8 +133,9 @@ h1, h3, h2, h4{
         table-layout: fixed;
         font-size: 12px;
     }
+
     tr:nth-child(odd) {
-        // background-color: rgba(141, 111, 251, 0.06);
+        //background-color: rgba(141, 111, 251, 0.06);
     }
 
     th {
@@ -163,6 +164,8 @@ h1, h3, h2, h4{
     }
 
     .marquee_table{
+        margin-top:200px;
+
         tr{
             z-index: -99999999999999999999999999999999;
             position: relative;
@@ -170,12 +173,13 @@ h1, h3, h2, h4{
         tr:hover{
             transform: scale(1.02);
         }
+        
     }
 }
 
 @keyframes marquee {
     0%   { transform: translate(0, 0); }
-    100% { transform: translate(0, -100%); }
+    100% { transform: translate(0, -300%); }
 }
 .marquee_table{
     animation: marquee 10s linear infinite;
