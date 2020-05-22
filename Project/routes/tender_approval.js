@@ -170,7 +170,7 @@ function check_file(vcd_id, tech_furi, boq_furi, is_tech, results) {
 			.then(function () {
 				if (is_tech == 1) {
 					results[0].tech_uri = 1
-					check_file(vcd_id, results[0].furi1, results[0].furi2, 0)
+					check_file(vcd_id, results[0].furi1, results[0].furi2, 0, results)
 				} else {
 					results[0].boq_uri = 1
 					console.log(results)
@@ -179,7 +179,7 @@ function check_file(vcd_id, tech_furi, boq_furi, is_tech, results) {
 			.catch(function (err) {
 				if (is_tech == 1) {
 					results[0].tech_uri = 0
-					check_file(vcd_id, results[0].furi1, results[0].furi2, 0)
+					check_file(vcd_id, results[0].furi1, results[0].furi2, 0, results)
 				} else {
 					results[0].boq_uri = 0
 					console.log(results)
