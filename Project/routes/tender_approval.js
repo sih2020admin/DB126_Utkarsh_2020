@@ -156,8 +156,8 @@ function check_file(vcd_id, furi) {
 function file_status_digi(results) {
 	var vcd_id_ = results[0].vcd_id;
 
-	console.log("results", results, results.length);
-	console.log("results vcd_id", vcd_id_);
+	//console.log("results", results, results.length);
+	//console.log("results vcd_id", vcd_id_);
 
 	// results[0].tech_uri = "Sanket";
 	// results[0].boq_uri = "Deshmukh";
@@ -179,18 +179,23 @@ function file_status_digi(results) {
 			console.log('Success');
 			
 			if (check_file(vcd_id_ ,results[0].furi1)){
+				console.log("tech", 1)
 				results[0].tech_uri = 1
 			} else {
+				console.log("tech", 0)
 				results[0].tech_uri = 0
 			}
 			
 			if (check_file(vcd_id_ ,results[0].furi2)){
+				console.log("boq", 1)
 				results[0].boq_uri = 1
 			} else {
+				console.log("boq", 0)
 				results[0].boq_uri = 0
 			}
 
-			console.log(results)
+			console.log("final results")
+			console.log("are",results)
         })
         .catch(function (err) {
             console.log('Failure', err);
