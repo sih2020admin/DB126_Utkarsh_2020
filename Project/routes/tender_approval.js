@@ -193,6 +193,7 @@ function check_file(vcd_id, tech_furi, boq_furi, is_tech, results) {
 function file_status_digi(results) {
 
 	for (var i = 0; i < results.length; i++) {
+		console.log(results[i]);
 		var vcd_id_ = results[i].vcd_id;
 
 		//console.log("results", results, results.length);
