@@ -241,7 +241,7 @@ function file_status_digi(i, results, res) {
 			console.log("final results");
 			console.log("are", results);
 			if (i < (results.length - 1)) {
-				file_status_digi(i + 1, results);
+				file_status_digi(i + 1, results, res);
 			}
 			else {
 				res.send(results);
