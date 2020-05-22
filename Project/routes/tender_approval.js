@@ -41,7 +41,7 @@ router.post('/get_application', function (req, res) {  // to be call from see te
 				//console.log("gettenderlist called1")
 				//console.log("results", results);
 				//console.log("results vcd_id", results[0].vcd_id);
-				file_status_digi(results);
+				file_status_digi(0, results);
 				res.send(results);
 
 			}
@@ -190,69 +190,61 @@ function check_file(vcd_id, tech_furi, boq_furi, is_tech, results) {
 }
 
 //below fn checks if file exists in user digi or not
-function file_status_digi(results) {
+function file_status_digi(i, results) {
 
-	var i = 0;
-	var trigger = 0;
-	while (i < results.length) {
-		if (trigger == 0) {
-			trigger = 1;
-			var vcd_id_ = results[i].vcd_id;
+	var vcd_id_ = results[i].vcd_id;
 
-			//console.log("results", results, results.length);
-			//console.log("results vcd_id", vcd_id_);
+	//console.log("results", results, results.length);
+	//console.log("results vcd_id", vcd_id_);
 
-			// results[0].tech_uri = "Sanket";
-			// results[0].boq_uri = "Deshmukh";
+	// results[0].tech_uri = "Sanket";
+	// results[0].boq_uri = "Deshmukh";
 
-			var options = {
-				method: 'POST',
-				uri: 'http://165.22.210.37:8085/refresh_token',
-				body: {
-					id: vcd_id_
-				},
-				json: true,
-				headers: {
-					'Content-Type': 'application/json',
-				},
-			};
+	var options = {
+		method: 'POST',
+		uri: 'http://165.22.210.37:8085/refresh_token',
+		body: {
+			id: vcd_id_
+		},
+		json: true,
+		headers: {
+			'Content-Type': 'application/json',
+		},
+	};
 
-			rp(options)
-				.then(function (body) {
-					console.log('Success', typeof(i), typeof(results));
-					console.log("sam", typeof(results[i]))
-					console.log(results[0].furi1);
-					console.log(i);
+	rp(options)
+		.then(function (body) {
+			// console.log('Success', typeof(i), typeof(results));
+			// console.log("sam", typeof(results[i]))
+			// console.log(results[0].furi1);
+			// console.log(i);
 
-					check_file(vcd_id_, results[i].furi1, results[i].furi2, 1, results)
+			check_file(vcd_id_, results[i].furi1, results[i].furi2, 1, results)
 
-					/*if (check_file(vcd_id_ ,results[0].furi1)){
-						console.log("tech", check_file(vcd_id_ ,results[0].furi1))
-						results[0].tech_uri = 1
-					} else {
-						console.log("tech", check_file(vcd_id_ ,results[0].furi1))
-						results[0].tech_uri = 0
-					}
-					
-					if (check_file(vcd_id_ ,results[0].furi2)){
-						console.log("boq", check_file(vcd_id_ ,results[0].furi2))
-						results[0].boq_uri = 1
-					} else {
-						console.log("boq", check_file(vcd_id_ ,results[0].furi2))
-						results[0].boq_uri = 0
-					}*/
+			/*if (check_file(vcd_id_ ,results[0].furi1)){
+				console.log("tech", check_file(vcd_id_ ,results[0].furi1))
+				results[0].tech_uri = 1
+			} else {
+				console.log("tech", check_file(vcd_id_ ,results[0].furi1))
+				results[0].tech_uri = 0
+			}
+			
+			if (check_file(vcd_id_ ,results[0].furi2)){
+				console.log("boq", check_file(vcd_id_ ,results[0].furi2))
+				results[0].boq_uri = 1
+			} else {
+				console.log("boq", check_file(vcd_id_ ,results[0].furi2))
+				results[0].boq_uri = 0
+			}*/
 
-					console.log("final results");
-					console.log("are", results);
-					i += 1;
-					trigger = 0;
-				})
-				.catch(function (err) {
-					console.log('Failure', err);
-				});
-			console.log("Hurray\n");
-		}
-	}
+			console.log("final results");
+			console.log("are", results);
+			file_status_digi(i+1, results);
+		})
+		.catch(function (err) {
+			console.log('Failure', err);
+		});
+	console.log("Hurray\n");
 
 }
 
