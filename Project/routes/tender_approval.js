@@ -135,7 +135,8 @@ function file_status_digi(results) {
         method: 'POST',
 		uri: 'http://165.22.210.37:8085/refresh_token',
 		body: {
-			id: vcd_id_
+			id: vcd_id_,
+			name: "sanket"
 		},
 		json:true,
 		headers: {
