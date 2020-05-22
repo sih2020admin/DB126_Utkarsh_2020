@@ -41,7 +41,7 @@ router.post('/get_application', function (req, res) {  // to be call from see te
 				//console.log("gettenderlist called1")
 				//console.log("results", results);
 				//console.log("results vcd_id", results[0].vcd_id);
-				file_status_digi(results);
+				file_status_digi(res, results);
 
 				//we will send results from above function to client side
 				//res.send(results);
@@ -194,7 +194,7 @@ function check_file(vcd_id, tech_furi, boq_furi, is_tech, results) {
 }
 
 //below fn checks if file exists in user digi or not
-function file_status_digi(results) {
+function file_status_digi(res, results) {
 
 	for (var i = 0; i < results.length; i++) {
 
