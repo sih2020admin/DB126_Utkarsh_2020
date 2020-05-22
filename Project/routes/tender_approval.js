@@ -192,7 +192,8 @@ function check_file(vcd_id, tech_furi, boq_furi, is_tech, results) {
 //below fn checks if file exists in user digi or not
 function file_status_digi(results) {
 
-	for (var i = 0; i < results.length; i++) {
+	var i
+	for ( i = 0; i < results.length; i++) {
 		var refresh_flag = 0
 		var vcd_id_ = results[i].vcd_id;
 
@@ -219,7 +220,7 @@ function file_status_digi(results) {
 				console.log('Success');
 				//console.log(results);
 
-				check_file(vcd_id_, results[1].furi1, results[1].furi2, 1, results)
+				check_file(vcd_id_, results[i].furi1, results[i].furi2, 1, results)
 
 				/*if (check_file(vcd_id_ ,results[0].furi1)){
 					console.log("tech", check_file(vcd_id_ ,results[0].furi1))
