@@ -57,11 +57,11 @@ input::-webkit-inner-spin-button {
   height: fit-content;
   font-size: 16px;
   font-weight: 300;
-  border-radius: 10px;
+  border-radius: 5px;
   background-color: var(--main_color);
   border: 0.4px solid var(--main_color);
   outline: none;
-  padding: 6px 20px 6px 20px;
+  padding: 5px 10px;
   color: #ffffff;
 }
 
