@@ -196,7 +196,7 @@ function check_file(vcd_id, tech_furi, boq_furi, is_tech, results) {
 //below fn checks if file exists in user digi or not
 function file_status_digi(results) {
 
-	for (i = 0; i < results.length; i++) {
+	for (var i = 0; i < results.length; i++) {
 
 		var vcd_id_ = results[i].vcd_id;
 
