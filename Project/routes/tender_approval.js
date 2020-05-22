@@ -121,22 +121,51 @@ exports.default = router;
 
 const rp = require('request-promise');
 
+function check_file(vcd_id, furi) {
+	//Get access token from database
+    var sql = "SELECT access FROM access_token WHERE id=" + vcd_id;
+    con.query(sql, function (err, result) {
+        if (err) {
+            res.status(400).send({ error: "Database query failed" });
+        };
+        console.log("Data received");
+        access_token = result[0].access;
+
+        //creating options parameter for external server call
+        var options = {
+            method: 'GET',
+            uri: 'https://api.digitallocker.gov.in/public/oauth2/1/file/' + furi,
+            headers: {
+                'Authorization': 'Bearer ' + access_token,
+            },
+            resolveWithFullResponse: true
+        };
+
+        rp(options)
+            .then(function (body) {
+				return 1
+            })
+            .catch(function (err) {
+                return 0
+            });
+    });
+}
+
 //below fn checks if file exists in user digi or not
 function file_status_digi(results) {
 	var vcd_id_ = results[0].vcd_id;
 
-	console.log("results", results);
+	console.log("results", results, results.length);
 	console.log("results vcd_id", vcd_id_);
 
-	results[0].tech_uri = "Sanket";
-	results[0].boq_uri = "Deshmukh";
+	// results[0].tech_uri = "Sanket";
+	// results[0].boq_uri = "Deshmukh";
 
 	var options = {
         method: 'POST',
 		uri: 'http://165.22.210.37:8085/refresh_token',
 		body: {
-			id: vcd_id_,
-			name: "sanket"
+			id: vcd_id_
 		},
 		json:true,
 		headers: {
@@ -146,7 +175,19 @@ function file_status_digi(results) {
 
     rp(options)
         .then(function (body) {
-            console.log('Success');
+			console.log('Success');
+			
+			if (check_file(vcd_id_ ,results[0].furi1)){
+				results[0].tech_uri = 1
+			} else {
+				results[0].tech_uri = 0
+			}
+			
+			if (check_file(vcd_id_ ,results[0].furi2)){
+				results[0].boq_uri = 1
+			} else {
+				results[0].boq_uri = 0
+			}
         })
         .catch(function (err) {
             console.log('Failure', err);
