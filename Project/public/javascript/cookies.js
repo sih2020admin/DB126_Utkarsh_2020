@@ -50,8 +50,8 @@ function theFunctionA(){
   text: "will redirect to login",
   icon: 'warning',
   showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
+  confirmButtonColor: '#663EFD',
+  cancelButtonColor: '#a6a6a6',
   confirmButtonText: 'Logout'
 }).then((result) => {
   if (result.value) {
@@ -67,8 +67,8 @@ function theFunctionV(){
   text: "will redirect to login",
   icon: 'warning',
   showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
+  confirmButtonColor: '#663EFD',
+  cancelButtonColor: '#a6a6a6',
   confirmButtonText: 'Logout'
 }).then((result) => {
   if (result.value) {
@@ -76,3 +76,41 @@ function theFunctionV(){
   }
 })
 }
+
+var style = document.createElement('style');
+style.innerHTML = `
+.swal2-title{
+  color: var(--main_color);
+}
+.swal2-confirm.swal2-styled{
+  width: auto;
+  height: fit-content;
+  font-size: 16px;
+  font-weight: 300;
+  border-radius: 5px; 
+  background-color: var(--main_color);
+  border: none;
+  outline: none;
+  overflow: hidden;
+  box-shadow: none !important;
+  color: #ffffff;
+  padding: auto 10px;
+}
+.swal2-cancel.swal2-styled{
+  width: auto;
+  height: fit-content;
+  font-size: 16px;
+  font-weight: 300;
+  border-radius: 5px; 
+  background-color: #cccccc;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  padding: auto 10px;
+}   
+.swal2-icon.swal2-warning, .swal2-icon.swal2-warning.swal2-icon-show{
+  color: var(--main_color);
+  border-color: var(--main_color);
+}
+`;
+document.head.appendChild(style);
