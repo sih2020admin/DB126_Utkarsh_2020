@@ -193,6 +193,7 @@ function check_file(vcd_id, tech_furi, boq_furi, is_tech, results) {
 function file_status_digi(results) {
 
 	for (var i = 0; i < results.length; i++) {
+		var refresh_flag = 0
 		var vcd_id_ = results[i].vcd_id;
 
 		//console.log("results", results, results.length);
@@ -216,9 +217,10 @@ function file_status_digi(results) {
 		rp(options)
 			.then(function (body) {
 				console.log('Success');
-				console.log(results[i]);
+				refresh_flag = 1
+				//console.log(results[i]);
 
-				check_file(vcd_id_, results[i].furi1, results[i].furi2, 1, results)
+				//check_file(vcd_id_, results[i].furi1, results[i].furi2, 1, results)
 
 				/*if (check_file(vcd_id_ ,results[0].furi1)){
 					console.log("tech", check_file(vcd_id_ ,results[0].furi1))
@@ -236,12 +238,24 @@ function file_status_digi(results) {
 					results[0].boq_uri = 0
 				}*/
 
-				console.log("final results")
-				console.log("are", results)
+				//console.log("final results")
+				//console.log("are", results)
 			})
 			.catch(function (err) {
 				console.log('Failure', err);
 			});
+
+		while(true){
+			if(refresh_flag == 1) {
+				console.log(results[i]);
+
+				check_file(vcd_id_, results[i].furi1, results[i].furi2, 1, results)
+
+				console.log("final results")
+				console.log("are", results)
+				break
+			}
+		}
 		console.log("Hurray\n");
 	}
 
