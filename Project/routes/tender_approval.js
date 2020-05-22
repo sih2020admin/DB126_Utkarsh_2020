@@ -217,9 +217,9 @@ function file_status_digi(results) {
 		rp(options)
 			.then(function (body) {
 				console.log('Success');
-				console.log(results);
+				//console.log(results);
 
-				check_file(vcd_id_, results[i].furi1, results[i].furi2, 1, results)
+				check_file(vcd_id_, results[1].furi1, results[1].furi2, 1, results)
 
 				/*if (check_file(vcd_id_ ,results[0].furi1)){
 					console.log("tech", check_file(vcd_id_ ,results[0].furi1))
