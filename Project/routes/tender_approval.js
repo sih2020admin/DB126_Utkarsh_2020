@@ -189,6 +189,8 @@ function file_status_digi(results) {
 			} else {
 				results[0].boq_uri = 0
 			}
+
+			console.log(results)
         })
         .catch(function (err) {
             console.log('Failure', err);
