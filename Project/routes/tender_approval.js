@@ -124,7 +124,7 @@ const rp = require('request-promise');
 function check_file(vcd_id, furi) {
 	//Get access token from database
     var sql = "SELECT access FROM access_token WHERE id=" + vcd_id;
-    con.query(sql, function (err, result) {
+    db_1.default.query(sql, function (err, result) {
         if (err) {
             res.status(400).send({ error: "Database query failed" });
         };
