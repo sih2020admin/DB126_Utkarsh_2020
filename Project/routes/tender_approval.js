@@ -286,7 +286,7 @@ function file_status_digi(results, res) {
 				//creating options parameter for external server call
 				var options = {
 					method: 'GET',
-					uri: 'https://165.22.210.37:8085/get_files?furi=' + furi1 + '&vcd_id=' + vcd_id
+					uri: 'http://165.22.210.37:8085/get_files?furi=' + furi1 + '&vcd_id=' + vcd_id
 				};
 
 				rp(options)
@@ -295,7 +295,7 @@ function file_status_digi(results, res) {
 						//creating options parameter for external server call
 						var options = {
 							method: 'GET',
-							uri: 'https://165.22.210.37:8085/get_files?furi=' + furi2 + '&vcd_id=' + vcd_id
+							uri: 'http://165.22.210.37:8085/get_files?furi=' + furi2 + '&vcd_id=' + vcd_id
 						};
 
 						rp(options)
