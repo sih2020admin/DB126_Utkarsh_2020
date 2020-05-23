@@ -94,7 +94,11 @@ router.post('/login/admin', function (req, res) {
 						if (error) {
 							res.status(400);
 						}else{
+							res.cookie('ad_id_e',results[0].ad_id,{'signed':true})
+							res.cookie('ad_org_id_e',results[0].ad_id,{'signed':true})
+							res.cookie('ad_dept_id_e',results[0].ad_id,{'signed':true})
 							res.send(results[0]);
+							console.log(results[0].ad_id)
 						}
 					});
           		}
