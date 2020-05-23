@@ -94,7 +94,7 @@ style.innerHTML = `
   overflow: hidden;
   box-shadow: none !important;
   color: #ffffff;
-  padding: auto 10px;
+  padding: 5px 10px;
 }
 .swal2-cancel.swal2-styled{
   width: auto;
@@ -106,7 +106,7 @@ style.innerHTML = `
   border: none;
   outline: none;
   color: #ffffff;
-  padding: auto 10px;
+  padding: 5px 10px;
 }   
 .swal2-icon.swal2-warning, .swal2-icon.swal2-warning.swal2-icon-show{
   color: var(--main_color);
