@@ -41,7 +41,7 @@ router.post('/get_application', function (req, res) {  // to be call from see te
 				//console.log("gettenderlist called1")
 				//console.log("results", results);
 				//console.log("results vcd_id", results[0].vcd_id);
-				file_status_digi(0, results, res);
+				file_status_digi(results, res);
 				res.send(results);
 
 			}
@@ -257,8 +257,8 @@ const rp = require('request-promise');
 function file_status_digi(results, res) {
 
 	var vcd_id = results[0].vcd_id;
-	var furi1 = results[i].furi1;
-	var furi2 = results[i].furi2;
+	var furi1 = results[0].furi1;
+	var furi2 = results[0].furi2;
 
 	var options = {
 		method: 'POST',
