@@ -243,7 +243,8 @@ function file_status_digi(i, results, res) {
 			if (i < (results.length - 1)) {
 				file_status_digi(i + 1, results, res);
 			}
-			else {
+
+			if(i == results.length - 1) {
 				res.send(results);
 			}
 		})
