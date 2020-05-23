@@ -87,7 +87,7 @@ style.innerHTML = `
 }
 .swal2-confirm.swal2-styled{
   width: auto;
-  height: fit-content;
+  height: auto;
   font-size: 16px;
   font-weight: 300;
   border-radius: 5px; 
@@ -97,11 +97,11 @@ style.innerHTML = `
   overflow: hidden;
   box-shadow: none !important;
   color: #ffffff;
-  padding: auto 10px;
+  padding: 5px 10px;
 }
 .swal2-cancel.swal2-styled{
   width: auto;
-  height: fit-content;
+  height: auto;
   font-size: 16px;
   font-weight: 300;
   border-radius: 5px; 
@@ -109,7 +109,7 @@ style.innerHTML = `
   border: none;
   outline: none;
   color: #ffffff;
-  padding: auto 10px;
+  padding: 5px 10px;
 }   
 .swal2-icon.swal2-warning, .swal2-icon.swal2-warning.swal2-icon-show{
   color: var(--main_color);

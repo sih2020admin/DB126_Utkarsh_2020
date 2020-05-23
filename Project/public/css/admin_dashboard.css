@@ -1,0 +1,99 @@
+:root {
+  --main_color: #663EFD;
+  --text_color: #000000;
+  --accent-color: #a6a6a6;
+}
+
+*, html {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+  padding: 0;
+}
+
+.tab_section {
+  width: auto;
+  padding: 0 5px;
+}
+
+.tab_section button {
+  width: 49.8%;
+  height: 40px;
+  outline: none;
+  background-color: var(--main_color);
+  color: white;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.tab_section button:hover {
+  opacity: 0.5;
+}
+
+.tab_section button:focus {
+  background-color: var(--accent-color);
+}
+
+.details {
+  padding: 20px;
+  margin: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.2);
+          box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.2);
+  border-radius: 10px;
+}
+
+.details h2, .details h3 {
+  text-align: center;
+  color: var(--main_color);
+  margin-bottom: 10px;
+}
+
+.details .personal_details table, .details .org_details table {
+  width: 100%;
+}
+
+.details .personal_details table label, .details .org_details table label {
+  color: var(--accent-color);
+}
+
+.details .personal_details table th, .details .personal_details table tr, .details .personal_details table td, .details .org_details table th, .details .org_details table tr, .details .org_details table td {
+  padding: .5rem;
+}
+
+.approved_tenders {
+  -webkit-box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.2);
+          box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.2);
+  border-radius: 10px;
+  margin: 20px;
+  padding: 20px;
+}
+
+.approved_tenders h3 {
+  text-align: center;
+  color: var(--main_color);
+}
+
+.approved_tenders label {
+  white-space: nowrap;
+}
+
+.approved_tenders table {
+  border: 1px;
+}
+
+.approved_tenders table label {
+  color: var(--accent-color);
+}
+
+.approved_tenders table th, .approved_tenders table tr, .approved_tenders table td {
+  padding: .5rem;
+}
+/*# sourceMappingURL=admin_dashboard.css.map */
