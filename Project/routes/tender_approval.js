@@ -174,17 +174,10 @@ function check_file(i, vcd_id, tech_furi, boq_furi, is_tech, results) {
 					check_file(i, vcd_id, results[i].furi1, results[i].furi2, 0, results)
 				} else {
 					results[i].boq_uri = 1
-					console.log(results)
+					//console.log(results)
 				}
 			})
 			.catch(function (err) {
-				if (is_tech == 1) {
-					results[i].tech_uri = 0
-					check_file(i, vcd_id, results[i].furi1, results[i].furi2, 0, results)
-				} else {
-					results[i].boq_uri = 0
-					console.log(results)
-				}
 				console.log('Failure', err);
 			});
 	});
@@ -238,8 +231,8 @@ function file_status_digi(i, results, res) {
 				results[0].boq_uri = 0
 			}*/
 
-			console.log("final results");
-			console.log("are", results);
+			// console.log("final results");
+			// console.log("are", results);
 			if (i < (results.length - 1)) {
 				file_status_digi(i + 1, results, res);
 			}
