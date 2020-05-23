@@ -20,6 +20,7 @@ $.ajax({
         et_id: et_id,
     },
     success: function (response) {
+        console.log(response);
         var e_1, _a;
         var count = 1;
         var main_content = document.getElementById("main_content");
