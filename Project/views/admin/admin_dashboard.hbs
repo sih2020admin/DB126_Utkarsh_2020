@@ -95,7 +95,7 @@
     <div class="approved_tenders" style="display: none;">
         <h3>Approved Tenders</h3>
         {{#each tenders}}
-            <h3>Tender Details</h3>
+            <h2>Tender Details</h2>
             <div class="tender_details">
                 <table>
                     <tr>
@@ -126,16 +126,10 @@
                         <td><label for="">File URI : </label></td>
                         <td><p>{{et_file_uri}}</p></td>
                     </tr>
-                    <tr>
-                        <td><label for="">Technical File :</label></td>
-                        <td><a href="{{furi1}}">{{furi1}}</a></td>
-                    </tr>
-                    <tr>
-                        <td><label for="">BOQ FIle : </label></td>
-                        <td><a href="{{furi2}}">{{furi2}}</a></td>
-                    </tr>
+                    
                 </table>
             </div>
+            <h2>Organisation Details</h2>
             <h3>Company Details</h3>
             <div class="vendor_details">
                 <table>
@@ -193,7 +187,7 @@
                     </tr>
                 </table>
             </div>
-            <h3>Contact Details</h3>
+            <h3>Vendor Contact Details</h3>
             <div class="contact_details">
                 <table>
                     <tr>
@@ -222,8 +216,23 @@
                     </tr>
                 </table>
             </div>
+            <h2>Application Details</h2>
+            <h3>Tender Documents</h3>
+            <div class="document_details">
+                <table>
+                    <tr>
+                        <td><label for="">Technical File :</label></td>
+                        <td><a href="{{furi1}}">{{furi1}}</a></td>
+                    </tr>
+                    <tr>
+                        <td><label for="">BOQ FIle : </label></td>
+                        <td><a href="{{furi2}}">{{furi2}}</a></td>
+                    </tr>
+                </table>
+            </div>
             <h3>Payment Details</h3>
             <div class="payment_details">
+
                 <table>
                     <tr>
                         <td><label for="">Transaction ID :</label></td>
