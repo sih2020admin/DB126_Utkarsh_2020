@@ -238,13 +238,19 @@ function file_status_digi(i, results, res) {
 			}
 
 			if(i == results.length - 1) {
-				console.log(results);
+				// console.log(results);
 				res.send(results);
 			}
 		})
 		.catch(function (err) {
 			console.log('Failure', err);
 		});
+	while(true) {
+		if(i == results.length - 1) {
+			console.log(results);
+			break
+		}
+	}
 	console.log("Hurray\n");
 
 }
