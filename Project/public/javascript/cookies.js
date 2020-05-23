@@ -1,83 +1,86 @@
-"use strict";
-console.log("hello cookies");
-
-
-var IP='localhost'
+'use strict'
+/* console.log('hello cookies')*/
+var IP = 'localhost'
 
 function get_cookie(cname) {
-    var name = cname + "=";
-    var ca = document.cookie.split(';');
+    var name = cname + '='
+    var ca = document.cookie.split(';')
     for (var i = 0; i < ca.length; i++) {
-        var c = ca[i];
+        var c = ca[i]
         while (c.charAt(0) == ' ') {
-            c = c.substring(1);
+            c = c.substring(1)
         }
         if (c.indexOf(name) == 0) {
-            console.log("cookies ", cname, c.substring(name.length, c.length));
-            return c.substring(name.length, c.length);
+            console.log('cookies ', cname, c.substring(name.length, c.length))
+            return c.substring(name.length, c.length)
         }
     }
-    console.log(cname + " not defined in cookie");
-    return "";
+    console.log(cname + ' not defined in cookie')
+    return ''
 }
 function delete_cookies() {
     // body...
-    document.cookie = "vcd_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
-    document.cookie = "vd_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
-    document.cookie = "ad_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
-    document.cookie = "ad_dept_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
-    document.cookie = "ad_org_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
-    document.cookie = "digi_access=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
-    console.log("written to cookie ", decodeURIComponent(document.cookie));
-}
+    document.cookie = 'vcd_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC;'
+    document.cookie = 'vd_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC;'
+    document.cookie = 'ad_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC;'
+    document.cookie = 'ad_dept_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC;'
+    document.cookie = 'ad_org_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC;'
+    document.cookie = 'digi_access=; expires=Thu, 01 Jan 1970 00:00:00 UTC;'
+/*     console.log('written to cookie ', decodeURIComponent(document.cookie))*/}
 function delete_cookies_feild(feild) {
     // body...
-    document.cookie = feild + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
-    console.log("written to cookie ", decodeURIComponent(document.cookie));
+    document.cookie = feild + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC;'
+    console.log('written to cookie ', decodeURIComponent(document.cookie))
 }
 function add_to_cookie(name, value) {
     // body...
-    var d = new Date();
-    d.setTime(d.getTime() + (1 * 24 * 60 * 60 * 1000));
-    var expires = "expires=" + d.toUTCString();
-    document.cookie = name + "=" + value + ";" + expires + ";"; //save in cookie
-    console.log("written to cookie", decodeURIComponent(document.cookie));
+    var d = new Date()
+    d.setTime(d.getTime() + 1 * 24 * 60 * 60 * 1000)
+    var expires = 'expires=' + d.toUTCString()
+    document.cookie = name + '=' + value + ';' + expires + ';' //save in cookie
+    console.log('written to cookie', decodeURIComponent(document.cookie))
 }
-function theFunctionA(){
-    console.log("the function called   A ")
+function theFunctionA() {
+    console.log('the function called   A ')
     Swal.fire({
-  title: 'Do You want to Logout?',
-  text: "will redirect to login",
-  icon: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#663EFD',
-  cancelButtonColor: '#a6a6a6',
-  confirmButtonText: 'Logout'
-}).then((result) => {
-  if (result.value) {
-    window.location.href="/1admin_login.html"
-  }
-})
+        title: 'Do You want to Logout?',
+        text: 'will redirect to login',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#663EFD',
+        cancelButtonColor: '#a6a6a6',
+        confirmButtonText: 'Logout',
+    }).then((result) => {
+        if (result.value) {
+            $.post('/admin/logout')
+              .then((result)=>{
+                window.location.href=`/1admin_login.html`	
+              })
+        }
+    })
 }
 
-function theFunctionV(){
-    console.log("the function called    V")
+function theFunctionV() {
+    console.log('the function called    V')
     Swal.fire({
-  title: 'Do You want to Logout?',
-  text: "will redirect to login",
-  icon: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#663EFD',
-  cancelButtonColor: '#a6a6a6',
-  confirmButtonText: 'Logout'
-}).then((result) => {
-  if (result.value) {
-    window.location.href="/v1_login.html"
-  }
-})
+        title: 'Do You want to Logout?',
+        text: 'will redirect to login',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#663EFD',
+        cancelButtonColor: '#a6a6a6',
+        confirmButtonText: 'Logout',
+    }).then((result) => {
+        if (result.value) {
+          $.post('/user/logout')
+              .then((result)=>{
+                window.location.href=`/v1_login.html`	
+              })
+        }
+    })
 }
 
-var style = document.createElement('style');
+var style = document.createElement('style')
 style.innerHTML = `
 .swal2-title{
   color: var(--main_color);
@@ -112,5 +115,5 @@ style.innerHTML = `
   color: var(--main_color);
   border-color: var(--main_color);
 }
-`;
-document.head.appendChild(style);
+`
+document.head.appendChild(style)

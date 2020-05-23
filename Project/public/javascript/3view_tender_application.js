@@ -23,10 +23,9 @@ else{
     dept_id = get_cookie('ad_dept_id')
 }
  */
-var baseURL = location.protocol + "//" + location.host;
 var dept_id = '1';
 $.ajax({
-    url: baseURL + "/gettenderlist_bid",
+    url: "/gettenderlist_bid",
     method: 'POST',
     async: true,
     data: {

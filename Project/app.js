@@ -5,6 +5,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 require("./loader");
 var express_handlebars_1 = __importDefault(require("express-handlebars"));
+var fs_extra_1 = __importDefault(require("fs-extra"));
+var admin_files = fs_extra_1.default.readdirSync('views/admin'), user_files = fs_extra_1.default.readdirSync('views/user');
+console.log(admin_files, user_files);
 /* import connection from './routes/db' */
 var express_1 = __importDefault(require("express"));
 var cors_1 = __importDefault(require("cors"));
@@ -47,12 +50,18 @@ app.use(session({
     }
     
 })); */
-/* app.use((request:Request, response, next) => {
-    console.log(request.signedCookies)
-    console.log(response.cookie("namey","1",{'signed': true}))
-    response.send('hello world')
-    next()
-}) */
+app.use(function (request, response, next) {
+    if (request.url.split(".")[1] !== 'js' && request.url.split(".")[1] !== 'css') {
+        var url = request.url.replace('/', '');
+        if (admin_files.indexOf(url) !== -1) {
+            console.log('admin file');
+        }
+        if (user_files.indexOf(url) !== -1) {
+            console.log('user file');
+        }
+    }
+    next();
+});
 app.use(express_1.default.static(path_1.default.join(__dirname, 'public')));
 app.use(express_1.default.static(path_1.default.join(__dirname, 'views/user')));
 app.use(express_1.default.static(path_1.default.join(__dirname, 'views/admin')));
@@ -75,4 +84,5 @@ app.get('*', function (request, response) {
 app.listen(port, function () {
     console.log("Server started on port " + port);
 });
+console.log;
 module.exports = app;

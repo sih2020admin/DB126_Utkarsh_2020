@@ -151,3 +151,25 @@ var TransactionSuccess = /** @class */ (function (_super) {
     return TransactionSuccess;
 }(Transaction));
 exports.TransactionSuccess = TransactionSuccess;
+var Cookie = /** @class */ (function () {
+    function Cookie() {
+    }
+    Cookie.prototype.check_admin = function (request) {
+        if (request.signedCookies.ad_id_e === undefined || request.signedCookies.ad_id_e === undefined || request.signedCookies.ad_id_e === undefined) {
+            return 366;
+        }
+        else {
+            return 100;
+        }
+    };
+    Cookie.prototype.check_vendor = function (request) {
+        if (request.signedCookies.vcd_id_e === undefined || request.signedCookies.vd_id_e === undefined) {
+            return 366;
+        }
+        else {
+            return 100;
+        }
+    };
+    return Cookie;
+}());
+exports.Cookie = Cookie;
