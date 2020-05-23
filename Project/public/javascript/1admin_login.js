@@ -12,7 +12,7 @@ function show()
 	}
 	else{
 		var xhr = new XMLHttpRequest();
-		var url = "http://"+IP+":8081/login/admin";
+		var url = "/login/admin";
 		xhr.open("POST" ,url);
 		xhr.setRequestHeader('Content-Type','application/json');
 		xhr.send(JSON.stringify({"username":userid,"password": passw}));

@@ -2,7 +2,7 @@
 console.log("hello cookies");
 
 
-var IP='165.22.210.37'
+var IP='localhost'
 
 function get_cookie(cname) {
     var name = cname + "=";

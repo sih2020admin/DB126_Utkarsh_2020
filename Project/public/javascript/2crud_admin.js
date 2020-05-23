@@ -77,7 +77,7 @@ if(get_cookie('ad_id') == '')
 			}
 		};
 
-	xhr.open("POST", "http://"+IP+":8081/tender_dept");
+	xhr.open("POST", "/tender_dept");
 	xhr.setRequestHeader("Content-Type", "application/json");
 	var data = JSON.stringify({"dept_id":ad_dept_id});
 	//dept id should be take from cookies
