@@ -42,8 +42,7 @@ router.post('/get_application', function (req, res) {  // to be call from see te
 				//console.log("results", results);
 				//console.log("results vcd_id", results[0].vcd_id);
 				file_status_digi(0, results, res);
-				//we will send results via above function
-				//res.send(results);
+				res.send(results);
 
 			}
 			else {
@@ -118,87 +117,154 @@ exports.default = router;
 // SELECT e.etd_id, e.et_id, e.vd_id, e.vcd_id, e.bidding_amt, e.is_approved, e.date_of_approval , v.v_name, v.v_address, v.v_yoe, v.v_email, v.v_mobile, v.v_reg_no, v.v_state_id, v.v_dist_id, v.v_city_id, v.v_pincode, v.v_legal_id, v.v_pan, v.v_is_verified, v.v_gst ,  f.furi_id, f.furi, f.f_type FROM `e_tender_vendor` as e INNER JOIN `vendor_details` as v ON e.vd_id=v.vd_id INNER JOIN `file_uri` as f ON e.etd_id=f.etd_id WHERE et_id =  ?
 // SELECT e.etd_id, e.et_id, e.vd_id, e.vcd_id, e.bidding_amt, e.is_approved, e.date_of_approval , v.v_name, v.v_address, v.v_yoe, v.v_email, v.v_mobile, v.v_reg_no, v.v_state_id, v.v_dist_id, v.v_city_id, v.v_pincode, v.v_legal_id, v.v_pan, v.v_is_verified, v.v_gst ,  f.furi_id, f.furi1,f.furi2, f.f_type FROM `e_tender_vendor` as e INNER JOIN `vendor_details` as v ON e.vd_id=v.vd_id INNER JOIN `file_uri` as f ON e.etd_id=f.etd_id WHERE et_id =  ? and e.status="1111"
 
-/* -----------------------------Start of digilocker code-------------------------- */
+// /* -----------------------------Start of digilocker code-------------------------- */
+
+// const rp = require('request-promise');
+
+// function check_file(i, vcd_id, tech_furi, boq_furi, is_tech, results) {
+// 	//Get access token from database
+// 	var furi;
+// 	if (is_tech == 1) {
+// 		furi = tech_furi
+// 	} else {
+// 		furi = boq_furi
+// 	}
+// 	var sql = "SELECT access FROM access_token WHERE id=" + vcd_id;
+// 	db_1.default.query(sql, function (err, result) {
+// 		if (err) {
+// 			res.status(400).send({ error: "Database query failed" });
+// 		};
+// 		console.log("Data received");
+// 		var access_token = result[0].access;
+// 		console.log("access token", access_token)
+
+// 		//creating options parameter for external server call
+// 		var options = {
+// 			method: 'GET',
+// 			uri: 'https://api.digitallocker.gov.in/public/oauth2/1/file/' + furi,
+// 			headers: {
+// 				'Authorization': 'Bearer ' + access_token,
+// 			},
+// 			resolveWithFullResponse: true
+// 		};
+
+// 		//Note: - Digilocker does not loads entire file and then sends to our server
+// 		//It does streaming of file while sending.. hence buffer data gets divided into chunks
+
+// 		var buffer_data; //to store entire buffer of file received from digilocker
+// 		var buffer_list = []; //append each chunk of buffer here as recieved
+
+// 		//keep below line for debugging purpose
+// 		//var writableStream = fs.createWriteStream('digi.pdf');
+
+// 		rp(options)
+// 			.on('data', function (datachunk) {
+// 				buffer_list.push(datachunk); //appending chunks of buffers to buffer_list as recieved
+// 			})
+// 			.then(function () {
+// 				buffer_data = Buffer.concat(buffer_list); //concatinating all chunks of buffers
+
+// 				//keep below line for debugging purpose
+// 				//writableStream.write(buffer_data);
+// 			})
+// 			.then(function () {
+// 				if (is_tech == 1) {
+// 					results[i].tech_uri = 1
+// 					check_file(i, vcd_id, results[i].furi1, results[i].furi2, 0, results)
+// 				} else {
+// 					results[i].boq_uri = 1
+// 					//console.log(results)
+// 				}
+// 			})
+// 			.catch(function (err) {
+// 				console.log('Failure', err);
+// 			});
+// 	});
+// }
+
+// //below fn checks if file exists in user digi or not
+// function file_status_digi(i, results, res) {
+
+// 	var vcd_id_ = results[i].vcd_id;
+
+// 	//console.log("results", results, results.length);
+// 	//console.log("results vcd_id", vcd_id_);
+
+// 	// results[0].tech_uri = "Sanket";
+// 	// results[0].boq_uri = "Deshmukh";
+
+// 	var options = {
+// 		method: 'POST',
+// 		uri: 'http://165.22.210.37:8085/refresh_token',
+// 		body: {
+// 			id: vcd_id_
+// 		},
+// 		json: true,
+// 		headers: {
+// 			'Content-Type': 'application/json',
+// 		},
+// 	};
+
+// 	rp(options)
+// 		.then(function (body) {
+// 			// console.log('Success', typeof(i), typeof(results));
+// 			// console.log("sam", typeof(results[i]))
+// 			// console.log(results[0].furi1);
+// 			// console.log(i);
+
+// 			check_file(i, vcd_id_, results[i].furi1, results[i].furi2, 1, results)
+
+// 			/*if (check_file(vcd_id_ ,results[0].furi1)){
+// 				console.log("tech", check_file(vcd_id_ ,results[0].furi1))
+// 				results[0].tech_uri = 1
+// 			} else {
+// 				console.log("tech", check_file(vcd_id_ ,results[0].furi1))
+// 				results[0].tech_uri = 0
+// 			}
+
+// 			if (check_file(vcd_id_ ,results[0].furi2)){
+// 				console.log("boq", check_file(vcd_id_ ,results[0].furi2))
+// 				results[0].boq_uri = 1
+// 			} else {
+// 				console.log("boq", check_file(vcd_id_ ,results[0].furi2))
+// 				results[0].boq_uri = 0
+// 			}*/
+
+// 			// console.log("final results");
+// 			// console.log("are", results);
+// 			if (i < (results.length - 1)) {
+// 				file_status_digi(i + 1, results, res);
+// 			}
+
+// 			if(i == results.length - 1) {
+// 				res.send(results);
+// 			}
+// 		})
+// 		.catch(function (err) {
+// 			console.log('Failure', err);
+// 		});
+// 	console.log("Hurray\n");
+
+// }
+
+// /* -----------------------------End of digilocker code-------------------------- */
+
+/* -----------------------------Start of digilocker code Modified-------------------------- */
 
 const rp = require('request-promise');
 
-function check_file(i, vcd_id, tech_furi, boq_furi, is_tech, results) {
-	//Get access token from database
-	var furi;
-	if (is_tech == 1) {
-		furi = tech_furi
-	} else {
-		furi = boq_furi
-	}
-	var sql = "SELECT access FROM access_token WHERE id=" + vcd_id;
-	db_1.default.query(sql, function (err, result) {
-		if (err) {
-			res.status(400).send({ error: "Database query failed" });
-		};
-		console.log("Data received");
-		var access_token = result[0].access;
-		console.log("access token", access_token)
-
-		//creating options parameter for external server call
-		var options = {
-			method: 'GET',
-			uri: 'https://api.digitallocker.gov.in/public/oauth2/1/file/' + furi,
-			headers: {
-				'Authorization': 'Bearer ' + access_token,
-			},
-			resolveWithFullResponse: true
-		};
-
-		//Note: - Digilocker does not loads entire file and then sends to our server
-		//It does streaming of file while sending.. hence buffer data gets divided into chunks
-
-		var buffer_data; //to store entire buffer of file received from digilocker
-		var buffer_list = []; //append each chunk of buffer here as recieved
-
-		//keep below line for debugging purpose
-		//var writableStream = fs.createWriteStream('digi.pdf');
-
-		rp(options)
-			.on('data', function (datachunk) {
-				buffer_list.push(datachunk); //appending chunks of buffers to buffer_list as recieved
-			})
-			.then(function () {
-				buffer_data = Buffer.concat(buffer_list); //concatinating all chunks of buffers
-
-				//keep below line for debugging purpose
-				//writableStream.write(buffer_data);
-			})
-			.then(function () {
-				if (is_tech == 1) {
-					results[i].tech_uri = 1
-					check_file(i, vcd_id, results[i].furi1, results[i].furi2, 0, results)
-				} else {
-					results[i].boq_uri = 1
-					//console.log(results)
-				}
-			})
-			.catch(function (err) {
-				console.log('Failure', err);
-			});
-	});
-}
-
 //below fn checks if file exists in user digi or not
-function file_status_digi(i, results, res) {
+function file_status_digi(results, res) {
 
-	var vcd_id_ = results[i].vcd_id;
-
-	//console.log("results", results, results.length);
-	//console.log("results vcd_id", vcd_id_);
-
-	// results[0].tech_uri = "Sanket";
-	// results[0].boq_uri = "Deshmukh";
+	var vcd_id = results[0].vcd_id;
+	var furi1 = results[i].furi1;
+	var furi2 = results[i].furi2;
 
 	var options = {
 		method: 'POST',
 		uri: 'http://165.22.210.37:8085/refresh_token',
 		body: {
-			id: vcd_id_
+			id: vcd_id
 		},
 		json: true,
 		headers: {
@@ -207,50 +273,68 @@ function file_status_digi(i, results, res) {
 	};
 
 	rp(options)
-		.then(function (body) {
-			// console.log('Success', typeof(i), typeof(results));
-			// console.log("sam", typeof(results[i]))
-			// console.log(results[0].furi1);
-			// console.log(i);
+		.then(function () {
+			var sql = "SELECT access FROM access_token WHERE id=" + vcd_id;
+			db_1.default.query(sql, function (err, result) {
+				if (err) {
+					res.status(400).send({ error: "Database query failed" });
+				}
+				console.log("Data received");
+				var access_token = result[0].access;
+				console.log("access token", access_token)
 
-			check_file(i, vcd_id_, results[i].furi1, results[i].furi2, 1, results)
+				//creating options parameter for external server call
+				var options = {
+					method: 'GET',
+					uri: 'https://165.22.210.37:8085/get_files?furi=' + furi1 + '&vcd_id=' + vcd_id
+				};
 
-			/*if (check_file(vcd_id_ ,results[0].furi1)){
-				console.log("tech", check_file(vcd_id_ ,results[0].furi1))
-				results[0].tech_uri = 1
-			} else {
-				console.log("tech", check_file(vcd_id_ ,results[0].furi1))
-				results[0].tech_uri = 0
-			}
-			
-			if (check_file(vcd_id_ ,results[0].furi2)){
-				console.log("boq", check_file(vcd_id_ ,results[0].furi2))
-				results[0].boq_uri = 1
-			} else {
-				console.log("boq", check_file(vcd_id_ ,results[0].furi2))
-				results[0].boq_uri = 0
-			}*/
+				rp(options)
+					.then(function () {
+						results[0].tech_uri = 1
+						//creating options parameter for external server call
+						var options = {
+							method: 'GET',
+							uri: 'https://165.22.210.37:8085/get_files?furi=' + furi2 + '&vcd_id=' + vcd_id
+						};
 
-			// console.log("final results");
-			// console.log("are", results);
-			if (i < (results.length - 1)) {
-				file_status_digi(i + 1, results, res);
-			}
+						rp(options)
+							.then(function () {
+								results[0].boq_uri = 1;
+								console.log(results);
+							})
+							.catch(function (err) {
+								console.log('Failure', err);
+								results[0].boq_uri = 0;
+								console.log(results);
+							});
+					})
+					.catch(function (err) {
+						console.log('Failure', err);
+						results[0].tech_uri = 0;
+						//creating options parameter for external server call
+						var options = {
+							method: 'GET',
+							uri: 'https://165.22.210.37:8085/get_files?furi=' + furi2 + '&vcd_id=' + vcd_id
+						};
 
-			if(i == results.length - 1) {
-				// console.log(results);
-				res.send(results);
-			}
+						rp(options)
+							.then(function () {
+								results[0].boq_uri = 1;
+								console.log(results);
+							})
+							.catch(function (err) {
+								console.log('Failure', err);
+								results[0].boq_uri = 0;
+								console.log(results);
+							});
+					});
+
+			});
 		})
 		.catch(function (err) {
 			console.log('Failure', err);
 		});
-	while(true) {
-		if(i == results.length - 1) {
-			console.log(results);
-			break
-		}
-	}
 	console.log("Hurray\n");
 
 }
