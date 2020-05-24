@@ -15,7 +15,7 @@
             <a href="/2CRUD_admin.html">Tender</a>
             <a href="/admin/profile">Profile</a>
             <a href="/3view_tender_application.html">Applications</a>
-            <a onclick="return theFunctionA();">Log out</a>
+            <a style="cursor:pointer" onclick="return theFunctionA();">Log out</a>
         </nav>
     </header>
 	{{!-- <div class="cont">
@@ -92,8 +92,9 @@
         <h3>Personal Details Does not exist with us</h3>
     {{/if}}
     <div class="approved_tenders" style="display: none;">
-        <h3>Approved Tenders</h3>
+        <h1>Approved Tenders</h1>
         {{#each tenders}}
+        <div class="container">
             <div class="tender_details">
                 <h2>Tender Details</h2>
                 <table>
@@ -123,7 +124,8 @@
                     </tr>
                      <tr>
                         <td><label for="">File URI</label></td>
-                        <td><p>{{et_file_uri}}</p></td>
+                        {{!-- <td><p>{{et_file_uri}}</p></td> --}}
+                        <td><a href="{{et_file_uri}}">Click Here</a></td>
                     </tr>
                     
                 </table>
@@ -221,11 +223,13 @@
                 <table>
                     <tr>
                         <td><label for="">Technical File</label></td>
-                        <td><a href="{{furi1}}">{{furi1}}</a></td>
+                        <td><a href="{{furi1}}">Click Here</a></td>
+                        {{!-- <td><a href="{{furi1}}">{{furi1}}</a></td> --}}
                     </tr>
                     <tr>
                         <td><label for="">BOQ FIle</label></td>
-                        <td><a href="{{furi2}}">{{furi2}}</a></td>
+                        <td><a href="{{furi2}}">Click Here</a></td>
+                        {{!-- <td><a href="{{furi2}}">{{furi2}}</a></td> --}}
                     </tr>
                 </table>
             </div>
@@ -254,7 +258,7 @@
                     </tr>
                 </table>
             </div>
-            <hr>
+        </div>
         {{/each}}
     </div>
 </body>
