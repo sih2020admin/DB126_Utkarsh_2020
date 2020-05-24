@@ -1,7 +1,7 @@
 'use strict'
 /* console.log('hello cookies')*/
 var IP = 'localhost'
-
+document.writeln('<script src="/javascript/jquery-3.4.1.min.js" type="text/javascript"></sc'+'ript>');
 function get_cookie(cname) {
     var name = cname + '='
     var ca = document.cookie.split(';')
