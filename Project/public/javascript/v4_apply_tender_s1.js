@@ -121,7 +121,7 @@ document.getElementById("next_button").style.display = "none";
                 }
             }  
 
-            xhr.open("POST", "http://"+IP+":8081/tender_desc");
+            xhr.open("POST", "/tender_desc");
             xhr.setRequestHeader("Content-Type", "application/json");
 
             xhr.send(data);
@@ -150,7 +150,7 @@ function apply() {
   }
 }
 
-    xhr.open("POST", "http://"+IP+":8081/apply_tender");
+    xhr.open("POST", "/apply_tender");
     xhr.setRequestHeader("Content-Type", "application/json");
 
 xhr.send(data);

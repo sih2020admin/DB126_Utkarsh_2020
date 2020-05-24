@@ -77,7 +77,7 @@ if(get_cookie('ad_id') == '')
 			}
 		};
 
-	xhr.open("POST", "http://"+IP+":8081/tender_dept");
+	xhr.open("POST", "/tender_dept");
 	xhr.setRequestHeader("Content-Type", "application/json");
 	var data = JSON.stringify({"dept_id":ad_dept_id});
 	//dept id should be take from cookies
@@ -348,7 +348,7 @@ jQuery('document').ready(function(){
 					   }
 					});
 
-					xhr.open("POST", "http://"+IP+":8081/update_tender");
+					xhr.open("POST", "/update_tender");
 					xhr.setRequestHeader("Content-Type", "application/json");
 
 					xhr.send(data);
@@ -378,7 +378,7 @@ jQuery('document').ready(function(){
 					  }
 					});
 
-					xhr.open("POST", "http://"+IP+":8081/update_tender");
+					xhr.open("POST", "/update_tender");
 					xhr.setRequestHeader("Content-Type", "application/json");
 
 					xhr.send(data);
@@ -432,7 +432,7 @@ jQuery('document').ready(function(){
 						};
 						
 
-						xhr.open("POST", "http://"+IP+":8081/delete_tender");
+						xhr.open("POST", "/delete_tender");
 						xhr.setRequestHeader("Content-Type", "application/json");
 
 						xhr.send(JSON.stringify({"et_id":response[clicked_id].et_id}));
@@ -592,7 +592,7 @@ jQuery('document').ready(function(){
 					  }
 					});
 
-					xhr.open("POST", "http://"+IP+":8081/create_tender");
+					xhr.open("POST", "/create_tender");
 					xhr.setRequestHeader("Content-Type", "application/json");
 
 					xhr.send(JSON.stringify({"et_title":title,

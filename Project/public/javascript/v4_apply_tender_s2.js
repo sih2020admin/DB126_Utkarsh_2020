@@ -28,7 +28,7 @@ var data = JSON.stringify({"et_id":et_id,"etd_id":etd_id});var xhr = new XMLHttp
                 }
             }  
 
-            xhr.open("POST", "http://"+IP+":8081/filled_tender_desc");
+            xhr.open("POST", "/filled_tender_desc");
             xhr.setRequestHeader("Content-Type", "application/json");
 
             xhr.send(data);

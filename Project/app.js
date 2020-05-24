@@ -14,6 +14,14 @@ var MySQLStore = require('express-mysql-session')(session) */
 var misc_1 = __importDefault(require("./routes/misc"));
 var payment_server_1 = __importDefault(require("./routes/payment-server"));
 var admin_profile_1 = __importDefault(require("./routes/admin-profile"));
+
+var https = require("https");
+var fs = require("fs");
+var httpsOptions = {
+    key: fs.readFileSync('/home/saurabh/certificate/domain.key'),
+    cert: fs.readFileSync('/home/saurabh/certificate/domain.crt')
+};
+
 var app = express_1.default();
 var login = require('./routes/login');
 var register = require('./routes/register-server');
@@ -70,7 +78,12 @@ app.use('/misc', misc_1.default);
 app.get('*', function (request, response) {
     response.sendFile(__dirname + '/views/user/error.html');
 });
-app.listen(port, function () {
-    console.log("Server started on port " + port);
+// app.listen(port, function () {
+//     console.log("Server started on port " + port);
+// });
+
+https.createServer(httpsOptions,app).listen(port,function(){
+	console.log("Server listening On Port "+ port);
 });
+
 module.exports = app;
