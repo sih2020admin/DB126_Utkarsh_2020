@@ -4,15 +4,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
+var data_structure_1 = require("./data-structure");
 var db_1 = __importDefault(require("./db"));
 var router = express_1.default.Router();
 router.get('/profile', function (request, response) {
     var admin_details_exists = false;
     var approved_tenders_exists = false;
     var admin_details;
-    var ad_id = request.cookies.ad_id;
-    var dept_id = request.cookies.ad_dept_id;
-    var ad_org_id = request.cookies.ad_org_id;
+    var ad_id = request.signedCookies.ad_id_e;
+    var dept_id = request.signedCookies.ad_dept_id_e;
+    var ad_org_id = request.signedCookies.ad_org_id_e;
+    console.log(new data_structure_1.Cookie().check_admin(request));
     db_1.default.query('SELECT a.ad_name,a.ad_contact, a.ad_email, a.ad_addr, o.org_name, o.org_contact , o.org_email , o.org_addr, o.org_state , o.org_dist ,o.org_pin ,d.dept_name FROM `admin_detail` as a INNER JOIN org_details as o ON a.ad_dept_id = o.org_id INNER JOIN department as d ON a.ad_dept_id=d.dept_id WHERE ad_id =?', [ad_id], function (error, results) {
         if (error) {
             console.log('Error in fetching personal details of admin');
@@ -30,7 +32,6 @@ router.get('/profile', function (request, response) {
                     if (results.length > 0) {
                         approved_tenders_exists = true;
                     }
-                    console.log(results)
                     response.render('admin/admin_dashboard', { layout: false, admin_details_exists: admin_details_exists, approved_tenders_exists: approved_tenders_exists, admin: admin_details, tenders: results });
                 }
             });

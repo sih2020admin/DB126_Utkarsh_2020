@@ -5,10 +5,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 require("./loader");
 var express_handlebars_1 = __importDefault(require("express-handlebars"));
+/* import fs from 'fs-extra'
+var admin_files = fs.readdirSync('views/admin'),
+user_files = fs.readdirSync('views/user')
+console.log(admin_files,user_files) */
 /* import connection from './routes/db' */
 var express_1 = __importDefault(require("express"));
 var cors_1 = __importDefault(require("cors"));
 var path_1 = __importDefault(require("path"));
+var cookie = require('cookie-parser');
 /* const session = require('express-session')
 var MySQLStore = require('express-mysql-session')(session) */
 var misc_1 = __importDefault(require("./routes/misc"));
@@ -32,17 +37,16 @@ var tender_approval = require('./routes/tender_approval');
 var vendor_dashboard = require('./routes/vendor_dashboard');
 var apply_tender = require('./routes/apply_tender');
 var sign = require('./routes/sign');
-var cookie = require('cookie-parser');
 var port = process.env.PORT;
 app.engine('.hbs', express_handlebars_1.default({ extname: '.hbs' }));
 app.set('view engine', '.hbs');
+app.use(express_1.default.json());
+app.use(cookie(process.env.COOKIE_SECRET));
+app.use(express_1.default.urlencoded({ extended: true }));
 app.use(cors_1.default({
     origin: '*',
     methods: ['GET', 'POST'],
 }));
-app.use(express_1.default.json());
-app.use(cookie());
-app.use(express_1.default.urlencoded({ extended: true }));
 /* var sessionStore = new MySQLStore({}, connection)
 app.use(session({
     //key: 'session_cookie_name',
@@ -56,12 +60,21 @@ app.use(session({
     
 })); */
 /* app.use((request:Request, response, next) => {
-    console.log(request.session)
+    if (request.url.split(".")[1] !=='js'&& request.url.split(".")[1]!=='css'){
+        var url = request.url.replace('/','')
+        if(admin_files.indexOf(url)!== - 1){
+            console.log('admin file')
+        }
+        if(user_files.indexOf(url)!== - 1){
+            console.log('user file')
+        }
+        
+    }
     next()
 }) */
 app.use(express_1.default.static(path_1.default.join(__dirname, 'public')));
 app.use(express_1.default.static(path_1.default.join(__dirname, 'views/user')));
-app.use( express_1.default.static(path_1.default.join(__dirname, 'views/admin')));
+app.use(express_1.default.static(path_1.default.join(__dirname, 'views/admin')));
 app.use('/uploads', express_1.default.static(path_1.default.join(__dirname, 'uploads')));
 app.use('/register', register.default);
 app.use('/payment', payment_server_1.default);

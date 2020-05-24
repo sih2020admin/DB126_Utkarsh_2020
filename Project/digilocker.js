@@ -444,10 +444,10 @@ app.post('/revoke_token', function (req, res) {
 
 app.get('/get_files', (req, res) => {
     var furi = req.query.furi;
-    var vd_id = req.query.vd_id;
+    //var vd_id = req.query.vd_id;
     var vcd_id = req.query.vcd_id;
 
-    console.log(furi, vd_id, vcd_id);
+    console.log(furi, vcd_id);
 
     /* ------------------------ Start of Refresh Token ----------------------------- */
 
