@@ -166,49 +166,51 @@ router.post('/login/admin', function (req, res) {
 
 
 
-// router.post('/verifyOTP', (req, res) => {
-
-//     var options = {
-//         hostname: process.env.ADDRESS ,
-//         port: 8082,
-//         path: "/verifyOTP",
-//         method: 'POST',
-//         rejectUnauthorized: false,
-//         requestCert: true,
-//         agent: false,
-//         headers: {
-//             'Content-Type': 'application/json'
-//        }
-//       };
-//     var req = https.request(options, function (resp) {
-//         resp.setEncoding('utf8');
-//         resp.on('data', function (chunk) {
-//             console.log('BODY: ' + chunk);
-//         });
+router.post('/verifyOTP', (req, res) => {
+    console.log("verify otp called "+JSON.stringify(req.body))
+    var r=JSON.stringify(req.body)
+    var options = {
+        hostname: process.env.ADDRESS ,
+        port: 8082,
+        path: "/verifyOTP",
+        method: 'POST',
+        rejectUnauthorized: false,
+        requestCert: true,
+        agent: false,
+        headers: {
+            'Content-Type': 'application/json'
+       }
+      };
+    var req = https.request(options, function (resp) {
+        resp.setEncoding('utf8');
+        resp.on('data', function (chunk) {
+            console.log('BODY: ' + chunk);
+        });
     
-//         resp.on('end',function(){
-//           if (resp.statusCode == 200) {
-//                     res.send(200)
+        resp.on('end',function(){
+          if (resp.statusCode == 200) {
+                    res.sendStatus(200)
             
-//           } else {
-//             console.log("Api call failed with response code " + resp.statusCode);
-//             res.sendStatus(400)
-//           }
-//         });
+          } else {
+            console.log("Api call failed with response code " + resp.statusCode);
+            res.sendStatus(400)
+          }
+        });
     
-//       });
+      });
     
-//       req.on('error', function (e) {
-//         console.log("Error : " + e.message);
+      req.on('error', function (e) {
+        console.log("Error : " + e.message);
         
-//       });
+      });
     
-//       // write data to request body
-//       req.write(JSON.stringify(req.body));
+      // write data to request body
+      console.log(r)
+      req.write(r);
    
-//     req.end();
+    req.end();
     
-// })
+})
 
 router.post('/user/logout', (request, response) => {
     response.clearCookie('vcd_id')
