@@ -23,8 +23,8 @@ var admin_profile_1 = __importDefault(require("./routes/admin-profile"));
 var https = require("https");
 var fs = require("fs");
 var httpsOptions = {
-    key: fs.readFileSync('/home/saurabh/certificate/domain.key'),
-    cert: fs.readFileSync('/home/saurabh/certificate/domain.crt')
+    key: fs.readFileSync('/home/viraj/Documents/sih/sih2020/git/https_certs/domain.key'),
+    cert: fs.readFileSync('/home/viraj/Documents/sih/sih2020/git/https_certs/domain.crt')
 };
 
 var app = express_1.default();

@@ -8,6 +8,15 @@ var app = express();
 require('./loader')
 var verify = require('./routes_aadhar/verify');
 var sms = require('./routes_aadhar/sms');
+var https = require("https");
+var fs = require("fs");
+
+
+var httpsOptions = {
+    key: fs.readFileSync('/home/viraj/Documents/sih/sih2020/git/https_certs/domain.key'),
+    cert: fs.readFileSync('/home/viraj/Documents/sih/sih2020/git/https_certs/domain.crt')
+};
+
 //var port = process.env.PORT || 8080
 var port = 8082;
 app.use(cors());
@@ -17,6 +26,11 @@ app.use(express.json());
 app.use('', verify);
 app.use('/sms', sms);
 //app.use('/',index)
-app.listen(port, function () {
-    console.log("Server started on port " + port);
+// app.listen(port, function () {
+//     console.log("Server started on port " + port);
+// });
+
+https.createServer(httpsOptions,app).listen(port,function(){
+	console.log("Server listening On Port "+ port);
 });
+
