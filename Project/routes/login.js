@@ -8,12 +8,18 @@ Object.defineProperty(exports, '__esModule', { value: true })
 var express_1 = __importDefault(require('express'))
 var db_1 = __importDefault(require('./db'))
 var router = express_1.default.Router()
-var unirest = require('unirest')
+// var unirest = require('unirest')
+var https = require('https')
+
+
+// aadhar request
+
 
 router.get('/', function (req, res) {
     // body...
     res.redirect('/v7_homepage.html')
 })
+
 
 router.post('/login', function (req, res) {
     var username = req.body.username
@@ -40,24 +46,71 @@ router.post('/login', function (req, res) {
                             aadharno = results[0].vcd_aadhar
                             var vd_id = results[0].vd_id
                             var digi_access = results[0].digi_access
-                            //console.log("fetched "+aadharno);
-
+                            console.log("fetched "+aadharno);
+                              
+                            
                             //send to aadhar api
-                            console.log(process.env.ADDRESS)
-                            var req = unirest('POST', 'http://' + process.env.ADDRESS + ':8082/verify')
-                                .headers({ 'Content-Type': 'application/json' })
-                                .send(JSON.stringify({ aadharno: aadharno }))
-                                .end(function (resp) {
-                                    if (resp.error) {
-                                        throw new Error(resp.error)
-                                        res.sendStatus(400)
-                                    }
-                                    //console.log(resp.raw_body);
-                                    res.cookie('vd_id_e', vd_id, { signed: true })
-                                    res.cookie('vcd_id_e', vcd_id, { signed: true })
-                                    res.cookie('digi_access_e', digi_access, { signed: true })
-                                    res.status(200).send({ aadhar: aadharno, vd_id: vd_id, vcd_id: vcd_id, digi_access: digi_access })
-                                })
+
+                            // using unirest
+                            // console.log(process.env.ADDRESS)
+                            // var req = unirest('POST', 'http://' + process.env.ADDRESS + ':8082/verify')
+                            //     .headers({ 'Content-Type': 'application/json' })
+                            //     .send(JSON.stringify({ aadharno: aadharno }))
+                            //     .end(function (resp) {
+                            //         if (resp.error) {
+                            //             throw new Error(resp.error)
+                            //             res.sendStatus(400)
+                            //         }
+                            //         //console.log(resp.raw_body);
+                            //         res.cookie('vd_id_e', vd_id, { signed: true })
+                            //         res.cookie('vcd_id_e', vcd_id, { signed: true })
+                            //         res.cookie('digi_access_e', digi_access, { signed: true })
+                            //         res.status(200).send({ aadhar: aadharno, vd_id: vd_id, vcd_id: vcd_id, digi_access: digi_access })
+                            //     })
+
+
+                            var options = {
+                                hostname: process.env.ADDRESS ,
+                                port: 8082,
+                                path: "/verify",
+                                method: 'POST',
+                                rejectUnauthorized: false,
+                                requestCert: true,
+                                agent: false,
+                                headers: {
+                                    'Content-Type': 'application/json'
+                               }
+                              };
+                            var req = https.request(options, function (resp) {
+                                resp.setEncoding('utf8');
+                                resp.on('data', function (chunk) {
+                                    console.log('BODY: ' + chunk);
+                                });
+                            
+                                resp.on('end',function(){
+                                  if (resp.statusCode == 200) {
+                                            res.cookie('vd_id_e', vd_id, { signed: true })
+                                            res.cookie('vcd_id_e', vcd_id, { signed: true })
+                                            res.cookie('digi_access_e', digi_access, { signed: true })
+                                            res.status(200).send({ aadhar: aadharno, vd_id: vd_id, vcd_id: vcd_id, digi_access: digi_access })
+                                    
+                                  } else {
+                                    console.log("Api call failed with response code " + resp.statusCode);
+                                    res.sendStatus(400)
+                                  }
+                                });
+                            
+                              });
+                            
+                              req.on('error', function (e) {
+                                console.log("Error : " + e.message);
+                                
+                              });
+                            
+                              // write data to request body
+                              req.write(JSON.stringify({ aadharno: aadharno }));
+                           
+                            req.end();
                         }
                     })
                 } else {
@@ -109,6 +162,54 @@ router.post('/login/admin', function (req, res) {
             }
         }
     })
+})
+
+
+
+router.post('/verifyOTP', (req, res) => {
+    console.log("verify otp called "+JSON.stringify(req.body))
+    var r=JSON.stringify(req.body)
+    var options = {
+        hostname: process.env.ADDRESS ,
+        port: 8082,
+        path: "/verifyOTP",
+        method: 'POST',
+        rejectUnauthorized: false,
+        requestCert: true,
+        agent: false,
+        headers: {
+            'Content-Type': 'application/json'
+       }
+      };
+    var req = https.request(options, function (resp) {
+        resp.setEncoding('utf8');
+        resp.on('data', function (chunk) {
+            console.log('BODY: ' + chunk);
+        });
+    
+        resp.on('end',function(){
+          if (resp.statusCode == 200) {
+                    res.sendStatus(200)
+            
+          } else {
+            console.log("Api call failed with response code " + resp.statusCode);
+            res.sendStatus(400)
+          }
+        });
+    
+      });
+    
+      req.on('error', function (e) {
+        console.log("Error : " + e.message);
+        
+      });
+    
+      // write data to request body
+      console.log(r)
+      req.write(r);
+   
+    req.end();
+    
 })
 
 router.post('/user/logout', (request, response) => {

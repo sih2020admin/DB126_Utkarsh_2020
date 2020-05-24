@@ -44,7 +44,7 @@ function show()
 
 				document.getElementById("confirm").onclick = function(){
 					document.getElementById("icon").className = "fa fa-spinner fa-spin";
-					var url = "http://"+location.hostname+":8082/verifyOTP";
+					var url = "https://"+location.hostname+":8081/verifyOTP";
 					xhr.open("POST" ,url);
 					xhr.setRequestHeader('Content-Type','application/json');
 					xhr.send(JSON.stringify({"aadharno":message.aadhar,"OTP": y.value}));
