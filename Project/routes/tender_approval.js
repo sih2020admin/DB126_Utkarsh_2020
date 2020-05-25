@@ -149,7 +149,7 @@ function file_status_digi(i, results, res) {
 				var sql = "SELECT access FROM access_token WHERE id=" + vcd_id;
 				db_1.default.query(sql, function (err, result) {
 					if (err) {
-						res.status(400).send({ error: "Database query failed" });
+						res.status(400).send({ error: "Database query failed to get access token" });
 					}
 					console.log("Data received");
 					var access_token = result[0].access;
@@ -177,14 +177,14 @@ function file_status_digi(i, results, res) {
 									file_status_digi(i + 1, results, res);
 								})
 								.catch(function (err) {
-									console.log('Failure', err);
+									//console.log('Failure', err);
 									results[i].boq_uri = 0;
 									console.log(results);
 									file_status_digi(i + 1, results, res);
 								});
 						})
 						.catch(function (err) {
-							console.log('Failure', err);
+							//console.log('Failure', err);
 							results[i].tech_uri = 0;
 							//creating options parameter for external server call
 							var options = {
@@ -199,7 +199,7 @@ function file_status_digi(i, results, res) {
 									file_status_digi(i + 1, results, res);
 								})
 								.catch(function (err) {
-									console.log('Failure', err);
+									//console.log('Failure', err);
 									results[i].boq_uri = 0;
 									console.log(results);
 									file_status_digi(i + 1, results, res);
