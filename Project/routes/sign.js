@@ -9,8 +9,10 @@ var router = express_1.default.Router();
 
 router.post('/details',function (req,res) {
 
-    var id = req.body.vcd_id;
-    db_1.default.query('SELECT vcd_name,vcd_aadhar,vcd_email FROM v_contact_details WHERE vcd_id=?',[id],function(err,result){
+    // var id = req.body.vcd_id;
+    // var vd_id = req.signedCookies.vd_id_e;
+      var vcd_id = req.signedCookies.vcd_id_e;
+    db_1.default.query('SELECT vcd_name,vcd_aadhar,vcd_email FROM v_contact_details WHERE vcd_id=?',[vcd_id],function(err,result){
         if(err){
             console.log(err);
             res.sendStatus(400);

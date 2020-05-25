@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
+// var data_structure_1 = require("./data-structure");
 var db_1 = __importDefault(require("./db"));
 var router = express_1.default.Router();
 var unirest = require('unirest');
@@ -22,9 +23,11 @@ var transporter = nodemailer.createTransport({
 router.post('/apply_tender', function (req, res) {
 
     	var et_id= req.body.et_id;
-    	var vd_id= req.body.vd_id;
-    	var vcd_id= req.body.vcd_id;
-    	var bid_amt= req.body.bid_amt;
+    	// var vd_id= req.body.vd_id;
+    	// var vcd_id= req.body.vcd_id;
+      var bid_amt= req.body.bid_amt;
+      var vd_id = req.signedCookies.vd_id_e;
+      var vcd_id = req.signedCookies.vcd_id_e;
     	console.log("apply tender desc called "+et_id)
 	
 				

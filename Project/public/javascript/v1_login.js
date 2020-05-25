@@ -5,7 +5,8 @@ var login_button = document.getElementById("login");
 var message;
 document.getElementById('username').value = "";
 console.log("hello v1_login")
-delete_cookies();
+// delete_cookies();
+$.post('/user/logout')
 
 function show() 
 {

@@ -11,7 +11,10 @@ var unirest = require('unirest');
 
 router.post('/admin_dashboard', function (req, res) {
 
-    var ad_id= req.body.ad_id;
+	// var ad_id= req.body.ad_id;
+	var ad_id = req.signedCookies.ad_id_e;
+    // var dept_id = req.signedCookies.ad_dept_id_e;
+    // var ad_org_id = req.signedCookies.ad_org_id_e;
 	// var vcd_id= req.body.vcd_id;
 	console.log("admin_dashboard called",ad_id)
 				
@@ -35,7 +38,10 @@ router.post('/admin_dashboard', function (req, res) {
 
 router.post('/approved_tenders', function (req, res) {
 
-    var dept_id= req.body.dept_id;
+	// var dept_id= req.body.dept_id;
+	// var ad_id = req.signedCookies.ad_id_e;
+    var dept_id = req.signedCookies.ad_dept_id_e;
+    // var ad_org_id = req.signedCookies.ad_org_id_e;
 	// var vcd_id= req.body.vcd_id;
 	console.log("admin_approved _tenders called",dept_id)
 				
