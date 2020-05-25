@@ -37,14 +37,17 @@
 }
 
 .details {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
   padding: 20px;
-  margin: 20px;
+  margin: 20px auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   -webkit-box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.2);
           box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.2);
   border-radius: 10px;
@@ -57,7 +60,7 @@
 }
 
 .details .personal_details table, .details .org_details table {
-  width: 100%;
+  margin: 15px;
 }
 
 .details .personal_details table label, .details .org_details table label {
@@ -69,14 +72,10 @@
 }
 
 .approved_tenders {
-  -webkit-box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.2);
-          box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.2);
-  border-radius: 10px;
-  margin: 20px;
-  padding: 20px;
+  margin: 10px 5px;
 }
 
-.approved_tenders h3 {
+.approved_tenders h1 {
   text-align: center;
   color: var(--main_color);
 }
@@ -95,5 +94,23 @@
 
 .approved_tenders table th, .approved_tenders table tr, .approved_tenders table td {
   padding: .5rem;
+}
+
+.approved_tenders .container {
+  -webkit-box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.2);
+          box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.2);
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px;
+}
+
+.approved_tenders .container h1, .approved_tenders .container h2, .approved_tenders .container h3, .approved_tenders .container h4 {
+  color: var(--main_color);
+  margin: 5px;
+}
+
+.approved_tenders .container a {
+  text-decoration: none;
+  color: var(--main_color);
 }
 /*# sourceMappingURL=admin_dashboard.css.map */

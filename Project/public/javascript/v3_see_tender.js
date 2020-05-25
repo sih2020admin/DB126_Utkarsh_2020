@@ -44,7 +44,7 @@ xhr.onload = function () {
     }
 }
 
-xhr.open("POST", "http://"+IP+":8081/gettenderlist");
+xhr.open("POST", "/gettenderlist");
 
 xhr.send(data);
 
@@ -94,7 +94,7 @@ function apply(i) {
     }
     }
 
-    xhr.open("POST", "http://"+IP+":8081/get_etd_id");
+    xhr.open("POST", "/get_etd_id");
     xhr.setRequestHeader("Content-Type", "application/json");
     
 

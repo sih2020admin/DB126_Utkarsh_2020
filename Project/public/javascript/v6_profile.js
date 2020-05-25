@@ -24,6 +24,7 @@ document.getElementById("edit1").onclick = function(){
 
     document.getElementById("name").removeAttribute("readonly");
     document.getElementById("name").style.border = "2px solid #663EFD";
+    document.getElementById("dob").setAttribute("type","date");
     document.getElementById("dob").removeAttribute("readonly");
     document.getElementById("dob").style.border = "2px solid #663EFD";
     document.getElementById("desg").removeAttribute("readonly");
@@ -52,6 +53,16 @@ document.getElementById("edit1").onclick = function(){
 
     document.getElementById("save").style.display = "inline-block";
     document.getElementById("cancel").style.display = "inline-block";
+
+    //Dynamic Year Generation
+    var start = 1900;
+    var end = new Date().getFullYear();
+    var options = "";
+    for(var year = start ; year <=end; year++){
+    options += "<option>"+ year +"</option>";
+    }
+    options += "<options value='1998' selected>1998</options>";
+    document.getElementById("yoe").innerHTML = options;
 }
 
 function save(){

@@ -57,7 +57,7 @@ var upload = function(files){
     }
     //console.log(formdata.get('file'));
     alert("Document Uploaded,Press OK to Sign the Document");
-    var url = "http://"+host+":8082/sms/send";
+    var url = "https://"+host+":8082/sms/send";
     xhr1.open("POST" ,url);
     xhr1.setRequestHeader('Content-Type','application/json');
     xhr1.send(JSON.stringify({"aadharno":aadhar}));
@@ -75,7 +75,7 @@ function otp(){
     document.getElementById("icon").className = "fa fa-spinner fa-spin";
     var otp = document.getElementById("otp").value;
     //var xhr1 = new XMLHttpRequest();
-    url = "http://"+host+":8082/verifyOTP";
+    url = "https://"+host+":8081/verifyOTP";
     xhr1.open("POST" ,url);
     xhr1.setRequestHeader('Content-Type','application/json');
     xhr1.send(JSON.stringify({"aadharno":aadhar,"OTP":otp}));

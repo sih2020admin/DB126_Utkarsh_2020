@@ -12,7 +12,7 @@ var __values = (this && this.__values) || function(o) {
 };
 var et_id = location.toString().split('=%20')[1];
 $.ajax({
-    url: baseURL + "/get_application",
+    url:"/get_application",
     async: true,
     method: 'POST',
     data: {

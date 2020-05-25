@@ -34,10 +34,11 @@
 
 }   
 .details{
+    width: max-content;
     padding: 20px;
-    margin: 20px;
+    margin: 20px auto;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.2);
     border-radius: 10px;
     h2, h3{
@@ -48,7 +49,7 @@
     .personal_details, .org_details{
 
         table{
-            width: 100%;
+            margin: 15px;
             label{color: var(--accent-color);}
             th,tr,td{padding: .5rem;}
         }
@@ -57,11 +58,8 @@
 
 }
 .approved_tenders{
-    box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.2);
-    border-radius: 10px;
-    margin: 20px;
-    padding: 20px;
-    h3{
+    margin: 10px 5px;
+    h1{
         text-align: center;
         color: var(--main_color);
     }
@@ -74,5 +72,22 @@
         th,tr,td{padding: .5rem;}
         
     }
+    .container{
+        box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.2);
+        border-radius: 10px;
+        padding: 20px;
+        margin: 20px;
+
+        h1,h2,h3,h4{
+            color: var(--main_color);
+            margin: 5px;
+        }
+
+        a{
+            text-decoration: none;
+            color: var(--main_color);
+        }
+    }
+
 
 }
