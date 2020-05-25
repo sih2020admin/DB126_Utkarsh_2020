@@ -41,8 +41,8 @@ router.post('/get_application', function (req, res) {  // to be call from see te
 				//console.log("gettenderlist called1")
 				//console.log("results", results);
 				//console.log("results vcd_id", results[0].vcd_id);
-				file_status_digi(results, res);
-				res.send(results);
+				file_status_digi(0, results, res);
+				//res.send(results);
 
 			}
 			else {
@@ -254,88 +254,97 @@ exports.default = router;
 const rp = require('request-promise');
 
 //below fn checks if file exists in user digi or not
-function file_status_digi(results, res) {
+function file_status_digi(i, results, res) {
 
-	var vcd_id = results[0].vcd_id;
-	var furi1 = results[0].furi1;
-	var furi2 = results[0].furi2;
+	if (i == results.length) {
+		res.send(results);
+	}
+	else {
+		var vcd_id = results[0].vcd_id;
+		var furi1 = results[0].furi1;
+		var furi2 = results[0].furi2;
 
-	var options = {
-		method: 'POST',
-		uri: 'http://165.22.210.37:8085/refresh_token',
-		body: {
-			id: vcd_id
-		},
-		json: true,
-		headers: {
-			'Content-Type': 'application/json',
-		},
-	};
+		var options = {
+			method: 'POST',
+			uri: 'http://165.22.210.37:8085/refresh_token',
+			body: {
+				id: vcd_id
+			},
+			json: true,
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		};
 
-	rp(options)
-		.then(function () {
-			var sql = "SELECT access FROM access_token WHERE id=" + vcd_id;
-			db_1.default.query(sql, function (err, result) {
-				if (err) {
-					res.status(400).send({ error: "Database query failed" });
-				}
-				console.log("Data received");
-				var access_token = result[0].access;
-				console.log("access token", access_token)
+		rp(options)
+			.then(function () {
+				var sql = "SELECT access FROM access_token WHERE id=" + vcd_id;
+				db_1.default.query(sql, function (err, result) {
+					if (err) {
+						res.status(400).send({ error: "Database query failed" });
+					}
+					console.log("Data received");
+					var access_token = result[0].access;
+					console.log("access token", access_token)
 
-				//creating options parameter for external server call
-				var options = {
-					method: 'GET',
-					uri: 'http://165.22.210.37:8085/get_files?furi=' + furi1 + '&vcd_id=' + vcd_id
-				};
+					//creating options parameter for external server call
+					var options = {
+						method: 'GET',
+						uri: 'http://165.22.210.37:8085/get_files?furi=' + furi1 + '&vcd_id=' + vcd_id
+					};
 
-				rp(options)
-					.then(function () {
-						results[0].tech_uri = 1
-						//creating options parameter for external server call
-						var options = {
-							method: 'GET',
-							uri: 'http://165.22.210.37:8085/get_files?furi=' + furi2 + '&vcd_id=' + vcd_id
-						};
+					rp(options)
+						.then(function () {
+							results[0].tech_uri = 1
+							//creating options parameter for external server call
+							var options = {
+								method: 'GET',
+								uri: 'http://165.22.210.37:8085/get_files?furi=' + furi2 + '&vcd_id=' + vcd_id
+							};
 
-						rp(options)
-							.then(function () {
-								results[0].boq_uri = 1;
-								console.log(results);
-							})
-							.catch(function (err) {
-								console.log('Failure', err);
-								results[0].boq_uri = 0;
-								console.log(results);
-							});
-					})
-					.catch(function (err) {
-						console.log('Failure', err);
-						results[0].tech_uri = 0;
-						//creating options parameter for external server call
-						var options = {
-							method: 'GET',
-							uri: 'https://165.22.210.37:8085/get_files?furi=' + furi2 + '&vcd_id=' + vcd_id
-						};
+							rp(options)
+								.then(function () {
+									results[0].boq_uri = 1;
+									console.log(results);
+									file_status_digi(i + 1, results, res);
+								})
+								.catch(function (err) {
+									console.log('Failure', err);
+									results[0].boq_uri = 0;
+									console.log(results);
+									file_status_digi(i + 1, results, res);
+								});
+						})
+						.catch(function (err) {
+							console.log('Failure', err);
+							results[0].tech_uri = 0;
+							//creating options parameter for external server call
+							var options = {
+								method: 'GET',
+								uri: 'https://165.22.210.37:8085/get_files?furi=' + furi2 + '&vcd_id=' + vcd_id
+							};
 
-						rp(options)
-							.then(function () {
-								results[0].boq_uri = 1;
-								console.log(results);
-							})
-							.catch(function (err) {
-								console.log('Failure', err);
-								results[0].boq_uri = 0;
-								console.log(results);
-							});
-					});
+							rp(options)
+								.then(function () {
+									results[0].boq_uri = 1;
+									console.log(results);
+									file_status_digi(i + 1, results, res);
+								})
+								.catch(function (err) {
+									console.log('Failure', err);
+									results[0].boq_uri = 0;
+									console.log(results);
+									file_status_digi(i + 1, results, res);
+								});
+						});
 
+				});
+			})
+			.catch(function (err) {
+				console.log('Failure', err);
 			});
-		})
-		.catch(function (err) {
-			console.log('Failure', err);
-		});
-	console.log("Hurray\n");
+		console.log("Hurray\n");
+	}
 
 }
 
