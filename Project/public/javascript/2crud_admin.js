@@ -635,7 +635,7 @@ function get_link() {
 	  }
 	}
 
-	xhr.open("POST", "http://192.168.0.6:8081/generate_zip");
+	xhr.open("POST", "/generate_zip");
 	xhr.setRequestHeader("Content-Type", "application/json");
 
 	xhr.send(data);

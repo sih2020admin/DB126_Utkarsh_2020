@@ -124,8 +124,10 @@ router.post('/create_tender', function (req, res) {
 	var et_last_date_apply	 = req.body.et_last_date_apply
 	var et_bidding_date	 = req.body.et_bidding_date
 	var et_file_uri	 = req.body.et_file_uri
-	var dept_id	 = req.body.dept_id
-
+	// var dept_id	 = req.body.dept_id
+	// var ad_id = req.signedCookies.ad_id_e;
+    var dept_id = req.signedCookies.ad_dept_id_e;
+    // var ad_org_id = req.signedCookies.ad_org_id_e;
 
 
 	db_1.default.query('INSERT INTO `e_tender_details` ( `et_title`, `et_tender_fee`, `et_tender_ref_no`, `et_tender_desc`, `et_last_date_apply`, `et_bidding_date`, `et_file_uri`, `is_delete`, `dept_id`) VALUES ( ?, ?, ?,?,?,?, ?, 0, ?);',[et_title ,et_tender_fee ,et_tender_ref_no ,et_tender_desc ,et_last_date_apply ,et_bidding_date ,et_file_uri ,dept_id] ,function (error, results, fields) {
