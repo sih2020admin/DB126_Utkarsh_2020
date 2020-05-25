@@ -260,9 +260,9 @@ function file_status_digi(i, results, res) {
 		res.send(results);
 	}
 	else {
-		var vcd_id = results[0].vcd_id;
-		var furi1 = results[0].furi1;
-		var furi2 = results[0].furi2;
+		var vcd_id = results[i].vcd_id;
+		var furi1 = results[i].furi1;
+		var furi2 = results[i].furi2;
 
 		var options = {
 			method: 'POST',
@@ -295,7 +295,7 @@ function file_status_digi(i, results, res) {
 
 					rp(options)
 						.then(function () {
-							results[0].tech_uri = 1
+							results[i].tech_uri = 1
 							//creating options parameter for external server call
 							var options = {
 								method: 'GET',
@@ -304,20 +304,20 @@ function file_status_digi(i, results, res) {
 
 							rp(options)
 								.then(function () {
-									results[0].boq_uri = 1;
+									results[i].boq_uri = 1;
 									console.log(results);
 									file_status_digi(i + 1, results, res);
 								})
 								.catch(function (err) {
 									console.log('Failure', err);
-									results[0].boq_uri = 0;
+									results[i].boq_uri = 0;
 									console.log(results);
 									file_status_digi(i + 1, results, res);
 								});
 						})
 						.catch(function (err) {
 							console.log('Failure', err);
-							results[0].tech_uri = 0;
+							results[i].tech_uri = 0;
 							//creating options parameter for external server call
 							var options = {
 								method: 'GET',
@@ -326,13 +326,13 @@ function file_status_digi(i, results, res) {
 
 							rp(options)
 								.then(function () {
-									results[0].boq_uri = 1;
+									results[i].boq_uri = 1;
 									console.log(results);
 									file_status_digi(i + 1, results, res);
 								})
 								.catch(function (err) {
 									console.log('Failure', err);
-									results[0].boq_uri = 0;
+									results[i].boq_uri = 0;
 									console.log(results);
 									file_status_digi(i + 1, results, res);
 								});
