@@ -48,7 +48,7 @@ window.onload = function () {
             //this api call will be then forwarded to digilocker
             //response from digilocker will be given back to the server and then client respectively
             var xhr = new XMLHttpRequest();
-            url = "http://165.22.210.37:8085/get_access_token";
+            url = "https://165.22.210.37:8085/get_access_token";
             xhr.open("POST", url, true);
             xhr.setRequestHeader('Content-Type', 'application/json');
 
@@ -85,7 +85,7 @@ window.onload = function () {
             //if we don't have param "state" and also not digi_access
             //then change url and redirect to digilocker
             alert(`We don't have access to your digilocker account. please give access. Click "OK" to continue`);
-            window.location.href = "https://api.digitallocker.gov.in/public/oauth2/1/authorize?response_type=code&client_id=DC8FB8CF&redirect_uri=http://165.22.210.37:8081/v4_apply_tender_s3.html&state=" + et_id + ":" + etd_id;
+            window.location.href = "https://api.digitallocker.gov.in/public/oauth2/1/authorize?response_type=code&client_id=DC8FB8CF&redirect_uri=https://165.22.210.37:8081/v4_apply_tender_s3.html&state=" + et_id + ":" + etd_id;
         }
         else {
             //if we don't have param "state" in url but we have digi_access then no need of digilocker signin
@@ -190,14 +190,14 @@ function show_files(str) {
                                     }
                                 });
 
-                                xhr.open("POST", "http://165.22.210.37:8081/enter_file_uri2_db");
+                                xhr.open("POST", "https://165.22.210.37:8081/enter_file_uri2_db");
                                 xhr.setRequestHeader("Content-Type", "application/json");
 
                                 xhr.send(data);
                             }
                         });
 
-                        xhr.open("POST", "http://165.22.210.37:8081/enter_file_uri1_db");
+                        xhr.open("POST", "https://165.22.210.37:8081/enter_file_uri1_db");
                         xhr.setRequestHeader("Content-Type", "application/json");
 
                         xhr.send(data);
@@ -259,7 +259,7 @@ function get_files() {
 
     //creating xhr request for api call
     var xhr = new XMLHttpRequest();
-    url = "http://165.22.210.37:8085/fetch_files";
+    url = "https://165.22.210.37:8085/fetch_files";
     xhr.open("POST", url, true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     // var vcd_id = get_cookie('vcd_id');
@@ -290,7 +290,7 @@ function get_files2() {
 
     //creating xhr request for api call
     var xhr = new XMLHttpRequest();
-    url = "http://165.22.210.37:8085/fetch_files2";
+    url = "https://165.22.210.37:8085/fetch_files2";
     xhr.open("POST", url, true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     var vcd_id = get_cookie('vcd_id');
@@ -327,7 +327,7 @@ function openModal() {
     else {
         //REfresh token API
         var xhr = new XMLHttpRequest();
-        url = "http://165.22.210.37:8085/refresh_token";
+        url = "https://165.22.210.37:8085/refresh_token";
         xhr.open("POST", url, true);
         xhr.setRequestHeader('Content-Type', 'application/json');
 
@@ -414,7 +414,7 @@ function uploadFiles() {
 
         //call Upload File API
         var xhr = new XMLHttpRequest();
-        url = "http://165.22.210.37:8085/upload_files";
+        url = "https://165.22.210.37:8085/upload_files";
         xhr.open("POST", url, true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.setRequestHeader('vcd_id', vcd_id);
@@ -483,14 +483,14 @@ function redirect_to_confirm_page() {
         }
     });
 
-    xhr.open("POST", "http://165.22.210.37:8081/apply_tender_s3");
+    xhr.open("POST", "https://165.22.210.37:8081/apply_tender_s3");
     xhr.setRequestHeader("Content-Type", "application/json");
 
     xhr.send(data);
 
     xhr.onload = function () {
         if (this.status == 200) {
-            window.location.href = "http://165.22.210.37:8081/v5_confirm_tender.html?et_id=" + et_id + "&etd_id=" + etd_id;
+            window.location.href = "https://165.22.210.37:8081/v5_confirm_tender.html?et_id=" + et_id + "&etd_id=" + etd_id;
         }
         else if (this.status == 400) {
             alert(temp.error);
@@ -515,7 +515,7 @@ function done() {
 
             //creating xhr request for api call
             var xhr = new XMLHttpRequest();
-            url = "http://165.22.210.37:8085/revoke_token";
+            url = "https://165.22.210.37:8085/revoke_token";
             xhr.open("POST", url, true);
             xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.send(JSON.stringify({
