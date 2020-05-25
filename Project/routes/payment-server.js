@@ -38,7 +38,7 @@ var params = {
     MOBILE_NO: '',
     EMAIL: '',
     TXN_AMOUNT: '',
-    CALLBACK_URL: "http://" + address + ":8081/payment/redirect",
+    CALLBACK_URL: "https://" + address + ":8081/payment/redirect",
 };
 /* var data =2
 function demo(){
@@ -98,7 +98,7 @@ function get_transaction_status() {
                 else {
                     var transaction_fail = new data_structure_1.TransactionFailure(result);
                     debug('Transaction Failure Object :', transaction_fail);
-                } 
+                }
             }
         });
     });
@@ -109,9 +109,7 @@ if (process.env.ADDRESS === '165.22.210.37') {
 //get_transaction_status()
 router.get('/tender', function (request, response) {
     var et_id = request.query.et_id;
-    // var vcd_id = request.cookies.vcd_id;
-    // var vd_id = request.signedCookies.vd_id_e;
-    var vcd_id = request.signedCookies.vcd_id_e;
+    var vcd_id = request.cookies.vcd_id;
     if (et_id === undefined) {
         response.send('Cannot find tenders with undefined et_id');
     }
