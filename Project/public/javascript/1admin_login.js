@@ -1,5 +1,4 @@
 // delete_cookies();	
-$.post('/admin/logout')
 document.getElementById('username').value = "";
 function show() 
 {

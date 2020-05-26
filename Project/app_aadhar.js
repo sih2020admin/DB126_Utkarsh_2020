@@ -13,8 +13,8 @@ var fs = require("fs");
 
 
 var httpsOptions = {
-     key: fs.readFileSync('key.pem'),
-     cert: fs.readFileSync('certificate.crt')
+     key: fs.readFileSync('certificates/key.pem'),
+     cert: fs.readFileSync('certificates/certificate.crt')
 };
 
 //var port = process.env.PORT || 8080

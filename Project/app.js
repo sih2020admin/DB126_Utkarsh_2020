@@ -22,15 +22,16 @@ var https_1 = __importDefault(require("https"));
 var express_1 = __importDefault(require("express"));
 var cors_1 = __importDefault(require("cors"));
 var path_1 = __importDefault(require("path"));
+var morgan = require('morgan');
 var cookie = require('cookie-parser');
 var session = require('express-session');
 var MySQLStore = require('express-mysql-session')(session);
-/* /* import connection from './routes/db'*/
-// Importing user defined modules
+var app = express_1.default();
+var debug = require('debug')('service:app');
+var db_1 = __importDefault(require("./routes/db"));
 var misc_1 = __importDefault(require("./routes/misc"));
 var payment_server_1 = __importDefault(require("./routes/payment-server"));
 var admin_profile_1 = __importDefault(require("./routes/admin-profile"));
-exports.app = express_1.default();
 var routes = ['login', 'tender_desc', 'crud_admin', 'list_tender', 'tender_approval', 'vendor_dashboard', 'apply_tender', 'sign'];
 var register = require('./routes/register-server');
 var admin_files = fs_extra_1.default.readdirSync('views/admin'), user_files = fs_extra_1.default.readdirSync('views/user');
@@ -40,32 +41,32 @@ var httpsOptions = {
     cert: fs_extra_1.default.readFileSync('certificates/certificate.crt'),
 };
 var invalid_extensions = new RegExp(['.js', '.css', '.svg'].join('|'));
-exports.app.engine('.hbs', express_handlebars_1.default({ extname: '.hbs' }));
-exports.app.set('view engine', '.hbs');
-exports.app.use(express_1.default.json());
-exports.app.use(express_1.default.urlencoded({ extended: true }));
-exports.app.use(cookie(process.env.COOKIE_SECRET));
-exports.app.use(cors_1.default({
+app.engine('.hbs', express_handlebars_1.default({ extname: '.hbs' }));
+app.set('view engine', '.hbs');
+app.use(morgan('dev'));
+app.use(express_1.default.json());
+app.use(express_1.default.urlencoded({ extended: true }));
+app.use(cookie(process.env.COOKIE_SECRET));
+app.use(cors_1.default({
     origin: '*',
     methods: ['GET', 'POST'],
 }));
-/* var sessionStore = new MySQLStore({}, connection)
+var sessionStore = new MySQLStore({}, db_1.default);
 app.use(session({
     //key: 'session_cookie_name',
-    secret: 'session_cookie_secret',
+    secret: process.env.COOKIE_SECRET,
     store: sessionStore,
     resave: false,
     saveUninitialized: false,
     cookie: {
-        maxAge:1000*60*60*2
-    }
-    
-})); */
-exports.app.use(function (request, response, next) {
-    if (request.url.match(/html/) !== null) {
+        maxAge: 1000 * 60 * 60 * 2,
+    },
+}));
+app.use(function (request, response, next) {
+    if (request.url.match(/.html/) !== null) {
         if (request.url.match(/homepage|register|error|login/) === null) {
             var url = request.url.replace('/', '');
-            console.log("Checking for cookies in CRUD admin ");
+            debug('Checking for cookies in CRUD admin ');
             if (admin_files.indexOf(url) !== -1) {
                 if (request.signedCookies.ad_id_e === undefined || request.signedCookies.ad_id_e === undefined || request.signedCookies.ad_id_e === undefined) {
                     response.redirect('/1admin_login.html');
@@ -84,23 +85,23 @@ exports.app.use(function (request, response, next) {
     }
     else {
         if (request.url.match(invalid_extensions) === null) {
-            console.log(request.url, ' : one of xhr requests');
+            debug(request.url, ' : one of xhr requests');
         }
     }
     next();
 });
-exports.app.use(express_1.default.static(path_1.default.join(__dirname, 'public')));
-exports.app.use(express_1.default.static(path_1.default.join(__dirname, 'views/user')));
-exports.app.use(express_1.default.static(path_1.default.join(__dirname, 'views/admin')));
-exports.app.use('/uploads', express_1.default.static(path_1.default.join(__dirname, 'uploads')));
-exports.app.use('/payment', payment_server_1.default);
-exports.app.use('/admin', admin_profile_1.default);
-exports.app.use('/misc', misc_1.default);
-exports.app.use('/register', register.default);
+app.use(express_1.default.static(path_1.default.join(__dirname, 'public')));
+app.use(express_1.default.static(path_1.default.join(__dirname, 'views/user')));
+app.use(express_1.default.static(path_1.default.join(__dirname, 'views/admin')));
+app.use('/uploads', express_1.default.static(path_1.default.join(__dirname, 'uploads')));
+app.use('/payment', payment_server_1.default);
+app.use('/admin', admin_profile_1.default);
+app.use('/misc', misc_1.default);
+app.use('/register', register.default);
 try {
     for (var routes_1 = __values(routes), routes_1_1 = routes_1.next(); !routes_1_1.done; routes_1_1 = routes_1.next()) {
         var i = routes_1_1.value;
-        exports.app.use('/', require("./routes/" + i).default);
+        app.use('/', require("./routes/" + i).default);
     }
 }
 catch (e_1_1) { e_1 = { error: e_1_1 }; }
@@ -110,9 +111,9 @@ finally {
     }
     finally { if (e_1) throw e_1.error; }
 }
-exports.app.get('*', function (request, response) {
+app.get('*', function (request, response) {
     response.sendFile(__dirname + '/views/user/error.html');
 });
-https_1.default.createServer(httpsOptions, exports.app).listen(port, function () {
-    console.log('Server listening On Port ' + port);
+https_1.default.createServer(httpsOptions, app).listen(port, function () {
+    debug('Server listening On Port ' + port);
 });
