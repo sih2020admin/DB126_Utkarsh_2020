@@ -57,7 +57,7 @@ var upload = function(files){
     }
     //console.log(formdata.get('file'));
     alert("Document Uploaded,Press OK to Sign the Document");
-    var url = "https://"+host+":8082/sms/send";
+    var url = "https://"+host+":8081/sms/send";
     xhr1.open("POST" ,url);
     xhr1.setRequestHeader('Content-Type','application/json');
     xhr1.send(JSON.stringify({"aadharno":aadhar}));
@@ -90,23 +90,33 @@ function otp(){
             var reason = document.getElementById("reason").value;
             var location = document.getElementById("location").value;
 
-            formdata.append('name',name);
+            formdata.append('name',name);   
             formdata.append('email',email);
             formdata.append('reason',reason);
             formdata.append('location',location);
             
             var xhr = new XMLHttpRequest();
-            var url = "http://"+host+":8091/sign";
+            // var url = "https://165.22.210.37:8091/sign";
+            var url = "/sign_8081/"+name+"/"+email+"/"+reason+"/"+location+"/"+flag;
+
             xhr.open("POST" ,url);
+            xhr.responseType = 'text';
             xhr.send(formdata);
             xhr.onload = function(){
                 if(this.status==200){
                     alert("SuccesFully Signed");
                     if(flag == 0){
                         document.getElementById("tc2").style.display = "none";
-                        preview.href = window.URL.createObjectURL(this.response);
-                        Technical_file_name = formdata.get('file').name.slice(0,-4) + "_signed.pdf";
-                        preview.download = Technical_file_name;
+                        // console.log(this.response.json())
+                        // console.log(JSON.parse(String(xhr.responseText)))
+                        // console.log(String(this.response))
+                        var tech_file= get_cookie('tech_file')
+                        console.log(tech_file)
+                        // preview.href = window.URL.createObjectURL('/signed/'+tech_file);
+                        preview.setAttribute("href", "/signed/"+tech_file);
+                        Technical_file_name = tech_file;
+                        // console.log(tech_file , Technical_file_name)
+                        // preview.download = Technical_file_name;
                         preview.style.display = '';
                         document.getElementById("upload_label_id2").className = "upload_label2";
                         document.getElementById("upload1").disabled = false; 
@@ -117,9 +127,12 @@ function otp(){
                     else{
                         document.getElementById("tc3").style.display = "none";
                         document.getElementById("tc5").innerHTML="";
-                        preview1.href = window.URL.createObjectURL(this.response);
-                        BOQ_file_name = formdata.get('file').name.slice(0,-4) + "_signed.pdf";
-                        preview1.download = BOQ_file_name;
+                        var boq_file= get_cookie('boq_file')
+                        // preview1.href = window.URL.createObjectURL(this.response);
+                        BOQ_file_name = boq_file;
+                        console.log(BOQ_file_name , boq_file)
+                        preview1.setAttribute("href", "/signed/"+boq_file);
+                        // preview1.download = BOQ_file_name;
                         preview1.style.display = '';
                         document.getElementById("upload1").disabled = true;
                         document.getElementById("upload_label_id2").className = "upload_label";

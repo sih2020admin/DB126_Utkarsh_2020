@@ -38,7 +38,7 @@ var params = {
     MOBILE_NO: '',
     EMAIL: '',
     TXN_AMOUNT: '',
-    CALLBACK_URL: "http://" + address + ":8081/payment/redirect",
+    CALLBACK_URL: "https://" + address + ":8081/payment/redirect",
 };
 /* var data =2
 function demo(){
@@ -204,7 +204,7 @@ router.post('/redirect', function (request, response) {
                             });
                         }
                     });
-                    response.redirect("http://" + address + ":8081/v4_apply_tender_s3.html?et_id=" + i.et_id + "&etd_id=" + i.etd_id);
+                    response.redirect("https://" + address + ":8081/v4_apply_tender_s3.html?et_id=" + i.et_id + "&etd_id=" + i.etd_id);
                 }
             }
         }

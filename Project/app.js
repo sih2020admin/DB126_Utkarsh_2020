@@ -20,6 +20,7 @@ var misc_1 = __importDefault(require("./routes/misc"));
 var payment_server_1 = __importDefault(require("./routes/payment-server"));
 var admin_profile_1 = __importDefault(require("./routes/admin-profile"));
 
+
 var https = require("https");
 var fs = require("fs");
 var httpsOptions = {
@@ -43,10 +44,14 @@ app.set('view engine', '.hbs');
 app.use(express_1.default.json());
 app.use(cookie(process.env.COOKIE_SECRET));
 app.use(express_1.default.urlencoded({ extended: true }));
+
 app.use(cors_1.default({
     origin: '*',
     methods: ['GET', 'POST'],
 }));
+
+// const bodyParser = require('body-parser');
+// app.use(bodyParser.urlencoded({ extended: false }));
 /* var sessionStore = new MySQLStore({}, connection)
 app.use(session({
     //key: 'session_cookie_name',
@@ -75,6 +80,7 @@ app.use(session({
 app.use(express_1.default.static(path_1.default.join(__dirname, 'public')));
 app.use(express_1.default.static(path_1.default.join(__dirname, 'views/user')));
 app.use(express_1.default.static(path_1.default.join(__dirname, 'views/admin')));
+app.use('/signed', express_1.default.static(path_1.default.join(__dirname, 'routes/uploaded_documents')));
 app.use('/uploads', express_1.default.static(path_1.default.join(__dirname, 'uploads')));
 app.use('/register', register.default);
 app.use('/payment', payment_server_1.default);

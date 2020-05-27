@@ -212,6 +212,11 @@ router.post('/verifyOTP', (req, res) => {
     
 })
 
+
+
+
+
+
 router.post('/user/logout', (request, response) => {
     response.clearCookie('vcd_id')
 	response.clearCookie('vd_id')
