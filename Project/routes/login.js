@@ -21,9 +21,9 @@ router.get('/', function (req, res) {
 })
 
 
-router.post('/login', function (req, res) {
-    var username = req.body.username
-    var password = req.body.password
+router.post('/login', function (reqs, res) {
+    var username = reqs.body.username
+    var password = reqs.body.password
     console.log('login called', username)
     db_1.default.query('SELECT * FROM  log_in_details WHERE role_id=2 and user_name = ?;', [username], function (error, results, fields) {
         if (error) {
@@ -92,6 +92,9 @@ router.post('/login', function (req, res) {
                                             res.cookie('vd_id_e', vd_id, { signed: true })
                                             res.cookie('vcd_id_e', vcd_id, { signed: true })
                                             res.cookie('digi_access_e', digi_access, { signed: true })
+                                            reqs.session.vd_id = vd_id
+                                            reqs.session.vcd_id = vcd_id
+                                            reqs.session.digi_access = digi_access
                                             res.status(200).send({ aadhar: aadharno, vd_id: vd_id, vcd_id: vcd_id, digi_access: digi_access })
                                     
                                   } else {
@@ -148,8 +151,10 @@ router.post('/login/admin', function (req, res) {
                             res.cookie('ad_id_e', results[0].ad_id, { signed: true })
                             res.cookie('ad_org_id_e', results[0].ad_org_id, { signed: true })
                             res.cookie('ad_dept_id_e', results[0].ad_dept_id, { signed: true })
+                            req.session.ad_id = results[0].ad_id
+                            req.session.ad_org_id = results[0].ad_org_id
+                            req.session.ad_dept_id = results[0].ad_dept_id
                             res.send(results[0])
-                            console.log(results[0].ad_id)
                         }
                     })
                 } else {
@@ -212,14 +217,24 @@ router.post('/verifyOTP', (req, res) => {
     
 })
 
+
+
+
+
+
 router.post('/user/logout', (request, response) => {
+    console.log()
     response.clearCookie('vcd_id')
 	response.clearCookie('vd_id')
 	response.clearCookie('digi_access')
     response.clearCookie('vcd_id_e')
 	response.clearCookie('vd_id_e')
-	response.clearCookie('digi_access_e')
-    response.sendStatus(200)
+    response.clearCookie('digi_access_e')
+    request.session.destroy(function(err) {
+        response.clearCookie('connect.sid')
+        return response.redirect( '/1admin_login.html');
+    })
+    //response.sendStatus(200)
 })
 
 router.post('/admin/logout', (request, response) => {
@@ -229,6 +244,10 @@ router.post('/admin/logout', (request, response) => {
     response.clearCookie('ad_id')
     response.clearCookie('ad_org_id')
     response.clearCookie('ad_dept_id')
-    response.sendStatus(200)
+    request.session.destroy(function(err) {
+        response.clearCookie('connect.sid')
+        return response.redirect( '/v1_login.html');
+    })
+    //response.sendStatus(200)
 })
 exports.default = router
