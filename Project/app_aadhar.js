@@ -13,8 +13,8 @@ var fs = require("fs");
 
 
 var httpsOptions = {
-     key: fs.readFileSync('key.pem'),
-     cert: fs.readFileSync('certificate.crt')
+     key: fs.readFileSync('certificates/key.pem'),
+     cert: fs.readFileSync('certificates/certificate.crt')
 };
 
 //var port = process.env.PORT || 8080
@@ -33,4 +33,5 @@ app.use('/sms', sms);
 https.createServer(httpsOptions,app).listen(port,function(){
 	console.log("Server listening On Port "+ port);
 });
+
 

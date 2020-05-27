@@ -233,7 +233,7 @@ app.post('/get_access_token', (req, res) => {
             grant_type: "authorization_code",
             client_id: "DC8FB8CF",
             client_secret: "c0af1661ed05294b8f83",
-            redirect_uri: "http://165.22.210.37:8081/v4_apply_tender_s3.html"
+            redirect_uri: "https://165.22.210.37:8081/v4_apply_tender_s3.html"
         },
         headers: {
             'Content-Type': 'application/json',

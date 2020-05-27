@@ -17,5 +17,4 @@ routes.json
 .vscode
 ecosystem.config.js
 uploads
-certificate.crt
-key.pem
+certificates
