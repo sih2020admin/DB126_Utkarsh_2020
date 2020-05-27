@@ -1,7 +1,7 @@
 'use strict'
 /* console.log('hello cookies')*/
 var IP = 'localhost'
-document.writeln('<script src="/javascript/jquery-3.4.1.min.js" type="text/javascript"></sc'+'ript>');
+document.writeln('<script src="/javascript/jquery-3.4.1.min.js" type="text/javascript"></sc' + 'ript>')
 function get_cookie(cname) {
     var name = cname + '='
     var ca = document.cookie.split(';')
@@ -26,7 +26,8 @@ function delete_cookies() {
     document.cookie = 'ad_dept_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC;'
     document.cookie = 'ad_org_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC;'
     document.cookie = 'digi_access=; expires=Thu, 01 Jan 1970 00:00:00 UTC;'
-/*     console.log('written to cookie ', decodeURIComponent(document.cookie))*/}
+    /*     console.log('written to cookie ', decodeURIComponent(document.cookie))*/
+}
 function delete_cookies_feild(feild) {
     // body...
     document.cookie = feild + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC;'
@@ -52,10 +53,9 @@ function theFunctionA() {
         confirmButtonText: 'Logout',
     }).then((result) => {
         if (result.value) {
-            $.post('/admin/logout')
-              .then((result)=>{
-                window.location.href=`/1admin_login.html`	
-              })
+            $.post('/admin/logout').then((result) => {
+                window.location.href = `/1admin_login.html`
+            })
         }
     })
 }
@@ -72,10 +72,9 @@ function theFunctionV() {
         confirmButtonText: 'Logout',
     }).then((result) => {
         if (result.value) {
-          $.post('/user/logout')
-              .then((result)=>{
-                window.location.href=`/v1_login.html`	
-              })
+            $.post('/user/logout').then((result) => {
+                window.location.href = `/v1_login.html`
+            })
         }
     })
 }
