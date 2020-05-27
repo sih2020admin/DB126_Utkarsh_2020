@@ -217,6 +217,11 @@ router.post('/verifyOTP', (req, res) => {
     
 })
 
+
+
+
+
+
 router.post('/user/logout', (request, response) => {
     console.log()
     response.clearCookie('vcd_id')
