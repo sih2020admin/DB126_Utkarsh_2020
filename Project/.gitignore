@@ -6,6 +6,7 @@
 test
 .prettierrc
 *.pug
+*.pdf
 env
 tsconfig.json
 loader.json
