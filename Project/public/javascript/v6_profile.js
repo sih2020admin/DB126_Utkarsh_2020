@@ -20,40 +20,48 @@ console.log(vcd_id);
 // var data = JSON.stringify({"vd_id":vd_id,"vcd_id":vcd_id}); //changed here proper json object
 document.getElementById("edit1").onclick = function(){
     document.getElementById("edit1").style.display ="none";
-
+ 
 
     document.getElementById("name").removeAttribute("readonly");
-    document.getElementById("name").style.border = "2px solid #663EFD";
+    // document.getElementById("name").style.border = "2px solid #663EFD";
     document.getElementById("dob").setAttribute("type","date");
-    document.getElementById("dob").removeAttribute("readonly");
-    document.getElementById("dob").style.border = "2px solid #663EFD";
+    document.getElementById("dob").removeAttribute("readonly");                  
+    // document.getElementById("dob").style.border = "2px solid #663EFD";
     document.getElementById("desg").removeAttribute("readonly");
-    document.getElementById("desg").style.border = "2px solid #663EFD";
+    // document.getElementById("desg").style.border = "2px solid #663EFD";
     document.getElementById("email").removeAttribute("readonly");
-    document.getElementById("email").style.border = "2px solid #663EFD";
+    // document.getElementById("email").style.border = "2px solid #663EFD";
     document.getElementById("mobile").removeAttribute("readonly");
-    document.getElementById("mobile").style.border = "2px solid #663EFD";
-    // document.getElementById("aadhar").style.border = "2px solid #663EFD";
+    // document.getElementById("mobile").style.border = "2px solid #663EFD";
+    document.getElementById("aadhar").style.border = "none"; 
 
     document.getElementById("cname").removeAttribute("readonly");
-    document.getElementById("cname").style.border = "2px solid #663EFD";
+    // document.getElementById("cname").style.border = "2px solid #663EFD";
     document.getElementById("legal").removeAttribute("readonly");
-    document.getElementById("legal").style.border = "2px solid #663EFD";
+    // document.getElementById("legal").style.border = "2px solid #663EFD";
     document.getElementById("yoe").removeAttribute("readonly");
-    document.getElementById("yoe").style.border = "2px solid #663EFD";
-    // document.getElementById("reg").style.border = "2px solid #663EFD";
-    // document.getElementById("gst").style.border = "2px solid #663EFD";
-    // document.getElementById("pan").style.border = "2px solid #663EFD";
+    // document.getElementById("yoe").style.border = "2px solid #663EFD";
+    document.getElementById("reg").style.border = "none";
+    document.getElementById("gst").style.border = "none";
+    document.getElementById("pan").style.border = "none";
     document.getElementById("mail").removeAttribute("readonly");
-    document.getElementById("mail").style.border = "2px solid #663EFD";
+    // document.getElementById("mail").style.border = "2px solid #663EFD";
     document.getElementById("ccontact").removeAttribute("readonly");
-    document.getElementById("ccontact").style.border = "2px solid #663EFD";
+    // document.getElementById("ccontact").style.border = "2px solid #663EFD";
     document.getElementById("add").removeAttribute("readonly");
-    document.getElementById("add").style.border = "2px solid #663EFD";
+    // document.getElementById("add").style.border = "2px solid #663EFD";
 
     document.getElementById("save").style.display = "inline-block";
     document.getElementById("cancel").style.display = "inline-block";
-
+    var style = document.createElement('style')
+    style.innerHTML = `
+    input{
+        border: 1px solid #663EFD;
+        padding: 2px 5px;
+        border-radius: 3px;
+    }
+    `
+    document.head.appendChild(style)
     //Dynamic Year Generation
     var start = 1900;
     var end = new Date().getFullYear();
@@ -248,51 +256,52 @@ xhr.onload = function () {
         var tender_div = document.getElementById("Tenders");
         if(response[2].length > 0 ){
         for(i=0;i<response[2].length ; i++){
-                var tender_content = `<table class="mytender">
+                var tender_content = `<div class="tender_container"><table class="mytender">
                         <tr>
-                            <td><label class="RnoLabel"><strong>ID:</strong></label></td>
+                            <td><label class="RnoLabel"><strong>ID</strong></label></td>
                             <td><label>`+response[2][i].et_id+`</label></td>
                         </tr>
                         <tr>
-                            <td><label class="RnoLabel"><strong>Title:</strong></label></td>
+                            <td><label class="RnoLabel"><strong>Title</strong></label></td>
                             <td><label>`+response[2][i].et_title+`</label></td>
                         </tr>
                         <tr>
-                            <td><label class="RnoLabel"><strong>Department:</strong></label></td>
+                            <td><label class="RnoLabel"><strong>Department</strong></label></td>
                             <td><label>`+response[2][i].dept_name+`</label></td>
                         </tr>
                         <tr>
-                            <td><label class="RnoLabel"><strong>Ref No:</strong></label></td>
+                            <td><label class="RnoLabel"><strong>Ref No</strong></label></td>
                             <td><label>`+response[2][i].et_tender_ref_no+`</label><br><br></td>
                         </tr>
                         <tr>
-                            <td><label class="Id"><strong>Tender fee:</strong></label></td>
+                            <td><label class="Id"><strong>Tender fee</strong></label></td>
                             <td><label>`+response[2][i].et_tender_fee+`</label></td>
                         </tr>
                         <tr>
-                            <td><label class="Id"><strong>Tender Description:</strong></label></td>
+                            <td><label class="Id"><strong>Tender Description</strong></label></td>
                             <td><label>`+response[2][i].et_tender_desc+`</label></td>
                         </tr>
                         <tr>
-                            <td><label class="OdateLabel"><strong>Closing Date:</strong></label></td>
+                            <td><label class="OdateLabel"><strong>Closing Date</strong></label></td>
                             <td><label id="Odate">`+response[2][i].et_last_date_apply.slice(0,10)+`</label></td>
                         </tr>
                         <tr>
-                            <td><label class="OdateLabel"><strong>Bid Date:</strong></label></td>
+                            <td><label class="OdateLabel"><strong>Bid Date</strong></label></td>
                             <td><label id="Odate">`+response[2][i].et_bidding_date.slice(0,10)+`</label></td>
                         </tr>		                
                         <tr>
-                            <td><label class="OdateLabel"><strong>File URL:</strong></label></td>
+                            <td><label class="OdateLabel"><strong>File URL</strong></label></td>
                             <td><label id="Odate">`+response[2][i].et_file_url+`</label></td>
                         </tr>
                         <tr>
-                            <td><label class="OdateLabel"><strong>Department ID:</strong></label></td>
+                            <td><label class="OdateLabel"><strong>Department ID</strong></label></td>
                             <td><label id="Odate">`+response[2][i].et_bidding_date.slice(0,10)+`</label></td>
                         </tr>
                         <tr>
-                            <td><label class="OdateLabel"><strong>Bidding Amount:</strong></label></td>
+                            <td><label class="OdateLabel"><strong>Bidding Amount</strong></label></td>
                             <td><label id="Odate">`+response[2][i].et_file_url+`</label></td>
                         </tr>
+                        </div>
                         </table>`
 				tender_div.insertAdjacentHTML('beforeend',tender_content);   
 			}
@@ -371,4 +380,26 @@ function operation(optName) {
         x[i].style.display = "none";  
       }
       document.getElementById(optName).style.display = "block";  
+
+      if (optName == 'Tenders')
+      { 
+        console.log("no box");
+        var style = document.createElement('style')
+        style.innerHTML = `
+        .tabcontent{
+            box-shadow: 0 0 0 0;
+        }
+        `
+        document.head.appendChild(style)
+      }
+      else{
+        console.log("box");
+        var style = document.createElement('style')
+        style.innerHTML = `
+        .tabcontent{
+            box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
+        }
+        `
+        document.head.appendChild(style)
+      }
 }
