@@ -1,36 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
 
+<head>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="css/nav.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="/css/login.css">
-	//<script  src="javascript/cookies.js"></script>
+	<script src="javascript/cookies.js"></script>
 	<title>Login</title>
 </head>
+
 <body>
 	<header>
-        <nav  id='nav_bar'>
-            <a href="/v7_homepage.html">Home</a>
-            <a href="/v1_login.html">Vendor Login</a>
+		<nav id='nav_bar'>
+			<a href="/v7_homepage.html">Home</a>
+			<a href="/v1_login.html">Vendor Login</a>
 
-            <!-- <a href="/2CRUD_admin.html">CRUD Tender</a> -->
-            <!-- <a href="/5admin_profile.html">Profile</a> -->
-        </nav>
+			<!-- <a href="/2CRUD_admin.html">CRUD Tender</a> -->
+			<!-- <a href="/5admin_profile.html">Profile</a> -->
+		</nav>
 	</header>
 	<div class="cont">
-	<h2>Admin Login</h2><br>
-	<table class="center">
-    <tr>
-	<td><label for="email_id">Username</label></td>
-	<td><input type="text" id="username" placeholder="Enter username" ></td></tr>
-	<tr><td><label for="password">Password</label></td>
-	<td><input type="password" id="pass" placeholder="Enter password" ></td>
-	</table>
-	<p id="tc"></p><br>
-	<button class="login" id="login" onclick="show()">Login</button>
+		<h2>Admin Login</h2><br>
+		<table class="center">
+			<tr>
+				<td><label for="email_id">Username</label></td>
+				<td><input type="text" id="username" placeholder="Enter username"></td>
+			</tr>
+			<tr>
+				<td><label for="password">Password</label></td>
+				<td><input type="password" id="pass" placeholder="Enter password"></td>
+		</table>
+		<p id="tc"></p><br>
+		<button class="login" id="login" onclick="show()">Login</button>
 	</div>
 </body>
 <script src="javascript/1admin_login.js"></script>
+
 </html>

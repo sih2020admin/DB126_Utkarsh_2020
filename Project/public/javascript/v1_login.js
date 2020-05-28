@@ -6,8 +6,6 @@ var message;
 document.getElementById('username').value = "";
 console.log("hello v1_login")
 // delete_cookies();
-$.post('/user/logout')
-
 function show() 
 {
 	var userid= document.getElementById("username").value;
