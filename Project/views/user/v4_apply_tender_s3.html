@@ -100,7 +100,7 @@
       </div>
       <div class="modal-body">
           <ul id="directory"></ul><br>
-          <button id="back" onclick=""><i class="fa fa-spinner fa-spin" id="icon2"></i>Back</button>
+          <!-- <button id="back" onclick=""><i class="fa fa-spinner fa-spin" id="icon2"></i>Back</button> -->
           <button id="uploadDigi" onclick="uploadFiles()"><i class="fa fa-spinner fa-spin" id="icon3"></i>Upload</button>
       </div>
   </div>
@@ -112,7 +112,7 @@
 <script type="text/javascript">
     var log_a = document.getElementById("log_a")
     var nav_bar = document.getElementById("nav_bar")
-    if(get_cookie("vcd_id") != "")
+    if(get_cookie("vcd_id_e") != "")
         {
             log_a.setAttribute("href", "/v6_profile.html");
             log_a.innerHTML ="Profile"

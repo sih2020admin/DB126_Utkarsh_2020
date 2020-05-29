@@ -49,8 +49,8 @@ $.ajax({
                 "<label for='vcd_email" + count + "'> Email </label><p id='vcd_" + count + "'> " + x.vcd_email + "</p><br>"+
                 "<label for='vcd_email" + count + "'> Email </label><p id='vcd_" + count + "'> " + x.vcd_email + "</p><br><br>"+
                 "<p for='Document uploaded" + count + "'>Documents Uploaded</p><br>"+
-                "<label for='f1" + count + "'>Technical File</label><p id='f1" + count + "'>  <a target=`__blank` href='https://165.22.210.37:8081/get_files?furi=" + x.furi1 + "&vd_id="+x.vd_id+"&vcd_id="+x.vcd_id+"'>file_url</a></p>  </p> <br>"+
-                "<label for='f2" + count + "'>BOQ File</label><p id='f1" + count + "'> <a target=`__blank` href='https://165.22.210.37:8081/get_files?furi="  + x.furi2 + "&vd_id="+x.vd_id+"&vcd_id="+x.vcd_id+"'>file_url</a></p> <br><br>"+
+                "<label for='f1" + count + "'>Technical File</label><p id='f1" + count + "'>  <a target=`__blank` href='https://165.22.210.37:8081/get_files?furi=" + x.furi1 + "&vd_id="+x.vd_id+"&vcd_id="+x.vcd_id+"'>file_url</a></p> <p id='tech_exist" + count + "'> " + x.tech_uri + "</p> </p> <br>"+
+                "<label for='f2" + count + "'>BOQ File</label><p id='f1" + count + "'> <a target=`__blank` href='https://165.22.210.37:8081/get_files?furi="  + x.furi2 + "&vd_id="+x.vd_id+"&vcd_id="+x.vcd_id+"'>file_url</a></p> <p id='boq_exist" + count + "'> " + x.boq_uri + "</p> <br><br>"+
                 "<p for='Payment Details" + count + "'>Payment Details (is it required to show???)</p><br>"+
                 "<label for='p_order_id" + count + "'>Order ID  </label><p id='p_order_id" + count + "'> " + x.order_id + "</p><br>"+
                 " <div class='button_div'><button id=approve_button" + count + " onclick=approve(" + count + ")>Approve</button></div></div>"

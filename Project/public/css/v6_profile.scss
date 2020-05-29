@@ -29,9 +29,14 @@ h3{
 
 input {
     // background-color: transparent;
-    border: 0px solid;
-    font-size: 16px;
+    border: none;
+    font-size: 1rem;
+    width: 100%;
+    min-width: auto;
+    max-width: auto;
+    outline: none;
 }
+
 
 button{
     width: 100px;
@@ -118,7 +123,6 @@ button{
 }
 .tabcontent {
     box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);  
-    // border: 0.4px solid var(--main_color);
     margin: 30px 40px 40px 22%; 
     padding: 10px 10px 10px 40px; 
     width: 100%;
@@ -134,24 +138,33 @@ strong {
     color: var(--accent-color);
     size: .5rem;
 }
-table{
-    width: 100%;
-    text-align: left;
-    td{
-        padding: 10px;
+
+    .profile_table{
+        width: 100%;
+        text-align: left;
+        td{
+            padding: 10px 0;
+        }
     }
-}
 
-
-.mytender{
+.tender_container{
+    box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
     margin-top: 20px;
     margin-right: 50px;
-    width: 97.5%;
-    text-align: left;
     padding: 10px;
     border-radius: 15px;
-    box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
-    border: 1px solid var(--main_color);
+}
+
+.mytender{
+    //margin-top: 20px;
+    //margin-right: 50px;
+    //width: 97.5%;
+    text-align: left;
+    padding: 10px;
+    //border-radius: 15px;
+    //box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
+    //border: 1px solid var(--main_color);
+
 
     td:nth-child(1){
         // text-overflow: ellipsis;

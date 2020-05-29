@@ -10,7 +10,7 @@ var __values = (this && this.__values) || function(o) {
     };
     throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
 };
-/* if(get_cookie('ad_id') == '')
+/* if(get_cookie('ad_id_e') == '')
 {
         window.location.href = "/1admin_login.html";
     }

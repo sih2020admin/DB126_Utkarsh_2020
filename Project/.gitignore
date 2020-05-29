@@ -6,6 +6,7 @@
 test
 .prettierrc
 *.pug
+*.pdf
 env
 tsconfig.json
 loader.json
@@ -19,3 +20,4 @@ uploads
 certificates
 logs
 *.jsonnet
+.uploaded_documents
