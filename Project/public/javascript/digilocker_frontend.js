@@ -47,7 +47,7 @@ window.onload = function () {
             //this api call will be then forwarded to digilocker
             //response from digilocker will be given back to the server and then client respectively
             var xhr = new XMLHttpRequest();
-            url = "http://165.22.210.37:8085/get_access_token";
+            url = "https://165.22.210.37:8081/get_access_token";
             xhr.open("POST", url, true);
             xhr.setRequestHeader('Content-Type', 'application/json');
 
@@ -264,7 +264,7 @@ function get_files() {
 
     //creating xhr request for api call
     var xhr = new XMLHttpRequest();
-    url = "http://165.22.210.37:8085/fetch_files";
+    url = "https://165.22.210.37:8081/fetch_files";
     xhr.open("POST", url, true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     // var vcd_id = get_cookie('vcd_id');
@@ -294,7 +294,7 @@ function get_files2() {
 
     //creating xhr request for api call
     var xhr = new XMLHttpRequest();
-    url = "http://165.22.210.37:8085/fetch_files2";
+    url = "https://165.22.210.37:8081/fetch_files2";
     xhr.open("POST", url, true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     var vcd_id = get_cookie('vcd_id');
@@ -333,7 +333,7 @@ function openModal() {
     else {
         //REfresh token API
         var xhr = new XMLHttpRequest();
-        url = "http://165.22.210.37:8085/refresh_token";
+        url = "https://165.22.210.37:8081/refresh_token";
         xhr.open("POST", url, true);
         xhr.setRequestHeader('Content-Type', 'application/json');
 
@@ -419,7 +419,7 @@ function uploadFiles() {
 
     //call Upload File API
     var xhr = new XMLHttpRequest();
-    url = "http://165.22.210.37:8085/upload_files";
+    url = "https://165.22.210.37:8081/upload_files";
     xhr.open("POST", url, true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.setRequestHeader('vcd_id', vcd_id);

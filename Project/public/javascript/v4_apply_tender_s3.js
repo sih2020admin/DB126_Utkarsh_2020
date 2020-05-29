@@ -96,9 +96,9 @@ function otp(){
             formdata.append('location',location);
             
             var xhr = new XMLHttpRequest();
+            //var url = "https://"+host+":8091/sign";
             // var url = "https://165.22.210.37:8091/sign";
             var url = "/sign_8081/"+name+"/"+email+"/"+reason+"/"+location+"/"+flag;
-
             xhr.open("POST" ,url);
             xhr.responseType = 'text';
             xhr.send(formdata);

@@ -77,6 +77,11 @@
             "app_path": "/",
             "module_name": "sign",
             "default_export": true
+        },
+        {
+            "app_path": "/",
+            "module_name": "digilocker",
+            "default_export": true
         }
     ]
 }
