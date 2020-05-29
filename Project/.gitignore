@@ -20,4 +20,4 @@ uploads
 certificates
 logs
 *.jsonnet
-.uploaded_documents
+
