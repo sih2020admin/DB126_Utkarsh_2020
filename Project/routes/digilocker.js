@@ -7,6 +7,9 @@ var express_1 = __importDefault(require("express"));
 var db_1 = __importDefault(require("./db"));
 var router = express_1.default.Router();
 
+var crypto = require('crypto');
+var fs = require('fs');
+const rp = require('request-promise');
 
 //Below function will return current timestamp in IST
 function getIST() {
@@ -78,7 +81,7 @@ function get_refresh_token(res, vcd_id) {
             var cur_date = new Date(cur_date_y, cur_date_m, cur_date_d, cur_time_h, cur_time_m, cur_time_s); //structuring --current-- date
 
             //calculate time and day difference (time difference in minutes)
-            timeDifference = Math.abs(date.getTime() - cur_date.getTime());
+            var timeDifference = Math.abs(date.getTime() - cur_date.getTime());
 
             let differentDays = Math.ceil(timeDifference / (1000 * 3600 * 24));
             let differentTime = Math.ceil(timeDifference / (1000 * 60));
@@ -154,7 +157,7 @@ function get_file(res, vcd_id, furi) {
             res.status(400).send({ error: "Database query failed" });
         };
         console.log("Data received");
-        access_token = result[0].access;
+        var access_token = result[0].access;
 
         //creating options parameter for external server call
         var options = {
@@ -264,7 +267,6 @@ router.post('/refresh_token', (req, res) => {
 router.post('/fetch_files', (req, res) => {
     var current_id = req.body.id;
     var vcd_id = req.body.vcd_id;
-    var access_token;
 
     //Get access token from database
     var sql = "SELECT access FROM access_token WHERE id=" + vcd_id;
@@ -273,7 +275,7 @@ router.post('/fetch_files', (req, res) => {
             res.status(400).send({ error: "Database query failed, can't get access token from DB" });
         };
         console.log("Data received");
-        access_token = result[0].access;
+        var access_token = result[0].access;
 
         //creating options parameter for external server call
         var options = {
@@ -306,7 +308,7 @@ router.post('/upload_files', function (req, res) {
     /*var path = require('path');
     const directoryPath = path.join(__dirname, '../uploaded_documents/'+file_name);
     */
-    const directoryPath = '/root/e-sign/uploaded_documents/' + file_name;
+    const directoryPath = '/root/e-sign/V-victory/Project/routes/uploaded_documents/' + file_name;
 
     //console.log(directoryPath);
     var data = fs.readFileSync(directoryPath);
@@ -339,7 +341,7 @@ router.post('/upload_files', function (req, res) {
         if (err) {
             res.status(400).send({ error: "Database query failed" });
         };
-        access_token = result[0].access;
+        var access_token = result[0].access;
         //console.log("Data received");
 
         var options = {
@@ -378,7 +380,7 @@ router.post('/revoke_token', function (req, res) {
         if (err) {
             res.status(400).send({ error: "Database query failed" });
         };
-        access_token = result[0].access;
+        var access_token = result[0].access;
         //console.log("Data received", typeof (access_token));
         var options = {
             method: 'POST',
