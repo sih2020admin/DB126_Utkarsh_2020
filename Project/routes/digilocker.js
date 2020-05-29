@@ -7,6 +7,9 @@ var express_1 = __importDefault(require("express"));
 var db_1 = __importDefault(require("./db"));
 var router = express_1.default.Router();
 
+var crypto = require('crypto');
+var fs = require('fs');
+const rp = require('request-promise');
 
 //Below function will return current timestamp in IST
 function getIST() {
