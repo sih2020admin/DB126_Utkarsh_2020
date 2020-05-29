@@ -141,7 +141,8 @@ function file_status_digi(i, results, res) {
 			json: true,
 			headers: {
 				'Content-Type': 'application/json',
-			}
+			},
+			strictSSL: false
 		};
 
 		rp(options)
@@ -159,10 +160,7 @@ function file_status_digi(i, results, res) {
 					var options = {
 						method: 'GET',
 						uri: 'https://165.22.210.37:8081/get_files?furi=' + furi1 + '&vcd_id=' + vcd_id,
-						agentOptions: {
-							cert: fs.readFileSync('/root/e-sign/V-victory/Project/certificate.crt'),
-							key: fs.readFileSync('/root/e-sign/V-victory/Project/key.pem'),
-						}
+						strictSSL: false
 					};
 
 					rp(options)
@@ -172,10 +170,7 @@ function file_status_digi(i, results, res) {
 							var options = {
 								method: 'GET',
 								uri: 'https://165.22.210.37:8081/get_files?furi=' + furi2 + '&vcd_id=' + vcd_id,
-								agentOptions: {
-									cert: fs.readFileSync('/root/e-sign/V-victory/Project/certificate.crt'),
-									key: fs.readFileSync('/root/e-sign/V-victory/Project/key.pem'),
-								}
+								strictSSL: false
 							};
 
 							rp(options)
@@ -198,10 +193,7 @@ function file_status_digi(i, results, res) {
 							var options = {
 								method: 'GET',
 								uri: 'https://165.22.210.37:8081/get_files?furi=' + furi2 + '&vcd_id=' + vcd_id,
-								agentOptions: {
-									cert: fs.readFileSync('/root/e-sign/V-victory/Project/certificate.crt'),
-									key: fs.readFileSync('/root/e-sign/V-victory/Project/key.pem'),
-								}
+								strictSSL: false
 							};
 
 							rp(options)
