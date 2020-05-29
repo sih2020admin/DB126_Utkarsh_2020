@@ -94,14 +94,14 @@
     var log_a = document.getElementById("log_a")
     var nav_bar = document.getElementById("nav_bar")
     var tender_n = document.getElementById("tender_link")
-    if(get_cookie("vcd_id") != "")
+    if(get_cookie("vcd_id_e") != "")
         {
             log_a.setAttribute("href", "/v6_profile.html");
             log_a.innerHTML ="Profile"
             nav_bar.insertAdjacentHTML('beforeend','<a href="/v3_see_tender.html">Tender</a>');
             nav_bar.insertAdjacentHTML('beforeend','<a onclick="return theFunctionV();">Log out</a>');
         }
-        else if(get_cookie("ad_id") != "")
+        else if(get_cookie("ad_id_e") != "")
         {
             console.log("added the theFunction")
             log_a.setAttribute("href", "/admin/profile");
