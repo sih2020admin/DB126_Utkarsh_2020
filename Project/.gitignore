@@ -18,3 +18,5 @@ routes.json
 ecosystem.config.js
 uploads
 certificates
+*.pdf
+sig.png
