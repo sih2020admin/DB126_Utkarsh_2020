@@ -18,4 +18,4 @@ ecosystem.config.js
 uploads
 certificates
 logs
-*.jsonnet
+configuration
