@@ -91,9 +91,8 @@ h2, label {
 }
 
 input {
-  border-width: 1.5px;
+  border: 1.5px solid var(--main_color);
   border-radius: 3px;
-  border-color: var(--main_color);
   height: 30px;
   width: auto;
   padding: 10px;

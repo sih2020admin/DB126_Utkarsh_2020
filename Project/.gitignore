@@ -6,6 +6,7 @@
 test
 .prettierrc
 *.pug
+*.pdf
 env
 tsconfig.json
 loader.json
@@ -13,10 +14,13 @@ IP.js
 node_modules
 nodemon.json
 server.json
-routes.json
 .vscode
 ecosystem.config.js
 uploads
 certificates
+<<<<<<< HEAD
 *.pdf
 sig.png
+logs
+*.jsonnet
+

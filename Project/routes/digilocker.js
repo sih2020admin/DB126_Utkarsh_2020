@@ -1,34 +1,12 @@
-var express = require('express');
-var app = express();
-var bodyParser = require('body-parser');
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
-var crypto = require('crypto');
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var express_1 = __importDefault(require("express"));
+var db_1 = __importDefault(require("./db"));
+var router = express_1.default.Router();
 
-var cors = require('cors');
-app.use(cors());
-
-const rp = require('request-promise');
-app.set('view engine', 'ejs');
-
-//requiring path and fs modules
-var fs = require('fs');
-
-var mysql = require('mysql');
-
-//creating sql connection
-var con = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "e_tender"
-});
-con.connect(function (err) {
-    if (err) throw err;
-    console.log("Connected!");
-})
 
 //Below function will return current timestamp in IST
 function getIST() {
@@ -60,7 +38,7 @@ function get_refresh_token(res, vcd_id) {
 
     //get timestamp of token from database
     var sql = "SELECT date, time FROM access_token WHERE id=" + vcd_id;
-    con.query(sql, function (err, result) {
+    db_1.default.query(sql, function (err, result) {
         if (err) {
             res.status(400).send({ error: err });
         }
@@ -114,7 +92,7 @@ function get_refresh_token(res, vcd_id) {
             else {
                 //get refresh token from database... using which we can get new access token
                 var sql = "SELECT refresh FROM access_token WHERE id=" + vcd_id;
-                con.query(sql, function (err, result) {
+                db_1.default.query(sql, function (err, result) {
                     if (err) {
                         res.status(400).send({ error: "Database connection failed, can't get refresh token from database" });
                     } else {
@@ -148,7 +126,7 @@ function get_refresh_token(res, vcd_id) {
 
                                 //Updating access and refresh token into database
                                 var sql = "UPDATE access_token SET access = '" + body.access_token + "', refresh = '" + body.refresh_token + "', date = '" + date + "', time = '" + time + "' WHERE id=" + vcd_id;
-                                con.query(sql, function (err, result) {
+                                db_1.default.query(sql, function (err, result) {
                                     if (err) {
                                         res.status(400).send({ error: "Database query failed, can't update access token" });
                                     } else {
@@ -171,7 +149,7 @@ function get_refresh_token(res, vcd_id) {
 function get_file(res, vcd_id, furi) {
     //Get access token from database
     var sql = "SELECT access FROM access_token WHERE id=" + vcd_id;
-    con.query(sql, function (err, result) {
+    db_1.default.query(sql, function (err, result) {
         if (err) {
             res.status(400).send({ error: "Database query failed" });
         };
@@ -219,7 +197,7 @@ function get_file(res, vcd_id, furi) {
 }
 
 //gets access_token from digilocker and stores it in database
-app.post('/get_access_token', (req, res) => {
+router.post('/get_access_token', (req, res) => {
     var auth_code = req.body.code;
     var vcd_id = req.body.id;
     console.log("code", auth_code);
@@ -255,13 +233,13 @@ app.post('/get_access_token', (req, res) => {
 
             //Updating digi_access value of user (set digi_access = 1 for specific user)
             var sql = "UPDATE v_contact_details SET digi_access=1 WHERE vcd_id=" + vcd_id;
-            con.query(sql, function (err, result) {
+            db_1.default.query(sql, function (err, result) {
                 if (err) throw err;
                 console.log("digi_access of user updated (digi_access = 1) now");
 
                 //Inserting access and refresh token into database
                 var sql = "INSERT INTO access_token (id, name, access, refresh, date, time) VALUES (" + vcd_id + ",'Sanket', '" + body.access_token + "', '" + body.refresh_token + "', '" + date + "', '" + time + "')";
-                con.query(sql, function (err, result) {
+                db_1.default.query(sql, function (err, result) {
                     if (err) throw err;
                     console.log("Access token has been successfully stored in DB");
                     res.status(200).send('{"msg":"Got digilocker access"}');
@@ -275,7 +253,7 @@ app.post('/get_access_token', (req, res) => {
 });
 
 //refreshes access token got from digilocker
-app.post('/refresh_token', (req, res) => {
+router.post('/refresh_token', (req, res) => {
     var vcd_id = req.body.id;
     console.log("body", req.body);
     console.log("sanket testing",vcd_id)
@@ -283,14 +261,14 @@ app.post('/refresh_token', (req, res) => {
 });
 
 //fetches self_uploaded files from digilocker
-app.post('/fetch_files', (req, res) => {
+router.post('/fetch_files', (req, res) => {
     var current_id = req.body.id;
     var vcd_id = req.body.vcd_id;
     var access_token;
 
     //Get access token from database
     var sql = "SELECT access FROM access_token WHERE id=" + vcd_id;
-    con.query(sql, function (err, result) {
+    db_1.default.query(sql, function (err, result) {
         if (err) {
             res.status(400).send({ error: "Database query failed, can't get access token from DB" });
         };
@@ -320,7 +298,7 @@ app.post('/fetch_files', (req, res) => {
 });
 
 //upload files to digilocker
-app.post('/upload_files', function (req, res) {
+router.post('/upload_files', function (req, res) {
     var file_name = req.body.filename;
     //console.log(file_name);
 
@@ -328,7 +306,8 @@ app.post('/upload_files', function (req, res) {
     /*var path = require('path');
     const directoryPath = path.join(__dirname, '../uploaded_documents/'+file_name);
     */
-    const directoryPath = '/root/e-sign/V-victory/Project/routes/uploaded_documents/' + file_name;
+    const directoryPath = '/root/e-sign/uploaded_documents/' + file_name;
+
     //console.log(directoryPath);
     var data = fs.readFileSync(directoryPath);
     //console.log(data);
@@ -356,7 +335,7 @@ app.post('/upload_files', function (req, res) {
 
     //Get access token from database
     var sql = "SELECT access FROM access_token WHERE id=" + vcd_id;
-    con.query(sql, function (err, result) {
+    db_1.default.query(sql, function (err, result) {
         if (err) {
             res.status(400).send({ error: "Database query failed" });
         };
@@ -387,7 +366,7 @@ app.post('/upload_files', function (req, res) {
 });
 
 //revoke digilocker token
-app.post('/revoke_token', function (req, res) {
+router.post('/revoke_token', function (req, res) {
     console.log("Revoke called");
     console.log(req.body);
     console.log(req.body.vcd_id);
@@ -395,7 +374,7 @@ app.post('/revoke_token', function (req, res) {
 
     //Get access token from database
     var sql = "SELECT access FROM access_token WHERE id=" + vcd_id;
-    con.query(sql, function (err, result) {
+    db_1.default.query(sql, function (err, result) {
         if (err) {
             res.status(400).send({ error: "Database query failed" });
         };
@@ -419,14 +398,14 @@ app.post('/revoke_token', function (req, res) {
 
                 //delete access_token from database;
                 var sql = "DELETE FROM access_token WHERE id=" + vcd_id;
-                con.query(sql, function (err, result) {
+                db_1.default.query(sql, function (err, result) {
                     if (err) {
                         res.status(400).send({ error: "Database query failed" });
                     };
 
                     //update digi_access status in database
                     var sql = 'UPDATE v_contact_details SET digi_access="0" where vcd_id=' + vcd_id;
-                    con.query(sql, function (err, result) {
+                    db_1.default.query(sql, function (err, result) {
                         if (err) {
                             res.status(400).send({ error: "Database query failed" });
                         };
@@ -441,7 +420,7 @@ app.post('/revoke_token', function (req, res) {
     });
 });
 
-app.get('/get_files', (req, res) => {
+router.get('/get_files', (req, res) => {
     var furi = req.query.furi;
     //var vd_id = req.query.vd_id;
     var vcd_id = req.query.vcd_id;
@@ -455,7 +434,7 @@ app.get('/get_files', (req, res) => {
 
     //get timestamp of token from database
     var sql = "SELECT date, time FROM access_token WHERE id=" + vcd_id;
-    con.query(sql, function (err, result) {
+    db_1.default.query(sql, function (err, result) {
         if (err) {
             res.status(400).send({ error: "Database connection failed, can't get timestamp of access token" });
         }
@@ -509,7 +488,7 @@ app.get('/get_files', (req, res) => {
             else {
                 //get refresh token from database... using which we can get new access token
                 var sql = "SELECT refresh FROM access_token WHERE id=" + vcd_id;
-                con.query(sql, function (err, result) {
+                db_1.default.query(sql, function (err, result) {
                     if (err) {
                         res.status(400).send({ error: "Database connection failed, can't get refresh token from database" });
                     } else {
@@ -543,7 +522,7 @@ app.get('/get_files', (req, res) => {
 
                                 //Updating access and refresh token into database
                                 var sql = "UPDATE access_token SET access = '" + body.access_token + "', refresh = '" + body.refresh_token + "', date = '" + date + "', time = '" + time + "' WHERE id=" + vcd_id;
-                                con.query(sql, function (err, result) {
+                                db_1.default.query(sql, function (err, result) {
                                     if (err) {
                                         res.status(400).send({ error: "Database query failed, can't update access token" });
                                     } else {
@@ -564,6 +543,4 @@ app.get('/get_files', (req, res) => {
     /* ------------------------------End of refresh Token ----------------------------------------- */
 });
 
-app.listen(8085, (req, res) => {
-    console.log("Listening on 8085");
-});
+exports.default = router;
