@@ -77,12 +77,12 @@ app.use(require('./middleware/checker1'))
 /* app.use(express_1.default.static(path_1.default.join(__dirname, 'public')));
 app.use(express_1.default.static(path_1.default.join(__dirname, 'views/user')));
 app.use(express_1.default.static(path_1.default.join(__dirname, 'views/admin')));
-app.use('/signed', express_1.default.static(path_1.default.join(__dirname, 'routes/uploaded_documents')));
-app.use('/uploads', express_1.default.static(path_1.default.join(__dirname, 'uploads')));
 app.use('/payment', payment_server_1.default);
 app.use('/admin', admin_profile_1.default);
 app.use('/misc', misc_1.default);
 app.use('/register', register.default); */
+app.use('/signed', express_1.default.static(path_1.default.join(__dirname, 'routes/uploaded_documents')));
+app.use('/uploads', express_1.default.static(path_1.default.join(__dirname, 'uploads')));
 try {
     for (var static_files_1 = __values(static_files), static_files_1_1 = static_files_1.next(); !static_files_1_1.done; static_files_1_1 = static_files_1.next()) {
         var i = static_files_1_1.value
