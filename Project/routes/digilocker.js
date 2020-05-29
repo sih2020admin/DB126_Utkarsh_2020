@@ -78,7 +78,7 @@ function get_refresh_token(res, vcd_id) {
             var cur_date = new Date(cur_date_y, cur_date_m, cur_date_d, cur_time_h, cur_time_m, cur_time_s); //structuring --current-- date
 
             //calculate time and day difference (time difference in minutes)
-            timeDifference = Math.abs(date.getTime() - cur_date.getTime());
+            var timeDifference = Math.abs(date.getTime() - cur_date.getTime());
 
             let differentDays = Math.ceil(timeDifference / (1000 * 3600 * 24));
             let differentTime = Math.ceil(timeDifference / (1000 * 60));
