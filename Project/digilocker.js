@@ -328,8 +328,7 @@ app.post('/upload_files', function (req, res) {
     /*var path = require('path');
     const directoryPath = path.join(__dirname, '../uploaded_documents/'+file_name);
     */
-    const directoryPath = '/root/e-sign/uploaded_documents/' + file_name;
-
+    const directoryPath = '/root/e-sign/V-victory/Project/routes/uploaded_documents/' + file_name;
     //console.log(directoryPath);
     var data = fs.readFileSync(directoryPath);
     //console.log(data);
