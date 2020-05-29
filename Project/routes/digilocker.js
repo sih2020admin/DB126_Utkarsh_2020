@@ -157,7 +157,7 @@ function get_file(res, vcd_id, furi) {
             res.status(400).send({ error: "Database query failed" });
         };
         console.log("Data received");
-        access_token = result[0].access;
+        var access_token = result[0].access;
 
         //creating options parameter for external server call
         var options = {
@@ -267,7 +267,6 @@ router.post('/refresh_token', (req, res) => {
 router.post('/fetch_files', (req, res) => {
     var current_id = req.body.id;
     var vcd_id = req.body.vcd_id;
-    var access_token;
 
     //Get access token from database
     var sql = "SELECT access FROM access_token WHERE id=" + vcd_id;
@@ -276,7 +275,7 @@ router.post('/fetch_files', (req, res) => {
             res.status(400).send({ error: "Database query failed, can't get access token from DB" });
         };
         console.log("Data received");
-        access_token = result[0].access;
+        var access_token = result[0].access;
 
         //creating options parameter for external server call
         var options = {
@@ -342,7 +341,7 @@ router.post('/upload_files', function (req, res) {
         if (err) {
             res.status(400).send({ error: "Database query failed" });
         };
-        access_token = result[0].access;
+        var access_token = result[0].access;
         //console.log("Data received");
 
         var options = {
@@ -381,7 +380,7 @@ router.post('/revoke_token', function (req, res) {
         if (err) {
             res.status(400).send({ error: "Database query failed" });
         };
-        access_token = result[0].access;
+        var access_token = result[0].access;
         //console.log("Data received", typeof (access_token));
         var options = {
             method: 'POST',
