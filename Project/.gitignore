@@ -17,5 +17,5 @@ certificates
 sig.png
 logs
 environment.toml
-*.jsonnet
-
+configuration
+    
