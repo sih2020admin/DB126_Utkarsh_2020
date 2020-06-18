@@ -1,0 +1,23 @@
+[Settings]
+"HTTPS" = true
+
+[HTML]
+
+"admin" = [ "/1admin_login.html"        , "/2CRUD_admin.html"       , "/3view_tender_application.html"  ,"/4approve_tender.html",
+            "/admin/profile"            , "show_file.html"
+        ]
+        
+"vendor" =[ "error.html"                , "v1_login.html"           , "v2_register.html"                , "v3_see_tender.html"  , 
+            "v4_apply_tender_s1.html"   , "v4_apply_tender_s3.html" , "v5_confirm_tender.html"          , "v5_review_tender.html",
+            "v6_profile.html"           , "v7_homepage.html"
+     ]
+
+[CookieChecker]
+
+"admin" = [ "/2CRUD_admin.html"         , "/4approve_tender.html"   , "/3view_tender_application.html"  , "/admin/profile", 
+            "show_file.html"
+        ]
+        
+"vendor" =[ "v3_see_tender.html"        , "v4_apply_tender_s1.html"  , "v4_apply_tender_s3.html"        , "v5_confirm_tender.html",
+            "v5_review_tender.html"     ,"v6_profile.html"
+     ] 
