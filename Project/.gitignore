@@ -18,9 +18,7 @@ server.json
 ecosystem.config.js
 uploads
 certificates
-<<<<<<< HEAD
 *.pdf
 sig.png
 logs
 *.jsonnet
-si

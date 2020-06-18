@@ -123,7 +123,7 @@ const rp = require('request-promise');
 
 //below fn checks if file exists in user digi or not
 function file_status_digi(i, results, res) {
-
+	console.log(i)
 	if (i == results.length) {
 		res.send(results);
 	}
