@@ -5,7 +5,7 @@ var cors = require('cors');
 var path = require('path');
 var app = express();
 
-require('./loader')
+require('./loader/loader')
 var verify = require('./routes_aadhar/verify');
 var sms = require('./routes_aadhar/sms');
 var https = require("https");

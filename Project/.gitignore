@@ -21,6 +21,7 @@ certificates
 *.pdf
 sig.png
 logs
-configuration
 *.jsonnet
-
+configuration
+*.jsonnet   
+    
