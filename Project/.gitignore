@@ -22,3 +22,5 @@ certificates
 sig.png
 logs
 *.jsonnet
+configuration
+*.jsonnet

@@ -6,17 +6,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var fs_extra_1 = __importDefault(require("fs-extra"));
 var dotenv_1 = __importDefault(require("dotenv"));
 var debug = require('debug')('service:loader:env-generate');
+var toml = require('@iarna/toml');
 var ENV = /** @class */ (function () {
-    function ENV(development_folder_path, development_env_path, production_folder_path, production_env_path, json_path) {
+    function ENV(development_folder_path, development_env_path, production_folder_path, production_env_path, toml_path) {
         this.env_object = '';
         this.production_folder_path = production_folder_path;
         this.production_env_path = production_env_path;
         this.development_folder_path = development_folder_path;
         this.development_env_path = development_env_path;
-        var loader_json = fs_extra_1.default.readJSONSync(json_path);
-        for (var i in loader_json) {
-            for (var j in loader_json[i]) {
-                this.env_object = this.env_object + (j.toUpperCase() + "=" + loader_json[i][j] + "\n");
+        var loader_toml = toml.parse(fs_extra_1.default.readFileSync(toml_path));
+        for (var i in loader_toml) {
+            for (var j in loader_toml[i]) {
+                this.env_object = this.env_object + (j.toUpperCase() + "=" + loader_toml[i][j] + "\n");
             }
         }
     }

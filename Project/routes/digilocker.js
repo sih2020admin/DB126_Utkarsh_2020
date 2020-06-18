@@ -46,7 +46,7 @@ function get_refresh_token(res, vcd_id) {
             res.status(400).send({ error: err });
         }
         else {
-            console.log("data recieved");
+            console.log("Time Stamp of Access Token received.");
             date = result[0].date;
             time = result[0].time;
 
@@ -118,8 +118,8 @@ function get_refresh_token(res, vcd_id) {
                         //sending request with above options to digilocker to get new access token
                         rp(options)
                             .then(function (body) {
-                                console.log('Success');
-                                console.log(body);
+                                console.log('Token Refreshed Successfully');
+                                // console.log(body);
 
                                 //getting Current Timestamp in IST
                                 var temp = getIST();
@@ -156,7 +156,7 @@ function get_file(res, vcd_id, furi) {
         if (err) {
             res.status(400).send({ error: "Database query failed" });
         };
-        console.log("Data received");
+        console.log("Got Access Token from DB");
         var access_token = result[0].access;
 
         //creating options parameter for external server call
@@ -203,7 +203,7 @@ function get_file(res, vcd_id, furi) {
 router.post('/get_access_token', (req, res) => {
     var auth_code = req.body.code;
     var vcd_id = req.body.id;
-    console.log("code", auth_code);
+    // console.log("code", auth_code);
 
     //creating options parameter for external server call
     var options = {
@@ -225,8 +225,8 @@ router.post('/get_access_token', (req, res) => {
     //sending request with above options to digilocker to get access token
     rp(options)
         .then(function (body) {
-            console.log('Success');
-            console.log(body);
+            console.log('Got Access Token from Digilocker Server');
+            //console.log(body);
 
             //getting Current Timestamp in IST
             var temp = getIST();
@@ -258,8 +258,8 @@ router.post('/get_access_token', (req, res) => {
 //refreshes access token got from digilocker
 router.post('/refresh_token', (req, res) => {
     var vcd_id = req.body.id;
-    console.log("body", req.body);
-    console.log("sanket testing",vcd_id)
+    // console.log("body", req.body);
+    // console.log("sanket testing",vcd_id)
     get_refresh_token(res, vcd_id);
 });
 
@@ -274,7 +274,7 @@ router.post('/fetch_files', (req, res) => {
         if (err) {
             res.status(400).send({ error: "Database query failed, can't get access token from DB" });
         };
-        console.log("Data received");
+        console.log("Got Access Token from DB");
         var access_token = result[0].access;
 
         //creating options parameter for external server call
@@ -289,7 +289,7 @@ router.post('/fetch_files', (req, res) => {
         //sending request with above options to digilocker to get list of files 
         rp(options)
             .then(function (body) {
-                console.log('Success');
+                console.log('Got List of Files');
                 res.status(200).send(body);
             })
             .catch(function (err) {
@@ -341,8 +341,8 @@ router.post('/upload_files', function (req, res) {
         if (err) {
             res.status(400).send({ error: "Database query failed" });
         };
+        console.log("Got Access Token from DB");
         var access_token = result[0].access;
-        //console.log("Data received");
 
         var options = {
             method: 'POST',
@@ -358,7 +358,7 @@ router.post('/upload_files', function (req, res) {
 
         rp(options)
             .then(function (body) {
-                console.log('Success');
+                console.log('File Uploaded to Digilocker Server successfully');
                 res.status(200).send(gen_hmac);
             })
             .catch(function (err) {
@@ -369,9 +369,9 @@ router.post('/upload_files', function (req, res) {
 
 //revoke digilocker token
 router.post('/revoke_token', function (req, res) {
-    console.log("Revoke called");
-    console.log(req.body);
-    console.log(req.body.vcd_id);
+    // console.log("Revoke called");
+    // console.log(req.body);
+    // console.log(req.body.vcd_id);
     var vcd_id = req.body.vcd_id;
 
     //Get access token from database
@@ -380,8 +380,8 @@ router.post('/revoke_token', function (req, res) {
         if (err) {
             res.status(400).send({ error: "Database query failed" });
         };
+        console.log("Got Access Token from DB");
         var access_token = result[0].access;
-        //console.log("Data received", typeof (access_token));
         var options = {
             method: 'POST',
             uri: 'https://api.digitallocker.gov.in/public/oauth2/1/revoke',
@@ -396,7 +396,7 @@ router.post('/revoke_token', function (req, res) {
 
         rp(options)
             .then(function (body) {
-                console.log('Success');
+                console.log('Token has been revoked successfully');
 
                 //delete access_token from database;
                 var sql = "DELETE FROM access_token WHERE id=" + vcd_id;
@@ -427,7 +427,7 @@ router.get('/get_files', (req, res) => {
     //var vd_id = req.query.vd_id;
     var vcd_id = req.query.vcd_id;
 
-    console.log(furi, vcd_id);
+    // console.log(furi, vcd_id);
 
     /* ------------------------ Start of Refresh Token ----------------------------- */
 
@@ -441,7 +441,7 @@ router.get('/get_files', (req, res) => {
             res.status(400).send({ error: "Database connection failed, can't get timestamp of access token" });
         }
         else {
-            console.log("data recieved");
+            console.log("Got Timestamp of Access Token from DB");
             date = result[0].date;
             time = result[0].time;
 
@@ -476,7 +476,7 @@ router.get('/get_files', (req, res) => {
             var cur_date = new Date(cur_date_y, cur_date_m, cur_date_d, cur_time_h, cur_time_m, cur_time_s); //structuring --current-- date
 
             //calculate time and day difference (time difference in minutes)
-            timeDifference = Math.abs(date.getTime() - cur_date.getTime());
+            var timeDifference = Math.abs(date.getTime() - cur_date.getTime());
 
             let differentDays = Math.ceil(timeDifference / (1000 * 3600 * 24));
             let differentTime = Math.ceil(timeDifference / (1000 * 60));
@@ -513,8 +513,8 @@ router.get('/get_files', (req, res) => {
                         //sending request with above options to digilocker to get new access token
                         rp(options)
                             .then(function (body) {
-                                console.log('Success');
-                                console.log(body);
+                                console.log('Token has been refreshed successfully');
+                                // console.log(body);
 
                                 //getting Current Timestamp in IST
                                 var temp = getIST();

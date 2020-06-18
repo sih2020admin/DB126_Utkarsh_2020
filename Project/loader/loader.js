@@ -15,14 +15,14 @@ var production_folder_path = 'env/production';
 var production_env_path = 'env/production/.env';
 var development_folder_path = 'env/development';
 var development_env_path = 'env/development/.env';
-var json_path = 'loader.json';
+var toml_path = 'configuration/environment.toml';
 try {
-    var env = new env_generate_1.ENV(development_folder_path, development_env_path, production_folder_path, production_env_path, json_path);
+    var env = new env_generate_1.ENV(development_folder_path, development_env_path, production_folder_path, production_env_path, toml_path);
 }
 catch (error) {
-    debug("Couldn't find loader.json for loading environment variables");
+    debug("Couldn't find environment.toml for loading environment variables");
     debug('Exiting');
-    console.log("Couldn't find loader.json for loading environment variables");
+    console.log("Couldn't find environment.toml for loading environment variables");
     console.log('Exiting');
     process.exit(0);
 }
