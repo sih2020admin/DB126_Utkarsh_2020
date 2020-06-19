@@ -1,7 +1,5 @@
 .env
 *.ts
-*.crt
-*.pem
 *.p12
 test
 .prettierrc
@@ -9,11 +7,8 @@ test
 *.pdf
 env
 tsconfig.json
-loader.json
-IP.js
 node_modules
 nodemon.json
-server.json
 .vscode
 ecosystem.config.js
 uploads
@@ -21,7 +16,6 @@ certificates
 *.pdf
 sig.png
 logs
-*.jsonnet
+environment.toml
 configuration
-*.jsonnet   
     

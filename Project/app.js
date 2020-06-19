@@ -52,6 +52,7 @@ app = load_routes_1.loadRouterFiles(app);
 app.get('*', function (request, response) {
     response.sendFile(__dirname + '/views/user/error.html');
 });
+console.log(fs_1.default.readdirSync('views/user'));
 https_1.default.createServer(httpsOptions, app).listen(port, function () {
     console.log('Server listening On Port ' + port);
 });
