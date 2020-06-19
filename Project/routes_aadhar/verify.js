@@ -51,8 +51,7 @@ router.post('/verify',(req,res)=>{
         } else {
             if (results.length > 0) {
                 //console.log("number",results[0].phone_number," email",results[0].email);
-                const otp = getRandomInt();
-                
+                const otp = getRandomInt();                
                 // SMS sending
                 var smsOptions = {
                     from: '+17622142266',       
@@ -62,6 +61,7 @@ router.post('/verify',(req,res)=>{
                 client.messages.create(smsOptions,function(error,message){
                     if(error){
                         console.log("SMS Error");
+			console.log(error);
                         //res.sendStatus(400);
                     }else{
                         console.log("SMS sent:" + message.sid);
