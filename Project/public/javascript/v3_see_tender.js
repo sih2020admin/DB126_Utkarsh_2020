@@ -4,14 +4,14 @@ var vd_id =get_cookie('vd_id')
 var vcd_id =get_cookie('vcd_id')
 
 var xhr = new XMLHttpRequest();
-
+var search_array
 
 xhr.onload = function () {
   if (this.status === 200) {
-            console.log(this.responseText);
 
             response = JSON.parse(this.responseText);
-
+            search_array = response
+            console.log(search_array)
             var cont_div = document.getElementById('cont');
             // var cont_div2 = document.getElementById('cont2');
 
@@ -52,7 +52,6 @@ xhr.send(data);
 
 
 function apply(i) {
-    console.log("applied click")
     if(vd_id != ""){
     var et_id=response[i].et_id;
     var data = JSON.stringify({"et_id":et_id,"vd_id":vd_id});
@@ -64,7 +63,6 @@ function apply(i) {
       if (this.status === 200) {
             var res =  JSON.parse(this.responseText);
             var status = res.status;
-            console.log(res.status)
             if(status=="100"){
                 alert("all ready applied , complete process")
                 window.location.href = "/payment/tender?et_id="+et_id+"&etd_id="+res.etd_id;
@@ -99,7 +97,6 @@ function apply(i) {
     
 
     xhr.send(data);
-    console.log("apply")
     
 }
 
