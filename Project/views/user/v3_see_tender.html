@@ -36,9 +36,7 @@
 
     </div>
 </body>
-<!-- <script  src="javascript/cookies.js"></script> -->
 <script type="text/javascript" src="javascript/v3_see_tender.js">
-
 </script>
 <script type="text/javascript">
     var log_a = document.getElementById("log_a")
@@ -52,7 +50,6 @@
 <script type="text/javascript">
 
     function findJsonString() {
-
         var filterKey = $('#search_bar').val().toLowerCase();
         if (filterKey !== "") {
             var result = [];
@@ -63,29 +60,14 @@
                     result.push(response[i]);
                 }
             }
-            $("#cont").empty()
-            var cont_div = document.getElementById('cont');
+            
             if (result.length === 0) {
                 alert("Found no matches")
-            }
-            console.log(result)
-            for (let i = 0; i < result.length; i++) {
-                var div = `<div class="cont" id="` + i + `">
-                        <p class="heading">`+ result[i].et_title + `</p><br>
-                        <div class="Tdetails">
-                            <p class="RnoLabel"><strong>Ref No:</strong></p>
-                            <p >`+ result[i].et_tender_ref_no + `</p>
-                            <p class="OdateLabel"><strong>Closing Date:</strong></p>
-                            <p id="Odate">`+ result[i].et_last_date_apply + `</p>
-                            <p class="BdateLabel"><strong>Bid Opening Date:</strong></p>
-                            <p id="Bdate">`+ result[i].et_bidding_date + `</p>
-                        </div><br>  
-                        <p class="para">`+ result[i].et_tender_desc + `</p>
-                        <br><button name="apply" value='apply' class="apply" onclick="apply(`+ i + `)">Apply</button>
-                    </div>`;
-
-                cont_div.insertAdjacentHTML('beforeend', div);
-            }
+            } else {
+                loadResults(result)
+            } 
+        } else {
+            loadResults(response)
         }
 
     }
