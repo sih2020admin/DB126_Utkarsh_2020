@@ -66,7 +66,7 @@ function load_states() {
                     var i = message_1_1.value;
                     $('<option></option>', {
                         text: i.st_name,
-                        value: i.st_id,
+                        value: i.st_name,
                     }).appendTo('#state');
                 }
             }
@@ -106,7 +106,7 @@ function load_cities(state_code) {
                     var i = message_2_1.value;
                     $('<option></option>', {
                         text: i.c_name,
-                        value: i.c_id,
+                        value: i.c_name,
                     }).appendTo('#city');
                 }
             }
@@ -153,7 +153,7 @@ function load_legal_status() {
                     var i = message_3_1.value;
                     $('<option></option>', {
                         text: i.l_name,
-                        value: i.l_id,
+                        value: i.l_name,
                     }).appendTo('#legal_status');
                 }
             }

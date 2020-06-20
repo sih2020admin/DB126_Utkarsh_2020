@@ -94,3 +94,17 @@ function apply(i) {
         alert('Login to apply')
     }
 }
+function get_department() {
+    $.post('/misc/get-department')
+    .then((response) => {
+        for (let i=0; i< response.length; i++){
+            console.log(response[i])
+        }
+    }).
+    catch((error) =>{
+        console.log("error due to some reason")
+        console.log("Printing error",error)
+    })
+}
+
+get_department()

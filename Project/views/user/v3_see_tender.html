@@ -12,7 +12,7 @@
     <script src="javascript/cookies.js"></script>
     <title>see tender</title>
 </head>
-
+<input type="text">
 <body>
     <header>
         <nav id="nav_bar">
@@ -28,9 +28,17 @@
     </div>
     <div class="container">
         <label>Filters</label>
-        <input type="checkbox" id="department" name="department" value="IT">
-        <label>IT(need to be dynamic fetch department from server)</label><br>
-        <button id="search_button" class="search_button">search</button>
+        <div class = "container" id="department">
+            <p>Department</p>
+
+        </div>
+        <div class = "container" id="closing_date">
+            <p>Closing date</p>
+        </div>
+        <div class = "container" id="fee">
+            <p>Tender Fee</p>
+        </div>
+        <button id="search_button" class="search_button">Filter Search</button>
     </div>
     <div class="container" id='cont'>
 

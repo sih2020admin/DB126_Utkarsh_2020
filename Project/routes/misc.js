@@ -28,6 +28,17 @@ router.post('/get-legal-status', function (request, response) {
         }
     });
 });
+router.post("/get-department", function (request, response) {
+    db_1.default.query('select * from department ', function (error, result) {
+        if (error) {
+            console.log(error);
+            response.send('Some error in sending Department ');
+        }
+        else {
+            response.status(200).send(result);
+        }
+    });
+});
 router.post('/get-city', function (request, response) {
     var state_code = request.body.state_code;
     db_1.default.query('select * from city where st_id=?', [state_code], function (error, result) {
@@ -94,7 +105,4 @@ router.post('/check-company', function (request, response) {
         }
     });
 });
-function check_company(gst_register_number, pan_number, registration_number) {
-    //return result1
-}
 exports.default = router;
