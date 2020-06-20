@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/see_tender.css"> 
+    <link rel="stylesheet" href="css/see_tender.css">
     <link rel="stylesheet" href="css/nav.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script src="/javascript/jquery-3.4.1.min.js"></script>
 
-    <script  src="javascript/cookies.js"></script>
+    <script src="javascript/cookies.js"></script>
     <title>see tender</title>
 </head>
+
 <body>
     <header>
         <nav id="nav_bar">
@@ -21,61 +23,72 @@
     </header>
     <div class="container">
         <label for="search_bar"></label>
-        <input type="text" name="search_bar" id="search_bar" placeholder="Enter Keyword" > 
-        <button id="search_button" class="search_button" onclick="findJsonString()" >search</button>
+        <input type="text" name="search_bar" id="search_bar" placeholder="Enter Keyword">
+        <button id="search_button" class="search_button" onclick="findJsonString()">search</button>
     </div>
     <div class="container">
-        <label >Filters</label>
+        <label>Filters</label>
         <input type="checkbox" id="department" name="department" value="IT">
-        <label >IT(need to be dynaic fetch department from server)</label><br>
+        <label>IT(need to be dynaic fetch department from server)</label><br>
         <button id="search_button" class="search_button">search</button>
     </div>
     <div class="container" id='cont'>
-    
+
     </div>
 </body>
 <!-- <script  src="javascript/cookies.js"></script> -->
 <script type="text/javascript" src="javascript/v3_see_tender.js">
-	
+
 </script>
 <script type="text/javascript">
     var log_a = document.getElementById("log_a")
     var nav_bar = document.getElementById("nav_bar")
-    if(get_cookie("vcd_id_e") != "")
-        {
-            log_a.setAttribute("href", "/v6_profile.html");
-            log_a.innerHTML ="Profile"
-            nav_bar.insertAdjacentHTML('beforeend','<a id="log_a" onclick="return theFunctionV();">Log out</a>');
-        }
+    if (get_cookie("vcd_id_e") != "") {
+        log_a.setAttribute("href", "/v6_profile.html");
+        log_a.innerHTML = "Profile"
+        nav_bar.insertAdjacentHTML('beforeend', '<a id="log_a" onclick="return theFunctionV();">Log out</a>');
+    }
 </script>
 <script type="text/javascript">
 
-// var response = [ {"id":7,"first_name":"Sarah","last_name":"Hottie","country":"Sweden","salary":12000}, 
-        //   {"id":8,"first_name":"Mary","last_name":"Parah","country":"Argentina","salary":10000},
-        //   {"id":9,"first_name":"Gold","last_name":"sonam","country":"India","salary":15000}];
+    function findJsonString() {
 
- function findJsonString(){
-        
-        var filterKey = $('#search_bar').val();
-        console.log("find called "+filterKey) 
-        var result = [];           
-        for (var i = response.length - 1; i >= 0; i--) {
-            var part1 = response[i].et_title.indexOf(filterKey);
-            var part2 = response[i].et_tender_desc.indexOf(filterKey);
-            // console.log(response[i].first_name , response[i].last_name);
-            // console.log(' part 1 : ' + part1 + ' part 2 : ' + part2);
-            if(part1 != -1 || part2 != -1)
-            {                          
-                result[+i] = response[i]; 
-                // console.log("condition true ",result);
-                // OR result.push(response[i]);                        
+        var filterKey = $('#search_bar').val().toLowerCase();
+        if (filterKey !== "") {
+            var result = [];
+            for (let i = response.length - 1; i >= 0; i--) {
+                var part1 = response[i].et_title.toLowerCase().indexOf(filterKey);
+                var part2 = response[i].et_tender_desc.toLowerCase().indexOf(filterKey);
+                if (part1 != -1 || part2 != -1) {
+                    result.push(response[i]);
+                }
             }
-            // console.log(result);
-        }
-        console.log(result);
-        // return result;
- }         
-//  console.log(findJsonString(response,filterKey));
+            $("#cont").empty()
+            var cont_div = document.getElementById('cont');
+            if (result.length === 0) {
+                alert("Found no matches")
+            }
+            console.log(result)
+            for (let i = 0; i < result.length; i++) {
+                var div = `<div class="cont" id="` + i + `">
+                        <p class="heading">`+ result[i].et_title + `</p><br>
+                        <div class="Tdetails">
+                            <p class="RnoLabel"><strong>Ref No:</strong></p>
+                            <p >`+ result[i].et_tender_ref_no + `</p>
+                            <p class="OdateLabel"><strong>Closing Date:</strong></p>
+                            <p id="Odate">`+ result[i].et_last_date_apply + `</p>
+                            <p class="BdateLabel"><strong>Bid Opening Date:</strong></p>
+                            <p id="Bdate">`+ result[i].et_bidding_date + `</p>
+                        </div><br>  
+                        <p class="para">`+ result[i].et_tender_desc + `</p>
+                        <br><button name="apply" value='apply' class="apply" onclick="apply(`+ i + `)">Apply</button>
+                    </div>`;
 
+                cont_div.insertAdjacentHTML('beforeend', div);
+            }
+        }
+
+    }
 </script>
+
 </html>
