@@ -3,7 +3,8 @@
             { "app_path" = "/"          , "folder_name" = "views/admin"},
             { "app_path" = "/"          , "folder_name" = "views/user"},
             { "app_path" = "/uploads"   , "folder_name" = "uploads"},
-            { "app_path" = "/signed"    , "folder_name" = "routes/uploaded_documents"}
+            { "app_path" = "/signed"    , "folder_name" = "routes/uploaded_documents"},
+            { "app_path" = "/images"    , "folder_name" = "public/images"}
         ]
 
 [RouterFiles]

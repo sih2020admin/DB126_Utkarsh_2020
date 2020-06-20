@@ -1,0 +1,32 @@
+{
+
+    "credentials":{
+        "email":"generixteam2019@gmail.com",
+        "pass":"Lifeisgud"
+    },
+    "database":{
+        "dbuser":"root",
+        "dbpass":""
+    },
+    "key": {
+        "MID": "jiitCC65479360829906",
+        "KEY": "rTyIgCQYeh5YQzSm"
+    },
+    "server":{
+        "PORT":"8081"
+    },
+    "server_aadhaar":{
+        "PORT_1":"8082"
+    },
+    "server_e_sign":{
+        "PORT_2":"8091"
+    },
+    "sms_key":{
+	"sid":"ACb6efbe87d9f5fca5440",
+	"auth_token":"6baca9ce395bc1292b6"
+   },
+   "cookies":{
+        "cookie_secret":"cookie_secret"
+   }
+
+}
