@@ -37,7 +37,7 @@ document.getElementById("edit1").onclick = function(){
 
     document.getElementById("cname").removeAttribute("readonly");
     // document.getElementById("cname").style.border = "2px solid #663EFD";
-    document.getElementById("legal").removeAttribute("readonly");
+    // document.getElementById("legal").removeAttribute("readonly");
     // document.getElementById("legal").style.border = "2px solid #663EFD";
     document.getElementById("yoe").removeAttribute("readonly");
     // document.getElementById("yoe").style.border = "2px solid #663EFD";
@@ -53,15 +53,15 @@ document.getElementById("edit1").onclick = function(){
 
     document.getElementById("save").style.display = "inline-block";
     document.getElementById("cancel").style.display = "inline-block";
-    var style = document.createElement('style')
-    style.innerHTML = `
-    input{
-        border: 1px solid #663EFD;
-        padding: 2px 5px;
-        border-radius: 3px;
-    }
-    `
-    document.head.appendChild(style)
+    // var style = document.createElement('style')
+    // style.innerHTML = `
+    // input{
+    //     border: 1px solid #663EFD;
+    //     padding: 2px 5px;
+    //     border-radius: 3px;
+    // }
+    // `
+    // document.head.appendChild(style)
     //Dynamic Year Generation
     var start = 1900;
     var end = new Date().getFullYear();
@@ -118,13 +118,15 @@ xhr.onload = function () {
 
 
     document.getElementById("cname").value = response[0][0].v_name;
-    document.getElementById("legal").value = response[0][0].v_legal_id;
+    // document.getElementById("legal").value = response[0][0].v_legal_id;
     document.getElementById("yoe").value = response[0][0].v_yoe;
     document.getElementById("reg").value = response[0][0].v_reg_no;
     document.getElementById("gst").value = response[0][0].v_gst;
     document.getElementById("pan").value = response[0][0].v_pan;
     document.getElementById("mail").value = response[0][0].v_email;
     document.getElementById("ccontact").value = response[0][0].v_mobile;
+    document.getElementById("state").value = response[0][0].v_state_id;
+    document.getElementById("city").value = response[0][0].v_city_id;
     document.getElementById("add").value = response[0][0].v_address;
     
     // var cont_div = document.getElementById('main');
