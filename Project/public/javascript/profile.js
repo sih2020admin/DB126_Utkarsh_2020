@@ -15,8 +15,8 @@ if(vd_id == ""){
 // var vd_id  = urlParams.get('vd_id')
 // var vcd_id  = urlParams.get('vcd_id')
 // vcd id vd are not in url but in cookies
-console.log(vd_id);
-console.log(vcd_id);
+// console.log(vd_id);
+// console.log(vcd_id);
 // var data = JSON.stringify({"vd_id":vd_id,"vcd_id":vcd_id}); //changed here proper json object
 document.getElementById("edit1").onclick = function(){
     document.getElementById("edit1").style.display ="none";
@@ -87,7 +87,7 @@ function save(){
     xhr1.onload = function(){
         if(this.status == 200){
             alert("Profile Successfully Updated");
-            location="/v6_profile.html";
+            location="/profile.html";
         }
         else if(this.status == 400)
         alert("Error 400");

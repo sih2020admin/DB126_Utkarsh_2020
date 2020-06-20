@@ -3,7 +3,7 @@
 <head>
   <title>Profile</title>
   <link rel="stylesheet" href="css/nav.css">
-  <link rel="stylesheet" href="css/v6_profile.css">
+  <link rel="stylesheet" href="css/profile.css">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script  src="javascript/cookies.js"></script>
@@ -49,10 +49,10 @@
     <div id="Search" class="tabcontent" style="display: none;">
       <h2>Search Tenders</h2>
       <h4>The list of matching tenders</h4>    
-    </div>
+    </div><br>
 
     <div id="Profile" class="tabcontent">
-      <h2>My Profile</h2><br>
+      <h2>My Profile</h2>
       <!-- <h4>Welcome Ms./Mr. xyz</h4> -->
       <div style="width: 950px;">
         <h3 style="float: left;">Personal Details</h3><br>
@@ -74,53 +74,54 @@
           <td><label><strong>Aadhar No:</strong></label></td>
           <td><input type="text" id="aadhar" autocomplete="off" readonly></td>
         </tr>
-      </table><br><hr><br>
+      </table><br><br>
+    </div>
+    
+    <div id="Company_Profile" class="tabcontent">
       <h3 style="float: left;">Company Details</h3><br><br>
-        <table class="profile_table">
-          <tr>
-            <td><label><strong>Name:</strong></label></td>
-            <td><input type="text" id="cname"  autocomplete="off" readonly></td>
-            <td><label><strong>Legal staus:</strong></label></td>
-            <td><input type="text" id="legal"  autocomplete="off" readonly></td>
-            <td><label><strong>Estd Year:</strong></label></td>
-            <td><input type="text" id="yoe"  autocomplete="off" readonly></td>
-          </tr>
-          <tr>
-            <td><label><strong>Registration No:</strong></label></td>
-            <td><input type="text" id="reg"  autocomplete="off" readonly></td>
-            <td><label><strong>GST No:</strong></label></td>
-            <td><input type="text" id="gst"  autocomplete="off" readonly></td>
-            <td><label><strong>PAN No:</strong></label></td>
-            <td><input type="text" id="pan"  autocomplete="off" readonly></td>
-          </tr>
-          <tr>
-            <td><label><strong>Email:</strong></label></td>
-            <td><input type="text" id="mail"  autocomplete="off" readonly></td>
-            <td><label><strong>Contact No:</strong></label></td>
-            <td><input type="text" id="ccontact"  autocomplete="off" readonly></td>
-            <td><label><strong>Address:</strong></label></td>
-            <td><input type="text" id="add"  autocomplete="off" readonly></td>
-          </tr>
-        </table><br><br>
-        <button id="edit1"><i class='fas fa-edit'></i>&nbspEdit</button>
-        <button id="save" style="display: none;" onclick="save()"><i id="icon1"></i> &nbspSave</button>
-        <button id="cancel" style="display: none;" onclick="location='/v6_profile.html'">Cancel</button>
-      </div>
+      <table class="profile_table">
+        <tr>
+          <td><label><strong>Name:</strong></label></td>
+          <td><input type="text" id="cname"  autocomplete="off" readonly></td>
+          <td><label><strong>Legal staus:</strong></label></td>
+          <td><input type="text" id="legal"  autocomplete="off" readonly></td>
+          <td><label><strong>Estd Year:</strong></label></td>
+          <td><input type="text" id="yoe"  autocomplete="off" readonly></td>
+        </tr>
+        <tr>
+          <td><label><strong>Registration No:</strong></label></td>
+          <td><input type="text" id="reg"  autocomplete="off" readonly></td>
+          <td><label><strong>GST No:</strong></label></td>
+          <td><input type="text" id="gst"  autocomplete="off" readonly></td>
+          <td><label><strong>PAN No:</strong></label></td>
+          <td><input type="text" id="pan"  autocomplete="off" readonly></td>
+        </tr>
+        <tr>
+          <td><label><strong>Email:</strong></label></td>
+          <td><input type="text" id="mail"  autocomplete="off" readonly></td>
+          <td><label><strong>Contact No:</strong></label></td>
+          <td><input type="text" id="ccontact"  autocomplete="off" readonly></td>
+          <td><label><strong>Address:</strong></label></td>
+          <td><input type="text" id="add"  autocomplete="off" readonly></td>
+        </tr>
+      </table><br><br>
+    </div>
+    <div class="tabcontent">
+      <button id="edit1"><i class='fas fa-edit'></i>&nbspEdit</button>
+      <button id="save" style="display: none;" onclick="save()"><i id="icon1"></i> &nbspSave</button>
+      <button id="cancel" style="display: none;" onclick="location='/profile.html'">Cancel</button>
+    </div>
   </div>
-
-
-
-
 
 <!-- <script type="text/javascript" src="javascript/cookies.js"></script> -->
 </body>
-<script type="text/javascript" src="javascript/v6_profile.js"></script>
+<script type="text/javascript" src="javascript/profile.js"></script>
 <script type="text/javascript">
     var log_a = document.getElementById("log_a")
     var nav_bar = document.getElementById("nav_bar")
     if(get_cookie("vcd_id_e") != "")
         {
-            log_a.setAttribute("href", "/v6_profile.html");
+            log_a.setAttribute("href", "/profile.html");
             log_a.innerHTML ="Profile"
             nav_bar.insertAdjacentHTML('beforeend','<a id="log_a" onclick="return theFunctionV();">Log out</a>');
         }
