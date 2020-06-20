@@ -186,68 +186,10 @@ margins = {
   document.getElementById("time").innerHTML = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
 
   function print() {const filename  = 'ThisIsYourPDFFilename.pdf';
-//   let pdf = new jsPDF('p', 'mm', 'a2');
 
-// html2canvas(document.querySelector('#pdf'), 
-//             {scale: 1}
-//          ).then(canvas => {
-//   pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 30, -190, 211, 298);
-//   pdf.save(filename);
-// });
-
-// var doc = new jsPDF();
-
-//    doc.fromHTML($('#pdf')[0], 15, 15, {
-//       width: 170
-//    }, function() {
-//       doc.save('sample-file.pdf');
-//    });
-// var cache_width = $('#pdf').width(); //Criado um cache do CSS
-//     var a4 = [595.28, 841.89]; // Widht e Height de uma folha a4
-
-    
-//         // Setar o width da div no formato a4
-//         $("#pdf").width((a4[0] * 1.33333) - 80).css('max-width', 'none');
-
-//         // Aqui ele cria a imagem e cria o pdf
-//         html2canvas($('#pdf'), {
-//             onrendered: function (canvas) {
-//                 var img = canvas.toDataURL("image/jpeg", 1.0);
-//                 //var doc = new jsPDF({ unit: 'px', format: 'a4' });//this line error
-//                 var doc = new jsPDF('landscape'); // default is portrait
-//                 doc.addImage(img, 'JPEG', 20, 20);
-//                 doc.save('NOME-DO-PDF.pdf');
-//                 //Retorna ao CSS normal
-//                 $('#pdf').width(cache_width);
-//             }
-//         });
-    
-
-		// const filename  = 'ThisIsYourPDFFilename.pdf';
-
-		// html2canvas(document.querySelector('#pdf')).then(canvas => {
-		// 	let pdf = new jsPDF('p', 'mm', 'a1');
-		// 	pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, 211, 298);
-		// 	pdf.save(filename);
-    // });
-    
-
-
-    // var doc = new jsPDF('p','mm', 'a2');
-    // var header = [1,2,3,4];
-    // doc.table(10, 10, $('#t1').get(0), header, {
-    // left:10,
-    // top:10,
-    // bottom: 10,
-    // width: 170,
-    // autoSize:false,
-    // printHeaders: true
-    // });
-    // doc.save('sample-file.pdf');
 	}
 
-// Variant
-// This one lets you improve the PDF sharpness by scaling up the HTML node tree to render as an image before getting pasted on the PDF.
+
 function print2() {
 		const filename  = 'ThisIsYourPDFFilename.pdf';
 

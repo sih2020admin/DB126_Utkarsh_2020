@@ -19,9 +19,20 @@
             <a id="log_a" href="/v1_login.html">Login</a>
         </nav>
     </header>
-<div class="container" id='cont'>
+    <div class="container">
+        <label for="search_bar"></label>
+        <input type="text" name="search_bar" id="search_bar" placeholder="Enter Keyword" > 
+        <button id="search_button" class="search_button" onclick="findJsonString()" >search</button>
+    </div>
+    <div class="container">
+        <label >Filters</label>
+        <input type="checkbox" id="department" name="department" value="IT">
+        <label >IT(need to be dynaic fetch department from server)</label><br>
+        <button id="search_button" class="search_button">search</button>
+    </div>
+    <div class="container" id='cont'>
     
-</div>
+    </div>
 </body>
 <!-- <script  src="javascript/cookies.js"></script> -->
 <script type="text/javascript" src="javascript/v3_see_tender.js">
@@ -36,5 +47,35 @@
             log_a.innerHTML ="Profile"
             nav_bar.insertAdjacentHTML('beforeend','<a id="log_a" onclick="return theFunctionV();">Log out</a>');
         }
+</script>
+<script type="text/javascript">
+
+// var response = [ {"id":7,"first_name":"Sarah","last_name":"Hottie","country":"Sweden","salary":12000}, 
+        //   {"id":8,"first_name":"Mary","last_name":"Parah","country":"Argentina","salary":10000},
+        //   {"id":9,"first_name":"Gold","last_name":"sonam","country":"India","salary":15000}];
+
+ function findJsonString(){
+        
+        var filterKey = $('#search_bar').val();
+        console.log("find called "+filterKey) 
+        var result = [];           
+        for (var i = response.length - 1; i >= 0; i--) {
+            var part1 = response[i].et_title.indexOf(filterKey);
+            var part2 = response[i].et_tender_desc.indexOf(filterKey);
+            // console.log(response[i].first_name , response[i].last_name);
+            // console.log(' part 1 : ' + part1 + ' part 2 : ' + part2);
+            if(part1 != -1 || part2 != -1)
+            {                          
+                result[+i] = response[i]; 
+                // console.log("condition true ",result);
+                // OR result.push(response[i]);                        
+            }
+            // console.log(result);
+        }
+        console.log(result);
+        // return result;
+ }         
+//  console.log(findJsonString(response,filterKey));
+
 </script>
 </html>
