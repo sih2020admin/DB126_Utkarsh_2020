@@ -23,13 +23,13 @@
     </header>
     <div class="container">
         <label for="search_bar"></label>
-        <input type="text" name="search_bar" id="search_bar" placeholder="Enter Keyword">
+        <input type="text" name="search_bar" id="search_bar" placeholder="Enter Keyword" onkeyup="findJsonString()">
         <button id="search_button" class="search_button" onclick="findJsonString()">search</button>
     </div>
     <div class="container">
         <label>Filters</label>
         <input type="checkbox" id="department" name="department" value="IT">
-        <label>IT(need to be dynaic fetch department from server)</label><br>
+        <label>IT(need to be dynamic fetch department from server)</label><br>
         <button id="search_button" class="search_button">search</button>
     </div>
     <div class="container" id='cont'>
@@ -62,7 +62,8 @@
             }
             
             if (result.length === 0) {
-                alert("Found no matches")
+                $('#cont').empty()
+                $("#cont").html("<p>Found no matches</p>")
             } else {
                 loadResults(result)
             } 
