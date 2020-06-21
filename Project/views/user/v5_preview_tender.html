@@ -150,7 +150,7 @@
             <p id="time"></p><br>
           </div>
           <div style="float: right;"  onclick="print3()">
-            <a ><img src="pdf.gif" width="55px" height="55px"></a><br>
+            <a ><img src="images/pdf.gif" width="55px" height="55px"></a><br>
             <a>Download</a>
           </div><br>
       </div>
@@ -266,8 +266,6 @@ function print2() {
   }
   
 
-
-
   function print3(){
     console.log(message)
     var doc = new jsPDF('p', 'mm', [297, 210]);
@@ -277,20 +275,88 @@ function print2() {
     // doc.setFontSize(22);
     // doc.text(20, 20, 'Answers');
     // doc.setFontSize(16);
+
     doc.setFontSize(26);
-    doc.text('Application Form',70,10)
+    doc.text('Application Form',70,25)
+
     doc.setFontSize(22);
     doc.setFont("times");
     doc.setFontType("italic");
-    doc.text('Status: ',147,20)
+    doc.text('Status: ',147,40)
     doc.setTextColor(127,255,0);
-    doc.text('Submitted',170,20)
+    doc.text('Submitted',170,40)
 
-    doc.setFontSize(15);
-    doc.setTextColor(30,144,255);
-    doc.text("E-tender refernce number : "+message.result0[0].et_tender_ref_no,20,30)
+    doc.setFontSize(16);
+    doc.setFontType("bold");
+    doc.setTextColor(0,0,0);
+    doc.text("Tender Details",10,50)
+    doc.setFontType("");
+    doc.setFontSize(12);
+    doc.text("Tender Id: "+ et_id + "\tRefernce number: "+message.result0[0].et_tender_ref_no + "\tTitle: "+message.result0[0].et_title,15,60)
+    doc.text("Fee : "+ message.result0[0].et_tender_fee + "\tBidding Date: "+message.result0[0].et_bidding_date.slice(0,-14),15,70)
 
-    doc.save('preview.pdf')
+    doc.setFontSize(16);
+    doc.setFontType("bold");
+    doc.setTextColor(0,0,0);
+    doc.text("Personal Details",10,90)
+    doc.setFontType("");
+    doc.setFontSize(12);
+    doc.text("Name: "+ message.result1[0].vcd_name + "\tDOB: "+message.result1[0].vcd_dob + "\tDesignation: "+message.result1[0].vcd_designation,15,100)
+    doc.text("Aadhar No: "+ message.result1[0].vcd_aadhar + "\tEmail: "+message.result1[0].vcd_email,15,110)
+
+    doc.setFontSize(16);
+    doc.setFontType("bold");
+    doc.setTextColor(0,0,0);
+    doc.text("Company Details",10,130)
+    doc.setFontType("");
+    doc.setFontSize(12);
+    doc.text("Name: "+ message.result1[0].v_name + "\tLegal Status: "+message.result1[0].v_legal_id+ "\tEstd Year: "+message.result1[0].v_yoe,15,140)
+    doc.text("Registration No: "+ message.result1[0].v_reg_no+ "\tGST No: "+message.result1[0].v_gst+"\tPAN No: "+message.result1[0].v_pan ,15,150)
+    doc.text("Email: "+ message.result1[0].v_email+ "\tContact No: "+message.result1[0].v_mobile,15,160)
+    doc.text("Address: " +message.result1[0].v_address,15,170)
+
+    // doc.setFontSize(16);
+    // doc.setFontType("bold");
+    // doc.setTextColor(0,0,0);
+    // doc.text("Uploaded Documents",10,190)
+    // doc.setFontType("");
+    // doc.setFontSize(12);
+    // doc.textWithLink("Tehnical: ",15,200, {url: message.result2[0].furi1})
+    // doc.textWithLink("BOQ: ",15,210, {url: message.result2[0].furi2})
+ 
+    // doc.setFontSize(16);
+    // doc.setFontType("bold");
+    // doc.setTextColor(0,0,0);
+    // doc.text("Payment Details",10,210)
+    // doc.setFontType("");
+    // doc.setFontSize(12);
+    // doc.text("Transaction ID: "+ message.result2[0].txn_id + "\tAmount: "+message.result2[0].txn_amount+ "\tDate & Time: "+message.result2[0].txn_timestamp,15,220)
+    // doc.text("Bank Name: "+ message.result2[0].bank_name + "\tPayment Method: "+"Debit card"+ "\tStatus: "+message.result2[0].resp_message,15,230)
+ 
+ 
+    doc.setFontSize(16);
+    doc.setFontType("");
+    doc.text("Place: ",10,250)
+    doc.setFontType("bold");
+    doc.setFontSize(16);
+    doc.text("Mumbai",25,250)
+
+    doc.setFontSize(16);
+    doc.setFontType("");
+    doc.text("Date: ",10,260)
+    doc.setFontType("bold");
+    doc.setFontSize(16);
+    doc.text(d.getDate() + "-" + d.getMonth() + "-" + d.getFullYear(),25,260)
+
+    doc.setFontSize(16);
+    doc.setFontType("");
+    doc.text("Time: ",10,270)
+    doc.setFontType("bold");
+    doc.setFontSize(16);
+    doc.text(d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds(),25,270)
+
+    doc.save("Preview")
+
   }
 </script>
 </html>
