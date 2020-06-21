@@ -141,6 +141,7 @@ function filterData() {
     let department = []
     let closing_date = []
     let fee = []
+    let filtered_result = []
     $.each($("input[type='checkbox']:checked"), function () {
         department.push($(this).val())
     })
@@ -153,8 +154,18 @@ function filterData() {
         fee.push($(this).val())
     })
     filter_categories.push(fee)
-    console.log(filter_categories)
-    console.log(response)
+    for (let i = 0; i < response.length; i++) {
+        if (filter_categories[0].length !== 0) {
+            for (let j = 0; j < filter_categories[0].length; j++) {
+                if (filter_categories[0][j] === response[0]['dept_name']) {
+                    filtered_result.push(response)
+                }
+            }
+        } else {
+            filtered_result.push(response)
+        }
+    }
+    console.log(filtered_result)
 }
 
 get_department()
