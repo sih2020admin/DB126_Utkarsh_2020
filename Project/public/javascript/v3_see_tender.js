@@ -1,145 +1,160 @@
-var data = "";
-var response;
-var vd_id =get_cookie('vd_id')
-var vcd_id =get_cookie('vcd_id')
-
-var xhr = new XMLHttpRequest();
-
-
-xhr.onload = function () {
-  if (this.status === 200) {
-            console.log(this.responseText);
-
-            response = JSON.parse(this.responseText);
-
-            var cont_div = document.getElementById('cont');
-            // var cont_div2 = document.getElementById('cont2');
-
-
-                for (var i = 0; i < response.length; i++) {
-
-                    var div=`<div class="cont" id="`+i+`">
-                        <p class="heading">`+response[i].et_title+`</p><br>
+var data = ''
+var response
+var vd_id = get_cookie('vd_id')
+var vcd_id = get_cookie('vcd_id')
+function loadResults(response) {
+    $('#cont').empty()
+    var cont_div = document.getElementById('cont')
+    for (var i = 0; i < response.length; i++) {
+        var div =
+            `<div class="cont" id="` +
+            i +
+            `">
+                        <p class="heading">` +
+            response[i].et_title +
+            `</p><br>
                         <div class="Tdetails">
                             <p class="RnoLabel"><strong>Ref No:</strong></p>
-                            <p >`+response[i].et_tender_ref_no+`</p>
+                            <p >` +
+            response[i].et_tender_ref_no +
+            `</p>
                             <p class="OdateLabel"><strong>Closing Date:</strong></p>
-                            <p id="Odate">`+response[i].et_last_date_apply+`</p>
+                            <p id="Odate">` +
+            response[i].et_last_date_apply +
+            `</p>
                             <p class="BdateLabel"><strong>Bid Opening Date:</strong></p>
-                            <p id="Bdate">`+response[i].et_bidding_date+`</p>
+                            <p id="Bdate">` +
+            response[i].et_bidding_date +
+            `</p>
                         </div><br>  
-                        <p class="para">`+response[i].et_tender_desc+`</p>
-                        <br><button name="apply" value='apply' class="apply" onclick="apply(`+i+`)">Apply</button>
-                    </div>`;
-                    
-                    cont_div.insertAdjacentHTML('beforeend', div);
-                    // cont_div2.insertAdjacentHTML('beforeend', div);
-            }
-          }
-          else if (this.status == 404) {  
-        alert("No tender to show");
-    }
-    else{
-        alert("Check Network!");
+                        <p class="para">` +
+            response[i].et_tender_desc +
+            `</p>
+                        <br><button name="apply" value='apply' class="apply" onclick="apply(` +
+            i +
+            `)">Apply</button>
+                    </div>`
+
+        cont_div.insertAdjacentHTML('beforeend', div)
     }
 }
 
-xhr.open("POST", "/gettenderlist");
+var xhr = new XMLHttpRequest()
 
-xhr.send(data);
+xhr.onload = function () {
+    if (this.status === 200) {
+        response = JSON.parse(this.responseText)
+        loadResults(response)
+    } else if (this.status == 404) {
+        alert('No tender to show')
+    } else {
+        alert('Check Network!')
+    }
+}
 
+xhr.open('POST', '/gettenderlist')
 
-
+xhr.send(data)
 
 function apply(i) {
-    console.log("applied click")
-    if(vd_id != ""){
-    var et_id=response[i].et_id;
-    var data = JSON.stringify({"et_id":et_id,"vd_id":vd_id});
+    if (vd_id != '') {
+        var et_id = response[i].et_id
+        var data = JSON.stringify({ et_id: et_id, vd_id: vd_id })
 
-    var xhr = new XMLHttpRequest();
-    // xhr.withCredentials = true;
-
-    xhr.onload = function () {
-      if (this.status === 200) {
-            var res =  JSON.parse(this.responseText);
-            var status = res.status;
-            console.log(res.status)
-            if(status=="100"){
-                alert("all ready applied , complete process")
-                window.location.href = "/payment/tender?et_id="+et_id+"&etd_id="+res.etd_id;
+        var xhr = new XMLHttpRequest()
+        xhr.onload = function () {
+            if (this.status === 200) {
+                var res = JSON.parse(this.responseText)
+                var status = res.status
+                if (status == '100') {
+                    alert('all ready applied , complete process')
+                    window.location.href = '/payment/tender?et_id=' + et_id + '&etd_id=' + res.etd_id
+                } else if (status == '110') {
+                    alert('all ready applied , complete process')
+                    window.location.href = '/v4_apply_tender_s3.html?et_id=' + et_id + '&etd_id=' + res.etd_id
+                } else if (status == '111') {
+                    alert('Process done Submit Tender')
+                    window.location.href = '/v5_confirm_tender.html?et_id=' + et_id + '&etd_id=' + res.etd_id
+                } else if (status == '1111') {
+                    alert('Application submited redirecting to Application Preview page')
+                    window.location.href = '/v5_preview_tender.html?et_id=' + et_id + '&etd_id=' + res.etd_id
+                }
+            } else if (this.status === 404) {
+                window.location.href = '/v4_apply_tender_s1.html?et_id=' + response[i].et_id
+            } else {
+                alert('Check Network')
             }
-            else if(status=="110"){
-                alert("all ready applied , complete process")
-                window.location.href = "/v4_apply_tender_s3.html?et_id="+et_id+"&etd_id="+res.etd_id;
-            }
-            else if(status=="111"){
-                alert("Process done Submit Tender");
-		    window.location.href= "/v5_confirm_tender.html?et_id="+et_id+"&etd_id="+res.etd_id;
+        }
 
-            }
-            else if(status=="1111"){
-                alert("Application submited redirecting to Application Preview page");
-		    window.location.href= "/v5_preview_tender.html?et_id="+et_id+"&etd_id="+res.etd_id;
+        xhr.open('POST', '/get_etd_id')
+        xhr.setRequestHeader('Content-Type', 'application/json')
 
-            }
-
-      }
-    else if (this.status === 404) {
-        window.location.href = "/v4_apply_tender_s1.html?et_id="+response[i].et_id;
-
+        xhr.send(data)
+    } else {
+        alert('Login to apply')
     }
-    else{
-        alert("Check Network")
-    }
-    }
+}
+function findJsonString() {
+    var filterKey = $('#search_bar').val().toLowerCase()
+    if (filterKey !== '') {
+        var result = []
+        for (let i = response.length - 1; i >= 0; i--) {
+            var part1 = response[i].et_title.toLowerCase().indexOf(filterKey)
+            var part2 = response[i].et_tender_desc.toLowerCase().indexOf(filterKey)
+            if (part1 != -1 || part2 != -1) {
+                result.push(response[i])
+            }
+        }
 
-    xhr.open("POST", "/get_etd_id");
-    xhr.setRequestHeader("Content-Type", "application/json");
-    
-
-    xhr.send(data);
-    console.log("apply")
-    
+        if (result.length === 0) {
+            $('#cont').empty()
+            $('#cont').html('<p>Found no matches</p>')
+        } else {
+            loadResults(result)
+        }
+    } else {
+        loadResults(response)
+    }
+}
+function get_department() {
+    $.post('/misc/get-department')
+        .then((response) => {
+            for (let i = 0; i < response.length; i++) {
+                $('<input>', {
+                    id: response[i]['dept_name'],
+                    type: 'checkbox',
+                    value: response[i]['dept_name'],
+                }).appendTo('#department')
+                $('<label></label>', {
+                    for: response[i]['dept_name'],
+                    text: response[i]['dept_name'],
+                }).appendTo('#department')
+            }
+        })
+        .catch((error) => {
+            console.log('error due to some reason')
+            console.log('Printing error', error)
+        })
+}
+function filterData() {
+    var filter_categories = []
+    let department = []
+    let closing_date = []
+    let fee = []
+    $.each($("input[type='checkbox']:checked"), function () {
+        department.push($(this).val())
+    })
+    filter_categories.push(department)
+    $.each($("input[type='date']"), function () {
+        closing_date.push($(this).val())
+    })
+    filter_categories.push(closing_date)
+    $.each($("input[type='radio']:checked"), function () {
+        fee.push($(this).val())
+    })
+    filter_categories.push(fee)
+    console.log(filter_categories)
+    console.log(response)
 }
 
-
-    else{
-        alert("Login to apply")
-    }
-    // alert(response[i].et_title)
-    // body...
-}
-
-
-
-
-
-// var response = [
-//     {
-//         "et_id": 124,
-//         "et_title": "hello title",
-//         "et_tender_fee": "1200",
-//         "et_tender_ref_no": "ITC56",
-//         "et_tender_desc": "hello description",
-//         "et_last_date_apply": "2020-03-02T18:30:00.000Z",
-//         "et_bidding_date": "2020-03-04T18:30:00.000Z",
-//         "et_file_uri": "https://www.youtube.com/watch?v=fyMhvkC3A84",
-//         "is_delete": 0,
-//         "dept_id": 1
-//     },
-//     {
-//         "et_id": 125,
-//         "et_title": "Procurement of computers",
-//         "et_tender_fee": "1200",
-//         "et_tender_ref_no": "ITC123",
-//         "et_tender_desc": "Procurement of Computers, Software and Services. The purpose of this policy is to provide a defined process for both the new and recurring procurement (through purchase or lease) of computer hardware, software and services using Washington University funds or grant funds administered by Washington University.",
-//         "et_last_date_apply": "2020-03-09T18:30:00.000Z",
-//         "et_bidding_date": "2020-03-12T18:30:00.000Z",
-//         "et_file_uri": "https://www.youtube.com/watch?v=u8XFFTWwSvY&feature=youtu.be",
-//         "is_delete": 0,
-//         "dept_id": 1
-//     }
-// ]    
-
-    
+get_department()

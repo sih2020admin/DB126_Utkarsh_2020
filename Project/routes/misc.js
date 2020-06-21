@@ -7,7 +7,7 @@ var express_1 = __importDefault(require("express"));
 var db_1 = __importDefault(require("./db"));
 var router = express_1.default.Router();
 router.post('/get-state', function (request, response) {
-    db_1.default.query('select * from states', function (error, result) {
+    db_1.default.query('select st_name from states', function (error, result) {
         if (error) {
             console.log(error);
             response.send('some error in sending state names');
@@ -18,7 +18,7 @@ router.post('/get-state', function (request, response) {
     });
 });
 router.post('/get-legal-status', function (request, response) {
-    db_1.default.query('select * from legal_status_details ', function (error, result) {
+    db_1.default.query('select l_name from legal_status_details ', function (error, result) {
         if (error) {
             console.log(error);
             response.send('Some error in sending legal status ');
@@ -28,9 +28,24 @@ router.post('/get-legal-status', function (request, response) {
         }
     });
 });
+router.post('/get-department', function (request, response) {
+    db_1.default.query('select dept_name from department ', function (error, result) {
+        if (error) {
+            console.log(error);
+            response.send('Some error in sending Department ');
+        }
+        else {
+            var filtered_result = [];
+            for (var i = 1; i < result.length; i++) {
+                filtered_result.push(result[i]);
+            }
+            response.status(200).send(filtered_result);
+        }
+    });
+});
 router.post('/get-city', function (request, response) {
     var state_code = request.body.state_code;
-    db_1.default.query('select * from city where st_id=?', [state_code], function (error, result) {
+    db_1.default.query('select c_name from city inner join states on city.st_id=states.st_id where st_name=?', [state_code], function (error, result) {
         if (error) {
             console.log(error);
             response.status(400).send('Some error in sending legal status ');
@@ -94,7 +109,4 @@ router.post('/check-company', function (request, response) {
         }
     });
 });
-function check_company(gst_register_number, pan_number, registration_number) {
-    //return result1
-}
 exports.default = router;
