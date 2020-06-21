@@ -94,17 +94,67 @@ function apply(i) {
         alert('Login to apply')
     }
 }
+function findJsonString() {
+    var filterKey = $('#search_bar').val().toLowerCase()
+    if (filterKey !== '') {
+        var result = []
+        for (let i = response.length - 1; i >= 0; i--) {
+            var part1 = response[i].et_title.toLowerCase().indexOf(filterKey)
+            var part2 = response[i].et_tender_desc.toLowerCase().indexOf(filterKey)
+            if (part1 != -1 || part2 != -1) {
+                result.push(response[i])
+            }
+        }
+
+        if (result.length === 0) {
+            $('#cont').empty()
+            $('#cont').html('<p>Found no matches</p>')
+        } else {
+            loadResults(result)
+        }
+    } else {
+        loadResults(response)
+    }
+}
 function get_department() {
     $.post('/misc/get-department')
-    .then((response) => {
-        for (let i=0; i< response.length; i++){
-            console.log(response[i])
-        }
-    }).
-    catch((error) =>{
-        console.log("error due to some reason")
-        console.log("Printing error",error)
+        .then((response) => {
+            for (let i = 0; i < response.length; i++) {
+                $('<input>', {
+                    id: response[i]['dept_name'],
+                    type: 'checkbox',
+                    value: response[i]['dept_name'],
+                }).appendTo('#department')
+                $('<label></label>', {
+                    for: response[i]['dept_name'],
+                    text: response[i]['dept_name'],
+                }).appendTo('#department')
+            }
+        })
+        .catch((error) => {
+            console.log('error due to some reason')
+            console.log('Printing error', error)
+        })
+}
+function filterData() {
+    var filter_categories = []
+    let department = []
+    let closing_date = []
+    let fee = []
+    $.each($("input[type='checkbox']:checked"), function () {
+        department.push($(this).val())
     })
+    filter_categories.push(department)
+    $.each($("input[type='date']"), function () {
+        closing_date.push($(this).val())
+    })
+    filter_categories.push(closing_date)
+    $.each($("input[type='radio']:checked"), function () {
+        fee.push($(this).val())
+    })
+    filter_categories.push(fee)
+    console.log(filter_categories)
+    console.log(response)
 }
 
 get_department()

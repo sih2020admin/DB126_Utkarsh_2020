@@ -25,11 +25,6 @@ app.use(express.json());
 
 app.use('', verify);
 app.use('/sms', sms);
-//app.use('/',index)
-// app.listen(port, function () {
-//     console.log("Server started on port " + port);
-// });
-
 https.createServer(httpsOptions,app).listen(port,function(){
 	console.log("Server listening On Port "+ port);
 });
