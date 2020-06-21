@@ -3,6 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ENV = void 0;
 var fs_extra_1 = __importDefault(require("fs-extra"));
 var dotenv_1 = __importDefault(require("dotenv"));
 var debug = require('debug')('service:loader:env-generate');
