@@ -1,0 +1,177 @@
+:root {
+  --main_color: #663EFD;
+  --text_color: #000000;
+  --accent-color: #a6a6a6;
+}
+
+* {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  color: var(--text_color);
+}
+
+h4, h2 {
+  margin-top: 20px;
+  font-family: 'Montserrat', 'sans serif';
+  color: var(--main_color);
+  text-align: center;
+}
+
+h3 {
+  margin-top: 20px;
+  font-family: 'Montserrat', 'sans serif';
+  color: var(--main_color);
+}
+
+#tc1 {
+  font-size: 12px;
+  font-style: italic;
+  color: #fd0000;
+}
+
+input {
+  border: none;
+  font-size: 1rem;
+  width: 100%;
+  min-width: auto;
+  max-width: auto;
+  outline: none;
+}
+
+button {
+  width: 100px;
+  height: 30px;
+  font-size: 16px;
+  font-weight: 300;
+  border-radius: 5px;
+  background-color: var(--main_color);
+  border: none;
+  outline: none;
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: #ffffff;
+  color: var(--main_color);
+  border: solid;
+  border-width: 0.2px;
+  border-color: var(none--main_color);
+}
+
+.main {
+  font-family: sans-serif;
+  margin-top: 60px;
+  border: none;
+  outline: none;
+}
+
+.tab {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 20%;
+  height: 100%;
+  margin-left: 0;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background-color: var(--main_color);
+  position: fixed;
+}
+
+.tab button {
+  font-family: 'Montserrat', 'sans-serif';
+  width: 100%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  font-size: 16px;
+  font-weight: 300;
+  background-color: var(--main_color);
+  border: none;
+  outline: none;
+  padding: 6px 40px 6px 10%;
+  color: #ffffff;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+  position: relative;
+}
+
+.tab button:hover {
+  cursor: pointer;
+  background-color: #ffffff;
+  color: var(--main_color);
+  border: none;
+}
+
+.tab .button:after {
+  position: absolute;
+  bottom: 0;
+  height: 0;
+  width: 0;
+  right: 0;
+  border: 25px solid transparent;
+  border-bottom-color: red;
+  border-right-color: red;
+  content: "";
+}
+
+.tabcontent {
+  -webkit-box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
+          box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
+  margin: 30px 40px 40px 22%;
+  padding: 10px 10px 10px 40px;
+  width: 100%;
+  max-width: 1200px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  border-radius: 10px;
+  text-align: center;
+}
+
+strong {
+  font-family: 'Open Sans', 'Sans serif';
+  font-weight: 100;
+  color: var(--accent-color);
+  size: .5rem;
+}
+
+.profile_table {
+  width: 100%;
+  text-align: left;
+}
+
+.profile_table td {
+  padding: 10px 0;
+}
+
+.tender_container {
+  -webkit-box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
+          box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
+  margin-top: 20px;
+  margin-right: 50px;
+  padding: 10px;
+  border-radius: 15px;
+}
+
+.mytender {
+  text-align: left;
+  padding: 10px;
+}
+
+.mytender td:nth-child(1) {
+  white-space: nowrap;
+  padding: 10px;
+}
+/*# sourceMappingURL=profile.css.map */

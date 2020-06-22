@@ -28,6 +28,20 @@ router.post('/get-legal-status', function (request, response) {
         }
     });
 });
+
+router.post('/city',function(req,res){
+    
+    db_1.default.query('SELECT * FROM city', function (error, result) {
+        if (error) {
+            // console.log(error);
+            res.status(400).send("Error in /city");
+        }
+        else {
+            res.status(200).send(result);
+        }
+    });
+});
+
 router.post('/get-department', function (request, response) {
     db_1.default.query('select dept_name from department ', function (error, result) {
         if (error) {

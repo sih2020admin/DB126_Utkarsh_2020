@@ -22,10 +22,12 @@ h3{
     font-family: 'Montserrat', 'sans serif';
     color: var(--main_color );
 }
-// input {
-   
-// }
 
+#tc1 {
+    font-size: 12px;
+    font-style: italic;
+    color: #fd0000;
+  }
 
 input {
     // background-color: transparent;
@@ -60,9 +62,9 @@ button{
 }
 
 .main{
-    display: flex;
-    flex-direction: row;
-    align-content: space-between;
+    // display: flex;
+    // flex-direction: row;
+    // align-content: space-between;
     font-family: sans-serif;
     margin-top: 60px;
     border: none;   
@@ -132,7 +134,7 @@ button{
     width: fit-content;
     min-width: 920px;
     height: fit-content;
-    min-height: 620px;
+    // min-height: 200px;
     border-radius: 10px;
     text-align: center;
 }
