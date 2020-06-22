@@ -94,17 +94,76 @@ function apply(i) {
         alert('Login to apply')
     }
 }
+function findJsonString() {
+    var filterKey = $('#search_bar').val().toLowerCase()
+    if (filterKey !== '') {
+        var result = []
+        for (let i = response.length - 1; i >= 0; i--) {
+            if (response[i].et_title.toLowerCase().indexOf(filterKey) !== -1 || response[i].et_tender_desc.toLowerCase().indexOf(filterKey) !== -1 || response[i].et_tender_fee.toLowerCase().indexOf(filterKey) !== -1) {
+                result.push(response[i])
+            }
+        }
+
+        if (result.length === 0) {
+            $('#cont').empty()
+            $('#cont').html('<p>Found no matches</p>')
+        } else {
+            loadResults(result)
+        }
+    } else {
+        loadResults(response)
+    }
+}
 function get_department() {
     $.post('/misc/get-department')
-    .then((response) => {
-        for (let i=0; i< response.length; i++){
-            console.log(response[i])
-        }
-    }).
-    catch((error) =>{
-        console.log("error due to some reason")
-        console.log("Printing error",error)
+        .then((response) => {
+            for (let i = 0; i < response.length; i++) {
+                $('<input>', {
+                    id: response[i]['dept_name'],
+                    type: 'checkbox',
+                    value: response[i]['dept_name'],
+                }).appendTo('#department')
+                $('<label></label>', {
+                    for: response[i]['dept_name'],
+                    text: response[i]['dept_name'],
+                }).appendTo('#department')
+            }
+        })
+        .catch((error) => {
+            console.log('error due to some reason')
+            console.log('Printing error', error)
+        })
+}
+function filterData() {
+    var filter_categories = []
+    let department = []
+    let closing_date = []
+    let fee = []
+    let filtered_result = []
+    $.each($("input[type='checkbox']:checked"), function () {
+        department.push($(this).val())
     })
+    filter_categories.push(department)
+    $.each($("input[type='date']"), function () {
+        closing_date.push($(this).val())
+    })
+    filter_categories.push(closing_date)
+    $.each($("input[type='radio']:checked"), function () {
+        fee.push($(this).val())
+    })
+    filter_categories.push(fee)
+    for (let i = 0; i < response.length; i++) {
+        if (filter_categories[0].length !== 0) {
+            for (let j = 0; j < filter_categories[0].length; j++) {
+                if (filter_categories[0][j] === response[0]['dept_name']) {
+                    filtered_result.push(response)
+                }
+            }
+        } else {
+            filtered_result.push(response)
+        }
+    }
+    console.log(filtered_result)
 }
 
 get_department()

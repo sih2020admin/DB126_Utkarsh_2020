@@ -26,6 +26,12 @@ h3 {
   color: var(--main_color);
 }
 
+#tc1 {
+  font-size: 12px;
+  font-style: italic;
+  color: #fd0000;
+}
+
 input {
   border: none;
   font-size: 1rem;
@@ -58,20 +64,10 @@ button:hover {
 }
 
 .main {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -ms-flex-line-pack: justify;
-      align-content: space-between;
   font-family: sans-serif;
   margin-top: 60px;
   border: none;
   outline: none;
-  overflow: hidden;
 }
 
 .tab {
@@ -83,7 +79,6 @@ button:hover {
       -ms-flex-direction: column;
           flex-direction: column;
   width: 20%;
-  max-width: 240px;
   height: 100%;
   margin-left: 0;
   border-top-right-radius: 10px;
@@ -92,17 +87,13 @@ button:hover {
   position: fixed;
 }
 
-.tab .first-button {
-  margin-top: 30px;
-}
-
 .tab button {
   font-family: 'Montserrat', 'sans-serif';
   width: 100%;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
-  font-size: 0.9rem;
+  font-size: 16px;
   font-weight: 300;
   background-color: var(--main_color);
   border: none;
@@ -138,16 +129,13 @@ button:hover {
 .tabcontent {
   -webkit-box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
           box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
-  margin: 30px 40px 20px 270px;
+  margin: 30px 40px 40px 22%;
   padding: 10px 10px 10px 40px;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  min-width: 920px;
+  width: 100%;
+  max-width: 1200px;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
-  min-height: 620px;
   border-radius: 10px;
   text-align: center;
 }
@@ -162,7 +150,6 @@ strong {
 .profile_table {
   width: 100%;
   text-align: left;
-  font-size: 0.8rem;
 }
 
 .profile_table td {
@@ -187,4 +174,4 @@ strong {
   white-space: nowrap;
   padding: 10px;
 }
-/*# sourceMappingURL=v6_profile.css.map */
+/*# sourceMappingURL=profile.css.map */
