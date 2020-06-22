@@ -110,7 +110,7 @@ document.getElementById("next_button").style.display = "none";
         </div>`;
         
         cont_div.insertAdjacentHTML('beforeend', div3);   
-        progess_bar()
+        //progess_bar()
     
               }
                 else if (this.status == 400) {  
