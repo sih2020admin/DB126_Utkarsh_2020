@@ -62,6 +62,7 @@ router.post('/get-department', function (request, response) {
 router.post('/get-city', function (request, response) {
     var state_code = request.body.state_code;
     db_1.default.query('SELECT * FROM `city` WHERE st_id In (SELECT st_id from states where st_name = ?);', [state_code], function (error, result) {
+
         if (error) {
             console.log(error);
             response.status(400).send('Some error in sending legal status ');
