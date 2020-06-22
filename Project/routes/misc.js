@@ -7,7 +7,7 @@ var express_1 = __importDefault(require("express"));
 var db_1 = __importDefault(require("./db"));
 var router = express_1.default.Router();
 router.post('/get-state', function (request, response) {
-    db_1.default.query('select st_name from states', function (error, result) {
+    db_1.default.query('select *  from states', function (error, result) {
         if (error) {
             console.log(error);
             response.send('some error in sending state names');
