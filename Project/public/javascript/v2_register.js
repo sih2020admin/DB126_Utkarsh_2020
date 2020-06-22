@@ -446,6 +446,7 @@ $('#company_button_back').on('click', () => {
     $('.account_details').fadeTo('slow', 1)
 }) */
 function account_validate(username, password, confirm_password) {
+    return true;
     if (username === '') {
         $('#error_para').text('Error : Username field cannot be empty');
         //$("#username").attr('style', "border-radius: 5px; border:#FF0000 1px solid;");
@@ -479,6 +480,7 @@ function account_validate(username, password, confirm_password) {
     return true;
 }
 function company_validate(company_name, company_address, company_email, mobile_number, registration_number, state, city, establishment_year, pincode, legal_status, pan_number, gst_register_number) {
+    return true;    
     if (company_name === '') {
         $('#error_para').text('Error : Company Name field cannot be empty');
         return false;
