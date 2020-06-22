@@ -26,6 +26,12 @@ h3 {
   color: var(--main_color);
 }
 
+#tc1 {
+  font-size: 12px;
+  font-style: italic;
+  color: #fd0000;
+}
+
 input {
   border: none;
   font-size: 1rem;

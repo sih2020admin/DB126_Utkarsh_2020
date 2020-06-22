@@ -61,7 +61,7 @@ function show()
 
 
 							setTimeout(function(){
-    								location="/v3_see_tender.html"
+    								location="/profile.html"
 							},1500);
 						}
 						else if(this.status == 400){

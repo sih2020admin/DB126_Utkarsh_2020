@@ -28,6 +28,20 @@ router.post('/get-legal-status', function (request, response) {
         }
     });
 });
+
+router.post('/city',function(req,res){
+    
+    db_1.default.query('SELECT * FROM city', function (error, result) {
+        if (error) {
+            // console.log(error);
+            res.status(400).send("Error in /city");
+        }
+        else {
+            res.status(200).send(result);
+        }
+    });
+});
+
 router.post('/get-city', function (request, response) {
     var state_code = request.body.state_code;
     db_1.default.query('select * from city where st_id=?', [state_code], function (error, result) {

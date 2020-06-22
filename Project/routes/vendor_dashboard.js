@@ -53,9 +53,11 @@ router.post('/edit/profile',function(req,res){
 	// var pan= req.body.pan;
 	var mail= req.body.mail;
 	var ccontact= req.body.ccontact;
+	var state= req.body.state;
+	var city= req.body.city;
 	var add= req.body.add;
 
-	db_1.default.query('UPDATE v_contact_details,vendor_details SET vcd_name=?,vcd_dob=?,vcd_designation=?,vcd_email=?,vcd_contact=?,v_name=?,v_legal_id=?,v_yoe=?,v_email=?,v_mobile=?,v_address=? WHERE v_contact_details.vd_id=vendor_details.vd_id and vendor_details.vd_id=?',[name,dob,desg,email,mobile,cname,legal,yoe,mail,ccontact,add,vd_id],function (error){
+	db_1.default.query('UPDATE v_contact_details,vendor_details SET vcd_name=?,vcd_dob=?,vcd_designation=?,vcd_email=?,vcd_contact=?,v_name=?,v_legal_id=?,v_yoe=?,v_email=?,v_mobile=?,v_state_id=?,v_city_id=?,v_address=? WHERE v_contact_details.vd_id=vendor_details.vd_id and vendor_details.vd_id=?',[name,dob,desg,email,mobile,cname,legal,yoe,mail,ccontact,state,city,add,vd_id],function (error){
 		if (error) {
 				console.log(error);
 	      		console.log("Profile Upadation Error");

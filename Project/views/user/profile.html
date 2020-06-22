@@ -29,7 +29,7 @@
       <button class="tablinks" onclick="operation('Tenders')"><i class="far fa-bookmark"></i>&nbsp &nbspMy Tenders</button>
       <button class="tablinks" onclick="operation('Approved')"><i class="far fa-check-circle"></i>&nbsp &nbspApproved Tenders</button>
       <button class="tablinks" onclick="operation('Docs')"><i class="fas fa-file-download"></i>&nbsp &nbspDownloaded Documents</button>
-      <button class="tablinks" onclick="operation('Search')"><i class="fas fa-search"></i>&nbsp &nbspSearch Tenders</button>
+      <button class="tablinks" onclick="location.href='v3_see_tender.html'"><i class="fas fa-search"></i>&nbsp &nbspSearch Tenders</button>
     </div>
 
     <div id="Tenders" class="tabcontent" style="display: none;">
@@ -50,6 +50,7 @@
       <h2>Search Tenders</h2>
       <h4>The list of matching tenders</h4>    
     </div>
+
     <div id="Profile" class="tabcontent">
       <h2>My Profile</h2>
       <!-- <h4>Welcome Ms./Mr. xyz</h4> -->
@@ -82,19 +83,18 @@
           <tr>
             <td><label><strong>Name:</strong></label></td>
             <td><input type="text" id="cname"  autocomplete="off" readonly></td>
-            <td><label id="test"><strong>Legal staus:</strong></label></td>
-              <!-- <td><input type="text" id="legal"  autocomplete="off" readonly></td> -->
+            <td><label><strong>Legal status:</strong></label></td>
              <td> 
-               <select id="test">
-                <option value="Limited Companyy">Limited Compay</option>
+               <select id="legal" autocomplete="off" disabled>
+                <option value="Limited Company">Limited Company</option>
                 <option value="Undertaking">Undertaking</option>
-                <option value="Joinventure">Joinventure</option>
+                <option value="Jointventure">Jointventure</option>
                 <option value="Partnership">Partnership</option>
                 <option value="Others">Others</option>
               </select>
             </td>
             <td><label><strong>Estd Year:</strong></label></td>
-            <td><input type="text" id="yoe"  autocomplete="off" readonly></td>
+            <td><select id="yoe" autocomplete="off" disabled></td>
           </tr>
           <tr>
             <td><label><strong>Registration No:</strong></label></td>
@@ -108,17 +108,18 @@
             <td><label><strong>Email:</strong></label></td>
             <td><input type="text" id="mail"  autocomplete="off" readonly></td>
             <td><label><strong>Contact No:</strong></label></td>
-            <td><input type="text" id="ccontact"  autocomplete="off" readonly></td>
+            <td><input type="text" id="ccontact" autocomplete="off" readonly></td>
           </tr>
           <tr>
             <td><label><strong>State:</strong></label></td>
-            <td><input type="text" id="state"  autocomplete="off" readonly></td>
+            <td><select id="state" autocomplete="off" disabled onclick="city()"></td>
             <td><label><strong>City:</strong></label></td>
-            <td><input type="text" id="city"  autocomplete="off" readonly></td>
+            <td><select id="city" autocomplete="off" disabled></td>
             <td><label><strong>Address:</strong></label></td>
             <td><input type="text" id="add"  autocomplete="off" readonly></td>
           </tr>
         </table><br><br>
+        <p id="tc1"></p><br>
       </div>
       <button id="edit1"><i class='fas fa-edit'></i>&nbspEdit</button>
       <button id="save" style="display: none;" onclick="save()"><i id="icon1"></i> &nbspSave</button>
