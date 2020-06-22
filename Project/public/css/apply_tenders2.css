@@ -116,7 +116,7 @@ select, input[type="date"] {
 }
 
 .pBar {
-  width: 0px;
+  width: calc((100% / 3));
   height: 30px;
   background-color: #4CAF50;
   color: white;
@@ -135,7 +135,7 @@ select, input[type="date"] {
 }
 
 .pBar2 {
-  width: 0;
+  width: calc((100% / 3));
   height: 30px;
   background-color: #4CAF50;
   color: white;
