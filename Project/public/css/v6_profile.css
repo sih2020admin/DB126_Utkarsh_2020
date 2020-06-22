@@ -71,6 +71,7 @@ button:hover {
   margin-top: 60px;
   border: none;
   outline: none;
+  overflow: hidden;
 }
 
 .tab {
@@ -82,6 +83,7 @@ button:hover {
       -ms-flex-direction: column;
           flex-direction: column;
   width: 20%;
+  max-width: 240px;
   height: 100%;
   margin-left: 0;
   border-top-right-radius: 10px;
@@ -90,13 +92,17 @@ button:hover {
   position: fixed;
 }
 
+.tab .first-button {
+  margin-top: 30px;
+}
+
 .tab button {
   font-family: 'Montserrat', 'sans-serif';
   width: 100%;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
-  font-size: 16px;
+  font-size: 0.9rem;
   font-weight: 300;
   background-color: var(--main_color);
   border: none;
@@ -132,10 +138,12 @@ button:hover {
 .tabcontent {
   -webkit-box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
           box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
-  margin: 30px 40px 40px 22%;
+  margin: 30px 40px 20px 270px;
   padding: 10px 10px 10px 40px;
-  width: 100%;
-  max-width: 1200px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  min-width: 920px;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
@@ -154,6 +162,7 @@ strong {
 .profile_table {
   width: 100%;
   text-align: left;
+  font-size: 0.8rem;
 }
 
 .profile_table td {
