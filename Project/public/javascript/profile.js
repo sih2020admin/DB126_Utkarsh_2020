@@ -34,25 +34,25 @@ xhr1.onload = function(){
     else
         alert("Some Error Occured");
 };
-// var xhr1 = new XMLHttpRequest();
-// url = "/misc/city";
-// xhr1.open("POST",url);
-// xhr1.setRequestHeader("Content-Type", "application/json");
-// xhr1.send();
-// xhr1.onload = function(){
-//     if(this.status == 200){
-//         var result = JSON.parse(this.responseText);
-//         var option = "";
-//         for(var i = 0 ; i < result.length; i++){
-//             option += "<option>"+ result[i].c_name +"</option>";
-//         }
-//         document.getElementById("city").innerHTML = option;
-//     }
-//     else if(this.status == 400)
-//         alert("Error 400");
-//     else
-//         alert("Some Error Occured");
-// };
+var xhr1 = new XMLHttpRequest();
+url = "/misc/city";
+xhr1.open("POST",url);
+xhr1.setRequestHeader("Content-Type", "application/json");
+xhr1.send();
+xhr1.onload = function(){
+    if(this.status == 200){
+        var result = JSON.parse(this.responseText);
+        var option = "";
+        for(var i = 0 ; i < result.length; i++){
+            option += "<option>"+ result[i].c_name +"</option>";
+        }
+        document.getElementById("city").innerHTML = option;
+    }
+    else if(this.status == 400)
+        alert("Error 400");
+    else
+        alert("Some Error Occured");
+};
 
 function city(){
     document.getElementById("city").removeAttribute("disabled");
