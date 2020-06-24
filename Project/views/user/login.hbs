@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/css/login.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<title>Login</title>
+</head>
+<body>
+	{{> header-user}}
+	<div class="cont">
+	<h2>Login</h2><br>
+	<table class="center">
+    <tr>
+	<td><label for="email_id">Username</label></td>
+	<td><input type="text" id="username" placeholder="Enter username" ></td></tr>
+	<tr><td><label for="password">Password</label></td>
+	<td><input type="password" id="pass" placeholder="Enter password" ></td>
+	</table>
+	<p id="tc"></p><br>
+	<p id="tc3"></p>
+	<button class="login" id="login" onclick="show()">Login</button>
+	<p id="not_registered">Don't have an account? <a href="/v2_register.html" >Register</a></p>
+	<table style="margin: auto;">
+	</tr>
+	<tr><td><label id="enter_otp" style="display: none;">Enter OTP</label></td>
+	<td><input type="password" id="otp" placeholder="Enter OTP" style="display: none;"></td>
+	</tr>
+	</table>
+	<p id="tc1"></p>
+	<p id="tc2"></p><br><br>
+	<button class="login" id="confirm" style="display: none;"><i id="icon"></i>Confirm</button>
+	</div>
+</body>
+<script src="/javascript/v1_login.js"></script>
+
+</html>

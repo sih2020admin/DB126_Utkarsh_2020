@@ -105,6 +105,20 @@ function get_legal_status() {
         });
     });
 }
+function get_years() {
+    return __awaiter(this, void 0, void 0, function () {
+        var years, end_year, current_year, i;
+        return __generator(this, function (_a) {
+            years = [];
+            end_year = 1700;
+            current_year = new Date().getFullYear();
+            for (i = current_year; i >= end_year; i--) {
+                years.push(i);
+            }
+            return [2 /*return*/, years];
+        });
+    });
+}
 //Promise.all([get_legal_status(),get_state()]).then((results)=>{console.log(results)})
 router.get('/home', function (request, response) {
     var user = is_user(request);
@@ -118,8 +132,18 @@ router.get('/home', function (request, response) {
     });
 });
 router.get('/register', function (request, response) {
-    Promise.all([get_legal_status(), get_state()]).then(function (result) {
-        return console.log(result);
+    Promise.all([get_legal_status(), get_state(), get_years()])
+        .then(function (result) {
+        response.render('user/register', { layout: false, status: result[0], states: result[1], years: result[2] });
+    })
+        .catch(function (error) {
+        console.log("Error in loading Register Page");
+        console.log(error);
     });
 });
+router.get('/login', function (request, response) {
+    response.render('user/login', { layout: false });
+});
+/* router.get('/tenders',(request: Request, response: Response) => {})
+ */
 exports.default = router;

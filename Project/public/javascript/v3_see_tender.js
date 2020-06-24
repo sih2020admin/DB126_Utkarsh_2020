@@ -167,7 +167,7 @@ function filterData() {
     filter_categories.push($('#fees').val().toString())
     filtered_result = filter_department(filter_categories[0])
     filtered_result = filter_fees(filter_categories[2], filtered_result)
-    //filtered_result = filter_closing_date(filter_categories[1], filtered_result)
+    filtered_result = filter_closing_date(filter_categories[1], filtered_result)
     render_filtered_results(filtered_result)
 }
 function modify_date(date) {
