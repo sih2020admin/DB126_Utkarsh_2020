@@ -1,7 +1,7 @@
 .container {
     width: 100%;
     margin: 30px auto; 
-  }
+
   ul{
   display: flex;
     justify-content: center;
@@ -57,6 +57,6 @@
   .progressbar li.active + li:after {
     background-color: #55b776;
   }
-  
+}
   
   
