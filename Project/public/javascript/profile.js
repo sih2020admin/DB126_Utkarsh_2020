@@ -352,13 +352,13 @@ function operation(optName) {
       }
       document.getElementById(optName).style.display = "block";  
 
-      if (optName == 'Tenders')
+      if (optName == 'Tenders' | optName == 'Profile')
       { 
         console.log("no box");
         var style = document.createElement('style')
         style.innerHTML = `
         .tabcontent{
-            box-shadow: 0 0 0 0;
+            box-shadow: 0 0 0 0 rgba(0,0,0,0);
         }
         `
         document.head.appendChild(style)

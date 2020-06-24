@@ -22,16 +22,20 @@
     margin-top: 10px;   
     margin-bottom: 10px;
     border-radius: 10px; 
-    box-shadow: 3px 4px 6px -6px rgba(103, 62, 253, 0.5),
-                -3px -4px 6px -6px rgba(103, 62, 253, 0.5);
+    border: 1px solid var(--main_color);
     white-space: wrap;
     overflow-x: hidden;
     overflow-y: hidden;
-    transition: all .5s ease-in-out; 
+    //transition: .18s ease all;
+    transition: all .5s ease; 
 }
 
 .cont:hover{
     transform: scale(1.01);
+    border: 0px;
+    // box-shadow: 3px 4px 6px -6px rgba(103, 62, 253, 0.5),
+    // -3px -4px 6px -6px rgba(103, 62, 253, 0.5);
+    box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.25);
 }
 p{
     color: var(--text_color);
