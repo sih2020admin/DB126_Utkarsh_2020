@@ -1,0 +1,18 @@
+<link rel="stylesheet" href="css/nav.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script  src="javascript/cookies.js"></script>
+<header>
+    <nav id="nav_bar" style=" margin: 0px;">
+        <a id="home_link" href="/">Home</a>
+        <a id="tender_link" href="/v3_see_tender.html">Tenders</a>
+        {{#if user}}
+            <a id="log_a" class="right_link" href="/profile.html" style="text-align: right;">Profile</a>
+            <a onclick="return theFunctionV();">Log out</a>
+            <a id="username" href="#" >Welcome {{username}}</a>
+        {{else}}
+            <a id="log_a" class="right_link" href="/v1_login.html" style="text-align: right;">Login</a>
+            <a id="register_link" class="right_link" href="/v2_register.html" style="text-align: right;">Register</a>
+        {{/if}}
+        
+    </nav>
+</header>
