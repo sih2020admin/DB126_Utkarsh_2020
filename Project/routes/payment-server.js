@@ -202,7 +202,7 @@ router.post('/redirect', function (request, response) {
                             });
                         }
                     });
-                    response.redirect("https://" + address + ":8081/v4_apply_tender_s3.html?et_id=" + i.et_id + "&etd_id=" + i.etd_id);
+                    response.redirect("http://" + address + ":8081/v4_apply_tender_s3.html?et_id=" + i.et_id + "&etd_id=" + i.etd_id);
                 }
             }
         }
