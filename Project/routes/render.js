@@ -117,5 +117,9 @@ router.get('/home', function (request, response) {
         console.log(error);
     });
 });
-router.get('/register', function (request, response) { });
+router.get('/register', function (request, response) {
+    Promise.all([get_legal_status(), get_state()]).then(function (result) {
+        return console.log(result);
+    });
+});
 exports.default = router;
