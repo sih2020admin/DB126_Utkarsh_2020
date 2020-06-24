@@ -17,6 +17,17 @@ router.post('/get-state', function (request, response) {
         }
     });
 });
+router.post('/city', function (request, response) {
+    db_1.default.query('select c_name from city', function (error, result) {
+        if (error) {
+            console.log(error);
+            response.send('some error in sending city names');
+        }
+        else {
+            response.status(200).send(result);
+        }
+    });
+});
 router.post('/get-legal-status', function (request, response) {
     db_1.default.query('select l_name from legal_status_details ', function (error, result) {
         if (error) {
