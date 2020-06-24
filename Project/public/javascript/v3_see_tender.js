@@ -99,9 +99,7 @@ function findJsonString() {
     if (filterKey !== '') {
         var result = []
         for (let i = response.length - 1; i >= 0; i--) {
-            var part1 = response[i].et_title.toLowerCase().indexOf(filterKey)
-            var part2 = response[i].et_tender_desc.toLowerCase().indexOf(filterKey)
-            if (part1 != -1 || part2 != -1) {
+            if (response[i].et_title.toLowerCase().indexOf(filterKey) !== -1 || response[i].et_tender_desc.toLowerCase().indexOf(filterKey) !== -1 || response[i].et_tender_fee.toLowerCase().indexOf(filterKey) !== -1) {
                 result.push(response[i])
             }
         }
