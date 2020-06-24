@@ -93,60 +93,65 @@ select, input[type="date"]{
     background-color: var(--main_color);
 } 
 
-.pBarCont {
+.container {
     width: 100%;
-    background-color: transparent;
-    display: flex;
+    margin: 30px auto; 
   }
-
-.pBar {
-    width: calc((100% / 3));
-    height: 30px;
-    background-color: #4CAF50;
-    color: white;
+  ul{
+  display: flex;
+    justify-content: center;
+  }
+  .progressbar {
+    counter-reset: step;
+  }
+  .progressbar li {
+    list-style-type: none;
+    width: 25%;
+    float: left;
+    font-size: 1em;
+    position: relative;
     text-align: center;
-    line-height: 30px;
+    text-transform: uppercase;
+    color: #7d7d7d;
   }
-.pBaredge1{
-    width: 0;
-    height: 1;
-    line-height: 30px;
-    border-top: 15px solid transparent;
-    border-bottom: 15px solid transparent;
-  /*   border-right: 15px solid blue; */
-    border-left: 15px solid #4CAF50;
+  .progressbar li:before {
+    width: 40px;
+    height: 40px;
+    content: counter(step);
+    counter-increment: step;
+    line-height: 40px;
+    border: 2px solid #7d7d7d;
+    display: block;
+    text-align: center;
+    margin: 0 auto 10px auto;
+    border-radius: 50%;
+    background-color: white;
+  }
+  .progressbar li:after {
+    width: 100%;
+    height: 2.5px;
+    content: '';
+    position: absolute;
+    background-color: #7d7d7d;
+    top: 20px;
+    left: -50%;
+    z-index: -1;
+  }
+  .progressbar li:first-child:after {
+    content: none;
+  }
+  .progressbar li.active {
+    color: green;
+  }
+  .progressbar li.active:before {
+    border-color: #55b776;
+  }
+  .progressbar li.active + li:after {
+    background-color: #55b776;
+  }
+  .progressbar li.active + li:after {
+    background-color: #55b776;
   }
   
-.pBar2 {
-    width: calc((100% / 3));
-    height: 30px;
-    background-color: #4CAF50;
-    color: white;
-    text-align: center;
-    line-height: 30px;
-  }
-.pBaredge2{
-    width: 0;
-    height: 0;
-    border-top: 15px solid transparent;
-    border-bottom: 15px solid transparent;
-  /*   border-right: 15px solid blue; */
-    border-left: 15px solid #4CAF50;
-  }
   
-.pBar3 {
-    width: 0;
-    height: 30px;
-    background-color: #4CAF50;
-    color: white;
-    text-align: center;
-    line-height: 30px;
-  }
-.pBaredge3{
-    width: 0;
-    height: 0;
-    border-top: 15px solid transparent;
-    border-bottom: 15px solid transparent;
-  /*   border-right: 15px solid blue; */
-    border-left: 15px solid #4CAF50;
-}
+  

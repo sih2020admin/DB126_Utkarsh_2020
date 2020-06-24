@@ -33,7 +33,7 @@ document.getElementById("next_button").style.display = "none";
 
     
 
-        var div=`<div class="cont" id="c1">
+        var div=`<div class="cont" id="one">
                 <h3>Tender Details</h3><br>
             <label><strong>Title:</strong></label>
             <label class="heading">`+response[0][0].et_title+`</label><br><br>
@@ -52,14 +52,12 @@ document.getElementById("next_button").style.display = "none";
                 <label class="OdateLabel"><strong>Bid Date:</strong></label>
                 <label id="Odate">`+response[0][0].et_bidding_date.slice(0,10)+`</label><br><br>
                 <label class="OdateLabel"><strong>File URL:</strong></label>
-                <a id="Odate" href="/`+response[0][0].et_file_uri+`">files</a><br>
-            <br>  
-         
+                <a id="Odate" href="/`+response[0][0].et_file_uri+`">files</a>
         </div>`;
         
         cont_div.insertAdjacentHTML('beforeend', div); 
 
-        var div2=`<div class="cont" id="c2">
+        var div2=`<div class="cont" id="two" style="display:none">
                 <h3>Vendor Contact Details</h3><br>
             <label><strong>Name:</strong></label>
             <label class="heading">`+response[1][0].vcd_title+response[1][0].vcd_name+`</label><br><br>
@@ -70,14 +68,12 @@ document.getElementById("next_button").style.display = "none";
                 <label class="Id"><strong>Contact:</strong></label>
                 <label>`+response[1][0].vcd_contact+`</label><br><br>
                 <label class="Id"><strong>Email:</strong></label>
-                <label>`+response[1][0].vcd_email+`</label><br><br>
-            <br>  
-         
+                <label>`+response[1][0].vcd_email+`</label>
         </div>`;
         
         cont_div.insertAdjacentHTML('beforeend', div2);
 
-        var div3=`<div class="cont" id="c1">
+        var div3=`<div class="cont" id="three" style="display:none">
                 <h3>Company Details</h3><br>
             <label><strong>Company Name:</strong></label>
             <label class="heading">`+response[2][0].v_name+`</label><br><br>
@@ -104,9 +100,7 @@ document.getElementById("next_button").style.display = "none";
                 <label class="Id"><strong>Verification Status:</strong></label>
                 <label>`+response[2][0].v_is_verified+`</label><br><br>
                 <label class="Id"><strong>GST No:</strong></label>
-                <label>`+response[2][0].v_gst+`</label><br><br>
-            <br>  
-         
+                <label>`+response[2][0].v_gst+`</label>     
         </div>`;
         
         cont_div.insertAdjacentHTML('beforeend', div3);   
@@ -127,7 +121,67 @@ document.getElementById("next_button").style.display = "none";
             xhr.send(data);
 
 
+//afif code
 
+function tt() {
+  one = document.getElementById("one");
+two = document.getElementById("two");
+three = document.getElementById("three");
+back = document.getElementById("back");
+next = document.getElementById("next");
+
+
+  oneD = one.style.display;
+  twoD = two.style.display;
+  threeD = three.style.display;
+
+  one.classList.add("cont");
+  two.classList.add("cont");
+  three.classList.add("cont");
+
+  one.classList.remove("cont2");
+  two.classList.remove("cont2");
+  three.classList.remove("cont2");
+
+  if (oneD == "") {
+    one.style.display = "none";
+    two.style.display = "";
+    console.log(oneD);
+  } else {
+    two.style.display = "none";
+    three.style.display = "";
+    console.log("working");
+  }
+}
+function bt() {
+  one = document.getElementById("one");
+two = document.getElementById("two");
+three = document.getElementById("three");
+back = document.getElementById("back");
+next = document.getElementById("next");
+
+  oneD = one.style.display;
+  twoD = two.style.display;
+  threeD = three.style.display;
+
+  one.classList.remove("cont");
+  two.classList.remove("cont");
+  three.classList.remove("cont");
+
+  one.classList.add("cont2");
+  two.classList.add("cont2");
+  three.classList.add("cont2");
+
+  if (threeD == "") {
+    three.style.display = "none";
+    two.style.display = "";
+  } else {
+    two.style.display = "none";
+    one.style.display = "";
+  }
+}
+
+//afif code end
 
 
 
