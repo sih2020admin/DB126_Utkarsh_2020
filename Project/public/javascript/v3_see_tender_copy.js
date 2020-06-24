@@ -32,6 +32,8 @@ function filterData_date() {
     filter_categories.push(fee)
     console.log(filter_categories)
     for (let i = 0; i < response.length; i++) {
+
+        // department
         if (filter_categories[0].length !== 0) {
             for (let j = 0; j < filter_categories[0].length; j++) {
                 if (filter_categories[0][j] === response[0]['dept_name']) {
