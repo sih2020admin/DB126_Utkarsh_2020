@@ -16,7 +16,7 @@ module.exports = function (request, response, next) {
             if (request.signedCookies.vcd_id_e !== undefined || request.signedCookies.vd_id_e !== undefined) {
                 debug('Found cookies in request and user is accessing vendor login.');
                 debug('Redirecting to See tender page');
-                response.redirect('/v3_see_tender.html');
+                response.redirect('/profile.html');
                 return;
             }
         }

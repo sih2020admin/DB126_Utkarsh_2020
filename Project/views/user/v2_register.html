@@ -33,6 +33,8 @@
     </table>
        <button id="account_button">Next</button>
     </div>
+
+
     <div class="company_details" style="display: none;">
       <h1>Registration</h1>
       <div class="Detailslabel"><h2>Company Details</h2></div>
@@ -52,7 +54,7 @@
         </tr>
         <tr>
           <td><label for="registration_number">Company Registration Number</label></td>
-          <td><input id="registration_number" type="text" placeholder="Enter Your Company RegNo"></td>
+          <td><input id="registration_number" type="text" placeholder="Enter Your Company RegNo" maxlength="23"></td>
         <td><label for="state">State</label></td>
         <td><select id="state">
           <option value="select" selected> --select--</option>
@@ -78,15 +80,17 @@
         </tr>
         <tr>
           <td><label for="pan_number">Pan Number</label></td>
-          <td><input id="pan_number" type="text" placeholder="Enter Your Pan No" maxlength="10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+          <td><input id="pan_number" type="text" placeholder="Enter Your 10 digit Pan No" maxlength="10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
           <td><label for="gst_register_number">GST Registration Number</label></td>
-          <td><input id="gst_register_number" type="text" placeholder="Enter Your GST Reg No" maxlength="15"></td>
+          <td><input id="gst_register_number" type="text" placeholder="Enter Your 15 digit GST Reg No" maxlength="15"></td>
         </tr>
     </table>
     <br>
       <!-- <button id="company_button_back">Back</button> -->
       <button id="company_button">Next</i></button>
   </div>
+
+
     <div class="contact__details" style="display: none;">
       <h1>Registration</h1>
       <div class="Detailslabel"><h2>Contact Details</h2></div><br>
@@ -102,24 +106,24 @@
             <option value="Sri">Sri</option>
           </select></td>
           <td><label for="contact_name">Contact Name</label></td>
-          <td><input id="contact_name" type="text" placeholder="Enter Your Contact Name"></td>
+          <td><input id="contact_name" type="text" placeholder="Enter Your Contact Name" maxlength="20"></td>
         </tr>
         <tr>
           <td><label for="date_of_birth">Date Of Birth(DD/MM/YYYY)</label></td>
           <td><input id="date_of_birth" type="date"></td>
           <td><label for="designation">Designation</label></td>
-          <td><input id="designation" type="text" placeholder="Enter Your Designation"></td>
+          <td><input id="designation" type="text" placeholder="Enter Your Designation" maxlength="20"></td>
         </tr>
         <tr>
           <td><label for="contact_email">Correspondence Email Address</label>
-          <td><input id="contact_email" type="email" placeholder="Enter Correspondence Email"></td>
+          <td><input id="contact_email" type="email" placeholder="Enter Correspondence Email" maxlength="320"></td>
           <td><label for="contact_contact">Mobile Number</label></td>
           <td><input  id="contact_contact" type="text" placeholder="Enter Your Mobile Number" maxlength="10"></td>
         </tr>
         <tr>
           <td><label for="aadhaar_number">Aadhaar Number</label></td>
           <td><input id="aadhaar_number" type="text" placeholder="Enter Your Aadhar Number" maxlength="12">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-          
+          <td><input id="otp" placeholder="Enter OTP" type="password" style="display: none;" maxlength="6"><br><button id="otp_button" style="display: none;">Confirm</button></td>
         </tr>
     </table>
     <br> 
@@ -131,7 +135,7 @@
     <!-- <div class="submit_button" style="display: none;">
     </div> -->
     <h1 id="error_para" style="font-size: larger;"></h1>
-    <input id="otp" placeholder="Enter OTP" type="password" style="display: none;" maxlength="6"><br><button id="otp_button" style="display: none;">Confirm</button>
+    
 
 
 </body></html>

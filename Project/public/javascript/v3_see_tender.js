@@ -99,7 +99,7 @@ function findJsonString() {
     if (filterKey !== '') {
         var result = []
         for (let i = response.length - 1; i >= 0; i--) {
-            if (response[i].et_title.toLowerCase().indexOf(filterKey) !== -1 || response[i].et_tender_desc.toLowerCase().indexOf(filterKey) !== -1 || response[i].et_tender_fee.toLowerCase().indexOf(filterKey) !== -1) {
+            if (response[i]['et_title'].toLowerCase().indexOf(filterKey) !== -1 || response[i]['et_tender_desc'].toLowerCase().indexOf(filterKey) !== -1 || response[i]['et_tender_ref_no'].toLowerCase().indexOf(filterKey) !== -1) {
                 result.push(response[i])
             }
         }
@@ -148,22 +148,84 @@ function filterData() {
         closing_date.push($(this).val())
     })
     filter_categories.push(closing_date)
-    $.each($("input[type='radio']:checked"), function () {
-        fee.push($(this).val())
-    })
-    filter_categories.push(fee)
-    for (let i = 0; i < response.length; i++) {
-        if (filter_categories[0].length !== 0) {
-            for (let j = 0; j < filter_categories[0].length; j++) {
-                if (filter_categories[0][j] === response[0]['dept_name']) {
-                    filtered_result.push(response)
+    filter_categories.push($('#fees').val().toString())
+    filtered_result = filter_department(filter_categories[0])
+    filtered_result = filter_fees(filter_categories[2], filtered_result)
+    console.log(filtered_result)
+
+    //render_filtered_results(filtered_result)
+}
+
+function filter_department(department) {
+    let temp = []
+    if (department.length !== 0) {
+        for (let i = 0; i < response.length; i++) {
+            for (let j = 0; j < department.length; j++) {
+                if (department[j] === response[0]['dept_name']) {
+                    temp.push(response[i])
+                }
+            }
+        }
+    } else {
+        temp = response
+    }
+    return temp
+}
+
+function filter_closing_date(){
+    
+}
+
+function filter_fees(fee, result) {
+    let temp = []
+    if (result.length !== 0) {
+        if (fee !== 'select') {
+            if (fee === '0') {
+                for (let i = 0; i < result.length; i++) {
+                    if (parseInt(result[i]['et_tender_fee']) < 1000) {
+                        temp.push(result[i])
+                    }
+                }
+            } else if (fee === '1') {
+                for (let i = 0; i < result.length; i++) {
+                    if (parseInt(result[i]['et_tender_fee']) >= 1000 && parseInt(result[i]['et_tender_fee']) < 5000) {
+                        temp.push(result[i])
+                    }
+                }
+            } else if (fee === '2') {
+                for (let i = 0; i < result.length; i++) {
+                    if (parseInt(result[i]['et_tender_fee']) >= 5000 && parseInt(result[i]['et_tender_fee']) < 10000) {
+                        temp.push(result[i])
+                    }
+                }
+            } else if (fee === '3') {
+                for (let i = 0; i < result.length; i++) {
+                    if (parseInt(result[i]['et_tender_fee']) >= 10000 && parseInt(result[i]['et_tender_fee']) < 15000) {
+                        temp.push(result[i])
+                    }
+                }
+            } else {
+                for (let i = 0; i < result.length; i++) {
+                    if (parseInt(result[i]['et_tender_fee']) >= 15000 && parseInt(result[i]['et_tender_fee']) < 20000) {
+                        temp.push(result[i])
+                    }
                 }
             }
         } else {
-            filtered_result.push(response)
+            temp = result
         }
     }
-    console.log(filtered_result)
+    return temp
+}
+
+function render_filtered_results(result){
+    if(filtered_result.length === 0){
+        console.log("could not find any tenders after filtering")
+    }
+    else{
+        loadResults(result)
+    }
+
 }
 
 get_department()

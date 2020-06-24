@@ -111,7 +111,7 @@ button{
   }
 
 .pBar {
-    width: 0px;
+    width: calc((100% / 3));
     height: 30px;
     background-color: #4CAF50;
     color: white;
