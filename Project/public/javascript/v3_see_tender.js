@@ -20,11 +20,11 @@ function loadResults(response) {
             `</p>
                             <p class="OdateLabel"><strong>Closing Date:</strong></p>
                             <p id="Odate">` +
-            response[i].et_last_date_apply +
+            modify_date(response[i].et_last_date_apply) +
             `</p>
                             <p class="BdateLabel"><strong>Bid Opening Date:</strong></p>
                             <p id="Bdate">` +
-            response[i].et_bidding_date +
+            modify_date(response[i].et_bidding_date) +
             `</p>
                         </div><br>  
                         <p class="para">` +
@@ -58,38 +58,51 @@ xhr.send(data)
 
 function apply(i) {
     if (vd_id != '') {
-        var et_id = response[i].et_id
-        var data = JSON.stringify({ et_id: et_id, vd_id: vd_id })
+        Swal.fire({
+            title: 'Confirmation',
+            text: 'Apply for this tender',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Apply',
+        }).then((result) => {
+            console.log(result)
+            if (result.value) {
+                var et_id = response[i].et_id
+                var data = JSON.stringify({ et_id: et_id, vd_id: vd_id })
 
-        var xhr = new XMLHttpRequest()
-        xhr.onload = function () {
-            if (this.status === 200) {
-                var res = JSON.parse(this.responseText)
-                var status = res.status
-                if (status == '100') {
-                    alert('all ready applied , complete process')
-                    window.location.href = '/payment/tender?et_id=' + et_id + '&etd_id=' + res.etd_id
-                } else if (status == '110') {
-                    alert('all ready applied , complete process')
-                    window.location.href = '/v4_apply_tender_s3.html?et_id=' + et_id + '&etd_id=' + res.etd_id
-                } else if (status == '111') {
-                    alert('Process done Submit Tender')
-                    window.location.href = '/v5_confirm_tender.html?et_id=' + et_id + '&etd_id=' + res.etd_id
-                } else if (status == '1111') {
-                    alert('Application submited redirecting to Application Preview page')
-                    window.location.href = '/v5_preview_tender.html?et_id=' + et_id + '&etd_id=' + res.etd_id
+                var xhr = new XMLHttpRequest()
+                xhr.onload = function () {
+                    if (this.status === 200) {
+                        var res = JSON.parse(this.responseText)
+                        var status = res.status
+                        if (status == '100') {
+                            alert('all ready applied , complete process')
+                            window.location.href = '/payment/tender?et_id=' + et_id + '&etd_id=' + res.etd_id
+                        } else if (status == '110') {
+                            alert('all ready applied , complete process')
+                            window.location.href = '/v4_apply_tender_s3.html?et_id=' + et_id + '&etd_id=' + res.etd_id
+                        } else if (status == '111') {
+                            alert('Process done Submit Tender')
+                            window.location.href = '/v5_confirm_tender.html?et_id=' + et_id + '&etd_id=' + res.etd_id
+                        } else if (status == '1111') {
+                            alert('Application submited redirecting to Application Preview page')
+                            window.location.href = '/v5_preview_tender.html?et_id=' + et_id + '&etd_id=' + res.etd_id
+                        }
+                    } else if (this.status === 404) {
+                        window.location.href = '/v4_apply_tender_s1.html?et_id=' + response[i].et_id
+                    } else {
+                        alert('Check Network')
+                    }
                 }
-            } else if (this.status === 404) {
-                window.location.href = '/v4_apply_tender_s1.html?et_id=' + response[i].et_id
-            } else {
-                alert('Check Network')
+
+                xhr.open('POST', '/get_etd_id')
+                xhr.setRequestHeader('Content-Type', 'application/json')
+
+                xhr.send(data)
             }
-        }
-
-        xhr.open('POST', '/get_etd_id')
-        xhr.setRequestHeader('Content-Type', 'application/json')
-
-        xhr.send(data)
+        })
     } else {
         alert('Login to apply')
     }
@@ -127,6 +140,7 @@ function get_department() {
                     for: response[i]['dept_name'],
                     text: response[i]['dept_name'],
                 }).appendTo('#department')
+                console.log(i)
             }
         })
         .catch((error) => {
@@ -155,7 +169,10 @@ function filterData() {
 
     //render_filtered_results(filtered_result)
 }
-
+function modify_date(date) {
+    let temp = new Date(date)
+    return `${temp.getUTCDate()}/${temp.getUTCMonth() + 1}/${temp.getUTCFullYear()}`
+}
 function filter_department(department) {
     let temp = []
     if (department.length !== 0) {
@@ -172,9 +189,7 @@ function filter_department(department) {
     return temp
 }
 
-function filter_closing_date(){
-    
-}
+function filter_closing_date() {}
 
 function filter_fees(fee, result) {
     let temp = []
@@ -218,14 +233,12 @@ function filter_fees(fee, result) {
     return temp
 }
 
-function render_filtered_results(result){
-    if(filtered_result.length === 0){
-        console.log("could not find any tenders after filtering")
-    }
-    else{
+function render_filtered_results(result) {
+    if (filtered_result.length === 0) {
+        console.log('could not find any tenders after filtering')
+    } else {
         loadResults(result)
     }
-
 }
 
 get_department()

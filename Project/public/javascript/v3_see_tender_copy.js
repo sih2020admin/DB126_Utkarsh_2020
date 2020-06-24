@@ -44,7 +44,6 @@ function filterData_date() {
             filtered_result.push(response)
         }
     }
-    console.log(filtered_result)
 }
 
 get_department()
