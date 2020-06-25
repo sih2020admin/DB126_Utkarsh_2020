@@ -223,21 +223,21 @@ xhr.onload = function () {
                             <th>Tender Description</th>
                             <th>Bidding Amount</th>
                         </tr>`
-                        tender_div.insertAdjacentHTML('beforeend',tender_content); 
+                        // tender_div.insertAdjacentHTML('beforeend',tender_content); 
             for(i=0;i<response[2].length ; i++){
-                        var tender_data = `
+                    tender_content =  tender_content+`
                             <tr>
                                 <td>`+response[2][i].et_tender_ref_no+`</td>
                                 <td>`+response[2][i].et_title+`</td>
                                 <td>`+response[2][i].et_tender_fee+`</td>
                                 <td>`+response[2][i].et_tender_desc+`</td>
                             </tr><br>`
-                            tender_div.insertAdjacentHTML('beforeend',tender_data); 
+                            // tender_div.insertAdjacentHTML('beforeend',tender_data); 
             }
             
-            var tender_end = `</table>
+            tender_content  = tender_content+ `</table>
                         </div>`
-            tender_div.insertAdjacentHTML('beforeend',tender_end); 
+            tender_div.insertAdjacentHTML('beforeend',tender_content); 
 		}
 		else {
 			tender_div.insertAdjacentHTML('beforeend',`<label class="RnoLabel"><strong>NO TENDER APPLIED YET ! APPLY FOR TENDER <a href="/v3_see_tender.html">here</a></strong></label>`); 
