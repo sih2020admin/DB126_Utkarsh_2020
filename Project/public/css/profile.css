@@ -112,6 +112,35 @@ button:hover {
   position: fixed;
 }
 
+.payment_details {
+  margin: 40px;
+  padding: 5px;
+}
+
+.payment_details table {
+  margin: auto;
+  max-width: 100%;
+  border-radius: 1em;
+  border-collapse: collapse;
+  overflow: hidden;
+  -webkit-box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
+          box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
+}
+
+.payment_details tr:nth-child(odd) {
+  background-color: rgba(141, 111, 251, 0.061);
+}
+
+.payment_details th {
+  background-color: var(--main_color);
+  color: #fff;
+  font-weight: lighter;
+}
+
+.payment_details th, .payment_details td {
+  padding: 0.5em 1em;
+}
+
 .tab .first-button {
   margin-top: 30px;
 }

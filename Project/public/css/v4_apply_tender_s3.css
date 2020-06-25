@@ -187,7 +187,7 @@ button:hover {
   }
   80%, 100% {
     color: black;
-    text-shadow: .25em 0 0 black, .5em 0 0 black;
+    text-shadow: .25em 0 0 black, .5em 0 0 black;
   }
 }
 
@@ -206,76 +206,17 @@ button:hover {
   }
   80%, 100% {
     color: black;
-    text-shadow: .25em 0 0 black, .5em 0 0 black;
+    text-shadow: .25em 0 0 black, .5em 0 0 black;
   }
-}
-
-.pBarCont {
-  width: 100%;
-  background-color: transparent;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.pBar {
-  width: calc((100% / 3));
-  height: 30px;
-  background-color: #4CAF50;
-  color: white;
-  text-align: center;
-  line-height: 30px;
-}
-
-.pBaredge1 {
-  width: 0;
-  height: 1;
-  line-height: 30px;
-  border-top: 15px solid transparent;
-  border-bottom: 15px solid transparent;
-  /*   border-right: 15px solid blue; */
-  border-left: 15px solid #4CAF50;
-}
-
-.pBar2 {
-  width: calc((100% / 3));
-  height: 30px;
-  background-color: #4CAF50;
-  color: white;
-  text-align: center;
-  line-height: 30px;
-}
-
-.pBaredge2 {
-  width: 0;
-  height: 0;
-  border-top: 15px solid transparent;
-  border-bottom: 15px solid transparent;
-  /*   border-right: 15px solid blue; */
-  border-left: 15px solid #4CAF50;
-}
-
-.pBar3 {
-  width: calc((100% / 3));
-  height: 30px;
-  background-color: #4CAF50;
-  color: white;
-  text-align: center;
-  line-height: 30px;
-}
-
-.pBaredge3 {
-  width: 0;
-  height: 0;
-  border-top: 15px solid transparent;
-  border-bottom: 15px solid transparent;
-  /*   border-right: 15px solid blue; */
-  border-left: 15px solid #4CAF50;
 }
 
 /* -------------------------- Start of Digilocker CSS code ------------------------------------ */
 /* css for ul, li elements and back button (all digilocker) */
-ul {
+.modal-body {
+  padding: 2px 16px;
+}
+
+.modal-body ul {
   position: relative;
   width: 750px;
   margin: 20px auto 20px;
@@ -289,7 +230,7 @@ ul {
   overflow: hidden;
 }
 
-ul li {
+.modal-body ul li {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -301,25 +242,25 @@ ul li {
   transition: .5s;
 }
 
-ul li span:nth-child(1) {
+.modal-body ul li span:nth-child(1) {
   width: 30px;
 }
 
-ul li span:nth-child(2) {
+.modal-body ul li span:nth-child(2) {
   width: 200px;
 }
 
-ul li span:nth-child(3) {
+.modal-body ul li span:nth-child(3) {
   width: 350px;
   visibility: hidden;
 }
 
-ul li span:nth-child(4) {
+.modal-body ul li span:nth-child(4) {
   width: 70px;
   visibility: hidden;
 }
 
-ul li:hover {
+.modal-body ul li:hover {
   -webkit-transform: scale(1.06);
           transform: scale(1.06);
   background: #248fe6;
@@ -448,13 +389,83 @@ ul li:hover {
   color: white;
 }
 
-.modal-body {
-  padding: 2px 16px;
-}
-
 .modal-footer {
   padding: 2px 16px;
   background-color: #663EFD;
   color: white;
+}
+
+.container {
+  width: 100%;
+  margin: 30px auto;
+}
+
+.container ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.container .progressbar {
+  counter-reset: step;
+}
+
+.container .progressbar li {
+  list-style-type: none;
+  width: 25%;
+  float: left;
+  font-size: 1em;
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
+  color: #7d7d7d;
+}
+
+.container .progressbar li:before {
+  width: 40px;
+  height: 40px;
+  content: counter(step);
+  counter-increment: step;
+  line-height: 40px;
+  border: 2px solid #7d7d7d;
+  display: block;
+  text-align: center;
+  margin: 0 auto 10px auto;
+  border-radius: 50%;
+  background-color: white;
+}
+
+.container .progressbar li:after {
+  width: 100%;
+  height: 2.5px;
+  content: '';
+  position: absolute;
+  background-color: #7d7d7d;
+  top: 20px;
+  left: -50%;
+  z-index: -1;
+}
+
+.container .progressbar li:first-child:after {
+  content: none;
+}
+
+.container .progressbar li.active {
+  color: green;
+}
+
+.container .progressbar li.active:before {
+  border-color: #55b776;
+}
+
+.container .progressbar li.active + li:after {
+  background-color: #55b776;
+}
+
+.container .progressbar li.active + li:after {
+  background-color: #55b776;
 }
 /*# sourceMappingURL=v4_apply_tender_s3.css.map */
