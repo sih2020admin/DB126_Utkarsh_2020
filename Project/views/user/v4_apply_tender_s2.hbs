@@ -4,23 +4,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="/css/nav.css" />
   <link rel="stylesheet" href="/css/apply_tenders2.css" />
   <link rel="stylesheet" href="/css/payment.css" />
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   <title>apply tender</title>
 </head>
 
 <body>
-  <header>
-    <nav id="nav_bar">
-      <a href="/v7_homepage.html">Home</a>
-      <a href="/v3_see_tender.html">Tender</a>
-      <a id="log_a" href="/v1_login.html">Login</a>
-    </nav>
-  </header>
+  {{> header-user}}
   <div class="pBarCont">
-
     <div id="pBar" class="pBar">Step1</div>
     <div id="arr1" class="pBaredge1"></div>
     <div id="pBar2" class="pBar2">Step2</div>
@@ -30,43 +21,7 @@
   
 </div>
   <h1 id="tsc_status"></h1>
-  {{!-- <div class="cont">
-    <h3>Payment Details(winston modify urs payment gateway here)</h3>
-    <br/>
-    <table>
-      <tr>
-        <td><label for="mode">Instrument type</label></td>
-        <td>
-          <select id="mode">
-            <option>DD</option>
-            <option>FD</option>
-            <option>Others</option>
-          </select>
-        </td>
-        <td><label for="ints_no">Instrument No</label></td>
-        <td><input type="Text" placeholder="Enter Instrument Number" id="inst_no" /></td>
-      </tr>
-      <tr>
-        <td><label for="issued_date">Issued date</label></td>
-        <td><input type="date" id="issued_date" /></td>
-        <td><label for="expiry_date">Expiry date</label></td>
-        <td><input type="date" id="expiry_date" /></td>
-      </tr>
-      <tr>
-        <td><label for="acc_no">Account No</label></td>
-        <td>
-          <input type="Text" placeholder="Enter Account Number" id="acc_no" />&nbsp;&nbsp;&nbsp;&nbsp;
-        </td>
-        <td><label for="amount">Amount</label></td>
-        <td><input type="number" placeholder="Enter Amount" id="amount" /></td>
-      </tr>
-    </table>
-    <br />
-    <div class="button_div"><button type="submit" class="save_button">Save</button></div>
-  </div> --}}
   <div class="cont2">
-
-    
     <form id="body_content" method="POST" action="/payment">
 
       <div class="content">
@@ -91,33 +46,16 @@
         </table>
       </div>
       <input type="submit" value="submit" id="bg_tsc_button" />
-      {{!-- {{#if allow}}
-        <input type="submit" value="submit" id="bg_tsc_button" />
-      {{else}}
-        <h1>Sorry winu!!!,It Happens we are in a team.<br>We Shall overcome:)</h1> --}}
-    {{!-- {{/if}} --}}
       <p id="error-para"></p>
     </form>
     
   </div>
   <br>
-  {{!-- <button value="back" onclick="back()">back</button> --}}
   <br><br>
 </body>
 
 
 </html>
-<script src="/javascript/cookies.js"></script>
-<script >
-  var log_a = document.getElementById('log_a')
-  var nav_bar = document.getElementById('nav_bar')
-  if (get_cookie('vcd_id_e') != '') {
-    log_a.setAttribute('href', '/profile.html')
-    log_a.innerHTML = 'Profile'
-    nav_bar.insertAdjacentHTML('beforeend', '<a id="log_a" onclick="return theFunctionV();">Log out</a>')
-  }
-</script>
-<script src="/javascript/jquery-3.4.1.min.js"></script>
 <script src="/javascript/payment.js"></script>
 <script src="/javascript/v4_apply_tender_s2.js"></script>
 

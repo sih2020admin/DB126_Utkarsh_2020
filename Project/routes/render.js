@@ -40,14 +40,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
-var db1_1 = __importDefault(require("./db1"));
+var connection_1 = __importDefault(require("./../database/connections/connection"));
 var router = express_1.default.Router();
 function get_tenders() {
     return __awaiter(this, void 0, void 0, function () {
         var tenders;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, db1_1.default.execute('SELECT `et_id`, `et_title`, `et_tender_fee`, `et_tender_ref_no`, `et_tender_desc`, `et_last_date_apply`, `et_bidding_date`, `et_file_uri`, `dept_name` FROM `e_tender_details` INNER JOIN department ON e_tender_details.dept_id = department.dept_id WHERE is_delete = 0 and e_tender_details.et_last_date_apply >= CURRENT_DATE')];
+                case 0: return [4 /*yield*/, connection_1.default.execute('SELECT `et_id`, `et_title`, `et_tender_fee`, `et_tender_ref_no`, `et_tender_desc`, `et_last_date_apply`, `et_bidding_date`, `et_file_uri`, `dept_name` FROM `e_tender_details` INNER JOIN department ON e_tender_details.dept_id = department.dept_id WHERE is_delete = 0 and e_tender_details.et_last_date_apply >= CURRENT_DATE')];
                 case 1:
                     tenders = _a.sent();
                     return [2 /*return*/, tenders[0]];
@@ -70,7 +70,7 @@ function get_username(request) {
             switch (_a.label) {
                 case 0:
                     if (!(request.signedCookies.vcd_id_e !== undefined)) return [3 /*break*/, 2];
-                    return [4 /*yield*/, db1_1.default.execute("Select user_name from log_in_details where vcd_id='" + request.signedCookies.vcd_id_e + "'")];
+                    return [4 /*yield*/, connection_1.default.execute("Select user_name from log_in_details where vcd_id='" + request.signedCookies.vcd_id_e + "'")];
                 case 1:
                     username_1 = _a.sent();
                     return [2 /*return*/, JSON.parse(JSON.stringify(username_1[0]))[0]['user_name']];
@@ -84,7 +84,7 @@ function get_state() {
         var states;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, db1_1.default.execute('select st_name from states')];
+                case 0: return [4 /*yield*/, connection_1.default.execute('select st_name from states')];
                 case 1:
                     states = _a.sent();
                     return [2 /*return*/, states[0]];
@@ -97,11 +97,25 @@ function get_legal_status() {
         var legal_status;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, db1_1.default.execute('select l_name from legal_status_details')];
+                case 0: return [4 /*yield*/, connection_1.default.execute('select l_name from legal_status_details')];
                 case 1:
                     legal_status = _a.sent();
                     return [2 /*return*/, legal_status[0]];
             }
+        });
+    });
+}
+function get_years() {
+    return __awaiter(this, void 0, void 0, function () {
+        var years, end_year, current_year, i;
+        return __generator(this, function (_a) {
+            years = [];
+            end_year = 1700;
+            current_year = new Date().getFullYear();
+            for (i = current_year; i >= end_year; i--) {
+                years.push(i);
+            }
+            return [2 /*return*/, years];
         });
     });
 }
@@ -118,8 +132,36 @@ router.get('/home', function (request, response) {
     });
 });
 router.get('/register', function (request, response) {
-    Promise.all([get_legal_status(), get_state()]).then(function (result) {
-        return console.log(result);
+    Promise.all([get_legal_status(), get_state(), get_years()])
+        .then(function (result) {
+        response.render('user/register', { layout: false, status: result[0], states: result[1], years: result[2] });
+    })
+        .catch(function (error) {
+        console.log('Error in loading Register Page');
+        console.log(error);
+    });
+});
+router.get('/login', function (request, response) {
+    response.render('user/login', { layout: false });
+});
+/* router.get('/tenders',(request: Request, response: Response) => {})
+ */
+router.get('/help', function (request, response) {
+    var user = is_user(request);
+    Promise.all([get_username(request)]).then(function (results) {
+        response.render('user/help', { layout: false, user: user, username: results[0] });
+    });
+});
+router.get('/profile', function (request, response) {
+    var user = is_user(request);
+    Promise.all([get_username(request)]).then(function (results) {
+        response.render('user/profile', { layout: false, user: user, username: results[0] });
+    });
+});
+router.get('/tenders', function (request, response) {
+    var user = is_user(request);
+    Promise.all([get_username(request)]).then(function (results) {
+        response.render('user/tenders', { layout: false, user: user, username: results[0] });
     });
 });
 exports.default = router;
