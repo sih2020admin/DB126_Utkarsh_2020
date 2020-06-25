@@ -1,7 +1,7 @@
 :root {
   --main_color: #663EFD;
   --text_color: #000000;
-  --accent-color: #a6a6a6;
+  --accent-color: #707070;
 }
 
 * {
@@ -51,7 +51,16 @@ select, input[type="date"] {
   border-radius: 3px;
   height: 30px;
   padding: 0;
-  padding-left: 10px;
+  font-size: 1rem;
+  color: var(--text_color);
+  font-family: 'Open Sans', 'Serif';
+}
+
+.hide {
+  border: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: transparent;
 }
 
 input[type=date]::-webkit-inner-spin-button {
@@ -112,35 +121,6 @@ button:hover {
   position: fixed;
 }
 
-.payment_details {
-  margin: 40px;
-  padding: 5px;
-}
-
-.payment_details table {
-  margin: auto;
-  max-width: 100%;
-  border-radius: 1em;
-  border-collapse: collapse;
-  overflow: hidden;
-  -webkit-box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
-          box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
-}
-
-.payment_details tr:nth-child(odd) {
-  background-color: rgba(141, 111, 251, 0.061);
-}
-
-.payment_details th {
-  background-color: var(--main_color);
-  color: #fff;
-  font-weight: lighter;
-}
-
-.payment_details th, .payment_details td {
-  padding: 0.5em 1em;
-}
-
 .tab .first-button {
   margin-top: 30px;
 }
@@ -187,12 +167,10 @@ button:hover {
 .tabcontent {
   -webkit-box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
           box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
-  margin: 30px 40px 20px 270px;
+  margin: 0 40px 20px 18%;
   padding: 10px 10px 10px 40px;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
   min-width: 920px;
+  max-width: 100%;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
@@ -223,7 +201,7 @@ strong {
 .profile_table {
   width: 100%;
   text-align: left;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
 }
 
 .profile_table td {
@@ -247,5 +225,34 @@ strong {
 .mytender td:nth-child(1) {
   white-space: nowrap;
   padding: 10px;
+}
+
+.tenders_details {
+  margin: 40px;
+  padding: 5px;
+}
+
+.tenders_details table {
+  margin: auto;
+  max-width: 100%;
+  border-radius: 1em;
+  border-collapse: collapse;
+  overflow: hidden;
+  -webkit-box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
+          box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
+}
+
+.tenders_details tr:nth-child(odd) {
+  background-color: rgba(141, 111, 251, 0.061);
+}
+
+.tenders_details th {
+  background-color: var(--main_color);
+  color: #fff;
+  font-weight: lighter;
+}
+
+.tenders_details th, .tenders_details td {
+  padding: 0.5em 1em;
 }
 /*# sourceMappingURL=profile.css.map */

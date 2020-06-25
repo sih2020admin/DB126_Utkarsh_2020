@@ -38,7 +38,7 @@ function city(){
             alert("Some Error Occured");
     };
 }
-
+ 
 document.getElementById("edit1").onclick = function(){
     document.getElementById("edit1").style.display ="none";
  
@@ -73,6 +73,9 @@ document.getElementById("edit1").onclick = function(){
     document.getElementById("save").style.display = "inline-block";
     document.getElementById("cancel").style.display = "inline-block";
     
+    var s1 = document.querySelectorAll("Select").forEach(el => el.classList.remove('hide'))
+    // s1.classList.remove("hide");
+
     // State Generation From API
     var xhr1 = new XMLHttpRequest();
     url = "/misc/get-state";
@@ -214,7 +217,7 @@ xhr.onload = function () {
         // </div>`;
         var tender_div = document.getElementById("Tenders");
         if(response[2].length > 0 ){
-                var tender_content = `<div class="payment_details">
+                var tender_content = `<div class="tenders_details">
                 <table>
                         <tr>
                             <th>Reference No</th>
@@ -231,7 +234,7 @@ xhr.onload = function () {
                                 <td>`+response[2][i].et_title+`</td>
                                 <td>`+response[2][i].et_tender_fee+`</td>
                                 <td>`+response[2][i].et_tender_desc+`</td>
-                            </tr><br>`
+                            </tr>`
                             // tender_div.insertAdjacentHTML('beforeend',tender_data); 
             }
             
