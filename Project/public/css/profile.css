@@ -56,6 +56,10 @@ select, input[type="date"] {
   font-family: 'Open Sans', 'Serif';
 }
 
+select:disabled, option:disabled, input:disabled {
+  color: #000;
+}
+
 .hide {
   border: 0;
   -webkit-appearance: none;
