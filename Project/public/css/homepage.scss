@@ -166,7 +166,7 @@ h1, h3, h2, h4{
     }
 
     .marquee_table{
-        margin-top:200px;
+        //margin-top:200px;
 
         tr{
             z-index: -99999999999999999999999999999999;
@@ -181,16 +181,23 @@ h1, h3, h2, h4{
     }
 }
 
-@keyframes marquee {
-    0%   { transform: translate(0, 0); }
-    100% { transform: translate(0, -300%); }
-}
 .marquee_table{
-    animation: marquee 10s linear infinite;
+    animation: marquee-animation 10s infinite 0s linear;
 }
 .marquee_table:hover{
     animation-play-state: paused;
 }
+
+
+@keyframes marquee-animation{
+    0%{
+        transform: translateY(70%);
+        }
+    100%{
+        transform: translateY(-100%);
+        }
+}
+
 
 footer{
     left: 0;

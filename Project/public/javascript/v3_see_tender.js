@@ -53,24 +53,11 @@ xhr.onload = function () {
 }
 
 xhr.open('POST', '/gettenderlist')
-
-
-
-
-
 xhr.send(data)
 
 function apply(i) {
     if (vd_id != '') {
-        Swal.fire({
-            title: 'Confirmation',
-            text: 'Apply for this tender',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Apply',
-        }).then((result) => {
+
             if (result.value) {
                 var et_id = response[i].et_id
                 var data = JSON.stringify({ et_id: et_id, vd_id: vd_id })
@@ -81,20 +68,65 @@ function apply(i) {
                         var res = JSON.parse(this.responseText)
                         var status = res.status
                         if (status == '100') {
-                            alert('all ready applied , complete process')
-                            window.location.href = '/payment/tender?et_id=' + et_id + '&etd_id=' + res.etd_id
+                            // alert('all ready applied , complete process')
+                            Swal.fire({
+                                title: 'Confirmation',
+                                text: 'all ready applied , complete process',
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Apply',
+                            }).then((result) => {window.location.href = '/payment/tender?et_id=' + et_id + '&etd_id=' + res.etd_id})
+                            
                         } else if (status == '110') {
-                            alert('all ready applied , complete process')
-                            window.location.href = '/v4_apply_tender_s3.html?et_id=' + et_id + '&etd_id=' + res.etd_id
+                            // alert('all ready applied , complete process')
+                            Swal.fire({
+                                title: 'Confirmation',
+                                text: 'all ready applied , complete process',
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Apply',
+                            }).then((result) => { window.location.href = '/v4_apply_tender_s3.html?et_id=' + et_id + '&etd_id=' + res.etd_id})
+                           
                         } else if (status == '111') {
-                            alert('Process done Submit Tender')
-                            window.location.href = '/v5_confirm_tender.html?et_id=' + et_id + '&etd_id=' + res.etd_id
+                            // alert('Process done Submit Tender')
+                            Swal.fire({
+                                title: 'Confirmation',
+                                text: 'Applying process done , please submit this tender',
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Apply',
+                            }).then((result) => { window.location.href = '/v5_confirm_tender.html?et_id=' + et_id + '&etd_id=' + res.etd_id})
+                           
                         } else if (status == '1111') {
-                            alert('Application submited redirecting to Application Preview page')
-                            window.location.href = '/v5_preview_tender.html?et_id=' + et_id + '&etd_id=' + res.etd_id
+                            // alert('Application submited redirecting to Application Preview page')
+                            Swal.fire({
+                                title: 'Confirmation',
+                                text: 'Application submited redirecting to Application Preview page',
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Apply',
+                            }).then((result) => {window.location.href = '/v5_preview_tender.html?et_id=' + et_id + '&etd_id=' + res.etd_id})
+                            
                         }
                     } else if (this.status === 404) {
-                        window.location.href = '/v4_apply_tender_s1.html?et_id=' + response[i].et_id
+                        Swal.fire({
+                            title: 'Confirmation',
+                            text: 'Apply for the tender',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Apply',
+                        }).then((result) => {window.location.href = '/v4_apply_tender_s1.html?et_id=' + response[i].et_id})
+                        
                     } else {
                         alert('Check Network')
                     }
@@ -105,7 +137,7 @@ function apply(i) {
 
                 xhr.send(data)
             }
-        })
+        
     } else {
         alert('Login to apply')
     }
