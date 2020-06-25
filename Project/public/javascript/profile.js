@@ -35,22 +35,22 @@ function city() {
         else alert('Some Error Occured')
     }
 }
-
-document.getElementById('edit1').onclick = function () {
-    document.getElementById('edit1').style.display = 'none'
-
-    document.getElementById('name').removeAttribute('readonly')
-    document.getElementById('name').style.border = '2px solid #663EFD'
-    document.getElementById('dob').setAttribute('type', 'date')
-    document.getElementById('dob').removeAttribute('readonly')
-    document.getElementById('dob').style.border = '2px solid #663EFD'
-    document.getElementById('desg').removeAttribute('readonly')
-    document.getElementById('desg').style.border = '2px solid #663EFD'
-    document.getElementById('email').removeAttribute('readonly')
-    document.getElementById('email').style.border = '2px solid #663EFD'
-    document.getElementById('mobile').removeAttribute('readonly')
-    document.getElementById('mobile').style.border = '2px solid #663EFD'
-    document.getElementById('aadhar').style.border = 'none'
+ 
+document.getElementById("edit1").onclick = function(){
+    document.getElementById("edit1").style.display ="none";
+ 
+    document.getElementById("name").removeAttribute("readonly");
+    document.getElementById("name").style.border = "2px solid #663EFD";
+    document.getElementById("dob").setAttribute("type","date");
+    document.getElementById("dob").removeAttribute("readonly");                  
+    document.getElementById("dob").style.border = "2px solid #663EFD";
+    document.getElementById("desg").removeAttribute("readonly");
+    document.getElementById("desg").style.border = "2px solid #663EFD";
+    document.getElementById("email").removeAttribute("readonly");
+    document.getElementById("email").style.border = "2px solid #663EFD";
+    document.getElementById("mobile").removeAttribute("readonly");
+    document.getElementById("mobile").style.border = "2px solid #663EFD";
+    document.getElementById("aadhar").style.border = "none"; 
 
     document.getElementById('cname').removeAttribute('readonly')
     document.getElementById('cname').style.border = '2px solid #663EFD'
@@ -69,6 +69,12 @@ document.getElementById('edit1').onclick = function () {
 
     document.getElementById('save').style.display = 'inline-block'
     document.getElementById('cancel').style.display = 'inline-block'
+
+    document.getElementById("save").style.display = "inline-block";
+    document.getElementById("cancel").style.display = "inline-block";
+    
+    var s1 = document.querySelectorAll("Select").forEach(el => el.classList.remove('hide'))
+    // s1.classList.remove("hide");
 
     // State Generation From API
     var xhr1 = new XMLHttpRequest()
@@ -182,7 +188,7 @@ xhr.onload = function () {
 
     var tender_div = document.getElementById("Tenders");
     if(response[2].length > 0 ){
-        var tender_content = `<div class="payment_details">
+        var tender_content = `<div class="tenders_details">
         <table>
                 <tr>
                     <th>Reference No</th>
