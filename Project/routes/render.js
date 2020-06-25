@@ -119,8 +119,7 @@ function get_years() {
         });
     });
 }
-//Promise.all([get_legal_status(),get_state()]).then((results)=>{console.log(results)})
-router.get('/home', function (request, response) {
+router.get('/', function (request, response) {
     var user = is_user(request);
     Promise.all([get_username(request), get_tenders()])
         .then(function (results) {
@@ -144,24 +143,35 @@ router.get('/register', function (request, response) {
 router.get('/login', function (request, response) {
     response.render('user/login', { layout: false });
 });
-/* router.get('/tenders',(request: Request, response: Response) => {})
- */
 router.get('/help', function (request, response) {
     var user = is_user(request);
     Promise.all([get_username(request)]).then(function (results) {
         response.render('user/help', { layout: false, user: user, username: results[0] });
+    })
+        .catch(function (error) {
+        console.log('Error in loading Help Page');
+        console.log(error);
     });
 });
 router.get('/profile', function (request, response) {
     var user = is_user(request);
     Promise.all([get_username(request)]).then(function (results) {
         response.render('user/profile', { layout: false, user: user, username: results[0] });
+    })
+        .catch(function (error) {
+        console.log('Error in loading Profile Page');
+        console.log(error);
     });
 });
 router.get('/tenders', function (request, response) {
     var user = is_user(request);
-    Promise.all([get_username(request)]).then(function (results) {
+    Promise.all([get_username(request)])
+        .then(function (results) {
         response.render('user/tenders', { layout: false, user: user, username: results[0] });
+    })
+        .catch(function (error) {
+        console.log('Error in loading Tenders Page');
+        console.log(error);
     });
 });
 exports.default = router;
