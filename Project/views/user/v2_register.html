@@ -41,20 +41,20 @@
       <table>
         <tr>
         <td><label for="company_name">Company Name</label></td>
-        <td><input id="company_name" type="text"  placeholder="Enter Your Company Name"></td>
+        <td><input id="company_name" type="text"  placeholder="Enter Your Company Name" maxlength="20"></td>
 
         <td><label for="company_address">Company Address</label></td>
-        <td><textarea id="company_address" name="" cols="30" rows="10" style="resize: none;" placeholder="Enter Your Company Address"></textarea></td>
+        <td><textarea id="company_address" name="" cols="30" rows="10" style="resize: none;" placeholder="Enter Your Company Address" maxlength="35"></textarea></td>
         </tr>
         <tr>
         <td><label for="company_email">Company Email Address</label></td>
-        <td><input id="company_email" type="email" placeholder="Enter Your Company Email"></td>
+        <td><input id="company_email" type="email" placeholder="Enter Your Company Email" maxlength="320"></td>
         <td><label for="mobile_number">Mobile Number</label></td>
         <td><input id="mobile_number" type="text" placeholder="Enter Your Company Mobile No" maxlength="10"></td>
         </tr>
         <tr>
           <td><label for="registration_number">Company Registration Number</label></td>
-          <td><input id="registration_number" type="text" placeholder="Enter Your Company RegNo" maxlength="23"></td>
+          <td><input id="registration_number" type="text" placeholder="Enter Your Company RegNo 15-21 digits" maxlength="23"></td>
         <td><label for="state">State</label></td>
         <td><select id="state">
           <option value="select" selected> --select--</option>
@@ -120,6 +120,22 @@
           <td><label for="contact_contact">Mobile Number</label></td>
           <td><input  id="contact_contact" type="text" placeholder="Enter Your Mobile Number" maxlength="10"></td>
         </tr>
+        
+    </table>
+    <br> 
+    <!-- <button class="submit_button" id="contact__details_previous">Back</button> -->
+
+    <button id="contact_button">Next</i></button>     
+    </div>
+    <!-- <div class="submit_button" style="display: none;">
+    </div> -->
+
+
+
+    <div class="aadhar__details" style="display: none;">
+      <h1>Aadhar Authentication</h1>
+      <div class="Detailslabel"><h2>Aadhar Details</h2></div><br>
+      <table>
         <tr>
           <td><label for="aadhaar_number">Aadhaar Number</label></td>
           <td><input id="aadhaar_number" type="text" placeholder="Enter Your Aadhar Number" maxlength="12">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
@@ -127,13 +143,11 @@
         </tr>
     </table>
     <br> 
-<!--     <button class="submit_button" id="contact__details_previous">Back</button>
- -->
             <button id="verify_button">Verify Aadhaar Number</button>    
+            <button id="resend_button" style="display: none;">Resend Otp</button>
+            <button id="change_aadhar_button" style="display: none;">Change Aadhar</button>    
           <button class="submit_button" id="submit_button">Register</button>
     </div>
-    <!-- <div class="submit_button" style="display: none;">
-    </div> -->
     <h1 id="error_para" style="font-size: larger;"></h1>
     
 
