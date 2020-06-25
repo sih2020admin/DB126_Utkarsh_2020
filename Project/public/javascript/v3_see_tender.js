@@ -208,7 +208,7 @@ function filter_closing_date(dates, result){
     console.log("dates",dates,result)
     if (result.length !== 0) {
         if(dates[0]==="" && dates[1]==="" ){
-            // console.log("1 ")
+            console.log("1 ")
             return result;
         }
         else if(dates[1]===""){ 
@@ -234,7 +234,7 @@ function filter_closing_date(dates, result){
 
         }
         else {
-            // console.log("4 ")
+            console.log("4 ")
             for (let i = 0; i < result.length; i++) {
                 // console.log((Date.parse(result[i].et_last_date_apply.slice(0,10)) <=Date.parse(dates[1]) && Date.parse(result[i].et_last_date_apply.slice(0,10)) >=Date.parse(dates[0])) , Date.parse(result[i].et_last_date_apply.slice(0,10)) ,Date.parse(dates[0]) ,Date.parse(dates[1]))
                 if(Date.parse(result[i].et_last_date_apply.slice(0,10)) <=Date.parse(dates[1]) && Date.parse(result[i].et_last_date_apply.slice(0,10)) >=Date.parse(dates[0])){

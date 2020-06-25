@@ -4,6 +4,7 @@ if(vd_id == ""){
     window.location.href = "/v1_login.html";
     console.log("directed to login")
 }
+var state;
 
 //Dynamic Year Generation
 var start = 1900;
@@ -13,46 +14,6 @@ for(var year = start ; year <=end; year++){
 options += "<option>"+ year +"</option>";
 }
 document.getElementById("yoe").innerHTML = options;
-
-//State and City Generation From API
-var xhr1 = new XMLHttpRequest();
-url = "/misc/get-state";
-xhr1.open("POST",url);
-xhr1.setRequestHeader("Content-Type", "application/json");
-xhr1.send();
-xhr1.onload = function(){
-    if(this.status == 200){
-        var result = JSON.parse(this.responseText);
-        var option = "";
-        for(var i = 0 ; i < result.length; i++){
-            option += "<option>"+ result[i].st_id + '-' + result[i].st_name +"</option>";
-        }
-        document.getElementById("state").innerHTML = option;
-    }
-    else if(this.status == 400)
-        alert("Error 400");
-    else
-        alert("Some Error Occured");
-};
-var xhr1 = new XMLHttpRequest();
-url = "/misc/city";
-xhr1.open("POST",url);
-xhr1.setRequestHeader("Content-Type", "application/json");
-xhr1.send();
-xhr1.onload = function(){   
-    if(this.status == 200){
-        var result = JSON.parse(this.responseText);
-        var option = "";
-        for(var i = 0 ; i < result.length; i++){
-            option += "<option>"+ result[i].c_name +"</option>";
-        }
-        document.getElementById("city").innerHTML = option;
-    }
-    else if(this.status == 400)
-        alert("Error 400");
-    else
-        alert("Some Error Occured");
-};
 
 function city(){
     document.getElementById("city").removeAttribute("disabled");
@@ -111,13 +72,33 @@ document.getElementById("edit1").onclick = function(){
 
     document.getElementById("save").style.display = "inline-block";
     document.getElementById("cancel").style.display = "inline-block";
+    
+    // State Generation From API
+    var xhr1 = new XMLHttpRequest();
+    url = "/misc/get-state";
+    xhr1.open("POST",url);
+    xhr1.setRequestHeader("Content-Type", "application/json");
+    xhr1.send();
+    xhr1.onload = function(){
+        if(this.status == 200){
+            var result = JSON.parse(this.responseText);
+            var option = "";
+            for(var i = 0 ; i < result.length; i++){
+                option += "<option>"+ result[i].st_name +"</option>";
+            }
+            document.getElementById("state").innerHTML = option;
+            document.getElementById("state").value = state;
+        }
+        else if(this.status == 400)
+            alert("Error 400");
+        else
+            alert("Some Error Occured");
+    };
 }
 
 
 
 function save(){
-
-    // var mailformat =;
     var email = document.getElementById("email").value;
     if (email.match(/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/)){
         console.log("You have entered a valid email address!");
@@ -172,7 +153,7 @@ xhr.send(data);
 
 xhr.onload = function () {
   if (this.status == 200) {
-    var response;
+    var response,option="";
     response = JSON.parse(this.responseText);
 
     document.getElementById("name").value = response[1][0].vcd_name;
@@ -191,8 +172,15 @@ xhr.onload = function () {
     document.getElementById("pan").value = response[0][0].v_pan;
     document.getElementById("mail").value = response[0][0].v_email;
     document.getElementById("ccontact").value = response[0][0].v_mobile;
-    document.getElementById("state").value = response[0][0].v_state_id;
+    
+    state=response[0][0].v_state_id;
+    option += "<option>"+ response[0][0].v_state_id +"</option>"
+    document.getElementById("state").innerHTML = option;
+    document.getElementById("state").value = state;
+    option += "<option>"+ response[0][0].v_city_id +"</option>";
+    document.getElementById("city").innerHTML = option;
     document.getElementById("city").value = response[0][0].v_city_id;
+    
     document.getElementById("add").value = response[0][0].v_address;
 
     
@@ -226,56 +214,30 @@ xhr.onload = function () {
         // </div>`;
         var tender_div = document.getElementById("Tenders");
         if(response[2].length > 0 ){
-        for(i=0;i<response[2].length ; i++){
-                var tender_content = `<div class="tender_container"><table class="mytender">
+                var tender_content = `<div class="payment_details">
+                <table>
                         <tr>
-                            <td><label class="RnoLabel"><strong>ID</strong></label></td>
-                            <td><label>`+response[2][i].et_id+`</label></td>
-                        </tr>
-                        <tr>
-                            <td><label class="RnoLabel"><strong>Title</strong></label></td>
-                            <td><label>`+response[2][i].et_title+`</label></td>
-                        </tr>
-                        <tr>
-                            <td><label class="RnoLabel"><strong>Department</strong></label></td>
-                            <td><label>`+response[2][i].dept_name+`</label></td>
-                        </tr>
-                        <tr>
-                            <td><label class="RnoLabel"><strong>Ref No</strong></label></td>
-                            <td><label>`+response[2][i].et_tender_ref_no+`</label><br><br></td>
-                        </tr>
-                        <tr>
-                            <td><label class="Id"><strong>Tender fee</strong></label></td>
-                            <td><label>`+response[2][i].et_tender_fee+`</label></td>
-                        </tr>
-                        <tr>
-                            <td><label class="Id"><strong>Tender Description</strong></label></td>
-                            <td><label>`+response[2][i].et_tender_desc+`</label></td>
-                        </tr>
-                        <tr>
-                            <td><label class="OdateLabel"><strong>Closing Date</strong></label></td>
-                            <td><label id="Odate">`+response[2][i].et_last_date_apply.slice(0,10)+`</label></td>
-                        </tr>
-                        <tr>
-                            <td><label class="OdateLabel"><strong>Bid Date</strong></label></td>
-                            <td><label id="Odate">`+response[2][i].et_bidding_date.slice(0,10)+`</label></td>
-                        </tr>		                
-                        <tr>
-                            <td><label class="OdateLabel"><strong>File URL</strong></label></td>
-                            <td><label id="Odate">`+response[2][i].et_file_url+`</label></td>
-                        </tr>
-                        <tr>
-                            <td><label class="OdateLabel"><strong>Department ID</strong></label></td>
-                            <td><label id="Odate">`+response[2][i].et_bidding_date.slice(0,10)+`</label></td>
-                        </tr>
-                        <tr>
-                            <td><label class="OdateLabel"><strong>Bidding Amount</strong></label></td>
-                            <td><label id="Odate">`+response[2][i].et_file_url+`</label></td>
-                        </tr>
-                        </div>
-                        </table>`
-				tender_div.insertAdjacentHTML('beforeend',tender_content);   
-			}
+                            <th>Reference No</th>
+                            <th>Title</th>
+                            <th>Tender Fee</th>
+                            <th>Tender Description</th>
+                            <th>Bidding Amount</th>
+                        </tr>`
+                        tender_div.insertAdjacentHTML('beforeend',tender_content); 
+            for(i=0;i<response[2].length ; i++){
+                        var tender_data = `
+                            <tr>
+                                <td>`+response[2][i].et_tender_ref_no+`</td>
+                                <td>`+response[2][i].et_title+`</td>
+                                <td>`+response[2][i].et_tender_fee+`</td>
+                                <td>`+response[2][i].et_tender_desc+`</td>
+                            </tr><br>`
+                            tender_div.insertAdjacentHTML('beforeend',tender_data); 
+            }
+            
+            var tender_end = `</table>
+                        </div>`
+            tender_div.insertAdjacentHTML('beforeend',tender_end); 
 		}
 		else {
 			tender_div.insertAdjacentHTML('beforeend',`<label class="RnoLabel"><strong>NO TENDER APPLIED YET ! APPLY FOR TENDER <a href="/v3_see_tender.html">here</a></strong></label>`); 
