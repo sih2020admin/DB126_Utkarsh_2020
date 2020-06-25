@@ -147,18 +147,21 @@ router.get('/login', function (request, response) {
 /* router.get('/tenders',(request: Request, response: Response) => {})
  */
 router.get('/help', function (request, response) {
+    var user = is_user(request);
     Promise.all([get_username(request)]).then(function (results) {
-        response.render('user/help', { layout: false, user: true, username: results[0] });
+        response.render('user/help', { layout: false, user: user, username: results[0] });
     });
 });
 router.get('/profile', function (request, response) {
+    var user = is_user(request);
     Promise.all([get_username(request)]).then(function (results) {
-        response.render('user/profile', { layout: false, user: true, username: results[0] });
+        response.render('user/profile', { layout: false, user: user, username: results[0] });
     });
 });
 router.get('/tenders', function (request, response) {
+    var user = is_user(request);
     Promise.all([get_username(request)]).then(function (results) {
-        response.render('user/tenders', { layout: false, user: true, username: results[0] });
+        response.render('user/tenders', { layout: false, user: user, username: results[0] });
     });
 });
 exports.default = router;
