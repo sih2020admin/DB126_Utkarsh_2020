@@ -32,9 +32,11 @@ var legal_status;
 var pan_number;
 var gst_register_number;
 var is_verified;
-load_years();
-load_states();
-load_legal_status();
+if (location.href === 'https://localhost:8081/v2_register.html') {
+    load_years();
+    load_states();
+    load_legal_status();
+}
 $('#city').prop('disabled', true);
 function clear_account_details() {
     $('#username').val('');

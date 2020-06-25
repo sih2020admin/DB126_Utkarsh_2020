@@ -103,7 +103,34 @@ button{
     position: fixed; 
     // border: 0.4px solid var(--main_color);
 }
+.payment_details{
+    margin: 40px;
+    padding: 5px;
+    table {
+        margin: auto;
+        max-width: 100%;
+        border-radius: 1em;
+        border-collapse: collapse;
+        overflow: hidden;
+        box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
+    }
 
+    tr:nth-child(odd) {
+    background-color: rgba(141, 111, 251, 0.061)
+    }
+
+    th {
+    background-color: var(--main_color);
+    color: #fff;
+    font-weight: lighter;
+
+    }
+
+    th,td {
+    padding: 0.5em 1em;
+    } 
+
+}
 .tab{
     .first-button{
         margin-top: 30px;

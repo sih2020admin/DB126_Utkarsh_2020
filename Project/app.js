@@ -50,7 +50,7 @@ app = load_routes_1.loadStaticFiles(app);
 //app.use(morgan('dev'))
 app = load_routes_1.loadRouterFiles(app);
 app.get('*', function (request, response) {
-    response.sendFile(__dirname + '/views/user/error.html');
+    response.render('error', { layout: false });
 });
 https_1.default.createServer(httpsOptions, app).listen(port, function () {
     console.log('Server listening On Port ' + port);
