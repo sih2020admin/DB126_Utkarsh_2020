@@ -186,65 +186,35 @@ xhr.onload = function () {
     
     document.getElementById("add").value = response[0][0].v_address;
 
-    
-    // var cont_div = document.getElementById('main');
-   
-        
-		// profile_div.insertAdjacentHTML('beforeend',contact_content);         
-        // var div=`<div class="main" id="Tenders">
-       			// <label class="RnoLabel"><strong>ID:</strong></label>
-          //       <label>`+response[2][i].e_tender_details.et_id+`</label><br><br>
-          //       <label class="RnoLabel"><strong>Title:</strong></label>
-          //       <label>`+response[2][i].et_title+`</label><br><br>
-          //       <label class="RnoLabel"><strong>Department:</strong></label>
-          //       <label>`+response[2][i].dept_name+`</label><br><br>
-          //       <label class="RnoLabel"><strong>Ref No:</strong></label>
-          //       <label>`+response[2][i].et_tender_ref_no+`</label><br><br>
-          //       <label class="Id"><strong>Tender fee:</strong></label>
-          //       <label>`+response[2][i].et_tender_fee+`</label><br><br>
-          //       <label class="Id"><strong>Tender Description:</strong></label>
-          //       <label>`+response[2][i].et_tender_desc+`</label><br><br>
-          //       <label class="OdateLabel"><strong>Closing Date:</strong></label>
-          //       <label id="Odate">`+response[2][i].et_last_date_apply.slice(0,10)+`</label><br><br>
-          //       <label class="OdateLabel"><strong>Bid Date:</strong></label>
-          //       <label id="Odate">`+response[2][i].et_bidding_date.slice(0,10)+`</label><br><br>
-          //       <label class="OdateLabel"><strong>File URL:</strong></label>
-          //       <label id="Odate">`+response[2][i].et_file_url+`</label><br>
-          //       <label class="OdateLabel"><strong>Department ID:</strong></label>
-          //       <label id="Odate">`+response[2][i].et_bidding_date.slice(0,10)+`</label><br><br>
-          //       <label class="OdateLabel"><strong>Bidding Amount:</strong></label>
-          //       <label id="Odate">`+response[2][i].et_file_url+`</label><br> <br>  
-        // </div>`;
-        var tender_div = document.getElementById("Tenders");
-        if(response[2].length > 0 ){
-                var tender_content = `<div class="tenders_details">
-                <table>
+    var tender_div = document.getElementById("Tenders");
+    if(response[2].length > 0 ){
+        var tender_content = `<div class="tenders_details">
+        <table>
+                <tr>
+                    <th>Reference No</th>
+                    <th>Title</th>
+                    <th>Tender Description</th>
+                    <th>Bidding Amount</th>
+                    <th>Preview</th>
+                    <th>Status</th>
+                </tr>`
+        for(i=0;i<response[2].length ; i++){
+                tender_content =  tender_content+`
                         <tr>
-                            <th>Reference No</th>
-                            <th>Title</th>
-                            <th>Tender Fee</th>
-                            <th>Tender Description</th>
-                            <th>Bidding Amount</th>
-                        </tr>`
-                        // tender_div.insertAdjacentHTML('beforeend',tender_content); 
-            for(i=0;i<response[2].length ; i++){
-                    tender_content =  tender_content+`
-                            <tr>
-                                <td>`+response[2][i].et_tender_ref_no+`</td>
-                                <td>`+response[2][i].et_title+`</td>
-                                <td>`+response[2][i].et_tender_fee+`</td>
-                                <td>`+response[2][i].et_tender_desc+`</td>
-                            </tr>`
-                            // tender_div.insertAdjacentHTML('beforeend',tender_data); 
-            }
-            
-            tender_content  = tender_content+ `</table>
-                        </div>`
-            tender_div.insertAdjacentHTML('beforeend',tender_content); 
-		}
-		else {
-			tender_div.insertAdjacentHTML('beforeend',`<label class="RnoLabel"><strong>NO TENDER APPLIED YET ! APPLY FOR TENDER <a href="/v3_see_tender.html">here</a></strong></label>`); 
-		}
+                            <td>`+response[2][i].et_tender_ref_no+`</td>
+                            <td>`+response[2][i].et_tender_fee+`</td>
+                            <td>`+response[2][i].et_tender_desc+`</td>
+                            <td>`+response[2][i].bidding_amt+`</td>
+                            <td><a href=https://`+location.hostname+":8081/v5_preview_tender.html?et_id="+response[2][i].et_id+"&etd_id="+response[2][i].etd_id+`>view</a></td>
+                            <td>`+"Submitted"+`</td>
+                        </tr>` 
+        }
+        tender_content  = tender_content+ `</table></div>`
+        tender_div.insertAdjacentHTML('beforeend',tender_content); 
+    }
+    else {
+        tender_div.insertAdjacentHTML('beforeend',`<label class="RnoLabel"><strong>NO TENDER APPLIED YET ! APPLY FOR TENDER <a href="/v3_see_tender.html">here</a></strong></label>`); 
+    }
         // var div=`<div class="main" id="Approved">
         // <label><strong>Title:</strong></label>
         //     <label class="heading">`+response[3].et_title+`</label><br><br>
