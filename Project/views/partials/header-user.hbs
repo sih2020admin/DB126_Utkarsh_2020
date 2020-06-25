@@ -4,9 +4,10 @@
 <header>
     <nav id="nav_bar" style=" margin: 0px;">
         <a id="home_link" href="/home">Home</a>
-        <a id="tender_link" href="/v3_see_tender.html">Tenders</a>
+        <a id="tender_link" href="/tenders">Tenders</a>
+        <a href="/help">Help</a>
         {{#if user}}
-            <a id="log_a" class="right_link" href="/profile.html" style="text-align: right;">Profile</a>
+            <a id="log_a" class="right_link" href="/profile" style="text-align: right;">Profile</a>
             <a onclick="return theFunctionV();">Log out</a>
             <a id="username" href="#" >Welcome {{username}}</a>
         {{else}}
