@@ -4,21 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/see_tender.css">
-    <link rel="stylesheet" href="css/nav.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-    <script src="/javascript/jquery-3.4.1.min.js"></script>
-    <script src="javascript/cookies.js"></script>
+    <link rel="stylesheet" href="/css/see_tender.css">
     <title>see tender</title>
 </head>
 <body>
-    <header>
-        <nav id="nav_bar">
-            <a href="/v7_homepage.html">Home</a>
-            <a href="/v3_see_tender.html">Tender</a>
-            <a id="log_a" href="/v1_login.html">Login</a>
-        </nav>
-    </header>
+    {{> header-user}}
     <div class="container">
         <label for="search_bar"></label>
         <input type="text" name="search_bar" id="search_bar" placeholder="Enter Keyword" onkeyup="findJsonString()">
@@ -51,17 +41,8 @@
         <button id="filter_button" class="search_button" onclick="filterData()">Filter Search</button>
     </div>
     <div class="container" id='cont'>
-
     </div>
+    {{> footer}}
 </body>
-<script type="text/javascript" src="javascript/v3_see_tender.js">    </script>
-=<script type="text/javascript">
-    var log_a = document.getElementById("log_a")
-    var nav_bar = document.getElementById("nav_bar")
-    if (get_cookie("vcd_id_e") != "") {
-        log_a.setAttribute("href", "/profile.html");
-        log_a.innerHTML = "Profile"
-        nav_bar.insertAdjacentHTML('beforeend', '<a id="log_a" onclick="return theFunctionV();">Log out</a>');
-    }
-</script>
+<script type="text/javascript" src="/javascript/v3_see_tender.js"></script>
 </html>

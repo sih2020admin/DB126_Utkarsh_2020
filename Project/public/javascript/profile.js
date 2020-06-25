@@ -17,17 +17,15 @@ document.getElementById("yoe").innerHTML = options;
 
 function city(){
     document.getElementById("city").removeAttribute("disabled");
-    var state_code=document.getElementById("state").value;
-    console.log(state_code);
+    var state_code=document.getElementById("state").value.split('-');
     var xhr1 = new XMLHttpRequest();
     url = "/misc/get-city";
     xhr1.open("POST",url);
     xhr1.setRequestHeader("Content-Type", "application/json");
-    xhr1.send(JSON.stringify({"state_code":state_code}));
+    xhr1.send(JSON.stringify({"state_code":state_code[0]}));
     xhr1.onload = function(){
         if(this.status == 200){
             var result = JSON.parse(this.responseText);
-            console.log("hello"+result[0]);
             var option = "";
             for(var i = 0 ; i < result.length; i++){
                 option += "<option>"+ result[i].c_name +"</option>";
