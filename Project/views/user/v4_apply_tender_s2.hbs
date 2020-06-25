@@ -6,20 +6,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="/css/apply_tenders2.css" />
   <link rel="stylesheet" href="/css/payment.css" />
+  <link rel="stylesheet" type="text/css" href="css/progress_bar.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   <title>apply tender</title>
 </head>
 
 <body>
-  {{> header-user}}
-  <div class="pBarCont">
-    <div id="pBar" class="pBar">Step1</div>
-    <div id="arr1" class="pBaredge1"></div>
-    <div id="pBar2" class="pBar2">Step2</div>
-    <div id="arr2" class="pBaredge2"></div>
-    <div id="pBar3" class="pBar3">Step3</div>
-    <div id="arr3" class="pBaredge3" style="display:none;"></div>
-  
-</div>
+  <header>
+    <nav id="nav_bar">
+      <a href="/v7_homepage.html">Home</a>
+      <a href="/v3_see_tender.html">Tender</a>
+      <a id="log_a" href="/v1_login.html">Login</a>
+    </nav>
+  </header>
+
+  <div class="container">
+        <ul class="progressbar">
+            <li class="active">Fill the details</li>
+            <li>Payment</li>
+            <li>E-sign and Upload documents</li>
+            <li>Freeze the bid</li>
+        </ul>
+    </div>
   <h1 id="tsc_status"></h1>
   <div class="cont2">
     <form id="body_content" method="POST" action="/payment">

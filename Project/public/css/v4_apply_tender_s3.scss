@@ -169,113 +169,56 @@ button:hover {
 }
 
 
-.pBarCont {
-  width: 100%;
-  background-color: transparent;
-  display: flex;
-}
-
-.pBar {
-  width: calc((100% / 3));
-  height: 30px;
-  background-color: #4CAF50;
-  color: white;
-  text-align: center;
-  line-height: 30px;
-}
-.pBaredge1{
-  width: 0;
-  height: 1;
-  line-height: 30px;
-  border-top: 15px solid transparent;
-  border-bottom: 15px solid transparent;
-/*   border-right: 15px solid blue; */
-  border-left: 15px solid #4CAF50;
-}
-
-.pBar2 {
-  width: calc((100% / 3));
-  height: 30px;
-  background-color: #4CAF50;
-  color: white;
-  text-align: center;
-  line-height: 30px;
-}
-.pBaredge2{
-  width: 0;
-  height: 0;
-  border-top: 15px solid transparent;
-  border-bottom: 15px solid transparent;
-/*   border-right: 15px solid blue; */
-  border-left: 15px solid #4CAF50;
-}
-
-.pBar3 {
-  width: calc((100% / 3));
-  height: 30px;
-  background-color: #4CAF50;
-  color: white;
-  text-align: center;
-  line-height: 30px;
-}
-.pBaredge3{
-  width: 0;
-  height: 0;
-  border-top: 15px solid transparent;
-  border-bottom: 15px solid transparent;
-/*   border-right: 15px solid blue; */
-  border-left: 15px solid #4CAF50;
-}
-
-
 /* -------------------------- Start of Digilocker CSS code ------------------------------------ */
 
 /* css for ul, li elements and back button (all digilocker) */
+.modal-body {
+  padding: 2px 16px;
 
-ul {
-  position: relative;
-  width: 750px;
-  margin: 20px auto 20px;
-  padding: 10px;
-  box-sizing: border-box;
-  box-shadow: inset 0 0 15px rgba(255, 255, 255, .5);
-  /* background: rgba(255, 255, 255, .1); */
-  border-radius: 5px;
-  overflow: hidden;
+      ul {
+        position: relative;
+        width: 750px;
+        margin: 20px auto 20px;
+        padding: 10px;
+        box-sizing: border-box;
+        box-shadow: inset 0 0 15px rgba(255, 255, 255, .5);
+        /* background: rgba(255, 255, 255, .1); */
+        border-radius: 5px;
+        overflow: hidden;
+      }
+        
+      ul li {
+        display: flex;
+        background: rgba(255, 255, 255, .2);
+        padding: 10px 20px;
+        /* color: #fff; */
+        margin: 5px 0;
+        transition: .5s;
+      }
+        
+      ul li span:nth-child(1) {
+        width: 30px;
+      }
+        
+      ul li span:nth-child(2) {
+        width: 200px;
+      }
+        
+      ul li span:nth-child(3) {
+        width: 350px;
+        visibility: hidden;
+      }
+        
+      ul li span:nth-child(4) {
+        width: 70px;
+        visibility: hidden;
+      }
+        
+      ul li:hover {
+        transform: scale(1.06);
+        background: #248fe6;
+      }
 }
-  
-ul li {
-  display: flex;
-  background: rgba(255, 255, 255, .2);
-  padding: 10px 20px;
-  /* color: #fff; */
-  margin: 5px 0;
-  transition: .5s;
-}
-  
-ul li span:nth-child(1) {
-  width: 30px;
-}
-  
-ul li span:nth-child(2) {
-  width: 200px;
-}
-  
-ul li span:nth-child(3) {
-  width: 350px;
-  visibility: hidden;
-}
-  
-ul li span:nth-child(4) {
-  width: 70px;
-  visibility: hidden;
-}
-  
-ul li:hover {
-  transform: scale(1.06);
-  background: #248fe6;
-}
-  
 .wrapper {
   text-align: center;
 }
@@ -399,10 +342,7 @@ ul li:hover {
   background-color: #663EFD;
   color: white;
 }
-  
-.modal-body {
-  padding: 2px 16px;
-}
+
   
 .modal-footer {
   padding: 2px 16px;
@@ -410,3 +350,65 @@ ul li:hover {
   color: white;
 }
   
+
+.container {
+  width: 100%;
+  margin: 30px auto; 
+
+  ul{
+  display: flex;
+    justify-content: center;
+  }
+  .progressbar {
+    counter-reset: step;
+  }
+  .progressbar li {
+    list-style-type: none;
+    width: 25%;
+    float: left;
+    font-size: 1em;
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+    color: #7d7d7d;
+  }
+  .progressbar li:before {
+    width: 40px;
+    height: 40px;
+    content: counter(step);
+    counter-increment: step;
+    line-height: 40px;
+    border: 2px solid #7d7d7d;
+    display: block;
+    text-align: center;
+    margin: 0 auto 10px auto;
+    border-radius: 50%;
+    background-color: white;
+  }
+  .progressbar li:after {
+    width: 100%;
+    height: 2.5px;
+    content: '';
+    position: absolute;
+    background-color: #7d7d7d;
+    top: 20px;
+    left: -50%;
+    z-index: -1;
+  }
+  .progressbar li:first-child:after {
+    content: none;
+  }
+  .progressbar li.active {
+    color: green;
+  }
+  .progressbar li.active:before {
+    border-color: #55b776;
+  }
+  .progressbar li.active + li:after {
+    background-color: #55b776;
+  }
+  .progressbar li.active + li:after {
+    background-color: #55b776;
+  }
+}
+
