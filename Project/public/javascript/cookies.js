@@ -73,7 +73,7 @@ function theFunctionV() {
     }).then((result) => {
         if (result.value) {
             $.post('/user/logout').then((result) => {
-                window.location.href = `/v1_login.html`
+                window.location.href = `/login`
             })
         }
     })

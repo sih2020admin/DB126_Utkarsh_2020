@@ -13,10 +13,10 @@ var https = require('https')
 
 // aadhar request
 
-router.get('/', function (req, res) {
+/* router.get('/', function (req, res) {
     // body...
     res.redirect('/v7_homepage.html')
-})
+}) */
 
 router.post('/login', function (reqs, res) {
     var username = reqs.body.username
@@ -227,7 +227,7 @@ router.post('/admin/logout', (request, response) => {
     response.clearCookie('ad_dept_id')
     request.session.destroy(function (err) {
         response.clearCookie('connect.sid')
-        return response.redirect('/v1_login.html')
+        return response.redirect('/login')
     })
     //response.sendStatus(200)
 })
