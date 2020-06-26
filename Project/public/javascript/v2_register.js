@@ -32,62 +32,14 @@ var legal_status;
 var pan_number;
 var gst_register_number;
 var is_verified;
-load_years();
-load_states();
-load_legal_status();
+
+    
+
 $('#city').prop('disabled', true);
 function clear_account_details() {
     $('#username').val('');
     $('#password').val('');
     $('#confirm_password').val('');
-}
-// loading years
-function load_years() {
-    var end_year = 1700;
-    var current_year = new Date().getFullYear();
-    for (var i = current_year; i >= end_year; i--) {
-        $('<option></option>', {
-            value: i.toString(),
-            text: i.toString(),
-        }).appendTo('#establishment_year');
-    }
-}
-// loading states from database
-function load_states() {
-    $.ajax({
-        url: "/misc/get-state",
-        method: 'POST',
-        async: true,
-        success: function (response) {
-            var e_1, _a;
-            var message = response;
-            try {
-                for (var message_1 = __values(message), message_1_1 = message_1.next(); !message_1_1.done; message_1_1 = message_1.next()) {
-                    var i = message_1_1.value;
-                    $('<option></option>', {
-                        text: i.st_name,
-                        value: i.st_name,
-                    }).appendTo('#state');
-                }
-            }
-            catch (e_1_1) { e_1 = { error: e_1_1 }; }
-            finally {
-                try {
-                    if (message_1_1 && !message_1_1.done && (_a = message_1.return)) _a.call(message_1);
-                }
-                finally { if (e_1) throw e_1.error; }
-            }
-        },
-        statusCode: {
-            400: function () {
-                alert('some error');
-            },
-        },
-        error: function (xhr, error_type, exception) {
-            var error_message = xhr.responseText;
-            alert("Problem connecting with " + error_message);
-        },
-    });
 }
 // loading cities dynamically by taking checking state field after each change
 function load_cities(state_code) {
@@ -139,107 +91,6 @@ $('#state').change(function () {
     }).appendTo('#city');
     load_cities((_a = $('#state').val()) === null || _a === void 0 ? void 0 : _a.toString());
 });
-// loading legal status field from databse
-function load_legal_status() {
-    $.ajax({
-        url: "/misc/get-legal-status",
-        method: 'POST',
-        async: true,
-        success: function (response) {
-            var e_3, _a;
-            var message = response;
-            try {
-                for (var message_3 = __values(message), message_3_1 = message_3.next(); !message_3_1.done; message_3_1 = message_3.next()) {
-                    var i = message_3_1.value;
-                    $('<option></option>', {
-                        text: i.l_name,
-                        value: i.l_name,
-                    }).appendTo('#legal_status');
-                }
-            }
-            catch (e_3_1) { e_3 = { error: e_3_1 }; }
-            finally {
-                try {
-                    if (message_3_1 && !message_3_1.done && (_a = message_3.return)) _a.call(message_3);
-                }
-                finally { if (e_3) throw e_3.error; }
-            }
-        },
-        statusCode: {
-            400: function () {
-                alert('some error');
-            },
-        },
-        error: function (xhr, error_type, exception) {
-            var error_message = xhr.responseText;
-            alert("Problem connecting with " + error_message);
-        },
-    });
-}
-// validation for contact details
-$; /* ('#submit_button').on('click', () => {
-    title = $('#title').val()?.toString()!
-    contact_name = $('#contact_name').val()?.toString()!
-    date_of_birth = $('#date_of_birth').val()?.toString()!
-    designation = $('#designation').val()?.toString()!
-    aadhaar_number = $('#aadhaar_number').val()?.toString()!
-    contact_email = $('#contact_email').val()?.toString()!
-    contact_contact = $('#contact_contact').val()?.toString()!
-    var check_contact = contact_validate(title, contact_name, date_of_birth, designation, aadhaar_number, contact_email, contact_contact)
-    if (check_contact === true) {
-        console.log(is_verified)
-        if (is_verified != 'ok') {
-            $('#error_para').text('Error : Aadhaar Number is not verified \n Click on verify to start verifying it')
-        } else {
-            var abc = {
-                account_details: {
-                    username: username,
-                    password: password,
-                },
-                company_details: {
-                    company_name: company_name,
-                    company_address: company_address,
-                    company_email: company_email,
-                    mobile_number: mobile_number,
-                    registration_number: registration_number,
-                    state: state,
-                    city: city,
-                    establishment_year: establishment_year,
-                    pincode: pincode,
-                    legal_status: legal_status,
-                    pan_number: pan_number,
-                    gst_register_number: gst_register_number,
-                },
-                contact_details: {
-                    title: title,
-                    contact_name: contact_name,
-                    date_of_birth: date_of_birth,
-                    designation: designation,
-                    aadhaar_number: aadhaar_number,
-                    contact_email: contact_email,
-                    contact_contact: contact_contact,
-                },
-            }
-            $.ajax({
-                url: `/register/register-data`,
-                method: 'POST',
-                contentType: 'application/json; charset=utf-8',
-                data: JSON.stringify(abc),
-                async: true,
-                success: (response) => {
-                    $('#error_para').html('Registration done<br>You will be redirected to login page in few seconds')
-                    setTimeout(() => {
-                        window.location.href = '/v1_login.html'
-                    }, 3000)
-                },
-                error: (xhr, error_type, exception) => {
-                    var error_message = xhr.responseText
-                    alert(`${error_message}`)
-                },
-            })
-        }
-    }
-}) */
 // validation for account_details
 $('#account_button').on('click', function () {
     var _a, _b, _c;
@@ -323,24 +174,46 @@ $('#company_button').on('click', function () {
         });
     }
 });
-$('#verify_button').on('click', function () {
+$('#contact_button').on('click', function () {
     var _a, _b, _c, _d, _e, _f, _g;
     title = (_a = $('#title').val()) === null || _a === void 0 ? void 0 : _a.toString();
     contact_name = (_b = $('#contact_name').val()) === null || _b === void 0 ? void 0 : _b.toString();
     date_of_birth = (_c = $('#date_of_birth').val()) === null || _c === void 0 ? void 0 : _c.toString();
     designation = (_d = $('#designation').val()) === null || _d === void 0 ? void 0 : _d.toString();
-    aadhaar_number = (_e = $('#aadhaar_number').val()) === null || _e === void 0 ? void 0 : _e.toString();
+    // aadhaar_number = (_e = $('#aadhaar_number').val()) === null || _e === void 0 ? void 0 : _e.toString();
     contact_email = (_f = $('#contact_email').val()) === null || _f === void 0 ? void 0 : _f.toString();
     contact_contact = (_g = $('#contact_contact').val()) === null || _g === void 0 ? void 0 : _g.toString();
     var check_contact = contact_validate(title, contact_name, date_of_birth, designation, aadhaar_number, contact_email, contact_contact);
     if (check_contact === true) {
-        $('#error_para').text('An OTP has been sent to your Mobile Number and Email Address.<br>Please enter it in the below field');
-        $('#verify_button').hide();
-        $('#otp').show();
-        $('#otp_button').show();
+        
+        $('.contact__details').hide();
+        $('.aadhar__details').fadeTo('fast', 1);
+        //$('.submit_button').fadeTo('fast', 1)
+        // $('.submit_button').hide();
+        $('#error_para').html('');
+
+    }
+});
+
+function verify_aadhar(){
+    var _e; 
+    aadhaar_number = (_e = $('#aadhaar_number').val()) === null || _e === void 0 ? void 0 : _e.toString();
+    if (aadhaar_number === '') {
+        $('#error_para').text('Error : Aadhaar Number field cannot be empty or has invalid characters');
+        return false;
+    }
+    if (aadhaar_number.match(/^\d{12}$/) === null) {
+        $('#error_para').text('Error : Invalid Aadhaar Number');
+        return false;
+    }
+
+    $('#error_para').text('An OTP has been sent to your Mobile Number and Email Address.Please enter it in the below field');
+        // $('#verify_button').hide();
+        // $('#otp').show();
+        // $('#otp_button').show();
         $('#aadhaar_number').prop('disabled', true);
         $.ajax({
-            url: location.protocol + "//" + location.hostname + ":8082/verify",
+            url: "/sms/send",
             method: 'POST',
             async: true,
             contentType: 'application/json; charset=utf-8',
@@ -350,9 +223,11 @@ $('#verify_button').on('click', function () {
             success: function (response) {
                 console.log(response);
                 $('#verify_button').hide();
-                $(".contact__details").hide();
+                // $(".contact__details").hide();
                 $('#otp').show();
                 $('#otp_button').show();
+                $('#change_aadhar_button').show();
+                $('#resend_button').show();
                 console.log("Got a request from server and OTP generated");
             },
             error: function (xhr, error_type, exception) {
@@ -361,16 +236,41 @@ $('#verify_button').on('click', function () {
                 $('#aadhaar_number').prop('disabled', false);
             },
         });
-    }
+}
+
+$('#verify_button').on('click' ,function(){
+    verify_aadhar();
+});
+$('#change_aadhar_button').on('click' ,function(){
+    $('#aadhaar_number').prop('disabled', false);
+    $('#verify_button').show();
+    // $(".contact__details").hide();
+    $('#otp').hide();
+    $('#otp_button').hide();
+    $('#change_aadhar_button').hide();
+    $('#resend_button').hide();
+});
+$('#resend_button').on('click' ,function(){
+    verify_aadhar();
 });
 $('#otp_button').on('click', function () {
     var _a, _b;
     var aadhar = (_a = $('#aadhaar_number').val()) === null || _a === void 0 ? void 0 : _a.toString();
     var otp = (_b = $('#otp').val()) === null || _b === void 0 ? void 0 : _b.toString();
+    var _e; 
+    // aadhaar_number = (_e = $('#aadhaar_number').val()) === null || _e === void 0 ? void 0 : _e.toString();
+    if (otp === '') {
+        $('#error_para').text('Error : Invalid OTP');
+        return false;
+    }
+    if (otp.match(/^\d{6}$/) === null) {
+        $('#error_para').text('Error : Invalid OTP');
+        return false;
+    }
     $('#otp').val("");
     console.log(aadhar, otp);
     $.ajax({
-        url: location.protocol + "//" + location.hostname + ":8082/verifyOTP",
+        url: "/verifyOTP",
         method: 'POST',
         async: true,
         contentType: 'application/json; charset=utf-8',
@@ -420,7 +320,18 @@ $('#otp_button').on('click', function () {
                     console.log(response);
                     console.log("Registered Successfully");
                     $('#error_para').html('Registration done<br>You will be redirected to login page in few seconds');
-                    window.location.href = '/v1_login.html';
+
+                    Swal.fire({
+                        title: 'Succesful',
+                        text: 'Successfully registered',
+                        icon: 'success',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Login',
+                    }).then((result) => {window.location.href = '/v1_login.html'})
+                    
+                   
                 },
                 error: function (xhr, error_type, exception) {
                     var error_message = xhr.responseText;
@@ -435,16 +346,6 @@ $('#otp_button').on('click', function () {
         },
     });
 });
-/* $('#contact__details_previous').on('click', () => {
-    $('.contact__details').hide()
-    $('.submit_button').hide()
-    $('.company_details').fadeTo('slow', 1)
-})
-
-$('#company_button_back').on('click', () => {
-    $('.company_details').hide()
-    $('.account_details').fadeTo('slow', 1)
-}) */
 function account_validate(username, password, confirm_password) {
     if (username === '') {
         $('#error_para').text('Error : Username field cannot be empty');
@@ -499,7 +400,7 @@ function company_validate(company_name, company_address, company_email, mobile_n
         $('#error_para').text('Error : Company Registration Number field cannot be empty');
         return false;
     }
-    if (registration_number.length > 21 || registration_number.length < 21) {
+    if (registration_number.length > 21 || registration_number.length < 15) {
         $('#error_para').text('Error : Invalid Company Registration Number ');
         return false;
     }
@@ -558,10 +459,7 @@ function contact_validate(title, contact_name, date_of_birth, designation, aadha
         $('#error_para').text('Error : Designation field cannot be empty');
         return false;
     }
-    if (aadhaar_number === '') {
-        $('#error_para').text('Error : Aadhaar Number field cannot be empty or has invalid characters');
-        return false;
-    }
+    
     if (contact_email.match(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/) === null) {
         $('#error_para').text('Error : Invalid Email Address');
         return false;
@@ -570,10 +468,7 @@ function contact_validate(title, contact_name, date_of_birth, designation, aadha
         $('#error_para').text('Error : Mobile Number field cannot be empty or has invalid characters');
         return false;
     }
-    if (aadhaar_number.match(/^\d{12}$/) === null) {
-        $('#error_para').text('Error : Invalid Aadhaar Number');
-        return false;
-    }
+   
     if (contact_contact.match(/^\d{10}$/) === null) {
         $('#error_para').text('Error : Invalid Mobile Number');
         return false;

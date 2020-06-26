@@ -12,6 +12,7 @@
             { "app_path" = "/admin"     , "module_name" = "admin-profile"       , "default_export" = true},
             { "app_path" = "/misc"      , "module_name" = "misc"                , "default_export" = true},
             { "app_path" = "/register"  , "module_name" = "register-server"     , "default_export" = true},
+            { "app_path" = "/"          , "module_name" = "render"              , "default_export" = true},            
             { "app_path" = "/"          , "module_name" = "login"               , "default_export" = true},
             { "app_path" = "/"          , "module_name" = "tender_desc"         , "default_export" = true},
             { "app_path" = "/"          , "module_name" = "crud_admin"          , "default_export" = true},

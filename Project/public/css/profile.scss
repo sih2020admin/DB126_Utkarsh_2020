@@ -1,7 +1,7 @@
 :root{
     --main_color: #663EFD;
     --text_color: #000000;
-    --accent-color: #a6a6a6;
+    --accent-color: #707070;
 }
 *{
     -moz-osx-font-smoothing: grayscale;
@@ -9,7 +9,10 @@
 }
 body{
     color: var(--text_color );
-    
+}
+h2{
+    font-size: 2em;
+    font-weight: 500;
 }
 h4, h2{
     margin-top: 20px;
@@ -22,10 +25,12 @@ h3{
     font-family: 'Montserrat', 'sans serif';
     color: var(--main_color );
 }
-// input {
-   
-// }
 
+#tc1 {
+    font-size: 12px;
+    font-style: italic;
+    color: #fd0000;
+  }
 
 input {
     // background-color: transparent;
@@ -36,7 +41,34 @@ input {
     max-width: auto;
     outline: none;
 }
-
+select, input[type="date"]{
+    //border-style: dashed;
+    border: 1.5px solid var(--main_color);
+    border-radius: 3px;
+    height: 30px;
+    //margin: 10px;
+    padding: 0;
+    //padding-left: 10px;
+    font-size: 1rem;
+    color: var(--text_color);
+    font-family: 'Open Sans', 'Serif';
+}
+select:disabled, option:disabled, input:disabled {
+        color: #000;
+}
+.hide{
+    border: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: transparent;
+}
+input[type=date]::-webkit-inner-spin-button {
+    appearance: none;
+    display: none;
+}
+.select-selected {
+    background-color: var(--main_color);
+} 
 
 button{
     width: 100px;
@@ -60,20 +92,21 @@ button{
 }
 
 .main{
-    display: flex;
-    flex-direction: row;
-    align-content: space-between;
+    // display: flex;
+    // flex-direction: row;
+    // align-content: space-between;
     font-family: sans-serif;
-    margin-top: 60px;
+    //margin-top: 60px;
     border: none;   
     outline: none;
-
+    overflow: hidden;
   }
 
 .tab{
     display: flex;
     flex-direction: column;
     width: 20%;
+    max-width: 240px;
     height: 100%;
     margin-left: 0;
     border-top-right-radius: 10px;
@@ -82,13 +115,21 @@ button{
     position: fixed; 
     // border: 0.4px solid var(--main_color);
 }
+// .payment_details{
+//     margin: 40px;
+//     padding: 5px;
+    
 
+// }
 .tab{
+    .first-button{
+        margin-top: 30px;
+    }
     button {
         font-family: 'Montserrat', 'sans-serif';
         width: 100%;
         height: fit-content;
-        font-size: 16px;
+        font-size: 0.9rem;
         font-weight: 300;
         background-color: var(--main_color);
         border: none;
@@ -121,16 +162,25 @@ button{
         content: "";
     }
 }
-.tabcontent {
+.tabcontent{
     box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);  
-    margin: 30px 40px 40px 22%; 
+    margin: 0 40px 20px 18%; 
     padding: 10px 10px 10px 40px; 
-    width: 100%;
-    max-width: 1200px;
+    min-width: 920px;
+    max-width: 100%;
     height: fit-content;
-    min-height: 620px;
+    // min-height: 200px;
     border-radius: 10px;
     text-align: center;
+}
+.profile{
+    box-shadow: 0 0 0 0 rgba(0,0,0,0);  
+}
+.profile_details{
+    box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);  
+    margin: 20px auto;
+    padding-left: 20px;
+    border-radius: 10px;
 }
 strong {
     font-family: 'Open Sans', 'Sans serif';
@@ -139,13 +189,14 @@ strong {
     size: .5rem;
 }
 
-    .profile_table{
-        width: 100%;
-        text-align: left;
-        td{
-            padding: 10px 0;
-        }
+.profile_table{
+    width: 100%;
+    text-align: left;
+    font-size: 0.9rem;
+    td{
+        padding: 10px 0;
     }
+}
 
 .tender_container{
     box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
@@ -171,4 +222,35 @@ strong {
         white-space: nowrap;
         padding: 10px;
     }
+}
+
+
+.tenders_details{
+
+    margin: 40px;
+    padding: 5px;
+    
+    table {
+        margin: auto;
+        max-width: 100%;
+        border-radius: 1em;
+        border-collapse: collapse;
+        overflow: hidden;
+        box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
+    }
+
+    tr:nth-child(odd) {
+    background-color: rgba(141, 111, 251, 0.061)
+    }
+
+    th {
+    background-color: var(--main_color);
+    color: #fff;
+    font-weight: lighter;
+
+    }
+
+    th,td {
+    padding: 0.5em 1em;
+    } 
 }

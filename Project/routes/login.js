@@ -11,15 +11,12 @@ var router = express_1.default.Router()
 // var unirest = require('unirest')
 var https = require('https')
 
-
 // aadhar request
 
-
-router.get('/', function (req, res) {
+/* router.get('/', function (req, res) {
     // body...
     res.redirect('/v7_homepage.html')
-})
-
+}) */
 
 router.post('/login', function (reqs, res) {
     var username = reqs.body.username
@@ -46,9 +43,8 @@ router.post('/login', function (reqs, res) {
                             aadharno = results[0].vcd_aadhar
                             var vd_id = results[0].vd_id
                             var digi_access = results[0].digi_access
-                            console.log("fetched "+aadharno);
-                              
-                            
+                            console.log('fetched ' + aadharno)
+
                             //send to aadhar api
 
                             // using unirest
@@ -68,52 +64,48 @@ router.post('/login', function (reqs, res) {
                             //         res.status(200).send({ aadhar: aadharno, vd_id: vd_id, vcd_id: vcd_id, digi_access: digi_access })
                             //     })
 
-
                             var options = {
-                                hostname: process.env.ADDRESS ,
+                                hostname: process.env.ADDRESS,
                                 port: 8082,
-                                path: "/verify",
+                                path: '/verify',
                                 method: 'POST',
                                 rejectUnauthorized: false,
                                 requestCert: true,
                                 agent: false,
                                 headers: {
-                                    'Content-Type': 'application/json'
-                               }
-                              };
+                                    'Content-Type': 'application/json',
+                                },
+                            }
                             var req = https.request(options, function (resp) {
-                                resp.setEncoding('utf8');
+                                resp.setEncoding('utf8')
                                 resp.on('data', function (chunk) {
-                                    console.log('BODY: ' + chunk);
-                                });
-                            
-                                resp.on('end',function(){
-                                  if (resp.statusCode == 200) {
-                                            res.cookie('vd_id_e', vd_id, { signed: true })
-                                            res.cookie('vcd_id_e', vcd_id, { signed: true })
-                                            res.cookie('digi_access_e', digi_access, { signed: true })
-                                            reqs.session.vd_id = vd_id
-                                            reqs.session.vcd_id = vcd_id
-                                            reqs.session.digi_access = digi_access
-                                            res.status(200).send({ aadhar: aadharno, vd_id: vd_id, vcd_id: vcd_id, digi_access: digi_access })
-                                    
-                                  } else {
-                                    console.log("Api call failed with response code " + resp.statusCode);
-                                    res.sendStatus(400)
-                                  }
-                                });
-                            
-                              });
-                            
-                              req.on('error', function (e) {
-                                console.log("Error : " + e.message);
-                                
-                              });
-                            
-                              // write data to request body
-                              req.write(JSON.stringify({ aadharno: aadharno }));
-                           
-                            req.end();
+                                    console.log('BODY: ' + chunk)
+                                })
+
+                                resp.on('end', function () {
+                                    if (resp.statusCode == 200) {
+                                        res.cookie('vd_id_e', vd_id, { signed: true })
+                                        res.cookie('vcd_id_e', vcd_id, { signed: true })
+                                        res.cookie('digi_access_e', digi_access, { signed: true })
+                                        reqs.session.vd_id = vd_id
+                                        reqs.session.vcd_id = vcd_id
+                                        reqs.session.digi_access = digi_access
+                                        res.status(200).send({ aadhar: aadharno, vd_id: vd_id, vcd_id: vcd_id, digi_access: digi_access })
+                                    } else {
+                                        console.log('Api call failed with response code ' + resp.statusCode)
+                                        res.sendStatus(400)
+                                    }
+                                })
+                            })
+
+                            req.on('error', function (e) {
+                                console.log('Error : ' + e.message)
+                            })
+
+                            // write data to request body
+                            req.write(JSON.stringify({ aadharno: aadharno }))
+
+                            req.end()
                         }
                     })
                 } else {
@@ -169,70 +161,59 @@ router.post('/login/admin', function (req, res) {
     })
 })
 
-
-
 router.post('/verifyOTP', (req, res) => {
-    console.log("verify otp called "+JSON.stringify(req.body))
-    var r=JSON.stringify(req.body)
+    console.log('verify otp called ' + JSON.stringify(req.body))
+    var r = JSON.stringify(req.body)
     var options = {
-        hostname: process.env.ADDRESS ,
+        hostname: process.env.ADDRESS,
         port: 8082,
-        path: "/verifyOTP",
+        path: '/verifyOTP',
         method: 'POST',
         rejectUnauthorized: false,
         requestCert: true,
         agent: false,
         headers: {
-            'Content-Type': 'application/json'
-       }
-      };
+            'Content-Type': 'application/json',
+        },
+    }
     var req = https.request(options, function (resp) {
-        resp.setEncoding('utf8');
+        resp.setEncoding('utf8')
         resp.on('data', function (chunk) {
-            console.log('BODY: ' + chunk);
-        });
-    
-        resp.on('end',function(){
-          if (resp.statusCode == 200) {
-                    res.sendStatus(200)
-            
-          } else {
-            console.log("Api call failed with response code " + resp.statusCode);
-            res.sendStatus(400)
-          }
-        });
-    
-      });
-    
-      req.on('error', function (e) {
-        console.log("Error : " + e.message);
-        
-      });
-    
-      // write data to request body
-      console.log(r)
-      req.write(r);
-   
-    req.end();
-    
+            console.log('BODY: ' + chunk)
+        })
+
+        resp.on('end', function () {
+            if (resp.statusCode == 200) {
+                res.sendStatus(200)
+            } else {
+                console.log('Api call failed with response code ' + resp.statusCode)
+                res.sendStatus(400)
+            }
+        })
+    })
+
+    req.on('error', function (e) {
+        console.log('Error : ' + e.message)
+    })
+
+    // write data to request body
+    console.log(r)
+    req.write(r)
+
+    req.end()
 })
-
-
-
-
-
 
 router.post('/user/logout', (request, response) => {
     console.log()
     response.clearCookie('vcd_id')
-	response.clearCookie('vd_id')
-	response.clearCookie('digi_access')
+    response.clearCookie('vd_id')
+    response.clearCookie('digi_access')
     response.clearCookie('vcd_id_e')
-	response.clearCookie('vd_id_e')
+    response.clearCookie('vd_id_e')
     response.clearCookie('digi_access_e')
-    request.session.destroy(function(err) {
+    request.session.destroy(function (err) {
         response.clearCookie('connect.sid')
-        return response.redirect( '/1admin_login.html');
+        return response.redirect('/1admin_login.html')
     })
     //response.sendStatus(200)
 })
@@ -244,9 +225,9 @@ router.post('/admin/logout', (request, response) => {
     response.clearCookie('ad_id')
     response.clearCookie('ad_org_id')
     response.clearCookie('ad_dept_id')
-    request.session.destroy(function(err) {
+    request.session.destroy(function (err) {
         response.clearCookie('connect.sid')
-        return response.redirect( '/v1_login.html');
+        return response.redirect('/login')
     })
     //response.sendStatus(200)
 })
