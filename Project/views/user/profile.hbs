@@ -39,7 +39,7 @@
               <td>{{et_tender_fee}}</td>
               <td>{{et_tender_desc}}</td>
               <td>{{bidding_amt}}</td>
-              <td><a href=/v5_preview_tender.html?et_id={{et_id}}&etd_id={{etd_id}}>view</a></td>
+              <td><a href=/tender/preview?et_id={{et_id}}&etd_id={{etd_id}}>view</a></td>
               <td>Submitted</td>
             </tr>
           {{/each}}
@@ -69,13 +69,13 @@
 		        <label class="Id"><strong>Tender Description:</strong></label>
 		        <label>{{et_tender_desc}}</label><br><br>
 		        <label class="OdateLabel"><strong>Closing Date:</strong></label>
-		        <label id="Odate">{{et_last_date_apply}}</label><br><br>
+		        <label id="Odate">{{date et_last_date_apply}}</label><br><br>
 		        <label class="OdateLabel"><strong>Bid Date:</strong></label>
-		        <label id="Odate">{{et_bidding_date}}</label><br><br>
+		        <label id="Odate">{{date et_bidding_date}}</label><br><br>
 		        <label class="OdateLabel"><strong>File URL:</strong></label>
 		        <label id="Odate">{{et_file_url}}</label><br>
 		        <label class="OdateLabel"><strong>Department ID:</strong></label>
-		        <label id="Odate">{{et_bidding_date}}</label><br><br>
+		        <label id="Odate">{{date et_bidding_date}}</label><br><br>
 		        <label class="OdateLabel"><strong>Bidding Amount:</strong></label>
             <label id="Odate">{{et_file_url}}</label><hr/><br><br>`
         {{/each}}
@@ -103,7 +103,7 @@
         </div>
         <table class="profile_table">
           {{#if person_details}}
-            {{#each person_details}}
+            {{#with person_details}}
                 <tr>
                   <td><label><strong>Name:</strong></label></td>
                   <td><input type="text" id="name"  value="{{vcd_name}}" autocomplete="off" readonly></td>
@@ -120,7 +120,7 @@
                   <td><label><strong>Aadhar No:</strong></label></td>
                   <td><input type="text" id="aadhar" value ="{{vcd_aadhar}}" autocomplete="off" readonly></td>
               </tr>
-            {{/each}}
+            {{/with}}
             {{else}}
                   <br><label class="RnoLabel"><strong>Could not load Profile Details</strong></label>
             {{/if}}
@@ -128,49 +128,53 @@
       </div>
       <div id="Company_Profile" class="profile_details">
         <h3 style="float: left;">Company Details</h3><br><br>
-        <table class="profile_table">
-          <tr>
-            <td><label><strong>Name:</strong></label></td>
-            <td><input type="text" id="cname"  autocomplete="off" readonly></td>
-            <td><label><strong>Legal status:</strong></label></td>
-             <td> 
-               <select class="hide" id="legal" autocomplete="off" disabled>
+        {{#if company_details}}
+          <table class="profile_table">
+            <tr>
+              <td><label><strong>Name:</strong></label></td>
+              <td><input type="text" id="cname"  autocomplete="off" readonly></td>
+              <td><label><strong>Legal status:</strong></label></td>
+              <td> 
+                <select class="hide" id="legal" autocomplete="off" disabled>
                   {{#each status}}
-                      <option value="{{l_name}}">{{l_name}}</option>
+                    <option value="{{l_name}}">{{l_name}}</option>
                   {{/each}}
-            </td>
-            <td><label><strong>Estd Year:</strong></label></td>
-            <td><select class="hide" id="yoe" autocomplete="off" disabled>
+              </td>
+              <td><label><strong>Estd Year:</strong></label></td>
+              <td><select class="hide" id="yoe" autocomplete="off" disabled>
               {{#each years}}
                 <option value="{{this}}">{{this}}</option>
-            {{/each}}
-            </td>
-          </tr>
-          <tr>
-            <td><label><strong>Registration No:</strong></label></td>
-            <td><input type="text" id="reg"  autocomplete="off" readonly></td>
-            <td><label><strong>GST No:</strong></label></td>
-            <td><input type="text" id="gst"  autocomplete="off" readonly></td>
-            <td><label><strong>PAN No:</strong></label></td>
-            <td><input type="text" id="pan"  autocomplete="off" readonly></td>
-          </tr>
-          <tr>
-            <td><label><strong>Email:</strong></label></td>
-            <td><input type="text" id="mail"  autocomplete="off" readonly></td>
-            <td><label><strong>Contact No:</strong></label></td>
-            <td><input type="text" id="ccontact" autocomplete="off" readonly></td>
-          </tr>
-          <tr>
-            <td><label><strong>State:</strong></label></td>
-            <td><select class="hide" id="state" autocomplete="off" disabled onclick="city()">
-              
-            </td>
-            <td><label><strong>City:</strong></label></td>
-            <td><select class="hide" id="city" autocomplete="off" disabled></td>
-            <td><label><strong>Address:</strong></label></td>
-            <td><input type="text" id="add"  autocomplete="off" readonly></td>
-          </tr>
-        </table><br><br>
+              {{/each}}
+              </td>
+            </tr>
+            <tr>
+              <td><label><strong>Registration No:</strong></label></td>
+              <td><input type="text" id="reg"  autocomplete="off" readonly></td>
+              <td><label><strong>GST No:</strong></label></td>
+              <td><input type="text" id="gst"  autocomplete="off" readonly></td>
+              <td><label><strong>PAN No:</strong></label></td>
+              <td><input type="text" id="pan"  autocomplete="off" readonly></td>
+            </tr>
+            <tr>
+              <td><label><strong>Email:</strong></label></td>
+              <td><input type="text" id="mail"  autocomplete="off" readonly></td>
+              <td><label><strong>Contact No:</strong></label></td>
+              <td><input type="text" id="ccontact" autocomplete="off" readonly></td>
+            </tr>
+            <tr>
+              <td><label><strong>State:</strong></label></td>
+              <td><select class="hide" id="state" autocomplete="off" disabled onclick="city()">
+                
+              </td>
+              <td><label><strong>City:</strong></label></td>
+              <td><select class="hide" id="city" autocomplete="off" disabled></td>
+              <td><label><strong>Address:</strong></label></td>
+              <td><input type="text" id="add"  autocomplete="off" readonly></td>
+            </tr>
+          </table><br><br>
+        {{else}}
+          <br><label class="RnoLabel"><strong>Could not load Company Details</strong></label>
+        {{/if}}
         <p id="tc1"></p><br>
       </div>
       <button id="edit1"><i class='fas fa-edit'></i>&nbspEdit</button>

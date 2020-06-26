@@ -140,7 +140,17 @@ router.get('/', function (request, response) {
     var user = is_user(request);
     Promise.all([get_username(request), get_tenders()])
         .then(function (results) {
-        response.render('user/index', { layout: false, tenders: results[1], user: user, username: results[0] });
+        response.render('user/index', {
+            layout: false,
+            tenders: results[1],
+            user: user,
+            username: results[0],
+            helpers: {
+                foo: function () {
+                    return 'foo.';
+                },
+            },
+        });
     })
         .catch(function (error) {
         console.log('Error in loading Home Page');
@@ -162,7 +172,8 @@ router.get('/login', function (request, response) {
 });
 router.get('/help', function (request, response) {
     var user = is_user(request);
-    Promise.all([get_username(request)]).then(function (results) {
+    Promise.all([get_username(request)])
+        .then(function (results) {
         response.render('user/help', { layout: false, user: user, username: results[0] });
     })
         .catch(function (error) {
@@ -172,9 +183,20 @@ router.get('/help', function (request, response) {
 });
 router.get('/profile', function (request, response) {
     var user = is_user(request);
-    Promise.all([get_username(request), get_years(), get_legal_status(), get_state(), profile()]).then(function (results) {
-        console.log(results[4][1]);
-        response.render('user/profile', { layout: false, user: user, username: results[0], years: results[1], status: results[2], states: results[3], my_tenders: results[4][2], approved_tenders: results[4][3], person_details: results[4][1] });
+    Promise.all([get_username(request), get_years(), get_legal_status(), get_state(), profile()])
+        .then(function (results) {
+        response.render('user/profile', {
+            layout: false,
+            user: user,
+            username: results[0],
+            years: results[1],
+            status: results[2],
+            states: results[3],
+            company_details: JSON.parse(JSON.stringify(results[4][0][0])),
+            person_details: JSON.parse(JSON.stringify(results[4][1][0])),
+            my_tenders: results[4][2],
+            approved_tenders: results[4][3],
+        });
     })
         .catch(function (error) {
         console.log('Error in loading Profile Page');
@@ -186,6 +208,50 @@ router.get('/tenders', function (request, response) {
     Promise.all([get_username(request)])
         .then(function (results) {
         response.render('user/tenders', { layout: false, user: user, username: results[0] });
+    })
+        .catch(function (error) {
+        console.log('Error in loading Tenders Page');
+        console.log(error);
+    });
+});
+router.get('/tender/apply', function (request, response) {
+    var user = is_user(request);
+    Promise.all([get_username(request)])
+        .then(function (results) {
+        response.render('user/tender_apply', { layout: false, user: user, username: results[0] });
+    })
+        .catch(function (error) {
+        console.log('Error in loading Tenders Page');
+        console.log(error);
+    });
+});
+router.get('/tender/upload-documents', function (request, response) {
+    var user = is_user(request);
+    Promise.all([get_username(request)])
+        .then(function (results) {
+        response.render('user/tender_sign', { layout: false, user: user, username: results[0] });
+    })
+        .catch(function (error) {
+        console.log('Error in loading Tenders Page');
+        console.log(error);
+    });
+});
+router.get('/tender/confirmation', function (request, response) {
+    var user = is_user(request);
+    Promise.all([get_username(request)])
+        .then(function (results) {
+        response.render('user/tender_confirmation', { layout: false, user: user, username: results[0] });
+    })
+        .catch(function (error) {
+        console.log('Error in loading Tenders Page');
+        console.log(error);
+    });
+});
+router.get('/tender/preview', function (request, response) {
+    var user = is_user(request);
+    Promise.all([get_username(request)])
+        .then(function (results) {
+        response.render('user/preview', { layout: false, user: user, username: results[0] });
     })
         .catch(function (error) {
         console.log('Error in loading Tenders Page');

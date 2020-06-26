@@ -57,90 +57,92 @@ xhr.send(data)
 
 function apply(i) {
     if (vd_id != '') {
+        // if (result.value) {
+        var et_id = response[i].et_id
+        var data = JSON.stringify({ et_id: et_id, vd_id: vd_id })
+        var res
 
-            // if (result.value) {
-                var et_id = response[i].et_id
-                var data = JSON.stringify({ et_id: et_id, vd_id: vd_id })
-                var res;    
-
-                var xhr = new XMLHttpRequest()
-                xhr.onload = function () {
-                    if (this.status === 200) {
-
-                        res = JSON.parse(this.responseText)
-                        var status = res.status
-                        var etd_id=res.etd_id
-                        if (status == '100') {
-                            // alert('all ready applied , complete process')
-                            Swal.fire({
-                                title: 'Confirmation',
-                                text: 'all ready applied , complete process',
-                                icon: 'warning',
-                                showCancelButton: true,
-                                confirmButtonColor: '#3085d6',
-                                cancelButtonColor: '#d33',
-                                confirmButtonText: 'Apply',
-                            }).then((result , res) => {window.location.href = '/payment/tender?et_id=' + et_id + '&etd_id=' + etd_id})
-                            
-                        } else if (status == '110') {
-                            // alert('all ready applied , complete process')
-                            Swal.fire({
-                                title: 'Confirmation',
-                                text: 'all ready applied , complete process',
-                                icon: 'warning',
-                                showCancelButton: true,
-                                confirmButtonColor: '#3085d6',
-                                cancelButtonColor: '#d33',
-                                confirmButtonText: 'Apply',
-                            }).then((result  , res) => { window.location.href = '/v4_apply_tender_s3.html?et_id=' + et_id + '&etd_id=' + etd_id})
-                           
-                        } else if (status == '111') {
-                            // alert('Process done Submit Tender')
-                            Swal.fire({
-                                title: 'Confirmation',
-                                text: 'Applying process done , please submit this tender',
-                                icon: 'warning',
-                                showCancelButton: true,
-                                confirmButtonColor: '#3085d6',
-                                cancelButtonColor: '#d33',
-                                confirmButtonText: 'Apply',
-                            }).then((result  , res) => { window.location.href = '/v5_confirm_tender.html?et_id=' + et_id + '&etd_id=' + res.etd_id})
-                           
-                        } else if (status == '1111') {
-                            // alert('Application submited redirecting to Application Preview page')
-                            Swal.fire({
-                                title: 'Confirmation',
-                                text: 'Application submited redirecting to Application Preview page',
-                                icon: 'warning',
-                                showCancelButton: true,
-                                confirmButtonColor: '#3085d6',
-                                cancelButtonColor: '#d33',
-                                confirmButtonText: 'Apply',
-                            }).then((result  , res) => {window.location.href = '/v5_preview_tender.html?et_id=' + et_id + '&etd_id=' + etd_id})
-                            
-                        }
-                    } else if (this.status === 404) {
-                        Swal.fire({
-                            title: 'Confirmation',
-                            text: 'Apply for the tender',
-                            icon: 'warning',
-                            showCancelButton: true,
-                            confirmButtonColor: '#3085d6',
-                            cancelButtonColor: '#d33',
-                            confirmButtonText: 'Apply',
-                        }).then((result  , res) => {window.location.href = '/v4_apply_tender_s1.html?et_id=' + response[i].et_id})
-                        
-                    } else {
-                        alert('Check Network')
-                    }
+        var xhr = new XMLHttpRequest()
+        xhr.onload = function () {
+            if (this.status === 200) {
+                res = JSON.parse(this.responseText)
+                var status = res.status
+                var etd_id = res.etd_id
+                if (status == '100') {
+                    // alert('all ready applied , complete process')
+                    Swal.fire({
+                        title: 'Confirmation',
+                        text: 'all ready applied , complete process',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Apply',
+                    }).then((result, res) => {
+                        window.location.href = '/payment/tender?et_id=' + et_id + '&etd_id=' + etd_id
+                    })
+                } else if (status == '110') {
+                    // alert('all ready applied , complete process')
+                    Swal.fire({
+                        title: 'Confirmation',
+                        text: 'all ready applied , complete process',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Apply',
+                    }).then((result, res) => {
+                        window.location.href = '/tender/upload-documents?et_id=' + et_id + '&etd_id=' + etd_id
+                    })
+                } else if (status == '111') {
+                    // alert('Process done Submit Tender')
+                    Swal.fire({
+                        title: 'Confirmation',
+                        text: 'Applying process done , please submit this tender',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Apply',
+                    }).then((result, res) => {
+                        window.location.href = '/tender/confirmation?et_id=' + et_id + '&etd_id=' + res.etd_id
+                    })
+                } else if (status == '1111') {
+                    // alert('Application submited redirecting to Application Preview page')
+                    Swal.fire({
+                        title: 'Confirmation',
+                        text: 'Application submited redirecting to Application Preview page',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Apply',
+                    }).then((result, res) => {
+                        window.location.href = '/v5_preview_tender.html?et_id=' + et_id + '&etd_id=' + etd_id
+                    })
                 }
+            } else if (this.status === 404) {
+                Swal.fire({
+                    title: 'Confirmation',
+                    text: 'Apply for the tender',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Apply',
+                }).then((result, res) => {
+                    window.location.href = '/tender/apply?et_id=' + response[i].et_id
+                })
+            } else {
+                alert('Check Network')
+            }
+        }
 
-                xhr.open('POST', '/get_etd_id')
-                xhr.setRequestHeader('Content-Type', 'application/json')
+        xhr.open('POST', '/get_etd_id')
+        xhr.setRequestHeader('Content-Type', 'application/json')
 
-                xhr.send(data)
-            // }
-        
+        xhr.send(data)
+        // }
     } else {
         alert('Login to apply')
     }
@@ -225,64 +227,61 @@ function filter_department(department) {
     return temp
 }
 
-
 // setting filter dates
-var today = new Date();
-var dd = today.getDate();
-var mm = today.getMonth()+1; //January is 0!
+var today = new Date()
+var dd = today.getDate()
+var mm = today.getMonth() + 1 //January is 0!
 
-var yyyy = today.getFullYear();
-if(dd<10){dd='0'+dd} if(mm<10){mm='0'+mm} today = mm+'/'+dd+'/'+yyyy;
+var yyyy = today.getFullYear()
+if (dd < 10) {
+    dd = '0' + dd
+}
+if (mm < 10) {
+    mm = '0' + mm
+}
+today = mm + '/' + dd + '/' + yyyy
 
-$('#starting_date').attr('value', today);
+$('#starting_date').attr('value', today)
 
 // alert($('#starting_date ').attr('value'));
 
-function filter_closing_date(dates, result){
+function filter_closing_date(dates, result) {
     let temp = []
-    console.log("dates",dates,result)
+    console.log('dates', dates, result)
     if (result.length !== 0) {
-        if(dates[0]==="" && dates[1]==="" ){
-            console.log("1 ")
-            return result;
-        }
-        else if(dates[1]===""){ 
+        if (dates[0] === '' && dates[1] === '') {
+            console.log('1 ')
+            return result
+        } else if (dates[1] === '') {
             // console.log("2 ")
             for (let i = 0; i < result.length; i++) {
                 // console.log((Date.parse(result[i].et_last_date_apply.slice(0,10)) >= Date.parse(dates[0])) , Date.parse(result[i].et_last_date_apply.slice(0,10)) , Date.parse(dates[0]))
-                if(Date.parse(result[i].et_last_date_apply.slice(0,10)) >=Date.parse(dates[0])){
-                    temp.push(response[i]) 
+                if (Date.parse(result[i].et_last_date_apply.slice(0, 10)) >= Date.parse(dates[0])) {
+                    temp.push(response[i])
                 }
             }
-            return temp;
-
-        }
-        else if(dates[0]===""){
+            return temp
+        } else if (dates[0] === '') {
             // console.log("3 ")
             for (let i = 0; i < result.length; i++) {
                 // console.log((Date.parse(result[i].et_last_date_apply) <= Date.parse(dates[1])), Date.parse(result[i].et_last_date_apply.slice(0,10)) ,Date.parse(dates[1]))
-                if(Date.parse(result[i].et_last_date_apply.slice(0,10)) <=Date.parse(dates[1])){
-                    temp.push(response[i]) 
+                if (Date.parse(result[i].et_last_date_apply.slice(0, 10)) <= Date.parse(dates[1])) {
+                    temp.push(response[i])
                 }
             }
-            return temp;
-
-        }
-        else {
-            console.log("4 ")
+            return temp
+        } else {
+            console.log('4 ')
             for (let i = 0; i < result.length; i++) {
                 // console.log((Date.parse(result[i].et_last_date_apply.slice(0,10)) <=Date.parse(dates[1]) && Date.parse(result[i].et_last_date_apply.slice(0,10)) >=Date.parse(dates[0])) , Date.parse(result[i].et_last_date_apply.slice(0,10)) ,Date.parse(dates[0]) ,Date.parse(dates[1]))
-                if(Date.parse(result[i].et_last_date_apply.slice(0,10)) <=Date.parse(dates[1]) && Date.parse(result[i].et_last_date_apply.slice(0,10)) >=Date.parse(dates[0])){
-                    temp.push(response[i]) 
+                if (Date.parse(result[i].et_last_date_apply.slice(0, 10)) <= Date.parse(dates[1]) && Date.parse(result[i].et_last_date_apply.slice(0, 10)) >= Date.parse(dates[0])) {
+                    temp.push(response[i])
                 }
             }
-            return temp;
-
+            return temp
         }
-        
     }
     return temp
-    
 }
 
 function filter_fees(fee, result) {

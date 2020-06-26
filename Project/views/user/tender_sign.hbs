@@ -3,25 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/nav.css">
-    <link rel="stylesheet" href="css/progress_bar.css">
-    <link rel="stylesheet" href="css/v4_apply_tender_s3.css">
-    <!-- <script src="https://kit.fontawesome.com/523ff21025.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script> -->
-    <script  src="javascript/cookies.js"></script>
+    <link rel="stylesheet" href="/css/progress_bar.css">
+    <link rel="stylesheet" href="/css/v4_apply_tender_s3.css">    
     <title>E-sign</title>
 </head>
-<header>
-  <nav id="nav_bar">
-      <a href="/v7_homepage.html">Home</a>
-      <a href="/v3_see_tender.html">Tender</a>
-      <a id="log_a" href="/v1_login.html">Login</a>
-  </nav>
-</header>
-
 <body>
+{{> header-user}}
   <div class="container">
     <ul class="progressbar">
         <li class="active">Fill the details</li>
@@ -116,19 +103,6 @@
 </div>
 
 <!-- --------------------------- End of digilocker html code -------------------------------- -->
-
-
-<script type="text/javascript">
-    var log_a = document.getElementById("log_a")
-    var nav_bar = document.getElementById("nav_bar")
-    if(get_cookie("vcd_id_e") != "")
-        {
-            log_a.setAttribute("href", "/profile.html");
-            log_a.innerHTML ="Profile"
-            nav_bar.insertAdjacentHTML('beforeend','<a id="log_a" onclick="return theFunctionV();">Log out</a>');
-        }
-</script>
-<script src="javascript/v4_apply_tender_s3.js"></script>
-<script src="javascript/jquery-3.4.1.min.js"></script>
-<script type="text/javascript" src="javascript/v4_apply_tender_digilocker.js"></script>
+<script src="/javascript/v4_apply_tender_s3.js"></script>
+<script type="text/javascript" src="/javascript/v4_apply_tender_digilocker.js"></script>
 </html>
