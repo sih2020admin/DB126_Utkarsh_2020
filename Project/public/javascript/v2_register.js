@@ -41,42 +41,6 @@ function clear_account_details() {
     $('#password').val('');
     $('#confirm_password').val('');
 }
-// loading years
-function load_years() {
-    var end_year = 1700;
-    var current_year = new Date().getFullYear();
-    for (var i = current_year; i >= end_year; i--) {
-        $('<option></option>', {
-            value: i.toString(),
-            text: i.toString(),
-        }).appendTo('#establishment_year');
-    }
-}
-// loading states from database
-function load_states() {
-    console.log("states claled")
-    var xhr1 = new XMLHttpRequest();
-    var url = "/misc/get-state";
-    xhr1.open("POST",url);
-    xhr1.setRequestHeader("Content-Type", "application/json");
-    
-    xhr1.onload = function(){
-        if(this.status == 200){
-            var result = JSON.parse(this.responseText);
-            var option = "";
-            for(var i = 0 ; i < result.length; i++){
-                option += "<option>"+ result[i].st_name +"</option>";
-            }
-            document.getElementById("state").innerHTML = option;
-            document.getElementById("state").value = state;
-        }
-        else if(this.status == 400)
-            alert("Error 400");
-        else
-            alert("Some Error Occured");
-    };
-    xhr1.send();    
-}
 // loading cities dynamically by taking checking state field after each change
 function load_cities(state_code) {
     $.ajax({
@@ -127,107 +91,6 @@ $('#state').change(function () {
     }).appendTo('#city');
     load_cities((_a = $('#state').val()) === null || _a === void 0 ? void 0 : _a.toString());
 });
-// loading legal status field from databse
-function load_legal_status() {
-    $.ajax({
-        url: "/misc/get-legal-status",
-        method: 'POST',
-        async: true,
-        success: function (response) {
-            var e_3, _a;
-            var message = response;
-            try {
-                for (var message_3 = __values(message), message_3_1 = message_3.next(); !message_3_1.done; message_3_1 = message_3.next()) {
-                    var i = message_3_1.value;
-                    $('<option></option>', {
-                        text: i.l_name,
-                        value: i.l_name,
-                    }).appendTo('#legal_status');
-                }
-            }
-            catch (e_3_1) { e_3 = { error: e_3_1 }; }
-            finally {
-                try {
-                    if (message_3_1 && !message_3_1.done && (_a = message_3.return)) _a.call(message_3);
-                }
-                finally { if (e_3) throw e_3.error; }
-            }
-        },
-        statusCode: {
-            400: function () {
-                alert('some error');
-            },
-        },
-        error: function (xhr, error_type, exception) {
-            var error_message = xhr.responseText;
-            alert("Problem connecting with " + error_message);
-        },
-    });
-}
-// validation for contact details
-$; /* ('#submit_button').on('click', () => {
-    title = $('#title').val()?.toString()!
-    contact_name = $('#contact_name').val()?.toString()!
-    date_of_birth = $('#date_of_birth').val()?.toString()!
-    designation = $('#designation').val()?.toString()!
-    aadhaar_number = $('#aadhaar_number').val()?.toString()!
-    contact_email = $('#contact_email').val()?.toString()!
-    contact_contact = $('#contact_contact').val()?.toString()!
-    var check_contact = contact_validate(title, contact_name, date_of_birth, designation, aadhaar_number, contact_email, contact_contact)
-    if (check_contact === true) {
-        console.log(is_verified)
-        if (is_verified != 'ok') {
-            $('#error_para').text('Error : Aadhaar Number is not verified \n Click on verify to start verifying it')
-        } else {
-            var abc = {
-                account_details: {
-                    username: username,
-                    password: password,
-                },
-                company_details: {
-                    company_name: company_name,
-                    company_address: company_address,
-                    company_email: company_email,
-                    mobile_number: mobile_number,
-                    registration_number: registration_number,
-                    state: state,
-                    city: city,
-                    establishment_year: establishment_year,
-                    pincode: pincode,
-                    legal_status: legal_status,
-                    pan_number: pan_number,
-                    gst_register_number: gst_register_number,
-                },
-                contact_details: {
-                    title: title,
-                    contact_name: contact_name,
-                    date_of_birth: date_of_birth,
-                    designation: designation,
-                    aadhaar_number: aadhaar_number,
-                    contact_email: contact_email,
-                    contact_contact: contact_contact,
-                },
-            }
-            $.ajax({
-                url: `/register/register-data`,
-                method: 'POST',
-                contentType: 'application/json; charset=utf-8',
-                data: JSON.stringify(abc),
-                async: true,
-                success: (response) => {
-                    $('#error_para').html('Registration done<br>You will be redirected to login page in few seconds')
-                    setTimeout(() => {
-                        window.location.href = '/v1_login.html'
-                    }, 3000)
-                },
-                error: (xhr, error_type, exception) => {
-                    var error_message = xhr.responseText
-                    alert(`${error_message}`)
-                },
-            })
-        }
-    }
-}) */
 // validation for account_details
 $('#account_button').on('click', function () {
     var _a, _b, _c;
@@ -483,16 +346,6 @@ $('#otp_button').on('click', function () {
         },
     });
 });
-/* $('#contact__details_previous').on('click', () => {
-    $('.contact__details').hide()
-    $('.submit_button').hide()
-    $('.company_details').fadeTo('slow', 1)
-})
-
-$('#company_button_back').on('click', () => {
-    $('.company_details').hide()
-    $('.account_details').fadeTo('slow', 1)
-}) */
 function account_validate(username, password, confirm_password) {
     if (username === '') {
         $('#error_para').text('Error : Username field cannot be empty');
@@ -623,8 +476,3 @@ function contact_validate(title, contact_name, date_of_birth, designation, aadha
     $('#error_para').text('Success');
     return true;
 }
-
-
-load_years();
-load_states();
-load_legal_status();

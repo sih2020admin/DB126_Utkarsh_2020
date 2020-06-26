@@ -22,11 +22,66 @@
 
     <div id="Tenders" class="tabcontent" style="display: none;">
       <h2>My Tenders</h2>
+        <div class="tenders_details">
+          {{#if my_tenders}}
+          <table>
+            <tr>
+              <th>Reference No</th>
+              <th>Title</th>
+              <th>Tender Description</th>
+              <th>Bidding Amount</th>
+              <th>Preview</th>
+              <th>Status</th>
+            </tr>
+          {{#each my_tenders}}
+            <tr>
+              <td>{{et_tender_ref_no}}</td>
+              <td>{{et_tender_fee}}</td>
+              <td>{{et_tender_desc}}</td>
+              <td>{{bidding_amt}}</td>
+              <td><a href=/v5_preview_tender.html?et_id={{et_id}}&etd_id={{etd_id}}>view</a></td>
+              <td>Submitted</td>
+            </tr>
+          {{/each}}
+          </table>
+          {{else}}
+            <label class="RnoLabel"><strong>NO TENDER APPLIED YET ! APPLY FOR TENDER <a href="/tenders">here</a></strong></label>
+          {{/if}}
+        
+      </div>
     </div>
 
     <div id="Approved" class="tabcontent" style="display: none;">
       <h2>Approved Tenders</h2>
       <h4>The list of approved tenders</h4>
+      {{#if approved_tenders}}
+        {{#each approved_tenders}}
+            <label class="RnoLabel"><strong>ID:</strong></label>
+		        <label>{{et_id}}</label><br><br>
+		        <label class="RnoLabel"><strong>Title:</strong></label>
+		        <label>{{et_title}}</label><br><br>
+		        <label class="RnoLabel"><strong>Department:</strong></label>
+		        <label>{{dept_name}}</label><br><br>
+		        <label class="RnoLabel"><strong>Ref No:</strong></label>
+		        <label>{{et_tender_ref_no}}</label><br><br>
+		        <label class="Id"><strong>Tender fee:</strong></label>
+		        <label>{{et_tender_fee}}</label><br><br>
+		        <label class="Id"><strong>Tender Description:</strong></label>
+		        <label>{{et_tender_desc}}</label><br><br>
+		        <label class="OdateLabel"><strong>Closing Date:</strong></label>
+		        <label id="Odate">{{et_last_date_apply}}</label><br><br>
+		        <label class="OdateLabel"><strong>Bid Date:</strong></label>
+		        <label id="Odate">{{et_bidding_date}}</label><br><br>
+		        <label class="OdateLabel"><strong>File URL:</strong></label>
+		        <label id="Odate">{{et_file_url}}</label><br>
+		        <label class="OdateLabel"><strong>Department ID:</strong></label>
+		        <label id="Odate">{{et_bidding_date}}</label><br><br>
+		        <label class="OdateLabel"><strong>Bidding Amount:</strong></label>
+            <label id="Odate">{{et_file_url}}</label><hr/><br><br>`
+        {{/each}}
+      {{else}}
+        <br><label class="RnoLabel"><strong>NO TENDER APPROVED YET ! APPLY FOR TENDER <a href="/tenders">here</a></strong></label>
+      {{/if}}
     </div>
 
     <div id="Docs" class="tabcontent" style="display: none;">
@@ -47,22 +102,28 @@
           <h3 style="float: left;">Personal Details</h3><br>
         </div>
         <table class="profile_table">
-          <tr>
-            <td><label><strong>Name:</strong></label></td>
-            <td><input type="text" id="name"  autocomplete="off" readonly></td>
-            <td><label ><strong>Date of birth:</strong></label></td>
-            <td><input type="text" id="dob" autocomplete="off" readonly></td>
-            <td><label><strong>Designation:</strong></label></td>
-            <td><input type="text" id="desg" autocomplete="off" readonly></td>
-          </tr>
-          <tr>
-            <td><label><strong>Email Id:</strong></label></td>
-            <td><input type="text" id="email" autocomplete="off" readonly></td>
-            <td><label><strong>Mobile No:</strong></label></td>
-            <td><input type="text" id="mobile" autocomplete="off" readonly></td>
-            <td><label><strong>Aadhar No:</strong></label></td>
-            <td><input type="text" id="aadhar" autocomplete="off" readonly></td>
-          </tr>
+          {{#if person_details}}
+            {{#each person_details}}
+                <tr>
+                  <td><label><strong>Name:</strong></label></td>
+                  <td><input type="text" id="name"  value="{{vcd_name}}" autocomplete="off" readonly></td>
+                  <td><label ><strong>Date of birth:</strong></label></td>
+                  <td><input type="text" id="dob" value ="{{vcd_dob}}" autocomplete="off" readonly></td>
+                  <td><label><strong>Designation:</strong></label></td>
+                  <td><input type="text" id="desg" value ="{{vcd_designation}}" autocomplete="off" readonly></td>
+                </tr>
+                <tr>
+                  <td><label><strong>Email Id:</strong></label></td>
+                  <td><input type="text" id="email" value ="{{vcd_email}}" autocomplete="off" readonly></td>
+                  <td><label><strong>Mobile No:</strong></label></td>
+                  <td><input type="text" id="mobile" value ="{{vcd_contact}}" autocomplete="off" readonly></td>
+                  <td><label><strong>Aadhar No:</strong></label></td>
+                  <td><input type="text" id="aadhar" value ="{{vcd_aadhar}}" autocomplete="off" readonly></td>
+              </tr>
+            {{/each}}
+            {{else}}
+                  <br><label class="RnoLabel"><strong>Could not load Profile Details</strong></label>
+            {{/if}}
         </table><br><br>
       </div>
       <div id="Company_Profile" class="profile_details">
@@ -74,15 +135,16 @@
             <td><label><strong>Legal status:</strong></label></td>
              <td> 
                <select class="hide" id="legal" autocomplete="off" disabled>
-                <option value="Limited Company">Limited Company</option>
-                <option value="Undertaking">Undertaking</option>
-                <option value="Jointventure">Jointventure</option>
-                <option value="Partnership">Partnership</option>
-                <option value="Others">Others</option>
-              </select>
+                  {{#each status}}
+                      <option value="{{l_name}}">{{l_name}}</option>
+                  {{/each}}
             </td>
             <td><label><strong>Estd Year:</strong></label></td>
-            <td><select class="hide" id="yoe" autocomplete="off" disabled></td>
+            <td><select class="hide" id="yoe" autocomplete="off" disabled>
+              {{#each years}}
+                <option value="{{this}}">{{this}}</option>
+            {{/each}}
+            </td>
           </tr>
           <tr>
             <td><label><strong>Registration No:</strong></label></td>
@@ -100,7 +162,9 @@
           </tr>
           <tr>
             <td><label><strong>State:</strong></label></td>
-            <td><select class="hide" id="state" autocomplete="off" disabled onclick="city()"></td>
+            <td><select class="hide" id="state" autocomplete="off" disabled onclick="city()">
+              
+            </td>
             <td><label><strong>City:</strong></label></td>
             <td><select class="hide" id="city" autocomplete="off" disabled></td>
             <td><label><strong>Address:</strong></label></td>
