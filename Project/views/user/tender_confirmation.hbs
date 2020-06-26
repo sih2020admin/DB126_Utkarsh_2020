@@ -3,21 +3,12 @@
   <head>
     <title>Confirm</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="css/confirm_tender.css">
-    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="/css/confirm_tender.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/progress_bar.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-    <script  src="javascript/cookies.js"></script>
+    <link rel="stylesheet" href="/css/progress_bar.css">
   </head>
-  <header>
-    <nav id="nav_bar">
-      <a href="/v7_homepage.html">Home</a>
-      <a href="/v3_see_tender.html">Tender</a>
-      <a id="log_a" href="/v1_login.html">Login</a>
-    </nav>
-  </header>
   <body>
+      {{> header-user}}
     <div class="container">
       <ul class="progressbar">
           <li class="active">Fill the details</li>
@@ -146,16 +137,5 @@
       </div>
     </div>
   </body>
-
-<script type="text/javascript">
-    var log_a = document.getElementById("log_a")
-    var nav_bar = document.getElementById("nav_bar")
-    if(get_cookie("vcd_id_e") != "")
-        {
-            log_a.setAttribute("href", "/profile.html");
-            log_a.innerHTML ="Profile"
-            nav_bar.insertAdjacentHTML('beforeend','<a id="log_a" onclick="return theFunctionV();">Log out</a>');
-        }
-</script>
-<script type="text/javascript" src="javascript/v5_confirm_tender.js"></script>
+<script type="text/javascript" src="/javascript/v5_confirm_tender.js"></script>
 </html>

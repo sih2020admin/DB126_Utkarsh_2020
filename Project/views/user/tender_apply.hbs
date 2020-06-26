@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/apply_tender.css">
+    <link rel="stylesheet" href="/css/progress_bar.css">
+    <title>apply tender</title>
+</head>
+
+<body>
+    {{> header-user}}
+    <div class="container">
+        <ul class="progressbar">
+            <li>Fill the details</li>
+            <li>Payment</li>
+            <li>E-sign and Upload documents</li>
+            <li>Freeze the bid</li>
+        </ul>
+    </div>
+    <div class="conts" id="conts">
+    </div>
+    <div class="buttons-container">
+        <button id="back" onclick="bt()">Back</button>
+        <button id="apply_button" value="Apply" onclick="apply()">Apply</button>
+        <button id="next" onclick="tt()">Next</button>
+        <button id="next_button"  display:  none value="next" onclick="next()">Next</button>
+    </div>
+</body>
+<script type="text/javascript" src="javascript/v4_apply_tender_s1.js"></script>
+</html>

@@ -101,16 +101,16 @@ function apply(i) {
                     window.location.href = '/payment/tender?et_id=' + et_id + '&etd_id=' + res.etd_id
                 } else if (status == '110') {
                     alert('Application applied,Directing To E-sign')
-                    window.location.href = '/v4_apply_tender_s3.html?et_id=' + et_id + '&etd_id=' + res.etd_id
+                    window.location.href = '/tender/upload-documents?et_id=' + et_id + '&etd_id=' + res.etd_id
                 } else if (status == '111') {
                     alert('Application applied,Freeze Bid')
-                    window.location.href = '/v5_confirm_tender.html?et_id=' + et_id + '&etd_id=' + res.etd_id
+                    window.location.href = '/tender/confirmation?et_id=' + et_id + '&etd_id=' + res.etd_id
                 } else if (status == '1111') {
                     // alert("Application sSubmitted redirecting to Application Preview page");
-                    window.location.href = '/v5_preview_tender.html?et_id=' + et_id + '&etd_id=' + res.etd_id
+                    window.location.href = '/tender/preview?et_id=' + et_id + '&etd_id=' + res.etd_id
                 }
             } else if (this.status === 404) {
-                window.location.href = '/v4_apply_tender_s1.html?et_id=' + response[i].et_id
+                window.location.href = '/tender/apply?et_id=' + response[i].et_id
             } else {
                 alert('Check Network')
             }
