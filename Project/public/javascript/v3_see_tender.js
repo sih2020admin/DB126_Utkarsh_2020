@@ -58,14 +58,16 @@ xhr.send(data)
 function apply(i) {
     if (vd_id != '') {
 
-            if (result.value) {
+            // if (result.value) {
                 var et_id = response[i].et_id
                 var data = JSON.stringify({ et_id: et_id, vd_id: vd_id })
+                var res;    
 
                 var xhr = new XMLHttpRequest()
                 xhr.onload = function () {
                     if (this.status === 200) {
-                        var res = JSON.parse(this.responseText)
+
+                        res = JSON.parse(this.responseText)
                         var status = res.status
                         if (status == '100') {
                             // alert('all ready applied , complete process')
@@ -77,7 +79,7 @@ function apply(i) {
                                 confirmButtonColor: '#3085d6',
                                 cancelButtonColor: '#d33',
                                 confirmButtonText: 'Apply',
-                            }).then((result) => {window.location.href = '/payment/tender?et_id=' + et_id + '&etd_id=' + res.etd_id})
+                            }).then((result , res) => {window.location.href = '/payment/tender?et_id=' + et_id + '&etd_id=' + res.etd_id})
                             
                         } else if (status == '110') {
                             // alert('all ready applied , complete process')
@@ -89,7 +91,7 @@ function apply(i) {
                                 confirmButtonColor: '#3085d6',
                                 cancelButtonColor: '#d33',
                                 confirmButtonText: 'Apply',
-                            }).then((result) => { window.location.href = '/v4_apply_tender_s3.html?et_id=' + et_id + '&etd_id=' + res.etd_id})
+                            }).then((result  , res) => { window.location.href = '/v4_apply_tender_s3.html?et_id=' + et_id + '&etd_id=' + res.etd_id})
                            
                         } else if (status == '111') {
                             // alert('Process done Submit Tender')
@@ -101,7 +103,7 @@ function apply(i) {
                                 confirmButtonColor: '#3085d6',
                                 cancelButtonColor: '#d33',
                                 confirmButtonText: 'Apply',
-                            }).then((result) => { window.location.href = '/v5_confirm_tender.html?et_id=' + et_id + '&etd_id=' + res.etd_id})
+                            }).then((result  , res) => { window.location.href = '/v5_confirm_tender.html?et_id=' + et_id + '&etd_id=' + res.etd_id})
                            
                         } else if (status == '1111') {
                             // alert('Application submited redirecting to Application Preview page')
@@ -113,7 +115,7 @@ function apply(i) {
                                 confirmButtonColor: '#3085d6',
                                 cancelButtonColor: '#d33',
                                 confirmButtonText: 'Apply',
-                            }).then((result) => {window.location.href = '/v5_preview_tender.html?et_id=' + et_id + '&etd_id=' + res.etd_id})
+                            }).then((result  , res) => {window.location.href = '/v5_preview_tender.html?et_id=' + et_id + '&etd_id=' + res.etd_id})
                             
                         }
                     } else if (this.status === 404) {
@@ -125,7 +127,7 @@ function apply(i) {
                             confirmButtonColor: '#3085d6',
                             cancelButtonColor: '#d33',
                             confirmButtonText: 'Apply',
-                        }).then((result) => {window.location.href = '/v4_apply_tender_s1.html?et_id=' + response[i].et_id})
+                        }).then((result  , res) => {window.location.href = '/v4_apply_tender_s1.html?et_id=' + response[i].et_id})
                         
                     } else {
                         alert('Check Network')
@@ -136,7 +138,7 @@ function apply(i) {
                 xhr.setRequestHeader('Content-Type', 'application/json')
 
                 xhr.send(data)
-            }
+            // }
         
     } else {
         alert('Login to apply')
