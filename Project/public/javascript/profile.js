@@ -6,15 +6,6 @@ if (vd_id == '') {
 }
 var state
 
-//Dynamic Year Generation
-var start = 1900
-var end = new Date().getFullYear()
-var options = ''
-for (var year = start; year <= end; year++) {
-    options += '<option>' + year + '</option>'
-}
-document.getElementById('yoe').innerHTML = options
-
 function city() {
     document.getElementById('city').removeAttribute('disabled')
     var state_code = document.getElementById('state').value.split('-')
@@ -94,6 +85,7 @@ document.getElementById("edit1").onclick = function(){
         } else if (this.status == 400) alert('Error 400')
         else alert('Some Error Occured')
     }
+
 }
 
 function save() {
@@ -160,12 +152,12 @@ xhr.onload = function () {
             option = ''
         response = JSON.parse(this.responseText)
 
-        document.getElementById('name').value = response[1][0].vcd_name
+        /* document.getElementById('name').value = response[1][0].vcd_name
         document.getElementById('dob').value = response[1][0].vcd_dob
         document.getElementById('desg').value = response[1][0].vcd_designation
         document.getElementById('email').value = response[1][0].vcd_email
         document.getElementById('mobile').value = response[1][0].vcd_contact
-        document.getElementById('aadhar').value = response[1][0].vcd_aadhar
+        document.getElementById('aadhar').value = response[1][0].vcd_aadhar */
 
         document.getElementById('cname').value = response[0][0].v_name
         document.getElementById('legal').value = response[0][0].v_legal_id
@@ -186,7 +178,7 @@ xhr.onload = function () {
 
         document.getElementById('add').value = response[0][0].v_address
 
-    var tender_div = document.getElementById("Tenders");
+    /* var tender_div = document.getElementById("Tenders");
     if(response[2].length > 0 ){
         var tender_content = `<div class="tenders_details">
         <table>
@@ -214,7 +206,7 @@ xhr.onload = function () {
     }
     else {
         tender_div.insertAdjacentHTML('beforeend',`<label class="RnoLabel"><strong>NO TENDER APPLIED YET ! APPLY FOR TENDER <a href="/v3_see_tender.html">here</a></strong></label>`); 
-    }
+    } */
         // var div=`<div class="main" id="Approved">
         // <label><strong>Title:</strong></label>
         //     <label class="heading">`+response[3].et_title+`</label><br><br>
@@ -241,7 +233,7 @@ xhr.onload = function () {
         // </div>`;
 
         // cont_div.insertAdjacentHTML('beforeend', div);
-        var aprrove_tender_div = document.getElementById('Approved')
+        /* var aprrove_tender_div = document.getElementById('Approved')
         if (response[3].length > 0) {
             for (i = 0; i < response[3].length; i++) {
                 var tender_content =
@@ -293,7 +285,7 @@ xhr.onload = function () {
             }
         } else {
             aprrove_tender_div.insertAdjacentHTML('beforeend', `<br><label class="RnoLabel"><strong>NO TENDER APPROVED YET ! APPLY FOR TENDER <a href="/tenders">here</a></strong></label>`)
-        }
+        } */
     } else if (this.status == 400) {
         alert('Some error occured!')
     } else {

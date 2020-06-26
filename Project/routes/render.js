@@ -65,15 +65,15 @@ function is_user(request) {
 }
 function get_username(request) {
     return __awaiter(this, void 0, void 0, function () {
-        var username_1;
+        var username;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     if (!(request.signedCookies.vcd_id_e !== undefined)) return [3 /*break*/, 2];
                     return [4 /*yield*/, connection_1.default.execute("Select user_name from log_in_details where vcd_id='" + request.signedCookies.vcd_id_e + "'")];
                 case 1:
-                    username_1 = _a.sent();
-                    return [2 /*return*/, JSON.parse(JSON.stringify(username_1[0]))[0]['user_name']];
+                    username = _a.sent();
+                    return [2 /*return*/, JSON.parse(JSON.stringify(username[0]))[0]['user_name']];
                 case 2: return [2 /*return*/, ''];
             }
         });
@@ -119,6 +119,23 @@ function get_years() {
         });
     });
 }
+function profile() {
+    return __awaiter(this, void 0, void 0, function () {
+        var vd_id, vcd_id, profile;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    vd_id = '1';
+                    vcd_id = 1;
+                    return [4 /*yield*/, connection_1.default.query("SELECT v_name, v_address, v_yoe, v_email, v_mobile, v_reg_no, v_state_id, v_city_id, v_pincode, v_legal_id, v_pan, v_is_verified, v_gst FROM vendor_details WHERE vd_id = '" + vd_id + "';\n                                          SELECT vcd_name, vcd_title, vcd_dob, vcd_aadhar, vcd_contact, vcd_email, vcd_designation FROM v_contact_details WHERE vcd_id = " + vcd_id + " and vd_id = " + vd_id + ";\n                                         SELECT e_tender_vendor.etd_id,e_tender_vendor.et_id ,et_title, et_tender_fee, et_tender_ref_no, et_tender_desc, et_last_date_apply, et_bidding_date, et_file_uri, dept_id, e_tender_vendor.bidding_amt FROM e_tender_details INNER JOIN e_tender_vendor ON e_tender_details.et_id = e_tender_vendor.et_id WHERE e_tender_vendor.vd_id = '" + vd_id + "' and e_tender_vendor.vcd_id = '" + vcd_id + "';\n                                         SELECT e_tender_details.et_id, et_title, et_tender_fee, et_tender_ref_no, et_tender_desc, et_last_date_apply, et_bidding_date, et_file_uri, dept_id, e_tender_vendor.bidding_amt FROM e_tender_details INNER JOIN e_tender_vendor ON e_tender_details.et_id = e_tender_vendor.et_id WHERE e_tender_vendor.vd_id = '" + vd_id + "' and e_tender_vendor.vcd_id = '" + vcd_id + "' and e_tender_vendor.is_approved =1; \n\n    ")];
+                case 1:
+                    profile = _a.sent();
+                    return [2 /*return*/, profile[0]];
+            }
+        });
+    });
+}
+//profile().then((results)=>{console.log(results)}).catch((error)=>{console.log(error)})
 router.get('/', function (request, response) {
     var user = is_user(request);
     Promise.all([get_username(request), get_tenders()])
@@ -155,8 +172,9 @@ router.get('/help', function (request, response) {
 });
 router.get('/profile', function (request, response) {
     var user = is_user(request);
-    Promise.all([get_username(request)]).then(function (results) {
-        response.render('user/profile', { layout: false, user: user, username: results[0] });
+    Promise.all([get_username(request), get_years(), get_legal_status(), get_state(), profile()]).then(function (results) {
+        console.log(results[4][1]);
+        response.render('user/profile', { layout: false, user: user, username: results[0], years: results[1], status: results[2], states: results[3], my_tenders: results[4][2], approved_tenders: results[4][3], person_details: results[4][1] });
     })
         .catch(function (error) {
         console.log('Error in loading Profile Page');

@@ -6,7 +6,7 @@ exports.tender_credentials = {
     user: process.env.DBUSER,
     password: process.env.DBPASS,
     database: 'e_tender',
-    multipleStatements: true,
+    multipleStatements: true
 };
 exports.aadhar_credentials = {
     host: 'localhost',

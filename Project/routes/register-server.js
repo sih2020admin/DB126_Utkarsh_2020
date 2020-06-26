@@ -99,7 +99,7 @@ router.post('/register-data', function (request, response) {
                     from: 'E-Tendering',
                     to: correspondence_email_id,
                     subject: 'Registration Confirmation on E-tendering Site',
-                    text: 'Welcome to E-Tendering Site\n' + +'You are all set. Now you can apply for tenders from various departments to grow your business.\nLOG IN TO YOUR NEW ACCOUNT http://165.22.210.37:8081/login \n' + +'Our best wishes,Team Utkarsh.',
+                    text: 'Welcome to E-Tendering Site\nYou are all set. Now you can apply for tenders from various departments to grow your business.\nLOG IN TO YOUR NEW ACCOUNT http://165.22.210.37:8081/v1_login.html \nOur best wishes,Team Utkarsh.',
                 }
                 transporter.sendMail(mailOptions, function (error, info) {
                     if (error) {
@@ -109,8 +109,8 @@ router.post('/register-data', function (request, response) {
                         console.log('Email sent: ' + info.response)
                     }
                 })
+               response.status(200).send("Successfully registered"); 
 
-                response.status(400).send('Successfully registered')
             }
         }
     )

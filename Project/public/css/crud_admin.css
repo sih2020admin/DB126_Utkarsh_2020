@@ -367,3 +367,19 @@ sup {
   border-color: var(--main_color);
 }
 /*# sourceMappingURL=crud_admin.css.map */
+
+#description {
+  color: #000000;
+}
+
+/* Chrome, Safari, Edge, Opera
+#fee::-webkit-outer-spin-button,
+#fee::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox *
+#fee {
+  -moz-appearance: textfield;
+} */
