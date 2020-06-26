@@ -36,19 +36,19 @@
             <table>
                 <tr>
                     <td><label for="ref_no">Ref No</label></td>
-                    <td><input id="ref_no" type="text"  placeholder="Enter Ref no" required></td>
+                    <td><input id="ref_no" type="text" maxlength="10" placeholder="Enter Ref no" required></td>
                     <td><label for="title">Title</label></td>
                     <td><input id="title" type="text" placeholder="Enter Your Tender title" required></td>
                 </tr>
                 <tr>
                     <td><label for="fee">Tender Fee</label></td>
-                    <td><input id="fee" type="number" min="0" placeholder="Enter tender fee" required></td>
+                    <td><input id="fee" type="number" min="0" max="100000000000" placeholder="Enter tender fee" required></td>
                     <td><label for="closing_date">Closing date</label></td>
                     <td><input id="closing_date" type="date" placeholder="Enter Closing date" required></td>
                 </tr>
                 <tr>
                     <td><label for="bid_opening_date">Bid Opening Date</label></td>
-                    <td><input id="bid_opening_date" type="date" placeholder="Enter Bid Opening Date" required></td>
+                    <td><input id="bid_opening_date" disabled type="date" placeholder="Enter Bid Opening Date" required></td>
                 </tr>
                 <tr>
                     <td><label for="description">Description</label></td>
@@ -65,6 +65,10 @@
                     <td id='div_f1' style="display:none;" ><label for="file1" class="upload_label"><span>Technical Document</span></label><input id="file1" type="file" /></td>
                     <td id='div_f2' style="display:none;" ><label for="file2" class="upload_label"><span>BOQ Document</span></label><input id="file2" type="file" /></td>
                     <td><button id="get_link"  onclick="get_link()">Generate Link</button></td>    
+                </tr>
+                <tr>
+                    <td style="display:none;" ><label for="file1_name"><span id='div_f1_name'>Technical File Name</span></label></td>
+                    <td style="display:none;" ><label for="file2_name"><span id='div_f1_name'>BOQ File Name</span></label></td>  
                 </tr>
                 
             </table>
