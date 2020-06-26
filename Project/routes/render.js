@@ -218,7 +218,7 @@ router.get('/tender/apply', function (request, response) {
     var user = is_user(request);
     Promise.all([get_username(request)])
         .then(function (results) {
-        response.render('user/tenders', { layout: false, user: user, username: results[0] });
+        response.render('user/tender_apply', { layout: false, user: user, username: results[0] });
     })
         .catch(function (error) {
         console.log('Error in loading Tenders Page');
@@ -229,7 +229,7 @@ router.get('/tender/upload-documents', function (request, response) {
     var user = is_user(request);
     Promise.all([get_username(request)])
         .then(function (results) {
-        response.render('user/tenders', { layout: false, user: user, username: results[0] });
+        response.render('user/tender_sign', { layout: false, user: user, username: results[0] });
     })
         .catch(function (error) {
         console.log('Error in loading Tenders Page');
@@ -240,7 +240,7 @@ router.get('/tender/confirmation', function (request, response) {
     var user = is_user(request);
     Promise.all([get_username(request)])
         .then(function (results) {
-        response.render('user/tenders', { layout: false, user: user, username: results[0] });
+        response.render('user/tender_confirmation', { layout: false, user: user, username: results[0] });
     })
         .catch(function (error) {
         console.log('Error in loading Tenders Page');
