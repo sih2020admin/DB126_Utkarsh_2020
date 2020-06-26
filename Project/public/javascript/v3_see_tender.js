@@ -118,7 +118,7 @@ function apply(i) {
                         cancelButtonColor: '#d33',
                         confirmButtonText: 'Apply',
                     }).then((result, res) => {
-                        window.location.href = '/v5_preview_tender.html?et_id=' + et_id + '&etd_id=' + etd_id
+                        window.location.href = '/tender/prieview?et_id=' + et_id + '&etd_id=' + etd_id
                     })
                 }
             } else if (this.status === 404) {
