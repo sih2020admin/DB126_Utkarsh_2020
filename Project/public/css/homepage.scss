@@ -167,7 +167,7 @@ h1, h3, h2, h4{
 
     .marquee_table{
         //margin-top:200px;
-
+        //height: 100%;
         tr{
             z-index: -99999999999999999999999999999999;
             position: relative;
@@ -182,7 +182,7 @@ h1, h3, h2, h4{
 }
 
 .marquee_table{
-    animation: marquee-animation 10s infinite 0s linear;
+   animation: marquee-animation 10s infinite 0s linear;
 }
 .marquee_table:hover{
     animation-play-state: paused;
@@ -190,12 +190,12 @@ h1, h3, h2, h4{
 
 
 @keyframes marquee-animation{
-    0%{
-        transform: translateY(70%);
-        }
-    100%{
+    from{
+        transform: translateY(200px);
+    }
+    to{
         transform: translateY(-100%);
-        }
+    }
 }
 
 

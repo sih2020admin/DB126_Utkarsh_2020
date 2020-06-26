@@ -111,22 +111,22 @@ h1, h3, h2, h4 {
 }
 
 @-webkit-keyframes marquee-animation {
-  0% {
-    -webkit-transform: translateY(70%);
-            transform: translateY(70%);
+  from {
+    -webkit-transform: translateY(200px);
+            transform: translateY(200px);
   }
-  100% {
+  to {
     -webkit-transform: translateY(-100%);
             transform: translateY(-100%);
   }
 }
 
 @keyframes marquee-animation {
-  0% {
-    -webkit-transform: translateY(70%);
-            transform: translateY(70%);
+  from {
+    -webkit-transform: translateY(200px);
+            transform: translateY(200px);
   }
-  100% {
+  to {
     -webkit-transform: translateY(-100%);
             transform: translateY(-100%);
   }
