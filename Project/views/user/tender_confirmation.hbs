@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Confirm</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/confirm_tender.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/progress_bar.css">
+  </head>
+  <body>
+      {{> header-user}}
+    <div class="container">
+      <ul class="progressbar">
+          <li class="active">Fill the details</li>
+          <li class="active">Payment</li>
+          <li class="active">E-sign and Upload documents</li>
+          <li>Freeze the bid</li>
+      </ul>
+  </div>
+    <div class="cont">
+      <br>
+      <h2>Summary Of Your Application</h2><br>
+      <div style="text-align: right;">
+        <p><strong>Application Status:</strong></p>
+        <p id= "app" class="status1">Not Submitted</p>
+      </div>
+      <h3 style="text-align: left;">Tender Details</h3>
+      <table>
+        <tr>
+          <td><label><strong>Tender Id: </strong></label></td>
+          <td><label id="et_id"></label></td>
+          <td><label><strong>Reference No: </strong></label></td>
+          <td><label id="ref"></label></td>
+          <td><label><strong>Title: </strong></label></td>
+          <td><label id="title"></label></td>
+        </tr>
+        <tr>
+          <td><label><strong>Fee: </strong></label></td>
+          <td><label id="fee"></label></td>
+          <td><label><strong>Bidding Date: </strong></label></td>
+          <td><label id="bid"></label></td>
+        </tr>
+      </table><br><hr><br>
+      <h3 style="text-align: left;">Personal Details</h3>
+      <table>
+        <tr>
+          <td><label><strong>Name: </strong></label></td>
+          <td><label id="name"></label></td>
+          <td><label><strong>DOB: </strong></label></td>
+          <td><label id="dob"></label></td>
+          <td><label><strong>Designation: </strong></label></td>
+          <td><label id="desg"></label></td>
+        </tr>
+        <tr>
+          <td><label><strong>Aadhar No: </strong></label></td>
+          <td><label id="aadhar"></label></td>
+          <td><label><strong>Email: </strong></label></td>
+          <td><label id="email"></label></td>
+          <td><label><strong>Contact No: </strong></label></td>
+          <td><label id="contact"></label></td>
+        </tr>
+      </table><br><hr><br>
+      <h3 style="text-align: left;">Company Details</h3>
+      <table>
+        <tr>
+          <td><label><strong>Name: </strong></label></td>
+          <td><label id="cname"></label></td>
+          <td><label><strong>Legal Status: </strong></label></td>
+          <td><label id="legal"></label></td>
+          <td><label><strong>Estd Year: </strong></label></td>
+          <td><label id="yoe"></label></td>
+        </tr>
+        <tr>
+          <td><label><strong>Registration No: </strong></label></td>
+          <td><label id="register"></label></td>
+          <td><label><strong>GST No: </strong></label></td>
+          <td><label id="gst"></label></td>
+          <td><label><strong>PAN No: </strong></label></td>
+          <td><label id="pan"></label></td>
+        </tr>
+        <tr>
+          <td><label><strong>Email: </strong></label></td>
+          <td><label id="cemail"></label></td>
+          <td><label><strong>Contact No: </strong></label></td>
+          <td><label id="ccontact"></label></td>
+          <td><label><strong>Address: </strong></label></td>
+          <td><label id="address"></label></td>
+        </tr>
+      </table><hr>
+      <div class="upload_documents">
+        <h3 style="text-align: left;">Uploaded Documents</h3><br>
+        <table>
+          <tr>
+            <th>Sr.No.</th>
+            <th>File name</th>
+            <th>File URI</th>
+            <th>File Link</th>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Tehnical</td>
+            <td id="file1"></td>
+            <td><a href="">Preview</a></td>
+          </tr> 
+          <tr>
+            <td>2</td>
+            <td>BOQ</td>
+            <td id="file2"></td>
+            <td><a href="">Preview</a></td>
+          </tr> 
+        </table>  
+      </div><hr>
+      <div class="payment_details">
+        <h3  style="text-align: left;">Payment Details</h3><br>
+        <table>
+          <tr>
+            <th>Transaction ID</th>
+            <th>Amount</th>
+            <th>Date & Time</th>
+            <th>Bank Name</th>
+            <th>Payment Method</th>
+            <th>Status</th>
+          </tr> 
+          <tr>
+            <td id="transaction"></td>
+            <td id="amt"></td>
+            <td id="date"></td>
+            <td id="bank"></td>
+            <td >Debit Card</td>
+            <td id="status" style="color: #008000;"></td>
+          </tr> 
+        </table> 
+      </div>
+      <div  class="submit_button">
+        <!-- <button type="button" onclick="back()">Back</button> -->
+        <button id ="freeze" type="submit" onclick="freeze()"><i id="icon"></i>Freeze Bid</button>
+      </div>
+    </div>
+  </body>
+<script type="text/javascript" src="/javascript/v5_confirm_tender.js"></script>
+</html>
