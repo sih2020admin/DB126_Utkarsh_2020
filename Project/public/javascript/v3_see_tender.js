@@ -69,6 +69,7 @@ function apply(i) {
 
                         res = JSON.parse(this.responseText)
                         var status = res.status
+                        var etd_id=res.etd_id
                         if (status == '100') {
                             // alert('all ready applied , complete process')
                             Swal.fire({
@@ -79,7 +80,7 @@ function apply(i) {
                                 confirmButtonColor: '#3085d6',
                                 cancelButtonColor: '#d33',
                                 confirmButtonText: 'Apply',
-                            }).then((result , res) => {window.location.href = '/payment/tender?et_id=' + et_id + '&etd_id=' + res.etd_id})
+                            }).then((result , res) => {window.location.href = '/payment/tender?et_id=' + et_id + '&etd_id=' + etd_id})
                             
                         } else if (status == '110') {
                             // alert('all ready applied , complete process')
@@ -91,7 +92,7 @@ function apply(i) {
                                 confirmButtonColor: '#3085d6',
                                 cancelButtonColor: '#d33',
                                 confirmButtonText: 'Apply',
-                            }).then((result  , res) => { window.location.href = '/v4_apply_tender_s3.html?et_id=' + et_id + '&etd_id=' + res.etd_id})
+                            }).then((result  , res) => { window.location.href = '/v4_apply_tender_s3.html?et_id=' + et_id + '&etd_id=' + etd_id})
                            
                         } else if (status == '111') {
                             // alert('Process done Submit Tender')
@@ -115,7 +116,7 @@ function apply(i) {
                                 confirmButtonColor: '#3085d6',
                                 cancelButtonColor: '#d33',
                                 confirmButtonText: 'Apply',
-                            }).then((result  , res) => {window.location.href = '/v5_preview_tender.html?et_id=' + et_id + '&etd_id=' + res.etd_id})
+                            }).then((result  , res) => {window.location.href = '/v5_preview_tender.html?et_id=' + et_id + '&etd_id=' + etd_id})
                             
                         }
                     } else if (this.status === 404) {
