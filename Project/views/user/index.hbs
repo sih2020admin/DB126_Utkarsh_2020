@@ -50,10 +50,19 @@
                     <td>{{et_title}}</td>
                     <td>{{et_tender_desc}}</td>
                     <td>{{et_last_date_apply}}</td>
-                </tr>
+                </tr>        
             {{/each}}
         </table>
     </div>    
     {{> footer}}
 </body>
+<script>
+    var h = document.getElementById("upcoming"); //height of marquee table
+    height = h.offsetHeight;
+    speed = (height/220)*10; //formula 
+
+    h.style.animationDuration = speed+"s";
+    console.log(speed);
+     
+</script>
 </html>
