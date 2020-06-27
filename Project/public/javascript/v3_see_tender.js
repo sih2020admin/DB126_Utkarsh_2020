@@ -56,10 +56,10 @@ xhr.open('POST', '/gettenderlist')
 xhr.send(data)
 
 function apply(i) {
-    if (vd_id != '') {
+    // if (vd_id != '') {
         // if (result.value) {
         var et_id = response[i].et_id
-        var data = JSON.stringify({ et_id: et_id, vd_id: vd_id })
+        var data = JSON.stringify({ et_id: et_id })
         var res
 
         var xhr = new XMLHttpRequest()
@@ -152,9 +152,9 @@ function apply(i) {
 
         xhr.send(data)
         // }
-    } else {
-        alert('Login to apply')
-    }
+    // } else {
+        // alert('Login to apply')
+    // }
 }
 function findJsonString() {
     var filterKey = $('#search_bar').val().toLowerCase()
