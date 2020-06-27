@@ -140,11 +140,10 @@ button:hover {
   outline: none;
   padding: 6px 5%;
   color: #ffffff;
-  margin-top: 20px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 20px auto;
   text-align: left;
   position: relative;
+  border-radius: 0;
 }
 
 .tab button:hover {
@@ -152,18 +151,6 @@ button:hover {
   background-color: #ffffff;
   color: var(--main_color);
   border: none;
-}
-
-.tab .button:after {
-  position: absolute;
-  bottom: 0;
-  height: 0;
-  width: 0;
-  right: 0;
-  border: 25px solid transparent;
-  border-bottom-color: red;
-  border-right-color: red;
-  content: "";
 }
 
 .tab .active {
