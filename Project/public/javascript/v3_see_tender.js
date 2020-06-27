@@ -79,6 +79,7 @@ function apply(i) {
                         cancelButtonColor: '#d33',
                         confirmButtonText: 'Apply',
                     }).then((result, res) => {
+                        console.log(result ,res)
                         window.location.href = '/payment/tender?et_id=' + et_id + '&etd_id=' + etd_id
                     })
                 } else if (status == '110') {
@@ -92,6 +93,8 @@ function apply(i) {
                         cancelButtonColor: '#d33',
                         confirmButtonText: 'Apply',
                     }).then((result, res) => {
+                        console.log(result ,res)
+                        if(result.isConfirmed)
                         window.location.href = '/tender/upload-documents?et_id=' + et_id + '&etd_id=' + etd_id
                     })
                 } else if (status == '111') {
@@ -105,7 +108,9 @@ function apply(i) {
                         cancelButtonColor: '#d33',
                         confirmButtonText: 'Apply',
                     }).then((result, res) => {
-                        window.location.href = '/tender/confirmation?et_id=' + et_id + '&etd_id=' + res.etd_id
+                        console.log(result ,res)
+                        if(result.isConfirmed)
+                            window.location.href = '/tender/confirmation?et_id=' + et_id + '&etd_id=' + res.etd_id
                     })
                 } else if (status == '1111') {
                     // alert('Application submited redirecting to Application Preview page')
@@ -118,6 +123,8 @@ function apply(i) {
                         cancelButtonColor: '#d33',
                         confirmButtonText: 'Apply',
                     }).then((result, res) => {
+                        console.log(result ,res)
+                        if(result.isConfirmed)
                         window.location.href = '/tender/preview?et_id=' + et_id + '&etd_id=' + etd_id
                     })
                 }
@@ -131,6 +138,8 @@ function apply(i) {
                     cancelButtonColor: '#d33',
                     confirmButtonText: 'Apply',
                 }).then((result, res) => {
+                    console.log(result ,res)
+                    if(result.isConfirmed)
                     window.location.href = '/tender/apply?et_id=' + response[i].et_id
                 })
             } else {
