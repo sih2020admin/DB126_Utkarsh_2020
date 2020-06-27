@@ -52,8 +52,8 @@ function show() {
                             var vcd_id_c = message.vcd_id
                             var vd_id_c = message.vd_id
                             var digi_access = message.digi_access
-                            // add_to_cookie('vcd_id', vcd_id_c)
-                            // add_to_cookie('vd_id', vd_id_c)
+                            add_to_cookie('vcd_id', vcd_id_c)     //modf_sanket when sankets requiremnt is over need to remove this
+                            add_to_cookie('vd_id', vd_id_c)
                             add_to_cookie('digi_access', digi_access)
 
                             setTimeout(function () {
