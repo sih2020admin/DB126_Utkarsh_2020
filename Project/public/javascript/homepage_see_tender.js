@@ -1,7 +1,7 @@
 var response,
     data = ''
-var vd_id = get_cookie('vd_id')
-var vcd_id = get_cookie('vcd_id')
+// var vd_id = get_cookie('vd_id')
+// var vcd_id = get_cookie('vcd_id')
 
 var xhr = new XMLHttpRequest()
 var url = '/gettenderlist'

@@ -1,7 +1,7 @@
 var data = ''
 var response
-var vd_id = get_cookie('vd_id')
-var vcd_id = get_cookie('vcd_id')
+// var vd_id = get_cookie('vd_id')
+// var vcd_id = get_cookie('vcd_id')
 function loadResults(response) {
     $('#cont').empty()
     var cont_div = document.getElementById('cont')

@@ -18,7 +18,7 @@ var https = require('https')
     res.redirect('/v7_homepage.html')
 }) */
 
-router.post('/login', function (reqs, res) {
+router.post('/login_api', function (reqs, res) {
     var username = reqs.body.username
     var password = reqs.body.password
     console.log('login called', username)
