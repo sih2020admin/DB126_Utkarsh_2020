@@ -134,14 +134,12 @@ button{
         background-color: var(--main_color);
         border: none;
         outline: none;
-        padding: 6px 40px 6px 10%;
+        padding: 6px 5%;
         color: #ffffff;
-        margin-top: 20px;
-        margin-left: auto;
-        margin-right: auto;
+        margin: 20px auto;
         text-align: left;
         position: relative;
-
+        border-radius: 0;
     }
     button:hover{
         cursor: pointer;
@@ -149,25 +147,17 @@ button{
         color: var(--main_color);
         border: none;
     }
-
-    .button:after{
-        position: absolute;
-        bottom: 0;
-        height: 0;
-        width: 0;
-        right:0;
-        border: 25px solid transparent;
-        border-bottom-color: red;
-        border-right-color: red;
-        content: "";
+    .active{
+        background-color: #ffffff;
+        color: var(--main_color);
     }
 }
 .tabcontent{
-    box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);  
+    // box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);  
     margin: 0 40px 20px 18%; 
     padding: 10px 10px 10px 40px; 
     min-width: 920px;
-    max-width: 100%;
+    max-width: 1200px;
     height: fit-content;
     // min-height: 200px;
     border-radius: 10px;
