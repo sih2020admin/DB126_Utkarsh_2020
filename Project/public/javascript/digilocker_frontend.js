@@ -1,4 +1,4 @@
-var vcd_id = get_cookie('vcd_id') //will be used everywhere in digilocker code as vcd_id
+var vcd_id = get_cookie('vcd_id') //will be used everywhere in digilocker code as vcd_id   modf_sanket
 var et_id //to store current et_id
 var etd_id //to store current etd_id
 
@@ -49,7 +49,7 @@ window.onload = function () {
             xhr.send(
                 JSON.stringify({
                     code: code,
-                    id: vcd_id,
+                    id: vcd_id,    //modf_sanket
                 })
             )
 
@@ -255,7 +255,7 @@ function get_files() {
     xhr.send(
         JSON.stringify({
             id: current_id,
-            vcd_id: vcd_id,
+            vcd_id: vcd_id,      //modf_sanket
         })
     ) //id is directory id (each directory in digilocker has unique id)
 
@@ -281,7 +281,7 @@ function get_files2() {
     xhr.open('POST', url, true)
     xhr.setRequestHeader('Content-Type', 'application/json')
     var vcd_id = get_cookie('vcd_id')
-    xhr.send(JSON.stringify({ vcd_id: vcd_id }))
+    xhr.send(JSON.stringify({ vcd_id: vcd_id }))    //modf_sanket
 
     //xhr repsonse handling
     xhr.onload = function () {
@@ -318,7 +318,7 @@ function openModal() {
         xhr.send(
             JSON.stringify({
                 // "id": vcd_id
-                id: vcd_id,
+                id: vcd_id,       //modf_sanket
             })
         )
 
@@ -396,7 +396,7 @@ function uploadFiles() {
     url = 'https://165.22.210.37:8081/upload_files'
     xhr.open('POST', url, true)
     xhr.setRequestHeader('Content-Type', 'application/json')
-    xhr.setRequestHeader('vcd_id', vcd_id)
+    xhr.setRequestHeader('vcd_id', vcd_id)                          //modf_sanket
     xhr.setRequestHeader('path', temp)
 
     //check which file to be uploaded and send that file name through xhr

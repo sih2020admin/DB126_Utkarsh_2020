@@ -57,12 +57,17 @@
     {{> footer}}
 </body>
 <script>
-    var h = document.getElementById("upcoming"); //height of marquee table
+    var h = document.getElementById("current"); //height of marquee table
+    var h1 = document.getElementById("upcoming"); //height of marquee table
     height = h.offsetHeight;
+    height1 = h1.offsetHeight;
     speed = (height/200)*10; //formula 
+    speed1 = (height1/200)*10; //formula 
 
     h.style.animationDuration = speed+"s";
+    h1.style.animationDuration = speed1+"s";
     console.log(speed);
+    console.log(speed1);
      
 </script>
 </html>

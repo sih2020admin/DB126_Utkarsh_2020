@@ -1,7 +1,7 @@
 var data = ''
 var response
-var vd_id = get_cookie('vd_id')
-var vcd_id = get_cookie('vcd_id')
+// var vd_id = get_cookie('vd_id')
+// var vcd_id = get_cookie('vcd_id')
 function loadResults(response) {
     $('#cont').empty()
     var cont_div = document.getElementById('cont')
@@ -56,10 +56,10 @@ xhr.open('POST', '/gettenderlist')
 xhr.send(data)
 
 function apply(i) {
-    if (vd_id != '') {
+    // if (vd_id != '') {
         // if (result.value) {
         var et_id = response[i].et_id
-        var data = JSON.stringify({ et_id: et_id, vd_id: vd_id })
+        var data = JSON.stringify({ et_id: et_id })
         var res
 
         var xhr = new XMLHttpRequest()
@@ -75,8 +75,8 @@ function apply(i) {
                         text: 'all ready applied , complete process',
                         icon: 'warning',
                         showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
+                        confirmButtonColor: '#663EFD',
+                        cancelButtonColor: '#a6a6a6',
                         confirmButtonText: 'Apply',
                     }).then((result, res) => {
                         console.log(result ,res)
@@ -89,8 +89,8 @@ function apply(i) {
                         text: 'all ready applied , complete process',
                         icon: 'warning',
                         showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
+                        confirmButtonColor: '#663EFD',
+                        cancelButtonColor: '#a6a6a6',
                         confirmButtonText: 'Apply',
                     }).then((result, res) => {
                         console.log(result ,res)
@@ -104,8 +104,8 @@ function apply(i) {
                         text: 'Applying process done , please submit this tender',
                         icon: 'warning',
                         showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
+                        confirmButtonColor: '#663EFD',
+                        cancelButtonColor: '#a6a6a6',
                         confirmButtonText: 'Apply',
                     }).then((result, res) => {
                         console.log(result ,res)
@@ -119,8 +119,8 @@ function apply(i) {
                         text: 'Application submited redirecting to Application Preview page',
                         icon: 'warning',
                         showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
+                        confirmButtonColor: '#663EFD',
+                        cancelButtonColor: '#a6a6a6',
                         confirmButtonText: 'Apply',
                     }).then((result, res) => {
                         console.log(result ,res)
@@ -134,8 +134,8 @@ function apply(i) {
                     text: 'Apply for the tender',
                     icon: 'warning',
                     showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
+                    confirmButtonColor: '#663EFD',
+                    cancelButtonColor: '#a6a6a6',
                     confirmButtonText: 'Apply',
                 }).then((result, res) => {
                     console.log(result ,res)
@@ -152,9 +152,9 @@ function apply(i) {
 
         xhr.send(data)
         // }
-    } else {
-        alert('Login to apply')
-    }
+    // } else {
+        // alert('Login to apply')
+    // }
 }
 function findJsonString() {
     var filterKey = $('#search_bar').val().toLowerCase()
