@@ -100,7 +100,6 @@ button:hover {
 }
 
 .main {
-  font-family: sans-serif;
   border: none;
   outline: none;
   overflow: hidden;
@@ -231,11 +230,13 @@ strong {
 }
 
 .tenders_details {
+  font-family: 'Montserrat', sans-serif;
   margin: 40px;
   padding: 5px;
 }
 
 .tenders_details table {
+  font-size: 0.9em;
   margin: auto;
   max-width: 100%;
   border-radius: 1em;
@@ -253,9 +254,10 @@ strong {
   background-color: var(--main_color);
   color: #fff;
   font-weight: lighter;
+  white-space: nowrap;
 }
 
 .tenders_details th, .tenders_details td {
-  padding: 0.5em 1em;
+  padding: 1em 1em;
 }
 /*# sourceMappingURL=profile.css.map */
