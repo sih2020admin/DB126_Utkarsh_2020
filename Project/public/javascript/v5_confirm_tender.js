@@ -1,12 +1,10 @@
-const queryString = window.location.search
-console.log(queryString)
-const urlParams = new URLSearchParams(queryString)
+const urlParams = new URLSearchParams(window.location.search)
 var et_id = urlParams.get('et_id')
 var etd_id = urlParams.get('etd_id')
 var vd_id = get_cookie('vd_id')
 var message
 
-var xhr = new XMLHttpRequest()
+/* var xhr = new XMLHttpRequest()
 var url = '/view'
 xhr.open('POST', url)
 xhr.setRequestHeader('Content-Type', 'application/json')
@@ -47,9 +45,11 @@ xhr.onload = function () {
         document.getElementById('status').innerHTML = message.result2[0].resp_message
     } else if (this.status == 400) alert('Error 400 ')
     else alert('Some Error Occured')
-}
+} */
+console.log(new Date())
 function freeze() {
     document.getElementById('icon').className = 'fa fa-spinner fa-spin'
+    var xhr = new XMLHttpRequest()
     var url = '/confirm_tender_s5'
     xhr.open('POST', url)
     xhr.setRequestHeader('Content-Type', 'application/json')
