@@ -3,14 +3,14 @@ console.log(queryString)
 const urlParams = new URLSearchParams(queryString)
 var et_id = urlParams.get('et_id')
 var etd_id = urlParams.get('etd_id')
-var vd_id = get_cookie('vd_id')
+// var vd_id = get_cookie('vd_id')
 var message
 
 var xhr = new XMLHttpRequest()
 var url = '/view'
 xhr.open('POST', url)
 xhr.setRequestHeader('Content-Type', 'application/json')
-xhr.send(JSON.stringify({ et_id: et_id, etd_id: etd_id, vd_id: vd_id }))
+xhr.send(JSON.stringify({ et_id: et_id, etd_id: etd_id, vd_id: -1 }))
 xhr.onload = function () {
     if (this.status == 200) {
         message = JSON.parse(this.responseText)

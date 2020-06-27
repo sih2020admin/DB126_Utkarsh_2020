@@ -1,9 +1,9 @@
-var vd_id = get_cookie('vd_id')
-var vcd_id = get_cookie('vcd_id')
-if (vd_id == '') {
-    window.location.href = '/login'
-    console.log('directed to login')
-}
+// var vd_id = get_cookie('vd_id')
+// var vcd_id = get_cookie('vcd_id')
+// if (vd_id == '') {
+//     window.location.href = '/login'
+//     console.log('directed to login')
+// }
 var state
 
 function city() {
@@ -104,7 +104,7 @@ function save() {
                     xhr1.setRequestHeader('Content-Type', 'application/json')
                     xhr1.send(
                         JSON.stringify({
-                            vd_id: vd_id,
+                            vd_id: -1,
                             name: document.getElementById('name').value,
                             dob: document.getElementById('dob').value,
                             desg: document.getElementById('desg').value,
@@ -142,7 +142,7 @@ function save() {
 var xhr = new XMLHttpRequest()
 xhr.open('POST', '/vendor_dashboard')
 xhr.setRequestHeader('Content-Type', 'application/json')
-var data = JSON.stringify({ vd_id: vd_id, vcd_id: vcd_id })
+var data = JSON.stringify({ vd_id: -1 ,vcd_id : -1})    //im putting here -1 bcoz dont know whether post data can be null? vcd_id is no longer used
 xhr.send(data)
 
 xhr.onload = function () {
