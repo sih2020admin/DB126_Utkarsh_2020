@@ -5,13 +5,11 @@ if (vd_id == '') {
 }
 
 const queryString = window.location.search
-console.log(queryString)
 const urlParams = new URLSearchParams(queryString)
 
 var et_id = urlParams.get('et_id')
 var status = '000'
 var etd_id = urlParams.get('etd_id')
-console.log(et_id, etd_id)
 
 var cont_div = document.getElementById('conts')
 document.getElementById('next_button').style.display = 'none'
@@ -23,7 +21,6 @@ var xhr = new XMLHttpRequest()
 
 xhr.onload = function () {
     if (this.status === 200) {
-        console.log(this.responseText)
 
         response = JSON.parse(this.responseText)
 
@@ -193,11 +190,9 @@ function tt() {
     if (oneD == '') {
         one.style.display = 'none'
         two.style.display = ''
-        console.log(oneD)
     } else {
         two.style.display = 'none'
         three.style.display = ''
-        console.log('working')
     }
 }
 function bt() {
@@ -232,7 +227,6 @@ function bt() {
 
 function apply() {
     // body...
-    console.log(et_id)
     var data = JSON.stringify({ et_id: et_id, vd_id: vd_id, vcd_id: vcd_id, bid_amt: '12000' })
     //bid ammounnt to take from user
     var xhr = new XMLHttpRequest()

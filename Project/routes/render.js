@@ -41,6 +41,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
 var connection_1 = __importDefault(require("./../database/connections/connection"));
+var url_1 = __importDefault(require("url"));
 var router = express_1.default.Router();
 function get_tenders() {
     return __awaiter(this, void 0, void 0, function () {
@@ -237,6 +238,7 @@ router.get('/tender/upload-documents', function (request, response) {
     });
 });
 router.get('/tender/confirmation', function (request, response) {
+    console.log(url_1.default.parse(request.url).query);
     var user = is_user(request);
     Promise.all([get_username(request)])
         .then(function (results) {
