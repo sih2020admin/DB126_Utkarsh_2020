@@ -298,24 +298,37 @@ function operation(optName) {
         x[i].style.display = 'none'
     }
     document.getElementById(optName).style.display = 'block'
+    var p = document.getElementById("pro-button")
+    var t = document.getElementById("ten-button")
+    var a = document.getElementById("app-button")
+    var d = document.getElementById("down-button")
 
-    if ((optName == 'Tenders') | (optName == 'Profile')) {
-        console.log('no box')
-        var style = document.createElement('style')
-        style.innerHTML = `
-        .tabcontent{
-            box-shadow: 0 0 0 0 rgba(0,0,0,0);
-        }
-        `
-        document.head.appendChild(style)
-    } else {
-        console.log('box')
-        var style = document.createElement('style')
-        style.innerHTML = `
-        .tabcontent{
-            box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
-        }
-        `
-        document.head.appendChild(style)
+    if (optName == 'Profile') {
+        console.log('pro')
+        p.classList.add("active")
+        t.classList.remove("active")
+        a.classList.remove("active")
+        d.classList.remove("active")
+    } 
+    else if(optName == 'Tenders') {
+        console.log('ten')
+        t.classList.add("active")
+        p.classList.remove("active")
+        a.classList.remove("active")
+        d.classList.remove("active")
+    }
+    else if(optName == 'Approved'){
+        console.log('app')
+        a.classList.add("active")
+        p.classList.remove("active")
+        t.classList.remove("active")
+        d.classList.remove("active")
+    }
+    else if(optName == 'Docs'){
+        console.log('app')
+        d.classList.add("active")
+        t.classList.remove("active")
+        a.classList.remove("active")
+        p.classList.remove("active")
     }
 }
