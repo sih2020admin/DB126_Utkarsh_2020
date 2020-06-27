@@ -190,9 +190,16 @@ function tt() {
     if (oneD == '') {
         one.style.display = 'none'
         two.style.display = ''
+        console.log(oneD)
+        back.style.display = ""
+        next.innerHTML = 'Company Details &nbsp;&nbsp;<i class="fas fa-chevron-right"></i>'
+        back.innerHTML = '<i class="fas fa-chevron-left"></i>&nbsp;&nbsp; Tender Details '
     } else {
         two.style.display = 'none'
         three.style.display = ''
+        console.log('working')
+        next.style.display = "none"
+        back.innerHTML = '<i class="fas fa-chevron-left"></i>&nbsp;&nbsp; Vendor Contact Details '
     }
 }
 function bt() {
@@ -217,9 +224,14 @@ function bt() {
     if (threeD == '') {
         three.style.display = 'none'
         two.style.display = ''
+        next.style.display = ""
+        back.innerHTML = '<i class="fas fa-chevron-left"></i>&nbsp;&nbsp; Tender Details '
     } else {
         two.style.display = 'none'
         one.style.display = ''
+        back.style.display = "none"
+        next.innerHTML = 'Vendor Contact Details &nbsp;&nbsp;<i class="fas fa-chevron-right"></i>'
+
     }
 }
 

@@ -50,6 +50,7 @@ h1{
             display: inline;
             padding: 3.8px 10px;
             margin-left: 5px;
+
         }
         button:hover{
             cursor: pointer;
@@ -66,7 +67,7 @@ h1{
         margin: auto;
         margin-top: 40px;
         border-radius: 10px; 
-        box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.07);
+        box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.2);
         transition:  ease-in-out 0.3s;
 
         table{
@@ -237,17 +238,23 @@ h1{
         margin-top: 10px;
         margin-right: 10px;
         border-radius: 5px; 
+        border: 0.4px solid var(--main_color);
         background-color: var(--main_color);
-        border: none;
         color: #ffffff;
+
+        a{
+            text-decoration: none;
+            color: #ffffff;
+        }
+        a:hover{
+            color: var(--main_color);
+        }
     }
     button:hover{
         cursor: pointer;
         background-color: #ffffff;
         color: var(--main_color);
-        border: solid;
-        border-width: 0.4px;
-        border-color: var(--main_color);
+        border: 0.4px solid var(--main_color);
     }
 }
 button:hover{

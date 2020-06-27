@@ -29,21 +29,25 @@ header a {
   /* color: #0069d9; */
   color: #663EFD;
   font-size: 18px;
-  margin-left: 60px;
-
+  /* margin-left: 60px; */
 }
 
+a + a{
+  margin-left: 60px;  
+}
 a:hover {
   opacity: .5;
 
 }
 
 nav {
-  margin-left: -30px;
-  padding: 20px;
+  /* margin-left: -30px; */
+  margin: 0 auto;
+  padding: 20px 40px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  justify-content: space-between;
 }
 button, input{
   font-family: 'Open sans','sans serif';

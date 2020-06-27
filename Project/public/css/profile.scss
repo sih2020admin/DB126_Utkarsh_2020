@@ -95,7 +95,7 @@ button{
     // display: flex;
     // flex-direction: row;
     // align-content: space-between;
-    font-family: sans-serif;
+    //font-family: sans-serif;
     //margin-top: 60px;
     border: none;   
     outline: none;
@@ -226,11 +226,12 @@ strong {
 
 
 .tenders_details{
-
+    font-family: 'Montserrat', sans-serif;
     margin: 40px;
     padding: 5px;
     
     table {
+        font-size: 0.9em;
         margin: auto;
         max-width: 100%;
         border-radius: 1em;
@@ -247,10 +248,11 @@ strong {
     background-color: var(--main_color);
     color: #fff;
     font-weight: lighter;
+    white-space: nowrap;
 
     }
 
     th,td {
-    padding: 0.5em 1em;
-    } 
+        padding: 1em 1em;
+    }
 }
