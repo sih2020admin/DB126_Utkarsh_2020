@@ -75,8 +75,8 @@ function apply(i) {
                         text: 'all ready applied , complete process',
                         icon: 'warning',
                         showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
+                        confirmButtonColor: '#663EFD',
+                        cancelButtonColor: '#a6a6a6',
                         confirmButtonText: 'Apply',
                     }).then((result, res) => {
                         console.log(result ,res)
@@ -89,8 +89,8 @@ function apply(i) {
                         text: 'all ready applied , complete process',
                         icon: 'warning',
                         showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
+                        confirmButtonColor: '#663EFD',
+                        cancelButtonColor: '#a6a6a6',
                         confirmButtonText: 'Apply',
                     }).then((result, res) => {
                         console.log(result ,res)
@@ -104,8 +104,8 @@ function apply(i) {
                         text: 'Applying process done , please submit this tender',
                         icon: 'warning',
                         showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
+                        confirmButtonColor: '#663EFD',
+                        cancelButtonColor: '#a6a6a6',
                         confirmButtonText: 'Apply',
                     }).then((result, res) => {
                         console.log(result ,res)
@@ -119,8 +119,8 @@ function apply(i) {
                         text: 'Application submited redirecting to Application Preview page',
                         icon: 'warning',
                         showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
+                        confirmButtonColor: '#663EFD',
+                        cancelButtonColor: '#a6a6a6',
                         confirmButtonText: 'Apply',
                     }).then((result, res) => {
                         console.log(result ,res)
@@ -134,8 +134,8 @@ function apply(i) {
                     text: 'Apply for the tender',
                     icon: 'warning',
                     showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
+                    confirmButtonColor: '#663EFD',
+                    cancelButtonColor: '#a6a6a6',
                     confirmButtonText: 'Apply',
                 }).then((result, res) => {
                     console.log(result ,res)
