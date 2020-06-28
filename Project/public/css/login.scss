@@ -11,14 +11,13 @@ body{
     height: auto;
     width: fit-content;
     padding: 20px;
-    margin-top: 20px;   
-    margin-bottom: 10px;
+    margin: 40px;
     border-radius: 10px; 
     box-shadow: 0 0 6px 0 rgba(103, 62, 253, 0.25);
     text-align: center;
     display: inline-block;
 }
-h2, label{
+h2{
     color: var(--main_color);
 }
 #tc, #tc1{
@@ -71,7 +70,7 @@ input{
     width: auto;
     padding: 10px;
     margin: 10px;
-    color: var(--main_color);
+    // color: var(--main_color);
 }
 button{
     width: 100px;
@@ -104,4 +103,9 @@ button{
 table.center{
     margin-left:auto; 
     margin-right:auto; 
+}
+footer{
+    position: absolute;
+    bottom: 0;
+    left: 0;
 }

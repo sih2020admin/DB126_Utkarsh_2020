@@ -33,7 +33,7 @@ header a {
   /* margin-left: 60px; */
 }
 
-a + a{
+header a + a{
   margin-left: 60px;  
 }
 a:hover {

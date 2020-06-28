@@ -203,8 +203,12 @@
   margin-left: 20px;
 }
 
-.filter-container .filters input, .filter-container .filters input[type='checkbox'], .filter-container .filters label, .filter-container .filters select {
+.filter-container .filters input, .filter-container .filters select {
   margin-top: 10px;
+}
+
+.filter-container .filters input[type='checkbox'], .filter-container .filters label {
+  margin-top: 13px;
 }
 
 .filter-container .filters select, .filter-container .filters input[type="date"] {
@@ -234,6 +238,10 @@
 
 .filter-container .filters button {
   height: 100%;
+}
+
+.filter-container .filters .extra-padding {
+  padding: 25px 20px;
 }
 
 button {
