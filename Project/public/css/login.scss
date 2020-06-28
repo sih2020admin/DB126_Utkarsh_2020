@@ -105,5 +105,10 @@ table.center{
     margin-right:auto; 
 }
 footer{
-    position: fixed;
+    margin-top: 100px;
+}
+@media (min-height: 750px){
+    footer{
+        position: fixed;
+    }
 }

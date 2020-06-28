@@ -187,4 +187,10 @@ button:hover {
   width: 100%;
   text-align: left;
 }
+
+@media (min-height: 750px) {
+  footer {
+    position: fixed;
+  }
+}
 /*# sourceMappingURL=register.css.map */
