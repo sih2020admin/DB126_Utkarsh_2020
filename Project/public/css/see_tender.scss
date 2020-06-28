@@ -176,8 +176,11 @@
             margin-left: 20px;
         }
     
-        input, input[type='checkbox'],label, select{
+        input, select{
             margin-top: 10px;
+        }
+        input[type='checkbox'],label{
+            margin-top: 13px;
         }
         select, input[type="date"]{
             //border-style: dashed;
@@ -200,9 +203,13 @@
       -webkit-appearance: none;
       margin: 0;
     }
-        button{
-            height: 100%;
-        }
+    button{
+        height: 100%;
+    }
+
+    .extra-padding{
+        padding: 25px 20px;
+    }
 
 
     }
