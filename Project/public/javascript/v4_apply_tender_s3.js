@@ -1,4 +1,4 @@
-var vcd_id = get_cookie('vcd_id');
+// var vcd_id = get_cookie('vcd_id');
 var aadhar,host=location.hostname;
 var xhr1 = new XMLHttpRequest();
 
@@ -21,7 +21,7 @@ preview1.style.display = "none";
 var url = "/details";
 xhr1.open("POST" ,url);
 xhr1.setRequestHeader('Content-Type','application/json');
-xhr1.send(JSON.stringify({"vcd_id":vcd_id}));
+xhr1.send(JSON.stringify({"vcd_id": -1}));
 xhr1.onload = function(){
     if(this.status==200){
         message=JSON.parse(this.responseText);

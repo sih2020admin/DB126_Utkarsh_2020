@@ -1,9 +1,9 @@
-var vd_id = get_cookie('vd_id')
-var vcd_id = get_cookie('vcd_id')
-if (vd_id == '') {
-    window.location.href = '/login'
-    console.log('directed to login')
-}
+// var vd_id = get_cookie('vd_id')
+// var vcd_id = get_cookie('vcd_id')
+// if (vd_id == '') {
+//     window.location.href = '/login'
+//     console.log('directed to login')
+// }
 var state
 
 function city() {
@@ -26,22 +26,22 @@ function city() {
         else alert('Some Error Occured')
     }
 }
- 
-document.getElementById("edit1").onclick = function(){
-    document.getElementById("edit1").style.display ="none";
- 
-    document.getElementById("name").removeAttribute("readonly");
-    document.getElementById("name").style.border = "2px solid #663EFD";
-    document.getElementById("dob").setAttribute("type","date");
-    document.getElementById("dob").removeAttribute("readonly");                  
-    document.getElementById("dob").style.border = "2px solid #663EFD";
-    document.getElementById("desg").removeAttribute("readonly");
-    document.getElementById("desg").style.border = "2px solid #663EFD";
-    document.getElementById("email").removeAttribute("readonly");
-    document.getElementById("email").style.border = "2px solid #663EFD";
-    document.getElementById("mobile").removeAttribute("readonly");
-    document.getElementById("mobile").style.border = "2px solid #663EFD";
-    document.getElementById("aadhar").style.border = "none"; 
+
+document.getElementById('edit1').onclick = function () {
+    document.getElementById('edit1').style.display = 'none'
+
+    document.getElementById('name').removeAttribute('readonly')
+    document.getElementById('name').style.border = '2px solid #663EFD'
+    document.getElementById('dob').setAttribute('type', 'date')
+    document.getElementById('dob').removeAttribute('readonly')
+    document.getElementById('dob').style.border = '2px solid #663EFD'
+    document.getElementById('desg').removeAttribute('readonly')
+    document.getElementById('desg').style.border = '2px solid #663EFD'
+    document.getElementById('email').removeAttribute('readonly')
+    document.getElementById('email').style.border = '2px solid #663EFD'
+    document.getElementById('mobile').removeAttribute('readonly')
+    document.getElementById('mobile').style.border = '2px solid #663EFD'
+    document.getElementById('aadhar').style.border = 'none'
 
     document.getElementById('cname').removeAttribute('readonly')
     document.getElementById('cname').style.border = '2px solid #663EFD'
@@ -61,10 +61,10 @@ document.getElementById("edit1").onclick = function(){
     document.getElementById('save').style.display = 'inline-block'
     document.getElementById('cancel').style.display = 'inline-block'
 
-    document.getElementById("save").style.display = "inline-block";
-    document.getElementById("cancel").style.display = "inline-block";
-    
-    var s1 = document.querySelectorAll("Select").forEach(el => el.classList.remove('hide'))
+    document.getElementById('save').style.display = 'inline-block'
+    document.getElementById('cancel').style.display = 'inline-block'
+
+    var s1 = document.querySelectorAll('Select').forEach((el) => el.classList.remove('hide'))
     // s1.classList.remove("hide");
 
     // State Generation From API
@@ -85,7 +85,6 @@ document.getElementById("edit1").onclick = function(){
         } else if (this.status == 400) alert('Error 400')
         else alert('Some Error Occured')
     }
-
 }
 
 function save() {
@@ -105,7 +104,7 @@ function save() {
                     xhr1.setRequestHeader('Content-Type', 'application/json')
                     xhr1.send(
                         JSON.stringify({
-                            vd_id: vd_id,
+                            vd_id: -1,
                             name: document.getElementById('name').value,
                             dob: document.getElementById('dob').value,
                             desg: document.getElementById('desg').value,
@@ -143,7 +142,7 @@ function save() {
 var xhr = new XMLHttpRequest()
 xhr.open('POST', '/vendor_dashboard')
 xhr.setRequestHeader('Content-Type', 'application/json')
-var data = JSON.stringify({ vd_id: vd_id, vcd_id: vcd_id })
+var data = JSON.stringify({ vd_id: -1 ,vcd_id : -1})    //im putting here -1 bcoz dont know whether post data can be null? vcd_id is no longer used
 xhr.send(data)
 
 xhr.onload = function () {
@@ -178,7 +177,7 @@ xhr.onload = function () {
 
         document.getElementById('add').value = response[0][0].v_address
 
-    /* var tender_div = document.getElementById("Tenders");
+        /* var tender_div = document.getElementById("Tenders");
     if(response[2].length > 0 ){
         var tender_content = `<div class="tenders_details">
         <table>
@@ -197,7 +196,7 @@ xhr.onload = function () {
                             <td>`+response[2][i].et_tender_fee+`</td>
                             <td>`+response[2][i].et_tender_desc+`</td>
                             <td>`+response[2][i].bidding_amt+`</td>
-                            <td><a href=https://`+location.hostname+":8081/v5_preview_tender.html?et_id="+response[2][i].et_id+"&etd_id="+response[2][i].etd_id+`>view</a></td>
+                            <td><a href=https://`+location.hostname+":8081/tender/preview?et_id="+response[2][i].et_id+"&etd_id="+response[2][i].etd_id+`>view</a></td>
                             <td>`+"Submitted"+`</td>
                         </tr>` 
         }
@@ -299,24 +298,37 @@ function operation(optName) {
         x[i].style.display = 'none'
     }
     document.getElementById(optName).style.display = 'block'
+    var p = document.getElementById("pro-button")
+    var t = document.getElementById("ten-button")
+    var a = document.getElementById("app-button")
+    var d = document.getElementById("down-button")
 
-    if ((optName == 'Tenders') | (optName == 'Profile')) {
-        console.log('no box')
-        var style = document.createElement('style')
-        style.innerHTML = `
-        .tabcontent{
-            box-shadow: 0 0 0 0 rgba(0,0,0,0);
-        }
-        `
-        document.head.appendChild(style)
-    } else {
-        console.log('box')
-        var style = document.createElement('style')
-        style.innerHTML = `
-        .tabcontent{
-            box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
-        }
-        `
-        document.head.appendChild(style)
+    if (optName == 'Profile') {
+        console.log('pro')
+        p.classList.add("active")
+        t.classList.remove("active")
+        a.classList.remove("active")
+        d.classList.remove("active")
+    } 
+    else if(optName == 'Tenders') {
+        console.log('ten')
+        t.classList.add("active")
+        p.classList.remove("active")
+        a.classList.remove("active")
+        d.classList.remove("active")
+    }
+    else if(optName == 'Approved'){
+        console.log('app')
+        a.classList.add("active")
+        p.classList.remove("active")
+        t.classList.remove("active")
+        d.classList.remove("active")
+    }
+    else if(optName == 'Docs'){
+        console.log('app')
+        d.classList.add("active")
+        t.classList.remove("active")
+        a.classList.remove("active")
+        p.classList.remove("active")
     }
 }

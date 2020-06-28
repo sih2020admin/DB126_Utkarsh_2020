@@ -19,7 +19,7 @@ router.post('/tender_desc', function (req, res) {
 		console.log("tender desc called "+id)
 	
 				
-	db_1.default.query('SELECT * FROM  e_tender_details INNER JOIN department ON e_tender_details.dept_id = department.dept_id WHERE et_id = ? ; SELECT  `vcd_name`, `vcd_title`, `vcd_dob`, `vcd_contact`, `vcd_email`, `vcd_designation` FROM `v_contact_details` WHERE vcd_id=?; SELECT `v_name`, `v_address`, `v_yoe`, `v_email`, `v_mobile`, `v_reg_no`, `v_state_id`, `v_dist_id`, `v_city_id`, `v_pincode`, `v_legal_id`, `v_pan`, `v_is_verified`, `v_gst` FROM `vendor_details` WHERE vd_id=?',[id,vcd_id,vd_id], function (error, results, fields) {
+	db_1.default.query('SELECT * FROM  e_tender_details INNER JOIN department ON e_tender_details.dept_id = department.dept_id WHERE et_id = ? ; SELECT  `vcd_name`, `vcd_title`, `vcd_dob`,`vcd_aadhar`,`vcd_contact`, `vcd_email`, `vcd_designation` FROM `v_contact_details` WHERE vcd_id=?; SELECT `v_name`, `v_address`, `v_yoe`, `v_email`, `v_mobile`, `v_reg_no`, `v_state_id`, `v_dist_id`, `v_city_id`, `v_pincode`, `v_legal_id`, `v_pan`, `v_is_verified`, `v_gst` FROM `vendor_details` WHERE vd_id=?',[id,vcd_id,vd_id], function (error, results, fields) {
 		if (error) {
 	      		//console.log("error");
 	      		res.sendStatus(400);

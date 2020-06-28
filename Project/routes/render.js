@@ -41,6 +41,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
 var connection_1 = __importDefault(require("./../database/connections/connection"));
+var iplocate = require('node-iplocate');
 var router = express_1.default.Router();
 function get_tenders() {
     return __awaiter(this, void 0, void 0, function () {
@@ -119,14 +120,14 @@ function get_years() {
         });
     });
 }
-function profile() {
+function profile(request) {
     return __awaiter(this, void 0, void 0, function () {
         var vd_id, vcd_id, profile;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    vd_id = '1';
-                    vcd_id = 1;
+                    vd_id = request.signedCookies.vd_id_e;
+                    vcd_id = request.signedCookies.vcd_id_e;
                     return [4 /*yield*/, connection_1.default.query("SELECT v_name, v_address, v_yoe, v_email, v_mobile, v_reg_no, v_state_id, v_city_id, v_pincode, v_legal_id, v_pan, v_is_verified, v_gst FROM vendor_details WHERE vd_id = '" + vd_id + "';\n                                          SELECT vcd_name, vcd_title, vcd_dob, vcd_aadhar, vcd_contact, vcd_email, vcd_designation FROM v_contact_details WHERE vcd_id = " + vcd_id + " and vd_id = " + vd_id + ";\n                                         SELECT e_tender_vendor.etd_id,e_tender_vendor.et_id ,et_title, et_tender_fee, et_tender_ref_no, et_tender_desc, et_last_date_apply, et_bidding_date, et_file_uri, dept_id, e_tender_vendor.bidding_amt FROM e_tender_details INNER JOIN e_tender_vendor ON e_tender_details.et_id = e_tender_vendor.et_id WHERE e_tender_vendor.vd_id = '" + vd_id + "' and e_tender_vendor.vcd_id = '" + vcd_id + "';\n                                         SELECT e_tender_details.et_id, et_title, et_tender_fee, et_tender_ref_no, et_tender_desc, et_last_date_apply, et_bidding_date, et_file_uri, dept_id, e_tender_vendor.bidding_amt FROM e_tender_details INNER JOIN e_tender_vendor ON e_tender_details.et_id = e_tender_vendor.et_id WHERE e_tender_vendor.vd_id = '" + vd_id + "' and e_tender_vendor.vcd_id = '" + vcd_id + "' and e_tender_vendor.is_approved =1; \n\n    ")];
                 case 1:
                     profile = _a.sent();
@@ -135,12 +136,21 @@ function profile() {
         });
     });
 }
-//profile().then((results)=>{console.log(results)}).catch((error)=>{console.log(error)})
 router.get('/', function (request, response) {
     var user = is_user(request);
     Promise.all([get_username(request), get_tenders()])
         .then(function (results) {
-        response.render('user/index', { layout: false, tenders: results[1], user: user, username: results[0] });
+        response.render('user/index', {
+            layout: false,
+            tenders: results[1],
+            user: user,
+            username: results[0],
+            helpers: {
+                foo: function () {
+                    return 'foo.';
+                },
+            },
+        });
     })
         .catch(function (error) {
         console.log('Error in loading Home Page');
@@ -162,7 +172,8 @@ router.get('/login', function (request, response) {
 });
 router.get('/help', function (request, response) {
     var user = is_user(request);
-    Promise.all([get_username(request)]).then(function (results) {
+    Promise.all([get_username(request)])
+        .then(function (results) {
         response.render('user/help', { layout: false, user: user, username: results[0] });
     })
         .catch(function (error) {
@@ -172,9 +183,20 @@ router.get('/help', function (request, response) {
 });
 router.get('/profile', function (request, response) {
     var user = is_user(request);
-    Promise.all([get_username(request), get_years(), get_legal_status(), get_state(), profile()]).then(function (results) {
-        console.log(results[4][1]);
-        response.render('user/profile', { layout: false, user: user, username: results[0], years: results[1], status: results[2], states: results[3], my_tenders: results[4][2], approved_tenders: results[4][3], person_details: results[4][1] });
+    Promise.all([get_username(request), get_years(), get_legal_status(), get_state(), profile(request)])
+        .then(function (results) {
+        response.render('user/profile', {
+            layout: false,
+            user: user,
+            username: results[0],
+            years: results[1],
+            status: results[2],
+            states: results[3],
+            company_details: JSON.parse(JSON.stringify(results[4][0][0])),
+            person_details: JSON.parse(JSON.stringify(results[4][1][0])),
+            my_tenders: results[4][2],
+            approved_tenders: results[4][3],
+        });
     })
         .catch(function (error) {
         console.log('Error in loading Profile Page');
@@ -186,6 +208,63 @@ router.get('/tenders', function (request, response) {
     Promise.all([get_username(request)])
         .then(function (results) {
         response.render('user/tenders', { layout: false, user: user, username: results[0] });
+    })
+        .catch(function (error) {
+        console.log('Error in loading Tenders Page');
+        console.log(error);
+    });
+});
+router.get('/tender/apply', function (request, response) {
+    var user = is_user(request);
+    Promise.all([get_username(request)])
+        .then(function (results) {
+        response.render('user/tender_apply', { layout: false, user: user, username: results[0] });
+    })
+        .catch(function (error) {
+        console.log('Error in loading Tenders Page');
+        console.log(error);
+    });
+});
+router.get('/tender/upload-documents', function (request, response) {
+    var user = is_user(request);
+    Promise.all([get_username(request)])
+        .then(function (results) {
+        response.render('user/tender_sign', { layout: false, user: user, username: results[0] });
+    })
+        .catch(function (error) {
+        console.log('Error in loading Tenders Page');
+        console.log(error);
+    });
+});
+function confirmation(request) {
+    return __awaiter(this, void 0, void 0, function () {
+        var temp;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, connection_1.default.query("SELECT et_id,et_title,et_tender_fee,et_tender_ref_no,et_bidding_date FROM  e_tender_details WHERE et_id = '" + request.query['et_id'] + "';\n                                       SELECT * FROM (SELECT vendor_details.vd_id,vcd_name ,vcd_dob ,vcd_aadhar,vcd_contact,vcd_email,vcd_designation,v_name,v_address,v_yoe,v_email,v_mobile,v_reg_no,v_legal_id,v_pan,v_gst FROM v_contact_details,vendor_details WHERE v_contact_details.vd_id=vendor_details.vd_id) AS hello WHERE vd_id= '" + request.signedCookies['vd_id_e'] + "';\n                                       SELECT * FROM (SELECT file_uri.etd_id,furi1,furi2,txn_id,txn_amount,txn_timestamp,bank_name ,resp_message FROM file_uri,payment_transactions WHERE file_uri.etd_id=payment_transactions.etd_id) AS hello WHERE etd_id= '" + request.query['etd_id'] + "'")];
+                case 1:
+                    temp = _a.sent();
+                    return [2 /*return*/, temp[0]];
+            }
+        });
+    });
+}
+router.get('/tender/confirmation', function (request, response) {
+    var user = is_user(request);
+    Promise.all([get_username(request), confirmation(request)])
+        .then(function (results) {
+        response.render('user/tender_confirmation', { layout: false, user: user, username: results[0], tender_details: JSON.parse(JSON.stringify(results[1][0][0])), personal_details: JSON.parse(JSON.stringify(results[1][1][0])), payment_details: JSON.parse(JSON.stringify(results[1][2][0])) });
+    })
+        .catch(function (error) {
+        console.log('Error in loading Tenders Page');
+        console.log(error);
+    });
+});
+router.get('/tender/preview', function (request, response) {
+    var user = is_user(request);
+    Promise.all([get_username(request), confirmation(request)])
+        .then(function (results) {
+        response.render('user/preview', { layout: false, user: user, username: results[0], tender_details: JSON.parse(JSON.stringify(results[1][0][0])), personal_details: JSON.parse(JSON.stringify(results[1][1][0])), payment_details: JSON.parse(JSON.stringify(results[1][2][0])) });
     })
         .catch(function (error) {
         console.log('Error in loading Tenders Page');

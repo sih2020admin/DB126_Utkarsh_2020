@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/apply_tender.css">
+    <link rel="stylesheet" href="/css/progress_bar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Details</title>
+</head>
+
+<body>
+    {{> header-user}}
+    <div class="container">
+        <ul class="progressbar">
+            <li>Fill the details</li>
+            <li>Payment</li>
+            <li>E-sign and Upload documents</li>
+            <li>Freeze the bid</li>
+        </ul>
+    </div>
+     <div class="cont">
+      <br>
+      <h2>Details</h2>
+      <h3 style="text-align: left;">Tender Details</h3>
+      <table>
+        <tr>
+            <td><label><strong>Tender Id: </strong></label></td>
+            <td><label id="et_id"></label></td>
+            <td><label><strong>Reference No: </strong></label></td>
+            <td><label id="ref"></label></td>
+            <td><label><strong>Title: </strong></label></td>
+            <td><label id="title"></label></td>
+        </tr>
+        <tr>
+            <td><label><strong>Department: </strong></label></td>
+            <td><label id="department"></label></td>
+            <td><label><strong>Fee: </strong></label></td>
+            <td><label id="fee"></label></td>
+            <td><label><strong>File URL: </strong></label></td>
+            <td><a id="file" style="text-decoration:none;">Tender.pdf</a></td>
+        </tr>
+        <tr>
+            <td><label><strong>Closing Date: </strong></label></td>
+            <td><label id="close"></label></td>
+            <td><label><strong>Bidding Date: </strong></label></td>
+            <td><label id="bid"></label></td>
+        </tr>
+      </table>
+      <table>
+        <tr>
+            <td><label><strong>Description: </strong></label></td>
+            <td><label id="desc"></label></td>
+        </tr>
+      </table>
+      <br><hr><br>
+      <h3 style="text-align: left;">Personal Details</h3>
+      <table>
+        <tr>
+          <td><label><strong>Name: </strong></label></td>
+          <td><label id="name"></label></td>
+          <td><label><strong>DOB: </strong></label></td>
+          <td><label id="dob"></label></td>
+          <td><label><strong>Designation: </strong></label></td>
+          <td><label id="desg"></label></td>
+        </tr>
+        <tr>
+          <td><label><strong>Aadhar No: </strong></label></td>
+          <td><label id="aadhar"></label></td>
+          <td><label><strong>Email: </strong></label></td>
+          <td><label id="email"></label></td>
+          <td><label><strong>Contact No: </strong></label></td>
+          <td><label id="contact"></label></td>
+        </tr>
+      </table><br><hr><br>
+      <h3 style="text-align: left;">Company Details</h3>
+      <table>
+        <tr>
+          <td><label><strong>Name: </strong></label></td>
+          <td><label id="cname"></label></td>
+          <td><label><strong>Legal Status: </strong></label></td>
+          <td><label id="legal"></label></td>
+          <td><label><strong>Estd Year: </strong></label></td>
+          <td><label id="yoe"></label></td>
+        </tr>
+        <tr>
+          <td><label><strong>Registration No: </strong></label></td>
+          <td><label id="register"></label></td>
+          <td><label><strong>GST No: </strong></label></td>
+          <td><label id="gst"></label></td>
+          <td><label><strong>PAN No: </strong></label></td>
+          <td><label id="pan"></label></td>
+        </tr>
+        <tr>
+          <td><label><strong>Email: </strong></label></td>
+          <td><label id="cemail"></label></td>
+          <td><label><strong>Contact No: </strong></label></td>
+          <td><label id="ccontact"></label></td>
+          <td><label><strong>Address: </strong></label></td>
+          <td><label id="address"></label></td>
+        </tr>
+      </table><br>
+        <div  class="submit_button">
+            <button type="button" onclick="location='/tenders'">Back</button>
+            <button type="button" onclick="location='/profile'">Edit</button>
+            <button type="button" id ="freeze" onclick="next()"><i id="icon"></i>Save & Next  </button>
+        </div>
+    </div>
+</body>
+<script src="https://kit.fontawesome.com/523ff21025.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/javascript/v4_apply_tender_s1.js"></script>
+</html>

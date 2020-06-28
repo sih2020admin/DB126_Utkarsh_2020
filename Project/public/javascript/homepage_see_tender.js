@@ -1,7 +1,7 @@
 var response,
     data = ''
-var vd_id = get_cookie('vd_id')
-var vcd_id = get_cookie('vcd_id')
+var vd_id = get_cookie('vd_id_e')
+// var vcd_id = get_cookie('vcd_id')
 
 var xhr = new XMLHttpRequest()
 var url = '/gettenderlist'
@@ -37,7 +37,9 @@ xhr.onload = function () {
         //         cont_div.insertAdjacentHTML('beforeend', div);
         //         cont_div2.insertAdjacentHTML('beforeend', div);
         // }
-        for (var i = 0; i < response.length; i++) {
+        var length = response.length;
+        if  (response.length > 100) { length = 100}
+        for (var i = 0; i < length; i++) {
             var tr1 =
                 `<tr>
                             <td><a href="/login">` +
@@ -83,7 +85,7 @@ function apply(i) {
     console.log('applied click')
     if (vd_id != '') {
         var et_id = response[i].et_id
-        var data = JSON.stringify({ et_id: et_id, vd_id: vd_id })
+        var data = JSON.stringify({ et_id: et_id})
 
         var xhr = new XMLHttpRequest()
         // xhr.withCredentials = true;
@@ -101,16 +103,16 @@ function apply(i) {
                     window.location.href = '/payment/tender?et_id=' + et_id + '&etd_id=' + res.etd_id
                 } else if (status == '110') {
                     alert('Application applied,Directing To E-sign')
-                    window.location.href = '/v4_apply_tender_s3.html?et_id=' + et_id + '&etd_id=' + res.etd_id
+                    window.location.href = '/tender/upload-documents?et_id=' + et_id + '&etd_id=' + res.etd_id
                 } else if (status == '111') {
                     alert('Application applied,Freeze Bid')
-                    window.location.href = '/v5_confirm_tender.html?et_id=' + et_id + '&etd_id=' + res.etd_id
+                    window.location.href = '/tender/confirmation?et_id=' + et_id + '&etd_id=' + res.etd_id
                 } else if (status == '1111') {
                     // alert("Application sSubmitted redirecting to Application Preview page");
-                    window.location.href = '/v5_preview_tender.html?et_id=' + et_id + '&etd_id=' + res.etd_id
+                    window.location.href = '/tender/preview?et_id=' + et_id + '&etd_id=' + res.etd_id
                 }
             } else if (this.status === 404) {
-                window.location.href = '/v4_apply_tender_s1.html?et_id=' + response[i].et_id
+                window.location.href = '/tender/apply?et_id=' + response[i].et_id
             } else {
                 alert('Check Network')
             }

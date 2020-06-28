@@ -100,7 +100,6 @@ button:hover {
 }
 
 .main {
-  font-family: sans-serif;
   border: none;
   outline: none;
   overflow: hidden;
@@ -139,13 +138,12 @@ button:hover {
   background-color: var(--main_color);
   border: none;
   outline: none;
-  padding: 6px 40px 6px 10%;
+  padding: 6px 5%;
   color: #ffffff;
-  margin-top: 20px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 20px auto;
   text-align: left;
   position: relative;
+  border-radius: 0;
 }
 
 .tab button:hover {
@@ -155,25 +153,16 @@ button:hover {
   border: none;
 }
 
-.tab .button:after {
-  position: absolute;
-  bottom: 0;
-  height: 0;
-  width: 0;
-  right: 0;
-  border: 25px solid transparent;
-  border-bottom-color: red;
-  border-right-color: red;
-  content: "";
+.tab .active {
+  background-color: #ffffff;
+  color: var(--main_color);
 }
 
 .tabcontent {
-  -webkit-box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
-          box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
   margin: 0 40px 20px 18%;
   padding: 10px 10px 10px 40px;
   min-width: 920px;
-  max-width: 100%;
+  max-width: 1200px;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
@@ -231,11 +220,13 @@ strong {
 }
 
 .tenders_details {
+  font-family: 'Montserrat', sans-serif;
   margin: 40px;
   padding: 5px;
 }
 
 .tenders_details table {
+  font-size: 0.9em;
   margin: auto;
   max-width: 100%;
   border-radius: 1em;
@@ -253,9 +244,10 @@ strong {
   background-color: var(--main_color);
   color: #fff;
   font-weight: lighter;
+  white-space: nowrap;
 }
 
 .tenders_details th, .tenders_details td {
-  padding: 0.5em 1em;
+  padding: 1em 1em;
 }
 /*# sourceMappingURL=profile.css.map */
