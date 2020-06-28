@@ -107,7 +107,7 @@
     </div id='pdf2'>
       <div class="upload_documents">
         <h3 style="text-align: left;">Uploaded Documents</h3><br>
-        {{#if payment_details}}
+      {{#if payment_details}}
       {{#with payment_details}}
         <table>
           <tr>
@@ -158,28 +158,30 @@
     </div>
       <div id="download">
         <div style="float: left;">
+            {{#if misc_details}}
+            {{#with misc_details}}
             <p><strong>Place:</strong></p>
-            <p id="place">MUMBAI</p><br>
+            <p id="place">{{location}}</p><br>
             <p><strong>Date:</strong></p>
-            <p id="da_te"></p><br>
+            <p id="da_te">{{date timestamp}}</p><br>
             <p><strong>Time:</strong></p>
-            <p id="time"></p><br>
-          </div>
+            <p id="time">{{time timestamp}}</p><br>
+            {{/with}}
+            {{else}}
+              <label for="">Could not load Location Details</label>
+            {{/if}} 
+        </div>
           <div style="float: right;"  onclick="print3()">
             <a ><img src="/images/pdf.gif" width="55px" height="55px"></a><br>
             <a>Download</a>
           </div><br>
       </div>
-      <div  class="submit_button" style="display: none;">
-        <!-- <button type="button" onclick="back()">Back</button> -->
-        <button id ="freeze" type="submit" onclick="freeze()">Freeze Bid</button>
-      </div>
     </div>
   </body>
 
-
-<script type="text/javascript" src="/javascript/v5_confirm_tender.js"></script>
+<script src="/javascript/v5_confirm_tender.js"></script>
 <script type="text/javascript">
+
   var base64Img = null;
 margins = {
   top: 70,
@@ -189,14 +191,6 @@ margins = {
 };
 
   var d = new Date();
-  document.getElementById("da_te").innerHTML = d.getDate() + "-" + d.getMonth() + "-" + d.getFullYear();
-  document.getElementById("time").innerHTML = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
-
-  function print() {const filename  = 'ThisIsYourPDFFilename.pdf';
-
-	}
-
-
 function print2() {
 		const filename  = 'ThisIsYourPDFFilename.pdf';
 
@@ -207,18 +201,11 @@ function print2() {
 			pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 10, 0, 350, 400);
 			pdf.save(filename);
     });
-
-
-  
-
-
   }
   
 
   function print3(){
-    console.log(message)
     var doc = new jsPDF('p', 'mm', [297, 210]);
-    var doc2 = new jsPDF('p', 'mm', [297, 210]);
     // doc.text('Hello world!', 10, 10)
     // doc.addPage();
     // doc.setFontSize(22);
@@ -317,6 +304,7 @@ function print2() {
     doc.text( $("#cemail").text(), 70, 260)
     doc.text( $("#ccontact").text(), 70, 270)
     doc.text( $("#address").text(), 70, 280)
+    doc.addPage()
 
         // doc.setFontSize(16);
         // doc.setFontType("bold");
@@ -329,22 +317,22 @@ function print2() {
         // doc.text("Email: "+ message.result1[0].v_email+ "\tContact No: "+message.result1[0].v_mobile,15,160)
         // doc.text("Address: " +message.result1[0].v_address,15,170)
 
-    doc2.setFont("Times New Roman");
-    doc2.setFontSize(16);
-    doc2.setFontType("bold");
-    doc2.setTextColor(0,0,0);
-    doc2.text("Uploaded Documents",20,50)
-    doc2.setFontType("");
-    doc2.setTextColor(157,157,157);
-    doc2.setFontSize(14);
-    doc2.text("Tehnical:",30,60)
-    doc2.text("BOQ:",30,70)
-    doc2.setTextColor(0,0,0);
-    // doc2.text( message.result2[0].furi1, 70, 60)
-    // doc2.text( message.result2[0].furi2, 70, 70)
+    doc.setFont("Times New Roman");
+    doc.setFontSize(16);
+    doc.setFontType("bold");
+    doc.setTextColor(0,0,0);
+    doc.text("Uploaded Documents",20,50)
+    doc.setFontType("");
+    doc.setTextColor(157,157,157);
+    doc.setFontSize(14);
+    doc.text("Tehnical:",30,60)
+    doc.text("BOQ:",30,70)
+    doc.setTextColor(0,0,0);
+    // doc.text( message.result2[0].furi1, 70, 60)
+    // doc.text( message.result2[0].furi2, 70, 70)
      
-    doc2.setDrawColor(196,196,196);
-    doc2.line(5,80,205,80)
+    doc.setDrawColor(196,196,196);
+    doc.line(5,80,205,80)
 
         // doc.setFontSize(16);
         // doc.setFontType("bold");
@@ -355,26 +343,26 @@ function print2() {
         // doc.textWithLink("Tehnical: ",15,200, {url: message.result2[0].furi1})
         // doc.textWithLink("BOQ: ",15,210, {url: message.result2[0].furi2})
  
-    doc2.setFontSize(16);
-    doc2.setFontType("bold");
-    doc2.setTextColor(0,0,0);
-    doc2.text("PAYMENT DETAILS",20,90)
-    doc2.setFontType("");
-    doc2.setTextColor(157,157,157);
-    doc2.setFontSize(14);
-    doc2.text("Transaction ID:",30,100)
-    doc2.text("Amount:",30,110)
-    doc2.text("Date & Time:",30,120)
-    doc2.text("Bank Name:",30,130)
-    doc2.text("Payment Method:",30,140)
-    doc2.text("Status:",30,150)
-    doc2.setTextColor(0,0,0);
-    doc2.text( $("#transaction").text(), 70, 100)
-    doc2.text( $("#amt").text(), 70, 110)
-    doc2.text( $("#date").text(), 70, 120)
-    doc2.text( $("#bank").text(), 70, 130)
-    doc2.text( "Debit card", 70, 140)
-    doc2.text( $("#status").text(), 70, 150)
+    doc.setFontSize(16);
+    doc.setFontType("bold");
+    doc.setTextColor(0,0,0);
+    doc.text("PAYMENT DETAILS",20,90)
+    doc.setFontType("");
+    doc.setTextColor(157,157,157);
+    doc.setFontSize(14);
+    doc.text("Transaction ID:",30,100)
+    doc.text("Amount:",30,110)
+    doc.text("Date & Time:",30,120)
+    doc.text("Bank Name:",30,130)
+    doc.text("Payment Method:",30,140)
+    doc.text("Status:",30,150)
+    doc.setTextColor(0,0,0);
+    doc.text( $("#transaction").text(), 70, 100)
+    doc.text( $("#amt").text(), 70, 110)
+    doc.text( $("#date").text(), 70, 120)
+    doc.text( $("#bank").text(), 70, 130)
+    doc.text( "Debit card", 70, 140)
+    doc.text( $("#status").text(), 70, 150)
 
 
         // doc.setFontSize(16);
@@ -386,29 +374,27 @@ function print2() {
         // doc.text("Transaction ID: "+ message.result2[0].txn_id + "\tAmount: "+message.result2[0].txn_amount+ "\tDate & Time: "+message.result2[0].txn_timestamp,15,220)
         // doc.text("Bank Name: "+ message.result2[0].bank_name + "\tPayment Method: "+"Debit card"+ "\tStatus: "+message.result2[0].resp_message,15,230)
  
-    doc2.setDrawColor(196,196,196);
-    doc2.line(5,160,205,160)
+    doc.setDrawColor(196,196,196);
+    doc.line(5,160,205,160)
  
     
-    doc2.setFontSize(16);
-    doc2.setFontType("");
-    doc2.setTextColor(157,157,157);
-    doc2.text("Place: ",20,170)
-    doc2.setTextColor(0,0,0);
-    doc2.text("Mumbai",35,170)
+    doc.setFontSize(16);
+    doc.setFontType("");
+    doc.setTextColor(157,157,157);
+    doc.text("Place: ",20,170)
+    doc.setTextColor(0,0,0);
+    doc.text($('#place').text(),35,170)
 
-    doc2.setTextColor(157,157,157);
-    doc2.text("Date: ",20,180)
-    doc2.setTextColor(0,0,0);
-    doc2.text(d.getDate() + "-" + d.getMonth() + "-" + d.getFullYear(),35,180)
+    doc.setTextColor(157,157,157);
+    doc.text("Date: ",20,180)
+    doc.setTextColor(0,0,0);
+    doc.text($("#da_te").text(),35,180)
 
-    doc2.setTextColor(157,157,157);
-    doc2.text("Time: ",20,190)
-    doc2.setTextColor(0,0,0);
-    doc2.text(d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds(),35,190)
-
+    doc.setTextColor(157,157,157);
+    doc.text("Time: ",20,190)
+    doc.setTextColor(0,0,0);
+    doc.text($('#time').text(),35,190)
     doc.save("Preview")
-    doc2.save("Preview2")
   }
 </script>
 </html>

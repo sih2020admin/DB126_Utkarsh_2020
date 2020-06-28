@@ -41,7 +41,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
 var connection_1 = __importDefault(require("./../database/connections/connection"));
-var iplocate = require('node-iplocate');
 var router = express_1.default.Router();
 function get_tenders() {
     return __awaiter(this, void 0, void 0, function () {
@@ -241,7 +240,7 @@ function confirmation(request) {
         var temp;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, connection_1.default.query("SELECT et_id,et_title,et_tender_fee,et_tender_ref_no,et_bidding_date FROM  e_tender_details WHERE et_id = '" + request.query['et_id'] + "';\n                                       SELECT * FROM (SELECT vendor_details.vd_id,vcd_name ,vcd_dob ,vcd_aadhar,vcd_contact,vcd_email,vcd_designation,v_name,v_address,v_yoe,v_email,v_mobile,v_reg_no,v_legal_id,v_pan,v_gst FROM v_contact_details,vendor_details WHERE v_contact_details.vd_id=vendor_details.vd_id) AS hello WHERE vd_id= '" + request.signedCookies['vd_id_e'] + "';\n                                       SELECT * FROM (SELECT file_uri.etd_id,furi1,furi2,txn_id,txn_amount,txn_timestamp,bank_name ,resp_message FROM file_uri,payment_transactions WHERE file_uri.etd_id=payment_transactions.etd_id) AS hello WHERE etd_id= '" + request.query['etd_id'] + "'")];
+                case 0: return [4 /*yield*/, connection_1.default.query("SELECT et_id,et_title,et_tender_fee,et_tender_ref_no,et_bidding_date FROM  e_tender_details WHERE et_id = '" + request.query['et_id'] + "';\n                                       SELECT * FROM (SELECT vendor_details.vd_id,vcd_name ,vcd_dob ,vcd_aadhar,vcd_contact,vcd_email,vcd_designation,v_name,v_address,v_yoe,v_email,v_mobile,v_reg_no,v_legal_id,v_pan,v_gst FROM v_contact_details,vendor_details WHERE v_contact_details.vd_id=vendor_details.vd_id) AS hello WHERE vd_id= '" + request.signedCookies['vd_id_e'] + "';\n                                       SELECT * FROM (SELECT file_uri.etd_id,furi1,furi2,txn_id,txn_amount,txn_timestamp,bank_name ,resp_message FROM file_uri,payment_transactions WHERE file_uri.etd_id=payment_transactions.etd_id) AS hello WHERE etd_id= '" + request.query['etd_id'] + "';\n                                       SELECT location,timestamp from e_tender_vendor WHERE vd_id='" + request.signedCookies['vd_id_e'] + "' and vcd_id='" + request.signedCookies['vcd_id_e'] + "'and etd_id='" + request.query['etd_id'] + "' and et_id='" + request.query['et_id'] + "'")];
                 case 1:
                     temp = _a.sent();
                     return [2 /*return*/, temp[0]];
@@ -262,9 +261,11 @@ router.get('/tender/confirmation', function (request, response) {
 });
 router.get('/tender/preview', function (request, response) {
     var user = is_user(request);
+    var s;
     Promise.all([get_username(request), confirmation(request)])
         .then(function (results) {
-        response.render('user/preview', { layout: false, user: user, username: results[0], tender_details: JSON.parse(JSON.stringify(results[1][0][0])), personal_details: JSON.parse(JSON.stringify(results[1][1][0])), payment_details: JSON.parse(JSON.stringify(results[1][2][0])) });
+        console.log(results[1][3]);
+        response.render('user/preview', { layout: false, user: user, username: results[0], tender_details: JSON.parse(JSON.stringify(results[1][0][0])), personal_details: JSON.parse(JSON.stringify(results[1][1][0])), payment_details: JSON.parse(JSON.stringify(results[1][2][0])), misc_details: JSON.parse(JSON.stringify(results[1][3][0])) });
     })
         .catch(function (error) {
         console.log('Error in loading Tenders Page');

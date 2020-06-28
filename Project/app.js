@@ -22,7 +22,7 @@ var httpsOptions = {
     key: fs_1.default.readFileSync('certificates/key.pem'),
     cert: fs_1.default.readFileSync('certificates/certificate.crt'),
 }, sessionStore = new MySQLStore({}, db_1.default);
-app.engine('.hbs', express_handlebars_1.default({ extname: '.hbs', helpers: { date: require('./database/helpers/Date') } }));
+app.engine('.hbs', express_handlebars_1.default({ extname: '.hbs', helpers: { date: require('./database/helpers/Date').date, time: require('./database/helpers/Date').time } }));
 app.set('view engine', '.hbs');
 app.set('trust proxy', ['165.22.210.37', '127.0.0.1']);
 app.use(express_1.default.json());

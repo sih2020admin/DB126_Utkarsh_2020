@@ -3,6 +3,16 @@ var et_id = urlParams.get('et_id')
 var etd_id = urlParams.get('etd_id')
 // var vd_id = get_cookie('vd_id')
 var message
+function validateLocation(location) {
+    if (location.trim() === '') {
+        Swal.fire({
+            icon: 'error',
+            title: 'Invalid Location',
+        })
+        return false
+    }
+    return true
+}
 
 /* var xhr = new XMLHttpRequest()
 var url = '/view'
@@ -46,23 +56,36 @@ xhr.onload = function () {
     } else if (this.status == 400) alert('Error 400 ')
     else alert('Some Error Occured')
 } */
-console.log(new Date())
 function freeze() {
-    document.getElementById('icon').className = 'fa fa-spinner fa-spin'
-    var xhr = new XMLHttpRequest()
-    var url = '/confirm_tender_s5'
-    xhr.open('POST', url)
-    xhr.setRequestHeader('Content-Type', 'application/json')
-    xhr.send(JSON.stringify({ etd_id: etd_id }))
-    xhr.onload = function () {
-        if (this.status == 200) {
-            window.location.href = '/tender/preview?et_id=' + et_id + '&etd_id=' + etd_id
-        } else if (this.status == 400) {
-            document.getElementById('icon').className = ''
-            alert('Error 400')
-        } else {
-            document.getElementById('icon').className = ''
-            alert('Some Error Occured')
+    Swal.fire({
+        title: 'Enter your location',
+        input: 'text',
+        inputAttributes: {
+            autocapitalize: 'off',
+        },
+        showCancelButton: true,
+        confirmButtonText: 'Submit',
+    }).then((results) => {
+        if (results) {
+            if (validateLocation(results['value'])) {
+                document.getElementById('icon').className = 'fa fa-spinner fa-spin'
+                var xhr = new XMLHttpRequest()
+                var url = '/confirm_tender_s5'
+                xhr.open('POST', url)
+                xhr.setRequestHeader('Content-Type', 'application/json')
+                xhr.send(JSON.stringify({ etd_id: etd_id, location: results['value'], timestamp: new Date() }))
+                xhr.onload = function () {
+                    if (this.status == 200) {
+                        window.location.href = '/tender/preview?et_id=' + et_id + '&etd_id=' + etd_id
+                    } else if (this.status == 400) {
+                        document.getElementById('icon').className = ''
+                        alert('Error 400')
+                    } else {
+                        document.getElementById('icon').className = ''
+                        alert('Some Error Occured')
+                    }
+                }
+            }
         }
-    }
+    })
 }
