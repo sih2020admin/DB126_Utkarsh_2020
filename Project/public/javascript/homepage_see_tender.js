@@ -1,7 +1,7 @@
 var response,
     data = ''
-var vd_id = get_cookie('vd_id')
-var vcd_id = get_cookie('vcd_id')
+var vd_id = get_cookie('vd_id_e')
+// var vcd_id = get_cookie('vcd_id')
 
 var xhr = new XMLHttpRequest()
 var url = '/gettenderlist'
@@ -83,7 +83,7 @@ function apply(i) {
     console.log('applied click')
     if (vd_id != '') {
         var et_id = response[i].et_id
-        var data = JSON.stringify({ et_id: et_id, vd_id: vd_id })
+        var data = JSON.stringify({ et_id: et_id})
 
         var xhr = new XMLHttpRequest()
         // xhr.withCredentials = true;

@@ -12,14 +12,14 @@
   </head>
   <body>
     {{> header-user}}
-    <div class="container">
+    {{!-- <div class="container">
       <ul class="progressbar">
           <li class="active">Fill the details</li>
           <li class="active">Payment</li>
           <li class="active">E-sign and Upload documents</li>
           <li>Freeze the bid</li>
       </ul>
-  </div>
+    </div> --}}
     <div  class="cont" style="height: 1300px;">
       <div id='pdf'>
       <br>
@@ -30,71 +30,85 @@
       </div>
       <h3 style="text-align: left;">Tender Details</h3>
       <div id="pdf1">
+      {{#if tender_details}}
+      {{#with tender_details}}
       <table id="t1">
         <tr>
           <td><label><strong>Tender Id: </strong></label></td>
-          <td><label id="et_id"></label></td>
+          <td><label id="et_id">{{et_id}}</label></td>
           <td><label><strong>Reference No: </strong></label></td>
-          <td><label id="ref"></label></td>
+          <td><label id="ref">{{et_tender_ref_no}}</label></td>
           <td><label><strong>Title: </strong></label></td>
-          <td><label id="title"></label></td>
+          <td><label id="title">{{et_title}}</label></td>
         </tr>
         <tr>
           <td><label><strong>Fee: </strong></label></td>
-          <td><label id="fee"></label></td>
+          <td><label id="fee">{{et_tender_fee}}</label></td>
           <td><label><strong>Bidding Date: </strong></label></td>
-          <td><label id="bid"></label></td>
+          <td><label id="bid">{{date et_bidding_date}}</label></td>
         </tr>
       </table><br><hr><br>
+      {{/with}}
+      {{else}}
+       <label for="">Could not load Tender Details</label>      
+      {{/if}}
       <h3 style="text-align: left;">Personal Details</h3>
+      {{#if personal_details}}
+      {{#with personal_details}}
       <table>
         <tr>
           <td><label><strong>Name: </strong></label></td>
-          <td><label id="name"></label></td>
+          <td><label id="name">{{vcd_name}}</label></td>
           <td><label><strong>DOB: </strong></label></td>
-          <td><label id="dob"></label></td>
+          <td><label id="dob">{{date vcd_dob}}</label></td>
           <td><label><strong>Designation: </strong></label></td>
-          <td><label id="desg"></label></td>
+          <td><label id="desg">{{vcd_designation}}</label></td>
         </tr>
         <tr>
           <td><label><strong>Aadhar No: </strong></label></td>
-          <td><label id="aadhar"></label></td>
+          <td><label id="aadhar">{{vcd_aadhar}}</label></td>
           <td><label><strong>Email: </strong></label></td>
-          <td><label id="email"></label></td>
+          <td><label id="email">{{vcd_email}}</label></td>
           <td><label><strong>Contact No: </strong></label></td>
-          <td><label id="contact"></label></td>
+          <td><label id="contact">{{vcd_contact}}</label></td>
         </tr>
       </table><br><hr><br>
       <h3 style="text-align: left;">Company Details</h3>
       <table>
         <tr>
           <td><label><strong>Name: </strong></label></td>
-          <td><label id="cname"></label></td>
+          <td><label id="cname">{{v_name}}</label></td>
           <td><label><strong>Legal Status: </strong></label></td>
-          <td><label id="legal"></label></td>
+          <td><label id="legal">{{v_legal_id}}</label></td>
           <td><label><strong>Estd Year: </strong></label></td>
-          <td><label id="yoe"></label></td>
+          <td><label id="yoe">{{v_yoe}}</label></td>
         </tr>
         <tr>
           <td><label><strong>Registration No: </strong></label></td>
-          <td><label id="register"></label></td>
+          <td><label id="register">{{v_reg_no}}</label></td>
           <td><label><strong>GST No: </strong></label></td>
-          <td><label id="gst"></label></td>
+          <td><label id="gst">{{v_gst}}</label></td>
           <td><label><strong>PAN No: </strong></label></td>
-          <td><label id="pan"></label></td>
+          <td><label id="pan">{{v_pan}}</label></td>
         </tr>
         <tr>
           <td><label><strong>Email: </strong></label></td>
-          <td><label id="cemail"></label></td>
+          <td><label id="cemail">{{v_email}}</label></td>
           <td><label><strong>Contact No: </strong></label></td>
-          <td><label id="ccontact"></label></td>
+          <td><label id="ccontact">{{v_mobile}}</label></td>
           <td><label><strong>Address: </strong></label></td>
-          <td><label id="address"></label></td>
+          <td><label id="address">{{v_address}}</label></td>
         </tr>
       </table><hr>
+      {{/with}}
+      {{else}}
+        <label for="">Could not load Personal and Company Details</label>
+      {{/if}}
     </div id='pdf2'>
       <div class="upload_documents">
         <h3 style="text-align: left;">Uploaded Documents</h3><br>
+        {{#if payment_details}}
+      {{#with payment_details}}
         <table>
           <tr>
             <th>Sr.No.</th>
@@ -105,13 +119,13 @@
           <tr>
             <td>1</td>
             <td>Tehnical</td>
-            <td id="file1"></td>
+            <td id="file1">{{furi1}}</td>
             <td><a href="">Preview</a></td>
           </tr> 
           <tr>
             <td>2</td>
             <td>BOQ</td>
-            <td id="file2"></td>
+            <td id="file2">{{furi2}}</td>
             <td><a href="">Preview</a></td>
           </tr> 
         </table>  
@@ -128,14 +142,18 @@
             <th>Status</th>
           </tr> 
           <tr>
-            <td id="transaction"></td>
-            <td id="amt"></td>
-            <td id="date"></td>
-            <td id="bank"></td>
+            <td id="transaction">{{txn_id}}</td>
+            <td id="amt">{{txn_amount}}</td>
+            <td id="date">{{date txn_timestamp}}</td>
+            <td id="bank">{{bank_name}}</td>
             <td >Debit Card</td>
-            <td id="status" style="color: #008000;"></td>
+            <td id="status" style="color: #008000;">{{resp_message}}</td>
           </tr> 
-        </table> 
+        </table>
+      {{/with}}
+      {{else}}
+        <label for="">Could not load File and Payment Details</label>
+      {{/if}} 
       </div><br>
     </div>
       <div id="download">
@@ -148,7 +166,7 @@
             <p id="time"></p><br>
           </div>
           <div style="float: right;"  onclick="print3()">
-            <a ><img src="images/pdf.gif" width="55px" height="55px"></a><br>
+            <a ><img src="/images/pdf.gif" width="55px" height="55px"></a><br>
             <a>Download</a>
           </div><br>
       </div>
@@ -230,11 +248,11 @@ function print2() {
     doc.text("Fee:",30,90)
     doc.text("Bidding Date:",30,100)
     doc.setTextColor(0,0,0);
-    doc.text( et_id, 70, 60)
-    doc.text( message.result0[0].et_tender_ref_no, 70, 70)
-    doc.text( message.result0[0].et_title, 70, 80)
-    doc.text( message.result0[0].et_tender_fee, 70, 90)
-    doc.text( message.result0[0].et_bidding_date.slice(0,-14), 70, 100)
+    doc.text( $("#et_id").text(), 70, 60)
+    doc.text( $("#ref").text(), 70, 70)
+    doc.text( $("#title").text(), 70, 80)
+    doc.text( $("#fee").text(), 70, 90)
+    doc.text( $("#bid").text(), 70, 100)
 
         // doc.text("Tender Id: "+ et_id + "\tRefernce number: "+message.result0[0].et_tender_ref_no + "\tTitle: "+message.result0[0].et_title,15,60)
         // doc.text("Fee: "+ message.result0[0].et_tender_fee + "\tBidding Date: "+message.result0[0].et_bidding_date.slice(0,-14),15,70)
@@ -255,11 +273,11 @@ function print2() {
     doc.text("Aadhar No:",30,160)
     doc.text("Email:",30,170)
     doc.setTextColor(0,0,0);
-    doc.text( message.result1[0].vcd_name, 70, 130)
-    doc.text( message.result1[0].vcd_dob, 70, 140)
-    doc.text( message.result1[0].vcd_designation, 70, 150)
-    doc.text( message.result1[0].vcd_aadhar, 70, 160)
-    doc.text( message.result1[0].vcd_email, 70, 170)
+    doc.text( $("#name").text(), 70, 130)
+    doc.text( $("#dob").text(), 70, 140)
+    doc.text( $("#desg").text(), 70, 150)
+    doc.text( $("#aadhar").text(), 70, 160)
+    doc.text( $("#email").text(), 70, 170)
 
         // doc.setFontSize(16);
         // doc.setFontType("bold");
@@ -290,15 +308,15 @@ function print2() {
     doc.text("Contact No:",30,270)
     doc.text("Address:",30,280)
     doc.setTextColor(0,0,0);
-    doc.text( message.result1[0].v_name, 70, 200)
-    doc.text( message.result1[0].v_legal_id, 70, 210)
-    doc.text( message.result1[0].v_yoe, 70, 220)
-    doc.text( message.result1[0].v_reg_no, 70, 230)
-    doc.text( message.result1[0].v_gst, 70, 240)
-    doc.text( message.result1[0].v_pan, 70, 250)
-    doc.text( message.result1[0].v_email, 70, 260)
-    doc.text( message.result1[0].v_mobile, 70, 270)
-    doc.text( message.result1[0].v_address, 70, 280)
+    doc.text( $("#cname").text(), 70, 200)
+    doc.text( $("#legal").text(), 70, 210)
+    doc.text( $("#yoe").text(), 70, 220)
+    doc.text( $("#register").text(), 70, 230)
+    doc.text( $("#gst").text(), 70, 240)
+    doc.text( $("#pan").text(), 70, 250)
+    doc.text( $("#cemail").text(), 70, 260)
+    doc.text( $("#ccontact").text(), 70, 270)
+    doc.text( $("#address").text(), 70, 280)
 
         // doc.setFontSize(16);
         // doc.setFontType("bold");
@@ -351,12 +369,12 @@ function print2() {
     doc2.text("Payment Method:",30,140)
     doc2.text("Status:",30,150)
     doc2.setTextColor(0,0,0);
-    doc2.text( message.result2[0].txn_id, 70, 100)
-    doc2.text( message.result2[0].txn_amount, 70, 110)
-    doc2.text( message.result2[0].txn_timestamp, 70, 120)
-    doc2.text( message.result2[0].bank_name, 70, 130)
+    doc2.text( $("#transaction").text(), 70, 100)
+    doc2.text( $("#amt").text(), 70, 110)
+    doc2.text( $("#date").text(), 70, 120)
+    doc2.text( $("#bank").text(), 70, 130)
     doc2.text( "Debit card", 70, 140)
-    doc2.text( message.result2[0].resp_message, 70, 150)
+    doc2.text( $("#status").text(), 70, 150)
 
 
         // doc.setFontSize(16);
