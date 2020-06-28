@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.6.6deb5
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Jun 21, 2020 at 12:19 PM
--- Server version: 10.3.16-MariaDB
--- PHP Version: 7.3.8
+-- Host: localhost:3306
+-- Generation Time: Jun 28, 2020 at 06:08 PM
+-- Server version: 5.7.30-0ubuntu0.18.04.1
+-- PHP Version: 7.2.24-0ubuntu0.18.04.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -1666,10 +1664,10 @@ CREATE TABLE `e_tender_details` (
   `et_tender_desc` text NOT NULL,
   `et_last_date_apply` date NOT NULL,
   `et_bidding_date` date NOT NULL,
-  `et_file_uri` text DEFAULT NULL,
+  `et_file_uri` text,
   `is_delete` tinyint(4) NOT NULL,
   `dept_id` int(4) NOT NULL,
-  `is_approved` tinyint(4) NOT NULL DEFAULT 0
+  `is_approved` tinyint(4) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -1688,7 +1686,9 @@ INSERT INTO `e_tender_details` (`et_id`, `et_title`, `et_tender_fee`, `et_tender
 (149, 'srfws', '8651', '845', 'xcgedgd', '2020-05-13', '2020-05-16', 'tesdex', 0, 1, 0),
 (150, 'testing zip', '1200', 'new123', 'testing zip on server with none file upload', '2020-05-07', '2020-05-10', 'uploads/sample.zip', 0, 1, 1),
 (151, 'dghdvxc', '1200', '47512', 'dcfvgbdfgbhrrtgbhn', '2020-05-17', '2020-05-18', 'uploads/sample.zip', 0, 1, 0),
-(152, 'testing', '1200', '11223344', 'xsdcfgvbhnhj', '2020-06-13', '2020-06-15', 'uploads/sample.zip', 0, 1, 0);
+(152, 'testing', '1200', '11223344', 'xsdcfgvbhnhj', '2020-06-13', '2020-06-15', 'uploads/sample.zip', 0, 1, 0),
+(153, 'Test', '123', '45897', 'Smaple doc', '2020-06-26', '2020-10-07', 'uploads/sample.zip', 0, 1, 0),
+(154, 'Test1', '789', '789', 'Test1', '2020-06-30', '2020-07-02', 'uploads/sample.zip', 0, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -1704,65 +1704,67 @@ CREATE TABLE `e_tender_vendor` (
   `bidding_amt` varchar(10) NOT NULL,
   `is_approved` varchar(1) NOT NULL DEFAULT '0',
   `date_of_approval` varchar(10) DEFAULT NULL,
-  `status` varchar(5) NOT NULL DEFAULT '100'
+  `status` varchar(5) NOT NULL DEFAULT '100',
+  `location` varchar(50) DEFAULT NULL,
+  `timestamp` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `e_tender_vendor`
 --
 
-INSERT INTO `e_tender_vendor` (`etd_id`, `et_id`, `vd_id`, `vcd_id`, `bidding_amt`, `is_approved`, `date_of_approval`, `status`) VALUES
-(1, 123, 1, 1, '1200', '1', '', '110'),
-(5, 124, 1, 1, '12000', '0', '', '100'),
-(21, 123, 57, 19, '12000', '0', NULL, '100'),
-(22, 143, 1, 1, '12000', '0', NULL, '110'),
-(24, 144, 1, 1, '12000', '0', NULL, '110'),
-(25, 143, 57, 19, '12000', '0', NULL, '100'),
-(26, 143, 60, 21, '12000', '0', NULL, '100'),
-(27, 143, 60, 21, '12000', '0', NULL, '100'),
-(28, 143, 60, 21, '12000', '0', NULL, '100'),
-(29, 143, 63, 22, '12000', '1', NULL, '111'),
-(30, 143, 63, 22, '12000', '0', NULL, '100'),
-(31, 143, 63, 22, '12000', '0', NULL, '100'),
-(32, 144, 57, 19, '12000', '0', NULL, '111'),
-(33, 145, 91, 23, '12000', '0', NULL, '111'),
-(34, 145, 57, 19, '12000', '0', NULL, '110'),
-(35, 147, 96, 24, '12000', '0', NULL, '110'),
-(36, 144, 63, 22, '12000', '0', NULL, '1111'),
-(37, 147, 57, 19, '12000', '0', NULL, '1111'),
-(38, 147, 60, 21, '12000', '0', NULL, '100'),
-(39, 144, 60, 21, '12000', '0', NULL, '100'),
-(40, 144, 96, 24, '12000', '0', NULL, '100'),
-(41, 147, 1, 1, '12000', '0', NULL, '110'),
-(42, 147, 1, 1, '12000', '0', NULL, '100'),
-(43, 147, 1, 1, '12000', '0', NULL, '100'),
-(44, 147, 1, 1, '12000', '0', NULL, '100'),
-(45, 147, 1, 1, '12000', '0', NULL, '100'),
-(46, 148, 91, 23, '12000', '0', NULL, '111'),
-(47, 148, 96, 24, '12000', '0', NULL, '100'),
-(48, 148, 57, 19, '12000', '0', NULL, '110'),
-(49, 149, 57, 19, '12000', '0', NULL, '110'),
-(50, 149, 96, 24, '12000', '0', NULL, '110'),
-(51, 149, 57, 19, '12000', '0', NULL, '100'),
-(52, 144, 91, 23, '12000', '0', NULL, '1111'),
-(53, 149, 63, 22, '12000', '0', NULL, '110'),
-(54, 147, 91, 23, '12000', '0', NULL, '100'),
-(55, 144, 91, 23, '12000', '0', NULL, '100'),
-(56, 147, 91, 23, '12000', '0', NULL, '100'),
-(57, 144, 96, 24, '12000', '0', NULL, '100'),
-(58, 144, 96, 24, '12000', '0', NULL, '100'),
-(59, 144, 96, 24, '12000', '0', NULL, '100'),
-(60, 144, 91, 23, '12000', '0', NULL, '100'),
-(61, 144, 91, 23, '12000', '0', NULL, '100'),
-(62, 144, 91, 23, '12000', '0', NULL, '100'),
-(63, 150, 91, 23, '12000', '1', NULL, '1111'),
-(64, 150, 57, 19, '12000', '0', NULL, '1111'),
-(65, 149, 91, 23, '12000', '0', NULL, '111'),
-(66, 151, 57, 19, '12000', '0', NULL, '1111'),
-(67, 151, 63, 22, '12000', '0', NULL, '110'),
-(68, 152, 57, 19, '12000', '0', NULL, '110'),
-(69, 152, 63, 22, '12000', '0', NULL, '111'),
-(70, 152, 60, 21, '12000', '0', NULL, '100');
+INSERT INTO `e_tender_vendor` (`etd_id`, `et_id`, `vd_id`, `vcd_id`, `bidding_amt`, `is_approved`, `date_of_approval`, `status`, `location`, `timestamp`) VALUES
+(1, 123, 1, 1, '1200', '1', '', '1111', 'Mumbai', '2020-06-28T12:16:06.171Z'),
+(5, 124, 1, 1, '12000', '0', '', '100', NULL, NULL),
+(21, 123, 57, 19, '12000', '0', NULL, '100', NULL, NULL),
+(22, 143, 1, 1, '12000', '0', NULL, '110', NULL, NULL),
+(24, 144, 1, 1, '12000', '0', NULL, '110', NULL, NULL),
+(25, 143, 57, 19, '12000', '0', NULL, '100', NULL, NULL),
+(26, 143, 60, 21, '12000', '0', NULL, '100', NULL, NULL),
+(27, 143, 60, 21, '12000', '0', NULL, '100', NULL, NULL),
+(28, 143, 60, 21, '12000', '0', NULL, '100', NULL, NULL),
+(29, 143, 63, 22, '12000', '1', NULL, '111', NULL, NULL),
+(30, 143, 63, 22, '12000', '0', NULL, '100', NULL, NULL),
+(31, 143, 63, 22, '12000', '0', NULL, '100', NULL, NULL),
+(32, 144, 57, 19, '12000', '0', NULL, '111', NULL, NULL),
+(33, 145, 91, 23, '12000', '0', NULL, '111', NULL, NULL),
+(34, 145, 57, 19, '12000', '0', NULL, '110', NULL, NULL),
+(35, 147, 96, 24, '12000', '0', NULL, '110', NULL, NULL),
+(36, 144, 63, 22, '12000', '0', NULL, '1111', NULL, NULL),
+(37, 147, 57, 19, '12000', '0', NULL, '1111', NULL, NULL),
+(38, 147, 60, 21, '12000', '0', NULL, '100', NULL, NULL),
+(39, 144, 60, 21, '12000', '0', NULL, '100', NULL, NULL),
+(40, 144, 96, 24, '12000', '0', NULL, '100', NULL, NULL),
+(41, 147, 1, 1, '12000', '0', NULL, '110', NULL, NULL),
+(42, 147, 1, 1, '12000', '0', NULL, '100', NULL, NULL),
+(43, 147, 1, 1, '12000', '0', NULL, '100', NULL, NULL),
+(44, 147, 1, 1, '12000', '0', NULL, '100', NULL, NULL),
+(45, 147, 1, 1, '12000', '0', NULL, '100', NULL, NULL),
+(46, 148, 91, 23, '12000', '0', NULL, '111', NULL, NULL),
+(47, 148, 96, 24, '12000', '0', NULL, '100', NULL, NULL),
+(48, 148, 57, 19, '12000', '0', NULL, '110', NULL, NULL),
+(49, 149, 57, 19, '12000', '0', NULL, '110', NULL, NULL),
+(50, 149, 96, 24, '12000', '0', NULL, '110', NULL, NULL),
+(51, 149, 57, 19, '12000', '0', NULL, '100', NULL, NULL),
+(52, 144, 91, 23, '12000', '0', NULL, '1111', NULL, NULL),
+(53, 149, 63, 22, '12000', '0', NULL, '110', NULL, NULL),
+(54, 147, 91, 23, '12000', '0', NULL, '100', NULL, NULL),
+(55, 144, 91, 23, '12000', '0', NULL, '100', NULL, NULL),
+(56, 147, 91, 23, '12000', '0', NULL, '100', NULL, NULL),
+(57, 144, 96, 24, '12000', '0', NULL, '100', NULL, NULL),
+(58, 144, 96, 24, '12000', '0', NULL, '100', NULL, NULL),
+(59, 144, 96, 24, '12000', '0', NULL, '100', NULL, NULL),
+(60, 144, 91, 23, '12000', '0', NULL, '100', NULL, NULL),
+(61, 144, 91, 23, '12000', '0', NULL, '100', NULL, NULL),
+(62, 144, 91, 23, '12000', '0', NULL, '100', NULL, NULL),
+(63, 150, 91, 23, '12000', '1', NULL, '1111', NULL, NULL),
+(64, 150, 57, 19, '12000', '0', NULL, '1111', NULL, NULL),
+(65, 149, 91, 23, '12000', '0', NULL, '111', NULL, NULL),
+(66, 151, 57, 19, '12000', '0', NULL, '1111', NULL, NULL),
+(67, 151, 63, 22, '12000', '0', NULL, '110', NULL, NULL),
+(68, 152, 57, 19, '12000', '0', NULL, '110', NULL, NULL),
+(69, 152, 63, 22, '12000', '0', NULL, '111', NULL, NULL),
+(70, 152, 60, 21, '12000', '0', NULL, '100', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1772,8 +1774,8 @@ INSERT INTO `e_tender_vendor` (`etd_id`, `et_id`, `vd_id`, `vcd_id`, `bidding_am
 
 CREATE TABLE `file_uri` (
   `furi_id` int(11) NOT NULL,
-  `furi1` text DEFAULT NULL,
-  `furi2` text DEFAULT NULL,
+  `furi1` text,
+  `furi2` text,
   `etd_id` int(11) NOT NULL,
   `f_type` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -1908,7 +1910,6 @@ CREATE TABLE `payment_transactions` (
 --
 
 INSERT INTO `payment_transactions` (`etd_id`, `txn_id`, `order_id`, `txn_amount`, `resp_message`, `resp_code`, `refund_amount`, `txn_timestamp`, `bank_txn_id`, `gateway_name`, `bank_name`, `payment_mode`) VALUES
-(1, '20200415111212800110168578401467177', 'ORD4483446283', '1200.00', 'TXN_SUCCESS', '01', '0.00', '2020-04-15 19:55:40.0', '777001075408515', 'HDFC', 'Bank', 'DC'),
 (22, '20200418111212800110168135101464148', 'ORD67799611', '100.00', 'TXN_SUCCESS', '01', '0.00', '2020-04-18 17:37:45.0', '777001317925377', 'HDFC', 'Bank', 'DC'),
 (24, '20200418111212800110168952101448203', 'ORD1614919355', '101.00', 'TXN_SUCCESS', '01', '0.00', '2020-04-18 18:02:33.0', '777001314779128', 'HDFC', 'Bank', 'DC'),
 (1, '20200424111212800110168285901481333', 'ORD2716104451', '1200.00', 'TXN_SUCCESS', '01', '0.00', '2020-04-24 22:38:40.0', '777001212985127', 'HDFC', 'Bank of Bahrain and Kuwait', 'DC'),
@@ -1967,8 +1968,15 @@ INSERT INTO `role_details` (`role_id`, `role_name`) VALUES
 CREATE TABLE `sessions` (
   `session_id` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `expires` int(11) UNSIGNED NOT NULL,
-  `data` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL
+  `data` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `sessions`
+--
+
+INSERT INTO `sessions` (`session_id`, `expires`, `data`) VALUES
+('31083b31-a19b-4fb5-bf82-779ed595df0a', 1593354795, '{\"cookie\":{\"originalMaxAge\":7200000,\"expires\":\"2020-06-28T14:18:36.337Z\",\"httpOnly\":true,\"path\":\"/\"},\"vd_id\":1,\"vcd_id\":1,\"digi_access\":0}');
 
 -- --------------------------------------------------------
 
@@ -2062,7 +2070,7 @@ CREATE TABLE `vendor_details` (
 --
 
 INSERT INTO `vendor_details` (`vd_id`, `v_name`, `v_address`, `v_yoe`, `v_email`, `v_mobile`, `v_reg_no`, `v_state_id`, `v_dist_id`, `v_city_id`, `v_pincode`, `v_legal_id`, `v_pan`, `v_is_verified`, `v_gst`) VALUES
-(1, 'sequeria industry', 'andheri east', '1999', 'ws@gmail.com', '7894561230', 'D123N67', '5', '4', '10', '400706', '1', 'Rf234Rt', '0', '789456'),
+(1, 'sequeria industry', 'andheri east', '1772', 'ws@gmail.com', '7894561230', 'D123N67', 'Himachal Pradesh [HP]', '4', 'Bilaspur', '400706', 'Limited Company', 'Rf234Rt', '0', '789456'),
 (57, 'sankey soln', 'bhandup', '2000', 'meetsanket24@gmail.com', '9702717188', '9876543210', '21', '-1', '2120', '400078', '0', '4654867465', '0', '548454365748654'),
 (58, 'fghjk', 'dfghjk', '2020', 'v@gmail.com', '7894561230', 'werty', '21', '-1', '2127', '456789', '0', '7894561230', '0', '789456123012345'),
 (60, 'ABC', 'near vidyavihar stn.', '2010', 'abc@gmail.com', '8329779783', '123456', '21', '-1', '2118', '421005', '4', 'ABCD123456', '0', '123456789012345'),
@@ -2099,7 +2107,7 @@ CREATE TABLE `v_contact_details` (
   `vcd_email` varchar(320) DEFAULT NULL,
   `vcd_designation` varchar(20) NOT NULL,
   `vd_id` int(11) NOT NULL,
-  `digi_access` tinyint(4) NOT NULL DEFAULT 0
+  `digi_access` tinyint(4) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -2107,7 +2115,7 @@ CREATE TABLE `v_contact_details` (
 --
 
 INSERT INTO `v_contact_details` (`vcd_id`, `vcd_name`, `vcd_title`, `vcd_dob`, `vcd_aadhar`, `vcd_contact`, `vcd_email`, `vcd_designation`, `vd_id`, `digi_access`) VALUES
-(1, 'winston sequeria', 'Mr.', '16-6-1999', '456745674567', '8975647845', 'winstonsequeria@gmail.com', 'CEO', 1, 0),
+(1, 'Winston', 'Mr.', '2020-06-09', '456745674567', '8975647845', 'winstonsequeria@gmail.com', 'CEO', 1, 0),
 (19, 'Sanket Deshmukh', 'Mr', '2000-05-13', '070707070707', '9702717188', 'meetsanket24@gmail.com', 'CEO', 57, 1),
 (20, 'asdfghj', 'Mr', '2020-05-25', '123412341234', '8976853951', 'v@gmail.com', 'ceo', 58, 0),
 (21, 'Priya Singh', 'Ms', '1999-10-27', '147147147147', '8329779783', 'spriya1252012@gmail.com', 'Operations manager', 60, 0),
@@ -2266,55 +2274,46 @@ ALTER TABLE `v_contact_details`
 --
 ALTER TABLE `admin_detail`
   MODIFY `ad_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
 --
 -- AUTO_INCREMENT for table `districts`
 --
 ALTER TABLE `districts`
   MODIFY `d_id` tinyint(4) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `e_tender_details`
 --
 ALTER TABLE `e_tender_details`
-  MODIFY `et_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=153;
-
+  MODIFY `et_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=155;
 --
 -- AUTO_INCREMENT for table `e_tender_vendor`
 --
 ALTER TABLE `e_tender_vendor`
   MODIFY `etd_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
-
 --
 -- AUTO_INCREMENT for table `file_uri`
 --
 ALTER TABLE `file_uri`
-  MODIFY `furi_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
-
+  MODIFY `furi_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 --
 -- AUTO_INCREMENT for table `log_in_details`
 --
 ALTER TABLE `log_in_details`
   MODIFY `login_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
-
 --
 -- AUTO_INCREMENT for table `states`
 --
 ALTER TABLE `states`
   MODIFY `st_id` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
-
 --
 -- AUTO_INCREMENT for table `vendor_details`
 --
 ALTER TABLE `vendor_details`
   MODIFY `vd_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
-
 --
 -- AUTO_INCREMENT for table `v_contact_details`
 --
 ALTER TABLE `v_contact_details`
   MODIFY `vcd_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
-
 --
 -- Constraints for dumped tables
 --
@@ -2362,7 +2361,6 @@ ALTER TABLE `payment_transactions`
 --
 ALTER TABLE `v_contact_details`
   ADD CONSTRAINT `v_contact_details_ibfk_1` FOREIGN KEY (`vd_id`) REFERENCES `vendor_details` (`vd_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
