@@ -24,8 +24,7 @@ h3{
     margin: auto;
     margin-top: 20px;
     border-radius: 10px;
-    -webkit-box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.2);
-            box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.2);
+    box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.25);
     -webkit-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;
 }
@@ -173,11 +172,10 @@ button:hover {
 
 /* css for ul, li elements and back button (all digilocker) */
 .modal-body {
-  padding: 2px 16px;
-
+  padding: 20px 30px;
       ul {
         position: relative;
-        width: 750px;
+        // width: 750px;
         margin: 20px auto 20px;
         padding: 10px;
         box-sizing: border-box;
@@ -198,10 +196,16 @@ button:hover {
         
       ul li span:nth-child(1) {
         width: 30px;
+        color: var(--main_color);     
       }
         
       ul li span:nth-child(2) {
-        width: 200px;
+        width: fit-content;
+        min-width: 200px;
+        text-align: left;
+        margin-left: 5px;
+        color: var(--main_color);     
+        white-space: nowrap; 
       }
         
       ul li span:nth-child(3) {
@@ -216,7 +220,8 @@ button:hover {
         
       ul li:hover {
         transform: scale(1.06);
-        background: #248fe6;
+        // background: #248fe6;
+        box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.25);
       }
 }
 .wrapper {
@@ -225,16 +230,17 @@ button:hover {
   
 #back {
   margin: auto;
+  margin-right: 10px;
   /* background-color: #0f52e4; */
   /* Green */
   border: none;
   /* color: white; */
-  padding: 15px 32px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
 }
+
   
 #file_upload {
   margin: auto;
@@ -273,9 +279,9 @@ button:hover {
   position: relative;
   background-color: white;
   margin: auto;
-  padding: 0;
   border: 1px solid #888;
-  width: 60%;
+  width: 40%;
+  border-radius: 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   -webkit-animation-name: animatetop;
   -webkit-animation-duration: 0.4s;
@@ -311,23 +317,27 @@ button:hover {
 /* The Close Button */
 .close {
   color: white;
-  float: right;
   font-size: 28px;
-  font-weight: bold;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 10px;
 }
-  
+   
 .close:hover,
 .close:focus {
-  color: #000;
+  color: red;
   text-decoration: none;
   cursor: pointer;
 }
  
 .closeotp {
   color: white;
-  float: right;
   font-size: 28px;
-  font-weight: bold;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 10px;
 }
   
 .closeotp:hover,
@@ -338,9 +348,11 @@ button:hover {
 }
 
 .modal-header {
-  padding: 2px 16px;
+  padding: 10px;
   background-color: #663EFD;
   color: white;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
   
