@@ -147,7 +147,10 @@ button:hover{
     width: 100%;
     text-align: left;
  }
- @media (min-height: 750px){
+ footer{
+     position: relative;
+ }
+ @media (min-height: 960px){
     footer{
         position: fixed;
     }
