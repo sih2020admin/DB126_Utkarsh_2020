@@ -1,9 +1,13 @@
 "use strict";
-module.exports.date = function formatDate(date) {
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.formatTime = exports.formatDate = void 0;
+function formatDate(date) {
     var temp = new Date(date);
     return temp.getDate() + "/" + (temp.getMonth() + 1) + "/" + temp.getFullYear();
-};
-module.exports.time = function formatTime(time) {
+}
+exports.formatDate = formatDate;
+function formatTime(time) {
     var temp = new Date(time);
     return temp.getHours() + ":" + temp.getMinutes() + ":" + temp.getSeconds();
-};
+}
+exports.formatTime = formatTime;
