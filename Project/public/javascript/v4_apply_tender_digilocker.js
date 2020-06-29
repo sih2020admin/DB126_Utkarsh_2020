@@ -330,7 +330,7 @@ function openModal() {
                 console.log('Your token has been refreshed successfully.')
 
                 //on success display modal and fetch files;
-                modal.style.display = 'block'
+                modal.style.display = 'flex'
                 get_files()
             } else if (this.status == 400) {
                 alert(temp.error)
@@ -345,7 +345,7 @@ function openModal() {
 $(document).ready(function () {
     //on click of back button
     $('#back').click(function () {
-        document.getElementById('icon2').style.display = 'block'
+        document.getElementById('icon2').style.display = ''
         is_upload = 0
         var dir_element = document.getElementById('cur_dir')
         console.log(dir_element.innerHTML)
@@ -383,7 +383,7 @@ function uploadFiles() {
         Technical_or_BOQ = 0
         alert('Do you want to revoke your digilocker token?')
     } else {
-        document.getElementById('icon3').style.display = 'block'
+        document.getElementById('icon3').style.display = ''
         //update "upload" status
         is_upload = 1
 

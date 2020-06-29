@@ -125,7 +125,7 @@ input[type="file"] {
 }
 
 button {
-  width: 100px;
+  min-width: 100px;
   height: 30px;
   font-size: 16px;
   font-weight: 300;
@@ -227,6 +227,7 @@ button:hover {
   /* background: rgba(255, 255, 255, .1); */
   border-radius: 5px;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .modal-body ul li {
@@ -259,23 +260,24 @@ button:hover {
 
 .modal-body ul li span:nth-child(3) {
   width: 350px;
-  visibility: hidden;
 }
 
 .modal-body ul li span:nth-child(4) {
   width: 70px;
-  visibility: hidden;
 }
 
 .modal-body ul li:hover {
-  -webkit-transform: scale(1.06);
-          transform: scale(1.06);
   -webkit-box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.25);
           box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.25);
+  border-radius: 5px;
 }
 
 .wrapper {
   text-align: center;
+}
+
+.fa-file {
+  font-size: 20px;
 }
 
 #back {
@@ -283,7 +285,7 @@ button:hover {
   margin-right: 10px;
   /* background-color: #0f52e4; */
   /* Green */
-  border: none;
+  border: 0.4px solid var(--main_color);
   /* color: white; */
   text-align: center;
   text-decoration: none;
@@ -329,7 +331,8 @@ button:hover {
   background-color: white;
   margin: auto;
   border: 1px solid #888;
-  width: 40%;
+  min-width: 40%;
+  display: inline-block;
   border-radius: 10px;
   -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
