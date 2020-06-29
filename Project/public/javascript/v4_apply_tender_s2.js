@@ -1,8 +1,69 @@
-function next(){
+var queryString = window.location.search;
+var urlParams = new URLSearchParams(queryString);
+var etd_id;
+var et_id=null;
+et_id = (_a = urlParams.get('et_id')) === null || _a === void 0 ? void 0 : _a.toString();
+function status_check() {
+      var data = JSON.stringify({ et_id: et_id })
+      var res;
 
+      var xhr = new XMLHttpRequest()
+      xhr.onload = function () {
+          if (this.status === 200) {
+              res = JSON.parse(this.responseText)
+              var status_res = res.status
+              etd_id = res.etd_id
+              // if (status_res == '100') {
+                
+              //         window.location.href = '/payment/tender?et_id=' + et_id + '&etd_id=' + etd_id
+
+              // }
+                if (status_res == '110') {
+                 
+                      window.location.href = '/tender/upload-documents?et_id=' + et_id + '&etd_id=' + etd_id
+                  
+              } else if (status_res == '111') {
+                 
+                          window.location.href = '/tender/confirmation?et_id=' + et_id + '&etd_id=' + res.etd_id
+                  
+              } else if (status_res == '1111') {
+                  
+                      window.location.href = '/tender/preview?et_id=' + et_id + '&etd_id=' + etd_id
+                  
+              }
+          }
+           else if (this.status === 404) {
+              Swal.fire({
+                  title: 'Confirmation',
+                  text: 'Apply for the tender',
+                  icon: 'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#663EFD',
+                  cancelButtonColor: '#a6a6a6',
+                  confirmButtonText: 'Apply',
+              }).then((result, res) => {
+                  console.log(result ,res)
+                  if(result.isConfirmed)
+                  window.location.href = '/tender/apply?et_id=' + response[i].et_id
+              })
+          }
+           else {
+              alert('Check Network')
+          }
+      }
+
+      xhr.open('POST', '/get_etd_id')
+      xhr.setRequestHeader('Content-Type', 'application/json')
+      xhr.send(data)
 }
-var status = "100"
+if(et_id==null){
+  window.location.href = '/tenders'
+}
+else{
+  status_check();
+}
 
+var status = "100"
 var data = JSON.stringify({"et_id":et_id,"etd_id":etd_id});var xhr = new XMLHttpRequest();
         // xhr.withCredentials = true;
 

@@ -12,14 +12,6 @@
   </head>
   <body>
     {{> header-user}}
-    {{!-- <div class="container">
-      <ul class="progressbar">
-          <li class="active">Fill the details</li>
-          <li class="active">Payment</li>
-          <li class="active">E-sign and Upload documents</li>
-          <li>Freeze the bid</li>
-      </ul>
-    </div> --}}
     <div  class="cont" style="height: 1300px;">
       <div id='pdf'>
       <br>
@@ -147,7 +139,7 @@
             <td id="date">{{date txn_timestamp}}</td>
             <td id="bank">{{bank_name}}</td>
             <td >Debit Card</td>
-            <td id="status" style="color: #008000;">{{resp_message}}</td>
+            <td id="status" style="color: #008000;">{{status resp_message}}</td>
           </tr> 
         </table>
       {{/with}}

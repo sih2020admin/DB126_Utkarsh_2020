@@ -266,21 +266,20 @@ button:hover{
         margin-top: 10px;   
         margin-bottom: 10px;
         border-radius: 10px; 
-        border: 1px solid var(--main_color);
+        // border: 1px solid var(--main_color);
         white-space: wrap;
         overflow-x: hidden;
         overflow-y: hidden;
         //transition: .18s ease all;
         transition: all .5s ease; 
-    }
-
-    .cont:hover{
-        transform: scale(1.01);
-        border: 0px;
-        // box-shadow: 3px 4px 6px -6px rgba(103, 62, 253, 0.5),
-        // -3px -4px 6px -6px rgba(103, 62, 253, 0.5);
         box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.25);
     }
+
+    // .cont:hover{
+    //     transform: scale(1.01);
+    //     border: 0px;
+    //     box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.25);
+    // }
     p{
         color: var(--text_color);
     }
@@ -317,10 +316,8 @@ button:hover{
         background-color: var(--main_color);
         color: #ffffff;
         font-size: 1rem;
-        padding: 5px 20px 5px 20px;
-        border-radius: 3px;
-        height: fit-content;
-        width: fit-content;
+        padding: 5px 20px;
+        border-radius: 5px;
         margin-top: 1px;
         transition: all .3s ease-in-out; 
         border: 0.4px solid var(--main_color);
@@ -336,6 +333,7 @@ button:hover{
         cursor: pointer;
     } 
 }
+
 @media only screen and (max-width:680px){
     .cont{
         width: 800px;

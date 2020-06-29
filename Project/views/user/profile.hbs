@@ -99,7 +99,7 @@
       <!-- <h4>Welcome Ms./Mr. xyz</h4> -->
       <div id="personal_details" class="profile_details">
         <div style="width: 950px;">
-          <h3 style="float: left;">Personal Details</h3><br>
+          <h3 style="float: left;"><i class="fas fa-user"></i>&nbsp Personal Details</h3><br>
         </div>
         <table class="profile_table">
           {{#if person_details}}
@@ -127,7 +127,7 @@
         </table><br><br>
       </div>
       <div id="Company_Profile" class="profile_details">
-        <h3 style="float: left;">Company Details</h3><br><br>
+        <h3 style="float: left;"><i class="far fa-building"></i>&nbsp Company Details</h3><br><br>
         {{#if company_details}}
           <table class="profile_table">
             <tr>
@@ -177,8 +177,8 @@
         {{/if}}
         <p id="tc1"></p><br>
       </div>
-      <button id="edit1"><i class='fas fa-edit'></i>&nbspEdit</button>
-      <button id="save" style="display: none;" onclick="save()"><i id="icon1"></i> &nbspSave</button>
+      <button id="edit1"><i class='fas fa-edit'></i>&nbsp Edit</button>
+      <button id="save" style="display: none;" onclick="save()"><i id="icon1"></i>Save</button>
       <button id="cancel" style="display: none;" onclick="location='/profile'">Cancel</button>
     </div>
   </div>
