@@ -264,7 +264,6 @@ router.get('/tender/preview', function (request, response) {
     var s;
     Promise.all([get_username(request), confirmation(request)])
         .then(function (results) {
-        console.log(results[1][3]);
         response.render('user/preview', { layout: false, user: user, username: results[0], tender_details: JSON.parse(JSON.stringify(results[1][0][0])), personal_details: JSON.parse(JSON.stringify(results[1][1][0])), payment_details: JSON.parse(JSON.stringify(results[1][2][0])), misc_details: JSON.parse(JSON.stringify(results[1][3][0])) });
     })
         .catch(function (error) {

@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 require("./loader/loader");
+var helpers_1 = require("./miscellaneous/helpers/helpers");
 var express_handlebars_1 = __importDefault(require("express-handlebars"));
 var fs_1 = __importDefault(require("fs"));
 var https_1 = __importDefault(require("https"));
@@ -11,6 +12,7 @@ var express_1 = __importDefault(require("express"));
 var cors_1 = __importDefault(require("cors"));
 var db_1 = __importDefault(require("./routes/db"));
 var load_routes_1 = require("./loader/loader_modules/load-routes");
+var login_redirect_1 = require("./miscellaneous/middleware/user/login-redirect");
 var app = express_1.default();
 var cookie = require('cookie-parser');
 var session = require('express-session');
@@ -22,7 +24,7 @@ var httpsOptions = {
     key: fs_1.default.readFileSync('certificates/key.pem'),
     cert: fs_1.default.readFileSync('certificates/certificate.crt'),
 }, sessionStore = new MySQLStore({}, db_1.default);
-app.engine('.hbs', express_handlebars_1.default({ extname: '.hbs', helpers: { date: require('./database/helpers/Date').date, time: require('./database/helpers/Date').time } }));
+app.engine('.hbs', express_handlebars_1.default({ extname: '.hbs', helpers: helpers_1.helpers }));
 app.set('view engine', '.hbs');
 app.set('trust proxy', ['165.22.210.37', '127.0.0.1']);
 app.use(express_1.default.json());
@@ -44,14 +46,16 @@ app.use(session({
         maxAge: 1000 * 60 * 60 * 2,
     },
 }));
-app.use(require('./middleware/checker'));
-app.use(require('./middleware/checker1'));
+app.use(login_redirect_1.redirectToProfilePage);
+/* app.use(require('./middleware/checker'))
+app.use(require('./middleware/checker1')) */
 app = load_routes_1.loadStaticFiles(app);
 //app.use(morgan('dev'))
 app = load_routes_1.loadRouterFiles(app);
 app.get('*', function (request, response) {
     response.render('error', { layout: false });
 });
-https_1.default.createServer(httpsOptions, app).listen(port, function () {
+/* console.log(require('express-list-endpoints')(app))
+ */ https_1.default.createServer(httpsOptions, app).listen(port, function () {
     console.log('Server listening On Port ' + port);
 });
