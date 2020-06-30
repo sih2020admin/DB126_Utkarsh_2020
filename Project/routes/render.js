@@ -40,7 +40,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
-var connection_1 = __importDefault(require("./../database/connections/connection"));
+var connection_1 = __importDefault(require("./../miscellaneous/database/connections/connection"));
 var router = express_1.default.Router();
 function get_tenders() {
     return __awaiter(this, void 0, void 0, function () {

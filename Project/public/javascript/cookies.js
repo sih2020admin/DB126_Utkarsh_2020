@@ -1,5 +1,4 @@
 'use strict'
-/* console.log('hello cookies')*/
 var IP = 'localhost'
 document.writeln('<script src="/javascript/jquery-3.4.1.min.js" type="text/javascript"></sc' + 'ript>')
 function get_cookie(cname) {
@@ -11,11 +10,9 @@ function get_cookie(cname) {
             c = c.substring(1)
         }
         if (c.indexOf(name) == 0) {
-            console.log('cookies ', cname, c.substring(name.length, c.length))
             return c.substring(name.length, c.length)
         }
     }
-    console.log(cname + ' not defined in cookie')
     return ''
 }
 function delete_cookies() {
