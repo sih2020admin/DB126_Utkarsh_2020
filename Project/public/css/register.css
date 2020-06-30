@@ -188,7 +188,11 @@ button:hover {
   text-align: left;
 }
 
-@media (min-height: 750px) {
+footer {
+  position: relative;
+}
+
+@media (min-height: 960px) {
   footer {
     position: fixed;
   }

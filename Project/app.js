@@ -12,7 +12,8 @@ var express_1 = __importDefault(require("express"));
 var cors_1 = __importDefault(require("cors"));
 var db_1 = __importDefault(require("./routes/db"));
 var load_routes_1 = require("./loader/loader_modules/load-routes");
-var login_redirect_1 = require("./miscellaneous/middleware/user/login-redirect");
+var redirect_1 = require("./miscellaneous/middleware/user/redirect");
+var tender_1 = require("./miscellaneous/middleware/user/tender");
 var app = express_1.default();
 var cookie = require('cookie-parser');
 var session = require('express-session');
@@ -46,11 +47,11 @@ app.use(session({
         maxAge: 1000 * 60 * 60 * 2,
     },
 }));
-/* app.use(require('./middleware/checker'))
-app.use(require('./middleware/checker1')) */
 app = load_routes_1.loadStaticFiles(app);
 //app.use(morgan('dev'))
-app.use(login_redirect_1.redirectToProfilePage, login_redirect_1.redirectToLoginPage);
+app.use(redirect_1.redirectToProfilePage, redirect_1.redirectToLoginPage);
+app.use('/tender/confirmation', tender_1.confirmTender);
+app.use('/tender/preview', tender_1.previewTender);
 app = load_routes_1.loadRouterFiles(app);
 app.get('*', function (request, response) {
     response.render('error', { layout: false });

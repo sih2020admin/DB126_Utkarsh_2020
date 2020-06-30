@@ -1,8 +1,8 @@
 var vd_id = get_cookie('vd_id')
 var vcd_id = get_cookie('vcd_id')
-if (vd_id == '') {
+/* if (vd_id == '') {
     window.location.href = '/login'
-}
+} */
 
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);

@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.redirectToLoginPage = exports.redirectToProfilePage = void 0;
-var debug = require('debug')('middleware:login-redirect');
+var debug = require('debug')('middleware:redirect');
 function redirectToProfilePage(request, response, next) {
     if (request.url.match(/\/login|\/register/)) {
         if (request.signedCookies['vcd_id_e'] !== undefined || request.signedCookies['vd_id_e'] !== undefined) {
