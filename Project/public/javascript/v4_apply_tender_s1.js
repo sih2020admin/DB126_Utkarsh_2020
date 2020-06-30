@@ -82,7 +82,7 @@ function next(){
             // document.getElementById('tc').innerHTML = 'Bidding Amount cannot be Empty or Charachter';
         // }
         // else{
-            if (validate_bid_amount(results['value'])=='') {
+            if (validate_bid_amount(results['value'])!='') {
                 var xhr = new XMLHttpRequest();
                 xhr.open('POST', '/apply_tender');
                 xhr.setRequestHeader('Content-Type', 'application/json');
