@@ -65,7 +65,9 @@ button, input{
   outline: none;
   color: #663EFD;
   margin: 0;
+  cursor: pointer;
   background-color: #fff;
+  /* border: 1px solid red; */
 }
 /* .dropbtn:hover{
   color: #fff;
@@ -79,7 +81,7 @@ button, input{
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
   border-radius: 5px;
-  /* margin-left: 55px; */
+  margin-left: -65px;
   border-radius: 10px;
 }
 .dropdown-content a {
