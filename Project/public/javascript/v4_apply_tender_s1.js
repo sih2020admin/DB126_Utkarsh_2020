@@ -7,10 +7,43 @@ var vcd_id = get_cookie('vcd_id')
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 
+//Redirecting 
 var et_id = urlParams.get('et_id');
 var status = '000';
-var etd_id = urlParams.get('etd_id');
+var etd_id;
+if(et_id==null){
+    window.location.href = '/tenders'
+}
+else{
+      var xhr = new XMLHttpRequest()
+      xhr.open('POST', '/get_etd_id')
+      xhr.setRequestHeader('Content-Type', 'application/json')
+      var data = JSON.stringify({ "et_id": et_id })
+      xhr.send(data);
+      xhr.onload = function () {
+        if (this.status === 200) {
+            var res;
+            res = JSON.parse(this.responseText)
+            var status_res = res.status
+            etd_id = res.etd_id
+            if (status_res == '100') {
+                window.location.href = '/payment/tender?et_id=' + et_id + '&etd_id=' + etd_id
+            }else if (status_res == '110') {
+                window.location.href = '/tender/upload-documents?et_id=' + et_id + '&etd_id=' + etd_id
+            } else if (status_res == '111') {
+                window.location.href = '/tender/confirmation?et_id=' + et_id + '&etd_id=' + res.etd_id
+            } else if (status_res == '1111') {
+                window.location.href = '/tender/preview?et_id=' + et_id + '&etd_id=' + etd_id
+            }
+        }
+        else if(this.status == 404){}
+        else {
+            alert('Check Network')
+        }
+    }
+}
 
+//Tender Details/Personal deatils/Company Details
 var xhr = new XMLHttpRequest();
 xhr.open('POST', '/tender_desc');
 xhr.setRequestHeader('Content-Type', 'application/json');
@@ -56,6 +89,7 @@ xhr.onload = function () {
     }
 }
 
+//Save and Next
 function next(){
     Swal.fire({
         title: 'Enter Bidding Amount',
@@ -86,7 +120,7 @@ function next(){
     });
 }
 
-
+//Progress Bar
 function progess_bar() {
     //progress bar code------------------------------------------------------
 
