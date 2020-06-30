@@ -126,7 +126,7 @@ router.get('/tender', function (request, response) {
                             debug(err);
                         }
                         else {
-                            response.render('user/v4_apply_tender_s2', { layout: false, amount: result[0].et_tender_fee, allow: allow, email: res[0].vcd_email, contact: res[0].vcd_contact });
+                            response.render('user/tender-payment', { layout: false, amount: result[0].et_tender_fee, allow: allow, email: res[0].vcd_email, contact: res[0].vcd_contact });
                         }
                     });
                 }

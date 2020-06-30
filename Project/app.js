@@ -18,6 +18,7 @@ var app = express_1.default();
 var cookie = require('cookie-parser');
 var session = require('express-session');
 var MySQLStore = require('express-mysql-session')(session);
+var helmet = require('helmet');
 var morgan = require('morgan');
 var uuidv4 = require('uuid').v4;
 var port = process.env.PORT;
@@ -31,6 +32,7 @@ app.set('trust proxy', ['165.22.210.37', '127.0.0.1']);
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use(cookie(process.env.COOKIE_SECRET));
+app.use(helmet());
 app.use(cors_1.default({
     origin: '*',
     methods: ['GET', 'POST'],
@@ -62,3 +64,4 @@ app.get('*', function (request, response) {
  */ https_1.default.createServer(httpsOptions, app).listen(port, function () {
     console.log('Server listening On Port ' + port);
 });
+exports.default = app;
