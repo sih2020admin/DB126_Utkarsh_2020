@@ -56,17 +56,6 @@ xhr.onload = function () {
     }
 }
 
-function validate_bid_amount(amount) {
-    if (amount === '') {
-        Swal.fire({
-            icon: 'error',
-            title: 'Invalid',
-        })
-        return false
-    }
-    return true
-}
-
 function next(){
     Swal.fire({
         title: 'Enter Bidding Amount',
@@ -75,33 +64,22 @@ function next(){
         confirmButtonText: 'Submit',
     }).then((results)=> {
         if (results) {
-            // document.getElementById('icon').className = 'fa fa-spinner fa-spin';
-            // var bid_amt=document.getElementById('bid_amount').value;
-        // if(bid_amt==''){
-            // document.getElementById('icon').className = '';
-            // document.getElementById('tc').innerHTML = 'Bidding Amount cannot be Empty or Charachter';
-        // }
-        // else{
-            if (validate_bid_amount(results['value'])!='') {
+            if (results['value']) {
                 var xhr = new XMLHttpRequest();
                 xhr.open('POST', '/apply_tender');
                 xhr.setRequestHeader('Content-Type', 'application/json');
-                var data = JSON.stringify({ et_id: et_id, bid_amt: results});  //bid amount to be taken from user
+                var data = JSON.stringify({ et_id: et_id, bid_amt: results['value']});  //bid amount to be taken from user
                 xhr.send(data);
                 xhr.onload = function () {
                     if (this.status == 200) {
                         var resp = JSON.parse(this.responseText);
                         var etd_id = resp.etd_id;
-                        window.location.href = '/payment/tender?et_id=' + et_id + '&etd_id=' + etd_id;
+                        window.location = '/payment/tender?et_id=' + et_id + '&etd_id=' + etd_id;
                     } 
-                    else if (this.status == 400) {
-                        // document.getElementById('icon').className = '';
+                    else if (this.status == 400)
                         alert('Error 400');
-                    } 
-                    else {
-                        // document.getElementById('icon').className = '';
+                    else 
                         alert('Some Error Occured');
-                    }
                 }
             }
         }
