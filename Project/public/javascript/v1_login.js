@@ -1,6 +1,7 @@
 var x = document.getElementById('enter_otp')
 var y = document.getElementById('otp')
 var z = document.getElementById('confirm')
+var o = document.getElementById('oicon')
 var login_button = document.getElementById('login')
 var message
 document.getElementById('username').value = ''
@@ -36,6 +37,7 @@ function show() {
 
                 x.style.display = ''
                 y.style.display = 'inline-block'
+                o.style.display = 'inline-block'
                 z.style.display = ''
 
                 document.getElementById('confirm').onclick = function () {
@@ -45,6 +47,7 @@ function show() {
                     xhr.setRequestHeader('Content-Type', 'application/json')
                     xhr.send(JSON.stringify({ aadharno: message.aadhar, OTP: y.value }))
                     document.getElementById('otp').value = ''
+
                     xhr.onload = function () {
                         if (this.status == 200) {
                             //alert("OTP verified");

@@ -91,27 +91,33 @@ xhr.onload = function () {
 
 //Save and Next
 function next(){
-    document.getElementById('icon').className = 'fa fa-spinner fa-spin';
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', '/apply_tender');
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    var data = JSON.stringify({ et_id: et_id, bid_amt: '12000' });  //bid amount to be taken from user
-    xhr.send(data);
-    xhr.onload = function () {
-        if (this.status == 200) {
-            var resp = JSON.parse(this.responseText);
-            var etd_id = resp.etd_id;
-            window.location.href = '/payment/tender?et_id=' + et_id + '&etd_id=' + etd_id;
-        } 
-        else if (this.status == 400) {
-            document.getElementById('icon').className = '';
-            alert('Error 400');
-        } 
-        else {
-            document.getElementById('icon').className = '';
-            alert('Some Error Occured');
+    Swal.fire({
+        title: 'Enter Bidding Amount',
+        input: 'number',
+        confirmButtonText: 'Submit',
+        showCancelButton: true,
+    }).then((results)=> {
+        if (results) {
+            if (results['value']) {
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', '/apply_tender');
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                var data = JSON.stringify({ et_id: et_id, bid_amt: results['value']});
+                xhr.send(data);
+                xhr.onload = function () {
+                    if (this.status == 200) {
+                        var resp = JSON.parse(this.responseText);
+                        var etd_id = resp.etd_id;
+                        location = '/payment/tender?et_id=' + et_id + '&etd_id=' + etd_id;
+                    } 
+                    else if (this.status == 400)
+                        alert('Error 400');
+                    else
+                        alert('Some Error Occured');
+                }
+            }
         }
-    }
+    });
 }
 
 //Progress Bar
