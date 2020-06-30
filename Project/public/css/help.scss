@@ -1,0 +1,100 @@
+:root{
+    --main_color: #663EFD;
+    --text_color: #000000;
+    --accent-color: #a6a6a6;
+}
+*{
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
+}
+.side-nav{
+    float: left;
+    display: block;
+    width: 250px;
+    background: #fff;
+    overflow: auto;
+    position: fixed;
+    height: 100%;
+    top: 0;
+    z-index: 0;
+    padding: 0 20px;
+    padding-top: 70px;
+    border-right:1px solid #673efd46;
+
+    ul{
+        li{
+            list-style: none;
+            font-size: 1.2em;
+            a{
+                text-decoration: none;
+                position: relative;
+            }
+            a:visited{
+                color: var(--main_color);
+            }
+            a::before {
+                content: "";
+                position: absolute;
+                width: 0;
+                height: 1.5px;
+                bottom: 0;
+                left: 0;
+                background-color: var(--main_color);
+                visibility: hidden;
+                transition: all 0.3s ease-in-out;
+            }
+            .a:after {
+                content: "";
+                position: absolute;
+                width: 5px;
+                height: 5px;
+                border-radius: 100%;
+                right: 0;
+                margin-top: 12px;
+                margin-right: -12px;
+                background-color: var(--main_color);
+                // visibility: hidden;
+                transition: all 0.3s ease-in-out;
+            }
+            a:hover::before {
+                visibility: visible;
+                width: 100%;
+            }
+        }
+        li+li{
+            margin-top: 20px;
+        }
+    }
+}
+.main{
+    float: right;
+    min-width: 360px;
+    width: calc(100% - 240px);
+    padding: 10px;
+    img{
+        max-width: 850px;
+    }
+    .doc{
+        padding: 40px;
+        max-width: 1200px;
+        h3,h2{
+            margin-top: 20px;
+            margin-bottom: 10px;
+            
+        }
+        p{
+            text-indent: 2em;
+            line-height: 2em;
+        }
+
+    }
+}
+header {
+    position: relative;
+    z-index: 2;
+}
+footer{
+    z-index: 2;
+    position: relative;
+}
