@@ -28,9 +28,38 @@
             font-size: 1.2em;
             a{
                 text-decoration: none;
+                position: relative;
             }
             a:visited{
                 color: var(--main_color);
+            }
+            a::before {
+                content: "";
+                position: absolute;
+                width: 0;
+                height: 1.5px;
+                bottom: 0;
+                left: 0;
+                background-color: var(--main_color);
+                visibility: hidden;
+                transition: all 0.3s ease-in-out;
+            }
+            .a:after {
+                content: "";
+                position: absolute;
+                width: 5px;
+                height: 5px;
+                border-radius: 100%;
+                right: 0;
+                margin-top: 12px;
+                margin-right: -12px;
+                background-color: var(--main_color);
+                // visibility: hidden;
+                transition: all 0.3s ease-in-out;
+            }
+            a:hover::before {
+                visibility: visible;
+                width: 100%;
             }
         }
         li+li{

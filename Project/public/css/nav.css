@@ -36,7 +36,7 @@ header a {
 header a + a{
   margin-left: 60px;  
 }
-a:hover {
+header a:hover {
   opacity: .5;
 
 }
