@@ -60,7 +60,6 @@ function validateURLParamsD(request, response, next) {
                 case 0:
                     debug('Debugging validateURLParamsD');
                     etd_id = request.query['etd_id'], et_id = request.query['et_id'], vcd_id = request.signedCookies['vcd_id_e'], vd_id = request.signedCookies['vd_id_e'];
-                    console.table({ etd_id: etd_id, et_id: et_id, vcd_id: vcd_id, vd_id: vd_id });
                     return [4 /*yield*/, connection_1.default.execute("SELECT * from e_tender_vendor WHERE vcd_id='" + vcd_id + "' and vd_id='" + vd_id + "' and etd_id='" + etd_id + "' and et_id ='" + et_id + "'")];
                 case 1:
                     result = _a.sent();
@@ -76,6 +75,10 @@ function validateURLParamsD(request, response, next) {
     });
 }
 exports.validateURLParamsD = validateURLParamsD;
+/* export async function applyTender(request: Request, response: Response, next: NextFunction){
+    let status: any = await connection.execute(`SELECT * FROM  e_tender_vendor WHERE et_id = '${request.query['et_id'].toString()}' and vd_id ='${request.signedCookies['vd_id_e']}'`)
+
+} */
 function previewTender(request, response, next) {
     return __awaiter(this, void 0, void 0, function () {
         var status;
