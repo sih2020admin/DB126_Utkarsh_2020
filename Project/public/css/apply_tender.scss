@@ -33,7 +33,11 @@ strong{
   border-radius: 10px; 
   box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.2);
   transition: all .2s ease-in-out; 
-//   animation: nextslide 1s forwards 0s ease;
+}
+#tc{
+    font-size: 12px;
+    font-style: italic;
+    color: rgb(253, 0, 0)
 }
 label {
     color: black;
@@ -86,9 +90,7 @@ table td {
   justify-content: space-evenly;
   align-items: center;
 }
-button{
-   //margin: auto;
-}
+
 input{
     // border-style: dashed;
     border-width: 1.5px;

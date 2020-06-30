@@ -38,7 +38,7 @@
             <td><label><strong>Fee: </strong></label></td>
             <td><label id="fee"></label></td>
             <td><label><strong>File URL: </strong></label></td>
-            <td><a id="file" style="text-decoration:none;">Tender.pdf</a></td>
+            <td><a id="file"  target="blank" style="text-decoration:none;">Tender.pdf</a></td>
         </tr>
         <tr>
             <td><label><strong>Closing Date: </strong></label></td>
@@ -100,11 +100,14 @@
           <td><label id="address"></label></td>
         </tr>
       </table><br>
-        <div  class="submit_button">
-            <button type="button" onclick="location='/tenders'">Back</button>
-            <button type="button" onclick="location='/profile'">Edit</button>
-            <button type="button" id ="freeze" onclick="next()"><i id="icon"></i>Save & Next  </button>
-        </div>
+      {{!-- <label>Bidding Amount</label>
+      <input type="number" min="0" max="999999999" id="bid_amount" style="color: black;">
+      <p id="tc"></p> --}}
+      <div  class="submit_button">
+          <button type="button" onclick="location='/tenders'"><i class="fa fa-arrow-left"></i>&nbsp;Back</button>
+          <button type="button" onclick="location='/profile'"><i class='fas fa-edit'></i>&nbsp;Edit</button>
+          <button type="button" id ="freeze" onclick="next()"></i>Save And Next&nbsp;<i class="fa fa-arrow-right"></i></button>
+      </div>
     </div>
 </body>
 <script src="https://kit.fontawesome.com/523ff21025.js" crossorigin="anonymous"></script>
