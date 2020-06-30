@@ -12,7 +12,17 @@
         </div>
         <div>
                 <a onclick="return theFunctionV();">Log out</a>
-                <a id="username" href="#" >Welcome {{username}}</a>
+                {{!-- <a id="username" href="#" >Welcome {{username}}</a> --}}
+                <div class="dropdown">
+                    <button id="username" class="dropbtn">Welcome{{username}}
+                        <i class="fas fa-angle-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a id="log_a" href="/profile">Profile</a>
+                        <a href="/help">Help</a>
+                        <a onclick="return theFunctionV();">Log out</a>
+                    </div>
+                </div> 
             {{else}}
                 <a id="log_a" class="right_link" href="/login">Login</a>
                 <a id="register_link" class="right_link" href="/register">Register</a>
