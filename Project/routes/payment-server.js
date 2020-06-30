@@ -109,13 +109,14 @@ if (process.env.ADDRESS === '165.22.210.37') {
 //get_transaction_status()
 router.get('/tender', function (request, response) {
     var et_id = request.query.et_id;
-    var vcd_id = request.cookies.vcd_id;
+    var vcd_id = request.signedCookies['vcd_id_e'];
     if (et_id === undefined) {
         response.send('Cannot find tenders with undefined et_id');
     }
     else {
         db_1.default.query('SELECT * FROM  e_tender_details INNER JOIN department ON e_tender_details.dept_id = department.dept_id WHERE et_id = ?', [et_id], function (error, result) {
             if (error) {
+                debug("reached here if error");
                 debug(error);
             }
             else {

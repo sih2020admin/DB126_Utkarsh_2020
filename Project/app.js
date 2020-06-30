@@ -49,14 +49,14 @@ app.use(session({
 }));
 app = load_routes_1.loadStaticFiles(app);
 //app.use(morgan('dev'))
-// app.use(redirect_1.redirectToProfilePage, redirect_1.redirectToLoginPage);
-// app.use('/tender/confirmation', tender_1.confirmTender);
-// app.use('/tender/preview', tender_1.previewTender);
+app.use(redirect_1.redirectToProfilePage, redirect_1.redirectToLoginPage);
+app.use('/tender/confirmation', tender_1.confirmTender);
+app.use('/tender/preview', tender_1.previewTender);
 app = load_routes_1.loadRouterFiles(app);
 app.get('*', function (request, response) {
     response.render('error', { layout: false });
 });
-console.log(require('express-list-endpoints')(app));
-https_1.default.createServer(httpsOptions, app).listen(port, function () {
+/* console.log(require('express-list-endpoints')(app))
+ */ https_1.default.createServer(httpsOptions, app).listen(port, function () {
     console.log('Server listening On Port ' + port);
 });
