@@ -41,7 +41,7 @@ function show() {
                 z.style.display = ''
 
                 document.getElementById('confirm').onclick = function () {
-                    document.getElementById('icon').className = 'fa fa-spinner fa-spin'
+                    document.getElementById('icon').style.display = 'inline-block'
                     var url = 'https://' + location.hostname + ':8081/verifyOTP'
                     xhr.open('POST', url)
                     xhr.setRequestHeader('Content-Type', 'application/json')
@@ -63,7 +63,7 @@ function show() {
                                 location = '/profile'
                             }, 1500)
                         } else if (this.status == 400) {
-                            document.getElementById('icon').className = ''
+                            document.getElementById('icon').style.display = 'none'
                             document.getElementById('tc1').innerHTML = 'Invalid OTP '
                             document.getElementById('tc2').style.display = 'inline-block'
                             document.getElementById('tc2').innerHTML = 'Directing to Relogin'
@@ -72,7 +72,7 @@ function show() {
                                 location = '/login'
                             }, 5000)
                         } else {
-                            document.getElementById('icon').className = ''
+                            document.getElementById('icon').style.display = 'none'
                             document.getElementById('tc1').innerHTML = 'Some Error Occured'
                         }
                     }
@@ -86,4 +86,4 @@ function show() {
     }
 }
 
-document.getElementById('icon').className = ' '
+//document.getElementById('icon').style.display = 'none'

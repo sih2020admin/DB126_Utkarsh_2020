@@ -262,7 +262,7 @@
   transition: all .2s ease-in-out;
 }
 
-button {
+.filter-container button {
   font-family: 'Montserrat', 'sans-serif';
   background-color: var(--main_color);
   color: #ffffff;
@@ -283,7 +283,7 @@ button {
   text-align: center;
 }
 
-button:hover {
+.filter-container button:hover {
   background-color: #ffffff;
   color: var(--main_color);
   border: 0.4px solid var(--main_color);
