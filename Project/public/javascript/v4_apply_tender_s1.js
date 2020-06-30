@@ -11,7 +11,7 @@ const urlParams = new URLSearchParams(queryString);
 var et_id = urlParams.get('et_id');
 var status = '000';
 var etd_id;
-if(et_id==null){
+/* if(et_id==null){
     window.location.href = '/tenders'
 }
 else{
@@ -41,7 +41,7 @@ else{
             alert('Check Network')
         }
     }
-}
+} */
 
 //Tender Details/Personal deatils/Company Details
 var xhr = new XMLHttpRequest();

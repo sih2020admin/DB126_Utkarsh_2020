@@ -39,7 +39,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.confirmTender = exports.previewTender = exports.validateURLParamsD = exports.validateURLParams = void 0;
+exports.confirmTender = exports.previewTender = exports.applyTender = exports.validateURLParamsD = exports.validateURLParams = void 0;
 var connection_1 = __importDefault(require("./../../database/connections/connection"));
 var debug = require('debug')('middleware:tender');
 function validateURLParams(request, response, next) {
@@ -75,10 +75,42 @@ function validateURLParamsD(request, response, next) {
     });
 }
 exports.validateURLParamsD = validateURLParamsD;
-/* export async function applyTender(request: Request, response: Response, next: NextFunction){
-    let status: any = await connection.execute(`SELECT * FROM  e_tender_vendor WHERE et_id = '${request.query['et_id'].toString()}' and vd_id ='${request.signedCookies['vd_id_e']}'`)
-
-} */
+function applyTender(request, response, next) {
+    return __awaiter(this, void 0, void 0, function () {
+        var status, etd_id_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, connection_1.default.execute("SELECT * FROM  e_tender_vendor WHERE et_id = '" + request.query['et_id'].toString() + "' and vd_id ='" + request.signedCookies['vd_id_e'] + "'")];
+                case 1:
+                    status = _a.sent();
+                    if (status[0].length !== 0) {
+                        status = status[0][0];
+                        console.log(status, status['etd_id']);
+                        etd_id_1 = status['etd_id'];
+                        console.log(etd_id_1);
+                        if (status['status'] === '100') {
+                            return [2 /*return*/, response.redirect("/payment/tender?et_id=" + request.query['et_id'] + "&etd_id=" + etd_id_1)];
+                        }
+                        else if (status['status'] === '110') {
+                            return [2 /*return*/, response.redirect("/tender/upload-documents?et_id=" + request.query['et_id'] + "&etd_id=" + etd_id_1)];
+                        }
+                        else if (status['status'] === '111') {
+                            return [2 /*return*/, response.redirect("/tender/confirmation?et_id=" + request.query['et_id'] + "&etd_id=" + etd_id_1)];
+                        }
+                        else if (status['status'] === '1111') {
+                            return [2 /*return*/, response.redirect("/tender/preview?et_id=" + request.query['et_id'] + "&etd_id=" + etd_id_1)];
+                        }
+                        else {
+                            return [2 /*return*/, response.redirect('/tenders')];
+                        }
+                    }
+                    next();
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.applyTender = applyTender;
 function previewTender(request, response, next) {
     return __awaiter(this, void 0, void 0, function () {
         var status;
