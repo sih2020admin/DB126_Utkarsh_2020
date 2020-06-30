@@ -58,7 +58,7 @@ xhr.onload = function () {
         document.getElementById("department").innerHTML = response[0][0].dept_name;
         document.getElementById("fee").innerHTML = response[0][0].et_tender_fee;
         var a = document.getElementById("file");
-        a.href = "https://"+ location.hostname + ":8081/"+response[0][0].et_file_uri;
+        a.href = response[0][0].et_file_uri;
         document.getElementById("close").innerHTML = response[0][0].et_last_date_apply.slice(0, 10);
         document.getElementById("bid").innerHTML = response[0][0].et_bidding_date.slice(0, 10);
         document.getElementById("desc").innerHTML = response[0][0].et_tender_desc;
@@ -91,33 +91,27 @@ xhr.onload = function () {
 
 //Save and Next
 function next(){
-    Swal.fire({
-        title: 'Enter Bidding Amount',
-        input: 'number',
-        showCancelButton: 'Cancel',
-        confirmButtonText: 'Submit',
-    }).then((results)=> {
-        if (results) {
-            if (results['value']) {
-                var xhr = new XMLHttpRequest();
-                xhr.open('POST', '/apply_tender');
-                xhr.setRequestHeader('Content-Type', 'application/json');
-                var data = JSON.stringify({ et_id: et_id, bid_amt: results['value']});  //bid amount to be taken from user
-                xhr.send(data);
-                xhr.onload = function () {
-                    if (this.status == 200) {
-                        var resp = JSON.parse(this.responseText);
-                        var etd_id = resp.etd_id;
-                        window.location = '/payment/tender?et_id=' + et_id + '&etd_id=' + etd_id;
-                    } 
-                    else if (this.status == 400)
-                        alert('Error 400');
-                    else 
-                        alert('Some Error Occured');
-                }
-            }
+    document.getElementById('icon').className = 'fa fa-spinner fa-spin';
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/apply_tender');
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    var data = JSON.stringify({ et_id: et_id, bid_amt: '12000' });  //bid amount to be taken from user
+    xhr.send(data);
+    xhr.onload = function () {
+        if (this.status == 200) {
+            var resp = JSON.parse(this.responseText);
+            var etd_id = resp.etd_id;
+            window.location.href = '/payment/tender?et_id=' + et_id + '&etd_id=' + etd_id;
+        } 
+        else if (this.status == 400) {
+            document.getElementById('icon').className = '';
+            alert('Error 400');
+        } 
+        else {
+            document.getElementById('icon').className = '';
+            alert('Some Error Occured');
         }
-    });
+    }
 }
 
 //Progress Bar
