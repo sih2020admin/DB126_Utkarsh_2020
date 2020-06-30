@@ -47,11 +47,10 @@ app.use(session({
         maxAge: 1000 * 60 * 60 * 2,
     },
 }));
-/* app.use(require('./middleware/checker'))
-app.use(require('./middleware/checker1')) */
 app = load_routes_1.loadStaticFiles(app);
 //app.use(morgan('dev'))
 app.use(redirect_1.redirectToProfilePage, redirect_1.redirectToLoginPage);
+app.use('/tender/confirmation', tender_1.confirmTender);
 app.use('/tender/preview', tender_1.previewTender);
 app = load_routes_1.loadRouterFiles(app);
 app.get('*', function (request, response) {

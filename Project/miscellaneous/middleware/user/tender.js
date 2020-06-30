@@ -39,7 +39,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.previewTender = void 0;
+exports.confirmTender = exports.previewTender = void 0;
 var connection_1 = __importDefault(require("./../../database/connections/connection"));
 var debug = require('debug')('middleware:tender');
 function previewTender(request, response, next) {
@@ -72,3 +72,33 @@ function previewTender(request, response, next) {
     });
 }
 exports.previewTender = previewTender;
+function confirmTender(request, response, next) {
+    return __awaiter(this, void 0, void 0, function () {
+        var status;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, connection_1.default.execute("SELECT * FROM  e_tender_vendor WHERE et_id = '" + request.query['et_id'].toString() + "' and vd_id ='" + request.signedCookies['vd_id_e'] + "'")];
+                case 1:
+                    status = _a.sent();
+                    status = status[0][0]['status'];
+                    if (status !== '111') {
+                        if (status === '100') {
+                            return [2 /*return*/, response.redirect("/payment/tender?et_id=" + request.query['et_id'] + "&etd_id=" + request.query['etd_id'])];
+                        }
+                        else if (status === '110') {
+                            return [2 /*return*/, response.redirect("/tender/upload-document?et_id=" + request.query['et_id'] + "&etd_id=" + request.query['etd_id'])];
+                        }
+                        else if (status === '1111') {
+                            return [2 /*return*/, response.redirect("/tender/preview?et_id=" + request.query['et_id'] + "&etd_id=" + request.query['etd_id'])];
+                        }
+                        else {
+                            return [2 /*return*/, response.redirect('/tenders')];
+                        }
+                    }
+                    next();
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.confirmTender = confirmTender;
