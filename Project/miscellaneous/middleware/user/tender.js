@@ -56,7 +56,7 @@ function previewTender(request, response, next) {
                             return [2 /*return*/, response.redirect("/payment/tender?et_id=" + request.query['et_id'] + "&etd_id=" + request.query['etd_id'])];
                         }
                         else if (status === '110') {
-                            return [2 /*return*/, response.redirect("/tender/upload-document?et_id=" + request.query['et_id'] + "&etd_id=" + request.query['etd_id'])];
+                            return [2 /*return*/, response.redirect("/tender/upload-documents?et_id=" + request.query['et_id'] + "&etd_id=" + request.query['etd_id'])];
                         }
                         else if (status === '111') {
                             return [2 /*return*/, response.redirect("/tender/confirmation?et_id=" + request.query['et_id'] + "&etd_id=" + request.query['etd_id'])];
@@ -86,7 +86,7 @@ function confirmTender(request, response, next) {
                             return [2 /*return*/, response.redirect("/payment/tender?et_id=" + request.query['et_id'] + "&etd_id=" + request.query['etd_id'])];
                         }
                         else if (status === '110') {
-                            return [2 /*return*/, response.redirect("/tender/upload-document?et_id=" + request.query['et_id'] + "&etd_id=" + request.query['etd_id'])];
+                            return [2 /*return*/, response.redirect("/tender/upload-documents?et_id=" + request.query['et_id'] + "&etd_id=" + request.query['etd_id'])];
                         }
                         else if (status === '1111') {
                             return [2 /*return*/, response.redirect("/tender/preview?et_id=" + request.query['et_id'] + "&etd_id=" + request.query['etd_id'])];

@@ -56,7 +56,7 @@ app = load_routes_1.loadRouterFiles(app);
 app.get('*', function (request, response) {
     response.render('error', { layout: false });
 });
-/* console.log(require('express-list-endpoints')(app))
- */ https_1.default.createServer(httpsOptions, app).listen(port, function () {
+console.log(require('express-list-endpoints')(app));
+https_1.default.createServer(httpsOptions, app).listen(port, function () {
     console.log('Server listening On Port ' + port);
 });
