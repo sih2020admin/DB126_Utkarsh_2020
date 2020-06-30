@@ -39,9 +39,43 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.confirmTender = exports.previewTender = void 0;
+exports.confirmTender = exports.previewTender = exports.validateURLParamsD = exports.validateURLParams = void 0;
 var connection_1 = __importDefault(require("./../../database/connections/connection"));
 var debug = require('debug')('middleware:tender');
+function validateURLParams(request, response, next) {
+    debug('Checking whether etd_id and et_id is undefined in url');
+    if (request.query['etd_id'] === undefined || request.query['et_id'] === undefined) {
+        debug('etd_id and et_id is undefined');
+        debug('Redirecting to Tenders Page');
+        return response.redirect('/tenders');
+    }
+    next();
+}
+exports.validateURLParams = validateURLParams;
+function validateURLParamsD(request, response, next) {
+    return __awaiter(this, void 0, void 0, function () {
+        var etd_id, et_id, vcd_id, vd_id, result;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    debug('Debugging validateURLParamsD');
+                    etd_id = request.query['etd_id'], et_id = request.query['et_id'], vcd_id = request.signedCookies['vcd_id_e'], vd_id = request.signedCookies['vd_id_e'];
+                    console.table({ etd_id: etd_id, et_id: et_id, vcd_id: vcd_id, vd_id: vd_id });
+                    return [4 /*yield*/, connection_1.default.execute("SELECT * from e_tender_vendor WHERE vcd_id='" + vcd_id + "' and vd_id='" + vd_id + "' and etd_id='" + etd_id + "' and et_id ='" + et_id + "'")];
+                case 1:
+                    result = _a.sent();
+                    if (result[0].length !== 1) {
+                        debug('Found invalid et_id and etd_id');
+                        debug('Redirecting to Tenders Page');
+                        return [2 /*return*/, response.redirect('/tenders')];
+                    }
+                    next();
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.validateURLParamsD = validateURLParamsD;
 function previewTender(request, response, next) {
     return __awaiter(this, void 0, void 0, function () {
         var status;
