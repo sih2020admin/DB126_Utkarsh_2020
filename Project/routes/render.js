@@ -1,154 +1,22 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
-var connection_1 = __importDefault(require("./../miscellaneous/database/connections/connection"));
+var user_1 = require("./../miscellaneous/database/database functions/user");
+var misc_1 = require("./../miscellaneous/database/database functions/misc");
+var tender_1 = require("./../miscellaneous/database/database functions/tender");
 var router = express_1.default.Router();
-function get_tenders() {
-    return __awaiter(this, void 0, void 0, function () {
-        var tenders;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, connection_1.default.execute('SELECT `et_id`, `et_title`, `et_tender_fee`, `et_tender_ref_no`, `et_tender_desc`, `et_last_date_apply`, `et_bidding_date`, `et_file_uri`, `dept_name` FROM `e_tender_details` INNER JOIN department ON e_tender_details.dept_id = department.dept_id WHERE is_delete = 0 and e_tender_details.et_last_date_apply >= CURRENT_DATE')];
-                case 1:
-                    tenders = _a.sent();
-                    return [2 /*return*/, tenders[0]];
-            }
-        });
-    });
-}
-function isUser(request) {
-    if (request.signedCookies.vcd_id_e) {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-function getUserUsername(request) {
-    return __awaiter(this, void 0, void 0, function () {
-        var username;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    if (!(request.signedCookies.vcd_id_e !== undefined)) return [3 /*break*/, 2];
-                    return [4 /*yield*/, connection_1.default.execute("Select user_name from log_in_details where vcd_id='" + request.signedCookies.vcd_id_e + "'")];
-                case 1:
-                    username = _a.sent();
-                    return [2 /*return*/, JSON.parse(JSON.stringify(username[0]))[0]['user_name']];
-                case 2: return [2 /*return*/, ''];
-            }
-        });
-    });
-}
-function get_state() {
-    return __awaiter(this, void 0, void 0, function () {
-        var states;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, connection_1.default.execute('select st_name from states')];
-                case 1:
-                    states = _a.sent();
-                    return [2 /*return*/, states[0]];
-            }
-        });
-    });
-}
-function get_legal_status() {
-    return __awaiter(this, void 0, void 0, function () {
-        var legal_status;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, connection_1.default.execute('select l_name from legal_status_details')];
-                case 1:
-                    legal_status = _a.sent();
-                    return [2 /*return*/, legal_status[0]];
-            }
-        });
-    });
-}
-function get_years() {
-    return __awaiter(this, void 0, void 0, function () {
-        var years, end_year, current_year, i;
-        return __generator(this, function (_a) {
-            years = [];
-            end_year = 1700;
-            current_year = new Date().getFullYear();
-            for (i = current_year; i >= end_year; i--) {
-                years.push(i);
-            }
-            return [2 /*return*/, years];
-        });
-    });
-}
-function profile(request) {
-    return __awaiter(this, void 0, void 0, function () {
-        var vd_id, vcd_id, profile;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    vd_id = request.signedCookies.vd_id_e;
-                    vcd_id = request.signedCookies.vcd_id_e;
-                    return [4 /*yield*/, connection_1.default.query("SELECT v_name, v_address, v_yoe, v_email, v_mobile, v_reg_no, v_state_id, v_city_id, v_pincode, v_legal_id, v_pan, v_is_verified, v_gst FROM vendor_details WHERE vd_id = '" + vd_id + "';\n                                          SELECT vcd_name, vcd_title, vcd_dob, vcd_aadhar, vcd_contact, vcd_email, vcd_designation FROM v_contact_details WHERE vcd_id = " + vcd_id + " and vd_id = " + vd_id + ";\n                                         SELECT e_tender_vendor.etd_id,e_tender_vendor.et_id ,et_title, et_tender_fee, et_tender_ref_no, et_tender_desc, et_last_date_apply, et_bidding_date, et_file_uri, dept_id, e_tender_vendor.bidding_amt FROM e_tender_details INNER JOIN e_tender_vendor ON e_tender_details.et_id = e_tender_vendor.et_id WHERE e_tender_vendor.vd_id = '" + vd_id + "' and e_tender_vendor.vcd_id = '" + vcd_id + "';\n                                         SELECT e_tender_details.et_id, et_title, et_tender_fee, et_tender_ref_no, et_tender_desc, et_last_date_apply, et_bidding_date, et_file_uri, dept_id, e_tender_vendor.bidding_amt FROM e_tender_details INNER JOIN e_tender_vendor ON e_tender_details.et_id = e_tender_vendor.et_id WHERE e_tender_vendor.vd_id = '" + vd_id + "' and e_tender_vendor.vcd_id = '" + vcd_id + "' and e_tender_vendor.is_approved =1; \n\n    ")];
-                case 1:
-                    profile = _a.sent();
-                    return [2 /*return*/, profile[0]];
-            }
-        });
-    });
-}
 router.get('/', function (request, response) {
-    var user = isUser(request);
-    Promise.all([getUserUsername(request), get_tenders()])
+    var user = user_1.isUser(request);
+    Promise.all([user_1.getUserUsername(request), tender_1.getTendersList()])
         .then(function (results) {
         response.render('user/index', {
             layout: false,
             tenders: results[1],
             user: user,
             username: results[0],
-            helpers: {
-                foo: function () {
-                    return 'foo.';
-                },
-            },
         });
     })
         .catch(function (error) {
@@ -157,7 +25,7 @@ router.get('/', function (request, response) {
     });
 });
 router.get('/register', function (request, response) {
-    Promise.all([get_legal_status(), get_state(), get_years()])
+    Promise.all([misc_1.getLegalStatus(), misc_1.getStates(), misc_1.getYears()])
         .then(function (result) {
         response.render('user/register', { layout: false, status: result[0], states: result[1], years: result[2] });
     })
@@ -170,8 +38,8 @@ router.get('/login', function (request, response) {
     response.render('user/login', { layout: false });
 });
 router.get('/help', function (request, response) {
-    var user = isUser(request);
-    Promise.all([getUserUsername(request)])
+    var user = user_1.isUser(request);
+    Promise.all([user_1.getUserUsername(request)])
         .then(function (results) {
         response.render('user/help', { layout: false, user: user, username: results[0] });
     })
@@ -180,35 +48,9 @@ router.get('/help', function (request, response) {
         console.log(error);
     });
 });
-function confirmation(request) {
-    return __awaiter(this, void 0, void 0, function () {
-        var temp;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, connection_1.default.query("SELECT et_id,et_title,et_tender_fee,et_tender_ref_no,et_bidding_date FROM  e_tender_details WHERE et_id = '" + request.query['et_id'] + "';\n                                       SELECT * FROM (SELECT vendor_details.vd_id,vcd_name ,vcd_dob ,vcd_aadhar,vcd_contact,vcd_email,vcd_designation,v_name,v_address,v_yoe,v_email,v_mobile,v_reg_no,v_legal_id,v_pan,v_gst FROM v_contact_details,vendor_details WHERE v_contact_details.vd_id=vendor_details.vd_id) AS hello WHERE vd_id= '" + request.signedCookies['vd_id_e'] + "';\n                                       SELECT * FROM (SELECT file_uri.etd_id,furi1,furi2,txn_id,txn_amount,txn_timestamp,bank_name ,resp_message FROM file_uri,payment_transactions WHERE file_uri.etd_id=payment_transactions.etd_id) AS hello WHERE etd_id= '" + request.query['etd_id'] + "';\n                                       SELECT location,timestamp from e_tender_vendor WHERE vd_id='" + request.signedCookies['vd_id_e'] + "' and vcd_id='" + request.signedCookies['vcd_id_e'] + "'and etd_id='" + request.query['etd_id'] + "' and et_id='" + request.query['et_id'] + "'")];
-                case 1:
-                    temp = _a.sent();
-                    return [2 /*return*/, temp[0]];
-            }
-        });
-    });
-}
-function payment(request) {
-    return __awaiter(this, void 0, void 0, function () {
-        var temp;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, connection_1.default.execute("SELECT * FROM  e_tender_details INNER JOIN department ON e_tender_details.dept_id = department.dept_id WHERE et_id = '" + request.query['et_id'] + "';\n                                            SELECT * FROM v_contact_details where vcd_id='" + request.signedCookies['vcd_id_e'] + "'")];
-                case 1:
-                    temp = _a.sent();
-                    return [2 /*return*/, temp[0]];
-            }
-        });
-    });
-}
 router.get('/profile', function (request, response) {
-    var user = isUser(request);
-    Promise.all([getUserUsername(request), get_years(), get_legal_status(), get_state(), profile(request)])
+    var user = user_1.isUser(request);
+    Promise.all([user_1.getUserUsername(request), misc_1.getYears(), misc_1.getLegalStatus(), misc_1.getStates(), tender_1.getProfileDetails(request)])
         .then(function (results) {
         response.render('user/profile', {
             layout: false,
@@ -217,8 +59,8 @@ router.get('/profile', function (request, response) {
             years: results[1],
             status: results[2],
             states: results[3],
-            company_details: JSON.parse(JSON.stringify(results[4][0][0])),
-            person_details: JSON.parse(JSON.stringify(results[4][1][0])),
+            company_details: results[4][0][0],
+            person_details: results[4][1][0],
             my_tenders: results[4][2],
             approved_tenders: results[4][3],
         });
@@ -229,8 +71,8 @@ router.get('/profile', function (request, response) {
     });
 });
 router.get('/tenders', function (request, response) {
-    var user = isUser(request);
-    Promise.all([getUserUsername(request)])
+    var user = user_1.isUser(request);
+    Promise.all([user_1.getUserUsername(request)])
         .then(function (results) {
         response.render('user/tenders', { layout: false, user: user, username: results[0] });
     })
@@ -240,8 +82,8 @@ router.get('/tenders', function (request, response) {
     });
 });
 router.get('/tender/apply', function (request, response) {
-    var user = isUser(request);
-    Promise.all([getUserUsername(request)])
+    var user = user_1.isUser(request);
+    Promise.all([user_1.getUserUsername(request)])
         .then(function (results) {
         response.render('user/tender_apply', { layout: false, user: user, username: results[0] });
     })
@@ -251,8 +93,8 @@ router.get('/tender/apply', function (request, response) {
     });
 });
 router.get('/tender/upload-documents', function (request, response) {
-    var user = isUser(request);
-    Promise.all([getUserUsername(request)])
+    var user = user_1.isUser(request);
+    Promise.all([user_1.getUserUsername(request)])
         .then(function (results) {
         response.render('user/tender_sign', { layout: false, user: user, username: results[0] });
     })
@@ -262,10 +104,10 @@ router.get('/tender/upload-documents', function (request, response) {
     });
 });
 router.get('/tender/confirmation', function (request, response) {
-    var user = isUser(request);
-    Promise.all([getUserUsername(request), confirmation(request)])
+    var user = user_1.isUser(request);
+    Promise.all([user_1.getUserUsername(request), tender_1.confirmedTenderDetails(request)])
         .then(function (results) {
-        response.render('user/tender_confirmation', { layout: false, user: user, username: results[0], tender_details: JSON.parse(JSON.stringify(results[1][0][0])), personal_details: JSON.parse(JSON.stringify(results[1][1][0])), payment_details: JSON.parse(JSON.stringify(results[1][2][0])) });
+        response.render('user/tender_confirmation', { layout: false, user: user, username: results[0], tender_details: results[1][0][0], personal_details: results[1][1][0], payment_details: results[1][2][0] });
     })
         .catch(function (error) {
         console.log('Error in loading Tenders Page');
@@ -273,18 +115,18 @@ router.get('/tender/confirmation', function (request, response) {
     });
 });
 router.get('/tender/preview', function (request, response) {
-    var user = isUser(request);
+    var user = user_1.isUser(request);
     var s;
-    Promise.all([getUserUsername(request), confirmation(request)])
+    Promise.all([user_1.getUserUsername(request), tender_1.confirmedTenderDetails(request)])
         .then(function (results) {
         response.render('user/preview', {
             layout: false,
             user: user,
             username: results[0],
-            tender_details: JSON.parse(JSON.stringify(results[1][0][0])),
-            personal_details: JSON.parse(JSON.stringify(results[1][1][0])),
-            payment_details: JSON.parse(JSON.stringify(results[1][2][0])),
-            misc_details: JSON.parse(JSON.stringify(results[1][3][0])),
+            tender_details: results[1][0][0],
+            personal_details: results[1][1][0],
+            payment_details: results[1][2][0],
+            misc_details: results[1][3][0],
         });
     })
         .catch(function (error) {
@@ -293,14 +135,13 @@ router.get('/tender/preview', function (request, response) {
     });
 });
 router.get('/tender/payment', function (request, response) {
-    var user = isUser(request);
-    Promise.all([getUserUsername(request)])
+    var user = user_1.isUser(request);
+    Promise.all([user_1.getUserUsername(request), tender_1.getPaymentDetails(request)])
         .then(function (results) {
-        console.log(results[0]);
-        response.render('user/tender-payment', { layout: false, user: user, username: results[0] });
+        response.render('user/tender-payment', { layout: false, user: user, username: results[0], amount: results[1][0][0]['et_tender_fee'], email: results[1][1][0]['vcd_email'], contact: results[1][1][0]['vcd_contact'] });
     })
         .catch(function (error) {
-        console.log('Error in loading Tenders Page');
+        console.log('Error in loading Tender Payment Page');
         console.log(error);
     });
 });
