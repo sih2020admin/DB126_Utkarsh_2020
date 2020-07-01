@@ -51,7 +51,7 @@ app.use(session({
 }));
 app = load_routes_1.loadStaticFiles(app);
 //app.use(morgan('dev'))
-// app.use(redirect_1.redirectToProfilePage, redirect_1.redirectToLoginPage);
+app.use(redirect_1.redirectToProfilePage);
 app.use('/tender/apply', tender_1.applyTender);
 app.use('/tender/upload-documents', tender_1.documentTender);
 app.use('/tender/confirmation', tender_1.validateURLParams, tender_1.validateURLParamsD, tender_1.confirmTender);

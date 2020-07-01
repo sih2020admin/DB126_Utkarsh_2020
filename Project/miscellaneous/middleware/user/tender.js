@@ -89,7 +89,7 @@ function applyTender(request, response, next) {
                         etd_id_1 = status['etd_id'];
                         console.log(etd_id_1);
                         if (status['status'] === '100') {
-                            return [2 /*return*/, response.redirect("/payment/tender?et_id=" + request.query['et_id'] + "&etd_id=" + etd_id_1)];
+                            return [2 /*return*/, response.redirect("/tender/payment?et_id=" + request.query['et_id'] + "&etd_id=" + etd_id_1)];
                         }
                         else if (status['status'] === '110') {
                             return [2 /*return*/, response.redirect("/tender/upload-documents?et_id=" + request.query['et_id'] + "&etd_id=" + etd_id_1)];
@@ -122,7 +122,7 @@ function documentTender(request, response, next) {
                     status = status[0][0]['status'];
                     if (status !== '110') {
                         if (status === '100') {
-                            return [2 /*return*/, response.redirect("/payment/tender?et_id=" + request.query['et_id'] + "&etd_id=" + request.query['etd_id'])];
+                            return [2 /*return*/, response.redirect("/tender/payment?et_id=" + request.query['et_id'] + "&etd_id=" + request.query['etd_id'])];
                         }
                         else if (status === '111') {
                             return [2 /*return*/, response.redirect("/tender/confirmation?et_id=" + request.query['et_id'] + "&etd_id=" + request.query['etd_id'])];
@@ -152,7 +152,7 @@ function confirmTender(request, response, next) {
                     status = status[0][0]['status'];
                     if (status !== '111') {
                         if (status === '100') {
-                            return [2 /*return*/, response.redirect("/payment/tender?et_id=" + request.query['et_id'] + "&etd_id=" + request.query['etd_id'])];
+                            return [2 /*return*/, response.redirect("/tender/payment?et_id=" + request.query['et_id'] + "&etd_id=" + request.query['etd_id'])];
                         }
                         else if (status === '110') {
                             return [2 /*return*/, response.redirect("/tender/upload-documents?et_id=" + request.query['et_id'] + "&etd_id=" + request.query['etd_id'])];
@@ -182,7 +182,7 @@ function previewTender(request, response, next) {
                     status = status[0][0]['status'];
                     if (status !== '1111') {
                         if (status === '100') {
-                            return [2 /*return*/, response.redirect("/payment/tender?et_id=" + request.query['et_id'] + "&etd_id=" + request.query['etd_id'])];
+                            return [2 /*return*/, response.redirect("/tender/payment?et_id=" + request.query['et_id'] + "&etd_id=" + request.query['etd_id'])];
                         }
                         else if (status === '110') {
                             return [2 /*return*/, response.redirect("/tender/upload-documents?et_id=" + request.query['et_id'] + "&etd_id=" + request.query['etd_id'])];
