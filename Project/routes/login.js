@@ -90,6 +90,7 @@ router.post('/login_api', function (reqs, res) {
                                         reqs.session.vd_id = vd_id
                                         reqs.session.vcd_id = vcd_id
                                         reqs.session.digi_access = digi_access
+                                        reqs.session.username = 'hello'
                                         res.status(200).send({ aadhar: aadharno, vd_id: vd_id, vcd_id: vcd_id, digi_access: digi_access })
                                     } else {
                                         console.log('Api call failed with response code ' + resp.statusCode)

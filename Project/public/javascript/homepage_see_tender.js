@@ -37,8 +37,10 @@ xhr.onload = function () {
         //         cont_div.insertAdjacentHTML('beforeend', div);
         //         cont_div2.insertAdjacentHTML('beforeend', div);
         // }
-        var length = response.length;
-        if  (response.length > 100) { length = 100}
+        var length = response.length
+        if (response.length > 100) {
+            length = 100
+        }
         for (var i = 0; i < length; i++) {
             var tr1 =
                 `<tr>
@@ -85,7 +87,7 @@ function apply(i) {
     console.log('applied click')
     if (vd_id != '') {
         var et_id = response[i].et_id
-        var data = JSON.stringify({ et_id: et_id})
+        var data = JSON.stringify({ et_id: et_id })
 
         var xhr = new XMLHttpRequest()
         // xhr.withCredentials = true;
@@ -100,7 +102,7 @@ function apply(i) {
                 console.log(res.status)
                 if (status == '100') {
                     alert('Application applied,Directing To Payment')
-                    window.location.href = '/payment/tender?et_id=' + et_id + '&etd_id=' + res.etd_id
+                    window.location.href = '/tender/payment?et_id=' + et_id + '&etd_id=' + res.etd_id
                 } else if (status == '110') {
                     alert('Application applied,Directing To E-sign')
                     window.location.href = '/tender/upload-documents?et_id=' + et_id + '&etd_id=' + res.etd_id

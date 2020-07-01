@@ -103,40 +103,7 @@ function get_transaction_status() {
         });
     });
 }
-if (process.env.ADDRESS === '165.22.210.37') {
-    allow = false;
-}
 //get_transaction_status()
-router.get('/tender', function (request, response) {
-    var et_id = request.query.et_id;
-    var vcd_id = request.signedCookies['vcd_id_e'];
-    if (et_id === undefined) {
-        response.send('Cannot find tenders with undefined et_id');
-    }
-    else {
-        db_1.default.query('SELECT * FROM  e_tender_details INNER JOIN department ON e_tender_details.dept_id = department.dept_id WHERE et_id = ?', [et_id], function (error, result) {
-            if (error) {
-                debug("reached here if error");
-                debug(error);
-            }
-            else {
-                if (result.length > 0) {
-                    db_1.default.query("SELECT * FROM v_contact_details where vcd_id=" + vcd_id, function (err, res) {
-                        if (err) {
-                            debug(err);
-                        }
-                        else {
-                            response.render('user/tender-payment', { layout: false, amount: result[0].et_tender_fee, allow: allow, email: res[0].vcd_email, contact: res[0].vcd_contact });
-                        }
-                    });
-                }
-                else {
-                    response.send('No such tender with et_id exists');
-                }
-            }
-        });
-    }
-});
 router.post('/', function (request, response) {
     params['ORDER_ID'] = 'ORD' + Math.floor(Math.random() * Math.pow(10, 10)).toString();
     params['CUST_ID'] = 'CUST' + Math.floor(Math.random() * Math.pow(10, 10)).toString();
