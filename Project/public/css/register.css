@@ -86,14 +86,17 @@ label {
 
 input {
   font-family: 'Open Sans', sans-serif;
-  border-width: 1.5px;
+  border: 1.5px solid var(--main_color);
   border-radius: 3px;
-  border-color: var(--main_color);
   height: 30px;
   width: auto;
   padding: 10px 30px;
   padding-right: 10px;
   margin: 10px;
+}
+
+.invalid {
+  border: 1.5px solid red;
 }
 
 input::-webkit-input-placeholder {

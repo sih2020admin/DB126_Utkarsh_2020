@@ -350,32 +350,61 @@ $('#otp_button').on('click', function () {
 });
 function account_validate(username, password, confirm_password) {
     if (username === '') {
+        var all_invalids = document.getElementsByClassName("invalid");
+        while (all_invalids.length)
+            all_invalids[0].classList.remove("invalid");
+        document.getElementById('username').classList.add("invalid")
         $('#error_para').text('Error : Username field cannot be empty');
         //$("#username").attr('style', "border-radius: 5px; border:#FF0000 1px solid;");
         //$("#username").focus()
         return false;
     }
     if (username.length < 7 || username.length > 15) {
+        var all_invalids = document.getElementsByClassName("invalid");
+        while (all_invalids.length)
+            all_invalids[0].classList.remove("invalid");
+        document.getElementById('username').classList.add("invalid")
         $('#error_para').text('Error : Username should be greater than six characters and less than 15 characters');
         return false;
     }
     if (username.match(/^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$/) === null) {
+        var all_invalids = document.getElementsByClassName("invalid");
+        while (all_invalids.length)
+            all_invalids[0].classList.remove("invalid");
+        document.getElementById('username').classList.add("invalid")
         $('#error_para').text('Error : Username contains inappropriate characters');
         return false;
     }
     if (password === '') {
+        var all_invalids = document.getElementsByClassName("invalid");
+        while (all_invalids.length)
+            all_invalids[0].classList.remove("invalid");
+        document.getElementById('password').classList.add("invalid")
         $('#error_para').text('Error : Password field cannot be empty');
         return false;
     }
     if (password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{7,15}/) === null) {
+        var all_invalids = document.getElementsByClassName("invalid");
+        while (all_invalids.length)
+            all_invalids[0].classList.remove("invalid");
+        document.getElementById('password').classList.add("invalid")
         $('#error_para').html('Password Field should contain at least : <br> - One Uppercase Character [A-Z]<br> - One Lowercase Character [a-z]<br> - One Number [0-9]<br> - One Special Character <br> Length of Password should be around 7 to 15 Characters');
         return false;
     }
     if (confirm_password === '') {
+        var all_invalids = document.getElementsByClassName("invalid");
+        while (all_invalids.length)
+            all_invalids[0].classList.remove("invalid");
+        document.getElementById('confirm_password').classList.add("invalid")
         $('#error_para').text('Error : Confirm Password field cannot be empty');
         return false;
     }
     if (password !== confirm_password) {
+        var all_invalids = document.getElementsByClassName("invalid");
+        while (all_invalids.length)
+            all_invalids[0].classList.remove("invalid");
+        document.getElementById('confirm_password').classList.add("invalid")
+        document.getElementById('password').classList.add("invalid")
         $('#error_para').text('Error : Password and Confirm Password fields do not match each other');
         return false;
     }
