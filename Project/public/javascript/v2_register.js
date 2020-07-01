@@ -329,7 +329,7 @@ $('#otp_button').on('click', function () {
                         confirmButtonColor: '#3085d6',
                         cancelButtonColor: '#d33',
                         confirmButtonText: 'Login',
-                    }).then((result) => {window.location.href = '/v1_login.html'})
+                    }).then((result) => {window.location.href = '/login'})
                     
                    
                 },

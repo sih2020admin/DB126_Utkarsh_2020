@@ -47,23 +47,6 @@ router.post('/login_api', function (reqs, res) {
 
                             //send to aadhar api
 
-                            // using unirest
-                            // console.log(process.env.ADDRESS)
-                            // var req = unirest('POST', 'http://' + process.env.ADDRESS + ':8082/verify')
-                            //     .headers({ 'Content-Type': 'application/json' })
-                            //     .send(JSON.stringify({ aadharno: aadharno }))
-                            //     .end(function (resp) {
-                            //         if (resp.error) {
-                            //             throw new Error(resp.error)
-                            //             res.sendStatus(400)
-                            //         }
-                            //         //console.log(resp.raw_body);
-                            //         res.cookie('vd_id_e', vd_id, { signed: true })
-                            //         res.cookie('vcd_id_e', vcd_id, { signed: true })
-                            //         res.cookie('digi_access_e', digi_access, { signed: true })
-                            //         res.status(200).send({ aadhar: aadharno, vd_id: vd_id, vcd_id: vcd_id, digi_access: digi_access })
-                            //     })
-
                             var options = {
                                 hostname: process.env.ADDRESS,
                                 port: 8082,
@@ -119,6 +102,105 @@ router.post('/login_api', function (reqs, res) {
         }
     })
 })
+
+
+router.post('/verifyOTP_login', (req, res) => {
+    console.log('verify otp called ' + JSON.stringify(req.body))
+    var r = JSON.stringify(req.body)
+    var vcd_id = req.body.vcd_id
+    var vd_id = req.body.vd_id
+    var digi_access = req.body.digi_access
+    var options = {
+        hostname: process.env.ADDRESS,
+        port: 8082,
+        path: '/verifyOTP',
+        method: 'POST',
+        rejectUnauthorized: false,
+        requestCert: true,
+        agent: false,
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    }
+    var request= https.request(options, function (resp) {
+        resp.setEncoding('utf8')
+        resp.on('data', function (chunk) {
+            console.log('BODY: ' + chunk)
+        })
+
+        resp.on('end', function () {
+            if (resp.statusCode == 200) {
+                res.cookie('vd_id_e', vd_id, { signed: true })
+                res.cookie('vcd_id_e', vcd_id, { signed: true })
+                res.cookie('digi_access_e', digi_access, { signed: true })
+                req.session.vd_id = vd_id
+                req.session.vcd_id = vcd_id
+                req.session.digi_access = digi_access
+                res.sendStatus(200)
+            } else {
+                console.log('Api call failed with response code ' + resp.statusCode)
+                res.sendStatus(400)
+            }
+        })
+    })
+
+    request.on('error', function (e) {
+        console.log('Error : ' + e.message)
+    })
+
+    // write data to request body
+    console.log(r)
+    request.write(r)
+
+    request.end()
+})
+
+
+// router.post('/verifyOTP_login', (req, res) => {
+//     console.log('verify otp called ' + JSON.stringify(req.body))
+//     var vcd_id = req.body.vcd_id
+//     var vd_id = req.body.vd_id
+//     var digi_access = req.body.digi_access
+//     var r = JSON.stringify(req.body)
+//     var options = {
+//         hostname: process.env.ADDRESS,
+//         port: 8082,
+//         path: '/verifyOTP',
+//         method: 'POST',
+//         rejectUnauthorized: false,
+//         requestCert: true,
+//         agent: false,
+//         headers: {
+//             'Content-Type': 'application/json',
+//         },
+//     }
+//     var reqs = https.request(options, function (resp) {
+//         resp.setEncoding('utf8')
+//         resp.on('data', function (chunk) {
+//             console.log('BODY: ' + chunk)
+//         })
+
+//         resp.on('end', function () {
+//             if (resp.statusCode == 200) {
+//                 // res.cookie('vd_id_e', vd_id, { signed: true })
+//                 // res.cookie('vcd_id_e', vcd_id, { signed: true })
+//                 // res.cookie('digi_access_e', digi_access, { signed: true })
+//                 // req.session.vd_id = vd_id
+//                 // req.session.vcd_id = vcd_id
+//                 // req.session.digi_access = digi_access
+//                 res.sendStatus(200)
+//             } else {
+//                 console.log('Api call failed with response code ' + resp.statusCode)
+//                 res.sendStatus(400)
+//             }
+//         })
+//     })
+
+//     req.on('error', function (e) {
+//         console.log('Error : ' + e.message)
+//     })
+// })
+
 
 router.post('/login/admin', function (req, res) {
     var username = req.body.username
@@ -202,6 +284,8 @@ router.post('/verifyOTP', (req, res) => {
 
     req.end()
 })
+
+
 
 router.post('/user/logout', (request, response) => {
     console.log()

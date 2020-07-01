@@ -42,10 +42,24 @@ function show() {
 
                 document.getElementById('confirm').onclick = function () {
                     document.getElementById('icon').style.display = 'inline-block'
-                    var url = 'https://' + location.hostname + ':8081/verifyOTP'
+                    var url = 'https://' + location.hostname + ':8081/verifyOTP_login'
                     xhr.open('POST', url)
                     xhr.setRequestHeader('Content-Type', 'application/json')
-                    xhr.send(JSON.stringify({ aadharno: message.aadhar, OTP: y.value }))
+                    var otp_s=y.value
+                    if(otp_s.length <6){
+                        document.getElementById('icon').style.display = 'none'
+                        document.getElementById('tc1').innerHTML = 'Invalid OTP '
+                        document.getElementById('tc2').style.display = 'inline-block'
+                        document.getElementById('tc2').innerHTML = 'Directing to Relogin'
+                        document.getElementById('otp').disabled = true
+                        setTimeout(function () {
+                            location = '/login'
+                        }, 5000)
+
+                    }
+                    else{
+                        xhr.send(JSON.stringify({ aadharno: message.aadhar,vcd_id :message.vcd_id , vd_id: message.vd_id, digi_access : message.digi_access, OTP: y.value }))
+                    }
                     document.getElementById('otp').value = ''
 
                     xhr.onload = function () {

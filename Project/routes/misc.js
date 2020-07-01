@@ -56,6 +56,7 @@ router.post('/get-city', function (request, response) {
     });
 });
 router.post('/check-username', function (request, response) {
+    console.log("check username called")
     var username = request.body.username;
     db_1.default.query("SELECT * FROM log_in_details WHERE user_name='" + username + "'", function (error, result) {
         if (error) {
@@ -63,9 +64,11 @@ router.post('/check-username', function (request, response) {
         }
         else {
             if (result.length !== 0) {
+                console.log("check username called exist")
                 response.send('Username already exists<br>Use a different Username');
             }
             else {
+                console.log("check username called ok   ")
                 response.send('ok');
             }
         }
