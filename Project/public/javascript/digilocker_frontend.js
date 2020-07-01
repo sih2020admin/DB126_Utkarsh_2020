@@ -1,4 +1,4 @@
-var vcd_id = get_cookie('vcd_id') //will be used everywhere in digilocker code as vcd_id   modf_sanket
+//var vcd_id = get_cookie('vcd_id') //will be used everywhere in digilocker code as vcd_id   modf_sanket
 var et_id //to store current et_id
 var etd_id //to store current etd_id
 
@@ -280,7 +280,7 @@ function get_files2() {
     url = 'https://165.22.210.37:8081/fetch_files2'
     xhr.open('POST', url, true)
     xhr.setRequestHeader('Content-Type', 'application/json')
-    var vcd_id = get_cookie('vcd_id')
+    // var vcd_id = get_cookie('vcd_id')
     xhr.send(JSON.stringify({ vcd_id: vcd_id }))    //modf_sanket
 
     //xhr repsonse handling
