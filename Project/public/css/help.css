@@ -33,6 +33,7 @@
 .side-nav ul li a {
   text-decoration: none;
   position: relative;
+  color: var(--main_color);
 }
 
 .side-nav ul li a:visited {
