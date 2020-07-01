@@ -412,62 +412,122 @@ function account_validate(username, password, confirm_password) {
 }
 function company_validate(company_name, company_address, company_email, mobile_number, registration_number, state, city, establishment_year, pincode, legal_status, pan_number, gst_register_number) {
     if (company_name === '') {
+        var all_invalids = document.getElementsByClassName("invalid");
+        while (all_invalids.length)
+            all_invalids[0].classList.remove("invalid");
+        document.getElementById('company_name').classList.add("invalid")
         $('#error_para').text('Error : Company Name field cannot be empty');
         return false;
     }
     if (company_address === '') {
+        var all_invalids = document.getElementsByClassName("invalid");
+        while (all_invalids.length)
+            all_invalids[0].classList.remove("invalid");
+        document.getElementById('company_address').classList.add("invalid")
         $('#error_para').text('Error : Company Address field cannot be empty');
         return false;
     }
     if (company_email.match(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/) === null) {
+        var all_invalids = document.getElementsByClassName("invalid");
+        while (all_invalids.length)
+            all_invalids[0].classList.remove("invalid");
+        document.getElementById('company_email').classList.add("invalid")
         $('#error_para').text('Error : Invalid Email Address');
         return false;
     }
     if (mobile_number.match(/^\d{10}$/) === null) {
+        var all_invalids = document.getElementsByClassName("invalid");
+        while (all_invalids.length)
+            all_invalids[0].classList.remove("invalid");
+        document.getElementById('mobile_number').classList.add("invalid")
         $('#error_para').text('Error : Invalid Mobile Number');
         return false;
     }
     if (registration_number === '') {
+        var all_invalids = document.getElementsByClassName("invalid");
+        while (all_invalids.length)
+            all_invalids[0].classList.remove("invalid");
+        document.getElementById('registration_number').classList.add("invalid")
         $('#error_para').text('Error : Company Registration Number field cannot be empty');
         return false;
     }
     if (registration_number.length > 21 || registration_number.length < 15) {
+        var all_invalids = document.getElementsByClassName("invalid");
+        while (all_invalids.length)
+            all_invalids[0].classList.remove("invalid");
+        document.getElementById('registration_number').classList.add("invalid")
         $('#error_para').text('Error : Invalid Company Registration Number ');
         return false;
     }
     if (state === 'select') {
+        var all_invalids = document.getElementsByClassName("invalid");
+        while (all_invalids.length)
+            all_invalids[0].classList.remove("invalid");
+        document.getElementById('state').classList.add("invalid")
         $('#error_para').text('Error : State field has inappropriate value');
         return false;
     }
     if (city === 'select') {
+        var all_invalids = document.getElementsByClassName("invalid");
+        while (all_invalids.length)
+            all_invalids[0].classList.remove("invalid");
+        document.getElementById('city').classList.add("invalid")
         $('#error_para').text('Error : City field has inappropriate value');
         return false;
     }
     if (establishment_year === 'select') {
+        var all_invalids = document.getElementsByClassName("invalid");
+        while (all_invalids.length)
+            all_invalids[0].classList.remove("invalid");
+        document.getElementById('establishment_year').classList.add("invalid")
         $('#error_para').text('Error : Establishment year field has inappropriate value');
         return false;
     }
     if (pincode.match(/^\d{6}$/) === null) {
+        var all_invalids = document.getElementsByClassName("invalid");
+        while (all_invalids.length)
+            all_invalids[0].classList.remove("invalid");
+        document.getElementById('pincode').classList.add("invalid")
         $('#error_para').text('Error : Invalid Pincode Field');
         return false;
     }
     if (legal_status === 'select') {
+        var all_invalids = document.getElementsByClassName("invalid");
+        while (all_invalids.length)
+            all_invalids[0].classList.remove("invalid");
+        document.getElementById('legal_status').classList.add("invalid")
         $('#error_para').text('Error : Legal Status field has inappropriate field');
         return false;
     }
     if (pan_number === '') {
+        var all_invalids = document.getElementsByClassName("invalid");
+        while (all_invalids.length)
+            all_invalids[0].classList.remove("invalid");
+        document.getElementById('pan_number').classList.add("invalid")
         $('#error_para').text('Error : Pan Number field cannot be empty');
         return false;
     }
     if (pan_number.length < 10 || pan_number.length > 10) {
+        var all_invalids = document.getElementsByClassName("invalid");
+        while (all_invalids.length)
+            all_invalids[0].classList.remove("invalid");
+        document.getElementById('pan_number').classList.add("invalid")
         $('#error_para').text('Error : Pan Number has inappropriate length');
         return false;
     }
     if (gst_register_number === '') {
+        var all_invalids = document.getElementsByClassName("invalid");
+        while (all_invalids.length)
+            all_invalids[0].classList.remove("invalid");
+        document.getElementById('gst_register_number').classList.add("invalid")
         $('#error_para').text('Error : GST Registration field  cannot be empty');
         return false;
     }
     if (gst_register_number.length !== 15) {
+        var all_invalids = document.getElementsByClassName("invalid");
+        while (all_invalids.length)
+            all_invalids[0].classList.remove("invalid");
+        document.getElementById('gst_register_number').classList.add("invalid")
         $('#error_para').text('Error : GST Registration Number has inappropriate length');
         return false;
     }
@@ -475,32 +535,60 @@ function company_validate(company_name, company_address, company_email, mobile_n
 }
 function contact_validate(title, contact_name, date_of_birth, designation, aadhaar_number, contact_email, contact_contact) {
     if (title === 'select') {
+        var all_invalids = document.getElementsByClassName("invalid");
+        while (all_invalids.length)
+            all_invalids[0].classList.remove("invalid");
+        document.getElementById('title').classList.add("invalid")
         $('#error_para').text('Error : Title field has an inappropriate value');
         return false;
     }
     if (contact_name === '') {
+        var all_invalids = document.getElementsByClassName("invalid");
+        while (all_invalids.length)
+            all_invalids[0].classList.remove("invalid");
+        document.getElementById('contact_name').classList.add("invalid")
         $('#error_para').text('Error :  Contact Name field cannot be empty value');
         return false;
     }
     if (date_of_birth === '') {
+        var all_invalids = document.getElementsByClassName("invalid");
+        while (all_invalids.length)
+            all_invalids[0].classList.remove("invalid");
+        document.getElementById('date_of_birth').classList.add("invalid")
         $('#error_para').text('Error : Date of Birth field cannot be empty');
         return false;
     }
     if (designation === '') {
+        var all_invalids = document.getElementsByClassName("invalid");
+        while (all_invalids.length)
+            all_invalids[0].classList.remove("invalid");
+        document.getElementById('designation').classList.add("invalid")
         $('#error_para').text('Error : Designation field cannot be empty');
         return false;
     }
     
     if (contact_email.match(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/) === null) {
+        var all_invalids = document.getElementsByClassName("invalid");
+        while (all_invalids.length)
+            all_invalids[0].classList.remove("invalid");
+        document.getElementById('contact_email').classList.add("invalid")
         $('#error_para').text('Error : Invalid Email Address');
         return false;
     }
     if (contact_contact === '') {
+        var all_invalids = document.getElementsByClassName("invalid");
+        while (all_invalids.length)
+            all_invalids[0].classList.remove("invalid");
+        document.getElementById('contact_contact').classList.add("invalid")
         $('#error_para').text('Error : Mobile Number field cannot be empty or has invalid characters');
         return false;
     }
    
     if (contact_contact.match(/^\d{10}$/) === null) {
+        var all_invalids = document.getElementsByClassName("invalid");
+        while (all_invalids.length)
+            all_invalids[0].classList.remove("invalid");
+        document.getElementById('contact_contact').classList.add("invalid")
         $('#error_para').text('Error : Invalid Mobile Number');
         return false;
     }
