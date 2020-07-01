@@ -7,7 +7,7 @@
         <div>
             <a id="home_link" href="/">Home</a>
             <a id="tender_link" href="/tenders">Tenders</a>
-            <a href="/help">Help</a>
+            {{!-- <a href="/help">Help</a> --}}
             {{#if user}}
         </div>
         <div>
@@ -15,6 +15,7 @@
                     <button id="username" class="dropbtn">{{username}} <i class="fas fa-angle-down"></i></button>
                     <div class="dropdown-content">
                         <a id="log_a" href="/profile">My Profile</a>
+                        <a href="/help">Help</a>
                         <a onclick="return theFunctionV();">Log out</a>
                     </div>
                 </div> 
