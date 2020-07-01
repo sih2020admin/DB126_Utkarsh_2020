@@ -10,7 +10,7 @@ body {
   text-align: center;
 }
 
-.company_details, .contact__details, .account_details {
+.company_details, .contact__details, .account_details, .aadhar__details {
   margin: 0 auto;
   background-color: white;
   width: -webkit-fit-content;

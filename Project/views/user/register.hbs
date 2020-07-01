@@ -131,7 +131,7 @@
     <!-- <div class="submit_button" style="display: none;">
     </div> -->
     <div class="aadhar__details" style="display: none;">
-      <h1>Aadhar Authentication</h1>
+      <h1>Aadhar Authentication</h1><br><br>
       <div class="Detailslabel"><h2>Aadhar Details</h2></div><br>
       <table>
         <tr>
@@ -140,14 +140,16 @@
               width="40" height="40"
               viewBox="0 0 172 172"
               style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#663efd"><path d="M83.88989,26.875l-0.97632,4.15723c0,0 -0.76294,3.12266 -2.89746,6.24634c-2.13451,3.12368 -4.8756,5.72144 -10.14111,5.72144v10.75c7.41514,0 12.46428,-3.67173 16.125,-7.61108v34.48608h10.75v-53.75zM45.6875,91.375c-10.34048,0 -18.8125,8.47202 -18.8125,18.8125v2.6875h10.75v-2.6875c0,-4.70952 3.35298,-8.0625 8.0625,-8.0625h5.375c4.70952,0 8.0625,3.35298 8.0625,8.0625c0,2.44621 -1.86349,5.29235 -4.99707,7.25415v0.0105c-6.61853,4.06856 -12.54251,6.62867 -17.38476,9.34327c-2.42575,1.35989 -4.63725,2.75198 -6.52978,4.78711c-1.89254,2.03513 -3.33838,5.0424 -3.33838,8.16748v5.375h43v-10.75h-24.54443c3.95767,-2.0343 8.49856,-4.11709 14.46631,-7.78955h0.0105l0.02099,-0.0105c5.46062,-3.41277 10.04663,-9.16106 10.04663,-16.38745c0,-10.34048 -8.47202,-18.8125 -18.8125,-18.8125zM118.25,91.375c-8.84432,0 -16.125,7.28068 -16.125,16.125v2.6875h10.75v-2.6875c0,-2.98068 2.39432,-5.375 5.375,-5.375h10.75c2.98068,0 5.375,2.39432 5.375,5.375c0,2.98068 -2.39432,5.375 -5.375,5.375h-10.75v10.75h10.75c2.98068,0 5.375,2.6896 5.375,4.8396v0.5354c0,2.98068 -2.39432,5.375 -5.375,5.375h-10.75c-2.98068,0 -5.375,-2.39432 -5.375,-5.375v-2.6875h-10.75v2.6875c0,8.84432 7.28068,16.125 16.125,16.125h10.75c8.84432,0 16.125,-7.28068 16.125,-16.125v-0.5354c0,-4.02538 -1.83673,-7.55195 -4.44067,-10.31958c2.60074,-2.86762 4.44067,-6.50815 4.44067,-10.64502c0,-8.84432 -7.28068,-16.125 -16.125,-16.125z"></path></g></g></svg><input id="aadhaar_number" type="text" placeholder="Enter Your Aadhar Number" maxlength="12">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-          <td><input id="otp" placeholder="Enter OTP" type="password" style="display: none;" maxlength="6"><br><button id="otp_button" style="display: none;">Confirm</button></td>
         </tr>
-    </table>
-    <br> 
-            <button id="verify_button">Verify Aadhaar Number</button>    
-            <button id="resend_button" style="display: none;">Resend Otp</button>
-            <button id="change_aadhar_button" style="display: none;">Change Aadhar</button>    
-          <button class="submit_button" id="submit_button">Register</button>
+        <tr>
+        <td><i class="fas fa-mobile-alt" id="iotp" style="display: none; margin-left: -10px;"></i><input id="otp" placeholder="Enter OTP" type="password" style="display: none;" maxlength="6"></td>
+          <td><button id="otp_button" style="display: none; margin:0;">Confirm</button></td>
+        </tr>
+    </table><br><br>
+    <button id="verify_button">Verify</button>    
+    <button id="resend_button" style="display: none;">Resend Otp</button>
+    <button id="change_aadhar_button" style="display: none; padding:auto 5px; width:140px">Change Aadhar</button>    
+    <button class="submit_button" id="submit_button">Register</button>
     </div>
     <h1 id="error_para" style="font-size: larger;"></h1>
 </body>

@@ -224,6 +224,7 @@ function verify_aadhar(){
                 console.log(response);
                 $('#verify_button').hide();
                 // $(".contact__details").hide();
+                $('#iotp').show();
                 $('#otp').show();
                 $('#otp_button').show();
                 $('#change_aadhar_button').show();
@@ -245,6 +246,7 @@ $('#change_aadhar_button').on('click' ,function(){
     $('#aadhaar_number').prop('disabled', false);
     $('#verify_button').show();
     // $(".contact__details").hide();
+    $('#iotp').hide();
     $('#otp').hide();
     $('#otp_button').hide();
     $('#change_aadhar_button').hide();
