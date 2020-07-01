@@ -14,7 +14,7 @@ router.post('/vendor_dashboard', function (req, res) {
     // var vd_id= req.body.vd_id;
 	// var vcd_id= req.body.vcd_id;
 	var vd_id = req.signedCookies.vd_id_e;
-      var vcd_id = req.signedCookies.vcd_id_e;
+    var vcd_id = req.signedCookies.vcd_id_e;
 	console.log("vendor vendor_dashboard called",vd_id,vcd_id)
 				
 	db_1.default.query('SELECT `v_name`, `v_address`, `v_yoe`, `v_email`, `v_mobile`, `v_reg_no`, `v_state_id`, `v_city_id`, `v_pincode`, `v_legal_id`, `v_pan`, `v_is_verified`, `v_gst` FROM vendor_details WHERE vd_id = ?;'+

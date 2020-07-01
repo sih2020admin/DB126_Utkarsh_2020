@@ -201,7 +201,8 @@ function get_file(res, vcd_id, furi) {
 //gets access_token from digilocker and stores it in database
 router.post('/get_access_token', (req, res) => {
     var auth_code = req.body.code
-    var vcd_id = req.body.id
+    // var vcd_id = req.body.id
+    var vcd_id = req.signedCookies.vcd_id_e;
     // console.log("code", auth_code);
 
     //creating options parameter for external server call
@@ -255,7 +256,8 @@ router.post('/get_access_token', (req, res) => {
 
 //refreshes access token got from digilocker
 router.post('/refresh_token', (req, res) => {
-    var vcd_id = req.body.id
+    // var vcd_id = req.body.id
+    var vcd_id = req.signedCookies.vcd_id_e;
     // console.log("body", req.body);
     // console.log("sanket testing",vcd_id)
     get_refresh_token(res, vcd_id)
@@ -264,7 +266,8 @@ router.post('/refresh_token', (req, res) => {
 //fetches self_uploaded files from digilocker
 router.post('/fetch_files', (req, res) => {
     var current_id = req.body.id
-    var vcd_id = req.body.vcd_id
+    // var vcd_id = req.body.vcd_id
+    var vcd_id = req.signedCookies.vcd_id_e;
 
     //Get access token from database
     var sql = 'SELECT access FROM access_token WHERE id=' + vcd_id
@@ -316,7 +319,8 @@ router.post('/upload_files', function (req, res) {
     //console.log(req.files); //show form file
     //console.log(req.headers); //show headers
 
-    var vcd_id = req.header('vcd_id')
+    // var vcd_id = req.header('vcd_id')
+    var vcd_id = req.signedCookies.vcd_id_e;
     var pathDigi = req.header('path')
     //console.log(vcd_id, pathDigi);
 
@@ -370,7 +374,8 @@ router.post('/revoke_token', function (req, res) {
     // console.log("Revoke called");
     // console.log(req.body);
     // console.log(req.body.vcd_id);
-    var vcd_id = req.body.vcd_id
+    // var vcd_id = req.body.vcd_id
+    var vcd_id = req.signedCookies.vcd_id_e;
 
     //Get access token from database
     var sql = 'SELECT access FROM access_token WHERE id=' + vcd_id
@@ -422,7 +427,8 @@ router.post('/revoke_token', function (req, res) {
 router.get('/get_files', (req, res) => {
     var furi = req.query.furi
     //var vd_id = req.query.vd_id;
-    var vcd_id = req.query.vcd_id
+    // var vcd_id = req.query.vcd_id
+    var vcd_id = req.signedCookies.vcd_id_e;
 
     // console.log(furi, vcd_id);
 
