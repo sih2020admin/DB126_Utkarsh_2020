@@ -111,22 +111,6 @@ function applyTender(request, response, next) {
     });
 }
 exports.applyTender = applyTender;
-/* export async function documentTender(request: Request, response: Response, next: NextFunction) {
-    let status: any = await connection.execute(`SELECT * FROM  e_tender_vendor WHERE et_id = '${request.query['et_id'].toString()}' and vd_id ='${request.signedCookies['vd_id_e']}'`)
-    status = status[0][0]['status']
-    if (status !== '110') {
-        if (status === '100') {
-            return response.redirect(`/tender/payment?et_id=${request.query['et_id']}&etd_id=${request.query['etd_id']}`)
-        } else if (status === '111') {
-            return response.redirect(`/tender/confirmation?et_id=${request.query['et_id']}&etd_id=${request.query['etd_id']}`)
-        } else if (status === '1111') {
-            return response.redirect(`/tender/confirmation?et_id=${request.query['et_id']}&etd_id=${request.query['etd_id']}`)
-        } else {
-            return response.redirect('/tenders')
-        }
-    }
-    next()
-} */
 function confirmTender(request, response, next) {
     return __awaiter(this, void 0, void 0, function () {
         var status;
