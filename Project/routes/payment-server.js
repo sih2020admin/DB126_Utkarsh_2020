@@ -199,7 +199,7 @@ router.post('/redirect', function (request, response) {
                 for (var queue_2 = __values(queue), queue_2_1 = queue_2.next(); !queue_2_1.done; queue_2_1 = queue_2.next()) {
                     var i = queue_2_1.value;
                     if (i.order_id == transaction_fail.order_id) {
-                        response.render('user/v4_apply_tender_s2', { layout: false, allow: allow });
+                        response.render('user/tender-payment', { layout: false, allow: allow });
                         //response.redirect(`http://${address}:8081/v4_apply_tender_s2.html?et_id=${i.et_id}&etd_id=${i.etd_id}&code=0`)
                     }
                 }
