@@ -51,17 +51,16 @@ app.use(session({
 }));
 app = load_routes_1.loadStaticFiles(app);
 //app.use(morgan('dev'))
-// app.use(redirect_1.redirectToLoginPage, redirect_1.redirectToProfilePage);
+app.use(redirect_1.redirectToLoginPage, redirect_1.redirectToProfilePage);
 app.use('/tender/apply', tender_1.applyTender);
-app.use('/tender/upload-documents', tender_1.documentTender);
 app.use('/tender/confirmation', tender_1.validateURLParams, tender_1.validateURLParamsD, tender_1.confirmTender);
 app.use('/tender/preview', tender_1.validateURLParams, tender_1.validateURLParamsD, tender_1.previewTender);
 app = load_routes_1.loadRouterFiles(app);
 app.get('*', function (request, response) {
     response.render('error', { layout: false });
 });
-/* console.log(require('express-list-endpoints')(app))
- */ https_1.default.createServer(httpsOptions, app).listen(port, function () {
+/* console.log(require('express-list-endpoints')(app)) */
+https_1.default.createServer(httpsOptions, app).listen(port, function () {
     console.log('Server listening On Port ' + port);
 });
 exports.default = app;
