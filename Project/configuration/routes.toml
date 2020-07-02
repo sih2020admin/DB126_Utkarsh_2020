@@ -1,7 +1,7 @@
 [StaticFiles]
 "Files" = [ { "app_path" = "/"          , "folder_name" = "public"},
             { "app_path" = "/"          , "folder_name" = "views/admin"},
-            { "app_path" = "/uploads"   , "folder_name" = "uploads"},
+            { "app_path" = "/tender/uploads"   , "folder_name" = "uploads"},
             { "app_path" = "/signed"    , "folder_name" = "routes/uploaded_documents"}
         ]
 
