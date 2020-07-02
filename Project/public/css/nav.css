@@ -55,7 +55,8 @@ button, input{
 }
 .dropdown{
   overflow: hidden;
-  display: inline;
+  display: flex;
+  justify-content: flex-end;
   /*  margin-left: 60px; */
   cursor: pointer;
 }
@@ -81,7 +82,7 @@ button, input{
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
   border-radius: 5px;
-  margin-left: -65px;
+  margin-top: 25px;
   border-radius: 10px;
 }
 .dropdown-content a {
