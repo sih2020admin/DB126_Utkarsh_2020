@@ -160,7 +160,7 @@ function show_files(str) {
                         var data = JSON.stringify({ etd_id: etd_id, f_type: 'link', f_uri: Technical_file_uri })
 
                         var xhr = new XMLHttpRequest()
-                        xhr.open('POST', 'http://165.22.210.37:8081/enter_file_uri1_db')
+                        xhr.open('POST', 'https://165.22.210.37:8081/enter_file_uri1_db')
                         xhr.setRequestHeader('Content-Type', 'application/json')
                         xhr.addEventListener('readystatechange', function () {
                             if (this.readyState === 4) {
@@ -184,7 +184,7 @@ function show_files(str) {
                         var data = JSON.stringify({ etd_id: etd_id, f_type: 'link', f_uri: BOQ_file_uri })
 
                         var xhr = new XMLHttpRequest()
-                        xhr.open('POST', 'http://165.22.210.37:8081/enter_file_uri2_db')
+                        xhr.open('POST', 'https://165.22.210.37:8081/enter_file_uri2_db')
                         xhr.setRequestHeader('Content-Type', 'application/json')
                         xhr.addEventListener('readystatechange', function () {
                             if (this.readyState === 4) {
@@ -483,14 +483,14 @@ function uploadFiles() {
                     }
                 })
 
-                xhr.open('POST', 'http://165.22.210.37:8081/apply_tender_s3')
+                xhr.open('POST', 'https://165.22.210.37:8081/apply_tender_s3')
                 xhr.setRequestHeader('Content-Type', 'application/json')
 
                 xhr.send(data)
 
                 xhr.onload = function () {
                     if (this.status == 200) {
-                        window.location.href = 'http://165.22.210.37:8081/tender/confirmation?et_id=' + et_id + '&etd_id=' + etd_id
+                        window.location.href = 'https://165.22.210.37:8081/tender/confirmation?et_id=' + et_id + '&etd_id=' + etd_id
                     } else if (this.status == 400) {
                         alert(temp.error)
                     } else {
