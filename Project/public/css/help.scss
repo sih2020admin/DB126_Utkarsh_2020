@@ -12,7 +12,7 @@
     float: left;
     display: block;
     width: 250px;
-    background: #fff;
+    background-color: var(--main_color);
     overflow: auto;
     position: fixed;
     height: 100%;
@@ -20,7 +20,7 @@
     z-index: 0;
     padding: 0 20px;
     padding-top: 70px;
-    border-right:1px solid #673efd46;
+    // border-right:1px solid #673efd46;
 
     ul{
         li{
@@ -29,10 +29,10 @@
             a{
                 text-decoration: none;
                 position: relative;
-                color: var(--main_color);
+                color: #fff;
             }
             a:visited{
-                color: var(--main_color);
+                color: #fff;
             }
             a::before {
                 content: "";
@@ -41,7 +41,7 @@
                 height: 1.5px;
                 bottom: 0;
                 left: 0;
-                background-color: var(--main_color);
+                background-color: #fff;
                 visibility: hidden;
                 transition: all 0.3s ease-in-out;
             }
@@ -54,7 +54,7 @@
                 right: 0;
                 margin-top: 12px;
                 margin-right: -12px;
-                background-color: var(--main_color);
+                background-color: #fff;
                 // visibility: hidden;
                 transition: all 0.3s ease-in-out;
             }
