@@ -3,7 +3,7 @@ var urlParams = new URLSearchParams(queryString)
 var etd_id
 var et_id = null
 et_id = (_a = urlParams.get('et_id')) === null || _a === void 0 ? void 0 : _a.toString()
-/* function status_check() {
+ function status_check() {
     var data = JSON.stringify({ et_id: et_id })
     var res
 
@@ -41,11 +41,11 @@ et_id = (_a = urlParams.get('et_id')) === null || _a === void 0 ? void 0 : _a.to
     xhr.open('POST', '/get_etd_id')
     xhr.setRequestHeader('Content-Type', 'application/json')
     xhr.send(data)
-} */
+} 
 if (et_id == null) {
-    //window.location.href = '/tenders'
+    window.location.href = '/tenders'
 } else {
-    //status_check()
+    status_check()
 }
 
 var status = '100'
