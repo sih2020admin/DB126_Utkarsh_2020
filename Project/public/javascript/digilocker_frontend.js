@@ -1,6 +1,8 @@
 //var vcd_id = get_cookie('vcd_id') //will be used everywhere in digilocker code as vcd_id   modf_sanket
 var et_id //to store current et_id
 var etd_id //to store current etd_id
+var vcd_id = get_cookie('vcd_id')   //adding for time sake
+var vd_id = get_cookie('vd_id')
 
 var is_upload = 0 //check if upload button is clicked
 

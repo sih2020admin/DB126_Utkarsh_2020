@@ -10,7 +10,7 @@ body{
     text-align: center;
 }
 
-.company_details, .contact__details, .account_details{
+.company_details, .contact__details, .account_details, .aadhar__details{
     margin: 0 auto;
     background-color: rgb(255, 255, 255);   
     width: fit-content;
@@ -70,14 +70,16 @@ label{
 input{
     // border-style: dashed;
     font-family: 'Open Sans', sans-serif;   
-    border-width: 1.5px;
+    border: 1.5px solid var(--main_color);
     border-radius: 3px;
-    border-color: var(--main_color);
     height: 30px;
     width: auto;
     padding: 10px 30px;
     padding-right: 10px;
     margin: 10px;
+}
+.invalid{
+    border: 1.5px solid red;
 }
 input::placeholder{
     font-size: 11.5px;
@@ -159,7 +161,7 @@ button:hover{
  }
 
  #error_para{
-    font-size: 12px;
+    font-size: 14px;
     font-style: italic;
     color: rgb(253, 0, 0);
     margin : 40px;

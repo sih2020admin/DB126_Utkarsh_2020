@@ -67,12 +67,13 @@ router.post('/login_api', function (reqs, res) {
 
                                 resp.on('end', function () {
                                     if (resp.statusCode == 200) {
-                                        res.cookie('vd_id_e', vd_id, { signed: true })
-                                        res.cookie('vcd_id_e', vcd_id, { signed: true })
-                                        res.cookie('digi_access_e', digi_access, { signed: true })
-                                        reqs.session.vd_id = vd_id
-                                        reqs.session.vcd_id = vcd_id
-                                        reqs.session.digi_access = digi_access
+                                        // res.cookie('vd_id_e', vd_id, { signed: true })
+                                        // res.cookie('vcd_id_e', vcd_id, { signed: true })
+                                        // res.cookie('digi_access_e', digi_access, { signed: true })
+                                        // reqs.session.vd_id = vd_id
+                                        // reqs.session.vcd_id = vcd_id
+                                        // reqs.session.digi_access = digi_access
+                                        // reqs.session.username = 'hello'
                                         res.status(200).send({ aadhar: aadharno, vd_id: vd_id, vcd_id: vcd_id, digi_access: digi_access })
                                     } else {
                                         console.log('Api call failed with response code ' + resp.statusCode)

@@ -8,12 +8,12 @@
     {{> header-user}}
 	<nav class="side-nav">
 		<ul>
-			<li><a href="#">Registration</a></li>
-			<li><a href="#login-doc">Login</a></li>
-			<li><a href="#home-doc">Homepage</a></li>
-			<li><a href="#profile-doc">My Profile</a></li>
-			<li><a href="#see-tender-doc">See Tender</a></li>
-			<li><a href="#apply-tender-doc">Apply Tender</a></li>
+			<li><a href="#" id="reg-doc" class="a" onclick="reg_click()">Registration</a></li>
+			<li><a href="#login-doc" id="log-doc" onclick="login_click()">Login</a></li>
+			<li><a href="#home-doc" id="home-doc-link" onclick="home_click()">Homepage</a></li>
+			<li><a href="#profile-doc" id="pro-doc" onclick="pro_click()">My Profile</a></li>
+			<li><a href="#see-tender-doc" id="seet-doc" onclick="seet_click()">See Tender</a></li>
+			<li><a href="#apply-tender-doc" id="appt-doc" onclick="appt_click()">Apply Tender</a></li>
 		</ul>
 	</nav>
 	<div class="main">
@@ -206,5 +206,53 @@
         {{> footer}}
 </body>
 <script>
+	window.onscroll = function() {myFunction()};
+
+	function myFunction() {
+		
+		if (document.body.scrollTop > 0 || document.documentElement.scrollTop > 0) {
+			var all_invalids = document.getElementsByClassName("a");
+			while (all_invalids.length)
+				all_invalids[0].classList.remove("a");
+			document.getElementById("reg-doc").classList.add("a")		
+		}
+		if (document.body.scrollTop > 2300 || document.documentElement.scrollTop > 2300) {
+			var all_invalids = document.getElementsByClassName("a");
+			while (all_invalids.length)
+				all_invalids[0].classList.remove("a");
+			document.getElementById("log-doc").classList.add("a")		
+		}
+		if(document.body.scrollTop > 3800 || document.documentElement.scrollTop > 3800){
+			console.log("home")
+			var all_invalids = document.getElementsByClassName("a");
+			while (all_invalids.length)
+				all_invalids[0].classList.remove("a");
+			document.getElementById("home-doc-link").classList.add("a")
+		} 
+		if(document.body.scrollTop > 5650 || document.documentElement.scrollTop > 5650){
+			console.log("home")
+			var all_invalids = document.getElementsByClassName("a");
+			while (all_invalids.length)
+				all_invalids[0].classList.remove("a");
+			document.getElementById("pro-doc").classList.add("a")
+		} 
+		if(document.body.scrollTop > 8750 || document.documentElement.scrollTop > 8750){
+			console.log("home")
+			var all_invalids = document.getElementsByClassName("a");
+			while (all_invalids.length)
+				all_invalids[0].classList.remove("a");
+			document.getElementById("seet-doc").classList.add("a")
+		} 
+
+		if(document.body.scrollTop > 9550 || document.documentElement.scrollTop > 9550){
+			console.log("home")
+			var all_invalids = document.getElementsByClassName("a");
+			while (all_invalids.length)
+				all_invalids[0].classList.remove("a");
+			document.getElementById("appt-doc").classList.add("a")
+		} 
+
+
+	}
 </script>
 </html>
