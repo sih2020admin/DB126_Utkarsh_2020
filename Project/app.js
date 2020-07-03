@@ -12,6 +12,7 @@ var express_1 = __importDefault(require("express"));
 var cors_1 = __importDefault(require("cors"));
 var db_1 = __importDefault(require("./routes/db"));
 var load_routes_1 = require("./loader/loader_modules/load-routes");
+var redirect_1 = require("./miscellaneous/middleware/user/redirect");
 var tender_1 = require("./miscellaneous/middleware/user/tender");
 var app = express_1.default();
 var cookie = require('cookie-parser');
@@ -50,8 +51,8 @@ app.use(session({
 }));
 app = load_routes_1.loadStaticFiles(app);
 //app.use(morgan('dev'))
-/* app.use(redirectToLoginPage,redirectToProfilePage)
- */ app.use('/tender/apply', tender_1.applyTender);
+app.use(redirect_1.redirectToLoginPage, redirect_1.redirectToProfilePage);
+app.use('/tender/apply', tender_1.applyTender);
 app.use('/tender/confirmation', tender_1.validateURLParams, tender_1.validateURLParamsD, tender_1.confirmTender);
 app.use('/tender/preview', tender_1.validateURLParams, tender_1.validateURLParamsD, tender_1.previewTender);
 app = load_routes_1.loadRouterFiles(app);
