@@ -138,6 +138,7 @@ function show_files(str) {
         document.getElementById("no_doc").style.display = "block";
         //alert('This directory is empty')
     } else {
+        document.getElementById("no_doc").style.display = "none";
         //First append "directory" list then append "file" list
         add_to_list('dir')
         add_to_list('file')
