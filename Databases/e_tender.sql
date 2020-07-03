@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 28, 2020 at 06:08 PM
--- Server version: 5.7.30-0ubuntu0.18.04.1
--- PHP Version: 7.2.24-0ubuntu0.18.04.6
+-- Generation Time: Jul 02, 2020 at 07:19 PM
+-- Server version: 5.7.28-0ubuntu0.19.04.2
+-- PHP Version: 7.2.24-0ubuntu0.19.04.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -1676,19 +1676,9 @@ CREATE TABLE `e_tender_details` (
 
 INSERT INTO `e_tender_details` (`et_id`, `et_title`, `et_tender_fee`, `et_tender_ref_no`, `et_tender_desc`, `et_last_date_apply`, `et_bidding_date`, `et_file_uri`, `is_delete`, `dept_id`, `is_approved`) VALUES
 (123, 'Procurement of computers', '1200', 'ITC123', 'Procurement of Computers, Software and Services. The purpose of this policy is to provide a defined process for both the new and recurring procurement (through purchase or lease) of computer hardware, software and services using Washington University funds or grant funds administered by Washington University.', '2020-04-15', '2020-04-16', 'https://www.youtube.com/watch?v=u8XFFTWwSvY&feature=youtu.be', 0, 1, 1),
-(124, 'hello titleU', '1200', 'ITC56U', 'hello descriptionU', '2020-03-02', '2020-03-04', 'https://www.youtube.com/watch?v=fyMhvkC3A84U', 1, 1, 0),
 (143, 'TEST', '100', 'ITC6969', 'TEST', '2020-03-05', '2020-04-05', 'ashjkl', 0, 1, 1),
-(144, 'Payment', '101', '250998', 'How\'s the Josh.......High sir!!!\nHow\'s the Josh.......High sir!!!\nHow\'s the Josh.......High sir!!!', '2020-09-25', '2020-10-27', '', 0, 1, 0),
-(145, 'testing', '12', '456', 'asdfghjkl', '2020-05-04', '2020-05-05', 'asdfjkl', 0, 1, 0),
-(146, 'testing from sanket login 5', '12', '51', 'dfgm 5', '2000-05-31', '2020-05-05', 'asdfghjk', 1, 1, 0),
-(147, 'Lockdown 3.0', '20000', '123567', 'This is another minimal theme for desktop. I tried to keep it kind of simple to match the beautiful wallpaper. I hope you guys like it.', '2020-05-19', '2020-05-25', 'https://www.youtube.com/watch?v=xHj0juUACFk', 0, 2, 0),
 (148, 'Lockdown 3.0', '2000', '1234567', 'This is another minimal theme for desktop. I tried to keep it kind of simple to match the beautiful wallpaper. Hope you guys like it.', '2020-05-05', '2020-05-04', 'https://www.youtube.com/watch?v=xHj0juUACFk', 0, 2, 0),
-(149, 'srfws', '8651', '845', 'xcgedgd', '2020-05-13', '2020-05-16', 'tesdex', 0, 1, 0),
-(150, 'testing zip', '1200', 'new123', 'testing zip on server with none file upload', '2020-05-07', '2020-05-10', 'uploads/sample.zip', 0, 1, 1),
-(151, 'dghdvxc', '1200', '47512', 'dcfvgbdfgbhrrtgbhn', '2020-05-17', '2020-05-18', 'uploads/sample.zip', 0, 1, 0),
-(152, 'testing', '1200', '11223344', 'xsdcfgvbhnhj', '2020-06-13', '2020-06-15', 'uploads/sample.zip', 0, 1, 0),
-(153, 'Test', '123', '45897', 'Smaple doc', '2020-06-26', '2020-10-07', 'uploads/sample.zip', 0, 1, 0),
-(154, 'Test1', '789', '789', 'Test1', '2020-06-30', '2020-07-02', 'uploads/sample.zip', 0, 1, 0);
+(150, 'testing zip', '1200', 'new123', 'testing zip on server with none file upload', '2020-05-07', '2020-05-10', 'uploads/sample.zip', 0, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -1714,57 +1704,7 @@ CREATE TABLE `e_tender_vendor` (
 --
 
 INSERT INTO `e_tender_vendor` (`etd_id`, `et_id`, `vd_id`, `vcd_id`, `bidding_amt`, `is_approved`, `date_of_approval`, `status`, `location`, `timestamp`) VALUES
-(1, 123, 1, 1, '1200', '1', '', '1111', 'Mumbai', '2020-06-28T12:16:06.171Z'),
-(5, 124, 1, 1, '12000', '0', '', '100', NULL, NULL),
-(21, 123, 57, 19, '12000', '0', NULL, '100', NULL, NULL),
-(22, 143, 1, 1, '12000', '0', NULL, '110', NULL, NULL),
-(24, 144, 1, 1, '12000', '0', NULL, '110', NULL, NULL),
-(25, 143, 57, 19, '12000', '0', NULL, '100', NULL, NULL),
-(26, 143, 60, 21, '12000', '0', NULL, '100', NULL, NULL),
-(27, 143, 60, 21, '12000', '0', NULL, '100', NULL, NULL),
-(28, 143, 60, 21, '12000', '0', NULL, '100', NULL, NULL),
-(29, 143, 63, 22, '12000', '1', NULL, '111', NULL, NULL),
-(30, 143, 63, 22, '12000', '0', NULL, '100', NULL, NULL),
-(31, 143, 63, 22, '12000', '0', NULL, '100', NULL, NULL),
-(32, 144, 57, 19, '12000', '0', NULL, '111', NULL, NULL),
-(33, 145, 91, 23, '12000', '0', NULL, '111', NULL, NULL),
-(34, 145, 57, 19, '12000', '0', NULL, '110', NULL, NULL),
-(35, 147, 96, 24, '12000', '0', NULL, '110', NULL, NULL),
-(36, 144, 63, 22, '12000', '0', NULL, '1111', NULL, NULL),
-(37, 147, 57, 19, '12000', '0', NULL, '1111', NULL, NULL),
-(38, 147, 60, 21, '12000', '0', NULL, '100', NULL, NULL),
-(39, 144, 60, 21, '12000', '0', NULL, '100', NULL, NULL),
-(40, 144, 96, 24, '12000', '0', NULL, '100', NULL, NULL),
-(41, 147, 1, 1, '12000', '0', NULL, '110', NULL, NULL),
-(42, 147, 1, 1, '12000', '0', NULL, '100', NULL, NULL),
-(43, 147, 1, 1, '12000', '0', NULL, '100', NULL, NULL),
-(44, 147, 1, 1, '12000', '0', NULL, '100', NULL, NULL),
-(45, 147, 1, 1, '12000', '0', NULL, '100', NULL, NULL),
-(46, 148, 91, 23, '12000', '0', NULL, '111', NULL, NULL),
-(47, 148, 96, 24, '12000', '0', NULL, '100', NULL, NULL),
-(48, 148, 57, 19, '12000', '0', NULL, '110', NULL, NULL),
-(49, 149, 57, 19, '12000', '0', NULL, '110', NULL, NULL),
-(50, 149, 96, 24, '12000', '0', NULL, '110', NULL, NULL),
-(51, 149, 57, 19, '12000', '0', NULL, '100', NULL, NULL),
-(52, 144, 91, 23, '12000', '0', NULL, '1111', NULL, NULL),
-(53, 149, 63, 22, '12000', '0', NULL, '110', NULL, NULL),
-(54, 147, 91, 23, '12000', '0', NULL, '100', NULL, NULL),
-(55, 144, 91, 23, '12000', '0', NULL, '100', NULL, NULL),
-(56, 147, 91, 23, '12000', '0', NULL, '100', NULL, NULL),
-(57, 144, 96, 24, '12000', '0', NULL, '100', NULL, NULL),
-(58, 144, 96, 24, '12000', '0', NULL, '100', NULL, NULL),
-(59, 144, 96, 24, '12000', '0', NULL, '100', NULL, NULL),
-(60, 144, 91, 23, '12000', '0', NULL, '100', NULL, NULL),
-(61, 144, 91, 23, '12000', '0', NULL, '100', NULL, NULL),
-(62, 144, 91, 23, '12000', '0', NULL, '100', NULL, NULL),
-(63, 150, 91, 23, '12000', '1', NULL, '1111', NULL, NULL),
-(64, 150, 57, 19, '12000', '0', NULL, '1111', NULL, NULL),
-(65, 149, 91, 23, '12000', '0', NULL, '111', NULL, NULL),
-(66, 151, 57, 19, '12000', '0', NULL, '1111', NULL, NULL),
-(67, 151, 63, 22, '12000', '0', NULL, '110', NULL, NULL),
-(68, 152, 57, 19, '12000', '0', NULL, '110', NULL, NULL),
-(69, 152, 63, 22, '12000', '0', NULL, '111', NULL, NULL),
-(70, 152, 60, 21, '12000', '0', NULL, '100', NULL, NULL);
+(1, 123, 1, 1, '1200', '1', '', '1111', 'Mumbai', '2020-06-28T12:16:06.171Z');
 
 -- --------------------------------------------------------
 
@@ -1785,26 +1725,7 @@ CREATE TABLE `file_uri` (
 --
 
 INSERT INTO `file_uri` (`furi_id`, `furi1`, `furi2`, `etd_id`, `f_type`) VALUES
-(1, 'https://www.youtube.com/watch?v=yKNxeF4KMsY', 'https://stackoverflow.com/questions/57548512/sql-query-to-find-all-combinations-of-grouped-values', 1, 'link'),
-(2, 'https://www.youtube.com/watch?v=yKNxeF4KMsY', 'https://stackoverflow.com/questions/57548512/sql-query-to-find-all-combinations-of-grouped-values', 2, 'link'),
-(4, 'https://www.youtube.com/watch?v=yKNxeF4KMsY', 'https://stackoverflow.com/questions/57548512/sql-query-to-find-all-combinations-of-grouped-values', 4, 'link'),
-(5, 'uri1', 'uri2', 10, 'link'),
-(7, 'uri1', 'uri2', 11, 'link'),
-(8, 'uri1', 'uri2', 29, 'link'),
-(9, NULL, NULL, 34, 'link'),
-(10, NULL, NULL, 123, 'link'),
-(11, NULL, NULL, 36, 'link'),
-(28, 'in.gov.digilocker-OTHER-1c101c18904b44fd06b260b9a6889e42', NULL, 48, 'link'),
-(29, 'in.gov.digilocker-OTHER-c0df47b58048793906e4903f528c8046', NULL, 46, 'link'),
-(31, 'in.gov.digilocker-OTHER-3cef77c6b53465dc38bc51e4f0d9712c', NULL, 51, 'link'),
-(38, 'in.gov.digilocker-OTHER-0d41eec5175d23b9e7c7cdc0787b35af', 'in.gov.digilocker-OTHER-2bb315fe5df3db4accaafa7b31f17472', 33, 'link'),
-(42, 'in.gov.digilocker-OTHER-974a4488f4c16f446e483be9caa4ca22', 'in.gov.digilocker-OTHER-cc64f13b0e8b7412485b1aa0d5e99095', 35, 'link'),
-(46, 'in.gov.digilocker-OTHER-a95670616cb3b196126f59c8ed0b8494', 'in.gov.digilocker-OTHER-7f59363f116fc6ed27cdab603305ee9e', 53, 'link'),
-(50, 'in.gov.digilocker-OTHER-8644a6e751005a33dcf735b7f3331617', 'in.gov.digilocker-OTHER-f9bccb63e2282b8c13d9652f0a79ac09', 63, 'link'),
-(52, 'in.gov.digilocker-OTHER-aaf3c8229850eb3ea3661893aef682ec', 'in.gov.digilocker-OTHER-e99f84fa6192b47abb63087df6975a65', 64, 'link'),
-(54, 'in.gov.digilocker-OTHER-8644a6e751005a33dcf735b7f3331617', 'in.gov.digilocker-OTHER-f9bccb63e2282b8c13d9652f0a79ac09', 65, 'link'),
-(60, 'in.gov.digilocker-OTHER-8461f80b3b225cfd0a5f58d0599ab655', 'in.gov.digilocker-OTHER-a909f8da6ac669bbe71889095fffc620', 49, 'link'),
-(62, 'in.gov.digilocker-OTHER-7d8ded34123e148c61ffa9276e558230', 'in.gov.digilocker-OTHER-54db80716c1c7ed6656c281d250aabda', 66, 'link');
+(10, NULL, NULL, 123, 'link');
 
 -- --------------------------------------------------------
 
@@ -1905,40 +1826,6 @@ CREATE TABLE `payment_transactions` (
   `payment_mode` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `payment_transactions`
---
-
-INSERT INTO `payment_transactions` (`etd_id`, `txn_id`, `order_id`, `txn_amount`, `resp_message`, `resp_code`, `refund_amount`, `txn_timestamp`, `bank_txn_id`, `gateway_name`, `bank_name`, `payment_mode`) VALUES
-(22, '20200418111212800110168135101464148', 'ORD67799611', '100.00', 'TXN_SUCCESS', '01', '0.00', '2020-04-18 17:37:45.0', '777001317925377', 'HDFC', 'Bank', 'DC'),
-(24, '20200418111212800110168952101448203', 'ORD1614919355', '101.00', 'TXN_SUCCESS', '01', '0.00', '2020-04-18 18:02:33.0', '777001314779128', 'HDFC', 'Bank', 'DC'),
-(1, '20200424111212800110168285901481333', 'ORD2716104451', '1200.00', 'TXN_SUCCESS', '01', '0.00', '2020-04-24 22:38:40.0', '777001212985127', 'HDFC', 'Bank of Bahrain and Kuwait', 'DC'),
-(29, '20200504111212800110168549801490826', 'ORD4763326651', '100.00', 'TXN_SUCCESS', '01', '0.00', '2020-05-04 11:49:25.0', '777001680335387', 'HDFC', 'Bank of Bahrain and Kuwait', 'DC'),
-(29, '20200504111212800110168549801490826', 'ORD4763326651', '100.00', 'TXN_SUCCESS', '01', '0.00', '2020-05-04 11:49:25.0', '777001680335387', 'HDFC', 'Bank of Bahrain and Kuwait', 'DC'),
-(32, '20200504111212800110168411801500377', 'ORD8672028146', '101.00', 'TXN_SUCCESS', '01', '0.00', '2020-05-04 17:25:04.0', '777001030806540', 'HDFC', 'Bank of Bahrain and Kuwait', 'DC'),
-(33, '20200504111212800110168076601507314', 'ORD4614618640', '20000.00', 'TXN_SUCCESS', '01', '0.00', '2020-05-04 19:42:04.0', '777001052938800', 'HDFC', 'Bank of Bahrain and Kuwait', 'DC'),
-(34, '20200504111212800110168721601533234', 'ORD2096940788', '12.00', 'TXN_SUCCESS', '01', '0.00', '2020-05-04 19:57:52.0', '777001339258128', 'HDFC', 'Bank of Bahrain and Kuwait', 'DC'),
-(35, '20200504111212800110168306501595363', 'ORD145294840', '20000.00', 'TXN_SUCCESS', '01', '0.00', '2020-05-04 20:01:07.0', '777001778185378', 'HDFC', 'Bank of Bahrain and Kuwait', 'DC'),
-(35, '20200504111212800110168306501595363', 'ORD145294840', '20000.00', 'TXN_SUCCESS', '01', '0.00', '2020-05-04 20:01:07.0', '777001778185378', 'HDFC', 'Bank of Bahrain and Kuwait', 'DC'),
-(36, '20200505111212800110168600901504481', 'ORD1781242141', '101.00', 'TXN_SUCCESS', '01', '0.00', '2020-05-05 11:13:28.0', '777001625537001', 'HDFC', 'Bank of Bahrain and Kuwait', 'DC'),
-(37, '20200505111212800110168466601517046', 'ORD1163760418', '20000.00', 'TXN_SUCCESS', '01', '0.00', '2020-05-05 11:48:12.0', '777001863942072', 'HDFC', 'Bank of Bahrain and Kuwait', 'DC'),
-(41, '20200505111212800110168205501509053', 'ORD6992552340', '20000.00', 'TXN_SUCCESS', '01', '0.00', '2020-05-05 16:14:24.0', '777001157372823', 'HDFC', 'Bank of Bahrain and Kuwait', 'DC'),
-(48, '20200505111212800110168303801596642', 'ORD7851913508', '2000.00', 'TXN_SUCCESS', '01', '0.00', '2020-05-05 17:58:54.0', '777001900183488', 'HDFC', 'Bank of Bahrain and Kuwait', 'DC'),
-(46, '20200505111212800110168255501507386', 'ORD4539973453', '2000.00', 'TXN_SUCCESS', '01', '0.00', '2020-05-05 20:16:10.0', '777001769027516', 'HDFC', 'Bank of Bahrain and Kuwait', 'DC'),
-(51, '20200506111212800110168471401504503', 'ORD1074744782', '8651.00', 'TXN_SUCCESS', '01', '0.00', '2020-05-06 13:41:24.0', '777001203999392', 'HDFC', 'Bank of Bahrain and Kuwait', 'DC'),
-(49, '20200506111212800110168977801524459', 'ORD4691705110', '8651.00', 'TXN_SUCCESS', '01', '0.00', '2020-05-06 17:02:09.0', '777001494471983', 'HDFC', 'Bank of Bahrain and Kuwait', 'DC'),
-(52, '20200506111212800110168278501515214', 'ORD6277750790', '101.00', 'TXN_SUCCESS', '01', '0.00', '2020-05-06 22:12:03.0', '777001439519861', 'HDFC', 'Bank of Bahrain and Kuwait', 'DC'),
-(53, '20200506111212800110168510801721931', 'ORD4470802148', '8651.00', 'TXN_SUCCESS', '01', '0.00', '2020-05-06 22:11:49.0', '777001623342677', 'HDFC', 'Bank of Bahrain and Kuwait', 'DC'),
-(53, '20200507111212800110168675901508953', 'ORD1443098049', '8651.00', 'TXN_SUCCESS', '01', '0.00', '2020-05-07 11:35:03.0', '777001030848977', 'HDFC', 'Bank of Bahrain and Kuwait', 'DC'),
-(63, '20200510111212800110168308601607509', 'ORD4450737865', '1200.00', 'TXN_SUCCESS', '01', '0.00', '2020-05-10 12:56:12.0', '777001881170515', 'HDFC', 'Bank of Bahrain and Kuwait', 'DC'),
-(64, '20200511111212800110168882201525756', 'ORD7612011049', '1200.00', 'TXN_SUCCESS', '01', '0.00', '2020-05-11 10:18:50.0', '777001881390663', 'HDFC', 'Bank of Bahrain and Kuwait', 'DC'),
-(65, '20200512111212800110168393301517851', 'ORD2757180512', '8651.00', 'TXN_SUCCESS', '01', '0.00', '2020-05-12 14:03:10.0', '777001659855961', 'HDFC', 'Bank of Bahrain and Kuwait', 'DC'),
-(66, '20200516111212800110168910001562930', 'ORD661610745', '1200.00', 'TXN_SUCCESS', '01', '0.00', '2020-05-16 20:29:57.0', '777001877865735', 'HDFC', 'Bank of Bahrain and Kuwait', 'DC'),
-(67, '20200519111212800110168784101575828', 'ORD2515481508', '1200.00', 'TXN_SUCCESS', '01', '0.00', '2020-05-19 17:01:53.0', '777001635333676', 'HDFC', 'Bank of Bahrain and Kuwait', 'DC'),
-(68, '20200519111212800110168145901552201', 'ORD1646994639', '1200.00', 'TXN_SUCCESS', '01', '0.00', '2020-05-19 17:44:07.0', '777001825478600', 'HDFC', 'Bank of Bahrain and Kuwait', 'DC'),
-(69, '20200519111212800110168064201542540', 'ORD4798595420', '1200.00', 'TXN_SUCCESS', '01', '0.00', '2020-05-19 17:44:17.0', '777001359028897', 'HDFC', 'Bank of Bahrain and Kuwait', 'DC'),
-(68, '20200520111212800110168205101553630', 'ORD5296748699', '1200.00', 'TXN_SUCCESS', '01', '0.00', '2020-05-20 20:03:30.0', '777001884665533', 'HDFC', 'Bank of Bahrain and Kuwait', 'DC');
-
 -- --------------------------------------------------------
 
 --
@@ -1970,13 +1857,6 @@ CREATE TABLE `sessions` (
   `expires` int(11) UNSIGNED NOT NULL,
   `data` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `sessions`
---
-
-INSERT INTO `sessions` (`session_id`, `expires`, `data`) VALUES
-('31083b31-a19b-4fb5-bf82-779ed595df0a', 1593354795, '{\"cookie\":{\"originalMaxAge\":7200000,\"expires\":\"2020-06-28T14:18:36.337Z\",\"httpOnly\":true,\"path\":\"/\"},\"vd_id\":1,\"vcd_id\":1,\"digi_access\":0}');
 
 -- --------------------------------------------------------
 
@@ -2216,6 +2096,7 @@ ALTER TABLE `org_details`
 -- Indexes for table `payment_transactions`
 --
 ALTER TABLE `payment_transactions`
+  ADD PRIMARY KEY (`etd_id`),
   ADD KEY `etd_id` (`etd_id`);
 
 --
@@ -2288,7 +2169,7 @@ ALTER TABLE `e_tender_details`
 -- AUTO_INCREMENT for table `e_tender_vendor`
 --
 ALTER TABLE `e_tender_vendor`
-  MODIFY `etd_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `etd_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 --
 -- AUTO_INCREMENT for table `file_uri`
 --

@@ -44,6 +44,27 @@ strong {
   transition: all .2s ease-in-out;
 }
 
+.cont button {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 5px 25px;
+  font-size: 16px;
+  font-weight: 300;
+  border-radius: 5px;
+  background-color: var(--main_color);
+  border: 0.4px solid var(--main_color);
+  outline: none;
+  color: #ffffff;
+  margin-bottom: 30px;
+}
+
+.cont button:hover {
+  cursor: pointer;
+  background-color: #ffffff;
+  color: var(--main_color);
+}
+
 #tc {
   font-size: 12px;
   font-style: italic;
@@ -61,6 +82,7 @@ table {
 
 table td {
   padding: 10px;
+  vertical-align: top;
 }
 
 .cont2 {
@@ -152,7 +174,6 @@ input {
   width: auto;
   padding: 10px;
   margin: 10px;
-  color: var(--main_color);
 }
 
 input[type=date]::-webkit-inner-spin-button {
@@ -176,39 +197,16 @@ input[type="number"] {
 }
 
 select, input[type="date"] {
-  border-width: 1.5px;
+  border: 1.5px solid var(--main_color);
   border-radius: 3px;
-  border-color: var(--main_color);
   height: 30px;
   margin: 10px;
-  color: var(--main_color);
   padding: 0;
   padding-left: 10px;
 }
 
 .select-selected {
   background-color: var(--main_color);
-}
-
-button {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  padding: 5px 25px;
-  font-size: 16px;
-  font-weight: 300;
-  border-radius: 5px;
-  background-color: var(--main_color);
-  border: 0.4px solid var(--main_color);
-  outline: none;
-  color: #ffffff;
-  margin-bottom: 30px;
-}
-
-button:hover {
-  cursor: pointer;
-  background-color: #ffffff;
-  color: var(--main_color);
 }
 
 .submit_button {

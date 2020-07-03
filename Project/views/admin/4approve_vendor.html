@@ -12,12 +12,19 @@
 </head>
 <body>
     <header>
-        <nav  id='nav_bar'>   
-            <a href="/v7_homepage.html">Home</a>
-            <a href="/2CRUD_admin.html">Tender</a>
-            <a href="/admin/profile">Profile</a>
-            <a href="/3view_tender_application.html">Applications</a>
-            <a onclick="return theFunctionA();">Log out</a>
+        <nav  id='nav_bar'>  
+            <div>
+                <a href="/v7_homepage.html">Home</a>
+                <a href="/2CRUD_admin.html">Tender</a>
+                <a href="/3view_tender_application.html">Applications</a>
+            </div>
+            <div class="dropdown">
+                <button id="username" class="dropbtn"><a href="/admin/profile">Profile</a>&nbsp;<i class="fas fa-angle-down"></i></button>
+                <div class="dropdown-content">
+                <a href="/admin/profile"><i class="fas fa-user">&nbsp;&nbsp;</i>My Profile</a>
+                <a style="cursor:pointer" onclick="return theFunctionA();"><i class="fas fa-sign-out-alt">&nbsp;&nbsp;</i>Log out</a>
+                </div>
+            </div> 
         </nav>
 	</header>
     <div id="main_content">
@@ -30,3 +37,4 @@
 <script src="javascript/jquery-3.4.1.min.js"></script>
 <!-- <script  src="javascript/cookies.js"></script> -->
 <script src="javascript/4approve_vendor.js"></script>
+<script src="https://kit.fontawesome.com/523ff21025.js" crossorigin="anonymous"></script>

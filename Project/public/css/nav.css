@@ -82,7 +82,7 @@ button, input{
   box-shadow: 0px 0px 16px 0px rgba(103, 62, 253, 0.3);
   z-index: 1;
   border-radius: 7px;
-  margin-top: 25px;
+  margin-top: 22px;
 }
 .dropdown-content a {
   float: none;

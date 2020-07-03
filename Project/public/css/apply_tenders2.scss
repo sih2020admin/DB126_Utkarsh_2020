@@ -29,7 +29,6 @@ h1, h3, h2{
     table{
         text-align: left;
     }
-}
 
 button{
     width: 100px;
@@ -47,7 +46,7 @@ button{
 button:hover{
     background-color: #ffffff;
     color: var(--main_color);
-}
+} }
 input{
     // border-style: dashed;
     border-width: 1.5px;
@@ -57,7 +56,7 @@ input{
     width: auto;
     padding: 10px;
     margin: 10px;
-    color: var(--main_color);
+    // color: var(--main_color);
 }
 input[type=date]::-webkit-inner-spin-button {
     appearance: none;
@@ -88,8 +87,7 @@ select, input[type="date"]{
 }
 .select-selected {
     background-color: var(--main_color);
-} 
-
+}
 .container {
     width: 100%;
     margin: 30px auto; 
