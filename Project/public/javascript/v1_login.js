@@ -21,9 +21,6 @@ function show() {
         xhr.setRequestHeader('Content-Type', 'application/json')
         xhr.send(JSON.stringify({ username: userid, password: passw }))
 
-        document.getElementById('username').value = ''
-        document.getElementById('pass').value = ''
-
         xhr.onload = function () {
             if (this.status == 200) {
                 message = JSON.parse(this.responseText)
@@ -60,7 +57,6 @@ function show() {
                     else{
                         xhr.send(JSON.stringify({ aadharno: message.aadhar,vcd_id :message.vcd_id , vd_id: message.vd_id, digi_access : message.digi_access, OTP: y.value }))
                     }
-                    document.getElementById('otp').value = ''
 
                     xhr.onload = function () {
                         if (this.status == 200) {
