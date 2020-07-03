@@ -29,6 +29,7 @@ $.ajax({
     method: 'POST',
     async: true,
     data: {
+        dept_id: dept_id,
     },
     success: function (response) {
         var e_1, _a;
