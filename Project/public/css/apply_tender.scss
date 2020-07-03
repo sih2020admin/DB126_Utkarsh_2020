@@ -120,7 +120,7 @@ input{
     width: auto;
     padding: 10px;
     margin: 10px;
-    color: var(--main_color);
+    // color: var(--main_color);
 }
 input[type=date]::-webkit-inner-spin-button {
     appearance: none;
@@ -140,12 +140,11 @@ input[type="number"]{
 }
 select, input[type="date"]{
     //border-style: dashed;
-    border-width: 1.5px;
+    border: 1.5px solid var(--main_color);
     border-radius: 3px;
-    border-color: var(--main_color);
     height: 30px;
     margin: 10px;
-    color: var(--main_color);
+    // color: var(--main_color);
     padding: 0;
     padding-left: 10px;
 }

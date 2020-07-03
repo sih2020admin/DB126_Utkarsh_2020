@@ -4,7 +4,6 @@
 
 body {
   text-align: center;
-  color: var(--main_color);
 }
 
 form {
@@ -24,14 +23,12 @@ form {
 }
 
 input {
-  border-width: 1.1px;
+  border: 1.5px solid var(--main_color);
   border-radius: 3px;
-  border-color: var(--main_color);
   height: 30px;
   width: auto;
   padding: 10px;
   margin: 10px;
-  color: var(--main_color);
 }
 
 input[type="number"] {
