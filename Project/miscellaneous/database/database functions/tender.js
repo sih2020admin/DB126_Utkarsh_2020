@@ -108,7 +108,6 @@ function getPaymentDetails(request) {
                 case 0: return [4 /*yield*/, connection_1.default.query("SELECT et_tender_fee FROM  e_tender_details INNER JOIN department ON e_tender_details.dept_id = department.dept_id WHERE et_id = '" + request.query['et_id'] + "';\n                                            SELECT vcd_contact,vcd_email FROM v_contact_details where vcd_id='" + request.signedCookies['vcd_id_e'] + "'")];
                 case 1:
                     temp = _a.sent();
-                    console.log(temp[0]);
                     return [2 /*return*/, temp[0]];
             }
         });
