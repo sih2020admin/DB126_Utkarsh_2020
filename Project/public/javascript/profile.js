@@ -246,7 +246,7 @@ xhr.onload = function () {
                             <td>`+response[2][i].et_tender_desc+`</td>
                             <td>`+response[2][i].bidding_amt+`</td>
                             <td><a href=https://`+location.hostname+":8081/tender/preview?et_id="+response[2][i].et_id+"&etd_id="+response[2][i].etd_id+`>view</a></td>
-                            <td>`+"Submitted"+`</td>
+                            <td>`+"Approved"+`</td>
                         </tr>` 
                 }
         }
