@@ -254,6 +254,10 @@ h1 {
   padding: 1em 1em;
 }
 
+.container2 td {
+  vertical-align: baseline;
+}
+
 .container3 {
   margin: 30px;
 }
