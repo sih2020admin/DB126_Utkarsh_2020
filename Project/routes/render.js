@@ -117,7 +117,7 @@ router.get('/tender/confirmation', function (request, response) {
 router.get('/tender/preview', function (request, response) {
     var user = user_1.isUser(request);
     var s;
-    Promise.all([user_1.getUserUsername(request), tender_1.confirmedTenderDetails(request)])
+    Promise.all([user_1.getUserUsername(request), tender_1.previewTenderDetails(request)])
         .then(function (results) {
         response.render('user/preview', {
             layout: false,

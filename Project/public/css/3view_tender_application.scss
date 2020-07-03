@@ -22,17 +22,34 @@ label{
 .tender_list2{
     text-align: left;
     background-color: rgb(255, 255, 255);
-    width: 95%;
-    height: auto;
+    width: 80%;
+    max-width: 1200px;  
     padding: 20px;
-    margin: 40px;
-    margin-top: 40px;
-    margin-bottom: 0;
+    margin: 40px auto;
     border-radius: 10px; 
     box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
     // border: 1px solid var(--main_color);
     transition: all .5s ease-in-out; 
     color: var(--main_color);
+
+    button{
+        background-color: var(--main_color);
+        color: #ffffff;
+        font-size: 1rem;
+        border-radius: 5px;
+        border: 0.3px solid var(--main_color);
+        height: fit-content;
+        width: fit-content;
+        padding: 6px 10px;
+        transition: 3sec;
+        margin-top: 20px;
+    }
+    button:hover{
+        background-color: #ffffff;
+        color: var(--main_color);
+        border: 0.4px solid var(--main_color);
+        cursor: pointer;
+    } 
 }
 
 .tender_list2:hover{
@@ -49,21 +66,4 @@ select{
     color: var(--main_color);
     padding: 5px;
 }
-button{
-    background-color: var(--main_color);
-    color: #ffffff;
-    font-size: 1rem;
-    border-radius: 5px;
-    border: 0.3px solid var(--main_color);
-    height: fit-content;
-    width: fit-content;
-    padding: 6px 10px;
-    transition: 3sec;
-    margin-top: 20px;
-}
-button:hover{
-    background-color: #ffffff;
-    color: var(--main_color);
-    border: 0.4px solid var(--main_color);
-    cursor: pointer;
-} 
+

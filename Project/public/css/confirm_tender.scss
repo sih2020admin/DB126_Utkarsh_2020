@@ -53,6 +53,26 @@ strong, .RnoLabel, .Id, .OdateLabel{
     border-radius: 10px; 
     box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
     transition: all .2s ease-in-out; 
+
+    button{
+        width: 100px;
+        height: 30px;
+        font-size: 16px;
+        font-weight: 300;
+        border-radius: 5px; 
+        background-color: var(--main_color);
+        border: none;
+        color: #ffffff;
+    }
+button:hover{
+        cursor: pointer;
+        background-color: #ffffff;
+        color: var(--main_color);
+        border: solid;
+        border-width: 0.4px;
+        border-color: var(--main_color);
+    }
+
 }
 .payment_details, .upload_documents{
     margin: 40px;
@@ -97,24 +117,6 @@ table td {
     margin-bottom: 15px;
   }
   
-button{
-        width: 100px;
-        height: 30px;
-        font-size: 16px;
-        font-weight: 300;
-        border-radius: 5px; 
-        background-color: var(--main_color);
-        border: none;
-        color: #ffffff;
-    }
-button:hover{
-        cursor: pointer;
-        background-color: #ffffff;
-        color: var(--main_color);
-        border: solid;
-        border-width: 0.4px;
-        border-color: var(--main_color);
-    }
 
 
 .button_div {
