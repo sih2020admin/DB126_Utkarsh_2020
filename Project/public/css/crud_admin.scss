@@ -88,7 +88,6 @@ h1{
             margin: 10px;
             color: var(--text_color);
             box-shadow: none !important;
-
         }
         input[type=number]{
             appearance: textfield;
@@ -224,6 +223,9 @@ h1{
 
     th,td {
     padding: 1em 1em;
+    }
+    td{
+        vertical-align: baseline;
     }
 
     

@@ -8,6 +8,7 @@ var data_structure_1 = require("./data-structure");
 var db_1 = __importDefault(require("./db"));
 var router = express_1.default.Router();
 router.get('/profile', function (request, response) {
+    console.log(request.signedCookies);
     var admin_details_exists = false;
     var approved_tenders_exists = false;
     var admin_details;
