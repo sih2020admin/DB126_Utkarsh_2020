@@ -3,7 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.redirectToLoginPage = exports.redirectToProfilePage = void 0;
 var debug = require('debug')('middleware:redirect');
 function redirectToProfilePage(request, response, next) {
-    console.log(request.url);
     if (request.url.match('/admin') === null) {
         if (request.url.match(/\/login|\/register/)) {
             if (request.signedCookies['vcd_id_e'] !== undefined || request.signedCookies['vd_id_e'] !== undefined) {
@@ -17,7 +16,6 @@ function redirectToProfilePage(request, response, next) {
 }
 exports.redirectToProfilePage = redirectToProfilePage;
 function redirectToLoginPage(request, response, next) {
-    console.log(request.url);
     /* console.table({XHR:request.xhr,accepts:request.accepts(['html','json']),value:request.headers["x-requested-with"]}) */
     if (request.url.match('/admin') === null) {
         if (request.url !== '/') {

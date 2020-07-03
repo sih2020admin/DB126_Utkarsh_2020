@@ -5,15 +5,21 @@
 <header>
     <nav id='nav_bar'>   
         <div>
-            <a href="/admin/dashboard">Tender</a>
-            <a href="/admin/tenders/list">Applications</a>
+            <a href="/admin/dashboard">Dashboard</a>
+            <a href="/admin/tenders/list">Tenders</a>
+            <a href="/admin/help">Help</a>
         </div>
-        <div class="dropdown">
-            <button id="user" class="dropbtn"><a href="/admin/profile">Profile</a>&nbsp;<i class="fas fa-angle-down"></i></button>
+        {{#unless admin}}
+        <a href="/admin/login">Login</a>
+        {{else}}
+              <div class="dropdown">
+            <button id="user" class="dropbtn"><a href="/admin/profile">{{username}}</a>&nbsp;<i class="fas fa-angle-down"></i></button>
             <div class="dropdown-content">
                 <a href="/admin/profile"><i class="fas fa-user">&nbsp;&nbsp;</i>My Profile</a>
                 <a style="cursor:pointer" onclick="return theFunctionA();"><i class="fas fa-sign-out-alt">&nbsp;&nbsp;</i>Log out</a>
             </div>
-        </div>     
+        </div>      
+
+        {{/unless}}
     </nav>
 </header>
