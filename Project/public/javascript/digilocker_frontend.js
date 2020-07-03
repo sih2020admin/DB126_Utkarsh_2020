@@ -136,7 +136,8 @@ function show_files(str) {
     //check if directory contains any items or not
     if (item_array.length == 0) {
         document.getElementById("no_doc").style.display = "block";
-        //alert('This directory is empty')
+        //alert('This directory is empty');
+        console.log("testing of no doc in digi directory");
     } else {
         document.getElementById("no_doc").style.display = "none";
         //First append "directory" list then append "file" list
