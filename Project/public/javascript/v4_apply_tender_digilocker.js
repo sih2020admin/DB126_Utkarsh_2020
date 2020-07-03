@@ -143,6 +143,7 @@ function show_files(str) {
         //alert('This directory is empty');
         console.log("testing of no doc in digi directory");
     } else {
+        document.getElementById("no_doc").style.display = "none";
         //First append "directory" list then append "file" list
         add_to_list('dir')
         add_to_list('file')
@@ -430,13 +431,13 @@ function uploadFiles() {
                     console.log('TECHNICAL get file START')
                     get_files()
                     console.log('TECHNICAL get file STOP')
-                    alert('Your Technical document has been uploaded successfully with hash =>' + this.responseText)
+                    //alert('Your Technical document has been uploaded successfully with hash =>' + this.responseText)
                 } else if (Technical_or_BOQ == 1) {
                     Technical_or_BOQ = 2
                     console.log('BOQ get file START')
                     get_files()
                     console.log('BOQ get file STOP')
-                    alert('Your BOQ document has been uploaded successfully with hash =>' + this.responseText)
+                    //alert('Your BOQ document has been uploaded successfully with hash =>' + this.responseText)
                 }
                 current_id = ''
                 parent_id = []
