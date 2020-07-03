@@ -3,7 +3,7 @@
 }
 body{
     text-align: center;
-    color: var(--main_color);
+    // color: var(--main_color);
 }
 form{
     background-color: rgb(255, 255, 255);
@@ -20,14 +20,13 @@ form{
 }
 input{
     // border-style: dashed;
-    border-width: 1.1px;
+    border: 1.5px solid var(--main_color);
     border-radius: 3px;
-    border-color: var(--main_color);
     height: 30px;
     width: auto;
     padding: 10px;
     margin: 10px;
-    color: var(--main_color);
+    // color: var(--main_color);
 }
 input[type="number"]{
     padding: 0;
@@ -40,7 +39,7 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
-}
+} 
 #bg_tsc_button{
     width: fit-content;
     height: fit-content;

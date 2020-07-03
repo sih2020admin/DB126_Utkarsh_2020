@@ -39,7 +39,7 @@ h1, h3, h2 {
   text-align: left;
 }
 
-button {
+.cont button {
   width: 100px;
   height: 30px;
   font-size: 16px;
@@ -53,7 +53,7 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+.cont button:hover {
   background-color: #ffffff;
   color: var(--main_color);
 }
@@ -66,7 +66,6 @@ input {
   width: auto;
   padding: 10px;
   margin: 10px;
-  color: var(--main_color);
 }
 
 input[type=date]::-webkit-inner-spin-button {
