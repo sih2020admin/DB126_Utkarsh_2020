@@ -10,6 +10,7 @@ router.get('/login', function (request, response) {
     response.render('admin/login', { layout: false });
 });
 router.get('/dashboard', function (request, response) {
+    console.log(request.signedCookies);
     var admin = user_1.isAdmin(request);
     Promise.all([user_1.getAdminUsername(request)])
         .then(function (results) {
