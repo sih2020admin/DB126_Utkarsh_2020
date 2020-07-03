@@ -104,7 +104,6 @@ router.post('/login_api', function (reqs, res) {
     })
 })
 
-
 router.post('/verifyOTP_login', (req, res) => {
     console.log('verify otp called ' + JSON.stringify(req.body))
     var r = JSON.stringify(req.body)
@@ -123,7 +122,7 @@ router.post('/verifyOTP_login', (req, res) => {
             'Content-Type': 'application/json',
         },
     }
-    var request= https.request(options, function (resp) {
+    var request = https.request(options, function (resp) {
         resp.setEncoding('utf8')
         resp.on('data', function (chunk) {
             console.log('BODY: ' + chunk)
@@ -155,7 +154,6 @@ router.post('/verifyOTP_login', (req, res) => {
 
     request.end()
 })
-
 
 // router.post('/verifyOTP_login', (req, res) => {
 //     console.log('verify otp called ' + JSON.stringify(req.body))
@@ -201,7 +199,6 @@ router.post('/verifyOTP_login', (req, res) => {
 //         console.log('Error : ' + e.message)
 //     })
 // })
-
 
 router.post('/login/admin', function (req, res) {
     var username = req.body.username
@@ -286,8 +283,6 @@ router.post('/verifyOTP', (req, res) => {
     req.end()
 })
 
-
-
 router.post('/user/logout', (request, response) => {
     console.log()
     response.clearCookie('vcd_id')
@@ -298,7 +293,7 @@ router.post('/user/logout', (request, response) => {
     response.clearCookie('digi_access_e')
     request.session.destroy(function (err) {
         response.clearCookie('connect.sid')
-        return response.redirect('/1admin_login.html')
+        return response.redirect('/admin/login')
     })
     //response.sendStatus(200)
 })
