@@ -1,5 +1,6 @@
 var data = ''
 var response
+var res
 // var vd_id = get_cookie('vd_id')
 // var vcd_id = get_cookie('vcd_id')
 function loadResults(response) {
@@ -60,7 +61,7 @@ function apply(i) {
     // if (result.value) {
     var et_id = response[i].et_id
     var data = JSON.stringify({ et_id: et_id })
-    var res
+    
 
     var xhr = new XMLHttpRequest()
     xhr.onload = function () {
@@ -78,8 +79,8 @@ function apply(i) {
                     confirmButtonColor: '#663EFD',
                     cancelButtonColor: '#a6a6a6',
                     confirmButtonText: 'Apply',
-                }).then((result, res) => {
-                    console.log(result, res)
+                }).then((result) => {
+                    console.log(result)
                     window.location.href = '/tender/payment?et_id=' + et_id + '&etd_id=' + etd_id
                 })
             } else if (status == '110') {
@@ -92,8 +93,8 @@ function apply(i) {
                     confirmButtonColor: '#663EFD',
                     cancelButtonColor: '#a6a6a6',
                     confirmButtonText: 'Apply',
-                }).then((result, res) => {
-                    console.log(result, res)
+                }).then((result) => {
+                    // console.log(result)
                     if (result.isConfirmed) window.location.href = '/tender/upload-documents?et_id=' + et_id + '&etd_id=' + etd_id
                 })
             } else if (status == '111') {
@@ -106,9 +107,9 @@ function apply(i) {
                     confirmButtonColor: '#663EFD',
                     cancelButtonColor: '#a6a6a6',
                     confirmButtonText: 'Apply',
-                }).then((result, res) => {
-                    console.log(result, res)
-                    if (result.isConfirmed) window.location.href = '/tender/confirmation?et_id=' + et_id + '&etd_id=' + res.etd_id
+                }).then((result) => {
+                    // console.log(result)
+                    if (result.isConfirmed) window.location.href = '/tender/confirmation?et_id=' + et_id + '&etd_id=' + etd_id
                 })
             } else if (status == '1111') {
                 // alert('Application submited redirecting to Application Preview page')
@@ -120,8 +121,8 @@ function apply(i) {
                     confirmButtonColor: '#663EFD',
                     cancelButtonColor: '#a6a6a6',
                     confirmButtonText: 'Apply',
-                }).then((result, res) => {
-                    console.log(result, res)
+                }).then((result) => {
+                    // console.log(result)
                     if (result.isConfirmed) window.location.href = '/tender/preview?et_id=' + et_id + '&etd_id=' + etd_id
                 })
             }
@@ -134,8 +135,8 @@ function apply(i) {
                 confirmButtonColor: '#663EFD',
                 cancelButtonColor: '#a6a6a6',
                 confirmButtonText: 'Apply',
-            }).then((result, res) => {
-                console.log(result, res)
+            }).then((result) => {
+                // console.log(result)
                 if (result.isConfirmed) window.location.href = '/tender/apply?et_id=' + response[i].et_id
             })
         } else {
