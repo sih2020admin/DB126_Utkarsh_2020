@@ -135,8 +135,10 @@ function show_files(str) {
 
     //check if directory contains any items or not
     if (item_array.length == 0) {
-        alert('This directory is empty')
+        document.getElementById("no_doc").style.display = "block";
+        //alert('This directory is empty')
     } else {
+        document.getElementById("no_doc").style.display = "none";
         //First append "directory" list then append "file" list
         add_to_list('dir')
         add_to_list('file')
