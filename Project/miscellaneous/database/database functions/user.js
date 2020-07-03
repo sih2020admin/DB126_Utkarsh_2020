@@ -42,7 +42,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getAdminUsername = exports.isAdmin = exports.getUserUsername = exports.isUser = void 0;
 var connection_1 = __importDefault(require("./../connections/connection"));
 function isUser(request) {
-    if (request.signedCookies["vcd_id_e"]) {
+    if (request.signedCookies['vcd_id_e']) {
         return true;
     }
     else {
@@ -56,7 +56,7 @@ function getUserUsername(request) {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    if (!(request.signedCookies["vcd_id_e"] !== undefined)) return [3 /*break*/, 2];
+                    if (!(request.signedCookies['vcd_id_e'] !== undefined)) return [3 /*break*/, 2];
                     return [4 /*yield*/, connection_1.default.execute("Select user_name from log_in_details where vcd_id='" + request.signedCookies.vcd_id_e + "'")];
                 case 1:
                     username = _a.sent();
@@ -82,8 +82,8 @@ function getAdminUsername(request) {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    if (!(request.signedCookies["ad_id_e"] !== undefined)) return [3 /*break*/, 2];
-                    return [4 /*yield*/, connection_1.default.execute("Select user_name from log_in_details where ad_id='" + request.signedCookies.vcd_id_e + "'")];
+                    if (!(request.signedCookies['ad_id_e'] !== undefined)) return [3 /*break*/, 2];
+                    return [4 /*yield*/, connection_1.default.execute("Select user_name from log_in_details where ad_id='" + request.signedCookies['ad_id_e'] + "'")];
                 case 1:
                     username = _a.sent();
                     return [2 /*return*/, JSON.parse(JSON.stringify(username[0]))[0]['user_name']];
