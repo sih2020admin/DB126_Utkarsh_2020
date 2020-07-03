@@ -183,7 +183,7 @@ function show_files(str) {
                                 xhr.addEventListener('readystatechange', function () {
                                     if (this.readyState === 4) {
                                         console.log(this.responseText)
-                                        modal.style.display = 'none'
+                                        //modal.style.display = 'none'
                                         document.getElementById('digilocker').disabled = true
                                     }
                                 })
@@ -433,18 +433,20 @@ function uploadFiles() {
                     console.log('TECHNICAL get file STOP')
                     //alert('Your Technical document has been uploaded successfully with hash =>' + this.responseText)
                 } else if (Technical_or_BOQ == 1) {
+                    document.getElementById("back").style.display = "none";
+                    document.getElementById("uploadDigi").style.display = "none";
                     Technical_or_BOQ = 2
                     console.log('BOQ get file START')
                     get_files()
                     console.log('BOQ get file STOP')
                     //alert('Your BOQ document has been uploaded successfully with hash =>' + this.responseText)
                 }
-                current_id = ''
+                /*current_id = ''
                 parent_id = []
                 is_upload = 0
                 console.log('RESET get file START')
                 get_files()
-                console.log('RESET get file STOP')
+                console.log('RESET get file STOP')*/
             } else if (this.status == 400) {
                 alert(temp.error)
             } else {
