@@ -74,7 +74,7 @@ $.ajax({
                         count +
                         '"><b>Tender Fee</b></label><p id="et_tender_fee' +
                         count +
-                        '">\u20B9' +
+                        '">&nbsp;\u20B9' +
                         x.et_tender_fee +
                         '</p>\n                        <br><label for="et_last_date_apply' +
                         count +
