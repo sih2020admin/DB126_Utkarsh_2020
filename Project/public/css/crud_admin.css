@@ -28,7 +28,7 @@ h1 {
   border-radius: 10px;
   margin: auto;
   padding: 20px;
-  max-width: 50%;
+  max-width: 56%;
 }
 
 .container1 .main_bar input {
@@ -42,6 +42,7 @@ h1 {
   color: var(--text_color);
   overflow: hidden;
   outline: none;
+  height: 35px;
 }
 
 .container1 .main_bar button {
@@ -54,6 +55,7 @@ h1 {
   display: inline;
   padding: 3.8px 10px;
   margin-left: 5px;
+  height: 35px;
 }
 
 .container1 .main_bar button:hover {
@@ -195,7 +197,9 @@ h1 {
 }
 
 .container2 {
-  margin: 40px;
+  margin: 10px;
+  padding: 30px;
+  overflow-x: auto;
 }
 
 .container2 table {
@@ -238,16 +242,6 @@ h1 {
 
 .container2 .last_th {
   border-top-right-radius: 10px;
-}
-
-.container2 th::after {
-  content: '';
-  width: 100%;
-  height: initial;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  background-color: black;
 }
 
 .container2 th, .container2 td {
