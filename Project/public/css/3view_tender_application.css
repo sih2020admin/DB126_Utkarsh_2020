@@ -72,11 +72,6 @@ label {
   cursor: pointer;
 }
 
-.tender_list2:hover {
-  -webkit-transform: scale(1.01);
-          transform: scale(1.01);
-}
-
 select {
   border-width: 1.5px;
   border-radius: 3px;
