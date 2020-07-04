@@ -95,6 +95,7 @@
 
 .approved_tenders table {
   border: 1px;
+  width: 100%;
 }
 
 .approved_tenders table label {
@@ -103,6 +104,11 @@
 
 .approved_tenders table th, .approved_tenders table tr, .approved_tenders table td {
   padding: .5rem;
+  vertical-align: baseline;
+}
+
+.approved_tenders table tr td:nth-of-type(odd) {
+  width: 1%;
 }
 
 .approved_tenders .container {
@@ -110,7 +116,8 @@
           box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.2);
   border-radius: 10px;
   padding: 20px;
-  margin: 20px;
+  margin: 20px auto;
+  max-width: 1200px;
 }
 
 .approved_tenders .container h1, .approved_tenders .container h2, .approved_tenders .container h3, .approved_tenders .container h4 {

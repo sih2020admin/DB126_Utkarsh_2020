@@ -73,16 +73,19 @@
     }
     table{
         border: 1px;
+        width: 100%;
         label{color: var(--accent-color);}
-        th,tr,td{padding: .5rem;}
-        
+        th,tr,td{padding: .5rem; vertical-align: baseline;}
+        tr td:nth-of-type(odd){
+            width: 1%;
+        }
     }
     .container{
         box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.2);
         border-radius: 10px;
         padding: 20px;
-        margin: 20px;
-
+        margin: 20px auto;
+        max-width: 1200px;
         h1,h2,h3,h4{
             color: var(--main_color);
             margin: 5px;
