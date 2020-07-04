@@ -214,6 +214,11 @@ h1 {
 
 .container2 table a {
   text-decoration: none;
+  color: var(--main_color);
+}
+
+.container2 table a:hover {
+  text-decoration: underline;
 }
 
 .container2 table button {

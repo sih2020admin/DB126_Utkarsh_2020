@@ -183,6 +183,10 @@ h1{
         box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
         a{
             text-decoration: none;
+            color: var(--main_color);
+        }
+        a:hover{
+            text-decoration: underline;
         }
         button{
             border: none;
