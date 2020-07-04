@@ -425,7 +425,7 @@ function delete_td(clicked_id) {
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#663EFD',
-        cancelButtonColor: '#d33',
+        cancelButtonColor: '#a6a6a6',
         confirmButtonText: 'Yes, delete it!',
     }).then((result) => {
         if (result.value) {
