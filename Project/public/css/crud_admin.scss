@@ -197,7 +197,9 @@ h1{
     tr:nth-child(odd) {
         background-color: rgba(141, 111, 251, 0.06)
     }
-
+    i{
+        cursor: pointer;
+    }
     th {
         background-color: var(--main_color);
         color: #fff;

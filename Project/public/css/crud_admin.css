@@ -231,6 +231,10 @@ h1 {
   background-color: rgba(141, 111, 251, 0.06);
 }
 
+.container2 i {
+  cursor: pointer;
+}
+
 .container2 th {
   background-color: var(--main_color);
   color: #fff;
