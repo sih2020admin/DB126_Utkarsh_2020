@@ -31,7 +31,14 @@ label{
     // border: 1px solid var(--main_color);
     transition: all .5s ease-in-out; 
     color: var(--main_color);
-
+    p:nth-of-type(1){
+        font-size: 2rem;
+        color: var(--main_color);
+        text-transform: capitalize;
+        font-weight: 600;
+        display: block;
+        margin-bottom: 10px;
+    }
     button{
         background-color: var(--main_color);
         color: #ffffff;
