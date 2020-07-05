@@ -162,6 +162,7 @@ function file_status_digi(i, results, res) {
 		var vcd_id = results[i].vcd_id;
 		var furi1 = results[i].furi1;
 		var furi2 = results[i].furi2;
+		console.log(vcd_id, furi1, furi2);
 
 		var options = {
 			method: 'POST',
