@@ -46,18 +46,18 @@ $.ajax({
                     class: 'tender_content',
                     id: count,
                     html:
-                        "  <div class='tender_list2'>\n                        <label for=\"et_id" +
+                        "  <div class='tender_list2'>\n                        <label for=\"et_title" +
                         count +
-                        '"><b>Tender No</b></label><p id="et_id' +
-                        count +
-                        '"> ' +
-                        x.et_id +
-                        '</p>\n                        <br><label for="et_title' +
-                        count +
-                        '"><b>Tender Title</b></label><p id="et_title' +
+                        '"><b></b></label><p id="et_title' + 
                         count +
                         '"> ' +
                         x.et_title +
+                        '</p>\n                        <label for="et_id' +   
+                        count +
+                        '"><b>Tender Id</b></label><p id="et_id' +
+                        count +
+                        '"> ' +
+                        x.et_id +
                         '</p>\n                        <br><label for="et_tender_ref_no' +
                         count +
                         '"><b>Tender No</b></label><p id="et_tender_ref_no' +
@@ -74,7 +74,7 @@ $.ajax({
                         count +
                         '"><b>Tender Fee</b></label><p id="et_tender_fee' +
                         count +
-                        '">\u20B9' +
+                        '">&nbsp;\u20B9' +
                         x.et_tender_fee +
                         '</p>\n                        <br><label for="et_last_date_apply' +
                         count +

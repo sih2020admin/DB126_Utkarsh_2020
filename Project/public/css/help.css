@@ -33,6 +33,7 @@
 .side-nav ul li a {
   text-decoration: none;
   position: relative;
+  color: #fff;
 }
 
 .side-nav ul li a:visited {
@@ -84,6 +85,9 @@
 
 .main img {
   max-width: 850px;
+  border: 2px solid rgba(0, 0, 0, 0.178);
+  margin: 0 auto;
+  border-radius: 10px;
 }
 
 .main .doc {
@@ -94,6 +98,10 @@
 .main .doc h3, .main .doc h2 {
   margin-top: 20px;
   margin-bottom: 10px;
+}
+
+.main .doc h1, .main .doc h2, .main .doc h3 {
+  color: var(--main_color);
 }
 
 .main .doc p {
