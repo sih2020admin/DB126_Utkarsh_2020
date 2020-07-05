@@ -212,14 +212,14 @@ function file_status_digi(i, results, res) {
 									file_status_digi(i + 1, results, res);
 								})
 								.catch(function (err) {
-									console.log('Failure', err);
+									console.log('Failure1', err);
 									results[i].boq_uri = 0;
 									console.log(results);
 									file_status_digi(i + 1, results, res);
 								});
 						})
 						.catch(function (err) {
-							console.log('Failure', err);
+							console.log('Failure2', err);
 							results[i].tech_uri = 0;
 							//creating options parameter for external server call
 							var options = {
@@ -235,7 +235,7 @@ function file_status_digi(i, results, res) {
 									file_status_digi(i + 1, results, res);
 								})
 								.catch(function (err) {
-									console.log('Failure', err);
+									console.log('Failure3', err);
 									results[i].boq_uri = 0;
 									console.log(results);
 									file_status_digi(i + 1, results, res);
@@ -245,7 +245,7 @@ function file_status_digi(i, results, res) {
 				});
 			})
 			.catch(function (err) {
-				console.log('Failure', err);
+				console.log('Failure4', err);
 			});
 		console.log("Hurray\n");
 	}
