@@ -107,7 +107,7 @@ router.get('/tender/confirmation', function (request, response) {
     var user = user_1.isUser(request);
     Promise.all([user_1.getUserUsername(request), tender_1.confirmedTenderDetails(request)])
         .then(function (results) {
-        response.render('user/tender_confirmation', { layout: false, user: user, username: results[0], tender_details: results[1][0][0], personal_details: results[1][1][0], payment_details: results[1][2][0] });
+        response.render('user/tender_confirmation', { layout: false, user: user, username: results[0], tender_details: results[1][0][0], personal_details: results[1][1][0], payment_details: results[1][2][0], bid_amt: results[1][3][0] });
     })
         .catch(function (error) {
         console.log('Error in loading Tenders Page');
@@ -119,6 +119,7 @@ router.get('/tender/preview', function (request, response) {
     var s;
     Promise.all([user_1.getUserUsername(request), tender_1.previewTenderDetails(request)])
         .then(function (results) {
+        console.log(results[1][4]);
         response.render('user/preview', {
             layout: false,
             user: user,

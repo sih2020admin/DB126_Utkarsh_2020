@@ -38,9 +38,13 @@
           <td><label id="fee">{{et_tender_fee}}</label></td>
           <td><label><strong>Bidding Date: </strong></label></td>
           <td><label id="bid">{{date et_bidding_date}}</label></td>
-        </tr>
+        {{/with}}
+        {{#with misc_details}}
+            <td><label><strong>Bidding Amount: </strong></label></td>
+            <td><label id="bid">{{bidding_amt}}</label></td>
+          {{/with}}
+      </tr>
       </table><br><hr><br>
-      {{/with}}
       {{else}}
        <label for="">Could not load Tender Details</label>      
       {{/if}}
