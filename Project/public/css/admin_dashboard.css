@@ -119,6 +119,7 @@
   border-radius: 10px;
   padding: 20px;
   margin: 20px 0;
+  position: relative;
 }
 
 .approved_tenders .container h1, .approved_tenders .container h2, .approved_tenders .container h3, .approved_tenders .container h4 {
@@ -129,5 +130,25 @@
 .approved_tenders .container a {
   text-decoration: none;
   color: var(--main_color);
+}
+
+.approved_tenders .container .close {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.approved_tenders .container .close button {
+  margin: auto;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  margin-right: 10px;
+  margin-top: 10px;
+  color: var(--main_color);
+}
+
+.approved_tenders .container .close button:hover {
+  opacity: 0.5;
 }
 /*# sourceMappingURL=admin_dashboard.css.map */
