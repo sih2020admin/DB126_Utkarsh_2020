@@ -54,13 +54,13 @@ function validateURLParams(request, response, next) {
 exports.validateURLParams = validateURLParams;
 function validateURLParamsD(request, response, next) {
     return __awaiter(this, void 0, void 0, function () {
-        var etd_id, et_id, vcd_id, vd_id, result;
+        var etd_id, et_id, result;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     debug('Debugging validateURLParamsD');
-                    etd_id = request.query['etd_id'], et_id = request.query['et_id'], vcd_id = request.signedCookies['vcd_id_e'], vd_id = request.signedCookies['vd_id_e'];
-                    return [4 /*yield*/, connection_1.default.execute("SELECT * from e_tender_vendor WHERE vcd_id='" + vcd_id + "' and vd_id='" + vd_id + "' and etd_id='" + etd_id + "' and et_id ='" + et_id + "'")];
+                    etd_id = request.query['etd_id'], et_id = request.query['et_id'];
+                    return [4 /*yield*/, connection_1.default.execute("SELECT e_tender_vendor.etd_id FROM e_tender_vendor , e_tender_details WHERE e_tender_details.et_last_date_apply >= CURRENT_DATE and e_tender_vendor.et_id=" + et_id + " and e_tender_vendor.etd_id=" + etd_id)];
                 case 1:
                     result = _a.sent();
                     if (result[0].length !== 1) {
