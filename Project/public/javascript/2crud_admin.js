@@ -269,11 +269,6 @@ function update_td(clicked_id) {
     })
         .queue([
             {
-                input: 'text',
-                title: 'Tender Refernce number',
-                inputValue: response[clicked_id].et_tender_ref_no,
-            },
-            {
                 input: 'textarea',
                 title: 'Tender Title',
                 inputValue: response[clicked_id].et_title,
@@ -306,11 +301,6 @@ function update_td(clicked_id) {
                 title: 'Tender Fee',
                 inputValue: response[clicked_id].et_tender_fee,
             },
-            {
-                input: 'textarea',
-                title: 'Reference File url',
-                inputValue: response[clicked_id].et_file_uri,
-            },
         ])
         .then((result) => {
             if (result.value) {
@@ -321,13 +311,11 @@ function update_td(clicked_id) {
                     html: `
 				        <h3>Updated Tender:</h3>
 				        
-				        <h4>Tender Reference No:</h4>${result.value[0]}<br>
 				        <h4>Tender Title:</h4>${result.value[1]}<br>
 				        <h4>Tender Description:</h4>${result.value[2]}<br>	
 				        <h4>Tender Closing Date:</h4>${result.value[3]}<br>
 				        <h4>Tender Bid Opening Date:</h4>${result.value[4]}<br>
 				        <h4>Tender Fee:</h4>${result.value[5]}<br>
-				        <h4>Reference file uri:</h4>${result.value[6]}<br>
 
 				      `,
                     confirmButtonText: 'Confirm',
@@ -437,7 +425,7 @@ function delete_td(clicked_id) {
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#663EFD',
-        cancelButtonColor: '#d33',
+        cancelButtonColor: '#a6a6a6',
         confirmButtonText: 'Yes, delete it!',
     }).then((result) => {
         if (result.value) {
@@ -551,7 +539,7 @@ function add_td() {
 
 function add_tender() {
     console.log('add tender called')
-    var ref_no = document.getElementById('ref_no').value
+    // var ref_no = document.getElementById('ref_no').value
     var title = document.getElementById('title').value
     var fee = document.getElementById('fee').value
     var closing_date = new Date(document.getElementById('closing_date').value)
@@ -559,12 +547,9 @@ function add_tender() {
     // var link = document.getElementById("link").value
     var description = document.getElementById('description').value
 
-    console.log('add tender called' + ref_no.length + (closing_date.getTime() > bid_opening_date.getTime()) + Date(closing_date) + Date(bid_opening_date))
+    console.log('add tender called'  + (closing_date.getTime() > bid_opening_date.getTime()) + Date(closing_date) + Date(bid_opening_date))
 
-    if (ref_no.length < 1) {
-        alert('Enter Reference number')
-        return false
-    } else if (title.length < 1) {
+    if (title.length < 1) {
         alert('Enter Title')
         return false
     } else if (isNaN(fee) || fee < 0 || fee.length < 1) {
@@ -609,7 +594,6 @@ function add_tender() {
             JSON.stringify({
                 et_title: title,
                 et_tender_fee: fee,
-                et_tender_ref_no: ref_no,
                 et_tender_desc: description,
                 et_last_date_apply: document.getElementById('closing_date').value,
                 et_bidding_date: document.getElementById('bid_opening_date').value,
