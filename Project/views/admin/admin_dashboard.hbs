@@ -82,7 +82,7 @@
         <h1>Approved Tenders</h1>
         {{#each tenders}}
         <div class="container">
-            <div class="tender_details">
+            <div class="tender_details" >
                 <h2>Tender Details</h2>
                 <table>
                     <tr>
@@ -94,22 +94,26 @@
                         <td><p>{{et_tender_ref_no}}</p></td>
                     </tr>
                      <tr>
+                         <td><label for="">Company Name</label></td>
+                        <td><p>{{v_name}}</p></td>
+                    </tr>
+                     <tr>
                         <td><label for="">Description</label></td>
                         <td><p>{{et_tender_desc}}</p></td>
                     </tr>
-                     <tr>
+                    <tr>
                         <td><label for="">Fee</label></td>
                         <td><p>{{et_tender_fee}}</p></td>
                     </tr>
-                     <tr>
+                    <tr>
                         <td><label for="">Approval Date</label></td>
                         <td><p>{{date_of_approval}}</p></td>
                     </tr>
-                     <tr>
+                    <tr>
                         <td><label for="">Bidding Data</label></td>
                         <td><p>{{et_bidding_date}}</p></td>
                     </tr>
-                     <tr>
+                    <tr>
                         <td><label for="">File URI</label></td>
                         {{!-- <td><p>{{et_file_uri}}</p></td> --}}
                         <td><a href="{{et_file_uri}}">Click Here</a></td>
@@ -117,7 +121,7 @@
                     
                 </table>
             </div>
-            <div class="vendor_details">
+            <div class="vendor_details" id="vendor_details" style="display: none;">
                 <h2>Organisation Details</h2>
                 <h3>Company Details</h3>
                 <table>
@@ -159,7 +163,7 @@
                     </tr>
                 </table>
             </div>
-            <div class="contact_details">
+            <div class="contact_details" id="contact_details"  style="display: none;">
             <h3>Vendor Contact Details</h3>
                 <table>
                     <tr>
@@ -180,7 +184,7 @@
                     </tr>
                 </table>
             </div>
-            <div class="document_details">
+            <div class="document_details" id="document_details" style="display: none;">
             <h2>Application Details</h2>
             <h3>Tender Documents</h3>
                 <table>
@@ -194,7 +198,7 @@
                     </tr>
                 </table>
             </div>
-            <div class="payment_details">
+            <div class="payment_details" id="payment_details" style="display: none;">
             <h3>Payment Details</h3>
                 <table>
                     <tr>
@@ -219,6 +223,12 @@
                     </tr>
                 </table>
             </div>
+            {{!-- <div class="show-more" id="show-more">
+                <button onclick="show()"></i></button>
+            </div> --}}
+            <div class="close" id="close">
+                 <button onclick="toggleFunction()"> <i class="fas fa-times fa-2x" id="cicon" style="display: none;"></i><i class="fas fa-chevron-down fa-2x" id="oicon"></i></button>
+            </div>
         </div>
         {{/each}}
     </div>
@@ -231,4 +241,49 @@
    
 </script>
 <script src="/javascript/admin_dashboard.js"></script>
+<script>
+
+function toggleFunction() {
+    var p = document.getElementById("payment_details");
+    var v = document.getElementById("vendor_details");
+    var c = document.getElementById("contact_details");
+    var d = document.getElementById("document_details");
+    var x = document.getElementById("oicon");
+    var y = document.getElementById("cicon");
+
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+
+    if (y.style.display === "none") {
+        y.style.display = "block";
+    } else {
+        y.style.display = "none";
+    }
+
+    if (p.style.display === "none") {
+        p.style.display = "";
+    } else {
+        p.style.display = "none";
+    }
+    if (v.style.display === "none") {
+        v.style.display = "";
+    } else {
+        v.style.display = "none";
+    }
+    if (c.style.display === "none") {
+        c.style.display = "";
+    } else {
+        c.style.display = "none";
+    }
+    if (c.style.display === "none") {
+        c.style.display = "";
+    } else {
+        c.style.display = "none";
+    }
+
+}
+</script>
 </html>

@@ -162,6 +162,7 @@ function file_status_digi(i, results, res) {
 		var vcd_id = results[i].vcd_id;
 		var furi1 = results[i].furi1;
 		var furi2 = results[i].furi2;
+		console.log(vcd_id, furi1, furi2);
 
 		var options = {
 			method: 'POST',
@@ -211,14 +212,14 @@ function file_status_digi(i, results, res) {
 									file_status_digi(i + 1, results, res);
 								})
 								.catch(function (err) {
-									//console.log('Failure', err);
+									console.log('Failure', err);
 									results[i].boq_uri = 0;
 									console.log(results);
 									file_status_digi(i + 1, results, res);
 								});
 						})
 						.catch(function (err) {
-							//console.log('Failure', err);
+							console.log('Failure', err);
 							results[i].tech_uri = 0;
 							//creating options parameter for external server call
 							var options = {
@@ -234,7 +235,7 @@ function file_status_digi(i, results, res) {
 									file_status_digi(i + 1, results, res);
 								})
 								.catch(function (err) {
-									//console.log('Failure', err);
+									console.log('Failure', err);
 									results[i].boq_uri = 0;
 									console.log(results);
 									file_status_digi(i + 1, results, res);
