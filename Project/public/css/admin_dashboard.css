@@ -97,12 +97,15 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 50%;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  max-width: 60%;
   float: left;
 }
 
 .approved_tenders .right {
-  width: 50%;
+  max-width: 40%;
   float: right;
 }
 
@@ -138,7 +141,7 @@
   padding: 10px;
   margin: 10px;
   min-height: 160px;
-  min-width: 350px;
+  min-width: 330px;
 }
 
 .approved_tenders .container h1, .approved_tenders .container h2, .approved_tenders .container h3, .approved_tenders .container h4 {
