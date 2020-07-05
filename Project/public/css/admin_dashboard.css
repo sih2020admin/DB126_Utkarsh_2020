@@ -151,4 +151,8 @@
   text-decoration: none;
   color: var(--main_color);
 }
+
+.approved_tenders .container a:hover {
+  text-decoration: underline;
+}
 /*# sourceMappingURL=admin_dashboard.css.map */
