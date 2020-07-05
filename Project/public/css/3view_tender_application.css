@@ -38,6 +38,24 @@ label {
   color: var(--main_color);
 }
 
+.tender_list2 a {
+  color: var(--main_color);
+  text-decoration: none;
+}
+
+.tender_list2 a:hover {
+  text-decoration: underline;
+}
+
+.tender_list2 p:nth-of-type(1) {
+  font-size: 2rem;
+  color: var(--main_color);
+  text-transform: capitalize;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 10px;
+}
+
 .tender_list2 button {
   background-color: var(--main_color);
   color: #ffffff;
@@ -61,11 +79,6 @@ label {
   color: var(--main_color);
   border: 0.4px solid var(--main_color);
   cursor: pointer;
-}
-
-.tender_list2:hover {
-  -webkit-transform: scale(1.01);
-          transform: scale(1.01);
 }
 
 select {

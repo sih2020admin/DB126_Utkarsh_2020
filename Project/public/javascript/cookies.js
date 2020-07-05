@@ -51,7 +51,7 @@ function theFunctionA() {
     }).then((result) => {
         if (result.value) {
             $.post('/admin/logout').then((result) => {
-                window.location.href = `/1admin_login.html`
+                window.location.href = `/admin/login`
             })
         }
     })

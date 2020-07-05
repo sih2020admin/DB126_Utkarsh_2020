@@ -30,6 +30,7 @@
             a{
                 text-decoration: none;
                 position: relative;
+                color: #fff;
             }
             a:visited{
                 color: #fff;
@@ -75,6 +76,9 @@
     padding: 10px;
     img{
         max-width: 850px;
+        border: 2px solid rgba(0, 0, 0, 0.178);
+        margin: 0 auto;
+        border-radius: 10px;
     }
     .doc{
         padding: 40px;
@@ -82,13 +86,14 @@
         h3,h2{
             margin-top: 20px;
             margin-bottom: 10px;
-            
+        }
+        h1,h2,h3{
+            color: var(--main_color);
         }
         p{
             text-indent: 2em;
             line-height: 2em;
         }
-
     }
 }
 header {

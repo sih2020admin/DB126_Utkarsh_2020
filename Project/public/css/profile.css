@@ -248,6 +248,7 @@ strong {
 
 .tenders_details th, .tenders_details td {
   padding: 1em 1em;
+  vertical-align: baseline;
 }
 
 header {

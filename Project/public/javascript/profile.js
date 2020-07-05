@@ -1,9 +1,3 @@
-// var vd_id = get_cookie('vd_id')
-// var vcd_id = get_cookie('vcd_id')
-// if (vd_id == '') {
-//     window.location.href = '/login'
-//     console.log('directed to login')
-// }
 var state
 
 function city() {
@@ -232,62 +226,40 @@ xhr.onload = function () {
         // </div>`;
 
         // cont_div.insertAdjacentHTML('beforeend', div);
-        /* var aprrove_tender_div = document.getElementById('Approved')
+         var approve_tender_div = document.getElementById('Approved')
         if (response[3].length > 0) {
-            for (i = 0; i < response[3].length; i++) {
-                var tender_content =
-                    `<label class="RnoLabel"><strong>ID:</strong></label>
-		                <label>` +
-                    response[3][i].et_id +
-                    `</label><br><br>
-		                <label class="RnoLabel"><strong>Title:</strong></label>
-		                <label>` +
-                    response[3][i].et_title +
-                    `</label><br><br>
-		                <label class="RnoLabel"><strong>Department:</strong></label>
-		                <label>` +
-                    response[3][i].dept_name +
-                    `</label><br><br>
-		                <label class="RnoLabel"><strong>Ref No:</strong></label>
-		                <label>` +
-                    response[3][i].et_tender_ref_no +
-                    `</label><br><br>
-		                <label class="Id"><strong>Tender fee:</strong></label>
-		                <label>` +
-                    response[3][i].et_tender_fee +
-                    `</label><br><br>
-		                <label class="Id"><strong>Tender Description:</strong></label>
-		                <label>` +
-                    response[3][i].et_tender_desc +
-                    `</label><br><br>
-		                <label class="OdateLabel"><strong>Closing Date:</strong></label>
-		                <label id="Odate">` +
-                    response[3][i].et_last_date_apply.slice(0, 10) +
-                    `</label><br><br>
-		                <label class="OdateLabel"><strong>Bid Date:</strong></label>
-		                <label id="Odate">` +
-                    response[3][i].et_bidding_date.slice(0, 10) +
-                    `</label><br><br>
-		                <label class="OdateLabel"><strong>File URL:</strong></label>
-		                <label id="Odate">` +
-                    response[3][i].et_file_url +
-                    `</label><br>
-		                <label class="OdateLabel"><strong>Department ID:</strong></label>
-		                <label id="Odate">` +
-                    response[3][i].et_bidding_date.slice(0, 10) +
-                    `</label><br><br>
-		                <label class="OdateLabel"><strong>Bidding Amount:</strong></label>
-                        <label id="Odate">` +
-                    response[3][i].et_file_url +
-                    `</label><hr/><br><br>`
-                aprrove_tender_div.insertAdjacentHTML('beforeend', tender_content)
-            }
-        } else {
+                var tender_content = `<div class="tenders_details">
+                <table>
+                    <tr>
+                        <th>Reference No</th>
+                        <th>Title</th>
+                        <th>Tender Description</th>
+                        <th>Bidding Amount</th>
+                        <th>Preview</th>
+                        <th>Status</th>
+                     </tr>`
+                for (i = 0; i < response[3].length; i++) { 
+                tender_content =  tender_content+`
+                        <tr>
+                            <td>`+response[2][i].et_tender_ref_no+`</td>
+                            <td>`+response[2][i].et_tender_fee+`</td>
+                            <td>`+response[2][i].et_tender_desc+`</td>
+                            <td>`+response[2][i].bidding_amt+`</td>
+                            <td><a href=https://`+location.hostname+":8081/tender/preview?et_id="+response[2][i].et_id+"&etd_id="+response[2][i].etd_id+`>view</a></td>
+                            <td>`+"Approved"+`</td>
+                        </tr>` 
+                }
+        }
+        else{
             aprrove_tender_div.insertAdjacentHTML('beforeend', `<br><label class="RnoLabel"><strong>NO TENDER APPROVED YET ! APPLY FOR TENDER <a href="/tenders">here</a></strong></label>`)
-        } */
-    } else if (this.status == 400) {
+        }
+        tender_content  = tender_content+ `</table></div>`
+        approve_tender_div.insertAdjacentHTML('beforeend',tender_content);
+    } 
+    else if (this.status == 400) {
         alert('Some error occured!')
-    } else {
+    } 
+    else {
         alert('Check Network!')
     }
 }

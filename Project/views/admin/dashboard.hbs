@@ -2,33 +2,12 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-    <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-    <link rel="stylesheet" href="css/crud_admin.css">
-    <link rel="stylesheet" href="css/nav.css">
-    <link rel="stylesheet" href="@sweetalert2/theme-minimal/minimal.css">
-    <script src="sweetalert2/dist/sweetalert2.min.js"></script>
-    <script  src="javascript/cookies.js"></script>
-    <script src="https://kit.fontawesome.com/523ff21025.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/crud_admin.css">
     <title>CRUD</title>
 </head>
 <body>
-    <header>
-        <nav  id='nav_bar'>   
-            <div>
-                <a href="/v7_homepage.html">Home</a>
-                <!-- <a href="/2CRUD_admin.html">Tender</a> -->
-                <a href="/3view_tender_application.html">Applications</a>
-            </div>
-            <div class="dropdown">
-                <button id="username" class="dropbtn"><a href="/admin/profile">Profile</a>&nbsp;<i class="fas fa-angle-down"></i></button>
-                <div class="dropdown-content">
-                <a href="/admin/profile"><i class="fas fa-user">&nbsp;&nbsp;</i>My Profile</a>
-                <a style="cursor:pointer" onclick="return theFunctionA();"><i class="fas fa-sign-out-alt">&nbsp;&nbsp;</i>Log out</a>
-                </div>
-            </div>      
-        </nav>
+    {{> header}}
     </header>
     <div class="container1">
         <h1>CRUD ADMIN</h1><br><br>
@@ -42,8 +21,8 @@
             <h1>Create Tender</h1><br><br>
             <table>
                 <tr>
-                    <td><label for="ref_no">Ref No</label></td>
-                    <td><input id="ref_no" type="text" maxlength="10" placeholder="Enter Ref no" required></td>
+                    {{!-- <td><label for="ref_no">Ref No</label></td>
+                    <td><input id="ref_no" type="text" maxlength="10" placeholder="Enter Ref no" required></td> --}}
                     <td><label for="title">Title</label></td>
                     <td><input id="title" type="text" placeholder="Enter Your Tender title" required></td>
                 </tr>
@@ -115,7 +94,6 @@
     	</div>
     </div>
 </body>
-<!-- <script  src="javascript/cookies.js"></script> -->
-<script type="text/javascript" src="javascript/2crud_admin.js"></script>
+<script type="text/javascript" src="/javascript/2crud_admin.js"></script>
 </html>
   
