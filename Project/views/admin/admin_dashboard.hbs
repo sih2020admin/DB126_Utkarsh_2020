@@ -77,162 +77,311 @@
         {{/with}}
     {{else}}
         <h3>Personal Details Does not exist with us</h3>
+
     {{/if}}
     <div class="approved_tenders" style="display: none;">
         <h1>Approved Tenders</h1>
+        <div class="left">
         {{#each tenders}}
-        <div class="container">
-            <div class="tender_details" >
-                <h2>Tender Details</h2>
-                <table>
-                    <tr>
-                        <td><label for="">Title</label></td>
-                        <td><p>{{et_title}}</p></td>
-                    </tr>
-                     <tr>
-                        <td><label for="">Reference Number</label></td>
-                        <td><p>{{et_tender_ref_no}}</p></td>
-                    </tr>
-                     <tr>
-                         <td><label for="">Company Name</label></td>
-                        <td><p>{{v_name}}</p></td>
-                    </tr>
-                     <tr>
-                        <td><label for="">Description</label></td>
-                        <td><p>{{et_tender_desc}}</p></td>
-                    </tr>
-                    <tr>
-                        <td><label for="">Fee</label></td>
-                        <td><p>{{et_tender_fee}}</p></td>
-                    </tr>
-                    <tr>
-                        <td><label for="">Approval Date</label></td>
-                        <td><p>{{date_of_approval}}</p></td>
-                    </tr>
-                    <tr>
-                        <td><label for="">Bidding Data</label></td>
-                        <td><p>{{et_bidding_date}}</p></td>
-                    </tr>
-                    <tr>
-                        <td><label for="">File URI</label></td>
-                        {{!-- <td><p>{{et_file_uri}}</p></td> --}}
-                        <td><a href="{{et_file_uri}}">Click Here</a></td>
-                    </tr>
-                    
-                </table>
+            <div class="container">
+                <div class="tender_details" >
+                    <h3>{{et_title}}</h3>
+                    <table>
+                        {{!-- <tr>
+                            <td><label for="">Title</label></td>
+                            <td><p>{{et_title}}</p></td>
+                        </tr> --}}
+                        <tr>
+                            <td><label for="">Reference Number</label></td>
+                            <td><p>{{et_tender_ref_no}}</p></td>
+                        </tr>
+                        <tr>
+                            <td><label for="">Company Name</label></td>
+                            <td><p>{{v_name}}</p></td>
+                        </tr>
+                        {{!-- <tr>
+                            <td><label for="">Description</label></td>
+                            <td><p>{{et_tender_desc}}</p></td>
+                        </tr>
+                        <tr>
+                            <td><label for="">Fee</label></td>
+                            <td><p>{{et_tender_fee}}</p></td>
+                        </tr>
+                        <tr>
+                            <td><label for="">Approval Date</label></td>
+                            <td><p>{{date_of_approval}}</p></td>
+                        </tr>
+                        <tr>
+                            <td><label for="">Bidding Data</label></td>
+                            <td><p>{{et_bidding_date}}</p></td>
+                        </tr>
+                        <tr>
+                            <td><label for="">File URI</label></td>
+                            <td><a href="{{et_file_uri}}">Click Here</a></td>
+                        </tr>
+                         --}}
+                    </table>
+                </div>
+                <div class="vendor_details" id="vendor_details" style="display: none;">
+                    <h2>Organisation Details</h2>
+                    <h3>Company Details</h3>
+                    <table>
+                        <tr>
+                            <td><label for="">Name</label></td>
+                            <td><p>{{v_name}}</p></td>
+                            <td><label for="">Email Address</label></td>
+                            <td><p>{{v_email}}</p></td>
+                            <td><label for="">Year of Establishment</label></td>
+                            <td><p>{{v_yoe}}</p></td>
+                        </tr>
+                        <tr>
+                            <td><label for="">Mobile Number</label></td>
+                            <td><p>{{v_mobile}}</p></td>
+                            <td><label for="">GST Number</label></td>
+                            <td><p>{{v_gst}}</p></td>
+                            <td><label for="">Registration Number</label></td>
+                            <td><p>{{v_reg_no}}</p></td>
+                        </tr>
+                        <tr>
+                            <td><label for="">State</label></td>
+                            <td><p>{{v_state_id}}</p></td>
+                            <td><label for="">District</label></td>
+                            <td><p>{{v_dist_id}}</p></td>
+                            <td><label for="">v_city_id</label></td>
+                            <td><p>{{v_city_id}}</p></td>
+                        </tr>
+                        <tr>
+                            <td><label for="">Pincode</label></td>
+                            <td><p>{{v_pincode}}</p></td>
+                            <td><label for="">Legal Status</label></td>
+                            <td><p>{{foo}}</p></td>
+                            <td><label for="">Pan Number</label></td>
+                            <td><p>{{v_pan}}</p></td>
+                        </tr>
+                        <tr>
+                            <td><label for="">Address</label></td>
+                            <td><p>{{v_address}}</p></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="contact_details" id="contact_details"  style="display: none;">
+                <h3>Vendor Contact Details</h3>
+                    <table>
+                        <tr>
+                            <td><label for="">Name</label></td>
+                            <td><p>{{vcd_name}}</p></td>
+                            <td><label for="">Title</label></td>
+                            <td><p>{{vcd_title}}</p></td>
+                            <td><label for="">Designation</label></td>
+                            <td><p>{{vcd_designation}}</p></td>
+                        </tr>
+                        <tr>
+                            <td><label for="">Aadhaar Number</label></td>
+                            <td><p>{{vcd_aadhar}}</p></td>
+                            <td><label for="">Mobile Number</label></td>
+                            <td><p>{{vcd_contact}}</p></td>
+                            <td><label for="">Email Address</label></td>
+                            <td><p>{{vcd_email}}</p></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="document_details" id="document_details" style="display: none;">
+                <h2>Application Details</h2>
+                <h3>Tender Documents</h3>
+                    <table>
+                        <tr>
+                            <td><label for="">Technical File</label></td>
+                            <td><a href="{{furi1}}">Click Here</a></td>
+                        </tr>
+                        <tr>
+                            <td><label for="">BOQ FIle</label></td>
+                            <td><a href="{{furi2}}">Click Here</a></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="payment_details" id="payment_details" style="display: none;">
+                <h3>Payment Details</h3>
+                    <table>
+                        <tr>
+                            <td><label for="">Transaction ID</label></td>
+                            <td><p>{{txn_id}}</p></td>
+                        </tr>
+                        <tr>
+                            <td><label for="">Bank Transaction ID</label></td>
+                            <td><p>{{bank_txn_id}}</p></td>
+                        </tr>
+                        <tr>
+                            <td><label for="">Transaction Status</label></td>
+                            <td><p>{{resp_message}}</p></td>
+                        </tr>
+                        <tr>
+                            <td><label for="">Bank Name</label></td>
+                            <td><p>{{bank_name}}</p></td>
+                        </tr>
+                        <tr>
+                            <td><label for="">Gateway Name</label></td>
+                            <td><p>{{gateway_name}}</p></td>
+                        </tr>
+                    </table>
+                </div>
             </div>
-            <div class="vendor_details" id="vendor_details" style="display: none;">
-                <h2>Organisation Details</h2>
-                <h3>Company Details</h3>
-                <table>
-                    <tr>
-                        <td><label for="">Name</label></td>
-                        <td><p>{{v_name}}</p></td>
-                        <td><label for="">Email Address</label></td>
-                        <td><p>{{v_email}}</p></td>
-                        <td><label for="">Year of Establishment</label></td>
-                        <td><p>{{v_yoe}}</p></td>
-                    </tr>
-                    <tr>
-                        <td><label for="">Mobile Number</label></td>
-                        <td><p>{{v_mobile}}</p></td>
-                        <td><label for="">GST Number</label></td>
-                        <td><p>{{v_gst}}</p></td>
-                        <td><label for="">Registration Number</label></td>
-                        <td><p>{{v_reg_no}}</p></td>
-                    </tr>
-                    <tr>
-                        <td><label for="">State</label></td>
-                        <td><p>{{v_state_id}}</p></td>
-                        <td><label for="">District</label></td>
-                        <td><p>{{v_dist_id}}</p></td>
-                        <td><label for="">v_city_id</label></td>
-                        <td><p>{{v_city_id}}</p></td>
-                    </tr>
-                    <tr>
-                        <td><label for="">Pincode</label></td>
-                        <td><p>{{v_pincode}}</p></td>
-                        <td><label for="">Legal Status</label></td>
-                        <td><p>{{foo}}</p></td>
-                        <td><label for="">Pan Number</label></td>
-                        <td><p>{{v_pan}}</p></td>
-                    </tr>
-                    <tr>
-                        <td><label for="">Address</label></td>
-                        <td><p>{{v_address}}</p></td>
-                    </tr>
-                </table>
-            </div>
-            <div class="contact_details" id="contact_details"  style="display: none;">
-            <h3>Vendor Contact Details</h3>
-                <table>
-                    <tr>
-                        <td><label for="">Name</label></td>
-                        <td><p>{{vcd_name}}</p></td>
-                        <td><label for="">Title</label></td>
-                        <td><p>{{vcd_title}}</p></td>
-                        <td><label for="">Designation</label></td>
-                        <td><p>{{vcd_designation}}</p></td>
-                    </tr>
-                    <tr>
-                        <td><label for="">Aadhaar Number</label></td>
-                        <td><p>{{vcd_aadhar}}</p></td>
-                        <td><label for="">Mobile Number</label></td>
-                        <td><p>{{vcd_contact}}</p></td>
-                        <td><label for="">Email Address</label></td>
-                        <td><p>{{vcd_email}}</p></td>
-                    </tr>
-                </table>
-            </div>
-            <div class="document_details" id="document_details" style="display: none;">
-            <h2>Application Details</h2>
-            <h3>Tender Documents</h3>
-                <table>
-                    <tr>
-                        <td><label for="">Technical File</label></td>
-                        <td><a href="{{furi1}}">Click Here</a></td>
-                    </tr>
-                    <tr>
-                        <td><label for="">BOQ FIle</label></td>
-                        <td><a href="{{furi2}}">Click Here</a></td>
-                    </tr>
-                </table>
-            </div>
-            <div class="payment_details" id="payment_details" style="display: none;">
-            <h3>Payment Details</h3>
-                <table>
-                    <tr>
-                        <td><label for="">Transaction ID</label></td>
-                        <td><p>{{txn_id}}</p></td>
-                    </tr>
-                    <tr>
-                        <td><label for="">Bank Transaction ID</label></td>
-                        <td><p>{{bank_txn_id}}</p></td>
-                    </tr>
-                    <tr>
-                        <td><label for="">Transaction Status</label></td>
-                        <td><p>{{resp_message}}</p></td>
-                    </tr>
-                    <tr>
-                        <td><label for="">Bank Name</label></td>
-                        <td><p>{{bank_name}}</p></td>
-                    </tr>
-                    <tr>
-                        <td><label for="">Gateway Name</label></td>
-                        <td><p>{{gateway_name}}</p></td>
-                    </tr>
-                </table>
-            </div>
-            {{!-- <div class="show-more" id="show-more">
-                <button onclick="show()"></i></button>
-            </div> --}}
-            <div class="close" id="close">
-                 <button onclick="toggleFunction()"> <i class="fas fa-times fa-2x" id="cicon" style="display: none;"></i><i class="fas fa-chevron-down fa-2x" id="oicon"></i></button>
-            </div>
-        </div>
         {{/each}}
+        </div>
+        {{!-- -----------------------------------------------PREVIEW-------------------------------------- --}}
+        <div class="right">
+            {{#each tenders}}
+            <div class="container">
+                <div class="tender_details" >
+                    <h2>{{et_title}}</h2>
+                    <table>
+                        <tr>
+                            <td><label for="">Title</label></td>
+                            <td><p>{{et_title}}</p></td>
+                        </tr>
+                        <tr>
+                            <td><label for="">Reference Number</label></td>
+                            <td><p>{{et_tender_ref_no}}</p></td>
+                        </tr>
+                        {{!-- <tr>
+                            <td><label for="">Company Name</label></td>
+                            <td><p>{{v_name}}</p></td>
+                        </tr> --}}
+                        <tr>
+                            <td><label for="">Description</label></td>
+                            <td><p>{{et_tender_desc}}</p></td>
+                        </tr>
+                        <tr>
+                            <td><label for="">Fee</label></td>
+                            <td><p>{{et_tender_fee}}</p></td>
+                        </tr>
+                        <tr>
+                            <td><label for="">Approval Date</label></td>
+                            <td><p>{{date_of_approval}}</p></td>
+                        </tr>
+                        <tr>
+                            <td><label for="">Bidding Data</label></td>
+                            <td><p>{{et_bidding_date}}</p></td>
+                        </tr>
+                        <tr>
+                            <td><label for="">File URI</label></td>
+                            <td><a href="{{et_file_uri}}">Click Here</a></td>
+                        </tr>
+                        
+                    </table>
+                </div>
+                <div class="vendor_details" id="vendor_details">
+                    <h2>Organisation Details</h2>
+                    <h3>Company Details</h3>
+                    <table>
+                        <tr>
+                            <td><label for="">Name</label></td>
+                            <td><p>{{v_name}}</p></td>
+                            <td><label for="">Email Address</label></td>
+                            <td><p>{{v_email}}</p></td>
+                        </tr>
+                        <tr>
+                            <td><label for="">Year of Establishment</label></td>
+                            <td><p>{{v_yoe}}</p></td>
+                            <td><label for="">Mobile Number</label></td>
+                            <td><p>{{v_mobile}}</p></td>
+                        </tr>
+                        <tr>
+                            <td><label for="">GST Number</label></td>
+                            <td><p>{{v_gst}}</p></td>
+                            <td><label for="">Registration Number</label></td>
+                            <td><p>{{v_reg_no}}</p></td>
+                        </tr>
+                        <tr>
+                            <td><label for="">State</label></td>
+                            <td><p>{{v_state_id}}</p></td>
+                            <td><label for="">District</label></td>
+                            <td><p>{{v_dist_id}}</p></td>
+                        </tr>
+                        <tr>
+                            <td><label for="">Pincode</label></td>
+                            <td><p>{{v_city_id}}</p></td>
+                            <td><label for="">Legal Status</label></td>
+                            <td><p>{{v_pincode}}</p></td>
+                        </tr>
+                        <tr>
+                            <td><label for="">v_city_id</label></td>
+                            <td><p>{{foo}}</p></td>
+                            <td><label for="">Pan Number</label></td>
+                            <td><p>{{v_pan}}</p></td>
+                        </tr>
+                        <tr>
+                            <td><label for="">Address</label></td>
+                            <td><p>{{v_address}}</p></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="contact_details" id="contact_details">
+                <h3>Vendor Contact Details</h3>
+                    <table>
+                        <tr>
+                            <td><label for="">Name</label></td>
+                            <td><p>{{vcd_name}}</p></td>
+                            <td><label for="">Title</label></td>
+                            <td><p>{{vcd_title}}</p></td>
+                        </tr>
+                        <tr>
+                            <td><label for="">Designation</label></td>
+                            <td><p>{{vcd_designation}}</p></td>
+                            <td><label for="">Aadhaar Number</label></td>
+                            <td><p>{{vcd_aadhar}}</p></td>
+                        </tr>
+                        <tr>
+                            <td><label for="">Mobile Number</label></td>
+                            <td><p>{{vcd_contact}}</p></td>
+                            <td><label for="">Email Address</label></td>
+                            <td><p>{{vcd_email}}</p></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="document_details" id="document_details">
+                <h2>Application Details</h2>
+                <h3>Tender Documents</h3>
+                    <table>
+                        <tr>
+                            <td><label for="">Technical File</label></td>
+                            <td><a href="{{furi1}}">Click Here</a></td>
+                        </tr>
+                        <tr>
+                            <td><label for="">BOQ FIle</label></td>
+                            <td><a href="{{furi2}}">Click Here</a></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="payment_details" id="payment_details">
+                <h3>Payment Details</h3>
+                    <table>
+                        <tr>
+                            <td><label for="">Transaction ID</label></td>
+                            <td><p>{{txn_id}}</p></td>
+                        </tr>
+                        <tr>
+                            <td><label for="">Bank Transaction ID</label></td>
+                            <td><p>{{bank_txn_id}}</p></td>
+                        </tr>
+                        <tr>
+                            <td><label for="">Transaction Status</label></td>
+                            <td><p>{{resp_message}}</p></td>
+                        </tr>
+                        <tr>
+                            <td><label for="">Bank Name</label></td>
+                            <td><p>{{bank_name}}</p></td>
+                        </tr>
+                        <tr>
+                            <td><label for="">Gateway Name</label></td>
+                            <td><p>{{gateway_name}}</p></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        {{/each}}
+        </div>
     </div>
-    {{> footer}}
+    {{!-- {{> footer}} --}}
 </body>
 
 <script type="text/javascript">
@@ -243,47 +392,5 @@
 <script src="/javascript/admin_dashboard.js"></script>
 <script>
 
-function toggleFunction() {
-    var p = document.getElementById("payment_details");
-    var v = document.getElementById("vendor_details");
-    var c = document.getElementById("contact_details");
-    var d = document.getElementById("document_details");
-    var x = document.getElementById("oicon");
-    var y = document.getElementById("cicon");
-
-    if (x.style.display === "none") {
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
-    }
-
-    if (y.style.display === "none") {
-        y.style.display = "block";
-    } else {
-        y.style.display = "none";
-    }
-
-    if (p.style.display === "none") {
-        p.style.display = "";
-    } else {
-        p.style.display = "none";
-    }
-    if (v.style.display === "none") {
-        v.style.display = "";
-    } else {
-        v.style.display = "none";
-    }
-    if (c.style.display === "none") {
-        c.style.display = "";
-    } else {
-        c.style.display = "none";
-    }
-    if (c.style.display === "none") {
-        c.style.display = "";
-    } else {
-        c.style.display = "none";
-    }
-
-}
 </script>
 </html>

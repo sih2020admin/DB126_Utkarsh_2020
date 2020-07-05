@@ -63,31 +63,46 @@
 
 }
 .approved_tenders{
-    margin: 10px auto;
-    padding: 0 20px;
-    max-width: 1200px;
+    // max-width: 1500px;
+    // width: min-content;
+    .left{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        flex-flow: row wrap;
+        align-content: flex-end;
+        align-items: center;
+        width: 50%;
+        float: left;
+    }
+    .right{
+        width: 50%;
+        // background-color: red;
+        float: right;
+    }
     h1{
         text-align: center;
         color: var(--main_color);
     }
     label{
-        white-space: nowrap;
+       white-space: nowrap;
     }
     table{
         border: 1px;
-        width: 100%;
+        width: fit-content;
         label{color: var(--accent-color);}
         th,tr,td{padding: .5rem; vertical-align: baseline;}
-        tr td:nth-of-type(odd){
-            width: 1%;
-        }
+        // tr td:nth-of-type(odd){
+        //     width: 1%;
+        // }
     }
     .container{
         box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.2);
         border-radius: 10px;
-        padding: 20px;
-        margin: 20px 0;
-        position: relative;
+        padding: 10px;
+        margin: 10px;
+        min-height: 160px;
+        min-width: 350px;
         h1,h2,h3,h4{
             color: var(--main_color);
             margin: 5px;
@@ -96,25 +111,7 @@
         a{
             text-decoration: none;
             color: var(--main_color);
-        }
-        .close{
-            position: absolute;
-            top: 0;
-            right: 0;
-            button{
-                    margin: auto;
-                    border: none;
-                    background-color: transparent;
-                    cursor:  pointer;
-                    margin-right: 10px;
-                    margin-top: 10px;
-                    color: var(--main_color);
-            }
-            button:hover{
-                    opacity: 0.5;
-            }
-        }
-      
+        }      
     }
 
 }
