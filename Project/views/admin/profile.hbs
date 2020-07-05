@@ -12,8 +12,8 @@
         <button id='profile_button' class="active" >My Profile</button>
         <button id='approved_button' >Approved Tenders</button>
     </div>
-    {{#if admin_details_exists}}
-        {{#with admin}}
+    {{#if admin1}}
+        {{#with admin1}}
             <div class='details'>
                 <div class="personal_details">
                     <h2>Personal Details</h2>
@@ -223,9 +223,6 @@
                     </tr>
                 </table>
             </div>
-            {{!-- <div class="show-more" id="show-more">
-                <button onclick="show()"></i></button>
-            </div> --}}
             <div class="close" id="close">
                  <button onclick="toggleFunction()"> <i class="fas fa-times fa-2x" id="cicon" style="display: none;"></i><i class="fas fa-chevron-down fa-2x" id="oicon"></i></button>
             </div>
@@ -234,12 +231,6 @@
     </div>
     {{> footer}}
 </body>
-
-<script type="text/javascript">
-    var log_a = document.getElementById("log_a")
-    var nav_bar = document.getElementById("nav_bar")
-   
-</script>
 <script src="/javascript/admin_dashboard.js"></script>
 <script>
 
