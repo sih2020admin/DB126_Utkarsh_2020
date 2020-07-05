@@ -219,15 +219,15 @@ h1{
     }
     
     
-    // th::after{
-    //     content: '';
-    //     width: 100%;
-    //     height: initial;
-    //     position: absolute;
-    //     bottom: 0;
-    //     left: 0;
-    //     background-color: black;
-    // }
+    th::after{
+        content: '';
+        width: 100%;
+        height: initial;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        background-color: black;
+    }
 
     th,td {
     padding: 1em 1em;
