@@ -199,7 +199,6 @@ h1 {
 .container2 {
   margin: 10px;
   padding: 30px;
-  overflow-x: auto;
 }
 
 .container2 table {
@@ -239,10 +238,11 @@ h1 {
   background-color: var(--main_color);
   color: #fff;
   font-weight: lighter;
-  position: sticky;
   position: -webkit-sticky;
+  position: sticky;
   top: 0;
   white-space: nowrap;
+  z-index: 1;
 }
 
 .container2 .first_th {
