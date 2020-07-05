@@ -259,6 +259,10 @@ router.post('/refresh_token', (req, res) => {
     // var vcd_id = req.body.id
     var vcd_id = req.signedCookies.vcd_id_e;
 
+    if(vcd_id == undefined) {
+        vcd_id = req.body.id;
+    }
+
     console.log("please do some work =>", vcd_id);
     // console.log("sanket testing",vcd_id)
     get_refresh_token(res, vcd_id)

@@ -163,13 +163,13 @@ function file_status_digi(i, results, res) {
 		var furi1 = results[i].furi1;
 		var furi2 = results[i].furi2;
 		console.log(vcd_id, furi1, furi2);
-		console.log(results[i]);
+		// console.log(results[i]);
 
 		var options = {
 			method: 'POST',
 			uri: 'https://165.22.210.37:8081/refresh_token',
 			body: {
-				id: vcd_id
+				id: results[i].vcd_id
 			},
 			json: true,
 			headers: {
