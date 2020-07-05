@@ -41,9 +41,14 @@
           <td><label id="fee">{{et_tender_fee}}</label></td>
           <td><label><strong>Bidding Date: </strong></label></td>
           <td><label id="bid">{{date et_bidding_date}}</label></td>
-        </tr>
-      </table><br><hr><br>
+        
       {{/with}}
+      {{#with bid_amt}}
+            <td><label><strong>Bidding Amount: </strong></label></td>
+            <td><label id="bid">{{bidding_amt}}</label></td>
+      {{/with}}
+      </tr>
+      </table><br><hr><br>
       {{else}}
        <label for="">Could not load Tender Details</label>      
       {{/if}}  
@@ -114,13 +119,13 @@
             <td>1</td>
             <td>Tehnical</td>
             <td id="file1">{{furi1}}</td>
-            <td><a target="blank" href="https://165.22.210.37:8081/get_files?furi=" + {{furi1}} + "&vcd_id=" + {{vcd_id}}>Preview</a></td>
+            <td><a target="blank" href="https://165.22.210.37:8081/get_files?furi={{furi1}}&vcd_id={{vcd}}">Preview</a></td>
           </tr> 
           <tr>
             <td>2</td>
             <td>BOQ</td>
             <td id="file2">{{furi2}}</td>
-            <td><a target="blank" href="https://165.22.210.37:8081/get_files?furi=" + {{furi2}} + "&vcd_id=" + {{vcd_id}}>Preview</a></td>
+            <td><a target="blank" href="https://165.22.210.37:8081/get_files?furi={{furi2}}&vcd_id={{vcd}}" >Preview</a></td>
           </tr> 
         </table>  
       </div><hr>
