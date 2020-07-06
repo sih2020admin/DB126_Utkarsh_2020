@@ -253,6 +253,7 @@ function show_files(str) {
                     //first folders will be displayed and then files will be displayed
                     if (item_array[i].type == 'dir') {
                         span_element.append(item_array[i].id)
+                        span_element.style.visibility = "hidden";
                     } else {
                         span_element.append(item_array[i].uri)
                     }
@@ -263,6 +264,7 @@ function show_files(str) {
                     span_element = document.createElement('span')
                     span_element.append(item_array[i].parent)
                     span_element.setAttribute('id', 'parent_id')
+                    span_element.style.visibility = "hidden";
                     li_element.append(span_element)
 
                     ul_element.append(li_element)
