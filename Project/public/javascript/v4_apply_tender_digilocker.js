@@ -24,6 +24,27 @@ window.onload = function () {
     var url = new URL(url_string)
     var state = url.searchParams.get('state')
 
+    var xhr = new XMLHttpRequest()
+    url = 'https://165.22.210.37:8081/check_digi_access'
+    xhr.open('GET', url, true)
+    xhr.setRequestHeader('Content-Type', 'application/json')
+
+    xhr.send();
+
+    //xhr repsonse handling
+    xhr.onload = function () {
+        var temp = JSON.parse(this.responseText)
+        if (this.status == 200) {
+            add_to_cookie('digi_access', '1')
+            console.log('digi_access successfully updated in cookies too')
+            alert(temp.digi_access)
+        } else if (this.status == 400) {
+            alert(temp.error)
+        } else {
+            alert('Some Other Error ', xhr.status, ' with statusText ', xhr.statusText)
+        }
+    }
+
     //check if url contains param "state"
     if (state) {
         //get et_id and etd_id from "state" and update in global variable

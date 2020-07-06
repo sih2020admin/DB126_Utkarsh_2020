@@ -269,10 +269,11 @@ router.post('/refresh_token', (req, res) => {
 })
 
 //check digi_access cookie
-router.post('/check_digi_access', (req, res) => {
+router.get('/check_digi_access', (req, res) => {
     var digi_access = req.signedCookies.digi_access_e;
+    // console.log(digi_access);
 
-    console.log(digi_access);
+    res.status(200).send('{"digi_access":"'+digi_access+'"}');
 })
 
 //fetches self_uploaded files from digilocker
