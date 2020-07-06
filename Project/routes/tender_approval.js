@@ -209,13 +209,13 @@ function file_status_digi(i, results, res) {
 							rp(options)
 								.then(function () {
 									results[i].boq_uri = 1;
-									console.log(results);
+									//console.log(results);
 									file_status_digi(i + 1, results, res);
 								})
 								.catch(function (err) {
 									console.log('Failure1', err);
 									results[i].boq_uri = 0;
-									console.log(results);
+									//console.log(results);
 									file_status_digi(i + 1, results, res);
 								});
 						})
@@ -232,13 +232,13 @@ function file_status_digi(i, results, res) {
 							rp(options)
 								.then(function () {
 									results[i].boq_uri = 1;
-									console.log(results);
+									//console.log(results);
 									file_status_digi(i + 1, results, res);
 								})
 								.catch(function (err) {
 									console.log('Failure3', err);
 									results[i].boq_uri = 0;
-									console.log(results);
+									//console.log(results);
 									file_status_digi(i + 1, results, res);
 								});
 						});
