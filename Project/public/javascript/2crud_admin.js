@@ -632,25 +632,25 @@ function get_link() {
 }
 function select_files(value) {
     // body...
-    if (value == '0') {
+    if (value == '0') {  //no file condition
         zip_link = 'uploads/sample.zip'
         document.getElementById('get_link').style.display = 'none'
         document.getElementById('create_t').style.display = ''
         document.getElementById('div_f1').style.display = 'none'
         document.getElementById('div_f2').style.display = 'none'
-    } else if (value == '1') {
+    } else if (value == '1') {  //technical file only
         file2_uri = ' '
         file1_uri = null
         // document.getElementById("create_t").style.display = "none";
         document.getElementById('div_f1').style.display = ''
         document.getElementById('div_f2').style.display = 'none'
-    } else if (value == '2') {
+    } else if (value == '2') {   //Boq file only
         file1_uri = ' '
         file2_uri = null
         // document.getElementById("create_t").style.display = "none";
         document.getElementById('div_f1').style.display = 'none'
         document.getElementById('div_f2').style.display = ''
-    } else if (value == '3') {
+    } else if (value == '3') {    ///both file
         file1_uri = null
         file2_uri = null
         // document.getElementById("create_t").style.display = "none";
