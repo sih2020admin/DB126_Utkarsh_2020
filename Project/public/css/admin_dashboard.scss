@@ -70,15 +70,20 @@
         flex-direction: row;
         flex-wrap: wrap;
         flex-flow: row wrap;
-        align-content: flex-end;
+        // align-content: flex-start;
         align-items: center;
-        width: 50%;
+        justify-content: space-evenly;
+        max-width: 60%;
         float: left;
+        // border: 1px solid red;
+
     }
     .right{
-        width: 50%;
+        max-width: 40%;
         // background-color: red;
         float: right;
+        // border: 1px solid red;
+
     }
     h1{
         text-align: center;
@@ -102,7 +107,7 @@
         padding: 10px;
         margin: 10px;
         min-height: 160px;
-        min-width: 350px;
+        min-width: 330px;
         h1,h2,h3,h4{
             color: var(--main_color);
             margin: 5px;
@@ -112,6 +117,9 @@
             text-decoration: none;
             color: var(--main_color);
         }      
+        a:hover{
+            text-decoration: underline;
+        }
     }
 
 }
