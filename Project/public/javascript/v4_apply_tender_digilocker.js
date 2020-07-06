@@ -54,7 +54,7 @@ window.onload = function () {
         etd_id = temp[1]
 
         // check if we have users digilocker account access
-        if (check_digi_access == 1) {
+        if (check_digi_access == "1") {
             //If we have dig_access and param ("state") in url then no need of digilocker login
             console.log('params found and we also have digi access')
         } else {
@@ -99,7 +99,7 @@ window.onload = function () {
         etd_id = url.searchParams.get('etd_id')
 
         // check if we have users digilocker account access
-        if (check_digi_access == 0) {
+        if (check_digi_access == "0") {
             //if we don't have param "state" and also not digi_access
             //then change url and redirect to digilocker
             alert(`We don't have access to your digilocker account. please give access. Click "OK" to continue`)
