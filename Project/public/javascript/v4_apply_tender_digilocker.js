@@ -27,8 +27,8 @@ window.onload = function () {
     var state = url.searchParams.get('state')
 
     var xhr = new XMLHttpRequest()
-    url = 'https://165.22.210.37:8081/check_digi_access'
-    xhr.open('GET', url, true)
+    check_digi_url = 'https://165.22.210.37:8081/check_digi_access'
+    xhr.open('GET', check_digi_url, true)
     xhr.setRequestHeader('Content-Type', 'application/json')
 
     xhr.send();
