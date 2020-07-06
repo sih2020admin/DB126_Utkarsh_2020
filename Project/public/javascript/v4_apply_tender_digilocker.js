@@ -38,6 +38,7 @@ window.onload = function () {
         var temp = JSON.parse(this.responseText)
         if (this.status == 200) {
             check_digi_access = temp.digi_access
+            console.log("check digi access", check_digi_access, typeof(check_digi_access))
         } else if (this.status == 400) {
             alert(temp.error)
         } else {
