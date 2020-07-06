@@ -311,11 +311,11 @@ function update_td(clicked_id) {
                     html: `
 				        <h3>Updated Tender:</h3>
 				        
-				        <h4>Tender Title:</h4>${result.value[1]}<br>
-				        <h4>Tender Description:</h4>${result.value[2]}<br>	
-				        <h4>Tender Closing Date:</h4>${result.value[3]}<br>
-				        <h4>Tender Bid Opening Date:</h4>${result.value[4]}<br>
-				        <h4>Tender Fee:</h4>${result.value[5]}<br>
+				        <h4>Tender Title:</h4>${result.value[0]}<br>
+				        <h4>Tender Description:</h4>${result.value[1]}<br>	
+				        <h4>Tender Closing Date:</h4>${result.value[2]}<br>
+				        <h4>Tender Bid Opening Date:</h4>${result.value[3]}<br>
+				        <h4>Tender Fee:</h4>${result.value[4]}<br>
 
 				      `,
                     confirmButtonText: 'Confirm',
@@ -353,13 +353,11 @@ function update_td(clicked_id) {
 
                         var data = JSON.stringify({
                             et_id: response[clicked_id]['et_id'],
-                            et_title: result.value[1],
-                            et_tender_fee: result.value[5],
-                            et_tender_ref_no: result.value[0],
-                            et_tender_desc: result.value[2],
-                            et_last_date_apply: result.value[3],
-                            et_bidding_date: result.value[4],
-                            et_file_uri: result.value[6],
+                            et_title: result.value[0],
+                            et_tender_fee: result.value[4],
+                            et_tender_desc: result.value[1],
+                            et_last_date_apply: result.value[2],
+                            et_bidding_date: result.value[3],
                         })
 
                         var xhr = new XMLHttpRequest()
