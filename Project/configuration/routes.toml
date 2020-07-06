@@ -7,7 +7,6 @@
 
 [RouterFiles]
 "Files" = [ { "app_path" = "/payment"   , "module_name" = "payment-server"      , "default_export" = true},
-            { "app_path" = "/admin"     , "module_name" = "admin-profile"       , "default_export" = true},
             { "app_path" = "/misc"      , "module_name" = "misc"                , "default_export" = true},
             { "app_path" = "/register"  , "module_name" = "register-server"     , "default_export" = true},
             { "app_path" = "/"          , "module_name" = "render-user"         , "default_export" = true},
