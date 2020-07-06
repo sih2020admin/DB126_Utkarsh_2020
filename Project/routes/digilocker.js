@@ -245,6 +245,7 @@ router.post('/get_access_token', (req, res) => {
                 db_1.default.query(sql, function (err, result) {
                     if (err) throw err
                     console.log('Access token has been successfully stored in DB')
+                    res.cookie('digi_access_e', 1, { signed: true })
                     res.status(200).send('{"msg":"Got digilocker access"}')
                 })
             })

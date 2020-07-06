@@ -4,6 +4,8 @@ var etd_id //to store current etd_id
 var vcd_id = get_cookie('vcd_id')    //adding for time sake
 var vd_id = get_cookie('vd_id')
 
+var check_digi_access;               //maintain flag of digi_access after getting from server
+
 //global variables for storing file URI's
 var Technical_file_uri
 var BOQ_file_uri
@@ -35,9 +37,7 @@ window.onload = function () {
     xhr.onload = function () {
         var temp = JSON.parse(this.responseText)
         if (this.status == 200) {
-            add_to_cookie('digi_access', '1')
-            console.log('digi_access successfully updated in cookies too')
-            alert(temp.digi_access)
+            check_digi_access = temp.digi_access
         } else if (this.status == 400) {
             alert(temp.error)
         } else {
@@ -53,7 +53,7 @@ window.onload = function () {
         etd_id = temp[1]
 
         // check if we have users digilocker account access
-        if (get_cookie('digi_access') == 1) {
+        if (check_digi_access == 1) {
             //If we have dig_access and param ("state") in url then no need of digilocker login
             console.log('params found and we also have digi access')
         } else {
@@ -82,8 +82,8 @@ window.onload = function () {
             xhr.onload = function () {
                 var temp = JSON.parse(this.responseText)
                 if (this.status == 200) {
-                    add_to_cookie('digi_access', '1')
-                    console.log('digi_access successfully updated in cookies too')
+                    // add_to_cookie('digi_access', '1')
+                    // console.log('digi_access successfully updated in cookies too')
                     alert(temp.msg)
                 } else if (this.status == 400) {
                     alert(temp.error)
@@ -98,7 +98,7 @@ window.onload = function () {
         etd_id = url.searchParams.get('etd_id')
 
         // check if we have users digilocker account access
-        if (get_cookie('digi_access') == 0) {
+        if (check_digi_access == 0) {
             //if we don't have param "state" and also not digi_access
             //then change url and redirect to digilocker
             alert(`We don't have access to your digilocker account. please give access. Click "OK" to continue`)
