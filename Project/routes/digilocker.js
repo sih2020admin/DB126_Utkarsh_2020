@@ -435,7 +435,7 @@ router.get('/get_files', (req, res) => {
     // var vcd_id = req.query.vcd_id
     var vcd_id = req.signedCookies.vcd_id_e;
 
-    // console.log(furi, vcd_id);
+    console.log("get files sankey", furi, vcd_id);
 
     /* ------------------------ Start of Refresh Token ----------------------------- */
 
