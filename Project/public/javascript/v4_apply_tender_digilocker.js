@@ -99,6 +99,7 @@ window.onload = function () {
         etd_id = url.searchParams.get('etd_id')
 
         // check if we have users digilocker account access
+        console.log("just check digi ", check_digi_access);
         if (check_digi_access == "0") {
             //if we don't have param "state" and also not digi_access
             //then change url and redirect to digilocker
