@@ -113,6 +113,7 @@ $('#account_button').on('click', function () {
                     $('.account_details').hide();
                     $('.company_details').fadeTo('fast', 1);
                     $('#error_para').html('');
+                    document.getElementById("first").classList.add("active");
                 }
                 else if (response === 'Username already exists') {
                     $('#error_para').html(response);
@@ -159,6 +160,7 @@ $('#company_button').on('click', function () {
                 if (response === '') {
                     $('.company_details').hide();
                     $('.contact__details').fadeTo('fast', 1);
+                    document.getElementById("second").classList.add("active");
                     //$('.submit_button').fadeTo('fast', 1)
                     $('.submit_button').hide();
                     $('#error_para').html('');
@@ -188,6 +190,7 @@ $('#contact_button').on('click', function () {
         
         $('.contact__details').hide();
         $('.aadhar__details').fadeTo('fast', 1);
+        document.getElementById("third").classList.add("active");
         //$('.submit_button').fadeTo('fast', 1)
         // $('.submit_button').hide();
         $('#error_para').html('');
@@ -322,14 +325,14 @@ $('#otp_button').on('click', function () {
                     console.log(response);
                     console.log("Registered Successfully");
                     $('#error_para').html('Registration done<br>You will be redirected to login page in few seconds');
-
+                    document.getElementById("fourth").classList.add("active");
                     Swal.fire({
                         title: 'Succesful',
                         text: 'Successfully registered',
                         icon: 'success',
                         showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
+                        confirmButtonColor: '#663EFD',
+                        cancelButtonColor: '#a6a6a6',
                         confirmButtonText: 'Login',
                     }).then((result) => {window.location.href = '/login'})
                     
