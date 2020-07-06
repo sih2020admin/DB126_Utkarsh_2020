@@ -35,6 +35,7 @@ if (et_id == null) {
                 window.location.href = '/tender/preview?et_id=' + et_id + '&etd_id=' + etd_id
             }
         } else if (this.status == 404) {
+            
         } else {
             alert('Check Network')
         }
