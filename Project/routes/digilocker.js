@@ -268,6 +268,13 @@ router.post('/refresh_token', (req, res) => {
     get_refresh_token(res, vcd_id)
 })
 
+//check digi_access cookie
+router.post('/check_digi_access', (req, res) => {
+    var digi_access = req.signedCookies.digi_access_e;
+
+    console.log(digi_access);
+})
+
 //fetches self_uploaded files from digilocker
 router.post('/fetch_files', (req, res) => {
     var current_id = req.body.id
