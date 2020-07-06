@@ -353,13 +353,11 @@ function update_td(clicked_id) {
 
                         var data = JSON.stringify({
                             et_id: response[clicked_id]['et_id'],
-                            et_title: result.value[1],
-                            et_tender_fee: result.value[5],
-                            et_tender_ref_no: result.value[0],
-                            et_tender_desc: result.value[2],
-                            et_last_date_apply: result.value[3],
-                            et_bidding_date: result.value[4],
-                            et_file_uri: result.value[6],
+                            et_title: result.value[0],
+                            et_tender_fee: result.value[4],
+                            et_tender_desc: result.value[1],
+                            et_last_date_apply: result.value[2],
+                            et_bidding_date: result.value[3],
                         })
 
                         var xhr = new XMLHttpRequest()
