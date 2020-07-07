@@ -175,7 +175,7 @@ router.post('/update_tender', function (req, res) {
 
 
 
-	db_1.default.query("UPDATE `e_tender_details` SET `et_title`= ? ,`et_tender_fee`= ? ,`et_tender_ref_no`= ?,`et_tender_desc`= ?,`et_last_date_apply`= ?,`et_bidding_date`= ? ,`et_file_uri`= ?  WHERE et_id = ? ;",[et_title ,et_tender_fee ,et_tender_ref_no ,et_tender_desc ,et_last_date_apply ,et_bidding_date ,et_file_uri ,et_id] ,function (error, results, fields) {
+	db_1.default.query("UPDATE `e_tender_details` SET `et_title`= ? ,`et_tender_fee`= ? ,et_tender_desc`= ?,`et_last_date_apply`= ?,`et_bidding_date`= ?  WHERE et_id = ? ;",[et_title ,et_tender_fee ,et_tender_desc ,et_last_date_apply ,et_bidding_date  ,et_id] ,function (error, results, fields) {
 		if (error) {
 	      		console.log("error",error);
 	      		res.sendStatus(400);
