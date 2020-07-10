@@ -61,6 +61,13 @@ label {
   transition: all .5s ease-in-out;
 }
 
+.approve_details .heading {
+  font-size: 20px;
+  color: var(--main_color);
+  font-weight: 400;
+  line-height: 1.5;
+}
+
 .approve_details i {
   font-size: 20px;
   vertical-align: bottom;
