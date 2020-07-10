@@ -140,6 +140,7 @@ router.get('/tender/payment', function (request, response) {
     var user = user_1.isUser(request);
     Promise.all([user_1.getUserUsername(request), tender_1.getPaymentDetails(request)])
         .then(function (results) {
+        console.log(results[1][0][0]['et_tender_fee']);
         response.render('user/tender-payment', { layout: false, user: user, username: results[0], amount: results[1][0][0]['et_tender_fee'], email: results[1][1][0]['vcd_email'], contact: results[1][1][0]['vcd_contact'] });
     })
         .catch(function (error) {
