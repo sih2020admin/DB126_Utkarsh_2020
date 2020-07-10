@@ -108,7 +108,7 @@ router.post('/approve_tender_application', function (req, res) {  // to be call 
 					from: 'E-tender',
 					to: results[3][0].vcd_email,
 					subject: 'Congratulations your tender has been approved',
-					text: 'Your application has been approved for tender no: ET00' + et_id + '. Your application ID is AP00' + etd_id + ' . \nThank You.',
+					text: 'Your application has been approved for tender no:' + et_id + '. Your application ID is AP00' + etd_id + ' . \nThank You.',
 				}
 
 				transporter.sendMail(mailOptions, function (error, info) {
