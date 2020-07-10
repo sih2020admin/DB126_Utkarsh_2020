@@ -61,6 +61,19 @@ label {
   transition: all .5s ease-in-out;
 }
 
+.approve_details i {
+  font-size: 20px;
+  vertical-align: bottom;
+}
+
+.approve_details .fa-times {
+  color: red;
+}
+
+.approve_details .fa-check {
+  color: #80cf05;
+}
+
 .button_div {
   text-align: center;
 }

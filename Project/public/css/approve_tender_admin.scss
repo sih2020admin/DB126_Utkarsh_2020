@@ -40,6 +40,18 @@ label{
     box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
     // border: 1px solid var(--main_color);
     transition: all .5s ease-in-out; 
+
+    i{
+        font-size: 20px;
+        vertical-align: bottom;
+    }
+    .fa-times{
+        color: red;
+    }
+    .fa-check{
+        color: #80cf05;
+    }
+
 }
 .button_div{
     text-align: center;
