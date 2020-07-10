@@ -19,7 +19,7 @@ function redirectToLoginPage(request, response, next) {
     /* console.table({XHR:request.xhr,accepts:request.accepts(['html','json']),value:request.headers["x-requested-with"]}) */
     if (request.url.match('/admin') === null) {
         if (request.url !== '/') {
-            if (request.url.match(/\/login|\/register|\/help/) === null && request.method === 'GET') {
+            if (request.url.match(/\/login|\/register|\/help|\/get_files/) === null && request.method === 'GET') {
                 if (request.signedCookies['vcd_id_e'] === undefined || request.signedCookies['vd_id_e'] === undefined) {
                     debug('Cookies have been deleted or modified');
                     debug('Redirecting to Login page');

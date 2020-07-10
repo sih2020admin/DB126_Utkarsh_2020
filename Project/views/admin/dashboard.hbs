@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/crud_admin.css">
-    <title>CRUD</title>
+    <title>Dashboard</title>
 </head>
 <body>
     {{> header}}
@@ -14,7 +14,7 @@
         <div class="main_bar">
                 <label for="search_bar"></label>
                 <input type="text" name="sear_bar" id="search_bar" placeholder="Enter Title">
-                <button id="search_button" class="search_button"><i class="fa fa-search" aria-hidden="true"></i></button>
+                <button id="search_button" class="search_button"><i class="fa fa-search" onclick="searchResults()" aria-hidden="true"></i></button>
                 <button id="create_tender_button" class="create_tender_button" onclick="display_form()">Create</button>
         </div>
         <div class="input_details" id="create_input_details" style="display:none;">

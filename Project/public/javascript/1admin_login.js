@@ -1,4 +1,3 @@
-// delete_cookies();
 document.getElementById('username').value = ''
 function show() {
     var userid = document.getElementById('username').value

@@ -69,7 +69,6 @@ var xhr = new XMLHttpRequest()
 
 xhr.onload = function () {
     if (this.status == 200) {
-        console.log(this.responseText)
         response = JSON.parse(this.responseText)
 
         for (var i = 0; i < response.length; i++) {
@@ -79,11 +78,9 @@ xhr.onload = function () {
                 }
             }
         }
-        console.log(col)
-
         for (var i = 0; i < response.length; i++) {
             tr = table.insertRow(-1)
-            tr.setAttribute('id', response[i]['et_id']) //
+            tr.setAttribute('id', response[i]['et_id'])
 
             tabCell = tr.insertCell(-1)
             if (response[i]['is_approved'] == 1) {
@@ -545,7 +542,7 @@ function add_tender() {
     // var link = document.getElementById("link").value
     var description = document.getElementById('description').value
 
-    console.log('add tender called'  + (closing_date.getTime() > bid_opening_date.getTime()) + Date(closing_date) + Date(bid_opening_date))
+    console.log('add tender called' + (closing_date.getTime() > bid_opening_date.getTime()) + Date(closing_date) + Date(bid_opening_date))
 
     if (title.length < 1) {
         alert('Enter Title')
@@ -632,29 +629,51 @@ function get_link() {
 }
 function select_files(value) {
     // body...
-    if (value == '0') {  //no file condition
+    if (value == '0') {
+        //no file condition
         zip_link = 'uploads/sample.zip'
         document.getElementById('get_link').style.display = 'none'
         document.getElementById('create_t').style.display = ''
         document.getElementById('div_f1').style.display = 'none'
         document.getElementById('div_f2').style.display = 'none'
-    } else if (value == '1') {  //technical file only
+    } else if (value == '1') {
+        //technical file only
         file2_uri = ' '
         file1_uri = null
         // document.getElementById("create_t").style.display = "none";
         document.getElementById('div_f1').style.display = ''
         document.getElementById('div_f2').style.display = 'none'
-    } else if (value == '2') {   //Boq file only
+    } else if (value == '2') {
+        //Boq file only
         file1_uri = ' '
         file2_uri = null
         // document.getElementById("create_t").style.display = "none";
         document.getElementById('div_f1').style.display = 'none'
         document.getElementById('div_f2').style.display = ''
-    } else if (value == '3') {    ///both file
+    } else if (value == '3') {
+        ///both file
         file1_uri = null
         file2_uri = null
         // document.getElementById("create_t").style.display = "none";
         document.getElementById('div_f1').style.display = ''
         document.getElementById('div_f2').style.display = ''
     }
+}
+$(document).keydown(function (e) {
+    if ($('#search_bar').is(':focus') || $('#search_button').is(':focus')) {
+        if (e.which === 13 && $('#search_bar').val().trim() !== '') {
+            searchResults()
+        }
+    }
+})
+
+function searchResults() {
+    let search_array = []
+    let search_string = $('#search_bar').val().trim().toLowerCase()
+    for (let i = 0; i < response.length; i++) {
+        if (response[i]['et_tender_ref_no'].toLowerCase().indexOf(search_string) !== -1 || response[i]['et_title'].toLowerCase().indexOf(search_string) !== -1 || response[i]['et_tender_desc'].toLowerCase().indexOf(search_string) !== -1) {
+            search_array.push(response[i])
+        }
+    }
+    console.log(search_array)
 }
