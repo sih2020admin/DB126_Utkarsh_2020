@@ -51,6 +51,12 @@ label{
     .fa-check{
         color: #80cf05;
     }
+    a {
+        text-decoration: none;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
 
 }
 .button_div{

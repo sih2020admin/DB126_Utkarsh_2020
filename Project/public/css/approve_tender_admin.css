@@ -74,6 +74,14 @@ label {
   color: #80cf05;
 }
 
+.approve_details a {
+  text-decoration: none;
+}
+
+.approve_details a:hover {
+  text-decoration: underline;
+}
+
 .button_div {
   text-align: center;
 }
