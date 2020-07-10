@@ -39,9 +39,9 @@ label {
       flex-flow: row wrap;
   -ms-flex-line-pack: end;
       align-content: flex-end;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -59,6 +59,27 @@ label {
           box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
   -webkit-transition: all .5s ease-in-out;
   transition: all .5s ease-in-out;
+}
+
+.approve_details i {
+  font-size: 20px;
+  vertical-align: bottom;
+}
+
+.approve_details .fa-times {
+  color: red;
+}
+
+.approve_details .fa-check {
+  color: #80cf05;
+}
+
+.approve_details a {
+  text-decoration: none;
+}
+
+.approve_details a:hover {
+  text-decoration: underline;
 }
 
 .button_div {

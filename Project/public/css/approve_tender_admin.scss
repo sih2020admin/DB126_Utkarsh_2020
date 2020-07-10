@@ -25,7 +25,7 @@ label{
     flex-wrap: wrap;
     flex-flow: row wrap;
     align-content: flex-end;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     margin: 40px;
 }
@@ -40,6 +40,24 @@ label{
     box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
     // border: 1px solid var(--main_color);
     transition: all .5s ease-in-out; 
+
+    i{
+        font-size: 20px;
+        vertical-align: bottom;
+    }
+    .fa-times{
+        color: red;
+    }
+    .fa-check{
+        color: #80cf05;
+    }
+    a {
+        text-decoration: none;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+
 }
 .button_div{
     text-align: center;
