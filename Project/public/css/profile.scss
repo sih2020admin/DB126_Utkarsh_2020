@@ -229,6 +229,13 @@ strong {
         border-collapse: collapse;
         overflow: hidden;
         box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
+
+        a{
+            text-decoration: none;
+        }
+        a:hover{
+            text-decoration: underline;
+        }
     }
 
     tr:nth-child(odd) {
