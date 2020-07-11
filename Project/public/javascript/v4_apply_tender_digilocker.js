@@ -199,7 +199,7 @@ function show_files(str) {
                         xhr.addEventListener('readystatechange', function () {
                             if (this.readyState === 4) {
                                 console.log(this.responseText)
-                                var data = JSON.stringify({ etd_id: etd_id, f_type: 'link', f_uri: BOQ_file_uri, Tech_file: Technical_file_name, BOQ_file: BOQ_file_name})
+                                var data = JSON.stringify({ etd_id: etd_id, f_type: 'link', f_uri: BOQ_file_uri})
 
                                 var xhr = new XMLHttpRequest()
 

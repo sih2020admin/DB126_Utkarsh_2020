@@ -164,16 +164,6 @@ router.post('/enter_file_uri2_db', function (req, res) {
             res.sendStatus(400)
         } else {
             console.log(results)
-            var filePath = '/root/e-sign/V-victory/Project/routes/uploaded_documents/' + tech_file;
-            fs.unlinkSync(filePath);
-            filePath = '/root/e-sign/V-victory/Project/routes/uploaded_documents/' + boq_file;
-            fs.unlinkSync(filePath);
-            var org_filename = tech_file.split("_signed.pdf")
-            filePath = '/root/e-sign/V-victory/Project/routes/uploaded_documents/' + org_filename[0] + ".pdf";
-            fs.unlinkSync(filePath);
-            org_filename = boq_file.split("_signed.pdf")
-            filePath = '/root/e-sign/V-victory/Project/routes/uploaded_documents/' + org_filename[0] + ".pdf";
-            fs.unlinkSync(filePath);
             res.sendStatus(200)
         }
     })
