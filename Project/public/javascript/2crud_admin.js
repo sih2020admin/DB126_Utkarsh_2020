@@ -629,6 +629,7 @@ function get_link() {
 }
 function select_files(value) {
     // body...
+    document.getElementById('get_link').style.display = 'inline-block'
     if (value == '0') {
         //no file condition
         zip_link = 'uploads/sample.zip'
