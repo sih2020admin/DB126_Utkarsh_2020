@@ -518,9 +518,9 @@ function done() {
     else {
         document.getElementById('icon1').className = 'fa fa-spinner fa-spin'
         document.getElementById('tc6').innerHTML = ''
-        redirect_to_confirm_page();
+        // redirect_to_confirm_page();
         //alert("done function"+et_id);
-        /*if (confirm('Do you want to revoke digilocker token?')) {
+        if (confirm('Do you want to revoke digilocker token?')) {
             //creating xhr request for api call
             var xhr = new XMLHttpRequest()
             url = 'https://165.22.210.37:8081/revoke_token'
@@ -546,7 +546,7 @@ function done() {
         } else {
             console.log('Token revocking process cancelled')
             redirect_to_confirm_page()
-        }*/
+        }
     }
 }
 /* ------------------------------ End of revoke digilocker token ------------------------------ */
