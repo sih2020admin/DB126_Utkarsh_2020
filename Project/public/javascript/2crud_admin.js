@@ -47,9 +47,9 @@ $(document).ready(function () {
     /* -------------- End of on date change of closing tender ---------- */
 })
 
-if (get_cookie('ad_id_e') == '') {
-    window.location.href = '/admin/login'
-}
+// if (get_cookie('ad_id_e') == '') {
+//     window.location.href = '/admin/login'
+// }
 var tr
 var col = []
 var table = document.getElementById('content_table')

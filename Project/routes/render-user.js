@@ -7,6 +7,7 @@ var express_1 = __importDefault(require("express"));
 var user_1 = require("./../miscellaneous/database/database functions/user");
 var misc_1 = require("./../miscellaneous/database/database functions/misc");
 var tender_1 = require("./../miscellaneous/database/database functions/tender");
+var connection_1 = __importDefault(require("./../miscellaneous/database/connections/connection"));
 var router = express_1.default.Router();
 router.get('/', function (request, response) {
     var user = user_1.isUser(request);
@@ -140,7 +141,16 @@ router.get('/tender/payment', function (request, response) {
     var user = user_1.isUser(request);
     Promise.all([user_1.getUserUsername(request), tender_1.getPaymentDetails(request)])
         .then(function (results) {
-        response.render('user/tender-payment', { layout: false, user: user, username: results[0], amount: results[1][0][0]['et_tender_fee'], email: results[1][1][0]['vcd_email'], contact: results[1][1][0]['vcd_contact'] });
+        console.table({ value: results[1][0][0]['et_tender_fee'] });
+        if (results[1][0][0]['et_tender_fee'] === '0') {
+            connection_1.default.execute("update e_tender_vendor set status=110 where et_id=" + request.query["et_id"] + " and etd_id=" + request.query["etd_id"])
+                .then(function (value) {
+                response.redirect("/tender/upload-documents?et_id=" + request.query["et_id"] + "&etd_id=" + request.query["etd_id"]);
+            });
+        }
+        else {
+            response.render('user/tender-payment', { layout: false, user: user, username: results[0], amount: results[1][0][0]['et_tender_fee'], email: results[1][1][0]['vcd_email'], contact: results[1][1][0]['vcd_contact'] });
+        }
     })
         .catch(function (error) {
         console.log('Error in loading Tender Payment Page');
