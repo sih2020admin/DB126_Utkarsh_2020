@@ -12,10 +12,6 @@ function show() {
         xhr.open('POST', url)
         xhr.setRequestHeader('Content-Type', 'application/json')
         xhr.send(JSON.stringify({ username: userid, password: passw }))
-
-        document.getElementById('username').value = ''
-        document.getElementById('pass').value = ''
-
         xhr.onload = function () {
             if (this.status == 200) {
                 document.getElementById('tc').innerHTML = ''
@@ -38,4 +34,13 @@ function show() {
             }
         }
     }
+    document.getElementById('username').value = ''
+    document.getElementById('pass').value = ''
 }
+$(document).keydown(function (e) {
+    if ($('#username').is(':focus') || $('#pass').is(':focus') || $('#login').is(':focus')) {
+        if (e.which === 13) {
+            show()
+        }
+    }
+})
