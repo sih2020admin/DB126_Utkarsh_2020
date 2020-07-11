@@ -57,7 +57,7 @@ $.ajax({
             }
 
             if(x.boq_uri==1){ //boq file exits
-                n=n+"<label for='f2" + count + "'>BOQ File</label><p id='f1" + count + "'> <a target=`__blank` href='https://165.22.210.37:8081/get_files?furi="  + x.furi2 + "&vd_id="+x.vd_id+"&vcd_id="+x.vcd_id+"'>file_url</a></p> <p id='boq_exist" + count + "'> " + "</p><i class='fas fa-times'></i> <br><br>";
+                n=n+"<label for='f2" + count + "'>BOQ File</label><p id='f1" + count + "'> <a target=`__blank` href='https://165.22.210.37:8081/get_files?furi="  + x.furi2 + "&vd_id="+x.vd_id+"&vcd_id="+x.vcd_id+"'>file_url</a></p> <p id='boq_exist" + count + "'> " + "</p><i class='fas fa-check'></i> <br><br>";
             }else {   //boq not exists
                 n=n+"<label for='f2" + count + "'>BOQ File</label><p id='f1" + count + "'> <a target=`__blank` onclick=`return false;` href='https://165.22.210.37:8081/get_files?furi="  + x.furi2 + "&vd_id="+x.vd_id+"&vcd_id="+x.vcd_id+"'>file_url</a></p> <p id='boq_exist" + count + "'> " + "</p><i class='fas fa-times'></i> <br><br>";
             }
@@ -107,6 +107,7 @@ function approve(value) {
             },
             success: function (response) {
                 alertify.success('Done');
+                window.location.href = '/admin/tenders/list';
                 /* if (response === "ok"){
             alertify.success('Done')
                 //alert("this tender has been approved and no further approval can be performed on this tendor")
