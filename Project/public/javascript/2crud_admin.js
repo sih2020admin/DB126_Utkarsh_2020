@@ -1,6 +1,7 @@
 $(document).ready(function () {
     /* -------------- Start of setting min date to today of closing tender ---------- */
     var today = new Date()
+    // var tommorow = new Date()
     var currentOffset = today.getTimezoneOffset()
     var ISTOffset = 330 // IST offset UTC +5:30
     var IST_today = new Date(today.getTime() + (ISTOffset + currentOffset) * 60000)
@@ -17,13 +18,14 @@ $(document).ready(function () {
 
     today = yyyy + '-' + mm + '-' + dd
     document.getElementById('closing_date').setAttribute('min', today)
+    
 
     /* -------------- End of setting min date to today of closing tender ---------- */
 
     /* -------------- Start of on date change of closing tender ---------- */
 
     var date_input = document.getElementById('closing_date')
-    date_input.valueAsDate = new Date()
+    // date_input.valueAsDate = new Date()
 
     var bid_close_date
     var date_input_bid_open
@@ -31,7 +33,7 @@ $(document).ready(function () {
     date_input.onclick = function () {
         console.log(this.value)
         date_input_bid_open = document.getElementById('bid_opening_date')
-        // date_input_bid_open.disabled = false
+        date_input_bid_open.disabled = false
 
         bid_close_date = date_input.value
         // date_input_bid_open.value = bid_close_date;
@@ -551,10 +553,10 @@ function add_tender() {
     } else if (isNaN(fee) || fee < 0 || fee.length < 1) {
         alert('Invalid Tender fee')
         return false
-    } else if (closing_date.length < 1 || closing_date==null) {
+    } else if (closing_date.length < 1 || closing_date=="Invalid Date") {
         alert('Enter Closing date')
         return false
-    } else if (bid_opening_date.length < 1 || bid_opening_date == "Invalid Date") {
+    } else if (bid_opening_date.length < 1 || bid_opening_date== "Invalid Date") {
         alert('Enter Bid opening date')
         return false
     } else if (description.length < 1) {
