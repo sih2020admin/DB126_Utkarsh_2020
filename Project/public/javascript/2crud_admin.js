@@ -31,7 +31,7 @@ $(document).ready(function () {
     date_input.onclick = function () {
         console.log(this.value)
         date_input_bid_open = document.getElementById('bid_opening_date')
-        date_input_bid_open.disabled = false
+        // date_input_bid_open.disabled = false
 
         bid_close_date = date_input.value
         // date_input_bid_open.value = bid_close_date;
@@ -538,11 +538,12 @@ function add_tender() {
     var title = document.getElementById('title').value
     var fee = document.getElementById('fee').value
     var closing_date = new Date(document.getElementById('closing_date').value)
-    var bid_opening_date = new Date(document.getElementById('bid_opening_date').value)
+    var bid_opening_date = String (new Date(document.getElementById('bid_opening_date').value))
     // var link = document.getElementById("link").value
     var description = document.getElementById('description').value
+    console.log("bid",bid_opening_date,closing_date)
 
-    console.log('add tender called' + (closing_date.getTime() > bid_opening_date.getTime()) + Date(closing_date) + Date(bid_opening_date))
+    // console.log('add tender called' + (closing_date.getTime() > bid_opening_date.getTime()) + Date(closing_date) + Date(bid_opening_date))
 
     if (title.length < 1) {
         alert('Enter Title')
@@ -550,10 +551,10 @@ function add_tender() {
     } else if (isNaN(fee) || fee < 0 || fee.length < 1) {
         alert('Invalid Tender fee')
         return false
-    } else if (closing_date.length < 1) {
+    } else if (closing_date.length < 1 || closing_date==null) {
         alert('Enter Closing date')
         return false
-    } else if (bid_opening_date.length < 1) {
+    } else if (bid_opening_date.length < 1 || bid_opening_date == "Invalid Date") {
         alert('Enter Bid opening date')
         return false
     } else if (description.length < 1) {
@@ -590,8 +591,8 @@ function add_tender() {
                 et_title: title,
                 et_tender_fee: fee,
                 et_tender_desc: description,
-                et_last_date_apply: document.getElementById('closing_date').value,
-                et_bidding_date: document.getElementById('bid_opening_date').value,
+                et_last_date_apply:closing_date,
+                et_bidding_date: bid_opening_date,
                 et_file_uri: zip_link,
                 dept_id: ad_dept_id,
             })
