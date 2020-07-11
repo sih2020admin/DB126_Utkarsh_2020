@@ -31,8 +31,12 @@
   background: none;
   border: 0;
   color: white;
-  font-size: 15px;
+  font-size: 19px;
   cursor: pointer;
+}
+
+.side-nav i {
+  font-size: 1.4rem;
 }
 
 .side-nav ul li {
