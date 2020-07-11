@@ -63,7 +63,8 @@ function validateURLParamsD(request, response, next) {
                     return [4 /*yield*/, connection_1.default.execute("SELECT e_tender_vendor.etd_id FROM e_tender_vendor , e_tender_details WHERE e_tender_details.et_last_date_apply >= CURRENT_DATE and e_tender_vendor.et_id=" + et_id + " and e_tender_vendor.etd_id=" + etd_id)];
                 case 1:
                     result = _a.sent();
-                    if (result[0].length !== 1) {
+                    debug(result[0], result[0].length);
+                    if (result[0].length < 1) {
                         debug('Found invalid et_id and etd_id');
                         debug('Redirecting to Tenders Page');
                         return [2 /*return*/, response.redirect('/tenders')];

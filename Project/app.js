@@ -52,10 +52,10 @@ app.use(session({
 app = load_routes_1.loadStaticFiles(app);
 //app.use(morgan('dev'))
 app.use(redirect_1.redirectToLoginPage, redirect_1.redirectToProfilePage);
-// app.use('/tender/apply', tender_1.validateURLParams, tender_1.validateURLParamsD);
-// app.use('/tender/payment', tender_1.validateURLParams, tender_1.validateURLParamsD);
-// app.use('/tender/confirmation', tender_1.validateURLParams, tender_1.validateURLParamsD, tender_1.confirmTender);
-// app.use('/tender/preview', tender_1.validateURLParams, tender_1.validateURLParamsD, tender_1.previewTender);
+
+app.use('/tender/payment', tender_1.validateURLParams, tender_1.validateURLParamsD);
+app.use('/tender/confirmation', tender_1.validateURLParams, tender_1.validateURLParamsD, tender_1.confirmTender);
+app.use('/tender/preview', tender_1.validateURLParams, tender_1.validateURLParamsD, tender_1.previewTender);
 app = load_routes_1.loadRouterFiles(app);
 app.get('*', function (request, response) {
     response.render('error', { layout: false });
