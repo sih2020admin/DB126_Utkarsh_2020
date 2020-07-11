@@ -136,16 +136,16 @@ select, input[type="date"]{
     content: none;
   }
   .progressbar li.active {
-    color: green;
+    color: var(--main_color);
   }
   .progressbar li.active:before {
-    border-color: #55b776;
+    border-color: var(--main_color);
   }
   .progressbar li.active + li:after {
-    background-color: #55b776;
+    background-color: var(--main_color);
   }
   .progressbar li.active + li:after {
-    background-color: #55b776;
+    background-color: var(--main_color);
   }
   
   
