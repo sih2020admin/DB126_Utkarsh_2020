@@ -1,6 +1,7 @@
 $(document).ready(function () {
     /* -------------- Start of setting min date to today of closing tender ---------- */
     var today = new Date()
+    // var tommorow = new Date()
     var currentOffset = today.getTimezoneOffset()
     var ISTOffset = 330 // IST offset UTC +5:30
     var IST_today = new Date(today.getTime() + (ISTOffset + currentOffset) * 60000)
@@ -17,13 +18,14 @@ $(document).ready(function () {
 
     today = yyyy + '-' + mm + '-' + dd
     document.getElementById('closing_date').setAttribute('min', today)
+    
 
     /* -------------- End of setting min date to today of closing tender ---------- */
 
     /* -------------- Start of on date change of closing tender ---------- */
 
     var date_input = document.getElementById('closing_date')
-    date_input.valueAsDate = new Date()
+    // date_input.valueAsDate = new Date()
 
     var bid_close_date
     var date_input_bid_open
@@ -97,7 +99,7 @@ xhr.onload = function () {
             tabCell = tr.insertCell(-1)
             tabCell.innerHTML = response[i]['et_bidding_date'].slice(0, 10)
             tabCell = tr.insertCell(-1)
-            tabCell.innerHTML = '<a href=/' + response[i]['et_file_uri'] + ' target="_blank">link</a>'
+            tabCell.innerHTML = '<a href=/tender/' + response[i]['et_file_uri'] + ' target="_blank">link</a>'
             tabCell = tr.insertCell(-1)
             if (response[i]['is_approved'] == 1) {
             } else {
@@ -538,11 +540,12 @@ function add_tender() {
     var title = document.getElementById('title').value
     var fee = document.getElementById('fee').value
     var closing_date = new Date(document.getElementById('closing_date').value)
-    var bid_opening_date = new Date(document.getElementById('bid_opening_date').value)
+    var bid_opening_date = String (new Date(document.getElementById('bid_opening_date').value))
     // var link = document.getElementById("link").value
     var description = document.getElementById('description').value
+    console.log("bid",bid_opening_date,closing_date)
 
-    console.log('add tender called' + (closing_date.getTime() > bid_opening_date.getTime()) + Date(closing_date) + Date(bid_opening_date))
+    // console.log('add tender called' + (closing_date.getTime() > bid_opening_date.getTime()) + Date(closing_date) + Date(bid_opening_date))
 
     if (title.length < 1) {
         alert('Enter Title')
@@ -550,10 +553,10 @@ function add_tender() {
     } else if (isNaN(fee) || fee < 0 || fee.length < 1) {
         alert('Invalid Tender fee')
         return false
-    } else if (closing_date.length < 1) {
+    } else if (closing_date.length < 1 || closing_date=="Invalid Date") {
         alert('Enter Closing date')
         return false
-    } else if (bid_opening_date.length < 1) {
+    } else if (bid_opening_date.length < 1 || bid_opening_date== "Invalid Date") {
         alert('Enter Bid opening date')
         return false
     } else if (description.length < 1) {
@@ -590,8 +593,8 @@ function add_tender() {
                 et_title: title,
                 et_tender_fee: fee,
                 et_tender_desc: description,
-                et_last_date_apply: document.getElementById('closing_date').value,
-                et_bidding_date: document.getElementById('bid_opening_date').value,
+                et_last_date_apply:closing_date,
+                et_bidding_date: bid_opening_date,
                 et_file_uri: zip_link,
                 dept_id: ad_dept_id,
             })
