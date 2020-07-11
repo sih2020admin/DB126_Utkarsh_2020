@@ -442,7 +442,7 @@ router.get('/get_files', (req, res) => {
     var furi = req.query.furi
     //var vd_id = req.query.vd_id;
     // var vcd_id = req.query.vcd_id
-    var vcd_id = req.signedCookies.vcd_id_e;
+    var vcd_id = req.query.vcd_id;
 
     console.log("get files sankey", furi, vcd_id);
 
