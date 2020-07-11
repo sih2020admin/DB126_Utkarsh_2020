@@ -81,7 +81,7 @@ $.ajax({
                         '"><b>Last Date for Applying</b></label><p id="et_last_date_apply' +
                         count +
                         '"> ' +
-                        x.et_last_date_apply +
+                        x.et_last_date_apply.slice(0,10) +
                         '</p>\n                        <br><label for="et_file_uri' +
                         count +
                         '"><b>File URL</b></label><p id="et_file_uri' +
@@ -93,7 +93,7 @@ $.ajax({
                         '"><b>Tender Bidding Date</b></label><p id="et_bidding_date' +
                         count +
                         '"> ' +
-                        x.et_bidding_date +
+                        x.et_bidding_date.slice(0,10) +
                         '</p>\n                        <br><button class="tender_button" onclick=apply(' +
                         count +
                         ')>View Applications</button><br><br></div>',

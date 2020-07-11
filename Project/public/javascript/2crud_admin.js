@@ -99,7 +99,7 @@ xhr.onload = function () {
             tabCell = tr.insertCell(-1)
             tabCell.innerHTML = response[i]['et_bidding_date'].slice(0, 10)
             tabCell = tr.insertCell(-1)
-            tabCell.innerHTML = '<a href=/' + response[i]['et_file_uri'] + ' target="_blank">link</a>'
+            tabCell.innerHTML = '<a href=/tender/' + response[i]['et_file_uri'] + ' target="_blank">link</a>'
             tabCell = tr.insertCell(-1)
             if (response[i]['is_approved'] == 1) {
             } else {
