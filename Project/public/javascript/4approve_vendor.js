@@ -50,16 +50,16 @@ $.ajax({
                 "<label for='vcd_email" + count + "'> Email </label><p id='vcd_" + count + "'> " + x.vcd_email + "</p><br><br>"+
                 "<p class='heading' for='Document uploaded" + count + "'>Documents Uploaded</p><br>";
 
-            if(x.tech_uri==0){  //add tech file exists here
+            if(x.tech_uri==1){  //add tech file exists here
                 n=n+"<label for='f1" + count + "'>Technical File</label><p id='f1" + count + "'>  <a target=`__blank` href='https://165.22.210.37:8081/get_files?furi=" + x.furi1 + "&vd_id="+x.vd_id+"&vcd_id="+x.vcd_id+"'>file_url</a></p> <p id='tech_exist" + count + "'> " +  "<i class='fas fa-check'></i></p> <br>";
             }else {        //not exist
-                n=n+"<label for='f1" + count + "'>Technical File</label><p id='f1" + count + "'>  <a target=`__blank` href='https://165.22.210.37:8081/get_files?furi=" + x.furi1 + "&vd_id="+x.vd_id+"&vcd_id="+x.vcd_id+"'>file_url</a></p> <p id='tech_exist" + count + "'> " +  "<i class='fas fa-times'></i></p> <br>";
+                n=n+"<label for='f1" + count + "'>Technical File</label><p id='f1" + count + "'>  <a target=`__blank` onclick=`return false;` href='https://165.22.210.37:8081/get_files?furi=" + x.furi1 + "&vd_id="+x.vd_id+"&vcd_id="+x.vcd_id+"'>file_url </a></p> <p id='tech_exist" + count + "'> " +  "<i class='fas fa-times'></i></p> <br>";
             }
 
-            if(x.boq_uri==0){ //boq file exits
-                n=n+"<label for='f2" + count + "'>BOQ File</label><p id='f1" + count + "'> <a target=`__blank` href='https://165.22.210.37:8081/get_files?furi="  + x.furi2 + "&vd_id="+x.vd_id+"&vcd_id="+x.vcd_id+"'>file_url</a></p> <p id='boq_exist" + count + "'> " + "</p><i class='fas fa-times'></i> <br><br>";
+            if(x.boq_uri==1){ //boq file exits
+                n=n+"<label for='f2" + count + "'>BOQ File</label><p id='f1" + count + "'> <a target=`__blank` href='https://165.22.210.37:8081/get_files?furi="  + x.furi2 + "&vd_id="+x.vd_id+"&vcd_id="+x.vcd_id+"'>file_url</a></p> <p id='boq_exist" + count + "'> " + "</p><i class='fas fa-check'></i> <br><br>";
             }else {   //boq not exists
-                n=n+"<label for='f2" + count + "'>BOQ File</label><p id='f1" + count + "'> <a target=`__blank` href='https://165.22.210.37:8081/get_files?furi="  + x.furi2 + "&vd_id="+x.vd_id+"&vcd_id="+x.vcd_id+"'>file_url</a></p> <p id='boq_exist" + count + "'> " + "</p><i class='fas fa-times'></i> <br><br>";
+                n=n+"<label for='f2" + count + "'>BOQ File</label><p id='f1" + count + "'> <a target=`__blank` onclick=`return false;` href='https://165.22.210.37:8081/get_files?furi="  + x.furi2 + "&vd_id="+x.vd_id+"&vcd_id="+x.vcd_id+"'>file_url</a></p> <p id='boq_exist" + count + "'> " + "</p><i class='fas fa-times'></i> <br><br>";
             }
 
                 n=n+"<p class='heading' for='Payment Details" + count + "'>Payment Details (is it required to show???)</p><br>"+
@@ -107,6 +107,7 @@ function approve(value) {
             },
             success: function (response) {
                 alertify.success('Done');
+                window.location.href = '/admin/tenders/list';
                 /* if (response === "ok"){
             alertify.success('Done')
                 //alert("this tender has been approved and no further approval can be performed on this tendor")

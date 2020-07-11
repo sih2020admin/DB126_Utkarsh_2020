@@ -7,6 +7,7 @@
 <body>
     {{> header}}
 	<nav class="side-nav">
+		<button onclick="topFunction()"><i aria-hidden="true"  class="fas fa-arrow-up fa-2x"></i>&nbsp;&nbsp;Move To Top</button>
 		<ul>
 			<li><i class="fas fa-user-cog"></i>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" id="crud-doc" class="a" onclick="reg_click()">CRUD ADMIN</a></li>
 		</ul>
@@ -53,4 +54,10 @@
 		</div>
 	</div>
 </body>
+<script>
+		function topFunction() {
+			document.body.scrollTop = 0;
+			document.documentElement.scrollTop = 0;
+		}
+</script>
 </html>
