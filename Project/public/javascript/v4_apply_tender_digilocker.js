@@ -518,6 +518,7 @@ function done() {
     else {
         document.getElementById('icon1').className = 'fa fa-spinner fa-spin'
         document.getElementById('tc6').innerHTML = ''
+        // redirect_to_confirm_page();
         //alert("done function"+et_id);
         if (confirm('Do you want to revoke digilocker token?')) {
             //creating xhr request for api call

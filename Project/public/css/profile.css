@@ -235,6 +235,14 @@ strong {
           box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
 }
 
+.tenders_details table a {
+  text-decoration: none;
+}
+
+.tenders_details table a:hover {
+  text-decoration: underline;
+}
+
 .tenders_details tr:nth-child(odd) {
   background-color: rgba(141, 111, 251, 0.061);
 }
