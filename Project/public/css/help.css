@@ -35,6 +35,10 @@
   cursor: pointer;
 }
 
+.side-nav i {
+  font-size: 1.4rem;
+}
+
 .side-nav ul li {
   list-style: none;
   font-size: 1.2em;
