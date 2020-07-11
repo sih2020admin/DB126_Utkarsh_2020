@@ -104,7 +104,7 @@ router.post('/confirm_tender_s5', function (req, res) {
 
     console.log('confirm tender called ' + etd_id)
 
-    db_1.default.query('UPDATE `e_tender_vendor` SET `status` = "1111",`location` = ?,`timestamp` = ? WHERE `etd_id` = ?;', [req.body.location, req.body.timestamp,etd_id], function (error, results, fields) {
+    db_1.default.query('UPDATE `e_tender_vendor` SET `status` = "1111",`location` = ?,`timestamp` = ? WHERE `etd_id` = ?;', [req.body.location, req.body.timestamp, etd_id], function (error, results, fields) {
         if (error) {
             console.log('error', error)
             res.sendStatus(400)
@@ -153,6 +153,9 @@ router.post('/enter_file_uri2_db', function (req, res) {
     var ftype = req.body.f_type
     var furi = req.body.f_uri
 
+    var tech_file = req.body.Tech_file;
+    var boq_file = req.body.BOQ_file;
+
     console.log('enter file2 db tender s3 called ' + etd_id)
 
     db_1.default.query('UPDATE `file_uri` SET `furi2` = ? WHERE etd_id = ? ', [furi, etd_id], function (error, results, fields) {
@@ -161,6 +164,16 @@ router.post('/enter_file_uri2_db', function (req, res) {
             res.sendStatus(400)
         } else {
             console.log(results)
+            var filePath = '/root/e-sign/V-victory/Project/routes/uploaded_documents/' + tech_file;
+            fs.unlinkSync(filePath);
+            filePath = '/root/e-sign/V-victory/Project/routes/uploaded_documents/' + boq_file;
+            fs.unlinkSync(filePath);
+            var org_filename = tech_file.split("_signed.pdf")
+            filePath = '/root/e-sign/V-victory/Project/routes/uploaded_documents/' + org_filename[0] + ".pdf";
+            fs.unlinkSync(filePath);
+            org_filename = boq_file.split("_signed.pdf")
+            filePath = '/root/e-sign/V-victory/Project/routes/uploaded_documents/' + org_filename[0] + ".pdf";
+            fs.unlinkSync(filePath);
             res.sendStatus(200)
         }
     })
