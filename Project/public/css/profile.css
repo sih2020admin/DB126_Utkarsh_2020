@@ -136,7 +136,7 @@ input[type=date]::-webkit-inner-spin-button {
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
-  font-size: 0.9rem;
+  font-size: 1.05rem;
   font-weight: 300;
   background-color: var(--main_color);
   border: none;
@@ -147,6 +147,10 @@ input[type=date]::-webkit-inner-spin-button {
   text-align: left;
   position: relative;
   border-radius: 0;
+}
+
+.tab button i {
+  width: 16px;
 }
 
 .tab button:hover {
@@ -241,6 +245,7 @@ strong {
 
 .tenders_details table a {
   text-decoration: none;
+  color: var(--main_color);
 }
 
 .tenders_details table a:hover {
