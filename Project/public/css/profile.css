@@ -43,6 +43,7 @@ input {
   border-radius: 3px;
   padding: 0 10px;
   outline: none;
+  height: 30px;
 }
 
 select, input[type="date"] {
