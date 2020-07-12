@@ -166,6 +166,21 @@ router.get('/faq',(request: Request, response: Response) => {
         .then((results)=>{
             response.render('user/faq',{layout:false,user,username: results[0]})
     })
+    .catch((error) => {
+        console.log('Error in loading FAQ Page')
+        console.log(error)
+    })
+})
+router.get('/privacy-policy',(request: Request, response: Response) => {
+    let user = isUser(request)
+    Promise.all([getUserUsername(request)])
+        .then((results)=>{
+            response.render('user/privacy-policy',{layout:false,user,username: results[0]})
+    })
+    .catch((error) => {
+        console.log('Error in loading Privacy Policy Page')
+        console.log(error)
+    })
 })
     
     
