@@ -27,6 +27,18 @@ h3{
     box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.25);
     -webkit-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;
+
+    img{
+      height: 75px;
+    }
+    a{
+      display: block;
+      color: var(--main_color);
+      text-decoration: none;
+    }
+    a:hover{
+      text-decoration: underline;
+    }
 }
 table, th, td {
     border:none;
