@@ -57,7 +57,7 @@ strong, .RnoLabel, .Id, .OdateLabel {
   min-width: 800px;
   max-width: 1200px;
   height: auto;
-  padding: 20px;
+  padding: 30px;
   margin: auto;
   margin-top: 20px;
   border-radius: 10px;
@@ -100,6 +100,14 @@ strong, .RnoLabel, .Id, .OdateLabel {
   overflow: hidden;
   -webkit-box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
           box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
+}
+
+.payment_details table a, .upload_documents table a {
+  text-decoration: none;
+}
+
+.payment_details table a:hover, .upload_documents table a:hover {
+  text-decoration: underline;
 }
 
 .payment_details tr:nth-child(odd), .upload_documents tr:nth-child(odd) {
