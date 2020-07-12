@@ -18,9 +18,9 @@ preview.style.display = "none";
 var preview1 = document.getElementById("preview1");
 preview1.style.display = "none";
 var signed_gif = document.getElementById("signed_gif");
-// signed_gif.style.display="none";
+signed_gif.style.display="none";
 var signed_gif1 = document.getElementById("signed_gif1");
-// signed_gif1.style.display="none";
+signed_gif1.style.display="none";
 
 var url = "/details";
 xhr1.open("POST" ,url);
