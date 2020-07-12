@@ -47,7 +47,7 @@ strong, .RnoLabel, .Id, .OdateLabel{
     min-width: 800px;
     max-width: 1200px;
     height: auto;
-    padding: 20px;
+    padding: 30px;
     margin: auto;
     margin-top: 20px;   
     border-radius: 10px; 
@@ -84,6 +84,13 @@ button:hover{
         border-collapse: collapse;
         overflow: hidden;
         box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
+
+        a{
+            text-decoration: none;
+        }
+        a:hover{
+            text-decoration: underline;
+        }
     }
 
     tr:nth-child(odd) {

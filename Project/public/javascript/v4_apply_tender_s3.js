@@ -17,6 +17,10 @@ var preview = document.getElementById("preview");
 preview.style.display = "none";
 var preview1 = document.getElementById("preview1");
 preview1.style.display = "none";
+var signed_gif = document.getElementById("signed_gif");
+signed_gif.style.display="none";
+var signed_gif1 = document.getElementById("signed_gif1");
+signed_gif1.style.display="none";
 
 var url = "/details";
 xhr1.open("POST" ,url);
@@ -118,6 +122,7 @@ function otp(){
                         // console.log(tech_file , Technical_file_name)
                         // preview.download = Technical_file_name;
                         preview.style.display = '';
+                        signed_gif.style.display = '';
                         document.getElementById("upload_label_id2").className = "upload_label2";
                         document.getElementById("upload1").disabled = false; 
                         document.getElementById("upload_label_id").className = "upload_label";
@@ -134,6 +139,7 @@ function otp(){
                         preview1.setAttribute("href", "/signed/"+boq_file);
                         // preview1.download = BOQ_file_name;
                         preview1.style.display = '';
+                        signed_gif1.style.display = '';
                         document.getElementById("upload1").disabled = true;
                         document.getElementById("upload_label_id2").className = "upload_label";
                     }

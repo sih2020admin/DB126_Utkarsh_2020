@@ -112,7 +112,6 @@ h1{
             padding: 10px;
             margin: 10px;
             font-size: 14px;
-            color: var(--main_color);
         }
         select{
             //border-style: dashed;
@@ -141,11 +140,12 @@ h1{
             cursor :pointer;
             margin: 10px 0;
         }
-        .upload_label:hover span {display:none} 
-        .upload_label:hover:before {content:"Upload Document"}
+        // .upload_label:hover span {display:none} 
+        // .upload_label:hover:before {content:"Upload Document"}
         .upload_label:hover{
             opacity: 0.5;
         }
+
         button{
             font-size: 16px;
             font-weight: 300;

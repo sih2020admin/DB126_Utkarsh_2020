@@ -241,11 +241,11 @@ xhr.onload = function () {
                 for (i = 0; i < response[3].length; i++) { 
                 tender_content =  tender_content+`
                         <tr>
-                            <td>`+response[2][i].et_tender_ref_no+`</td>
-                            <td>`+response[2][i].et_tender_fee+`</td>
-                            <td>`+response[2][i].et_tender_desc+`</td>
-                            <td>`+response[2][i].bidding_amt+`</td>
-                            <td><a href=https://`+location.hostname+":8081/tender/preview?et_id="+response[2][i].et_id+"&etd_id="+response[2][i].etd_id+`>view</a></td>
+                            <td>`+response[3][i].et_tender_ref_no+`</td>
+                            <td>`+response[3][i].et_title+`</td>
+                            <td>`+response[3][i].et_tender_desc+`</td>
+                            <td>`+response[3][i].bidding_amt+`</td>
+                            <td><a href=https://`+location.hostname+":8081/tender/preview?et_id="+response[3][i].et_id+"&etd_id="+response[3][i].etd_id+`>view</a></td>
                             <td>`+"Approved"+`</td>
                         </tr>` 
                 }

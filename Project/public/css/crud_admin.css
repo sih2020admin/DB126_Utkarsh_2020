@@ -128,7 +128,6 @@ h1 {
   padding: 10px;
   margin: 10px;
   font-size: 14px;
-  color: var(--main_color);
 }
 
 .container1 .input_details select {
@@ -164,14 +163,6 @@ h1 {
           align-items: center;
   cursor: pointer;
   margin: 10px 0;
-}
-
-.container1 .input_details .upload_label:hover span {
-  display: none;
-}
-
-.container1 .input_details .upload_label:hover:before {
-  content: "Upload Document";
 }
 
 .container1 .input_details .upload_label:hover {

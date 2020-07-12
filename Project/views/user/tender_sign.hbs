@@ -37,21 +37,33 @@
     <p id="tc"></p><br>
     <div class="button_div"><button type="submit" class="save_button" onclick="save()">Save</button></div>
   </div>
+
+
   <div class="cont">
-    <h3>Documents Upload</h3>
-    <br>
+    <h3>Upload Documents</h3>
+    <div class="flexCont">
+      <div class="row">
         <label for="file">Technical Document</label><br><br>
-          <input type="file" id="upload" accept="application/pdf" onchange="browse()">
-          <label for="upload" id="upload_label_id" class="upload_label"><i class="fas fa-upload"></i>&nbsp;&nbsp;Choose a Document</label><br>
-          <p id="tc2"></p><br>
-          <a target="blank" id ="preview" download>Click To Preview</a><br><br>
-          <hr><br>
+        <input type="file" id="upload" accept="application/pdf" onchange="browse()">
+        <label for="upload" id="upload_label_id" class="upload_label"><i class="fas fa-upload"></i>&nbsp;&nbsp;Choose a Document</label><br>
+        <p id="tc2"></p>
+        <div>
+          <img id="signed_gif" src="/images/signed.gif" alt="Successfully Singed Gif">
+          <a target="blank" id ="preview" download>Click To Preview</a>
+        </div>
+      </div>
+      <div class="row">
         <label for="file">BOQ Document</label><br><br>
-          <input type="file" id="upload1" accept="application/pdf" onchange="browse1()">
-          <label for="upload1" id="upload_label_id2" class="upload_label"><i class="fas fa-upload"></i>&nbsp;&nbsp;Choose a Document</label><br>
-          <p id="tc3"></p><br>
-          <a target="blank" id ="preview1" download>Click To Preview</a><br>
-    <p id="tc5"></p><br>
+        <input type="file" id="upload1" accept="application/pdf" onchange="browse1()">
+        <label for="upload1" id="upload_label_id2" class="upload_label"><i class="fas fa-upload"></i>&nbsp;&nbsp;Choose a Document</label><br>
+        <p id="tc3"></p>
+        <div>
+          <img id="signed_gif1" src="/images/signed.gif" alt="Successfully Singed Gif">
+          <a target="blank" id ="preview1" download>Click To Preview</a>
+        </div>
+        <p id="tc5"></p>
+      </div>
+    </div>
     <button id="digilocker" type="button" onclick="openModal()">Digilocker</button>
   </div>
 
@@ -107,5 +119,5 @@
 <!-- --------------------------- End of digilocker html code -------------------------------- -->
 <script src="/javascript/v4_apply_tender_s3.js"></script>
 <script type="text/javascript" src="/javascript/v4_apply_tender_digilocker.js"></script>
-<script src="https://kit.fontawesome.com/523ff21025.js" crossorigin="anonymous"></script
+<script src="https://kit.fontawesome.com/523ff21025.js" crossorigin="anonymous"></script>
 </html>

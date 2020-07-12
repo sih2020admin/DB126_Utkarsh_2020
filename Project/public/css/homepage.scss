@@ -97,8 +97,8 @@ h1, h3, h2, h4{
         tr{
             z-index: -99999999999999999999999999999999;
             position: relative;
-            border-bottom: 1px solid var(--accent-color);
-            border-top: 1px solid var(--accent-color);
+            border-bottom: 1px solid #a6a6a636;
+            border-top: 1px solid #a6a6a636;
         }
         tr:hover{
             transform: scale(1.02);
