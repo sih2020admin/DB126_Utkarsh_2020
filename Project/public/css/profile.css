@@ -51,6 +51,7 @@ select, input[type="date"] {
   border: 2px solid var(--main_color);
   border-radius: 3px;
   height: 30px;
+  width: 90%;
   padding: 0 5px;
   font-size: 1rem;
   color: var(--text_color);
@@ -58,7 +59,7 @@ select, input[type="date"] {
 }
 
 select {
-  border-width: 1.6px;
+  border-width: 2px;
 }
 
 select:disabled, option:disabled, input:disabled {
