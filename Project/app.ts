@@ -9,6 +9,7 @@ import cors from 'cors'
 import connection from './routes/db'
 import { loadStaticFiles, loadRouterFiles } from './loader/loader_modules/load-routes'
 import { redirectToProfilePage, redirectToLoginPage } from './miscellaneous/middleware/user/redirect'
+import { redirectToAdminProfilePage, } from './miscellaneous/middleware/admin/redirect'
 import { validateURLParams, validateURLParamsD, applyTender, previewTender, confirmTender } from './miscellaneous/middleware/user/tender'
 var app: Application = express()
 const cookie = require('cookie-parser')
@@ -53,12 +54,11 @@ app.use(
 )
 app = loadStaticFiles(app)
 //app.use(morgan('dev'))
-app.use(redirectToLoginPage, redirectToProfilePage)
+app.use(redirectToLoginPage, redirectToProfilePage,redirectToAdminProfilePage)
 app.use('/tender/payment', validateURLParams, validateURLParamsD)
 app.use('/tender/confirmation', validateURLParams, validateURLParamsD, confirmTender)
 app.use('/tender/preview', validateURLParams, validateURLParamsD, previewTender)
 app = loadRouterFiles(app)
-console.log('hello')
 app.get('*', (request: Request, response: Response) => {
     response.render('error', { layout: false })
 })

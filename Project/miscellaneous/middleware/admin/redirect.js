@@ -1,20 +1,20 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.redirectToLoginPage = exports.redirectToProfilePage = void 0;
+exports.redirectToLoginPage = exports.redirectToAdminProfilePage = void 0;
 const debug = require('debug')('middleware:redirect');
-function redirectToProfilePage(request, response, next) {
-    if (request.url.match('/admin') === null) {
-        if (request.url.match(/\/login|\/register/)) {
-            if (request.signedCookies['vcd_id_e'] !== undefined || request.signedCookies['vd_id_e'] !== undefined) {
-                debug('Found cookies in request and user is accessing vendor login.');
-                debug('Redirecting to Profile page');
-                return response.redirect('/profile');
+function redirectToAdminProfilePage(request, response, next) {
+    if (request.url.match('/admin')) {
+        if (request.url.match(/\/login|/) && request.method === 'GET') {
+            if (request.signedCookies['ad_id_e'] !== undefined || request.signedCookies['ad_org_id_e'] !== undefined || request.signedCookies['ad_dept_id_e'] !== undefined) {
+                debug('Found cookies in request and user is accessing admin login.');
+                debug('Redirecting to Admin Profile page');
+                return response.redirect('/admin/profile');
             }
         }
     }
     next();
 }
-exports.redirectToProfilePage = redirectToProfilePage;
+exports.redirectToAdminProfilePage = redirectToAdminProfilePage;
 function redirectToLoginPage(request, response, next) {
     /* console.table({XHR:request.xhr,accepts:request.accepts(['html','json']),value:request.headers["x-requested-with"]}) */
     if (request.url.match('/admin') === null) {
