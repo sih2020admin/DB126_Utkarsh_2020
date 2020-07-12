@@ -38,7 +38,7 @@ input {
     font-size: 1rem;
     border-radius: 3px;
     padding: 0 10px;
-    // width: 100%;
+    width: 90%;
     // min-width: auto;
     // max-width: auto;
     outline: none;
@@ -46,9 +46,10 @@ input {
 }
 select, input[type="date"]{
     //border-style: dashed;
-    border: 1.5px solid var(--main_color);
+    border: 2px solid var(--main_color);
     border-radius: 3px;
     height: 30px;
+    width: 90%;
     //margin: 10px;
     padding: 0 5px;
     //padding-left: 10px;
@@ -57,7 +58,7 @@ select, input[type="date"]{
     font-family: 'Open Sans', 'Serif';
 }
 select{
-    border-width: 1.6px;
+    border-width: 2px;
 }
 select:disabled, option:disabled, input:disabled {
     color: #000;
@@ -84,14 +85,13 @@ input[type=date]::-webkit-inner-spin-button {
     //font-family: sans-serif;
     //margin-top: 60px;
     button{  
-        // width: 100px;
-        // height: 30px;
-        padding: 7px 25px;
+        width: 100px;
+        height: 30px;
         font-size: 16px;
         font-weight: 300;
         border-radius: 5px; 
         background-color: var(--main_color);
-        border: none;
+        border: 0.3px solid var(--main_color);
         outline: none;
         margin-bottom: 10px;
         color: #ffffff;
@@ -100,9 +100,6 @@ input[type=date]::-webkit-inner-spin-button {
         cursor: pointer;
         background-color: #ffffff;
         color: var(--main_color);
-        border: solid;
-        border-width: 0.2px;
-        border-color: var(none--main_color);
     }
     border: none;   
     outline: none;
@@ -136,7 +133,7 @@ input[type=date]::-webkit-inner-spin-button {
         font-family: 'Montserrat', 'sans-serif';
         width: 100%;
         height: fit-content;
-        font-size: 0.9rem;
+        font-size: 1.05rem;
         font-weight: 300;
         background-color: var(--main_color);
         border: none;
@@ -147,6 +144,10 @@ input[type=date]::-webkit-inner-spin-button {
         text-align: left;
         position: relative;
         border-radius: 0;
+
+        i{
+            width: 16px;
+        }
     }
     button:hover{
         cursor: pointer;
@@ -238,6 +239,7 @@ strong {
 
         a{
             text-decoration: none;
+            color: var(--main_color);
         }
         a:hover{
             text-decoration: underline;
