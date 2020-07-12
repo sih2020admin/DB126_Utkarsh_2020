@@ -54,7 +54,7 @@ app.use(
 )
 app = loadStaticFiles(app)
 //app.use(morgan('dev'))
-app.use(redirectToLoginPage, redirectToProfilePage,redirectToAdminProfilePage)
+app.use(redirectToLoginPage, redirectToProfilePage)
 app.use('/tender/payment', validateURLParams, validateURLParamsD)
 app.use('/tender/confirmation', validateURLParams, validateURLParamsD, confirmTender)
 app.use('/tender/preview', validateURLParams, validateURLParamsD, previewTender)

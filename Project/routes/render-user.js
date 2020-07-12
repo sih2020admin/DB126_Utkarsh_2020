@@ -157,4 +157,11 @@ router.get('/tender/payment', (request, response) => {
         console.log(error);
     });
 });
+router.get('/faq', (request, response) => {
+    let user = user_1.isUser(request);
+    Promise.all([user_1.getUserUsername(request)])
+        .then((results) => {
+        response.render('user/faq', { layout: false, user, username: results[0] });
+    });
+});
 exports.default = router;

@@ -160,4 +160,14 @@ router.get('/tender/payment', (request: Request, response: Response) => {
         })
 })
 
+router.get('/faq',(request: Request, response: Response) => {
+    let user = isUser(request)
+    Promise.all([getUserUsername(request)])
+        .then((results)=>{
+            response.render('user/faq',{layout:false,user,username: results[0]})
+    })
+})
+    
+    
+
 export default router
