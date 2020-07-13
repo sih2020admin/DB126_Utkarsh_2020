@@ -154,9 +154,7 @@ footer{
     }
     input{
         // border-style: dashed;
-        border-width: 0.4px;
-        border-radius: 3px;
-        border-color: var(--main_color);
+        border: 1px solid var(--main_color);
         height: 35px;
         width: 375px;
         padding: 10px;
@@ -168,10 +166,9 @@ footer{
 
     textarea{
         // border-style: dashed;
-        border-width: 1.5px;
-        border-radius: 3px;
-        border-color: var(--main_color);
+        border: 1px solid var(--main_color);
         //height: 60px;
+        width: 375px;
         padding: 10px;
         padding-right: 10px;
         margin: 10px 0;
