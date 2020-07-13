@@ -11,6 +11,15 @@ var router = express_1.default.Router()
 // var unirest = require('unirest')
 var https = require('https')
 
+var nodemailer = require('nodemailer');
+var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: process.env.EMAIL,
+        pass: process.env.PASS,
+    },
+});
+
 // aadhar request
 
 /* router.get('/', function (req, res) {
@@ -310,5 +319,61 @@ router.post('/admin/logout', (request, response) => {
         return response.redirect('/login')
     })
     //response.sendStatus(200)
+})
+
+
+
+
+router.post('/feedback', (req, res) => {
+    var email = req.body.email
+    var suggestion = req.body.suggestion
+    console.log('feedback called')
+
+
+    db_1.default.query('INSERT INTO `feedback` (`email_address`, `feedback`) VALUES (?,?  );', [email,suggestion], function (error, results, fields) {
+        if (error) {
+            res.status(400)
+        } else {
+            var mailOptions = {
+                from: 'E-tender site',
+                to: email,
+                subject: 'Thank you for your valuable response',
+                text: 'Thank you for your valuable suggestion. \n suggestion: "'+suggestion+'"',
+            }
+            //console.log(otp);
+            transporter.sendMail(mailOptions, function (error, info) {
+                if (error) {
+                    console.log(error);
+                    //res.sendStatus(400);
+                } else {
+                    console.log('Email sent: ' + info.response);
+                }
+            });
+
+            var to_email=['survir44@gmail.com','softmandev123@gmail.com']
+            for (var i=0;i<to_email.length;i++){
+                var mailOptions = {
+                    from: 'E-tender site',
+                    to: to_email[i],
+                    subject: 'sugestion to developer',
+                    text: 'suggestion from '+email+' suggestion: "'+suggestion+'"',
+                }
+                //console.log(otp);
+                transporter.sendMail(mailOptions, function (error, info) {
+                    if (error) {
+                        console.log(error);
+                        //res.sendStatus(400);
+                    } else {
+                        console.log('Email sent: ' + info.response);
+                    }
+                });
+
+            }
+
+            
+                res.sendStatus(200)
+            }
+        
+    })   
 })
 exports.default = router

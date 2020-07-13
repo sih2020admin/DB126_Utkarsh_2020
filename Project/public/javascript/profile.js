@@ -227,6 +227,7 @@ xhr.onload = function () {
 
         // cont_div.insertAdjacentHTML('beforeend', div);
          var approve_tender_div = document.getElementById('Approved')
+         var flag=0;
         if (response[3].length > 0) {
                 var tender_content = `<div class="tenders_details">
                 <table>
@@ -249,12 +250,15 @@ xhr.onload = function () {
                             <td>`+"Approved"+`</td>
                         </tr>` 
                 }
+                flag=1;
         }
         else{
-            aprrove_tender_div.insertAdjacentHTML('beforeend', `<br><label class="RnoLabel"><strong>NO TENDER APPROVED YET ! APPLY FOR TENDER <a href="/tenders">here</a></strong></label>`)
+            approve_tender_div.insertAdjacentHTML('beforeend', `<br><label class="RnoLabel"><strong>NO TENDER APPROVED YET ! APPLY FOR TENDER <a href="/tenders">here</a></strong></label>`)
         }
-        tender_content  = tender_content+ `</table></div>`
-        approve_tender_div.insertAdjacentHTML('beforeend',tender_content);
+        if(flag==1){
+            tender_content  = tender_content+ `</table></div>`
+            approve_tender_div.insertAdjacentHTML('beforeend',tender_content);
+        }
     } 
     else if (this.status == 400) {
         alert('Some error occured!')

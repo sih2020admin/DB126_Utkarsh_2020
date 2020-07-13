@@ -13,7 +13,7 @@
 .side-nav {
   float: left;
   display: block;
-  width: 250px;
+  width: 240px;
   background-color: var(--main_color);
   overflow: auto;
   position: fixed;
@@ -88,8 +88,8 @@
   width: 100%;
 }
 
-.side-nav ul li + li {
-  margin-top: 20px;
+.side-nav ul li {
+  margin: 20px 0;
 }
 
 .main {

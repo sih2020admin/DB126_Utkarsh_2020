@@ -177,11 +177,10 @@ footer label {
 }
 
 footer input {
-  border-width: 0.4px;
+  border: 1px solid var(--main_color);
   border-radius: 3px;
-  border-color: var(--main_color);
-  height: 30px;
-  width: 80%;
+  height: 35px;
+  width: 375px;
   padding: 10px;
   margin: 20px 0 0;
   color: var(--text_color);
@@ -189,12 +188,23 @@ footer input {
   outline: none;
 }
 
+footer textarea {
+  border: 1px solid var(--main_color);
+  border-radius: 3px;
+  width: 375px;
+  padding: 10px;
+  padding-right: 10px;
+  margin: 10px 0;
+  font-size: 14px;
+  resize: none;
+}
+
 footer button {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  height: 35px;
+  width: 375px;
   padding: 5px 10px;
   border-radius: 4px;
   background-color: var(--main_color);
