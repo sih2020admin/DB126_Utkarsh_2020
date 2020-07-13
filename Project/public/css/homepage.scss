@@ -157,8 +157,8 @@ footer{
         border-width: 0.4px;
         border-radius: 3px;
         border-color: var(--main_color);
-        height: 30px;
-        width: 80%;
+        height: 35px;
+        width: 375px;
         padding: 10px;
         margin: 20px 0 0;
         color: var(--text_color);
@@ -166,11 +166,22 @@ footer{
         outline: none;
     }
 
-
+    textarea{
+        // border-style: dashed;
+        border-width: 1.5px;
+        border-radius: 3px;
+        border-color: var(--main_color);
+        //height: 60px;
+        padding: 10px;
+        padding-right: 10px;
+        margin: 10px 0;
+        font-size: 14px;
+        resize: none;
+    }
     button{
         width: fit-content;
-        margin-top: 20px;
-        margin-bottom: 20px;
+        // margin-top: 20px;
+        // margin-bottom: 20px;
         padding: 5px 10px;
         border-radius: 4px; 
         background-color: var(--main_color);
