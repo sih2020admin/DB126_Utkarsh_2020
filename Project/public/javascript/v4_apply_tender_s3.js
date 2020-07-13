@@ -60,7 +60,7 @@ var upload = function(files){
         formdata.append('file',files[x]);
     }
     //console.log(formdata.get('file'));
-    alert("Document Uploaded,Press OK to Sign the Document");
+    // alert("Document Uploaded,Press OK to Sign the Document");
     var url = "https://"+host+":8081/sms/send";
     xhr1.open("POST" ,url);
     xhr1.setRequestHeader('Content-Type','application/json');
@@ -108,7 +108,7 @@ function otp(){
             xhr.send(formdata);
             xhr.onload = function(){
                 if(this.status==200){
-                    alert("SuccesFully Signed");
+                    // alert("SuccesFully Signed");
                     if(flag == 0){
                         document.getElementById("tc2").style.display = "none";
                         // console.log(this.response.json())
