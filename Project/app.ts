@@ -10,7 +10,7 @@ import connection from './routes/db'
 import { loadStaticFiles, loadRouterFiles } from './loader/loader_modules/load-routes'
 import { redirectToProfilePage, redirectToLoginPage } from './miscellaneous/middleware/user/redirect'
 import { redirectToAdminProfilePage, } from './miscellaneous/middleware/admin/redirect'
-import { validateURLParams, validateURLParamsD, applyTender, previewTender, confirmTender } from './miscellaneous/middleware/user/tender'
+import { validateURLParams , validateURLParamsApply, validateURLParamsD,validateURLParamsDApply, applyTender, previewTender, confirmTender } from './miscellaneous/middleware/user/tender'
 var app: Application = express()
 const cookie = require('cookie-parser')
 const session = require('express-session')
@@ -55,6 +55,7 @@ app.use(
 app = loadStaticFiles(app)
 //app.use(morgan('dev'))
 app.use(redirectToLoginPage, redirectToProfilePage)
+app.use('/tender/apply',validateURLParamsApply,validateURLParamsDApply,applyTender)
 app.use('/tender/payment', validateURLParams, validateURLParamsD)
 app.use('/tender/confirmation', validateURLParams, validateURLParamsD, confirmTender)
 app.use('/tender/preview', validateURLParams, validateURLParamsD, previewTender)

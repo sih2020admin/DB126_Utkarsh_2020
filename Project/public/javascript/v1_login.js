@@ -5,8 +5,6 @@ var o = document.getElementById('oicon')
 var login_button = document.getElementById('login')
 var message
 document.getElementById('username').value = ''
-console.log('hello v1_login')
-// delete_cookies();
 function show() {
     var userid = document.getElementById('username').value
     var passw = document.getElementById('pass').value
@@ -37,56 +35,7 @@ function show() {
                 o.style.display = 'inline-block'
                 z.style.display = ''
 
-                document.getElementById('confirm').onclick = function () {
-                    document.getElementById('icon').style.display = 'inline-block'
-                    var url = 'https://' + location.hostname + ':8081/verifyOTP_login'
-                    xhr.open('POST', url)
-                    xhr.setRequestHeader('Content-Type', 'application/json')
-                    var otp_s=y.value
-                    if(otp_s.length <6){
-                        document.getElementById('icon').style.display = 'none'
-                        document.getElementById('tc1').innerHTML = 'Invalid OTP '
-                        document.getElementById('tc2').style.display = 'inline-block'
-                        document.getElementById('tc2').innerHTML = 'Directing to Relogin'
-                        document.getElementById('otp').disabled = true
-                        setTimeout(function () {
-                            location = '/login'
-                        }, 5000)
-
-                    }
-                    else{
-                        xhr.send(JSON.stringify({ aadharno: message.aadhar,vcd_id :message.vcd_id , vd_id: message.vd_id, digi_access : message.digi_access, OTP: y.value }))
-                    }
-
-                    xhr.onload = function () {
-                        if (this.status == 200) {
-                            //alert("OTP verified");
-                            document.getElementById('otp').disabled = true
-                            var vcd_id_c = message.vcd_id
-                            var vd_id_c = message.vd_id
-                            var digi_access = message.digi_access
-                            add_to_cookie('vcd_id', vcd_id_c)     //modf_sanket when sankets requiremnt is over need to remove this
-                            add_to_cookie('vd_id', vd_id_c)
-                            add_to_cookie('digi_access', digi_access)
-
-                            setTimeout(function () {
-                                location = '/profile'
-                            }, 1500)
-                        } else if (this.status == 400) {
-                            document.getElementById('icon').style.display = 'none'
-                            document.getElementById('tc1').innerHTML = 'Invalid OTP '
-                            document.getElementById('tc2').style.display = 'inline-block'
-                            document.getElementById('tc2').innerHTML = 'Directing to Relogin'
-                            document.getElementById('otp').disabled = true
-                            setTimeout(function () {
-                                location = '/login'
-                            }, 5000)
-                        } else {
-                            document.getElementById('icon').style.display = 'none'
-                            document.getElementById('tc1').innerHTML = 'Some Error Occured'
-                        }
-                    }
-                }
+                document.getElementById('confirm').onclick = verifyOTP
             } else if (this.status == 400) {
                 document.getElementById('tc').innerHTML = 'Invalid Username or Password'
             } else {
@@ -96,4 +45,65 @@ function show() {
     }
 }
 
-//document.getElementById('icon').style.display = 'none'
+function verifyOTP() {
+    document.getElementById('icon').style.display = 'inline-block'
+    var xhr = new XMLHttpRequest()
+    var url = 'https://' + location.hostname + ':8081/verifyOTP_login'
+    xhr.open('POST', url)
+    xhr.setRequestHeader('Content-Type', 'application/json')
+    var otp_s = y.value
+    if (otp_s.length < 6) {
+        document.getElementById('icon').style.display = 'none'
+        document.getElementById('tc1').innerHTML = 'Invalid OTP '
+        document.getElementById('tc2').style.display = 'inline-block'
+        document.getElementById('tc2').innerHTML = 'Directing to Relogin'
+        document.getElementById('otp').disabled = true
+        setTimeout(function () {
+            location = '/login'
+        }, 5000)
+    } else {
+        xhr.send(JSON.stringify({ aadharno: message.aadhar, vcd_id: message.vcd_id, vd_id: message.vd_id, digi_access: message.digi_access, OTP: y.value }))
+    }
+
+    xhr.onload = function () {
+        if (this.status == 200) {
+            //alert("OTP verified");
+            document.getElementById('otp').disabled = true
+            var vcd_id_c = message.vcd_id
+            var vd_id_c = message.vd_id
+            var digi_access = message.digi_access
+            add_to_cookie('vcd_id', vcd_id_c) //modf_sanket when sankets requiremnt is over need to remove this
+            add_to_cookie('vd_id', vd_id_c)
+            add_to_cookie('digi_access', digi_access)
+
+            setTimeout(function () {
+                location = '/profile'
+            }, 1500)
+        } else if (this.status == 400) {
+            document.getElementById('icon').style.display = 'none'
+            document.getElementById('tc1').innerHTML = 'Invalid OTP '
+            document.getElementById('tc2').style.display = 'inline-block'
+            document.getElementById('tc2').innerHTML = 'Directing to Relogin'
+            document.getElementById('otp').disabled = true
+            setTimeout(function () {
+                location = '/login'
+            }, 5000)
+        } else {
+            document.getElementById('icon').style.display = 'none'
+            document.getElementById('tc1').innerHTML = 'Some Error Occured'
+        }
+    }
+}
+
+$(document).keydown(function (e) {
+    if ($('#username').is(':focus') || $('#pass').is(':focus') || $('#login').is(':focus')) {
+        if (e.which === 13) {
+            show()
+        }
+    }
+    if ($('#otp').is(':focus')) {
+        if (e.which === 13) {
+            verifyOTP()
+        }
+    }
+})

@@ -3,9 +3,24 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.previewTender = exports.confirmTender = exports.applyTender = exports.validateURLParamsD = exports.validateURLParams = void 0;
+exports.previewTender = exports.confirmTender = exports.applyTender = exports.validateURLParamsD = exports.validateURLParams = exports.validateURLParamsDApply = exports.validateURLParamsApply = void 0;
 const connection_1 = __importDefault(require("./../../database/connections/connection"));
 const debug = require('debug')('middleware:tender');
+function validateURLParamsApply(request, response, next) {
+    if (request.query['et_id'] === undefined) {
+        return response.redirect('/tenders');
+    }
+    next();
+}
+exports.validateURLParamsApply = validateURLParamsApply;
+async function validateURLParamsDApply(request, response, next) {
+    let temp = await connection_1.default.execute(`SELECT * FROM e_tender_details WHERE et_id='${request.query['et_id']}'`);
+    if (temp[0].length < 1) {
+        return response.redirect('/tenders');
+    }
+    next();
+}
+exports.validateURLParamsDApply = validateURLParamsDApply;
 function validateURLParams(request, response, next) {
     debug('Checking whether etd_id and et_id is undefined in url');
     if (request.query['etd_id'] === undefined || request.query['et_id'] === undefined) {
@@ -34,9 +49,7 @@ async function applyTender(request, response, next) {
     let status = await connection_1.default.execute(`SELECT * FROM  e_tender_vendor WHERE et_id = '${request.query['et_id'].toString()}' and vd_id ='${request.signedCookies['vd_id_e']}'`);
     if (status[0].length !== 0) {
         status = status[0][0];
-        console.log(status, status['etd_id']);
         let etd_id = status['etd_id'];
-        console.log(etd_id);
         if (status['status'] === '100') {
             return response.redirect(`/tender/payment?et_id=${request.query['et_id']}&etd_id=${etd_id}`);
         }
