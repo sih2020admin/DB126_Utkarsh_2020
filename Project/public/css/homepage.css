@@ -204,6 +204,8 @@ footer button {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
+  height: 35px;
+  width: 375px;
   padding: 5px 10px;
   border-radius: 4px;
   background-color: var(--main_color);
