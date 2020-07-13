@@ -120,8 +120,6 @@ input[type=date]::-webkit-inner-spin-button {
   max-width: 240px;
   height: 100%;
   margin-left: 0;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
   background-color: var(--main_color);
   position: fixed;
 }
