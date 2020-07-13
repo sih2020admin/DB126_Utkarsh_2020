@@ -65,12 +65,7 @@ var file2_uri = null
 var zip_link = null
 
 // var create_form = document.getElementById("create_input_details");
-function convert(str) {
-  var date = new Date(str),
-    mnth = ("0" + (date.getMonth() + 1)).slice(-2),
-    day = ("0" + date.getDate()).slice(-2);
-  return [date.getFullYear(), mnth, day].join("-");
-}
+
 var xhr = new XMLHttpRequest()
 // xhr.withCredentials = true;
 
@@ -544,7 +539,7 @@ function add_tender() {
     // var ref_no = document.getElementById('ref_no').value
     var title = document.getElementById('title').value
     var fee = document.getElementById('fee').value
-    var closing_date =String( new Date(document.getElementById('closing_date').value))
+    var closing_date = new Date(document.getElementById('closing_date').value)
     var bid_opening_date = String (new Date(document.getElementById('bid_opening_date').value))
     // var link = document.getElementById("link").value
     var description = document.getElementById('description').value
@@ -567,7 +562,12 @@ function add_tender() {
     } else if (description.length < 1) {
         alert('Enter Description')
         return false
-    } else if (zip_link == null) {
+    } else if (closing_date.getTime() > bid_opening_date.getTime()) {
+        console.log('wrong date seq')
+        alert('Bid opening date must be after closing date')
+
+        return false
+     else if (zip_link == null) {
         alert('Upload documents and Generate Link')
         return false
     } else {
@@ -593,8 +593,8 @@ function add_tender() {
                 et_title: title,
                 et_tender_fee: fee,
                 et_tender_desc: description,
-                et_last_date_apply:convert(closing_date),
-                et_bidding_date:convert( bid_opening_date),
+                et_last_date_apply:closing_date,
+                et_bidding_date: bid_opening_date,
                 et_file_uri: zip_link,
                 dept_id: ad_dept_id,
             })
