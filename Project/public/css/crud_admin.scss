@@ -39,8 +39,8 @@ h1{
             height: 35px;
         }
         input:focus, textarea:focus, select:focus {
-            border: 2px solid var(--main_color);
             outline: none;
+            box-shadow: 0 0 0 1px var(--main_color);
         }
         button{
             font-size: 16px;
@@ -92,9 +92,9 @@ h1{
             box-shadow: none !important;
         }
         input:focus, textarea:focus, select:focus {
-            border: 2px solid var(--main_color);
             outline: none;
-        }
+            box-shadow: 0 0 0 1px var(--main_color);
+          }
         input[type=number]{
             appearance: textfield;
             padding: 0px;

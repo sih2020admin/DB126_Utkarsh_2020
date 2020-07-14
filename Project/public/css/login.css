@@ -100,8 +100,9 @@ input {
 }
 
 input:focus, textarea:focus, select:focus {
-  border: 2px solid var(--main_color);
   outline: none;
+  -webkit-box-shadow: 0 0 0 1px var(--main_color);
+          box-shadow: 0 0 0 1px var(--main_color);
 }
 
 td i {

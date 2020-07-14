@@ -45,8 +45,9 @@ h1 {
 }
 
 .container1 .main_bar input:focus, .container1 .main_bar textarea:focus, .container1 .main_bar select:focus {
-  border: 2px solid var(--main_color);
   outline: none;
+  -webkit-box-shadow: 0 0 0 1px var(--main_color);
+          box-shadow: 0 0 0 1px var(--main_color);
 }
 
 .container1 .main_bar button {

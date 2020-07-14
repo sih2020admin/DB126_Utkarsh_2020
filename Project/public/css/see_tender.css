@@ -262,6 +262,12 @@
   transition: all .2s ease-in-out;
 }
 
+.filter-container input:focus, .filter-container textarea:focus, .filter-container select:focus {
+  outline: none;
+  -webkit-box-shadow: 0 0 0 1px var(--main_color);
+          box-shadow: 0 0 0 1px var(--main_color);
+}
+
 .filter-container button {
   font-family: 'Montserrat', 'sans-serif';
   background-color: var(--main_color);
