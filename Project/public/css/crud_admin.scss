@@ -14,7 +14,6 @@ h1{
     color: var(--main_color);
     font-family: 'Montserrat','sans serif';
 }
-
 .container1{
     margin: 40px;
 
@@ -28,9 +27,8 @@ h1{
 
         input{
             // border-style: dashed;
-            border-width: 0.4px;
+            border: 1px solid var(--main_color);
             border-radius: 3px;
-            border-color: var(--main_color);
             height: 30px;
             width: 80%;
             padding: 10px;
@@ -39,6 +37,10 @@ h1{
             overflow: hidden;
             outline: none;
             height: 35px;
+        }
+        input:focus, textarea:focus, select:focus {
+            border: 2px solid var(--main_color);
+            outline: none;
         }
         button{
             font-size: 16px;
@@ -81,7 +83,7 @@ h1{
         input{
             // border-style: dashed;
             border-radius: 3px;
-            border: 1.5px solid var(--main_color);
+            border: 1px solid var(--main_color);
             height: 30px;
             width: auto;
             padding: 10px;
@@ -89,6 +91,7 @@ h1{
             color: var(--text_color);
             box-shadow: none !important;
         }
+
         input[type=number]{
             appearance: textfield;
             padding: 0px;
@@ -107,7 +110,7 @@ h1{
         textarea{
             // border-style: dashed;
             border-radius: 3px;
-            border:1.5px solid var(--main_color);
+            border: 1px solid var(--main_color);
             height: 60px;
             padding: 10px;
             margin: 10px;
@@ -116,7 +119,7 @@ h1{
         select{
             //border-style: dashed;
             border-radius: 3px;
-            border:1.5px solid var(--main_color);
+            border: 1px solid var(--main_color);
             height: 30px;
             padding: 0;
             padding-left: 10px;
@@ -308,13 +311,13 @@ sup{
 }   
 .swal2-input{
     // border-style: dashed;
-    border-width: 1.5px;
+    font-family: 'Open Sans','sans serif' !important;
+    border: 1px solid var(--main_color) !important;
     border-radius: 3px;
-    border-color: var(--main_color);
     height: 30px;
     padding: 10px;
     margin: 10px 10px 10px 0;
-    color: var(--main_color);    
+    // color: var(--main_color) !important;    
     outline: none;
     overflow: hidden;
     box-shadow: none !important;
@@ -326,23 +329,23 @@ sup{
     max-width: 100%;
   }
 .swal2-textarea{
+    font-family: 'Open Sans','sans serif' !important;
     // border-style: dashed;
-    border-width: 1.5px;
+    border: 1px solid var(--main_color) !important;
     border-radius: 3px;
-    border-color: var(--main_color);
     padding: 10px;
     resize: none;
-    color: var(--main_color);
+    // color: var(--main_color) !important;
 
 }
 .swal2-input:focus, .swal2-textarea:focus{
-    box-shadow: 0 0 5px c3bbe0;
-    border: 1px solid #c3bbe0;
+    box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3) !important;
+    border: 1px solid var(--main_color) !important;
 }
-
+.swal2-textarea:focus
 //Delete Alert Box
  
 .swal2-icon.swal2-warning, .swal2-icon.swal2-warning.swal2-icon-show{
-    color: var(--main_color);
+    color: var(--main_color) ;
     border-color: var(--main_color);
 }
