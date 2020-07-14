@@ -105,6 +105,11 @@ h1 {
           box-shadow: none !important;
 }
 
+.container1 .input_details input:focus, .container1 .input_details textarea:focus, .container1 .input_details select:focus {
+  border: 2px solid var(--main_color);
+  outline: none;
+}
+
 .container1 .input_details input[type=number] {
   -webkit-appearance: textfield;
      -moz-appearance: textfield;

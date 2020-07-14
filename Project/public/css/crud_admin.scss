@@ -91,7 +91,10 @@ h1{
             color: var(--text_color);
             box-shadow: none !important;
         }
-
+        input:focus, textarea:focus, select:focus {
+            border: 2px solid var(--main_color);
+            outline: none;
+        }
         input[type=number]{
             appearance: textfield;
             padding: 0px;
