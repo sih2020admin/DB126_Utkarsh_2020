@@ -107,8 +107,9 @@ h1 {
 }
 
 .container1 .input_details input:focus, .container1 .input_details textarea:focus, .container1 .input_details select:focus {
-  border: 2px solid var(--main_color);
   outline: none;
+  -webkit-box-shadow: 0 0 0 1px var(--main_color);
+          box-shadow: 0 0 0 1px var(--main_color);
 }
 
 .container1 .input_details input[type=number] {
@@ -380,9 +381,9 @@ sup {
 }
 
 .swal2-input:focus, .swal2-textarea:focus {
-  -webkit-box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3) !important;
-          box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3) !important;
-  border: 1px solid var(--main_color) !important;
+  outline: none !important;
+  -webkit-box-shadow: 0 0 0 1px var(--main_color) !important;
+          box-shadow: 0 0 0 1px var(--main_color) !important;
 }
 
 .swal2-textarea:focus
