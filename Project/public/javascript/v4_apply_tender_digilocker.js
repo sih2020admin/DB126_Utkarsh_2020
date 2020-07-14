@@ -149,6 +149,7 @@ function some() {
 
 //Dynamically adds list of files recieved from digilocker to html page
 function show_files(str) {
+    console.log("response from digi on get files", str)
     var current = str.directory // get current directory name
 
     //update current directory name on modal
