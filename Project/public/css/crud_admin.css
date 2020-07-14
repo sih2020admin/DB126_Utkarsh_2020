@@ -226,6 +226,10 @@ h1 {
   background-color: inherit;
 }
 
+.container2 table button:hover {
+  opacity: 0.5;
+}
+
 .container2 tr:nth-child(odd) {
   background-color: rgba(141, 111, 251, 0.06);
 }
@@ -301,10 +305,6 @@ h1 {
   background-color: #ffffff;
   color: var(--main_color);
   border: 0.4px solid var(--main_color);
-}
-
-button:hover {
-  opacity: 0.5;
 }
 
 sup {
