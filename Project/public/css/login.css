@@ -14,7 +14,7 @@ body {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  padding: 20px;
+  padding: 20px 30px;
   margin: 20px auto 0;
   border-radius: 10px;
   -webkit-box-shadow: 0 0 6px 0 rgba(103, 62, 253, 0.25);
@@ -97,6 +97,11 @@ input {
   padding: 10px 30px;
   padding-right: 10px;
   margin: 10px;
+}
+
+input:focus, textarea:focus, select:focus {
+  border: 2px solid var(--main_color);
+  outline: none;
 }
 
 td i {

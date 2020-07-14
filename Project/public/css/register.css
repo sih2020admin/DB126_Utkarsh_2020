@@ -17,7 +17,7 @@ body {
   width: -moz-fit-content;
   width: fit-content;
   height: auto;
-  padding: 20px;
+  padding: 20px 30px;
   margin: 40px;
   margin-top: 20px;
   margin-bottom: 10px;
@@ -146,6 +146,11 @@ input[type="number"] {
   padding-right: 10px;
   -webkit-appearance: none;
   -moz-appearance: textfield;
+}
+
+input:focus, textarea:focus, select:focus {
+  border: 2px solid var(--main_color);
+  outline: none;
 }
 
 #otp {

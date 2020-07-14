@@ -10,7 +10,7 @@ body{
     background-color: rgb(255, 255, 255);
     height: auto;
     width: fit-content;
-    padding: 20px;
+    padding: 20px 30px;
     margin: 20px auto 0;
     border-radius: 10px; 
     box-shadow: 0 0 6px 0 rgba(103, 62, 253, 0.25);
@@ -72,6 +72,10 @@ input{
     padding-right: 10px;
     margin: 10px;
     // color: var(--main_color);
+}
+input:focus, textarea:focus, select:focus {
+    border: 2px solid var(--main_color);
+    outline: none;
 }
 td {
     i{

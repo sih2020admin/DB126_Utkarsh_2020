@@ -47,6 +47,11 @@ input {
   height: 30px;
 }
 
+input:focus, textarea:focus, select:focus {
+  border: 2px solid var(--main_color);
+  outline: none;
+}
+
 select, input[type="date"] {
   border: 2px solid var(--main_color);
   border-radius: 3px;
