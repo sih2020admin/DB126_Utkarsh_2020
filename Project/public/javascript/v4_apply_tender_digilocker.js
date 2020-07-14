@@ -186,6 +186,7 @@ function show_files(str) {
                         console.log('File URI for Technical Document is => ' + item_array[i].uri)
                     }
                 } else if (Technical_or_BOQ == 2) {
+                    console.log("call enter file uri in db")
                     if (item_array[i].name == BOQ_file_name) {
                         // document.getElementById("fileURI").innerHTML = item_array[i].uri;
                         BOQ_file_uri = item_array[i].uri
