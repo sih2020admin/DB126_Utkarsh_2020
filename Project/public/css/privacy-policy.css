@@ -1,12 +1,9 @@
 .cont {
   text-align: left;
   background-color: white;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
   width: 80%;
   max-width: 1200px;
-  padding: 20px;
+  padding: 30px 40px;
   margin: 40px auto;
   margin-top: 20px;
   border-radius: 10px;
