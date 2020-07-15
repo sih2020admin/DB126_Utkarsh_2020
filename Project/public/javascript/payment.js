@@ -1,30 +1,28 @@
 "use strict";
-var _a, _b;
-var baseURL = location.protocol + "//" + location.host;
+var baseURL = `${location.protocol}//${location.host}`;
 function append_to_form(name, value) {
     $('<input>', {
         type: 'hidden',
-        name: name,
-        value: value,
+        name,
+        value,
     }).appendTo('#body_content');
 }
-var queryString = window.location.search;
-var urlParams = new URLSearchParams(queryString);
-var et_id = (_a = urlParams.get('et_id')) === null || _a === void 0 ? void 0 : _a.toString();
-var etd_id = (_b = urlParams.get('etd_id')) === null || _b === void 0 ? void 0 : _b.toString();
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+var et_id = urlParams.get('et_id')?.toString();
+var etd_id = urlParams.get('etd_id')?.toString();
 var code = urlParams.get('code');
 if (code !== null) {
     $('#tsc_status').text('Transaction has failed');
 }
 append_to_form('etd_id', etd_id);
 append_to_form('et_id', et_id);
-$('#bg_tsc_button').on('click', function (e) {
-    var _a, _b, _c;
+$('#bg_tsc_button').on('click', (e) => {
     e.preventDefault();
-    var check_form = 0;
-    var amount = (_a = $('#amount1').val()) === null || _a === void 0 ? void 0 : _a.toString();
-    var email = (_b = $('#email').val()) === null || _b === void 0 ? void 0 : _b.toString();
-    var mobile = (_c = $('#mobile').val()) === null || _c === void 0 ? void 0 : _c.toString();
+    let check_form = 0;
+    let amount = $('#amount1').val()?.toString();
+    let email = $('#email').val()?.toString();
+    let mobile = $('#mobile').val()?.toString();
     check_form = form_validate(amount, email, mobile);
     if (check_form === 1) {
         $('#body_content').submit();
