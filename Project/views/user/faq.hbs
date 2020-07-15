@@ -4,10 +4,98 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FAQ</title>
+    <link rel="stylesheet" href="/css/faq.css">
 </head>
 <body>
     {{> header-user}}
-    <h2>Frequently Asked Questions</h2>
+    <br><br>
+    {{!-- <h2>Frequently Asked Questions</h2> --}}
+    <div class="center">        
+            <div class="container">
+                <h2>Frequently Asked Question</h2><br>
+                <button class="accordion">
+                    <div  style="float: left;">1. What is E-Procurement System ?</div>
+                    <div  style="float: right;"><b>+</b></div>
+                </button>
+                    <div class="panel">
+                    <p>eProcurement System is a process of procuring the items electronically using internet. This facility drastically reduces the tendering cycle time and reduces most of the indirect costs and enhances transparency in procurement.</p>
+                    </div><br>
+                <button class="accordion">
+                    <div  style="float: left;">2. What are the requirements of the client machine to access the e-Procurement site ?</div>
+                    <div  style="float: right;"><b>+</b></div>
+                </button>
+                <div class="panel">
+                    <p>To access the eProcurement system, you need a computer system with Pentium IV configuration and above and an internet connection. It is recommended that the connection can be a dedicated connection for smooth operation of the system.</p>
+                </div><br>
+                <button class="accordion">
+                    <div  style="float: left;">3. What are the basic features available in this Procurement Portal as a general user ?</div>
+                    <div  style="float: right;"><b>+</b></div>
+                </button>
+                <div class="panel">
+                    <p>* The users can use the section 'Current Tenders' available in the Home Page of this portal, to see all the tenders hosted on this Portal.</p>
+                    <p>* The users can use the section 'Upcoming Tenders' available in the Home Page of this portal, to see all the future tenders hosted on this Portal.</p>
+                </div><br>
+                <button class="accordion">
+                    <div  style="float: left;">4. How do I get enrolled in the eProcurement Portal ?</div>
+                    <div  style="float: right;"><b>+</b></div>
+                </button>
+                <div class="panel">
+                    <p>Online enrolment for eProcurement is very simple as a bidder. Go to Tenders Home Page Click on Register and just fill up the registration form online. On successful submission, the registered
+                        login id can be used to login,which completes the online enrolment process. </p>
+                </div><br>
+                <button class="accordion">
+                    <div  style="float: left;">5. Is it possible to edit my profile details entered during online enrollment ?</div>
+                    <div  style="float: right;"><b>+</b></div>
+                </button>
+                <div class="panel">
+                    <p>Yes, after logging in to the system, on the Dash Board, you may edit your details by clicking edit profile. </p>
+                </div><br>
+                <button class="accordion">
+                    <div  style="float: left;">6. What is a Digital Signature Certificate? </div>
+                    <div  style="float: right;"><b>+</b></div>
+                </button>
+                <div class="panel">
+                    <p>Digital Signature Certificates (DSC) are the digital equivalent (that is electronic format) of physical or paper certificates. Examples of physical certificates are drivers' licenses,
+                         passports or membership cards. Certificates serve as a proof of identity of an individual for a certain purpose; for example, a driver's license identifies someone who can legally drive in a particular country.
+                          Likewise, a digital certificate can be presented electronically to prove your identity, to access information or services on the Internet or to sign certain documents digitally.</p>
+                </div><br>
+                <button class="accordion">
+                    <div  style="float: left;">7. Why is Digital Signature Certificate (DSC) required? </div>
+                    <div  style="float: right;"><b>+</b></div>
+                </button>
+                <div class="panel">
+                    <p>Like physical documents are signed manually, electronic documents, for example e-forms are required to be signed digitally using a Digital Signature Certificate. Transactions that are done using Internet
+                         if signed using a Digital Signature certicate becomes legally valid.</p>
+                </div><br>
+                <button class="accordion">
+                    <div  style="float: left;">8. Whether my Technical Document and Financial Document is encrypted and Stored ?</div>
+                    <div  style="float: right;"><b>+</b></div>
+                </button>
+                <div class="panel">
+                    <p>The Documents uploaded in the ' E-sign and Uploade document ' stage are digitally signed. All documents including the technical document and BOQ documents are encrypted and 
+                        safely stored in users Digilocker account. It remains in encrypted format, till the bid opening date and time and cannot be seen by anyone till such time. </p>
+                </div><br>
+                <button class="accordion">
+                    <div  style="float: left;">9. How secure are my bid documents in the e-Procurement portal? Can anybody see my price bid before bid opening </div>
+                    <div  style="float: right;"><b>+</b></div>
+                </button>
+                <div class="panel">
+                    <p>All sensitive documents in the e-tendering site are encrypted and stored in the users Digilocker Account. Both the Technical and Financial 
+                        Documents are encrypted and stored. Even the system administrator cannot view the bid documents before bid opening. Only after decryption by the authorized bid openers the documents are converted into readable format.</p>
+                </div><br>
+                <button class="accordion">
+                    <div  style="float: left;">10. I have uploaded the documents after digitally signing all the documents. Should I submit paper documents ink signed and submit to the TIA office ?</div>
+                    <div  style="float: right;"><b>+</b></div>
+                </button>
+                <div class="panel">
+                    <p>No. As per the IT ACT 2000, the Digitally signed document is as good as paper document for all legal purposes. Hence, there is no need to submit all the documents physically. However, when the physical documents are 
+                    requested for cross checking purposes, the same need to be produced for verification. However, In the case of offline payment instruments, the physical documents need to be submitted before the bid opening event.</p>
+                </div><br>
+                
+
+            </div>
+        </div>
     {{> footer}}
 </body>
 </html>
+<script type="text/javascript" src="/javascript/faq.js"></script>
