@@ -1,33 +1,22 @@
 "use strict";
-var __values = (this && this.__values) || function(o) {
-    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
-    if (m) return m.call(o);
-    if (o && typeof o.length === "number") return {
-        next: function () {
-            if (o && i >= o.length) o = void 0;
-            return { value: o && o[i++], done: !o };
-        }
-    };
-    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var express_1 = __importDefault(require("express"));
-var axios_1 = __importDefault(require("axios"));
-var db_1 = __importDefault(require("./db"));
-var data_structure_1 = require("./data-structure");
-var debug = require('debug')('service:payment-loader');
-var checksum = require('./paytm/checksum.js');
+const express_1 = __importDefault(require("express"));
+const axios_1 = __importDefault(require("axios"));
+const db_1 = __importDefault(require("./db"));
+const data_structure_1 = require("./data-structure");
+const debug = require('debug')('service:payment-loader');
+const checksum = require('./paytm/checksum.js');
 debug('Started Debugging process of payment-server\nLocation : routes/payment-server.ts');
 var address = process.env.ADDRESS;
-debug("IP Address set in payment files  is " + address);
+debug(`IP Address set in payment files  is ${address}`);
 //var url: string = `http://localhost:${process.env.PORT}/payment`
 var queue = [];
-var router = express_1.default.Router();
+const router = express_1.default.Router();
 var allow = true;
-var salt = process.env.KEY;
+const salt = process.env.KEY;
 var params = {
     MID: process.env.MID,
     WEBSITE: 'WEBSTAGING',
@@ -38,7 +27,7 @@ var params = {
     MOBILE_NO: '',
     EMAIL: '',
     TXN_AMOUNT: '',
-    CALLBACK_URL: "https://" + address + ":8081/payment/redirect",
+    CALLBACK_URL: `https://${address}:8081/payment/redirect`,
 };
 /* var data =2
 function demo(){
@@ -72,13 +61,13 @@ function get_transaction_status() {
         }).then(function (response) {
             var result = response.data;
             var code = result.RESPCODE;
-            debug("Status Code of transaction is " + code);
+            debug(`Status Code of transaction is ${code}`);
             if (response.data.RESPCODE === '01') {
-                debug("\nTransaction is successful");
+                debug(`\nTransaction is successful`);
                 var transaction_success = new data_structure_1.TransactionSuccess(result);
                 debug('Transaction success object :', transaction_success);
                 db_1.default.query('truncate payment_transactions');
-                db_1.default.query('INSERT INTO payment_transactions VALUES (?,?)', ['4', transaction_success.to_array()], function (error, result) {
+                db_1.default.query('INSERT INTO payment_transactions VALUES (?,?)', ['4', transaction_success.to_array()], (error, result) => {
                     if (error) {
                         debug('Mysql insertion error', error);
                     }
@@ -104,14 +93,14 @@ function get_transaction_status() {
     });
 }
 //get_transaction_status()
-router.post('/', function (request, response) {
-    params['ORDER_ID'] = 'ORD' + Math.floor(Math.random() * Math.pow(10, 10)).toString();
-    params['CUST_ID'] = 'CUST' + Math.floor(Math.random() * Math.pow(10, 10)).toString();
+router.post('/', (request, response) => {
+    params['ORDER_ID'] = 'ORD' + Math.floor(Math.random() * 10 ** 10).toString();
+    params['CUST_ID'] = 'CUST' + Math.floor(Math.random() * 10 ** 10).toString();
     params['TXN_AMOUNT'] = request.body.amount;
     params['EMAIL'] = request.body.email;
     params['MOBILE_NO'] = request.body.mobile;
     queue.push(new data_structure_1.Params(request, params['ORDER_ID'], params['CUST_ID']));
-    checksum.genchecksum(params, salt, function (error, result) {
+    checksum.genchecksum(params, salt, (error, result) => {
         var url = 'https://securegw-stage.paytm.in/order/process';
         response.writeHead(200, { 'Content-Type': 'text/html' });
         response.write('<html>');
@@ -134,8 +123,7 @@ router.post('/', function (request, response) {
         response.end();
     });
 });
-router.post('/redirect', function (request, response) {
-    var e_1, _a, e_2, _b;
+router.post('/redirect', (request, response) => {
     var result = request.body;
     console.log(request.params);
     /* var isValidChecksum = checksum.verifychecksum(params, salt, result.CHECKSUMHASH)
@@ -145,41 +133,31 @@ router.post('/redirect', function (request, response) {
         console.log('Checksum Mismatched')
     } */
     var code = result.RESPCODE;
-    debug("Status Code of transaction is " + code);
+    debug(`Status Code of transaction is ${code}`);
     if (result.RESPCODE === '01') {
-        debug("\nTransaction is successful");
+        debug(`\nTransaction is successful`);
         var transaction_success = new data_structure_1.TransactionSuccess(result);
         debug('Transaction success object :', transaction_success);
-        try {
-            for (var queue_1 = __values(queue), queue_1_1 = queue_1.next(); !queue_1_1.done; queue_1_1 = queue_1.next()) {
-                var i = queue_1_1.value;
-                if (i.order_id == transaction_success.order_id) {
-                    db_1.default.query('INSERT INTO payment_transactions VALUES (?,?)', [i.etd_id, transaction_success.to_array()], function (error, result) {
-                        if (error) {
-                            debug('Mysql insertion error', error);
-                        }
-                        else {
-                            debug('Successfully inserted in payment database');
-                            db_1.default.query("update e_tender_vendor set status=110 where et_id=" + i.et_id + " and etd_id=" + i.etd_id, function (error, result) {
-                                if (error) {
-                                    debug('Error in updating in e-tender-vendor');
-                                }
-                                else {
-                                    debug('Successfully updated e_tender_vendor table');
-                                }
-                            });
-                        }
-                    });
-                    response.redirect("https://" + address + ":8081/tender/upload-documents?et_id=" + i.et_id + "&etd_id=" + i.etd_id);
-                }
+        for (var i of queue) {
+            if (i.order_id == transaction_success.order_id) {
+                db_1.default.query('INSERT INTO payment_transactions VALUES (?,?)', [i.etd_id, transaction_success.to_array()], (error, result) => {
+                    if (error) {
+                        debug('Mysql insertion error', error);
+                    }
+                    else {
+                        debug('Successfully inserted in payment database');
+                        db_1.default.query(`update e_tender_vendor set status=110 where et_id=${i.et_id} and etd_id=${i.etd_id}`, (error, result) => {
+                            if (error) {
+                                debug('Error in updating in e-tender-vendor');
+                            }
+                            else {
+                                debug('Successfully updated e_tender_vendor table');
+                            }
+                        });
+                    }
+                });
+                response.redirect(`https://${address}:8081/tender/upload-documents?et_id=${i.et_id}&etd_id=${i.etd_id}`);
             }
-        }
-        catch (e_1_1) { e_1 = { error: e_1_1 }; }
-        finally {
-            try {
-                if (queue_1_1 && !queue_1_1.done && (_a = queue_1.return)) _a.call(queue_1);
-            }
-            finally { if (e_1) throw e_1.error; }
         }
         //connection.query('truncate payment_transactions')
     }
@@ -195,26 +173,16 @@ router.post('/redirect', function (request, response) {
         else {
             var transaction_fail = new data_structure_1.TransactionFailure(result);
             debug('Transaction Failure Object :', transaction_fail);
-            try {
-                for (var queue_2 = __values(queue), queue_2_1 = queue_2.next(); !queue_2_1.done; queue_2_1 = queue_2.next()) {
-                    var i = queue_2_1.value;
-                    if (i.order_id == transaction_fail.order_id) {
-                        response.render('user/tender-payment', { layout: false, allow: allow });
-                        //response.redirect(`http://${address}:8081/v4_apply_tender_s2.html?et_id=${i.et_id}&etd_id=${i.etd_id}&code=0`)
-                    }
+            for (var i of queue) {
+                if (i.order_id == transaction_fail.order_id) {
+                    response.render('user/tender-payment', { layout: false, allow });
+                    //response.redirect(`http://${address}:8081/v4_apply_tender_s2.html?et_id=${i.et_id}&etd_id=${i.etd_id}&code=0`)
                 }
-            }
-            catch (e_2_1) { e_2 = { error: e_2_1 }; }
-            finally {
-                try {
-                    if (queue_2_1 && !queue_2_1.done && (_b = queue_2.return)) _b.call(queue_2);
-                }
-                finally { if (e_2) throw e_2.error; }
             }
         }
     }
 });
-setInterval(function () {
+setInterval(() => {
     debug('The status of queue is ', queue);
 }, 8000);
 exports.default = router;

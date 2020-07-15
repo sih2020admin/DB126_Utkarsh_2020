@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var ip_address_1 = require("./loader_modules/ip-address");
+const ip_address_1 = require("./loader_modules/ip-address");
 //import { IPFile } from './loader_modules/ip-generate'
-var env_generate_1 = require("./loader_modules/env-generate");
-var debug = require('debug')('service:loader');
+const env_generate_1 = require("./loader_modules/env-generate");
+const debug = require('debug')('service:loader');
 debug.color = 1;
 //var ip_js_path: string = 'public/javascript/IP.js'
 var ipv4 = new ip_address_1.IPv4();

@@ -13,6 +13,11 @@ function validateLocation(location) {
     }
     return true
 }
+window.addEventListener('pageshow',function(event){
+    if(event.persisted){
+        location.reload()
+    }
+})
 
 /* var xhr = new XMLHttpRequest()
 var url = '/view'
@@ -89,3 +94,10 @@ function freeze() {
         }
     })
 }
+
+window.addEventListener('pageshow',function(event){
+    console.log(performance.navigation.type)
+    if(event.persisted){
+        
+    }
+})
