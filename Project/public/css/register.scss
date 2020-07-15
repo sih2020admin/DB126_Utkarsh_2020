@@ -15,7 +15,7 @@ body{
     background-color: rgb(255, 255, 255);   
     width: fit-content;
     height: auto;
-    padding: 20px;
+    padding: 20px 30px;
     margin: 40px;
     margin-top: 20px;   
     margin-bottom: 10px;
@@ -70,7 +70,7 @@ label{
 input{
     // border-style: dashed;
     font-family: 'Open Sans', sans-serif;   
-    border: 1.5px solid var(--main_color);
+    border: 1px solid var(--main_color);
     border-radius: 3px;
     height: 30px;
     width: auto;
@@ -86,9 +86,8 @@ input::placeholder{
 }
 select, input[type="date"]{
         //border-style: dashed;
-        border-width: 1.5px;
+        border: 1px solid var(--main_color);
         border-radius: 3px;
-        border-color: var(--main_color);
         height: 30px;
         margin: 10px;
         padding: 0;
@@ -113,19 +112,21 @@ input[type="number"]{
     -webkit-appearance: none;
     -moz-appearance: textfield;
 }
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  box-shadow: 0 0 0 1px var(--main_color);
+}
 #otp{
     margin-left: 0px;
 }
 textarea{
-        // border-style: dashed;
-        border-width: 1.5px;
-        border-radius: 3px;
-        border-color: var(--main_color);
-        height: 60px;
-        padding: 10px 30px;
-        padding-right: 10px;
-        margin: 10px;
-        font-size: 14px;
+    border: 1px solid var(--main_color);
+    border-radius: 3px;
+    height: 60px;
+    padding: 10px 30px;
+    padding-right: 10px;
+    margin: 10px;
+    font-size: 14px;
 
 }
 table, th, td {
@@ -148,18 +149,14 @@ button{
     margin-right: 10px;
     border-radius: 5px; 
     background-color: var(--main_color);
-    border: none;
+    border: 0.4px solid var(--main_color);
     color: #ffffff;
+    cursor: pointer;
 }
 button:hover{
-    cursor: pointer;
     background-color: #ffffff;
     color: var(--main_color);;
-    border: solid;
-    border-width: 0.4px;
-    border-color: var(--main_color);
  }
-
  #error_para{
     font-size: 14px;
     font-style: italic;

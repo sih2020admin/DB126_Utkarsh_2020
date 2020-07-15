@@ -19,7 +19,7 @@
 
         input{
             // border-style: dashed;
-            border: 0.4px solid var(--main_color);
+            border: 1px solid var(--main_color);
             border-radius: 3px;
             height: 30px;
             width: 50%;
@@ -30,7 +30,7 @@
             outline: none;
         }
         input:focus{
-            border: 0.4px solid var(--text_color);
+            border: 1px solid var(--text_color);
         }
         button{
             font-size: 1rem;
@@ -229,6 +229,10 @@
 }
  
 .filter-container { 
+    input:focus, textarea:focus, select:focus {
+        outline: none;
+        box-shadow: 0 0 0 1px var(--main_color);
+    }
     button{
     font-family: 'Montserrat', 'sans-serif';
     background-color: var(--main_color);

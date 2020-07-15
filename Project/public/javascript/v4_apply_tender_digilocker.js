@@ -149,6 +149,7 @@ function some() {
 
 //Dynamically adds list of files recieved from digilocker to html page
 function show_files(str) {
+    console.log("response from digi on get files", str)
     var current = str.directory // get current directory name
 
     //update current directory name on modal
@@ -173,7 +174,7 @@ function show_files(str) {
 
         //append files and folders to list
         function add_to_list(file_type) {
-            //console.log("Technical Or BOQ", Technical_or_BOQ);
+            console.log("Technical Or BOQ", Technical_or_BOQ);
             //console.log("is upload", is_upload);
             for (i = 0; i < item_array.length; i++) {
                 //check which document has been uploaded to digilocker recently
@@ -186,6 +187,7 @@ function show_files(str) {
                         console.log('File URI for Technical Document is => ' + item_array[i].uri)
                     }
                 } else if (Technical_or_BOQ == 2) {
+                    console.log("call enter file uri in db", item_array[i].name, BOQ_file_name)
                     if (item_array[i].name == BOQ_file_name) {
                         // document.getElementById("fileURI").innerHTML = item_array[i].uri;
                         BOQ_file_uri = item_array[i].uri

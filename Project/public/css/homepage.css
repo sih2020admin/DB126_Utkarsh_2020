@@ -243,4 +243,14 @@ footer .icons a {
 footer .icons img {
   width: 60%;
 }
+
+footer {
+  position: relative;
+}
+
+@media (min-height: 960px) {
+  footer {
+    position: fixed;
+  }
+}
 /*# sourceMappingURL=homepage.css.map */
