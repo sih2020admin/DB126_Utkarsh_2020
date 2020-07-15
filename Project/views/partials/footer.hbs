@@ -1,10 +1,41 @@
 <link rel="stylesheet" href="/css/homepage.css">
+<script>
+    function send_feedback(){
+        var email=document.getElementById("feedback_email").Value
+        var suggestion=document.getElementById("feedback_text").Value
+
+        if (email.match(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/) === null) {
+            return false;
+        }if (suggestion === ""){
+            return false;
+        }
+    
+        var data = JSON.stringify({"email":email,"suggestion":suggestion});
+
+        var xhr = new XMLHttpRequest();
+        xhr.withCredentials = true;
+
+        xhr.onload = function () {
+            if (this.status == 200) {
+                alert("Thank you");
+            } else if (this.status == 400) {
+                console.log("400")
+            } else {
+                                console.log("some other error")
+            }
+        }
+
+        xhr.open("POST", "/feedback");
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.send(data);
+    }
+</script>
 <footer>
         <div class="1">
             <b>Get in Touch</b><br> 
             <label>Please share your Valuable Feedback below.!</label>
-            <input type="email" placeholder="Email"><br>
-            <textarea rows="5" cols="40" placeholder="Name, Feedback" required></textarea><br>
+            <input id="feedback_email" type="email" placeholder="Email" required><br>
+            <textarea id="feedback_text" rows="5" cols="40" placeholder="Name, Feedback" required></textarea><br>
             <button>Send</button>
         </div>
         <div class="2">
