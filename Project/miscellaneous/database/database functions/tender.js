@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getPaymentDetails = exports.previewTenderDetails = exports.confirmedTenderDetails = exports.getProfileDetails = exports.getTendersList = void 0;
+exports.getPaymentDetails = exports.previewTenderDetails = exports.confirmedTenderDetails = exports.applyTenderDetails = exports.getProfileDetails = exports.getTendersList = void 0;
 const connection_1 = __importDefault(require("./../connections/connection"));
 async function getTendersList() {
     let tenders = await connection_1.default.execute('SELECT `et_id`, `et_title`, `et_tender_fee`, `et_tender_ref_no`, `et_tender_desc`, `et_last_date_apply`, `et_bidding_date`, `et_file_uri`, `dept_name` FROM `e_tender_details` INNER JOIN department ON e_tender_details.dept_id = department.dept_id WHERE is_delete = 0 and e_tender_details.et_last_date_apply >= CURRENT_DATE');
@@ -22,6 +22,11 @@ async function getProfileDetails(request) {
     return profile[0];
 }
 exports.getProfileDetails = getProfileDetails;
+async function applyTenderDetails(request) {
+    let tender_details = await connection_1.default.query(`SELECT * FROM  e_tender_details INNER JOIN department ON e_tender_details.dept_id = department.dept_id WHERE et_id = ${request.query['et_id']} ; SELECT  vcd_name, vcd_title, vcd_dob,vcd_aadhar,vcd_contact, vcd_email, vcd_designation FROM v_contact_details WHERE vcd_id=${request.signedCookies['vcd_id_e']}; SELECT v_name, v_address, v_yoe, v_email, v_mobile, v_reg_no, v_state_id, v_dist_id, v_city_id, v_pincode, v_legal_id, v_pan, v_is_verified, v_gst FROM vendor_details WHERE vd_id=${request.signedCookies['vd_id_e']}`);
+    return tender_details[0];
+}
+exports.applyTenderDetails = applyTenderDetails;
 async function confirmedTenderDetails(request) {
     let temp = await connection_1.default.query(`SELECT et_id,et_title,et_tender_fee,et_tender_ref_no,et_bidding_date FROM  e_tender_details WHERE et_id = '${request.query['et_id']}';
                                             SELECT * FROM (SELECT vendor_details.vd_id,vcd_name ,vcd_dob ,vcd_aadhar,vcd_contact,vcd_email,vcd_designation,v_name,v_address,v_yoe,v_email,v_mobile,v_reg_no,v_legal_id,v_pan,v_gst FROM v_contact_details,vendor_details WHERE v_contact_details.vd_id=vendor_details.vd_id) AS hello WHERE vd_id= '${request.signedCookies['vd_id_e']}';

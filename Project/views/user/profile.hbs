@@ -53,32 +53,29 @@
 
     <div id="Approved" class="tabcontent" style="display: none;">
       <h2>Approved Tenders</h2>
-      {{!-- <h4>The list of approved tenders</h4> --}}
       {{!-- {{#if approved_tenders}}
+      <div class="tenders_details">
+        <table>
+        <tr>
+          <th>Reference No</th>
+          <th>Title</th>
+          <th>Tender Description</th>
+          <th>Bidding Amount</th>
+          <th>Preview</th>
+          <th>Status</th>
+        </tr>
         {{#each approved_tenders}}
-            <label class="RnoLabel"><strong>ID:</strong></label>
-		        <label>{{et_id}}</label><br><br>
-		        <label class="RnoLabel"><strong>Title:</strong></label>
-		        <label>{{et_title}}</label><br><br>
-		        <label class="RnoLabel"><strong>Department:</strong></label>
-		        <label>{{dept_name}}</label><br><br>
-		        <label class="RnoLabel"><strong>Ref No:</strong></label>
-		        <label>{{et_tender_ref_no}}</label><br><br>
-		        <label class="Id"><strong>Tender fee:</strong></label>
-		        <label>{{et_tender_fee}}</label><br><br>
-		        <label class="Id"><strong>Tender Description:</strong></label>
-		        <label>{{et_tender_desc}}</label><br><br>
-		        <label class="OdateLabel"><strong>Closing Date:</strong></label>
-		        <label id="Odate">{{date et_last_date_apply}}</label><br><br>
-		        <label class="OdateLabel"><strong>Bid Date:</strong></label>
-		        <label id="Odate">{{date et_bidding_date}}</label><br><br>
-		        <label class="OdateLabel"><strong>File URL:</strong></label>
-		        <label id="Odate">{{et_file_url}}</label><br>
-		        <label class="OdateLabel"><strong>Department ID:</strong></label>
-		        <label id="Odate">{{date et_bidding_date}}</label><br><br>
-		        <label class="OdateLabel"><strong>Bidding Amount:</strong></label>
-            <label id="Odate">{{et_file_url}}</label><hr/><br><br>`
+            <tr>
+              <td>{{et_tender_ref_no}}</td>
+              <td>{{et_title}}</td>
+              <td>{{et_tender_desc}}</td>
+              <td>{{bidding_amt}}</td>
+              <td><a href="/tender/preview?et_id={{et_id}}&etd_id={{etd_id}}">view</a></td>
+              <td>Approved</td>
+              </tr>
         {{/each}}
+        </table>
+        </div>
       {{else}}
         <br><label class="RnoLabel"><strong>NO TENDER APPROVED YET ! APPLY FOR TENDER <a href="/tenders">here</a></strong></label>
       {{/if}} --}}

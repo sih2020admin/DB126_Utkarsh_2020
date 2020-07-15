@@ -43,7 +43,7 @@ var etd_id
 }
  */
 //Tender Details/Personal deatils/Company Details
-var xhr = new XMLHttpRequest()
+/* var xhr = new XMLHttpRequest()
 xhr.open('POST', '/tender_desc')
 xhr.setRequestHeader('Content-Type', 'application/json')
 var data = JSON.stringify({ et_id: et_id, vd_id: vd_id, vcd_id: vcd_id })
@@ -83,7 +83,7 @@ xhr.onload = function () {
     } else {
         alert('Check Network!')
     }
-}
+} */
 
 //Save and Next
 function next() {

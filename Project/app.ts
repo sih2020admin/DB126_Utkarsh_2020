@@ -57,8 +57,8 @@ app = loadStaticFiles(app)
 app.use(redirectToLoginPage, redirectToProfilePage)
 app.use('/tender/apply',validateURLParamsApply,validateURLParamsDApply,applyTender)
 app.use('/tender/payment', validateURLParams, validateURLParamsD)
-app.use('/tender/confirmation', validateURLParams, validateURLParamsD, confirmTender)
-app.use('/tender/preview', validateURLParams, validateURLParamsD, previewTender)
+/* app.use('/tender/confirmation', validateURLParams, validateURLParamsD, confirmTender)
+app.use('/tender/preview', validateURLParams, validateURLParamsD, previewTender) */
 app = loadRouterFiles(app)
 app.get('*', (request: Request, response: Response) => {
     response.render('error', { layout: false })

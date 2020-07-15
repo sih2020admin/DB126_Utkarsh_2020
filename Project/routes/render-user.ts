@@ -2,7 +2,7 @@ import { Router, Request, Response } from 'express'
 import express from 'express'
 import { isUser, getUserUsername } from './../miscellaneous/database/database functions/user'
 import { getStates, getYears, getLegalStatus } from './../miscellaneous/database/database functions/misc'
-import { getTendersList, getProfileDetails, confirmedTenderDetails,previewTenderDetails, getPaymentDetails } from './../miscellaneous/database/database functions/tender'
+import { getTendersList, getProfileDetails, applyTenderDetails, confirmedTenderDetails, previewTenderDetails, getPaymentDetails } from './../miscellaneous/database/database functions/tender'
 import connection from './../miscellaneous/database/connections/connection'
 const router: Router = express.Router()
 router.get('/', (request: Request, response: Response) => {
@@ -52,6 +52,7 @@ router.get('/profile', (request: Request, response: Response) => {
     let user = isUser(request)
     Promise.all([getUserUsername(request), getYears(), getLegalStatus(), getStates(), getProfileDetails(request)])
         .then((results) => {
+            console.log(results[4][3])
             response.render('user/profile', {
                 layout: false,
                 user,
@@ -84,9 +85,9 @@ router.get('/tenders', (request: Request, response: Response) => {
 
 router.get('/tender/apply', (request: Request, response: Response) => {
     let user = isUser(request)
-    Promise.all([getUserUsername(request)])
+    Promise.all([getUserUsername(request), applyTenderDetails(request)])
         .then((results) => {
-            response.render('user/tender_apply', { layout: false, user, username: results[0] })
+            response.render('user/tender_apply', { layout: false, user, username: results[0], tender_details: results[1][0][0], personal_details: results[1][1][0], company_details: results[1][2][0] })
         })
         .catch((error) => {
             console.log('Error in loading Tenders Page')
@@ -111,7 +112,7 @@ router.get('/tender/confirmation', (request: Request, response: Response) => {
     Promise.all([getUserUsername(request), confirmedTenderDetails(request)])
         .then((results) => {
             results[1][2][0]['vcd'] = request.signedCookies.vcd_id_e
-            response.render('user/tender_confirmation', { layout: false, user, username: results[0], tender_details: results[1][0][0], personal_details: results[1][1][0], payment_details: results[1][2][0],bid_amt:results[1][3][0] })
+            response.render('user/tender_confirmation', { layout: false, user, username: results[0], tender_details: results[1][0][0], personal_details: results[1][1][0], payment_details: results[1][2][0], bid_amt: results[1][3][0] })
         })
         .catch((error) => {
             console.log('Error in loading Tenders Page')
@@ -122,7 +123,7 @@ router.get('/tender/confirmation', (request: Request, response: Response) => {
 router.get('/tender/preview', (request: Request, response: Response) => {
     let user = isUser(request)
     let s: string
-    Promise.all([getUserUsername(request),previewTenderDetails(request)])
+    Promise.all([getUserUsername(request), previewTenderDetails(request)])
         .then((results) => {
             console.log(results[1][4])
             response.render('user/preview', {
@@ -144,13 +145,12 @@ router.get('/tender/payment', (request: Request, response: Response) => {
     let user = isUser(request)
     Promise.all([getUserUsername(request), getPaymentDetails(request)])
         .then((results) => {
-            console.table({value : results[1][0][0]['et_tender_fee']})
-            if (results[1][0][0]['et_tender_fee'] ==='0'){
-                connection.execute(`update e_tender_vendor set status=110 where et_id=${request.query["et_id"]} and etd_id=${request.query["etd_id"]}`)
-                    .then((value)=>{
-                        response.redirect(`/tender/upload-documents?et_id=${request.query["et_id"]}&etd_id=${request.query["etd_id"]}`)
-                    })
-            }else{
+            console.table({ value: results[1][0][0]['et_tender_fee'] })
+            if (results[1][0][0]['et_tender_fee'] === '0') {
+                connection.execute(`update e_tender_vendor set status=110 where et_id=${request.query['et_id']} and etd_id=${request.query['etd_id']}`).then((value) => {
+                    response.redirect(`/tender/upload-documents?et_id=${request.query['et_id']}&etd_id=${request.query['etd_id']}`)
+                })
+            } else {
                 response.render('user/tender-payment', { layout: false, user, username: results[0], amount: results[1][0][0]['et_tender_fee'], email: results[1][1][0]['vcd_email'], contact: results[1][1][0]['vcd_contact'] })
             }
         })
@@ -160,29 +160,27 @@ router.get('/tender/payment', (request: Request, response: Response) => {
         })
 })
 
-router.get('/faq',(request: Request, response: Response) => {
+router.get('/faq', (request: Request, response: Response) => {
     let user = isUser(request)
     Promise.all([getUserUsername(request)])
-        .then((results)=>{
-            response.render('user/faq',{layout:false,user,username: results[0]})
-    })
-    .catch((error) => {
-        console.log('Error in loading FAQ Page')
-        console.log(error)
-    })
+        .then((results) => {
+            response.render('user/faq', { layout: false, user, username: results[0] })
+        })
+        .catch((error) => {
+            console.log('Error in loading FAQ Page')
+            console.log(error)
+        })
 })
-router.get('/privacy-policy',(request: Request, response: Response) => {
+router.get('/privacy-policy', (request: Request, response: Response) => {
     let user = isUser(request)
     Promise.all([getUserUsername(request)])
-        .then((results)=>{
-            response.render('user/privacy-policy',{layout:false,user,username: results[0]})
-    })
-    .catch((error) => {
-        console.log('Error in loading Privacy Policy Page')
-        console.log(error)
-    })
+        .then((results) => {
+            response.render('user/privacy-policy', { layout: false, user, username: results[0] })
+        })
+        .catch((error) => {
+            console.log('Error in loading Privacy Policy Page')
+            console.log(error)
+        })
 })
-    
-    
 
 export default router

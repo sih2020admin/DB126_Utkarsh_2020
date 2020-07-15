@@ -18,7 +18,10 @@ export async function getProfileDetails(request: Request) {
     `)
     return profile[0]
 }
-
+export async function applyTenderDetails(request: Request){
+    let tender_details:any = await connection.query(`SELECT * FROM  e_tender_details INNER JOIN department ON e_tender_details.dept_id = department.dept_id WHERE et_id = ${request.query['et_id']} ; SELECT  vcd_name, vcd_title, vcd_dob,vcd_aadhar,vcd_contact, vcd_email, vcd_designation FROM v_contact_details WHERE vcd_id=${request.signedCookies['vcd_id_e']}; SELECT v_name, v_address, v_yoe, v_email, v_mobile, v_reg_no, v_state_id, v_dist_id, v_city_id, v_pincode, v_legal_id, v_pan, v_is_verified, v_gst FROM vendor_details WHERE vd_id=${request.signedCookies['vd_id_e']}`)
+    return tender_details[0]
+}
 export async function confirmedTenderDetails(request: Request) {
     let temp: any = await connection.query(`SELECT et_id,et_title,et_tender_fee,et_tender_ref_no,et_bidding_date FROM  e_tender_details WHERE et_id = '${request.query['et_id']}';
                                             SELECT * FROM (SELECT vendor_details.vd_id,vcd_name ,vcd_dob ,vcd_aadhar,vcd_contact,vcd_email,vcd_designation,v_name,v_address,v_yoe,v_email,v_mobile,v_reg_no,v_legal_id,v_pan,v_gst FROM v_contact_details,vendor_details WHERE v_contact_details.vd_id=vendor_details.vd_id) AS hello WHERE vd_id= '${request.signedCookies['vd_id_e']}';

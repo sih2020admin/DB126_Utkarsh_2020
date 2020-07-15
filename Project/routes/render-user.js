@@ -53,6 +53,7 @@ router.get('/profile', (request, response) => {
     let user = user_1.isUser(request);
     Promise.all([user_1.getUserUsername(request), misc_1.getYears(), misc_1.getLegalStatus(), misc_1.getStates(), tender_1.getProfileDetails(request)])
         .then((results) => {
+        console.log(results[4][3]);
         response.render('user/profile', {
             layout: false,
             user,
@@ -84,9 +85,9 @@ router.get('/tenders', (request, response) => {
 });
 router.get('/tender/apply', (request, response) => {
     let user = user_1.isUser(request);
-    Promise.all([user_1.getUserUsername(request)])
+    Promise.all([user_1.getUserUsername(request), tender_1.applyTenderDetails(request)])
         .then((results) => {
-        response.render('user/tender_apply', { layout: false, user, username: results[0] });
+        response.render('user/tender_apply', { layout: false, user, username: results[0], tender_details: results[1][0][0], personal_details: results[1][1][0], company_details: results[1][2][0] });
     })
         .catch((error) => {
         console.log('Error in loading Tenders Page');
@@ -104,24 +105,12 @@ router.get('/tender/upload-documents', (request, response) => {
         console.log(error);
     });
 });
-<<<<<<< HEAD
 router.get('/tender/confirmation', (request, response) => {
     let user = user_1.isUser(request);
     Promise.all([user_1.getUserUsername(request), tender_1.confirmedTenderDetails(request)])
         .then((results) => {
         results[1][2][0]['vcd'] = request.signedCookies.vcd_id_e;
         response.render('user/tender_confirmation', { layout: false, user, username: results[0], tender_details: results[1][0][0], personal_details: results[1][1][0], payment_details: results[1][2][0], bid_amt: results[1][3][0] });
-=======
-router.get('/tender/confirmation', function (request, response) {
-    console.log("vcd in confirmation page 1",request.signedCookies.vcd_id_e);
-    var user = user_1.isUser(request);
-    Promise.all([user_1.getUserUsername(request), tender_1.confirmedTenderDetails(request)])
-        .then(function (results) {
-        // results[1][2][0]['vcd'] = request.signedCookies.vcd_id_e;
-        console.log("vcd in confirmation page 2",request.signedCookies.vcd_id_e);
-        console.log("vcd in confirmation page 3",results);
-        response.render('user/tender_confirmation', { layout: false, user: user, username: results[0], tender_details: results[1][0][0], personal_details: results[1][1][0], payment_details: results[1][2][0], bid_amt: results[1][3][0],vcd: request.signedCookies.vcd_id_e });
->>>>>>> origin/master
     })
         .catch((error) => {
         console.log('Error in loading Tenders Page');
@@ -155,9 +144,8 @@ router.get('/tender/payment', (request, response) => {
         .then((results) => {
         console.table({ value: results[1][0][0]['et_tender_fee'] });
         if (results[1][0][0]['et_tender_fee'] === '0') {
-            connection_1.default.execute(`update e_tender_vendor set status=110 where et_id=${request.query["et_id"]} and etd_id=${request.query["etd_id"]}`)
-                .then((value) => {
-                response.redirect(`/tender/upload-documents?et_id=${request.query["et_id"]}&etd_id=${request.query["etd_id"]}`);
+            connection_1.default.execute(`update e_tender_vendor set status=110 where et_id=${request.query['et_id']} and etd_id=${request.query['etd_id']}`).then((value) => {
+                response.redirect(`/tender/upload-documents?et_id=${request.query['et_id']}&etd_id=${request.query['etd_id']}`);
             });
         }
         else {
