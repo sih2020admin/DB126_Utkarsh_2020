@@ -1,8 +1,8 @@
 <link rel="stylesheet" href="/css/homepage.css">
 <script>
     function send_feedback(){
-        var email=document.getElementById("feedback_email").Value
-        var suggestion=document.getElementById("feedback_text").Value
+        var email=document.getElementById("feedback_email").value;
+        var suggestion=document.getElementById("feedback_text").value;
 
         if (email.match(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/) === null) {
             return false;
