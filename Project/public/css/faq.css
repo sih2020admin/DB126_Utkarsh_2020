@@ -68,4 +68,14 @@
   border-top-right-radius: 0;
   border-top: none;
 }
+
+footer {
+  position: relative;
+}
+
+@media (min-height: 960px) {
+  footer {
+    position: relative !important;
+  }
+}
 /*# sourceMappingURL=faq.css.map */

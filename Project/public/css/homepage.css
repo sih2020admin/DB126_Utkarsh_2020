@@ -247,10 +247,4 @@ footer .icons img {
 footer {
   position: relative;
 }
-
-@media (min-height: 960px) {
-  footer {
-    position: fixed;
-  }
-}
 /*# sourceMappingURL=homepage.css.map */
