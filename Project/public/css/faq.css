@@ -40,7 +40,7 @@
   width: 100%;
   font-weight: bold;
   text-align: left;
-  border: none;
+  border: 1px solid white;
   border-radius: 5px;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
@@ -52,6 +52,7 @@
 
 .active, .accordion:hover {
   background-color: #663EFD;
+  border: 1px solid var(--main_color);
   color: white;
 }
 
