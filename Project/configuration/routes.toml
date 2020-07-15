@@ -21,3 +21,7 @@
             { "app_path" = "/"          , "module_name" = "sign"                , "default_export" = true},
             { "app_path" = "/"          , "module_name" = "digilocker"          , "default_export" = true}
         ]
+
+[Cookies]
+[User]
+"routes"=["login","register","help","get_files","faq|","feedback","policies"]
