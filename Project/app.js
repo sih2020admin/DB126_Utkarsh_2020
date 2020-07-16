@@ -13,6 +13,7 @@ const cors_1 = __importDefault(require("cors"));
 const db_1 = __importDefault(require("./routes/db"));
 const load_routes_1 = require("./loader/loader_modules/load-routes");
 const redirect_1 = require("./miscellaneous/middleware/user/redirect");
+const redirect_2 = require("./miscellaneous/middleware/admin/redirect");
 const tender_1 = require("./miscellaneous/middleware/user/tender");
 var app = express_1.default();
 const cookie = require('cookie-parser');
@@ -52,6 +53,7 @@ app.use(session({
 app = load_routes_1.loadStaticFiles(app);
 //app.use(morgan('dev'))
 app.use(redirect_1.redirectToLoginPage, redirect_1.redirectToProfilePage);
+app.use(redirect_2.redirectToAdminLoginPage, redirect_2.redirectToAdminProfilePage, redirect_2.checkVendorCookies);
 app.use('/tender/apply', tender_1.validateURLParamsApply, tender_1.validateURLParamsDApply, tender_1.applyTender);
 app.use('/tender/payment', tender_1.validateURLParams, tender_1.validateURLParamsD);
 /* app.use('/tender/confirmation', validateURLParams, validateURLParamsD, confirmTender)

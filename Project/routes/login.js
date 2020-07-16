@@ -293,7 +293,6 @@ router.post('/verifyOTP', (req, res) => {
 })
 
 router.post('/user/logout', (request, response) => {
-    console.log()
     response.clearCookie('vcd_id')
     response.clearCookie('vd_id')
     response.clearCookie('digi_access')
