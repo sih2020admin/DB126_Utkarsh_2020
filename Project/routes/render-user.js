@@ -110,7 +110,8 @@ router.get('/tender/confirmation', (request, response) => {
     Promise.all([user_1.getUserUsername(request), tender_1.confirmedTenderDetails(request)])
         .then((results) => {
         /* results[1][2][0]['vcd'] = request.signedCookies.vcd_id_e */
-        response.render('user/tender_confirmation', { layout: false, user, username: results[0], tender_details: results[1][0][0], personal_details: results[1][1][0], payment_details: results[1][2][0], bid_amt: results[1][3][0] });
+        var vcd=request.signedCookies.vcd_id_e;
+        response.render('user/tender_confirmation', { layout: false, user, username: results[0], tender_details: results[1][0][0], personal_details: results[1][1][0], payment_details: results[1][2][0], bid_amt: results[1][3][0], vcd:vcd });
     })
         .catch((error) => {
         console.log('Error in loading Tenders Page');
