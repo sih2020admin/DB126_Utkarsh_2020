@@ -80,7 +80,7 @@
         <br><label class="RnoLabel"><strong>NO TENDER APPROVED YET ! APPLY FOR TENDER <a href="/tenders">here</a></strong></label>
       {{/if}} --}}
     </div>
-
+ 
     <div id="Docs" class="tabcontent" style="display: none;">
       <h2>Downloaded Documents</h2>
       <h4>The list of vendor downloaded documents</h4>
@@ -103,19 +103,19 @@
             {{#with person_details}}
                 <tr>
                   <td><label><strong>Name:</strong></label></td>
-                  <td><input type="text" id="name"  value="{{vcd_name}}" autocomplete="off" readonly></td>
+                  <td><input type="text" id="name"  value="{{vcd_name}}" autocomplete="off" maxlength="20" readonly></td>
                   <td><label ><strong>Date of birth:</strong></label></td>
                   <td><input type="text" id="dob" value ="{{vcd_dob}}" autocomplete="off" readonly></td>
                   <td><label><strong>Designation:</strong></label></td>
-                  <td><input type="text" id="desg" value ="{{vcd_designation}}" autocomplete="off" readonly></td>
+                  <td><input type="text" id="desg" value ="{{vcd_designation}}" autocomplete="off" maxlength="20" readonly></td>
                 </tr>
                 <tr>
                   <td><label><strong>Email Id:</strong></label></td>
-                  <td><input type="text" id="email" value ="{{vcd_email}}" autocomplete="off" readonly></td>
+                  <td><input type="text" id="email" value ="{{vcd_email}}" autocomplete="off" maxlength="320" readonly></td>
                   <td><label><strong>Mobile No:</strong></label></td>
-                  <td><input type="text" id="mobile" value ="{{vcd_contact}}" autocomplete="off" readonly></td>
+                  <td><input type="text" id="mobile" value ="{{vcd_contact}}" autocomplete="off" maxlength="10" readonly></td>
                   <td><label><strong>Aadhar No:</strong></label></td>
-                  <td><input type="text" id="aadhar" value ="{{vcd_aadhar}}" autocomplete="off" readonly></td>
+                  <td><input type="text" id="aadhar" value ="{{vcd_aadhar}}" autocomplete="off" maxlength="12" readonly></td>
               </tr>
             {{/with}}
             {{else}}
@@ -129,7 +129,7 @@
           <table class="profile_table">
             <tr>
               <td><label><strong>Name:</strong></label></td>
-              <td><input type="text" id="cname"  autocomplete="off" readonly></td>
+              <td><input type="text" id="cname"  autocomplete="off" maxlength="20" readonly></td>
               <td><label><strong>Legal status:</strong></label></td>
               <td> 
                 <select class="hide" id="legal" autocomplete="off" disabled>
@@ -146,17 +146,17 @@
             </tr>
             <tr>
               <td><label><strong>Registration No:</strong></label></td>
-              <td><input type="text" id="reg"  autocomplete="off" readonly></td>
+              <td><input type="text" id="reg"  autocomplete="off" maxlength="23" readonly></td>
               <td><label><strong>GST No:</strong></label></td>
-              <td><input type="text" id="gst"  autocomplete="off" readonly></td>
+              <td><input type="text" id="gst"  autocomplete="off" maxlength="15" readonly></td>
               <td><label><strong>PAN No:</strong></label></td>
-              <td><input type="text" id="pan"  autocomplete="off" readonly></td>
+              <td><input type="text" id="pan"  autocomplete="off" maxlength="10" readonly></td>
             </tr>
             <tr>
               <td><label><strong>Email:</strong></label></td>
-              <td><input type="text" id="mail"  autocomplete="off" readonly></td>
+              <td><input type="text" id="mail"  autocomplete="off" maxlength="320" readonly></td>
               <td><label><strong>Contact No:</strong></label></td>
-              <td><input type="text" id="ccontact" autocomplete="off" readonly></td>
+              <td><input type="text" id="ccontact" autocomplete="off" maxlength="10" readonly></td>
             </tr>
             <tr>
               <td><label><strong>State:</strong></label></td>
