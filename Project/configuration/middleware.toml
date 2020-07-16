@@ -1,1 +1,3 @@
-[Middleware]
+[Exceptions]
+[Exceptions.User]
+"routes"=["login","register","help","get_files","faq","feedback","privacy-policy"]
