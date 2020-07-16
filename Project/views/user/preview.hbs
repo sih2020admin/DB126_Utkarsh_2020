@@ -14,169 +14,170 @@
     <!-- <script src="html2pdf.bundle.min.js"></script> -->
   </head>
   <body>
-    {{> header-user}}
-    <div  class="cont" style="height: 1300px; position:relative">
+  {{> header-user}}
+    <div  class="cont" style="height:1300px; position:relative">
       <div id='pdf'>
-      <br>
-      <h2>Application</h2><br>
-      {{!-- <img src="https://i.imgur.com/9HHM8PI.gifv" alt="done" style="position: absolute;top: 0;right: 0;height: 50px;"> --}}
-      <img src="/images/preview.gif" alt="done" style="position: absolute;top:83px;right: 20px;height: 50px;">
-      <div style="text-align: right; margin-right: 50px;">
-        <p><strong>Application Status:</strong></p>
-        <p id= "app" class="status2">Submitted</p>
-      </div>
-      <h3 style="text-align: left;">Tender Details</h3>
-      <div id="pdf1">
-      {{#if tender_details}}
-      {{#with tender_details}}
-      <table id="t1">
-        <tr>
-          <td><label><strong>Tender Id: </strong></label></td>
-          <td><label id="et_id">{{et_id}}</label></td>
-          <td><label><strong>Reference No: </strong></label></td>
-          <td><label id="ref">{{et_tender_ref_no}}</label></td>
-          <td><label><strong>Title: </strong></label></td>
-          <td><label id="title">{{et_title}}</label></td>
-        </tr>
-        <tr>
-          <td><label><strong>Fee: </strong></label></td>
-          <td><label id="fee">{{et_tender_fee}}</label></td>
-          <td><label><strong>Bidding Date: </strong></label></td>
-          <td><label id="bid">{{date et_bidding_date}}</label></td>
-        {{/with}}
-        {{#with misc_details}}
-            <td><label><strong>Bidding Amount: </strong></label></td>
-            <td><label id="bid">{{bidding_amt}}</label></td>
-          {{/with}}
-      </tr>
-      </table><br><hr><br>
-      {{else}}
-       <label for="">Could not load Tender Details</label>      
-      {{/if}}
-      <h3 style="text-align: left;">Personal Details</h3>
-      {{#if personal_details}}
-      {{#with personal_details}}
-      <table>
-        <tr>
-          <td><label><strong>Name: </strong></label></td>
-          <td><label id="name">{{vcd_name}}</label></td>
-          <td><label><strong>DOB: </strong></label></td>
-          <td><label id="dob">{{date vcd_dob}}</label></td>
-          <td><label><strong>Designation: </strong></label></td>
-          <td><label id="desg">{{vcd_designation}}</label></td>
-        </tr>
-        <tr>
-          <td><label><strong>Aadhar No: </strong></label></td>
-          <td><label id="aadhar">{{vcd_aadhar}}</label></td>
-          <td><label><strong>Email: </strong></label></td>
-          <td><label id="email">{{vcd_email}}</label></td>
-          <td><label><strong>Contact No: </strong></label></td>
-          <td><label id="contact">{{vcd_contact}}</label></td>
-        </tr>
-      </table><br><hr><br>
-      <h3 style="text-align: left;">Company Details</h3>
-      <table>
-        <tr>
-          <td><label><strong>Name: </strong></label></td>
-          <td><label id="cname">{{v_name}}</label></td>
-          <td><label><strong>Legal Status: </strong></label></td>
-          <td><label id="legal">{{v_legal_id}}</label></td>
-          <td><label><strong>Estd Year: </strong></label></td>
-          <td><label id="yoe">{{v_yoe}}</label></td>
-        </tr>
-        <tr>
-          <td><label><strong>Registration No: </strong></label></td>
-          <td><label id="register">{{v_reg_no}}</label></td>
-          <td><label><strong>GST No: </strong></label></td>
-          <td><label id="gst">{{v_gst}}</label></td>
-          <td><label><strong>PAN No: </strong></label></td>
-          <td><label id="pan">{{v_pan}}</label></td>
-        </tr>
-        <tr>
-          <td><label><strong>Email: </strong></label></td>
-          <td><label id="cemail">{{v_email}}</label></td>
-          <td><label><strong>Contact No: </strong></label></td>
-          <td><label id="ccontact">{{v_mobile}}</label></td>
-          <td><label><strong>Address: </strong></label></td>
-          <td><label id="address">{{v_address}}</label></td>
-        </tr>
-      </table><hr>
-      {{/with}}
-      {{else}}
-        <label for="">Could not load Personal and Company Details</label>
-      {{/if}}
-    </div id='pdf2'>
-      <div class="upload_documents">
-        <h3 style="text-align: left;">Uploaded Documents</h3><br>
-      {{#if payment_details}}
-      {{#with payment_details}}
-        <table>
+        <br>
+        <h2>Application</h2><br>
+        <img src="/images/preview.gif" alt="done" style="position: absolute;top:83px;right: 20px;height: 50px;">
+        <div style="text-align: right; margin-right: 50px;">
+          <p><strong>Application Status:</strong></p>
+          <p id= "app" class="status2">Submitted</p>
+        </div>
+        <h3 style="text-align: left;">Tender Details</h3>
+        <div id="pdf1">
+          {{#if tender_details}}
+          {{#with tender_details}}
+        <table id="t1">
           <tr>
-            <th>Sr.No.</th>
-            <th>File name</th>
-            <th>File URI</th>
-            <th>File Link</th>
+            <td><label><strong>Tender Id: </strong></label></td>
+            <td><label id="et_id">{{et_id}}</label></td>
+            <td><label><strong>Reference No: </strong></label></td>
+            <td><label id="ref">{{et_tender_ref_no}}</label></td>
+            <td><label><strong>Title: </strong></label></td>
+            <td><label id="title">{{et_title}}</label></td>
           </tr>
           <tr>
-            <td>1</td>
-            <td>Tehnical</td>
-            <td id="file1">{{furi1}}</td>
-            <td><a href="">Preview</a></td>
-          </tr> 
-          <tr>
-            <td>2</td>
-            <td>BOQ</td>
-            <td id="file2">{{furi2}}</td>
-            <td><a href="">Preview</a></td>
-          </tr> 
-        </table>  
-      </div><hr>
-      <div class="payment_details" id="pdf3">
-        <h3  style="text-align: left;">Payment Details</h3><br>
+            <td><label><strong>Fee: </strong></label></td>
+            <td><label id="fee">{{et_tender_fee}}</label></td>
+            <td><label><strong>Bidding Date: </strong></label></td>
+            <td><label id="bid">{{date et_bidding_date}}</label></td>
+          {{/with}}
+          {{#with misc_details}}
+              <td><label><strong>Bidding Amount: </strong></label></td>
+              <td><label id="bid">{{bidding_amt}}</label></td>
+            {{/with}}
+        </tr>
+        </table><br><hr><br>
+        {{else}}
+        <label for="">Could not load Tender Details</label>      
+        {{/if}}
+        <h3 style="text-align: left;">Personal Details</h3>
+        {{#if personal_details}}
+        {{#with personal_details}}
         <table>
           <tr>
-            <th>Transaction ID</th>
-            <th>Amount</th>
-            <th>Date & Time</th>
-            <th>Bank Name</th>
-            <th>Payment Method</th>
-            <th>Status</th>
-          </tr> 
+            <td><label><strong>Name: </strong></label></td>
+            <td><label id="name">{{vcd_name}}</label></td>
+            <td><label><strong>DOB: </strong></label></td>
+            <td><label id="dob">{{date vcd_dob}}</label></td>
+            <td><label><strong>Designation: </strong></label></td>
+            <td><label id="desg">{{vcd_designation}}</label></td>
+          </tr>
           <tr>
-            <td id="transaction">{{txn_id}}</td>
-            <td id="amt">{{txn_amount}}</td>
-            <td id="date">{{date txn_timestamp}}</td>
-            <td id="bank">{{bank_name}}</td>
-            <td >Debit Card</td>
-            <td id="status" style="color: #008000;">{{status resp_message}}</td>
-          </tr> 
-        </table>
-      {{/with}}
-      {{else}}
-        <label for="">Could not load File and Payment Details</label>
-      {{/if}} 
-      </div><br>
-    </div>
-      <div id="download">
-        <div style="float: left;">
-            {{#if misc_details}}
-            {{#with misc_details}}
-            <p><strong>Place:</strong></p>
-            <p id="place">{{location}}</p><br>
-            <p><strong>Date:</strong></p>
-            <p id="da_te">{{date timestamp}}</p><br>
-            <p><strong>Time:</strong></p>
-            <p id="time">{{time timestamp}}</p><br>
-            {{/with}}
-            {{else}}
-              <label for="">Could not load Location Details</label>
-            {{/if}} 
-        </div>
-          <div style="float: right;"  onclick="print3()">
-            <a ><img src="/images/pdf.gif" width="55px" height="55px"></a><br>
-            <a>Download</a>
-          </div><br>
+            <td><label><strong>Aadhar No: </strong></label></td>
+            <td><label id="aadhar">{{vcd_aadhar}}</label></td>
+            <td><label><strong>Email: </strong></label></td>
+            <td><label id="email">{{vcd_email}}</label></td>
+            <td><label><strong>Contact No: </strong></label></td>
+            <td><label id="contact">{{vcd_contact}}</label></td>
+          </tr>
+        </table><br><hr><br>
+        <h3 style="text-align: left;">Company Details</h3>
+        <table>
+          <tr>
+            <td><label><strong>Name: </strong></label></td>
+            <td><label id="cname">{{v_name}}</label></td>
+            <td><label><strong>Legal Status: </strong></label></td>
+            <td><label id="legal">{{v_legal_id}}</label></td>
+            <td><label><strong>Estd Year: </strong></label></td>
+            <td><label id="yoe">{{v_yoe}}</label></td>
+          </tr>
+          <tr>
+            <td><label><strong>Registration No: </strong></label></td>
+            <td><label id="register">{{v_reg_no}}</label></td>
+            <td><label><strong>GST No: </strong></label></td>
+            <td><label id="gst">{{v_gst}}</label></td>
+            <td><label><strong>PAN No: </strong></label></td>
+            <td><label id="pan">{{v_pan}}</label></td>
+          </tr>
+          <tr>
+            <td><label><strong>Email: </strong></label></td>
+            <td><label id="cemail">{{v_email}}</label></td>
+            <td><label><strong>Contact No: </strong></label></td>
+            <td><label id="ccontact">{{v_mobile}}</label></td>
+            <td><label><strong>Address: </strong></label></td>
+            <td><label id="address">{{v_address}}</label></td>
+          </tr>
+        </table><hr>
+        {{/with}}
+        {{else}}
+          <label for="">Could not load Personal and Company Details</label>
+        {{/if}}
       </div>
+      <div id='pdf2'>
+        <div class="upload_documents">
+          <h3 style="text-align: left;">Uploaded Documents</h3><br>
+        {{#if payment_details}}
+        {{#with payment_details}}
+          <table>
+            <tr>
+              <th>Sr.No.</th>
+              <th>File name</th>
+              <th>File URI</th>
+              <th>File Link</th>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Tehnical</td>
+              <td id="file1">{{furi1}}</td>
+              <td><a href="">Preview</a></td>
+            </tr> 
+            <tr>
+              <td>2</td>
+              <td>BOQ</td>
+              <td id="file2">{{furi2}}</td>
+              <td><a href="">Preview</a></td>
+            </tr> 
+          </table>  
+        </div><hr>
+        <div class="payment_details" id="pdf3">
+          <h3  style="text-align: left;">Payment Details</h3><br>
+          <table>
+            <tr>
+              <th>Transaction ID</th>
+              <th>Amount</th>
+              <th>Date & Time</th>
+              <th>Bank Name</th>
+              <th>Payment Method</th>
+              <th>Status</th>
+            </tr> 
+            <tr>
+              <td id="transaction">{{txn_id}}</td>
+              <td id="amt">{{txn_amount}}</td>
+              <td id="date">{{date txn_timestamp}}</td>
+              <td id="bank">{{bank_name}}</td>
+              <td >Debit Card</td>
+              <td id="status" style="color: #008000;">{{status resp_message}}</td>
+            </tr> 
+          </table>
+        {{/with}}
+        {{else}}
+          <label for="">Could not load File and Payment Details</label>
+        {{/if}} 
+        </div><br>
+        </div>
+      <div id="download">
+          <div style="float: left;">
+              {{#if misc_details}}
+              {{#with misc_details}}
+              <p><strong>Place:</strong></p>
+              <p id="place">{{location}}</p><br>
+              <p><strong>Date:</strong></p>
+              <p id="da_te">{{date timestamp}}</p><br>
+              <p><strong>Time:</strong></p>
+              <p id="time">{{time timestamp}}</p><br>
+              {{/with}}
+              {{else}}
+                <label for="">Could not load Location Details</label>
+              {{/if}} 
+          </div>
+            <div style="float: right;"  onclick="print3()">
+              <a ><img src="/images/pdf.gif" width="55px" height="55px"></a><br>
+              <a>Download</a>
+            </div><br>
+        </div>
+    </div>  
     </div>
   </body>
 
