@@ -17,11 +17,13 @@
 
         xhr.onload = function () {
             if (this.status == 200) {
+                document.getElementById("feedback_email").value="";
+                document.getElementById("feedback_text").value="";
                 alert("Thank you");
             } else if (this.status == 400) {
                 console.log("400")
             } else {
-                                console.log("some other error")
+                console.log("some other error")
             }
         }
 
