@@ -92,6 +92,7 @@ select, input[type="date"]{
         margin: 10px;
         padding: 0;
         padding-left: 10px;
+        font-family: 'Open Sans', 'Sans serif';
 }
 input[type=date]::-webkit-inner-spin-button {
     appearance: none;
@@ -127,7 +128,7 @@ textarea{
     padding-right: 10px;
     margin: 10px;
     font-size: 14px;
-
+    font-family: 'Open Sans', 'Sans serif';
 }
 table, th, td {
     border:none;
