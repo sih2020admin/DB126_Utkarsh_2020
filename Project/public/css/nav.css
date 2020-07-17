@@ -30,6 +30,7 @@ header a {
   color: #663EFD;
   cursor: pointer;
   font-size: 18px;
+  position: relative;
   /* margin-left: 60px; */
 }
 
@@ -40,7 +41,23 @@ header a:hover {
   opacity: .5;
 
 }
-
+/* .active{
+  color: red;
+  font-size: 3rem;
+} */
+.activ:after{
+    content: "";
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 100%;
+    right: 0;
+    /* margin-top: 12px; */
+    margin-right: -12px;
+    background-color: #663EFD;
+    /* visibility: hidden; */
+    transition: all 0.3s ease-in-out;
+}
 header nav {
   /* margin-left: -30px; */
   margin: 0 auto;

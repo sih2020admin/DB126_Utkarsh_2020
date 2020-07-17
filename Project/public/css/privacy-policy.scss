@@ -1,0 +1,17 @@
+.cont{
+    text-align: left;
+    background-color: rgb(255, 255, 255);
+    // width: fit-content;
+    width: 80%;
+    max-width: 1200px;  
+    padding: 30px 40px;
+    margin: 40px auto;
+    margin-top: 20px;   
+    border-radius: 10px; 
+    box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.2);
+    transition: all .2s ease-in-out; 
+
+    u{
+        font-weight: 600;
+    }
+} 

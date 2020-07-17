@@ -414,6 +414,8 @@ function account_validate(username, password, confirm_password) {
     return true;
 }
 function company_validate(company_name, company_address, company_email, mobile_number, registration_number, state, city, establishment_year, pincode, legal_status, pan_number, gst_register_number) {
+    var mob = /^[1-9]{1}[0-9]{9}$/;
+    var letters = /^[a-z]*$/i;
     if (company_name === '') {
         var all_invalids = document.getElementsByClassName("invalid");
         while (all_invalids.length)
@@ -446,6 +448,14 @@ function company_validate(company_name, company_address, company_email, mobile_n
         $('#error_para').text('Error : Invalid Mobile Number');
         return false;
     }
+/*    if (mobile_number.test(contact_contact) == false)  {
+        var all_invalids = document.getElementsByClassName("invalid");
+        while (all_invalids.length)
+            all_invalids[0].classList.remove("invalid");
+        document.getElementById('mobile_number').classList.add("invalid")
+        $('#error_para').text('Error : Invalid Mobile Number');
+        return false;
+    }*/
     if (registration_number === '') {
         var all_invalids = document.getElementsByClassName("invalid");
         while (all_invalids.length)
@@ -494,6 +504,14 @@ function company_validate(company_name, company_address, company_email, mobile_n
         $('#error_para').text('Error : Invalid Pincode Field');
         return false;
     }
+   /* if (pincode.test(contact_contact) == false) {
+        var all_invalids = document.getElementsByClassName("invalid");
+        while (all_invalids.length)
+            all_invalids[0].classList.remove("invalid");
+        document.getElementById('pincode').classList.add("invalid")
+        $('#error_para').text('Error : Invalid Pincode Field');
+        return false;
+    }*/
     if (legal_status === 'select') {
         var all_invalids = document.getElementsByClassName("invalid");
         while (all_invalids.length)
@@ -537,6 +555,8 @@ function company_validate(company_name, company_address, company_email, mobile_n
     return true;
 }
 function contact_validate(title, contact_name, date_of_birth, designation, aadhaar_number, contact_email, contact_contact) {
+    var mob = /^[1-9]{1}[0-9]{9}$/;
+    var letters = /^[a-z]*$/i;
     if (title === 'select') {
         var all_invalids = document.getElementsByClassName("invalid");
         while (all_invalids.length)
@@ -553,6 +573,14 @@ function contact_validate(title, contact_name, date_of_birth, designation, aadha
         $('#error_para').text('Error :  Contact Name field cannot be empty value');
         return false;
     }
+    if (! contact_name.match(letters)) {
+        var all_invalids = document.getElementsByClassName("invalid");
+        while (all_invalids.length)
+            all_invalids[0].classList.remove("invalid");
+        document.getElementById('contact_name').classList.add("invalid")
+        $('#error_para').text('Error :  Contact Name Invalid');
+        return false;
+    }
     if (date_of_birth === '') {
         var all_invalids = document.getElementsByClassName("invalid");
         while (all_invalids.length)
@@ -567,6 +595,14 @@ function contact_validate(title, contact_name, date_of_birth, designation, aadha
             all_invalids[0].classList.remove("invalid");
         document.getElementById('designation').classList.add("invalid")
         $('#error_para').text('Error : Designation field cannot be empty');
+        return false;
+    }
+    if (! designation.match(letters)){
+        var all_invalids = document.getElementsByClassName("invalid");
+        while (all_invalids.length)
+            all_invalids[0].classList.remove("invalid");
+        document.getElementById('designation').classList.add("invalid")
+        $('#error_para').text('Error : Designation field Invalid');
         return false;
     }
     
@@ -595,6 +631,14 @@ function contact_validate(title, contact_name, date_of_birth, designation, aadha
         $('#error_para').text('Error : Invalid Mobile Number');
         return false;
     }
+    /*if (mob.test(contact_contact) == false){
+        var all_invalids = document.getElementsByClassName("invalid");
+        while (all_invalids.length)
+            all_invalids[0].classList.remove("invalid");
+        document.getElementById('contact_contact').classList.add("invalid")
+        $('#error_para').text('Error : Invalid Mobile Number');
+        return false;
+    }*/
     $('#error_para').text('Success');
     return true;
 }

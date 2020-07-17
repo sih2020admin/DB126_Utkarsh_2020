@@ -44,6 +44,10 @@ input {
     outline: none;
     height: 30px;
 }
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    box-shadow: 0 0 0 1px var(--main_color);
+  }
 select, input[type="date"]{
     //border-style: dashed;
     border: 2px solid var(--main_color);

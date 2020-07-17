@@ -4,24 +4,26 @@
 <script src="https://kit.fontawesome.com/523ff21025.js" crossorigin="anonymous"></script>
 <header>
     <nav id="nav_bar">
-        <div>
+        <div> 
             <a id="home_link" href="/">Home</a>
             <a id="tender_link" href="/tenders">Tenders</a>
-            <a href="/help">Help</a>
-            {{#if user}}
+            <a id="help_link" href="/help">Help</a>
         </div>
+            {{#if user}}
         <div>
-                <div class="dropdown">
-                    <button id="username" class="dropbtn">{{username}} <i class="fas fa-angle-down"></i></button>
-                    <div class="dropdown-content">
-                        <a id="log_a" href="/profile"><i class="fas fa-user">&nbsp;&nbsp;</i>My Profile</a>
-                        {{!-- <a href="/help"><i class="far fa-question-circle">&nbsp;&nbsp;</i>Help</a> --}}
-                        <a onclick="return theFunctionV();"><i class="fas fa-sign-out-alt">&nbsp;&nbsp;</i>Log out</a>
-                    </div>
-                </div> 
+            <div class="dropdown">
+                <button id="username" class="dropbtn">{{username}} <i class="fas fa-angle-down"></i></button>
+                <div class="dropdown-content">
+                    <a id="log_a" href="/profile"><i class="fas fa-user">&nbsp;&nbsp;</i>My Profile</a>
+                    {{!-- <a href="/help"><i class="far fa-question-circle">&nbsp;&nbsp;</i>Help</a> --}}
+                    <a onclick="return theFunctionV();"><i class="fas fa-sign-out-alt">&nbsp;&nbsp;</i>Log out</a>
+                </div>
+            </div> 
             {{else}}
+            <div>
                 <a id="log_a" class="right_link" href="/login">Login</a>
-                <a id="register_link" class="right_link" href="/register">Register</a>
+                {{!-- <a id="register_link" class="right_link" href="/register">Register</a> --}}
+            </div>
             {{/if}}
         </div>
     </nav>

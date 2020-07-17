@@ -1,0 +1,19 @@
+.cont {
+  text-align: left;
+  background-color: white;
+  width: 80%;
+  max-width: 1200px;
+  padding: 30px 40px;
+  margin: 40px auto;
+  margin-top: 20px;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.2);
+          box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.2);
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+}
+
+.cont u {
+  font-weight: 600;
+}
+/*# sourceMappingURL=privacy-policy.css.map */

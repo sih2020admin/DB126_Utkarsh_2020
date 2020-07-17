@@ -4,25 +4,25 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ENV = void 0;
-var fs_extra_1 = __importDefault(require("fs-extra"));
-var dotenv_1 = __importDefault(require("dotenv"));
-var debug = require('debug')('service:loader:env-generate');
-var toml = require('@iarna/toml');
-var ENV = /** @class */ (function () {
-    function ENV(development_folder_path, development_env_path, production_folder_path, production_env_path, toml_path) {
+const fs_extra_1 = __importDefault(require("fs-extra"));
+const dotenv_1 = __importDefault(require("dotenv"));
+const debug = require('debug')('service:loader:env-generate');
+const toml = require('@iarna/toml');
+class ENV {
+    constructor(development_folder_path, development_env_path, production_folder_path, production_env_path, toml_path) {
         this.env_object = '';
         this.production_folder_path = production_folder_path;
         this.production_env_path = production_env_path;
         this.development_folder_path = development_folder_path;
         this.development_env_path = development_env_path;
         var loader_toml = toml.parse(fs_extra_1.default.readFileSync(toml_path));
-        for (var i in loader_toml) {
-            for (var j in loader_toml[i]) {
-                this.env_object = this.env_object + (j.toUpperCase() + "=" + loader_toml[i][j] + "\n");
+        for (let i in loader_toml) {
+            for (let j in loader_toml[i]) {
+                this.env_object = this.env_object + `${j.toUpperCase()}=${loader_toml[i][j]}\n`;
             }
         }
     }
-    ENV.prototype.create = function () {
+    create() {
         if (fs_extra_1.default.existsSync('env')) {
             debug('Detected env folder in current directory');
             if (fs_extra_1.default.existsSync(this.production_folder_path) === false && fs_extra_1.default.existsSync(this.development_folder_path) === false) {
@@ -61,20 +61,20 @@ var ENV = /** @class */ (function () {
             fs_extra_1.default.mkdirSync('env');
             this.create_both();
         }
-    };
-    ENV.prototype.create_dev = function () {
+    }
+    create_dev() {
         debug("Couldn't find development folder in env folder");
         fs_extra_1.default.mkdirSync(this.development_folder_path);
         debug('Creating .env file in development folder');
         fs_extra_1.default.writeFileSync(this.development_env_path, '');
-    };
-    ENV.prototype.create_prod = function () {
+    }
+    create_prod() {
         debug("Couldn't find production folder in env folder");
         fs_extra_1.default.mkdirSync(this.production_folder_path);
         debug('Creating .env file in production folder');
         fs_extra_1.default.writeFileSync(this.production_env_path, '');
-    };
-    ENV.prototype.create_both = function () {
+    }
+    create_both() {
         debug('Create both folder function called');
         debug('Creating production folder in env folder');
         fs_extra_1.default.mkdirSync(this.production_folder_path);
@@ -84,8 +84,8 @@ var ENV = /** @class */ (function () {
         fs_extra_1.default.mkdirSync(this.development_folder_path);
         debug('Creating .env file in development folder');
         fs_extra_1.default.writeFileSync(this.development_env_path, '');
-    };
-    ENV.prototype.load = function (server) {
+    }
+    load(server) {
         if (server === true) {
             debug('Detected Remote Server IPV4 address');
             debug('Current system might be remote server');
@@ -98,15 +98,14 @@ var ENV = /** @class */ (function () {
             debug('Loading .env file in development folder');
             dotenv_1.default.config({ path: this.development_env_path });
         }
-    };
-    ENV.prototype.write = function (server, ipv4_address) {
+    }
+    write(server, ipv4_address) {
         if (server === true) {
-            fs_extra_1.default.writeFileSync(this.production_env_path, this.env_object + ("ADDRESS=" + ipv4_address));
+            fs_extra_1.default.writeFileSync(this.production_env_path, this.env_object + `ADDRESS=${ipv4_address}`);
         }
         else {
-            fs_extra_1.default.writeFileSync(this.development_env_path, this.env_object + ("ADDRESS=" + ipv4_address));
+            fs_extra_1.default.writeFileSync(this.development_env_path, this.env_object + `ADDRESS=${ipv4_address}`);
         }
-    };
-    return ENV;
-}());
+    }
+}
 exports.ENV = ENV;

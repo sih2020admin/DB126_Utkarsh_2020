@@ -4,23 +4,24 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 require("./loader/loader");
-var helpers_1 = require("./miscellaneous/helpers/helpers");
-var express_handlebars_1 = __importDefault(require("express-handlebars"));
-var fs_1 = __importDefault(require("fs"));
-var https_1 = __importDefault(require("https"));
-var express_1 = __importDefault(require("express"));
-var cors_1 = __importDefault(require("cors"));
-var db_1 = __importDefault(require("./routes/db"));
-var load_routes_1 = require("./loader/loader_modules/load-routes");
-var redirect_1 = require("./miscellaneous/middleware/user/redirect");
-var tender_1 = require("./miscellaneous/middleware/user/tender");
+const helpers_1 = require("./miscellaneous/helpers/helpers");
+const express_handlebars_1 = __importDefault(require("express-handlebars"));
+const fs_1 = __importDefault(require("fs"));
+const https_1 = __importDefault(require("https"));
+const express_1 = __importDefault(require("express"));
+const cors_1 = __importDefault(require("cors"));
+const db_1 = __importDefault(require("./routes/db"));
+const load_routes_1 = require("./loader/loader_modules/load-routes");
+const redirect_1 = require("./miscellaneous/middleware/user/redirect");
+const redirect_2 = require("./miscellaneous/middleware/admin/redirect");
+const tender_1 = require("./miscellaneous/middleware/user/tender");
 var app = express_1.default();
-var cookie = require('cookie-parser');
-var session = require('express-session');
-var MySQLStore = require('express-mysql-session')(session);
-var helmet = require('helmet');
-var morgan = require('morgan');
-var uuidv4 = require('uuid').v4;
+const cookie = require('cookie-parser');
+const session = require('express-session');
+const MySQLStore = require('express-mysql-session')(session);
+const helmet = require('helmet');
+const morgan = require('morgan');
+const { v4: uuidv4 } = require('uuid');
 var port = process.env.PORT;
 var httpsOptions = {
     key: fs_1.default.readFileSync('certificates/key.pem'),
@@ -52,12 +53,13 @@ app.use(session({
 app = load_routes_1.loadStaticFiles(app);
 //app.use(morgan('dev'))
 app.use(redirect_1.redirectToLoginPage, redirect_1.redirectToProfilePage);
-
+app.use(redirect_2.redirectToAdminLoginPage, redirect_2.redirectToAdminProfilePage, redirect_2.checkVendorCookies);
+app.use('/tender/apply', tender_1.validateURLParamsApply, tender_1.validateURLParamsDApply, tender_1.applyTender);
 app.use('/tender/payment', tender_1.validateURLParams, tender_1.validateURLParamsD);
-app.use('/tender/confirmation', tender_1.validateURLParams, tender_1.validateURLParamsD, tender_1.confirmTender);
-app.use('/tender/preview', tender_1.validateURLParams, tender_1.validateURLParamsD, tender_1.previewTender);
+/* app.use('/tender/confirmation', validateURLParams, validateURLParamsD, confirmTender)
+app.use('/tender/preview', validateURLParams, validateURLParamsD, previewTender) */
 app = load_routes_1.loadRouterFiles(app);
-app.get('*', function (request, response) {
+app.get('*', (request, response) => {
     response.render('error', { layout: false });
 });
 /* console.log(require('express-list-endpoints')(app)) */

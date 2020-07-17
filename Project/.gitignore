@@ -1,6 +1,6 @@
 .env
-*.ts
 *.p12
+*.ts
 test
 .prettierrc
 *.pug

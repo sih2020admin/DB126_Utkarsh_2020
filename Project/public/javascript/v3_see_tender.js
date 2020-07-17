@@ -67,6 +67,7 @@ function apply(i) {
     xhr.onload = function () {
         if (this.status === 200) {
             res = JSON.parse(this.responseText)
+            console.log(this.responseText ,res )
             var status = res.status
             var etd_id = res.etd_id
             if (status == '100') {
