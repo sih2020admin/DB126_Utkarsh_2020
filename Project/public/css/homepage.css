@@ -162,6 +162,19 @@ header a {
      object-fit: cover;
 }
 
+.dropdown .dropbtn {
+  color: #fff !important;
+  background-color: transparent !important;
+}
+
+.dropdown-content a {
+  color: #663EFD !important;
+}
+
+.activ::after {
+  background-color: #fff !important;
+}
+
 footer {
   position: relative;
 }
