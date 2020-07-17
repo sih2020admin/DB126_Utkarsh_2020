@@ -137,6 +137,29 @@ exports.default = router;
 
 /* ----------------------------- start of Two stage approval process code -------------------------- */
 
+//update application status in tech round
+router.post('/update_application_status', function (req, res) {  // to be call from see tender or apply tender
+
+	var etd_id = req.body.etd_id;
+	var status = req.body.status;
+	console.log("update applications status tech called" + etd_id + " with status " + status)
+
+	//imp to mention where status = 111
+
+	
+	db_1.default.query('UPDATE e_tender_vendor SET is_approved="'+status+'" where etd_id="'+etd_id+'";', function (error, results, fields) {
+		if (error) {
+			console.log("error", error);
+			res.sendStatus(400);
+			console.log("gettenderlist called0")
+		}
+		else {
+			res.sendStatus(200);
+		}
+	});
+});
+
+//get application at technical round in 2 stage approval process
 router.post('/get_application', function (req, res) {  // to be call from see tender or apply tender
 
 	var et_id = req.body.et_id;
