@@ -102,7 +102,8 @@ function next(){
                 title: 'Enter Bidding Amount',
                 inputValidator: (value) => {
                     if (value<0) return 'Invalid Bidding Amount '
-                    if (value='') return 'Invalid Bidding Amount '
+                    if (value=='') return 'Invalid Bidding Amount '
+		   if (value==0) return 'Invalid Bidding Amount '
                 },
             },
             {
@@ -110,8 +111,10 @@ function next(){
                 title: 'Enter Time period',
                 inputValidator: (value) => {
                     if (value<0) return 'Invalid Time period '
-                    if (value='') return 'Invalid Time period '
-                },
+                    if (value=='') return 'Invalid Time period '
+                    if (value==0) return 'Invalid Time Period '
+	
+},
 
             },
         ])
