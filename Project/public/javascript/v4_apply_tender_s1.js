@@ -129,6 +129,9 @@ function next(){
             {
                 input: 'number',
                 title: 'Enter Bidding Amount',
+                inputValidator: (value) => {
+                    if (value<0) return 'Invalid Bidding Amount '
+                },
             },
             {
                 input: 'textarea',
