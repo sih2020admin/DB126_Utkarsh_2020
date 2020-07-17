@@ -52,11 +52,11 @@ header a:hover {
     height: 5px;
     border-radius: 100%;
     right: 0;
-    /* margin-top: 12px; */
+    margin-top: 9px;
     margin-right: -12px;
     background-color: #663EFD;
     /* visibility: hidden; */
-    transition: all 0.3s ease-in-out;
+    /* transition: all 0.3s ease-in-out; */
 }
 header nav {
   /* margin-left: -30px; */
