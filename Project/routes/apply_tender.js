@@ -68,7 +68,7 @@ router.post('/apply_tender', function (req, res) {
     var vcd_id = req.signedCookies.vcd_id_e
     console.log('apply tender desc called ' + et_id+time_period)
 
-    db_1.default.query('INSERT INTO `e_tender_vendor`(`et_id`, `vd_id`, `vcd_id`, `bidding_amt`,`time_period`) VALUES (?,?,?,?,?); 	 select LAST_INSERT_ID("etd_id");', [et_id, vd_id, vcd_id, bid_amt,time_period], function (error, results, fields) {
+    db_1.default.query('INSERT INTO `e_tender_vendor`(`et_id`, `vd_id`, `vcd_id`, `bidding_amt`,`time_period`,`status`) VALUES (?,?,?,?,?,"100"); 	 select LAST_INSERT_ID("etd_id");', [et_id, vd_id, vcd_id, bid_amt,time_period], function (error, results, fields) {
         if (error) {
             console.log('error', error)
             res.sendStatus(400)
