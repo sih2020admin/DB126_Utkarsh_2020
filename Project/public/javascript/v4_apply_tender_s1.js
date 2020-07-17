@@ -86,7 +86,7 @@ xhr.onload = function () {
 } */
 
 //Save and Next
-function next() {
+function next1() {
     Swal.fire({
         title: 'Enter Bidding Amount',
         input: 'number',
@@ -111,6 +111,69 @@ function next() {
             }
         }
     })
+}
+function next(){
+    Swal.mixin({
+        confirmButtonText: 'Next &rarr;',
+        showCancelButton: true,
+        inputValidator: (value) => {
+            if (!value) {
+                return 'Empty feild!'
+            }
+        },
+    })
+        .queue([
+            {
+                input: 'number',
+                title: 'Enter Bidding Amount',
+            },
+            {
+                input: 'textarea',
+                title: 'Enter Time period',
+
+            },
+        ])
+        .then((result) => {
+            if (result.value) {
+                const answers = JSON.stringify(result.value)
+                console.log(result.value)
+                Swal.fire({
+                    title: 'All done!',
+                    html: `
+				        <h3>Confirmation:</h3>
+				        
+				        <h4>Bidding amount:</h4>${result.value[0]}<br>
+				        <h4>Time period:</h4>${result.value[1]}<br>	
+				      `,
+                    confirmButtonText: 'Confirm',
+                    showCancelButton: true,
+                }).then((result2) => {
+                    if (result2.value) {
+                        console.log(result, result2)
+                        var xhr = new XMLHttpRequest()
+                        xhr.open('POST', '/apply_tender')
+                        xhr.setRequestHeader('Content-Type', 'application/json')
+                
+                        var data = JSON.stringify({
+                            et_id: et_id,
+                            bid_amt: result.value[0],
+                            time_period: result.value[1]
+                        })
+                        xhr.send(data)
+                        xhr.onload = function () {
+                            if (this.status == 200) {
+                                var resp = JSON.parse(this.responseText)
+                                var etd_id = resp.etd_id
+                                location = '/tender/payment?et_id=' + et_id + '&etd_id=' + etd_id
+                            } else if (this.status == 400) alert('Error 400')
+                            else alert('Some Error Occured')
+                        }
+
+                        
+                    }
+                })
+            }
+        })
 }
 
 //Progress Bar
