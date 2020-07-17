@@ -448,14 +448,14 @@ function company_validate(company_name, company_address, company_email, mobile_n
         $('#error_para').text('Error : Invalid Mobile Number');
         return false;
     }
-    if (mobile_number.test(contact_contact) == false)  {
+/*    if (mobile_number.test(contact_contact) == false)  {
         var all_invalids = document.getElementsByClassName("invalid");
         while (all_invalids.length)
             all_invalids[0].classList.remove("invalid");
         document.getElementById('mobile_number').classList.add("invalid")
         $('#error_para').text('Error : Invalid Mobile Number');
         return false;
-    }
+    }*/
     if (registration_number === '') {
         var all_invalids = document.getElementsByClassName("invalid");
         while (all_invalids.length)
@@ -504,14 +504,14 @@ function company_validate(company_name, company_address, company_email, mobile_n
         $('#error_para').text('Error : Invalid Pincode Field');
         return false;
     }
-    if (pincode.test(contact_contact) == false) {
+   /* if (pincode.test(contact_contact) == false) {
         var all_invalids = document.getElementsByClassName("invalid");
         while (all_invalids.length)
             all_invalids[0].classList.remove("invalid");
         document.getElementById('pincode').classList.add("invalid")
         $('#error_para').text('Error : Invalid Pincode Field');
         return false;
-    }
+    }*/
     if (legal_status === 'select') {
         var all_invalids = document.getElementsByClassName("invalid");
         while (all_invalids.length)
@@ -631,14 +631,14 @@ function contact_validate(title, contact_name, date_of_birth, designation, aadha
         $('#error_para').text('Error : Invalid Mobile Number');
         return false;
     }
-    if (mob.test(contact_contact) == false){
+    /*if (mob.test(contact_contact) == false){
         var all_invalids = document.getElementsByClassName("invalid");
         while (all_invalids.length)
             all_invalids[0].classList.remove("invalid");
         document.getElementById('contact_contact').classList.add("invalid")
         $('#error_para').text('Error : Invalid Mobile Number');
         return false;
-    }
+    }*/
     $('#error_para').text('Success');
     return true;
 }
