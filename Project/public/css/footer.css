@@ -1,0 +1,109 @@
+footer {
+  text-align: left;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #fafafc;
+  padding: 20px 40px;
+  font-size: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-flow: row wrap;
+      flex-flow: row wrap;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  color: var(--accent-dark-color);
+  border-top: 1px solid #a6a6a649;
+}
+
+footer b {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  color: black;
+  font-weight: 500;
+}
+
+footer label {
+  display: block;
+  margin-top: 20px;
+}
+
+footer input {
+  border: 1px solid var(--main_color);
+  border-radius: 3px;
+  height: 35px;
+  width: 375px;
+  padding: 10px;
+  margin: 20px 0 0;
+  color: var(--text_color);
+  overflow: hidden;
+  outline: none;
+}
+
+footer textarea {
+  border: 1px solid var(--main_color);
+  border-radius: 3px;
+  width: 375px;
+  padding: 10px;
+  padding-right: 10px;
+  margin: 10px 0;
+  font-size: 14px;
+  resize: none;
+}
+
+footer button {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: 35px;
+  width: 375px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  background-color: var(--main_color);
+  border: 0.4px solid var(--main_color);
+  color: #ffffff;
+}
+
+footer button:hover {
+  cursor: pointer;
+  background-color: #ffffff;
+  color: var(--main_color);
+  border: 0.4px solid var(--main_color);
+}
+
+footer a {
+  display: block;
+  text-decoration: none;
+  color: var(--accent-dark-color);
+  margin-top: 20px;
+}
+
+footer .icons {
+  margin-top: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+footer .icons a {
+  display: inline;
+}
+
+footer .icons img {
+  width: 60%;
+}
+/*# sourceMappingURL=footer.css.map */
