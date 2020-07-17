@@ -14,13 +14,14 @@ router.post('/vendor_dashboard', function (req, res) {
     // var vd_id= req.body.vd_id;
 	// var vcd_id= req.body.vcd_id;
 	var vd_id = req.signedCookies.vd_id_e;
-    var vcd_id = req.signedCookies.vcd_id_e;
+	var vcd_id = req.signedCookies.vcd_id_e;
+	var key=process.env["ENCRYPTION_KEY"];
 	console.log("vendor vendor_dashboard called",vd_id,vcd_id)
 				
 	db_1.default.query('SELECT `v_name`, `v_address`, `v_yoe`, `v_email`, `v_mobile`, `v_reg_no`, `v_state_id`, `v_city_id`, `v_pincode`, `v_legal_id`, `v_pan`, `v_is_verified`, `v_gst` FROM vendor_details WHERE vd_id = ?;'+
 	' SELECT `vcd_name`, `vcd_title`, `vcd_dob`, `vcd_aadhar`, `vcd_contact`, `vcd_email`, `vcd_designation` FROM v_contact_details WHERE vcd_id = ? and vd_id = ?; '+
-	' SELECT e_tender_vendor.etd_id,e_tender_vendor.et_id ,`et_title`, `et_tender_fee`, `et_tender_ref_no`, `et_tender_desc`, `et_last_date_apply`, `et_bidding_date`, `et_file_uri`, `dept_id`, e_tender_vendor.bidding_amt,e_tender_vendor.status FROM `e_tender_details` INNER JOIN e_tender_vendor ON e_tender_details.et_id = e_tender_vendor.et_id WHERE e_tender_vendor.vd_id = ? and e_tender_vendor.vcd_id = ?; '+
-	'SELECT e_tender_details.et_id, `et_title`, `et_tender_fee`, `et_tender_ref_no`, `et_tender_desc`, `et_last_date_apply`, `et_bidding_date`, `et_file_uri`, `dept_id`, e_tender_vendor.bidding_amt FROM `e_tender_details` INNER JOIN e_tender_vendor ON e_tender_details.et_id = e_tender_vendor.et_id WHERE e_tender_vendor.vd_id = ? and e_tender_vendor.vcd_id = ? and e_tender_vendor.is_approved =1; ',[vd_id,vcd_id,vd_id,vd_id,vcd_id,vd_id,vcd_id], function (error, results, fields) {
+	' SELECT e_tender_vendor.etd_id,e_tender_vendor.et_id ,`et_title`, `et_tender_fee`, `et_tender_ref_no`, `et_tender_desc`, `et_last_date_apply`, `et_bidding_date`, `et_file_uri`, `dept_id`,cast( AES_DECRYPT(e_tender_vendor.bidding_amt ,?) as char ) as bidding_amt ,cast( AES_DECRYPT(e_tender_vendor.status ,?) as char ) as status FROM `e_tender_details` INNER JOIN e_tender_vendor ON e_tender_details.et_id = e_tender_vendor.et_id WHERE e_tender_vendor.vd_id = ? and e_tender_vendor.vcd_id = ?; '+
+	'SELECT e_tender_details.et_id, `et_title`, `et_tender_fee`, `et_tender_ref_no`, `et_tender_desc`, `et_last_date_apply`, `et_bidding_date`, `et_file_uri`, `dept_id`, cast( AES_DECRYPT(e_tender_vendor.bidding_amt ,?) as char ) as  bidding_amt FROM `e_tender_details` INNER JOIN e_tender_vendor ON e_tender_details.et_id = e_tender_vendor.et_id WHERE e_tender_vendor.vd_id = ? and e_tender_vendor.vcd_id = ? and cast( AES_DECRYPT(e_tender_vendor.is_approved,?) as char ) ="1"; ',[vd_id,vcd_id,vd_id,key,key,vd_id,vcd_id,key,vd_id,vcd_id,key], function (error, results, fields) {
 		if (error) {
 	      		//console.log("error");
 	      		res.status(400);

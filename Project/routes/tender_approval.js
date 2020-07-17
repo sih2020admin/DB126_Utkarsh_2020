@@ -90,11 +90,12 @@ router.post('/approve_tender_application', function (req, res) {  // to be call 
 
 	var et_id = req.body.et_id;
 	var etd_id = req.body.etd_id;
+	var key=process.env["ENCRYPTION_KEY"];
 	console.log("approve applications called" + et_id + etd_id)
 
 
-	db_1.default.query('START TRANSACTION ; UPDATE `e_tender_details` SET `is_approved` = 1 WHERE et_id =  ?; UPDATE `e_tender_vendor` SET `is_approved` = 1, `date_of_approval`=CURRENT_DATE  WHERE etd_id =  ?; 	SELECT `vcd_contact`, `vcd_email` FROM `v_contact_details` WHERE vcd_id IN (SELECT `vcd_id`FROM `e_tender_vendor` WHERE etd_id=?);	 COMMIT;',
-		[et_id, etd_id, etd_id], function (error, results, fields) {
+	db_1.default.query('START TRANSACTION ; UPDATE `e_tender_details` SET `is_approved` = 1 WHERE et_id =  ?; UPDATE `e_tender_vendor` SET `is_approved` = AES_ENCRYPT("1",?), `date_of_approval`=CURRENT_DATE  WHERE etd_id =  ?; 	SELECT `vcd_contact`, `vcd_email` FROM `v_contact_details` WHERE vcd_id IN (SELECT `vcd_id`FROM `e_tender_vendor` WHERE etd_id=?);	 COMMIT;',
+		[et_id,key, etd_id, etd_id], function (error, results, fields) {
 			if (error) {
 				console.log("error", error);
 				res.sendStatus(400);

@@ -40,16 +40,18 @@ router.post('/get_etd_id', function (req, res) {
 	var et_id= req.body.et_id;
 	// var vd_id= req.body.vd_id;
 	var vd_id = req.signedCookies.vd_id_e;
-      var vcd_id = req.signedCookies.vcd_id_e;
+	  var vcd_id = req.signedCookies.vcd_id_e;
+	  var key=process.env["ENCRYPTION_KEY"];
 	console.log("tender desc called "+et_id)
 
 			
-db_1.default.query('SELECT * FROM  e_tender_vendor WHERE et_id = ? and vd_id=?',[et_id,vd_id], function (error, results, fields) {
+db_1.default.query('SELECT etd_id,cast( AES_DECRYPT(status ,?) as char ) as status  FROM  e_tender_vendor WHERE et_id = ? and vd_id=?',[key,et_id,vd_id], function (error, results, fields) {
 	if (error) {
 			  //console.log("error");
 			  res.sendStatus(400);
 		 }else{
 			   if(results.length >0){
+				   console.log(results[0]);
 				   res.send(results[0]);
 			   }
 			   else{
@@ -66,6 +68,7 @@ router.post('/view', function (req, res) {
 		var vd_id = req.signedCookies.vd_id_e;
       var vcd_id = req.signedCookies.vcd_id_e;
 		var etd= req.body.etd_id;
+		var key=process.env["ENCRYPTION_KEY"];
 		db_1.default.query('SELECT et_id,et_title,et_tender_fee,et_tender_ref_no,et_bidding_date FROM  e_tender_details WHERE et_id = ?',[et],function(error,results){
 			if (error) {
 					console.log("Tender Details Error");
@@ -77,7 +80,7 @@ router.post('/view', function (req, res) {
 						// res.sendStatus(400);
 					}
 					else{
-						db_1.default.query('SELECT * FROM (SELECT file_uri.etd_id,furi1,furi2,txn_id,txn_amount,txn_timestamp,bank_name ,resp_message FROM file_uri,payment_transactions WHERE file_uri.etd_id=payment_transactions.etd_id) AS hello WHERE etd_id= ?',[etd],function(error,resul){
+						db_1.default.query('SELECT * FROM (SELECT file_uri.etd_id,cast( AES_DECRYPT(furi1 ,?) as char ) as furi1,cast( AES_DECRYPT(furi2 ,?) as char ) as furi2 ,txn_id,txn_amount,txn_timestamp,bank_name ,resp_message FROM file_uri,payment_transactions WHERE file_uri.etd_id=payment_transactions.etd_id) AS hello WHERE etd_id= ?',[key,key,etd],function(error,resul){
 							if(error){
 								console.log("File and Payment Error");
 								// res.sendStatus(400);
