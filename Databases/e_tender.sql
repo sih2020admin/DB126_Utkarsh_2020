@@ -39,7 +39,7 @@ CREATE TABLE `access_token` (
 
 LOCK TABLES `access_token` WRITE;
 /*!40000 ALTER TABLE `access_token` DISABLE KEYS */;
-INSERT INTO `access_token` VALUES (22,'Sanket','4422f4cb03c8d14a819dad0bd93f97472f1eee64','892f6328b5772c775b02e89002b0f92acd85a29e','14/7/2020','11:28:25'),(23,'Sanket','d8162ce15b76c084d3178b81662977d7629838f0','2b01ca4563148de91761dcc7656bb815d2dfd42e','13/7/2020','23:35:32'),(25,'Sanket','74a14c875962368a39d514aa9595591233eecf61','ef6f7435a47e3c0c8164852e7558c8f4f8cfcb4e','12/7/2020','18:12:13'),(28,'Sanket','1661dd38d4a90f23aaa86e8d5ee4e48bb9df0f50','b85b6349c181868b183473062c8d58cdf1579b40','13/7/2020','18:10:30'),(30,'Sanket','c6343bbc2c11f4cd7c5fd7d10bccf025c76cf3d6','313e49d2ab54a3b161c079893d1c80ca87c50c69','13/7/2020','20:32:25');
+INSERT INTO `access_token` VALUES (19,'Sanket','7ee55b755c52faac5677120b3ddfe9b352ff14eb','b8d672c571a04216a8318fc5cdafc1ef7ccc63a6','17/7/2020','19:21:32'),(22,'Sanket','1c6df26069e2fc579de1e67decc2abe40144e1f0','884ff288154ea7c82c82c1558fc3a43b2023eb92','17/7/2020','17:42:52'),(23,'Sanket','e89f224a48d812c660fdcf657cfe7a801861d992','6d8c59b8734cc237eca25a2899af2dd27b15eb16','17/7/2020','19:21:35'),(25,'Sanket','0770d481ede451c35115ea71db237bced4a84bb5','1eb8ecd79f8781f133cec424356453ce9b3ec393','17/7/2020','19:21:37'),(28,'Sanket','1661dd38d4a90f23aaa86e8d5ee4e48bb9df0f50','b85b6349c181868b183473062c8d58cdf1579b40','13/7/2020','18:10:30'),(30,'Sanket','c6343bbc2c11f4cd7c5fd7d10bccf025c76cf3d6','313e49d2ab54a3b161c079893d1c80ca87c50c69','13/7/2020','20:32:25'),(31,'Sanket','22edab9cea8cd12e575c24a2bec67b020aa79f9f','cad64dd64ff822e383d783e1b95094d8997b2bae','17/7/2020','20:18:1');
 /*!40000 ALTER TABLE `access_token` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -195,10 +195,11 @@ CREATE TABLE `e_tender_details` (
   `is_delete` tinyint(4) NOT NULL,
   `dept_id` int(4) NOT NULL,
   `is_approved` tinyint(4) NOT NULL DEFAULT '0',
+  `maximum_bid` int(11) DEFAULT NULL,
   PRIMARY KEY (`et_id`),
   KEY `dept_id` (`dept_id`),
   CONSTRAINT `e_tender_details_ibfk_1` FOREIGN KEY (`dept_id`) REFERENCES `department` (`dept_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=173 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=183 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -207,7 +208,7 @@ CREATE TABLE `e_tender_details` (
 
 LOCK TABLES `e_tender_details` WRITE;
 /*!40000 ALTER TABLE `e_tender_details` DISABLE KEYS */;
-INSERT INTO `e_tender_details` VALUES (170,'Ventilator and Humidifier','1000','2020/1/IT1','One time Repairing of 10 ventilators and 10 Humidifiers to make them fully functional and supply one set of consumables to make them ready to use in AGMC and GBPH','2020-07-14','2020-07-15','uploads/sample.zip',0,1,0),(171,'Water Reservoir','1000','2020/171/IT171','Construction of Circular RCC Water Reservoir in/c Pump House','2020-07-14','2020-07-15','uploads/sample.zip',0,1,0),(172,'Water Supply','1000','2020/172/IT172','Water supply Schemes under JJM in North Tripura District / SH Drilling and Development of 4(Four) Nos Deep Tube Wells','2020-07-14','2020-07-15','uploads/sample.zip',0,1,0);
+INSERT INTO `e_tender_details` VALUES (170,'Ventilator and Humidifier','1000','2020/1/IT1','One time Repairing of 10 ventilators and 10 Humidifiers to make them fully functional and supply one set of consumables to make them ready to use in AGMC and GBPH','2020-07-19','2020-07-20','uploads/sample.zip',0,1,0,NULL),(171,'Water Reservoir','1000','2020/171/IT171','Construction of Circular RCC Water Reservoir in/c Pump House','2020-07-19','2020-07-20','uploads/sample.zip',0,1,0,NULL),(172,'Water Supply','1000','2020/172/IT172','Water supply Schemes under JJM in North Tripura District / SH Drilling and Development of 4(Four) Nos Deep Tube Wells','2020-07-19','2020-07-20','uploads/sample.zip',0,1,0,NULL),(173,'Construction of Storage tanks','1000','2020/173/IT173','Construction of 2 nos SBDTW with storage tank, Laying of various dia Pipe Lines, Installation of Submersible Pump Motor set including other allied works under Satchand Block during the year 2020-21','2020-07-15','2020-07-15','uploads/sample.zip',1,1,0,NULL),(174,'Construction of Storage Tanks','1000','2020/174/IT174','Construction of 2 nos SBDTW with storage tank, Laying of various dia Pipe Lines, Installation of Submersible Pump Motor set including other allied works under Satchand Block during the year 2020-21','2020-07-15','2020-07-15','uploads/sample.zip',1,1,0,NULL),(175,'Construction of Storage Tank','800','2020/175/IT175','Construction of 1 nos SBDTW with storage tank, Laying of various dia Pipe Lines, Installation of Submersible Pump Motor set including other allied works under Satchand Block during the year 2020-21','2020-07-15','2020-07-15','uploads/sample.zip',1,1,0,NULL),(176,'Construction of Storage Tank','800','2020/176/IT176','Construction of 1 nos SBDTW with storage tank, Laying of various dia Pipe Lines, Installation of Submersible Pump Motor set including other allied works under Satchand Block during the year 2020-21','2020-07-15','2020-07-15','uploads/sample.zip',1,1,0,NULL),(177,'Construction of Storage Tank','800','2020/177/IT177','Construction of 1 nos SBDTW with storage tank, Laying of various dia Pipe Lines, Installation of Submersible Pump Motor set including other allied works under Satchand Block during the year 2020-21','2020-07-17','2020-07-17','uploads/sample.zip',0,1,0,NULL),(178,'digi locker chala kya?','1000','2020/178/IT178','I hope digilocker ka nasha utar gaya ho!!!','2020-07-15','2020-07-15','uploads/sample.zip',0,1,0,NULL),(179,'Construction of Tubes','1100','2020/179/IT179','Construction of 04(Four) nos Small Bore Deep Tube Well with other allied works within the jurisdiction of DWS Sub-Division, Mungiakami','2020-07-16','2020-07-16','uploads/sample.zip',1,1,0,NULL),(180,'Construction of Tanks','1100','2020/180/IT180','Construction of 04(Four) nos Small Bore Deep Tube Well with other allied works within the jurisdiction of DWS Sub-Division, Mungiakami','2020-07-16','2020-07-16','uploads/sample.zip',0,1,0,NULL),(181,'Testing','1000','2020/181/IT181','Testing Step 1 page','2020-07-17','2020-07-17','uploads/sample.zip',1,1,0,NULL),(182,'Testing sank','1000','2020/182/IT182','This is for testing created by sanket deshmukh','2020-07-18','2020-07-18','uploads/sample.zip',0,1,0,NULL);
 /*!40000 ALTER TABLE `e_tender_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -229,11 +230,13 @@ CREATE TABLE `e_tender_vendor` (
   `status` varchar(5) NOT NULL DEFAULT '100',
   `location` varchar(50) DEFAULT NULL,
   `timestamp` varchar(50) DEFAULT NULL,
+  `time_period` varchar(100) DEFAULT NULL,
+  `reasons` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`etd_id`),
   KEY `et_id` (`et_id`),
   KEY `vd_id` (`vd_id`),
   KEY `vcd_id` (`vcd_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=104 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=132 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -242,8 +245,33 @@ CREATE TABLE `e_tender_vendor` (
 
 LOCK TABLES `e_tender_vendor` WRITE;
 /*!40000 ALTER TABLE `e_tender_vendor` DISABLE KEYS */;
-INSERT INTO `e_tender_vendor` VALUES (96,170,104,28,'20000','0',NULL,'1111','Thane','2020-07-13T14:23:11.382Z'),(97,168,103,27,'5000','0',NULL,'100',NULL,NULL),(98,170,103,27,'500','0',NULL,'110',NULL,NULL),(99,171,106,30,'121000','0',NULL,'1111','ulhasnagar','2020-07-13T15:05:04.353Z'),(100,170,57,19,'200','0',NULL,'110',NULL,NULL),(101,172,91,23,'11','0',NULL,'111',NULL,NULL),(102,170,91,23,'11','0',NULL,'100',NULL,NULL),(103,170,63,22,'4000','0',NULL,'110',NULL,NULL);
+INSERT INTO `e_tender_vendor` VALUES (96,170,104,28,'20000','0',NULL,'1111','Thane','2020-07-13T14:23:11.382Z',NULL,NULL),(97,168,103,27,'5000','0',NULL,'100',NULL,NULL,NULL,NULL),(98,170,103,27,'500','0',NULL,'110',NULL,NULL,NULL,NULL),(99,171,106,30,'121000','0',NULL,'1111','ulhasnagar','2020-07-13T15:05:04.353Z',NULL,NULL),(100,170,57,19,'200','0',NULL,'111',NULL,NULL,NULL,NULL),(101,172,91,23,'11','0',NULL,'1111','MUMBAI','2020-07-16T11:49:36.785Z',NULL,NULL),(102,170,91,23,'11','0',NULL,'110',NULL,NULL,NULL,NULL),(103,170,63,22,'4000','0',NULL,'110',NULL,NULL,NULL,NULL),(104,171,91,23,'11','0',NULL,'1111','MUMBAI','2020-07-14T10:43:48.249Z',NULL,NULL),(105,174,57,19,'300','0',NULL,'110',NULL,NULL,NULL,NULL),(106,177,57,19,'500','0',NULL,'1111','Pune','2020-07-16T13:24:11.289Z',NULL,NULL),(107,177,91,23,'11','0',NULL,'1111','MUMBAI','2020-07-16T13:17:57.951Z',NULL,NULL),(108,170,101,25,'522','0',NULL,'1111','Mumbai','2020-07-16T08:51:44.571Z',NULL,NULL),(109,177,101,25,'900','0',NULL,'1111','Mumbai','2020-07-16T13:00:12.815Z',NULL,NULL),(110,171,57,19,'200','0',NULL,'100',NULL,NULL,NULL,NULL),(111,171,101,25,'600','0',NULL,'110',NULL,NULL,NULL,NULL),(112,178,91,23,'11','0',NULL,'1111','MUMBAI','2020-07-16T14:02:13.145Z',NULL,NULL),(113,179,101,25,'900','0',NULL,'110',NULL,NULL,NULL,NULL),(114,180,101,25,'900','0',NULL,'110',NULL,NULL,NULL,NULL),(128,180,91,23,'101','0',NULL,'1111','MUMBAI','2020-07-17T06:49:00.930Z',NULL,NULL),(130,172,102,26,'9000000','0',NULL,'100',NULL,NULL,'1 year',NULL),(131,171,107,31,'-19','0',NULL,'110',NULL,NULL,'2 months',NULL);
 /*!40000 ALTER TABLE `e_tender_vendor` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `feedback`
+--
+
+DROP TABLE IF EXISTS `feedback`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `feedback` (
+  `email_address` varchar(50) NOT NULL,
+  `feedback` text NOT NULL,
+  `feedback_id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`feedback_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `feedback`
+--
+
+LOCK TABLES `feedback` WRITE;
+/*!40000 ALTER TABLE `feedback` DISABLE KEYS */;
+INSERT INTO `feedback` VALUES ('virajtandel72@gmail.com','its 1st sugeestion',1),('virajtandel72@gmail.com','testing with postman',2),('virajtandel72@gmail.com','suggestion on server',5),('virajtandel72@gmail.com','suggestion on server',6);
+/*!40000 ALTER TABLE `feedback` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -261,7 +289,7 @@ CREATE TABLE `file_uri` (
   `f_type` varchar(50) NOT NULL,
   PRIMARY KEY (`furi_id`),
   UNIQUE KEY `etd_id` (`etd_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=88 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=105 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -270,6 +298,7 @@ CREATE TABLE `file_uri` (
 
 LOCK TABLES `file_uri` WRITE;
 /*!40000 ALTER TABLE `file_uri` DISABLE KEYS */;
+INSERT INTO `file_uri` VALUES (88,'in.gov.digilocker-OTHER-681e7116c596ae579ffacf8b787736de','in.gov.digilocker-OTHER-5af9603af52d5980693676c38d4ab07e',108,'link'),(90,'in.gov.digilocker-OTHER-a0bd499243fd6ed96fb900aef80ce17b','in.gov.digilocker-OTHER-2efb0c8d58fd0b4e3d6c1db5b9da8594',109,'link'),(93,'in.gov.digilocker-OTHER-98380e1144c53148956508795f152abc','in.gov.digilocker-OTHER-be2f8a1dd29d696d5ccb900f5e3dc73f',112,'link'),(95,'in.gov.digilocker-OTHER-3af18516dad79f6a13551e05067f6302','in.gov.digilocker-OTHER-85a4a4a8a74ce7bd4fe53d4f834152f2',107,'link'),(96,'in.gov.digilocker-OTHER-3affa6098a160616212a6da9811f6fd5','in.gov.digilocker-OTHER-734695d52da224a154e75b32407a40e7',106,'link'),(103,'in.gov.digilocker-OTHER-48cb775d7935f3bf06d9e9c5c56c942d','in.gov.digilocker-OTHER-21c380670be98229afa8e794f0221250',128,'link');
 /*!40000 ALTER TABLE `file_uri` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -318,7 +347,7 @@ CREATE TABLE `log_in_details` (
   KEY `ad_id` (`ad_id`),
   CONSTRAINT `log_in_details_ibfk_1` FOREIGN KEY (`vcd_id`) REFERENCES `v_contact_details` (`vcd_id`),
   CONSTRAINT `log_in_details_ibfk_2` FOREIGN KEY (`ad_id`) REFERENCES `admin_detail` (`ad_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -327,7 +356,7 @@ CREATE TABLE `log_in_details` (
 
 LOCK TABLES `log_in_details` WRITE;
 /*!40000 ALTER TABLE `log_in_details` DISABLE KEYS */;
-INSERT INTO `log_in_details` VALUES (1,'winu','winu',2,1,NULL),(10,'admin','asdfg',1,NULL,1),(11,'sankey123','1234567',2,19,NULL),(12,'sankey_admin','1234567',1,NULL,2),(13,'afif','9876543210',1,NULL,3),(15,'priya99','priya',2,21,NULL),(16,'viraj456','1234567',2,22,NULL),(17,'100rabhyadav98','250998',2,23,NULL),(18,'winston99','qwerty',2,24,NULL),(19,'afif1999','Sih@2020',2,25,NULL),(20,'Varunkumaryadav','Aa0@var',2,26,NULL),(21,'delsonn','12345678@qQ',2,27,NULL),(22,'tpamish','@Calicut1',2,28,NULL),(23,'123512351235','Abc12345@',2,29,NULL),(24,'2982346','ShadrakJ@98',2,30,NULL);
+INSERT INTO `log_in_details` VALUES (1,'winu','winu',2,1,NULL),(10,'admin','asdfg',1,NULL,1),(11,'sankey123','1234567',2,19,NULL),(12,'sankey_admin','1234567',1,NULL,2),(13,'afif','9876543210',1,NULL,3),(15,'priya99','priya',2,21,NULL),(16,'viraj456','1234567',2,22,NULL),(17,'100rabhyadav98','250998',2,23,NULL),(18,'winston99','qwerty',2,24,NULL),(19,'afif1999','Sih@2020',2,25,NULL),(20,'Varunkumaryadav','Aa0@var',2,26,NULL),(21,'delsonn','12345678@qQ',2,27,NULL),(22,'tpamish','@Calicut1',2,28,NULL),(23,'123512351235','Abc12345@',2,29,NULL),(24,'2982346','ShadrakJ@98',2,30,NULL),(25,'317vikash4982','Vikash@17',2,31,NULL);
 /*!40000 ALTER TABLE `log_in_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -392,7 +421,7 @@ CREATE TABLE `payment_transactions` (
 
 LOCK TABLES `payment_transactions` WRITE;
 /*!40000 ALTER TABLE `payment_transactions` DISABLE KEYS */;
-INSERT INTO `payment_transactions` VALUES (96,'20200713111212800110168768101711333','ORD8614235048','1000.00','TXN_SUCCESS','01','0.00','2020-07-13 18:06:30.0','777001047828393','HDFC','Bank of Bahrain and Kuwait','DC'),(98,'20200713111212800110168769101713073','ORD9369857718','1000.00','TXN_SUCCESS','01','0.00','2020-07-13 18:22:39.0','777001278892780','HDFC','Bank of Bahrain and Kuwait','DC'),(99,'20200713111212800110168335301706662','ORD7602188837','1000.00','TXN_SUCCESS','01','0.00','2020-07-13 20:24:11.0','777001640030118','HDFC','Bank of Bahrain and Kuwait','DC'),(100,'20200713111212800110168776601716001','ORD3823903842','1000.00','TXN_SUCCESS','01','0.00','2020-07-13 21:43:48.0','777001664407881','HDFC','Bank of Bahrain and Kuwait','DC'),(101,'20200713111212800110168538501716980','ORD9831897030','1000.00','TXN_SUCCESS','01','0.00','2020-07-13 23:30:15.0','777001283376243','HDFC','Bank of Bahrain and Kuwait','DC'),(103,'20200714111212800110168691501712675','ORD9543975132','1000.00','TXN_SUCCESS','01','0.00','2020-07-14 11:22:53.0','777001946638972','HDFC','Bank of Bahrain and Kuwait','DC');
+INSERT INTO `payment_transactions` VALUES (96,'20200713111212800110168768101711333','ORD8614235048','1000.00','TXN_SUCCESS','01','0.00','2020-07-13 18:06:30.0','777001047828393','HDFC','Bank of Bahrain and Kuwait','DC'),(98,'20200713111212800110168769101713073','ORD9369857718','1000.00','TXN_SUCCESS','01','0.00','2020-07-13 18:22:39.0','777001278892780','HDFC','Bank of Bahrain and Kuwait','DC'),(99,'20200713111212800110168335301706662','ORD7602188837','1000.00','TXN_SUCCESS','01','0.00','2020-07-13 20:24:11.0','777001640030118','HDFC','Bank of Bahrain and Kuwait','DC'),(100,'20200713111212800110168776601716001','ORD3823903842','1000.00','TXN_SUCCESS','01','0.00','2020-07-13 21:43:48.0','777001664407881','HDFC','Bank of Bahrain and Kuwait','DC'),(101,'20200713111212800110168538501716980','ORD9831897030','1000.00','TXN_SUCCESS','01','0.00','2020-07-13 23:30:15.0','777001283376243','HDFC','Bank of Bahrain and Kuwait','DC'),(103,'20200714111212800110168691501712675','ORD9543975132','1000.00','TXN_SUCCESS','01','0.00','2020-07-14 11:22:53.0','777001946638972','HDFC','Bank of Bahrain and Kuwait','DC'),(102,'20200714111212800110168873701709040','ORD4466303392','1000.00','TXN_SUCCESS','01','0.00','2020-07-14 14:37:44.0','777001288458346','HDFC','Bank of Bahrain and Kuwait','DC'),(104,'20200714111212800110168562601731701','ORD4487823968','1000.00','TXN_SUCCESS','01','0.00','2020-07-14 16:07:32.0','777001104453993','HDFC','Bank of Bahrain and Kuwait','DC'),(104,'20200714111212800110168562601731701','ORD4487823968','1000.00','TXN_SUCCESS','01','0.00','2020-07-14 16:07:32.0','777001104453993','HDFC','Bank of Bahrain and Kuwait','DC'),(104,'20200714111212800110168562601731701','ORD4487823968','1000.00','TXN_SUCCESS','01','0.00','2020-07-14 16:07:32.0','777001104453993','HDFC','Bank of Bahrain and Kuwait','DC'),(104,'20200714111212800110168562601731701','ORD4487823968','1000.00','TXN_SUCCESS','01','0.00','2020-07-14 16:07:32.0','777001104453993','HDFC','Bank of Bahrain and Kuwait','DC'),(104,'20200714111212800110168562601731701','ORD4487823968','1000.00','TXN_SUCCESS','01','0.00','2020-07-14 16:07:32.0','777001104453993','HDFC','Bank of Bahrain and Kuwait','DC'),(104,'20200714111212800110168562601731701','ORD4487823968','1000.00','TXN_SUCCESS','01','0.00','2020-07-14 16:07:32.0','777001104453993','HDFC','Bank of Bahrain and Kuwait','DC'),(105,'20200715111212800110168575301727809','ORD175984743','1000.00','TXN_SUCCESS','01','0.00','2020-07-15 20:14:36.0','777001331849580','HDFC','Bank of Bahrain and Kuwait','DC'),(106,'20200715111212800110168728701746677','ORD4956826429','800.00','TXN_SUCCESS','01','0.00','2020-07-15 20:36:12.0','777001769929660','HDFC','Bank of Bahrain and Kuwait','DC'),(107,'20200715111212800110168273601716507','ORD7956250978','800.00','TXN_SUCCESS','01','0.00','2020-07-15 21:28:24.0','777001187661016','HDFC','Bank of Bahrain and Kuwait','DC'),(108,'20200716111212800110168714601711102','ORD8160740093','1000.00','TXN_SUCCESS','01','0.00','2020-07-16 14:20:29.0','777001433214871','HDFC','Bank of Bahrain and Kuwait','DC'),(109,'20200716111212800110168476801719688','ORD3499369605','800.00','TXN_SUCCESS','01','0.00','2020-07-16 18:28:04.0','777001646887489','HDFC','Bank of Bahrain and Kuwait','DC'),(111,'20200716111212800110168236801719805','ORD4048858506','1000.00','TXN_SUCCESS','01','0.00','2020-07-16 19:23:18.0','777001211646119','HDFC','Bank of Bahrain and Kuwait','DC'),(112,'20200716111212800110168952401714647','ORD1698213817','1000.00','TXN_SUCCESS','01','0.00','2020-07-16 19:28:34.0','777001441352698','HDFC','Bank of Bahrain and Kuwait','DC'),(113,'20200716111212800110168366101726935','ORD4340408174','1100.00','TXN_SUCCESS','01','0.00','2020-07-16 20:16:31.0','777001467623758','HDFC','Bank of Bahrain and Kuwait','DC'),(114,'20200716111212800110168432701717266','ORD9765533543','1100.00','TXN_SUCCESS','01','0.00','2020-07-16 20:34:38.0','777001507175916','HDFC','Bank of Bahrain and Kuwait','DC'),(128,'20200717111212800110168666501728728','ORD6980982061','1100.00','TXN_SUCCESS','01','0.00','2020-07-17 12:15:54.0','777001003011584','HDFC','Bank of Bahrain and Kuwait','DC'),(131,'20200717111212800110168687501717321','ORD2473925245','1000.00','TXN_SUCCESS','01','0.00','2020-07-17 20:15:17.0','777001986633875','HDFC','Bank of Bahrain and Kuwait','DC');
 /*!40000 ALTER TABLE `payment_transactions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -441,7 +470,7 @@ CREATE TABLE `sessions` (
 
 LOCK TABLES `sessions` WRITE;
 /*!40000 ALTER TABLE `sessions` DISABLE KEYS */;
-INSERT INTO `sessions` VALUES ('4601db47-87a8-4763-8739-d1c97de342eb',1594715104,'{\"cookie\":{\"originalMaxAge\":7200000,\"expires\":\"2020-07-14T08:21:05.240Z\",\"httpOnly\":true,\"path\":\"/\"},\"vd_id\":1,\"vcd_id\":1,\"digi_access\":0}'),('e0788fb9-5e88-4fc9-8045-4bfb833d0954',1594713549,'{\"cookie\":{\"originalMaxAge\":7200000,\"expires\":\"2020-07-14T07:47:36.753Z\",\"httpOnly\":true,\"path\":\"/\"},\"vd_id\":63,\"vcd_id\":22,\"digi_access\":1}');
+INSERT INTO `sessions` VALUES ('3d150a51-3cbe-4ad1-9eea-dcfc6d9a534e',1595002104,'{\"cookie\":{\"originalMaxAge\":7200000,\"expires\":\"2020-07-17T16:06:35.869Z\",\"httpOnly\":true,\"path\":\"/\"},\"vd_id\":57,\"vcd_id\":19,\"digi_access\":1}'),('85e30e1a-0508-42ff-9929-e0c5f6043edd',1595005056,'{\"cookie\":{\"originalMaxAge\":7200000,\"expires\":\"2020-07-17T16:41:17.354Z\",\"httpOnly\":true,\"path\":\"/\"},\"vd_id\":107,\"vcd_id\":31,\"digi_access\":0}'),('cd9f5321-bbf5-4609-8cad-21790b75e107',1595005050,'{\"cookie\":{\"originalMaxAge\":7200000,\"expires\":\"2020-07-17T16:57:24.763Z\",\"httpOnly\":true,\"path\":\"/\"},\"vd_id\":91,\"vcd_id\":23,\"digi_access\":1}');
 /*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -514,7 +543,7 @@ CREATE TABLE `v_contact_details` (
   PRIMARY KEY (`vcd_id`),
   KEY `vd_id` (`vd_id`),
   CONSTRAINT `v_contact_details_ibfk_1` FOREIGN KEY (`vd_id`) REFERENCES `vendor_details` (`vd_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -523,7 +552,7 @@ CREATE TABLE `v_contact_details` (
 
 LOCK TABLES `v_contact_details` WRITE;
 /*!40000 ALTER TABLE `v_contact_details` DISABLE KEYS */;
-INSERT INTO `v_contact_details` VALUES (1,'Winston','Mr.','2020-06-09','456745674567','8975647845','winstonsequeria@gmail.com','CEO',1,0),(19,'Sanket Deshmukh','Mr','2000-05-13','070707070707','9702717188','meetsanket24@gmail.com','CEO',57,0),(20,'asdfghj','Mr','2020-05-25','123412341234','8976853951','v@gmail.com','ceo',58,0),(21,'Priya Singh','Ms','1999-10-27','147147147147','8329779783','spriya1252012@gmail.com','Operations manager',60,0),(22,'asdfghj','Mr','2020-05-25','123412341234','8976853951','v@gmail.com','ceo',63,1),(23,'Saurabh Yadav','Sri','1998-09-25','369369369369','9640278397','yadavsaurabh2509@gmail.com','Managing Director',91,1),(24,'Winston Sequeira','Dr','1999-06-19','753753753753','9987039417','winstonsequeira@gmail.com','Company Executive',96,0),(25,'Afif Shaikh','Mr','2020-05-21','258258258258','9769320992','shaikhafif48@gmail.com','Director',101,1),(26,'Varunkumar ','Mr','2020-07-23','159159159159','9642745803','cd.@gmail.com','Ceo',102,0),(27,'Delson','Dr','1999-01-01','456456456456','9821704557','delsondsouza1214@gmail.com','manager',103,0),(28,'Amish p','Mr','1999-09-01','268426842684','9769788150','amishtp652@hotmail.com','CFO',104,1),(29,'xyz abc','Ms','1980-12-31','123512351235','9403865399','xyzregistry@gmail.com','manager',105,0),(30,'shady','Mr','1998-08-18','369258147369','9673599092','shadrak@dettol.in','Owner',106,1);
+INSERT INTO `v_contact_details` VALUES (1,'Winston','Mr.','2020-06-09','456745674567','8975647845','winstonsequeria@gmail.com','CEO',1,0),(19,'Sanket Deshmukh','Mr','2000-05-13','070707070707','9702717188','meetsanket24@gmail.com','CEO',57,1),(20,'asdfghj','Mr','2020-05-25','123412341234','8976853951','v@gmail.com','ceo',58,0),(21,'Priya Singh','Ms','1999-10-27','147147147147','8329779783','spriya1252012@gmail.com','Operations manager',60,0),(22,'asdfghj','Mr','2020-05-25','123412341234','8976853951','v@gmail.com','ceo',63,1),(23,'Saurabh Yadav','Sri','1998-09-25','369369369369','9640278397','yadavsaurabh2509@gmail.com','Managing Director',91,1),(24,'Winston Sequeira','Dr','1999-06-19','753753753753','9987039417','winstonsequeira@gmail.com','Company Executive',96,0),(25,'Afif Shaikh','Mr','2020-05-21','258258258258','9769320992','shaikhafif48@gmail.com','Director',101,1),(26,'Varunkumar ','Mr','2020-07-23','159159159159','9642745803','cd.@gmail.com','Ceo',102,0),(27,'Delson','Dr','1999-01-01','456456456456','9821704557','delsondsouza1214@gmail.com','manager',103,0),(28,'Amish p','Mr','1999-09-01','268426842684','9769788150','amishtp652@hotmail.com','CFO',104,1),(29,'xyz abc','Ms','1980-12-31','123512351235','9403865399','xyzregistry@gmail.com','manager',105,0),(30,'shady','Mr','1998-08-18','369258147369','9673599092','shadrak@dettol.in','Owner',106,1),(31,'Vik','Mr','1981-12-15','123123123123','8080530678','4567389@gmail.com','manager',107,1);
 /*!40000 ALTER TABLE `v_contact_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -550,11 +579,16 @@ CREATE TABLE `vendor_details` (
   `v_pan` varchar(10) NOT NULL,
   `v_is_verified` varchar(1) NOT NULL,
   `v_gst` varchar(25) DEFAULT NULL,
+  `schemes` varchar(500) DEFAULT NULL,
+  `staff` int(11) DEFAULT NULL,
+  `equipment` int(11) DEFAULT NULL,
+  `india_equipment` int(11) DEFAULT NULL,
+  `rating` int(11) DEFAULT NULL,
   PRIMARY KEY (`vd_id`),
   UNIQUE KEY `v_reg_no` (`v_reg_no`),
   UNIQUE KEY `v_pan` (`v_pan`),
   UNIQUE KEY `v_gst` (`v_gst`)
-) ENGINE=InnoDB AUTO_INCREMENT=107 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=108 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -563,7 +597,7 @@ CREATE TABLE `vendor_details` (
 
 LOCK TABLES `vendor_details` WRITE;
 /*!40000 ALTER TABLE `vendor_details` DISABLE KEYS */;
-INSERT INTO `vendor_details` VALUES (1,'sequeria industry','andheri east','1772','ws@gmail.com','7894561230','D123N67','Himachal Pradesh [HP]','4','Bilaspur','400706','Limited Company','Rf234Rt','0','789456'),(57,'sankey soln','bhandup','2000','meetsanket24@gmail.com','9702717188','9876543210','','-1','2120','400078','','4654867465','0','548454365748654'),(58,'fghjk','dfghjk','2020','v@gmail.com','7894561230','werty','21','-1','2127','456789','0','7894561230','0','789456123012345'),(60,'ABC','near vidyavihar stn.','2010','abc@gmail.com','8329779783','123456','','-1','2118','421005','','ABCD123456','0','123456789012345'),(63,'fghjk','dfghjk','2020','v@gmail.com','7894561230','bhunji','21','-1','2127','456789','0','6894561230','0','789456123012352'),(91,'Sky Info Tech Ltd.','Near Gateway Of India,Colaba','1998','skytech2509@gmail.com','9876543210','DOB250998','Maharashtra [MH]','-1','Mumbai City','400005','Undertaking','ASDFG25099','0','27AAAAA0000A1Z5'),(96,'Sequiera L&T ','Near Band Stand,Bandra','1999','generixteam2019@gmaii.com','9876543210','DOB190699','17','-1','1728','123456','2','QWERT19069','0','27AAAAA0000A1Z6'),(101,'Afif Mahindra','Near DBIT,kurla','1999','afifdesigner99@gmail.com','9876543210','123456789987654321123','15','-1','1506','400020','1','ZXCVB9876N','0','27AAAAA0000A1Z9'),(102,'B','vb','2016','h.@gmail.com','9160475225','666666666666666','Jammu and Kashmir [JK]','-1','Baramulla','400005','Jointventure','1234567890','0','999999999999999'),(103,'raju company','Bosc<svg/onload = alert(\"Hacked\");>','2008','delsondsouza1214@gmail.com','4535456532','123454353433443','Maharashtra [MH]','-1','Mumbai Suburban','234232','Limited Company','4523431112','0','234233242323423'),(104,'rockyTech','Brahmand, Thane West','2018','amishtp652@hotmail.com','9769788150','849820162255616','Maharashtra [MH]','-1','Thane','400607','Limited Company','4568197561','0','448148656548489'),(105,'registry xyz','registry xyz, abc road','2012','shreyaghute@gmail.com','9403865399','123456789101315','Dadra and Nagar Haveli [DN]','-1','Dadra & Nagar Haveli','000123','Limited Company','1023456789','0','123456789101315'),(106,'Dettol','<script>alert(1)<script>','1974','shadrak@dettol.in','9673599092','12345678910111213','Maharashtra [MH]','-1','Mumbai City','400009','Limited Company','9930493568','0','148929818394579');
+INSERT INTO `vendor_details` VALUES (1,'sequeria industry','andheri east','1772','ws@gmail.com','7894561230','D123N67','Himachal Pradesh [HP]','4','Bilaspur','400706','Limited Company','Rf234Rt','0','789456',NULL,NULL,NULL,NULL,NULL),(57,'sankey soln','bhandup','2000','meetsanket24@gmail.com','9702717188','9876543210','','-1','2120','400078','','4654867465','0','548454365748654',NULL,NULL,NULL,NULL,NULL),(58,'fghjk','dfghjk','2020','v@gmail.com','7894561230','werty','21','-1','2127','456789','0','7894561230','0','789456123012345',NULL,NULL,NULL,NULL,NULL),(60,'ABC','near vidyavihar stn.','2010','abc@gmail.com','8329779783','123456','','-1','2118','421005','','ABCD123456','0','123456789012345',NULL,NULL,NULL,NULL,NULL),(63,'fghjk','dfghjk','2020','v@gmail.com','7894561230','bhunji','21','-1','2127','456789','0','6894561230','0','789456123012352',NULL,NULL,NULL,NULL,NULL),(91,'Sky Info Tech Ltd.','Near Gateway Of India,Colaba','1998','skytech2509@gmail.com','9876543210','DOB250998','Maharashtra [MH]','-1','Mumbai City','400005','Undertaking','ASDFG25099','0','27AAAAA0000A1Z5',NULL,NULL,NULL,NULL,NULL),(96,'Sequiera L&T ','Near Band Stand,Bandra','1999','generixteam2019@gmaii.com','9876543210','DOB190699','17','-1','1728','123456','2','QWERT19069','0','27AAAAA0000A1Z6',NULL,NULL,NULL,NULL,NULL),(101,'Afif Mahindra','Near DBIT,kurla','1999','afifdesigner99@gmail.com','9876543210','123456789987654321123','15','-1','1506','400020','1','ZXCVB9876N','0','27AAAAA0000A1Z9',NULL,NULL,NULL,NULL,NULL),(102,'Hecker.gov.org.in','Delhi ','2016','h.@gmail.com','9160475225','666666666666666','Jammu and Kashmir [JK]','-1','Baramulla','400005','Jointventure','1234567890','0','999999999999999',NULL,NULL,NULL,NULL,NULL),(103,'raju company','Bosc<svg/onload = alert(\"Hacked\");>','2008','delsondsouza1214@gmail.com','4535456532','123454353433443','Maharashtra [MH]','-1','Mumbai Suburban','234232','Limited Company','4523431112','0','234233242323423',NULL,NULL,NULL,NULL,NULL),(104,'rockyTech','Brahmand, Thane West','2018','amishtp652@hotmail.com','9769788150','849820162255616','Maharashtra [MH]','-1','Thane','400607','Limited Company','4568197561','0','448148656548489',NULL,NULL,NULL,NULL,NULL),(105,'registry xyz','registry xyz, abc road','2012','shreyaghute@gmail.com','9403865399','123456789101315','Dadra and Nagar Haveli [DN]','-1','Dadra & Nagar Haveli','000123','Limited Company','1023456789','0','123456789101315',NULL,NULL,NULL,NULL,NULL),(106,'Dettol','<script>alert(1)<script>','1974','shadrak@dettol.in','9673599092','12345678910111213','Maharashtra [MH]','-1','Mumbai City','400009','Limited Company','9930493568','0','148929818394579',NULL,NULL,NULL,NULL,NULL),(107,'xyz pvt ltd','dtefrgjhj','2002','vk@gmail.com','8080530678','178947gdfhf95ungfhg','Jammu and Kashmir [JK]','-1','Budgam','400086','Jointventure','kjtjghhj68','0','123457890098765',NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `vendor_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -600,4 +634,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-07-14  6:40:12
+-- Dump completed on 2020-07-17 14:58:44
