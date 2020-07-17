@@ -92,6 +92,9 @@ function next1() {
         input: 'number',
         confirmButtonText: 'Submit',
         showCancelButton: true,
+        inputValidator: (value) => {
+            if (value<0) return 'Invalid Bidding Amount '
+        },
     }).then((results) => {
         if (results) {
             if (results['value']) {
