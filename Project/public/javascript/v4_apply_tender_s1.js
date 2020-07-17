@@ -86,35 +86,6 @@ xhr.onload = function () {
 } */
 
 //Save and Next
-function next1() {
-    Swal.fire({
-        title: 'Enter Bidding Amount',
-        input: 'number',
-        confirmButtonText: 'Submit',
-        showCancelButton: true,
-        inputValidator: (value) => {
-            if (value<0) return 'Invalid Bidding Amount '
-        },
-    }).then((results) => {
-        if (results) {
-            if (results['value']) {
-                var xhr = new XMLHttpRequest()
-                xhr.open('POST', '/apply_tender')
-                xhr.setRequestHeader('Content-Type', 'application/json')
-                var data = JSON.stringify({ et_id: et_id, bid_amt: results['value'] })
-                xhr.send(data)
-                xhr.onload = function () {
-                    if (this.status == 200) {
-                        var resp = JSON.parse(this.responseText)
-                        var etd_id = resp.etd_id
-                        location = '/tender/payment?et_id=' + et_id + '&etd_id=' + etd_id
-                    } else if (this.status == 400) alert('Error 400')
-                    else alert('Some Error Occured')
-                }
-            }
-        }
-    })
-}
 function next(){
     Swal.mixin({
         confirmButtonText: 'Next &rarr;',
@@ -131,11 +102,16 @@ function next(){
                 title: 'Enter Bidding Amount',
                 inputValidator: (value) => {
                     if (value<0) return 'Invalid Bidding Amount '
+                    if (value='') return 'Invalid Bidding Amount '
                 },
             },
             {
-                input: 'textarea',
+                input: 'number',
                 title: 'Enter Time period',
+                inputValidator: (value) => {
+                    if (value<0) return 'Invalid Time period '
+                    if (value='') return 'Invalid Time period '
+                },
 
             },
         ])
