@@ -11,6 +11,7 @@ function checkVendorCookies(request, response, next) {
             response.clearCookie('vcd_id_e');
             response.clearCookie('vd_id_e');
             response.clearCookie('digi_access_e');
+            //@ts-ignore
             request.session.destroy(function (err) {
                 response.clearCookie('connect.sid');
             });
