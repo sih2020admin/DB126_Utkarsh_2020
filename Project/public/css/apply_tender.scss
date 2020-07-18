@@ -18,6 +18,9 @@ h1, h3, h2{
     font-weight: bolder;
     font-size: 1.5em;
 }
+h4{
+    text-align: left;
+}
 strong{
     color: var(--accent-color);
 }
@@ -164,6 +167,9 @@ select, input[type="date"]{
 }
 #next{
     padding-right: 20px;
+}
+.swal2-title{
+    font-weight: 500 !important;
 }
 .swal2-input:focus, .swal2-textarea:focus{
     outline: none !important;
