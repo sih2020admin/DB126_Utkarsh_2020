@@ -25,45 +25,50 @@
         <p>E-tendering website(name of our website) offers a medium to view, select and apply for tenders in a safest manner. From selecting a tender to bidding and payment, everything is simple, fast and secure. A good user-interface environment along with easy navigation and customer service is provided. </p><br>
         Welcome to Electronic Tendering System of Government of Maharashtra. This System is intended to be used by all Departments, Agencies and Corporations of Maharashtra for processing of the Tenders online. Suppliers and Contractors intending to do business with those Departments, Agencies and Corporations of Maharashtra who have migrated their processes online are invited to register on the Electronic Tendering System. New Suppliers and Contractors, click here to enroll.<br>
     </div>
-    <div class="tender_label"><h2> Current Tenders</h2></div>
-    <div class="tender_label"><h2> Upcoming Tenders</h2></div>
-    
-    <div class="table_cont">
-        <table>
-            <th class="first_th">Ref No</th>
-            <th>Title</th>
-            <th>Description</th>
-            <th class="last_th">Closing Date</th>
-        </table>
-        <table class="marquee_table" id="current">
-            {{#each tenders}}
-                <tr>
-                    <td><a href="/v1_login.html">{{et_tender_ref_no}}</a></td>
-                    <td>{{et_title}}</td>
-                    <td>{{et_tender_desc}}</td>
-                    <td>{{date et_last_date_apply}}</td>
-                </tr>
-            {{/each}}
-        </table> 
+    <div class="tender_table_container">
+        <div class="tender_table">
+            <div class="tender_label"><h2> Current Tenders</h2></div><br>    
+            <div class="table_cont">
+                <table>
+                    <th class="first_th">Ref No</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th class="last_th">Closing Date</th>
+                </table>
+                <table class="marquee_table" id="current">
+                    {{#each tenders}}
+                        <tr>
+                            <td><a href="/v1_login.html">{{et_tender_ref_no}}</a></td>
+                            <td>{{et_title}}</td>
+                            <td>{{et_tender_desc}}</td>
+                            <td>{{date et_last_date_apply}}</td>
+                        </tr>
+                    {{/each}}
+                </table> 
+            </div>
+        </div>
+        <div class="tender_table">
+            <div class="tender_label"><h2> Upcoming Tenders</h2></div><br>
+            <div class="table_cont">
+                <table>
+                    <th class="first_th">Ref No</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th class="last_th">Opening Date</th>
+                </table>
+                <table class="marquee_table" id="upcoming">
+                    {{#each tenders}}
+                        <tr>
+                            <td> {{et_tender_ref_no}}</td>
+                            <td>{{et_title}}</td>
+                            <td>{{et_tender_desc}}</td>
+                            <td>{{date et_last_date_apply}}</td>
+                        </tr>        
+                    {{/each}}
+                </table>
+            </div>
+        </div>      
     </div>
-    <div class="table_cont">
-        <table>
-            <th class="first_th">Ref No</th>
-            <th>Title</th>
-            <th>Description</th>
-            <th class="last_th">Opening Date</th>
-        </table>
-        <table class="marquee_table" id="upcoming">
-            {{#each tenders}}
-                <tr>
-                    <td> {{et_tender_ref_no}}</td>
-                    <td>{{et_title}}</td>
-                    <td>{{et_tender_desc}}</td>
-                    <td>{{date et_last_date_apply}}</td>
-                </tr>        
-            {{/each}}
-        </table>
-    </div>    
     {{> footer}}
 </body>
 <script>
