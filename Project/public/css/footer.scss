@@ -90,3 +90,23 @@ footer{
         }
     }
 }
+@media (max-width: 900px){
+    footer{
+        display: block ;
+        margin: auto;
+        text-align: center;
+        .sect + .sect{
+            margin-top: 50px;
+        }
+        .icons{
+            display: inline-block;
+
+            img{
+                width: 35px;
+            }
+            a + a{
+                margin-left: 15px;
+            }
+        }
+    }
+}

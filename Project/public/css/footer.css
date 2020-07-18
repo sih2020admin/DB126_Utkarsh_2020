@@ -106,4 +106,24 @@ footer .icons a {
 footer .icons img {
   width: 60%;
 }
+
+@media (max-width: 900px) {
+  footer {
+    display: block;
+    margin: auto;
+    text-align: center;
+  }
+  footer .sect + .sect {
+    margin-top: 50px;
+  }
+  footer .icons {
+    display: inline-block;
+  }
+  footer .icons img {
+    width: 35px;
+  }
+  footer .icons a + a {
+    margin-left: 15px;
+  }
+}
 /*# sourceMappingURL=footer.css.map */
