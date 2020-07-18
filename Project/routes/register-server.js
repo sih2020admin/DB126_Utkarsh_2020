@@ -5,6 +5,7 @@ var __importDefault =
         return mod && mod.__esModule ? mod : { default: mod }
     }
 Object.defineProperty(exports, '__esModule', { value: true })
+const  crypto = require('crypto')
 var express_1 = __importDefault(require('express'))
 var db_1 = __importDefault(require('./db'))
 var router = express_1.default.Router()
@@ -47,7 +48,7 @@ router.post('/register-data', function (request, response) {
     var c_mobile_number = contact_details.contact_contact
 
     var v_username = account_details.username
-    var v_password = account_details.password
+    var v_password = crypto.createHash('sha512').update(account_details.password).digest('hex')
 
     console.log('hello1')
     var sql =
