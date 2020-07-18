@@ -143,9 +143,6 @@ router.post('/update_application_status', function (req, res) {  // to be call f
 	var etd_id = req.body.etd_id;
 	var status = req.body.status;
 	console.log("update applications status tech called" + etd_id + " with status " + status)
-
-	//imp to mention where status = 111
-
 	
 	db_1.default.query('UPDATE e_tender_vendor SET is_approved="'+status+'" where etd_id="'+etd_id+'";', function (error, results, fields) {
 		if (error) {
@@ -163,12 +160,10 @@ router.post('/update_application_status', function (req, res) {  // to be call f
 router.post('/get_application', function (req, res) {  // to be call from see tender or apply tender
 
 	var et_id = req.body.et_id;
-	console.log("get applications tech called" + et_id)
+	var status = req.body.status;
+	console.log("update applications status tech called" + et_id + " with status " + status);
 
-	//imp to mention where status = 111
-
-	
-	db_1.default.query('SELECT et.et_id, et.et_title, et.et_tender_fee, et.et_tender_ref_no, et.et_bidding_date, v.vd_id, vc.vcd_name, vc.vcd_dob, vc.vcd_aadhar, vc.vcd_contact, vc.vcd_email, vc.vcd_designation, v.v_name, v.v_address, v.v_yoe, v.v_email, v.v_mobile, v.v_reg_no, v.v_legal_id, v.v_pan, v.v_gst, f.etd_id, f.furi1, f.furi2, p.txn_id, p.txn_amount, p.txn_timestamp, p.bank_name, p.resp_message, e.bidding_amt, e.location, e.timestamp FROM `e_tender_vendor` as e INNER JOIN e_tender_details as et ON et.et_id=e.et_id INNER JOIN `vendor_details` as v ON e.vd_id=v.vd_id INNER JOIN v_contact_details as vc ON e.vcd_id = vc.vcd_id INNER JOIN `file_uri` as f ON e.etd_id=f.etd_id INNER JOIN payment_transactions as p ON p.etd_id = e.etd_id WHERE et.et_id = ' + et_id + ' and e.is_approved="0";', function (error, results, fields) {
+	db_1.default.query('SELECT et.et_id, et.et_title, et.et_tender_fee, et.et_tender_ref_no, et.et_bidding_date, v.vd_id, vc.vcd_name, vc.vcd_dob, vc.vcd_aadhar, vc.vcd_contact, vc.vcd_email, vc.vcd_designation, v.v_name, v.v_address, v.v_yoe, v.v_email, v.v_mobile, v.v_reg_no, v.v_legal_id, v.v_pan, v.v_gst, f.etd_id, f.furi1, f.furi2, p.txn_id, p.txn_amount, p.txn_timestamp, p.bank_name, p.resp_message, e.bidding_amt, e.location, e.timestamp FROM `e_tender_vendor` as e INNER JOIN e_tender_details as et ON et.et_id=e.et_id INNER JOIN `vendor_details` as v ON e.vd_id=v.vd_id INNER JOIN v_contact_details as vc ON e.vcd_id = vc.vcd_id INNER JOIN `file_uri` as f ON e.etd_id=f.etd_id INNER JOIN payment_transactions as p ON p.etd_id = e.etd_id WHERE et.et_id = ' + et_id + ' and e.is_approved="' + status +'";', function (error, results, fields) {
 		if (error) {
 			console.log("error", error);
 			res.sendStatus(400);
@@ -179,6 +174,8 @@ router.post('/get_application', function (req, res) {  // to be call from see te
 		}
 	});
 });
+
+
 
 /* ----------------------------- End of Two stage approval process code -------------------------- */
 
