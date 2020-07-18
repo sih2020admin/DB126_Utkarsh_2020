@@ -279,6 +279,11 @@ function show_files(str) {
 //This function will get content of a directory (using it's id)from digilocker
 //will fetch self_uploaded documents from digilocker
 function get_files() {
+    if(parent_id.length == 0) {
+        document.getElementById("back").style.display="none";
+    } else {
+        document.getElementById("back").style.display="block";
+    }
     //creating xhr request for api call
     var xhr = new XMLHttpRequest()
     url = 'https://165.22.210.37:8081/fetch_files'
