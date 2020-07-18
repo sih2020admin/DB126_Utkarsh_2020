@@ -80,7 +80,23 @@
     console.log(speed1);
 
     document.getElementById("home_link").classList.add("activ")
+    
+    window.onscroll = function() {myFunction()};
+    function myFunction() {
+		
+		if (document.body.scrollTop > 0 || document.documentElement.scrollTop > 0) {
 
+           element = document.querySelector('header'); 
+           element.style.removeProperty('background'); 
+           element.style.setProperty('background', 'linear-gradient(to bottom, rgba(103, 62, 253, 1) 0%,rgba(255,255,255,0) 100%)', 'important'); 
+		}
+		if (document.body.scrollTop > 30 || document.documentElement.scrollTop > 30) {
+
+           element = document.querySelector('header'); 
+           element.style.removeProperty('background'); 
+           element.style.setProperty('background', '#663EFD', 'important'); 
+		}
+    }
 </script>
     <script src="https://kit.fontawesome.com/523ff21025.js" crossorigin="anonymous"></script>
 	
