@@ -39,8 +39,8 @@
               <td>{{et_title}}</td>
               <td>{{et_tender_desc}}</td>
               <td>{{bidding_amt}}</td>
-              <td><a href=/tender/preview?et_id={{et_id}}&etd_id={{etd_id}}>View</a></td>
-              <td>Submitted</td>
+              <td><a href={{profile_url status et_id etd_id}}>View</a></td>
+              <td>{{profile_status status}}</td>
             </tr>
           {{/each}}
           </table>

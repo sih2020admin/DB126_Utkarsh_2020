@@ -53,7 +53,7 @@ app.use(session({
 app = load_routes_1.loadStaticFiles(app);
 //app.use(morgan('dev'))
 app.use(redirect_1.redirectToLoginPage, redirect_1.redirectToProfilePage);
-app.use(redirect_2.redirectToAdminLoginPage, redirect_2.redirectToAdminProfilePage, redirect_2.checkVendorCookies);
+app.use(redirect_2.redirectToAdminLoginPage, redirect_2.redirectToAdminProfilePage);
 app.use('/tender/apply', tender_1.validateURLParamsApply, tender_1.validateURLParamsDApply, tender_1.applyTender);
 app.use('/tender/payment', tender_1.validateURLParams, tender_1.validateURLParamsD);
 /* app.use('/tender/confirmation', validateURLParams, validateURLParamsD, confirmTender)
