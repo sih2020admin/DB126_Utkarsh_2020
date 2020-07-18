@@ -509,4 +509,10 @@ button:hover {
 .container .progressbar li.active + li:after {
   background-color: var(--main_color);
 }
+
+.swal2-input:focus, .swal2-textarea:focus {
+  outline: none !important;
+  -webkit-box-shadow: 0 0 0 1px var(--main_color) !important;
+          box-shadow: 0 0 0 1px var(--main_color) !important;
+}
 /*# sourceMappingURL=v4_apply_tender_s3.css.map */

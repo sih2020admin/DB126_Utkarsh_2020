@@ -446,3 +446,7 @@ button:hover {
   }
 }
 
+.swal2-input:focus, .swal2-textarea:focus{
+  outline: none !important;
+  box-shadow: 0 0 0 1px var(--main_color) !important;
+}

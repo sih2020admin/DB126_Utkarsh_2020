@@ -125,10 +125,10 @@ function next(){
                 Swal.fire({
                     title: 'All done!',
                     html: `
-				        <h3>Confirmation:</h3>
-				        
-				        <h4>Bidding amount:</h4>${result.value[0]}<br>
-				        <h4>Time period:</h4>${result.value[1]}<br>	
+				        <h3 style="text-align:left;">Confirmation</h3>
+				        <br>
+				        <h4>Bidding amount: &nbsp;${result.value[0]}</h4><br>
+				        <h4>Time period: &nbsp;${result.value[1]}</h4><br>	
 				      `,
                     confirmButtonText: 'Confirm',
                     showCancelButton: true,
