@@ -125,7 +125,7 @@ h1, h3, h2, h4{
         // outline: solid #000000;
         padding: 1em 0.5em;
         transition: all ease-in-out 0.3s;
-        z-index: 9999999999999999999999999999999;
+        z-index: 5;
         position: relative;
     }
 
@@ -168,6 +168,7 @@ header{
     left: 0;
     border: 0 !important;
     box-shadow: none !important;
+    z-index: 999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999;
     a{
         color: #fff !important;
     }
