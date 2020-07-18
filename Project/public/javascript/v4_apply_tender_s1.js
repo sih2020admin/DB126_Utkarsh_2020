@@ -108,7 +108,7 @@ function next(){
             },
             {
                 input: 'number',
-                title: 'Enter Time period',
+                title: 'Enter Time period(In Days)',
                 inputValidator: (value) => {
                     if (value<0) return 'Invalid Time period '
                     if (value=='') return 'Invalid Time period '
