@@ -282,7 +282,7 @@ function get_files() {
     if(parent_id.length == 0) {
         document.getElementById("back").style.display="none";
     } else {
-        document.getElementById("back").style.display="block";
+        document.getElementById("back").style.display="";
     }
     //creating xhr request for api call
     var xhr = new XMLHttpRequest()
