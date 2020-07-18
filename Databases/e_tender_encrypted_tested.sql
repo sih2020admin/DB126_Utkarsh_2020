@@ -61,7 +61,7 @@ CREATE TABLE `admin_detail` (
   `ad_dept_id` int NOT NULL,
   `ad_addr` varchar(30) NOT NULL,
   `ad_org_id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) 
 
 --
 -- Dumping data for table `admin_detail`
@@ -82,7 +82,7 @@ CREATE TABLE `city` (
   `c_id` int NOT NULL,
   `c_name` varchar(30) NOT NULL,
   `st_id` tinyint NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) 
 
 --
 -- Dumping data for table `city`
@@ -1609,7 +1609,7 @@ INSERT INTO `city` (`c_id`, `c_name`, `st_id`) VALUES
 CREATE TABLE `department` (
   `dept_id` int NOT NULL,
   `dept_name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) 
 
 --
 -- Dumping data for table `department`
@@ -1631,7 +1631,7 @@ CREATE TABLE `districts` (
   `d_id` tinyint NOT NULL,
   `d_name` varchar(25) NOT NULL,
   `st_id` tinyint NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) 
 
 -- --------------------------------------------------------
 
@@ -1642,7 +1642,7 @@ CREATE TABLE `districts` (
 CREATE TABLE `documents` (
   `doc_id` int NOT NULL,
   `doc_name` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) 
 
 --
 -- Dumping data for table `documents`
@@ -1671,7 +1671,7 @@ CREATE TABLE `e_tender_details` (
   `dept_id` int NOT NULL,
   `is_approved` tinyint NOT NULL DEFAULT '0',
   `maximum_bid` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) 
 
 --
 -- Dumping data for table `e_tender_details`
@@ -1706,7 +1706,7 @@ CREATE TABLE `e_tender_vendor` (
   `timestamp` varchar(50) DEFAULT NULL,
   `time_period` varbinary(255) DEFAULT NULL,
   `reasons` varbinary(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) 
 
 --
 -- Dumping data for table `e_tender_vendor`
@@ -1779,7 +1779,7 @@ INSERT INTO `file_uri` (`furi_id`, `furi1`, `furi2`, `etd_id`, `f_type`) VALUES
 CREATE TABLE `legal_status_details` (
   `l_id` tinyint NOT NULL,
   `l_name` varchar(15) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) 
 
 --
 -- Dumping data for table `legal_status_details`
@@ -1805,7 +1805,7 @@ CREATE TABLE `log_in_details` (
   `role_id` tinyint NOT NULL,
   `vcd_id` int DEFAULT NULL,
   `ad_id` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) 
 
 --
 -- Dumping data for table `log_in_details`
@@ -1843,7 +1843,7 @@ CREATE TABLE `org_details` (
   `org_state` varchar(40) NOT NULL,
   `org_dist` varchar(5) NOT NULL,
   `org_pin` varchar(6) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) 
 
 --
 -- Dumping data for table `org_details`
@@ -1906,7 +1906,7 @@ INSERT INTO `payment_transactions` (`etd_id`, `txn_id`, `order_id`, `txn_amount`
 CREATE TABLE `role_details` (
   `role_id` tinyint NOT NULL,
   `role_name` varchar(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) 
 
 --
 -- Dumping data for table `role_details`
@@ -1945,7 +1945,7 @@ INSERT INTO `sessions` (`session_id`, `expires`, `data`) VALUES
 CREATE TABLE `states` (
   `st_id` tinyint NOT NULL,
   `st_name` varchar(40) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) 
 
 --
 -- Dumping data for table `states`
@@ -1997,7 +1997,7 @@ INSERT INTO `states` (`st_id`, `st_name`) VALUES
 CREATE TABLE `tendor_req` (
   `tei_id` int NOT NULL,
   `trd_id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) 
 
 -- --------------------------------------------------------
 
@@ -2026,7 +2026,7 @@ CREATE TABLE `vendor_details` (
   `equipment` int DEFAULT NULL,
   `india_equipment` int DEFAULT NULL,
   `rating` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) 
 
 --
 -- Dumping data for table `vendor_details`
@@ -2057,7 +2057,7 @@ CREATE TABLE `vendor_file` (
   `vd_id` int NOT NULL,
   `file_uri` varbinary(255) NOT NULL,
   `file_type` varchar(35) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) 
 
 -- --------------------------------------------------------
 
@@ -2076,7 +2076,7 @@ CREATE TABLE `v_contact_details` (
   `vcd_designation` varchar(20) NOT NULL,
   `vd_id` int NOT NULL,
   `digi_access` tinyint NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) 
 
 --
 -- Dumping data for table `v_contact_details`

@@ -125,7 +125,6 @@ router.post('/', (request, response) => {
 });
 router.post('/redirect', (request, response) => {
     var result = request.body;
-    var key=process.env["ENCRYPTION_KEY"];
     console.log(request.params);
     /* var isValidChecksum = checksum.verifychecksum(params, salt, result.CHECKSUMHASH)
     if (isValidChecksum) {
@@ -147,7 +146,7 @@ router.post('/redirect', (request, response) => {
                     }
                     else {
                         debug('Successfully inserted in payment database');
-                        db_1.default.query(`update e_tender_vendor set status=AES_ENCRYPT("110",${key}) where et_id=${i.et_id} and etd_id=${i.etd_id}`, (error, result) => {
+                        db_1.default.query(`update e_tender_vendor set status=110 where et_id=${i.et_id} and etd_id=${i.etd_id}`, (error, result) => {
                             if (error) {
                                 debug('Error in updating in e-tender-vendor');
                             }

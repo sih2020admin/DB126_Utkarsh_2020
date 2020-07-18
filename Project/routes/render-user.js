@@ -140,12 +140,11 @@ router.get('/tender/preview', (request, response) => {
 });
 router.get('/tender/payment', (request, response) => {
     let user = user_1.isUser(request);
-    var key=process.env["ENCRYPTION_KEY"];
     Promise.all([user_1.getUserUsername(request), tender_1.getPaymentDetails(request)])
         .then((results) => {
         console.table({ value: results[1][0][0]['et_tender_fee'] });
         if (results[1][0][0]['et_tender_fee'] === '0') {
-            connection_1.default.execute(`update e_tender_vendor set status=AES_ENCRYPT("110",${key}) where et_id=${request.query['et_id']} and etd_id=${request.query['etd_id']}`).then((value) => {
+            connection_1.default.execute(`update e_tender_vendor set status=110 where et_id=${request.query['et_id']} and etd_id=${request.query['etd_id']}`).then((value) => {
                 response.redirect(`/tender/upload-documents?et_id=${request.query['et_id']}&etd_id=${request.query['etd_id']}`);
             });
         }
