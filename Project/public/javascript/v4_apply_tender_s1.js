@@ -86,32 +86,6 @@ xhr.onload = function () {
 } */
 
 //Save and Next
-function next1() {
-    Swal.fire({
-        title: 'Enter Bidding Amount',
-        input: 'number',
-        confirmButtonText: 'Submit',
-        showCancelButton: true,
-    }).then((results) => {
-        if (results) {
-            if (results['value']) {
-                var xhr = new XMLHttpRequest()
-                xhr.open('POST', '/apply_tender')
-                xhr.setRequestHeader('Content-Type', 'application/json')
-                var data = JSON.stringify({ et_id: et_id, bid_amt: results['value'] })
-                xhr.send(data)
-                xhr.onload = function () {
-                    if (this.status == 200) {
-                        var resp = JSON.parse(this.responseText)
-                        var etd_id = resp.etd_id
-                        location = '/tender/payment?et_id=' + et_id + '&etd_id=' + etd_id
-                    } else if (this.status == 400) alert('Error 400')
-                    else alert('Some Error Occured')
-                }
-            }
-        }
-    })
-}
 function next(){
     Swal.mixin({
         confirmButtonText: 'Next &rarr;',
@@ -126,10 +100,21 @@ function next(){
             {
                 input: 'number',
                 title: 'Enter Bidding Amount',
+                inputValidator: (value) => {
+                    if (value<0) return 'Invalid Bidding Amount '
+                    if (value=='') return 'Invalid Bidding Amount '
+		   if (value==0) return 'Invalid Bidding Amount '
+                },
             },
             {
-                input: 'textarea',
-                title: 'Enter Time period',
+                input: 'number',
+                title: 'Enter Time period(In Days)',
+                inputValidator: (value) => {
+                    if (value<0) return 'Invalid Time period '
+                    if (value=='') return 'Invalid Time period '
+                    if (value==0) return 'Invalid Time Period '
+	
+},
 
             },
         ])
@@ -140,10 +125,10 @@ function next(){
                 Swal.fire({
                     title: 'All done!',
                     html: `
-				        <h3>Confirmation:</h3>
-				        
-				        <h4>Bidding amount:</h4>${result.value[0]}<br>
-				        <h4>Time period:</h4>${result.value[1]}<br>	
+				        <h3 style="text-align:left;">Confirmation</h3>
+				        <br>
+				        <h4>Bidding amount: &nbsp;${result.value[0]}</h4><br>
+				        <h4>Time period: &nbsp;${result.value[1]}</h4><br>	
 				      `,
                     confirmButtonText: 'Confirm',
                     showCancelButton: true,

@@ -89,12 +89,12 @@ h1{
             padding: 10px;
             margin: 10px;
             color: var(--text_color);
-            box-shadow: none !important;
+            // box-shadow: none !important;
         }
         input:focus, textarea:focus, select:focus {
             outline: none;
             box-shadow: 0 0 0 1px var(--main_color);
-          }
+        }
         input[type=number]{
             appearance: textfield;
             padding: 0px;
