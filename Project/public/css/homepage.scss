@@ -62,15 +62,22 @@ h1, h3, h2, h4{
 }
 
 .intro{
-    margin: 60px 40px;
+    margin: 60px 40px 0;
     color: var(--accent-dark-color);
     max-width: 1400px;
 }
+.tender_table_container{
+    display: flex;
+    padding: 40px;
+}
+.tender_table + .tender_table{
+    margin-left: 20px;
+}
 .tender_label{
-    width: 45%;
-    display: inline-block;
-    margin-left: 40px;
-    margin-bottom: 10px;
+    // width: 45%;
+    //display: inline-block;
+    // margin-left: 40px;
+    // margin-bottom: 10px;
 
     h2{
         text-align: center;
@@ -78,15 +85,15 @@ h1, h3, h2, h4{
 }
 
 .table_cont{
-    display: inline-block;
-    margin-left: 40px;
-    margin-bottom: 40px;
+    //display: inline-block;
+    // margin-left: 40px;
+    // margin-bottom: 40px;
     height: 240px;
     border: 1px solid var(--main_color);
     border-radius: 10px;
     padding: 0 0px;
     overflow-y: hidden;
-    width: 45%;
+    // width: 45%;
 
     table {
         word-wrap: break-word;
@@ -125,7 +132,7 @@ h1, h3, h2, h4{
         // outline: solid #000000;
         padding: 1em 0.5em;
         transition: all ease-in-out 0.3s;
-        z-index: 9999999999999999999999999999999;
+        z-index: 5;
         position: relative;
     }
 
@@ -168,6 +175,7 @@ header{
     left: 0;
     border: 0 !important;
     box-shadow: none !important;
+    z-index: 999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999;
     a{
         color: #fff !important;
     }
@@ -194,8 +202,12 @@ header{
 footer{
     position: relative;
 }
-// @media (min-height: 960px){
-//    footer{
-//        position: fixed;
-//    }
-// }
+@media (max-width: 900px){
+    .tender_table_container{
+        display: block;
+    }
+    .tender_table + .tender_table{
+        margin-left: 0;
+        margin-top: 20px;
+    }
+}

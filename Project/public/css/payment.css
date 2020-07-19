@@ -80,4 +80,14 @@ input::-webkit-inner-spin-button {
   font-style: italic;
   font-size: smaller;
 }
+
+.swal2-title {
+  font-weight: 500 !important;
+}
+
+.swal2-input:focus, .swal2-textarea:focus {
+  outline: none !important;
+  -webkit-box-shadow: 0 0 0 1px var(--main_color) !important;
+          box-shadow: 0 0 0 1px var(--main_color) !important;
+}
 /*# sourceMappingURL=payment.css.map */
