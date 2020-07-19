@@ -66,6 +66,53 @@ label{
 
 // }
 
+h1, h2, h3, label {
+    color: var(--main_color);
+    text-align: center;
+}
+label {
+    color: black;
+}
+strong{
+    font-family: 'Open Sans', 'Sans serif';
+    font-weight: 100;
+    color:  #a6a6a6;
+    size: .5rem;
+}
+.cont{
+    background-color: rgb(255, 255, 255);
+    width: fit-content;
+    width: 80%;
+    min-width: 800px;
+    max-width: 1200px;
+    height: auto;
+    padding: 30px 40px;
+    margin: auto;
+    margin-top: 20px;   
+    border-radius: 10px; 
+    box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
+    transition: all .2s ease-in-out; 
+
+    button{
+        width: 100px;
+        height: 30px;
+        font-size: 16px;
+        font-weight: 300;
+        border-radius: 5px; 
+        background-color: var(--main_color);
+        border: none;
+        color: #ffffff;
+    }
+button:hover{
+        cursor: pointer;
+        background-color: #ffffff;
+        color: var(--main_color);
+        border: solid;
+        border-width: 0.4px;
+        border-color: var(--main_color);
+    }
+
+}
 button{
     width: 150px;
     height: 30px;
@@ -89,47 +136,37 @@ button:hover{
     margin: 60px;
 }
 .technical_details{
-    font-family: 'Montserrat', sans-serif;
-    margin: 40px;
+    margin: 40px 0;
     padding: 5px;
-}
-table {
-    font-size: 0.9em;
-    margin: auto;
-    max-width: 100%;
-    border-radius: 1em;
-    border-collapse: collapse;
-    overflow: hidden;
-    box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
+    table {
+        margin: auto;
+        max-width: 100%;
+        border-radius: 1em;
+        border-collapse: collapse;
+        overflow: hidden;
+        box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
 
-    a{
-        text-decoration: none;
-        color: var(--main_color);
+        a{
+            text-decoration: none;
+        }
+        a:hover{
+            text-decoration: underline;
+        }
     }
-    a:hover{
-        text-decoration: underline;
+
+    tr:nth-child(odd) {
+    background-color: rgba(141, 111, 251, 0.061)
     }
-}
 
-tr:nth-child(odd) {
-background-color: rgba(141, 111, 251, 0.061)
-}
+    th {
+    background-color: var(--main_color);
+    color: #fff;
+    font-weight: lighter;
 
-th {
-background-color: var(--main_color);
-color: #fff;
-font-weight: lighter;
-white-space: nowrap;
+    }
 
-}
+    th,td {
+    padding: 0.5em 1em;
+    } 
 
-th,td {
-    padding: 1em 1em;
-    vertical-align: baseline;
-}
-
-header{
-position: sticky;
-top: 0;
-left: 0;
 }

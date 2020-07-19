@@ -9,9 +9,35 @@
 </head>
 <body>
     {{> header}}
-    <div id="main_content">
-        <div ></div>
-    </div>
+    <div class="cont" >
+            <table>
+                <tr>
+                    <td><label><strong>Tender Id: </strong></label></td>
+                    <td><label id="et_id"></label></td>
+                    <td><label><strong>Reference No: </strong></label></td>
+                    <td><label id="ref"></label></td>
+                    <td><label><strong>Tender Fee: </strong></label></td>
+                    <td><label id="fee"></label></td>
+                </tr>
+                 <tr>
+                    <td><label><strong>File URL: </strong></label></td>
+                    <td><label id="file"></label></td>
+                    <td><label><strong>Bid Opening Date: </strong></label></td>
+                    <td><label id="bid"></label></td>
+                    <td><label><strong>Number of Application Submitted: </strong></label></td>
+                    <td><label id="app"></label></td>
+                </tr>
+                
+            </table>
+            <table>
+                <tr>
+                    <td><label><strong>Description: </strong></label></td>
+                    <td><label id="desc"></label></td>
+                </tr>
+
+            </table>
+        </div>
+    <div id="main_content"></div>
     <div class="submit_button">
         <button type="button" style="align-items: center;">Save And Next</button>
     </div>

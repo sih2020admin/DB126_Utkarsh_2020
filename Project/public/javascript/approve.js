@@ -4,7 +4,7 @@ var response;
 var xhr = new XMLHttpRequest();
 xhr.open('POST', '/get_application');
 xhr.setRequestHeader('Content-Type', 'application/json');
-var data = JSON.stringify({et_id:et_id});   
+var data = JSON.stringify({et_id:et_id,status:"0"});   
 xhr.send(data);
 
 xhr.onload = function () {
@@ -13,6 +13,14 @@ xhr.onload = function () {
         var technical_div = document.getElementById('main_content');
         var flag=0;
         console.log(response);
+        document.getElementById("et_id").innerHTML = response[0].et_id;
+        document.getElementById("ref").innerHTML = response[0].et_tender_ref_no;
+        document.getElementById("fee").innerHTML = response[0].et_tender_fee;
+        document.getElementById("file").innerHTML = response[0].et_tender_fee;
+        document.getElementById("bid").innerHTML = response[0].et_bidding_date.slice(0,-14);
+        document.getElementById("app").innerHTML = response[0].et_tender_fee;
+        document.getElementById("desc").innerHTML = response[0].et_tender_fee;
+
         if (response.length > 0) {
                 var technical_content = `<div class="technical_details">
                 <table>
