@@ -76,6 +76,9 @@ footer{
         margin-top: 20px;
         //font-weight: bold;
     }
+    a:hover{
+        opacity: 0.5;
+    }
 
     .icons{
         margin-top: 20px;
@@ -86,7 +89,7 @@ footer{
             display: inline;
         }
         img{
-            width: 60%;
+            width: 45px;
         }
     }
 }

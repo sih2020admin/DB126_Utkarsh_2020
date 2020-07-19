@@ -89,6 +89,10 @@ footer a {
   margin-top: 20px;
 }
 
+footer a:hover {
+  opacity: 0.5;
+}
+
 footer .icons {
   margin-top: 20px;
   display: -webkit-box;
@@ -104,7 +108,7 @@ footer .icons a {
 }
 
 footer .icons img {
-  width: 60%;
+  width: 45px;
 }
 
 @media (max-width: 900px) {
