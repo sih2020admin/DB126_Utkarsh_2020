@@ -350,7 +350,7 @@ function check_file(res, vcd_id, furi) {
 
         rp(options)
             .on('data', function (datachunk) {
-				console.log("sending ok from check file");
+				console.log("sending ok from check file", datachunk);
                 res.sendStatus(200);
             })
             .catch(function (err) {
