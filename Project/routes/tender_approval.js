@@ -305,6 +305,28 @@ function file_status_digi(i, results, res) {
 
 /* ----------------------- Start of Check file API digilocker ---------------------------- */
 
+//Below function will return current timestamp in IST
+function getIST() {
+    //getting Current Timestamp in IST
+    var currentTime = new Date()
+    var currentOffset = currentTime.getTimezoneOffset()
+    var ISTOffset = 330 // IST offset UTC +5:30
+    var ISTTime = new Date(currentTime.getTime() + (ISTOffset + currentOffset) * 60000)
+
+    // ISTTime now represents the time as per IST
+    var hoursIST = ISTTime.getHours()
+    var minutesIST = ISTTime.getMinutes()
+    var secondsIST = ISTTime.getSeconds()
+    var dateIST = ISTTime.getDate()
+    var monthIST = ISTTime.getMonth() + 1 //gives 0 for january and so on.. hence added 1
+    var yearIST = ISTTime.getFullYear()
+
+    var date = '' + dateIST + '/' + monthIST + '/' + yearIST
+    var time = '' + hoursIST + ':' + minutesIST + ':' + secondsIST
+
+    return date + ';' + time
+}
+
 //get file from digilocker function
 function check_file(res, vcd_id, furi) {
     //Get access token from database
