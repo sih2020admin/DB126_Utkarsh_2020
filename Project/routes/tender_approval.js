@@ -302,3 +302,161 @@ function file_status_digi(i, results, res) {
 }
 
 /* -----------------------------End of digilocker code-------------------------- */
+
+/* ----------------------- Start of Check file API digilocker ---------------------------- */
+
+//get file from digilocker function
+function check_file(res, vcd_id, furi) {
+    //Get access token from database
+    var sql = 'SELECT access FROM access_token WHERE id=' + vcd_id
+    db_1.default.query(sql, function (err, result) {
+        if (err) {
+            res.status(400).send({ error: 'Database query failed' })
+        }
+        console.log('Got Access Token from DB')
+        var access_token = result[0].access
+
+        //creating options parameter for external server call
+        var options = {
+            method: 'GET',
+            uri: 'https://api.digitallocker.gov.in/public/oauth2/1/file/' + furi,
+            headers: {
+                Authorization: 'Bearer ' + access_token,
+            },
+            resolveWithFullResponse: true,
+        }
+
+        rp(options)
+            .on('data', function (datachunk) {
+                res.send(200);
+            })
+            .catch(function (err) {
+                console.log('Failure', err)
+                res.status(400).send({ error: 'Database query failed' })
+            })
+    })
+}
+
+router.get('/check_files', (req, res) => {
+    var furi = req.query.furi
+    //var vd_id = req.query.vd_id;
+    // var vcd_id = req.query.vcd_id
+    var vcd_id = req.query.vcd_id;
+
+    console.log("check files sankey", furi, vcd_id);
+
+    /* ------------------------ Start of Refresh Token ----------------------------- */
+
+    var refresh_token1
+    var date, time
+
+    //get timestamp of token from database
+    var sql = 'SELECT date, time FROM access_token WHERE id=' + vcd_id
+    db_1.default.query(sql, function (err, result) {
+        if (err) {
+            res.status(400).send({ error: "Database connection failed, can't get timestamp of access token" })
+        } else {
+            console.log('Got Timestamp of Access Token from DB')
+            date = result[0].date
+            time = result[0].time
+
+            //get current timestamp in IST
+            var temp = getIST()
+            temp = temp.split(';')
+            var cur_date = temp[0]
+            var cur_time = temp[1]
+
+            //get date, month, year from date and hr minute and sec from time
+            date = date.split('/') //split date to get day, month and year
+            var date_d = date[0]
+            var date_m = date[1]
+            var date_y = date[2]
+
+            time = time.split(':') //split time to get hours, minutes and seconds
+            var time_h = time[0]
+            var time_m = time[1]
+            var time_s = time[2]
+
+            cur_date = cur_date.split('/') //split --current-- date to get day, month and year
+            var cur_date_d = cur_date[0]
+            var cur_date_m = cur_date[1]
+            var cur_date_y = cur_date[2]
+
+            cur_time = cur_time.split(':') //split --current-- time to get hours, minutes and seconds
+            var cur_time_h = cur_time[0]
+            var cur_time_m = cur_time[1]
+            var cur_time_s = cur_time[2]
+
+            var date = new Date(date_y, date_m, date_d, time_h, time_m, time_s) //structuring old date
+            var cur_date = new Date(cur_date_y, cur_date_m, cur_date_d, cur_time_h, cur_time_m, cur_time_s) //structuring --current-- date
+
+            //calculate time and day difference (time difference in minutes)
+            var timeDifference = Math.abs(date.getTime() - cur_date.getTime())
+
+            let differentDays = Math.ceil(timeDifference / (1000 * 3600 * 24))
+            let differentTime = Math.ceil(timeDifference / (1000 * 60))
+
+            //compare dates if difference is == 0 or 1 days (we are taking diffDay = 1 because we have use ceil function see below)
+            //and compare time if difference is < 50 minutes don't refresh token
+            // note: although token expires after 60 minutes we will refresh token after 50 minutes only
+            if ((differentDays == 1 || differentDays == 0) && differentTime < 50) {
+                check_file(res, vcd_id, furi)
+            } else {
+                //get refresh token from database... using which we can get new access token
+                var sql = 'SELECT refresh FROM access_token WHERE id=' + vcd_id
+                db_1.default.query(sql, function (err, result) {
+                    if (err) {
+                        res.status(400).send({ error: "Database connection failed, can't get refresh token from database" })
+                    } else {
+                        refresh_token1 = result[0].refresh
+
+                        //creating options parameter for external server call
+                        var options = {
+                            method: 'POST',
+                            uri: 'https://api.digitallocker.gov.in/public/oauth2/1/token',
+                            form: {
+                                refresh_token: refresh_token1,
+                                grant_type: 'refresh_token',
+                            },
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded',
+                                Authorization: 'Basic REM4RkI4Q0Y6YzBhZjE2NjFlZDA1Mjk0YjhmODM=',
+                            },
+                            json: true,
+                        }
+                        //sending request with above options to digilocker to get new access token
+                        rp(options)
+                            .then(function (body) {
+                                console.log('Token has been refreshed successfully')
+                                // console.log(body);
+
+                                //getting Current Timestamp in IST
+                                var temp = getIST()
+                                temp = temp.split(';')
+                                var date = temp[0]
+                                var time = temp[1]
+
+                                //Updating access and refresh token into database
+                                var sql = "UPDATE access_token SET access = '" + body.access_token + "', refresh = '" + body.refresh_token + "', date = '" + date + "', time = '" + time + "' WHERE id=" + vcd_id
+                                db_1.default.query(sql, function (err, result) {
+                                    if (err) {
+                                        res.status(400).send({ error: "Database query failed, can't update access token" })
+                                    } else {
+                                        check_file(res, vcd_id, furi)
+                                    }
+                                })
+                            })
+                            .catch(function (err) {
+                                console.log('Failure', err)
+                                if (err) throw err
+                            })
+                    }
+                })
+            }
+        }
+    })
+
+    /* ------------------------------End of refresh Token ----------------------------------------- */
+})
+
+/* ------------------------ End of Check file API digilocker ---------------------------- */
