@@ -350,7 +350,7 @@ function check_file(res, vcd_id, furi) {
 
 		rp(options)
 			.then(function() {
-				console.log("sending ok from check file");
+				// console.log("sending ok from check file");
                 res.sendStatus(200);
 			})
             /*.on('data', function (datachunk) {
@@ -359,7 +359,7 @@ function check_file(res, vcd_id, furi) {
             })*/
             .catch(function (err) {
                 console.log('Failure', err)
-                res.status(400).send({ error: 'Database query failed' })
+                res.status(400).send({ error: 'File Not Found' })
             })
     })
 }
