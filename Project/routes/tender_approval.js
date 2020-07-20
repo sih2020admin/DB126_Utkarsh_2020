@@ -348,11 +348,15 @@ function check_file(res, vcd_id, furi) {
             resolveWithFullResponse: true,
         }
 
-        rp(options)
-            .on('data', function (datachunk) {
+		rp(options)
+			.then(function() {
 				console.log("sending ok from check file", datachunk);
                 res.sendStatus(200);
-            })
+			})
+            /*.on('data', function (datachunk) {
+				console.log("sending ok from check file", datachunk);
+                res.sendStatus(200);
+            })*/
             .catch(function (err) {
                 console.log('Failure', err)
                 res.status(400).send({ error: 'Database query failed' })
