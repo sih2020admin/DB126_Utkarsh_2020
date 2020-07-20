@@ -345,7 +345,7 @@ function check_file(res, vcd_id, furi) {
             headers: {
                 Authorization: 'Bearer ' + access_token,
             },
-            resolveWithFullResponse: true,
+            // resolveWithFullResponse: true,
         }
 
 		rp(options)
