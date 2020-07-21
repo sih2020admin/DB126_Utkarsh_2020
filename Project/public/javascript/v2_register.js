@@ -32,6 +32,10 @@ var legal_status;
 var pan_number;
 var gst_register_number;
 var is_verified;
+var schemes;
+var staff_count;
+var total_equipment;
+var made_in_india_equipment;
 
     
 
@@ -131,7 +135,7 @@ $('#account_button').on('click', function () {
 });
 // validation of company details
 $('#company_button').on('click', function () {
-    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m;
+    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m , _n, _o, _p, _q;
     company_name = (_a = $('#company_name').val()) === null || _a === void 0 ? void 0 : _a.toString();
     company_address = (_b = $('#company_address').val()) === null || _b === void 0 ? void 0 : _b.toString();
     company_email = (_c = $('#company_email').val()) === null || _c === void 0 ? void 0 : _c.toString();
@@ -144,7 +148,11 @@ $('#company_button').on('click', function () {
     legal_status = (_k = $('#legal_status').val()) === null || _k === void 0 ? void 0 : _k.toString();
     pan_number = (_l = $('#pan_number').val()) === null || _l === void 0 ? void 0 : _l.toString();
     gst_register_number = (_m = $('#gst_register_number').val()) === null || _m === void 0 ? void 0 : _m.toString();
-    var check_company = company_validate(company_name, company_address, company_email, mobile_number, registration_number, state, city, establishment_year, pincode, legal_status, pan_number, gst_register_number);
+    schemes = (_n = $('#schemes_text').val()) === null || _n === void 0 ? void 0 : _n.toString();
+    staff_count = (_o = $('#staff_count').val()) === null || _o === void 0 ? void 0 : _o.toString();
+    total_equipment= (_p = $('#count_total_equi').val()) === null || _p === void 0 ? void 0 : _p.toString();
+    made_in_india_equipment= (_q = $('#count_indian_equi').val()) === null || _q === void 0 ? void 0 : _q.toString();
+    var check_company = company_validate(company_name, company_address, company_email, mobile_number, registration_number, state, city, establishment_year, pincode, legal_status, pan_number, gst_register_number ,schemes , staff_count , total_equipment , made_in_india_equipment);
     if (check_company === true) {
         $.ajax({
             url: '/misc/check-company',
@@ -304,6 +312,10 @@ $('#otp_button').on('click', function () {
                     legal_status: legal_status,
                     pan_number: pan_number,
                     gst_register_number: gst_register_number,
+                    schemes :schemes,
+                    staff_count:staff_count,
+                    total_equipment : total_equipment,
+                    made_in_india_equipment : made_in_india_equipment,
                 },
                 contact_details: {
                     title: title,
@@ -413,7 +425,7 @@ function account_validate(username, password, confirm_password) {
     }
     return true;
 }
-function company_validate(company_name, company_address, company_email, mobile_number, registration_number, state, city, establishment_year, pincode, legal_status, pan_number, gst_register_number) {
+function company_validate(company_name, company_address, company_email, mobile_number, registration_number, state, city, establishment_year, pincode, legal_status, pan_number, gst_register_number ,schemes , staff_count , total_equipment , made_in_india_equipment) {
     var mob = /^[1-9]{1}[0-9]{9}$/;
     var letters = /^[a-z]*$/i;
     if (company_name === '') {
@@ -550,6 +562,54 @@ function company_validate(company_name, company_address, company_email, mobile_n
             all_invalids[0].classList.remove("invalid");
         document.getElementById('gst_register_number').classList.add("invalid")
         $('#error_para').text('Error : GST Registration Number has inappropriate length');
+        return false;
+    }
+    if (staff_count === '') {
+        var all_invalids = document.getElementsByClassName("invalid");
+        while (all_invalids.length)
+            all_invalids[0].classList.remove("invalid");
+        document.getElementById('staff_count').classList.add("invalid")
+        $('#error_para').text('Error : Staff Count field  cannot be empty');
+        return false;
+    }
+    if (!Number.isInteger(Number(staff_count))) {
+        var all_invalids = document.getElementsByClassName("invalid");
+        while (all_invalids.length)
+            all_invalids[0].classList.remove("invalid");
+        document.getElementById('staff_count').classList.add("invalid")
+        $('#error_para').text('Error : Staff Count field  Invalid');
+        return false;
+    }
+    if (total_equipment === '') {
+        var all_invalids = document.getElementsByClassName("invalid");
+        while (all_invalids.length)
+            all_invalids[0].classList.remove("invalid");
+        document.getElementById('count_total_equi').classList.add("invalid")
+        $('#error_para').text('Error :Equipments Count field  cannot be empty');
+        return false;
+    }
+    if (!Number.isInteger(Number(total_equipment))){
+        var all_invalids = document.getElementsByClassName("invalid");
+        while (all_invalids.length)
+            all_invalids[0].classList.remove("invalid");
+        document.getElementById('count_total_equi').classList.add("invalid")
+        $('#error_para').text('Error :Equipments Count field Invalid');
+        return false;
+    }
+    if (made_in_india_equipment === '') {
+        var all_invalids = document.getElementsByClassName("invalid");
+        while (all_invalids.length)
+            all_invalids[0].classList.remove("invalid");
+        document.getElementById('count_indian_equi').classList.add("invalid")
+        $('#error_para').text('Error : Made in India Count field  cannot be empty');
+        return false;
+    }
+    if (!Number.isInteger(Number(made_in_india_equipment))){
+        var all_invalids = document.getElementsByClassName("invalid");
+        while (all_invalids.length)
+            all_invalids[0].classList.remove("invalid");
+        document.getElementById('count_indian_equi').classList.add("invalid")
+        $('#error_para').text('Error : Made in India Count field  cannot be empty');
         return false;
     }
     return true;

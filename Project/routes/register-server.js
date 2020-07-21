@@ -20,7 +20,7 @@ var transporter = nodemailer.createTransport({
 })
 
 router.post('/register-data', function (request, response) {
-    console.log('register data called')
+    console.log('register data called',request.body.company_details)
 
     var company_details = request.body.company_details
     var contact_details = request.body.contact_details
@@ -46,6 +46,12 @@ router.post('/register-data', function (request, response) {
     var c_aadhaar_number = contact_details.aadhaar_number
     var correspondence_email_id = contact_details.contact_email
     var c_mobile_number = contact_details.contact_contact
+    
+    //new fileds need to be added in vendor_details table
+    var schemes=company_details.schemes
+    var staff_count=company_details.staff_count;
+    var total_equipment =company_details.total_equipment;
+    var made_in_india_equipment =company_details.made_in_india_equipment;
 
     var v_username = account_details.username
     var v_password = crypto.createHash('sha512').update(account_details.password).digest('hex')
