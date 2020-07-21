@@ -16,7 +16,7 @@
       <!-- <h3>Bid Details</h3> -->
       <button class="tablinks" id="ten-button" onclick="operation('Tenders')"><i class="far fa-bookmark"></i>&nbsp &nbspMy Tenders</button>
       <button class="tablinks" id="app-button" onclick="operation('Approved')"><i class="far fa-check-circle"></i>&nbsp &nbspApproved Tenders</button>
-      {{!-- <button class="tablinks" id="down-button" onclick="operation('Docs')"><i class="fas fa-file-download"></i>&nbsp &nbspDownloaded Documents</button> --}}
+      <button class="tablinks" id="stats-button" onclick="operation('stats')"><i class="fas fa-file-download"></i>&nbsp &nbspStatistics</button>
       <button class="tablinks" onclick="location.href='/tenders'"><i class="fas fa-search"></i>&nbsp &nbspSearch Tenders</button>
     </div>
  
@@ -89,6 +89,11 @@
     <div id="Search" class="tabcontent" style="display: none;">
       <h2>Search Tenders</h2>
       <h4>The list of matching tenders</h4>    
+    </div>
+
+    <div id="stats" class="tabcontent" style="display: none;">
+      <h2>Stats</h2>
+      <h4>overall stats</h4>    
     </div>
 
     <div id="Profile" class="tabcontent profile">
