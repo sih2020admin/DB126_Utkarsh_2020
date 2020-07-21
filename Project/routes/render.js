@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const user_1 = require("./../miscellaneous/database/database functions/user");
 const admin_1 = require("./../miscellaneous/database/database functions/admin");
+const stats_1 = require("./../miscellaneous/database/database functions/stats");
 const router = express_1.default.Router();
 router.get('/login', (request, response) => {
     response.render('admin/login', { layout: false });
@@ -18,8 +19,9 @@ router.get('/dashboard', (request, response) => {
 });
 router.get('/profile', (request, response) => {
     let admin = user_1.isAdmin(request);
-    Promise.all([user_1.getAdminUsername(request), admin_1.getAdminDetails(request), admin_1.getApprovedTenders(request)]).then((results) => {
-        response.render('admin/profile', { layout: false, admin, username: results[0], admin1: results[1][0], tenders: results[2] });
+    Promise.all([user_1.getAdminUsername(request), admin_1.getAdminDetails(request), admin_1.getApprovedTenders(request), stats_1.getCountOfApplicationsPerTender(request), stats_1.getApplicationsWhichPassedFirstStage(request), stats_1.getAmountDifference()]).then((results) => {
+        //console.log(results[3])
+        response.render('admin/profile', { layout: false, admin, username: results[0], admin1: results[1][0], tenders: results[2], stats1: results[3] });
     });
 });
 router.get('/tenders/list', (request, response) => {

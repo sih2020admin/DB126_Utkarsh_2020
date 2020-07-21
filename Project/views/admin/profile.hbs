@@ -11,6 +11,7 @@
     <div class="tab_section">
         <button id='profile_button' class="active" >My Profile</button>
         <button id='approved_button' >Approved Tenders</button>
+        <button id='stat_button'>Statistics</button>
     </div>
     {{#if admin1}}
         {{#with admin1}}
@@ -99,27 +100,6 @@
                             <td><label for="">Company Name</label></td>
                             <td><p>{{v_name}}</p></td>
                         </tr>
-                        {{!-- <tr>
-                            <td><label for="">Description</label></td>
-                            <td><p>{{et_tender_desc}}</p></td>
-                        </tr>
-                        <tr>
-                            <td><label for="">Fee</label></td>
-                            <td><p>{{et_tender_fee}}</p></td>
-                        </tr>
-                        <tr>
-                            <td><label for="">Approval Date</label></td>
-                            <td><p>{{date_of_approval}}</p></td>
-                        </tr>
-                        <tr>
-                            <td><label for="">Bidding Data</label></td>
-                            <td><p>{{et_bidding_date}}</p></td>
-                        </tr>
-                        <tr>
-                            <td><label for="">File URI</label></td>
-                            <td><a href="{{et_file_uri}}">Click Here</a></td>
-                        </tr>
-                         --}}
                     </table>
                 </div>
                 <div class="vendor_details" id="vendor_details" style="display: none;">
@@ -399,10 +379,14 @@
         {{/each}}
         </div>
     </div>
-    {{!-- {{> footer}} --}}
+    <div class = "statistics" style="display: none;">
+        <div class="stats1">
+            <h1>Count of applications per tender</h1>
+        </div>
+        <div class="stats2">
+            <h1>Count of applications who passed stage1 per tender</h1>
+        </div>
+    </div>
 </body>
 <script src="/javascript/admin_dashboard.js"></script>
-<script>
-
-</script>
 </html>

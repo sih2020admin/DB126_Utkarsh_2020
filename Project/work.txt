@@ -1,0 +1,5 @@
+1.Count of vendor in a particular department for a particular tender
+DEPT = 'IT' && status = 1111
+2.Count of application  where is_approved is 1 & 2 $ -2
+3
+4.Rating System where rating equals any_number less than 2
