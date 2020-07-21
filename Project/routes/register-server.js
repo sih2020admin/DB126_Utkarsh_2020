@@ -58,7 +58,7 @@ router.post('/register-data', function (request, response) {
 
     console.log('hello1')
     var sql =
-        'START TRANSACTION;                                                                                                                                     INSERT INTO `vendor_details`(`v_name`, `v_address`, `v_yoe`, `v_email`, `v_mobile`, `v_reg_no`, `v_state_id`, `v_dist_id`, `v_city_id`, `v_pincode`, `v_legal_id`, `v_pan`, `v_is_verified`,`v_gst`) VALUES (?,?,?, ?,?,?, ?,?,?, ?,?,?, ?,?);                                                                   INSERT INTO `v_contact_details`(`vcd_name`, `vcd_title`, `vcd_dob`, `vcd_aadhar`, `vcd_contact`, `vcd_email`, `vcd_designation`, `vd_id`) VALUES (?,?,?,?, ?,?,?,LAST_INSERT_ID());                                                                                                                                             INSERT INTO `log_in_details`( `user_name`, `password`, `role_id`, `vcd_id`) VALUES (?,?, ?,LAST_INSERT_ID());                                                   COMMIT;'
+        'START TRANSACTION; INSERT INTO `vendor_details`(`v_name`, `v_address`, `v_yoe`, `v_email`, `v_mobile`, `v_reg_no`, `v_state_id`, `v_dist_id`, `v_city_id`, `v_pincode`, `v_legal_id`, `v_pan`, `v_is_verified`,`v_gst`, `schemes`, `staff`, `equipment`, `india_equipment`) VALUES (?,?,?, ?,?,?, ?,?,?, ?,?,?, ?,?, ?,?,?,?); INSERT INTO `v_contact_details`(`vcd_name`, `vcd_title`, `vcd_dob`, `vcd_aadhar`, `vcd_contact`, `vcd_email`, `vcd_designation`, `vd_id`) VALUES (?,?,?,?, ?,?,?,LAST_INSERT_ID());  INSERT INTO `log_in_details`( `user_name`, `password`, `role_id`, `vcd_id`) VALUES (?,?, ?,LAST_INSERT_ID());  COMMIT;'
 
     db_1.default.query(
         sql,
@@ -77,6 +77,10 @@ router.post('/register-data', function (request, response) {
             v_pan,
             '0',
             v_gst,
+            schemes,
+            staff_count,
+            total_equipment,
+            made_in_india_equipment,
             c_contact_name,
             c_title,
             c_date_of_birth,
