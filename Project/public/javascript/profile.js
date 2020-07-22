@@ -277,34 +277,175 @@ function operation(optName) {
     var p = document.getElementById("pro-button")
     var t = document.getElementById("ten-button")
     var a = document.getElementById("app-button")
-    var d = document.getElementById("down-button")
+    // var d = document.getElementById("down-button")
+    var s = document.getElementById("stats-button")
 
     if (optName == 'Profile') {
         console.log('pro')
         p.classList.add("active")
         t.classList.remove("active")
         a.classList.remove("active")
-        d.classList.remove("active")
+        // d.classList.remove("active")
+        s.classList.remove("active")
     } 
     else if(optName == 'Tenders') {
         console.log('ten')
         t.classList.add("active")
         p.classList.remove("active")
         a.classList.remove("active")
-        d.classList.remove("active")
+        // d.classList.remove("active")
+        s.classList.remove("active")
     }
     else if(optName == 'Approved'){
         console.log('app')
         a.classList.add("active")
         p.classList.remove("active")
         t.classList.remove("active")
-        d.classList.remove("active")
+        // d.classList.remove("active")
+        s.classList.remove("active")
     }
     else if(optName == 'Docs'){
         console.log('app')
-        d.classList.add("active")
+        // d.classList.add("active")
+        t.classList.remove("active")
+        a.classList.remove("active")
+        p.classList.remove("active")
+        s.classList.remove("active")
+    }
+    else if(optName == 'stats'){
+        console.log('app')
+        s.classList.add("active")
+        // d.classList.remove("active")
         t.classList.remove("active")
         a.classList.remove("active")
         p.classList.remove("active")
     }
 }
+
+
+function graph_data(){
+    var xhr1 = new XMLHttpRequest()
+    url = '/statistics'
+    xhr1.open('POST', url)
+    xhr1.setRequestHeader('Content-Type', 'application/json')
+    xhr1.send(
+        JSON.stringify({
+        })
+    )
+    xhr1.onload = function () {
+        if (this.status == 200) {
+            console.log(this.responseText);
+            var g_data=JSON.parse(this.responseText);
+            total_count_project=g_data[0];
+            count_project_dept=g_data[1];
+            count_project_dept_cost_applied=g_data[2];
+
+            var tenders_applied_total = document.getElementById('tenders_applied_total').getContext('2d');
+            var chart = new Chart(tenders_applied_total, {
+                // The type of chart we want to create
+                type: 'horizontalBar',
+
+                // The data for our dataset
+                data: {
+                    labels: ['Total applications'],
+                    datasets: [{
+                        label: 'Total tenders applied',
+                        backgroundColor: 'rgb(255, 99, 132)',
+                        borderColor: 'rgb(255, 99, 132)',
+                        data: total_count_project.map(total_count_project => total_count_project.total_count)
+                    }]
+                },
+                // Configuration options go here
+                options: {responsive: true,
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+
+
+            var tenders_applied_dept = document.getElementById('tenders_applied_dept').getContext('2d');
+            var chart = new Chart(tenders_applied_dept, {
+                // The type of chart we want to create
+                type: 'bar',
+
+                // The data for our dataset
+                data: {
+                    labels: count_project_dept.map(count_project_dept => count_project_dept.dept_name),
+                    datasets: [{
+                        label: count_project_dept.map(count_project_dept => count_project_dept.dept_name),
+                        backgroundColor: ['rgb(255, 99, 132)','rgb(0, 80, 150)'],
+                        borderColor: 'rgb(255, 99, 132)',
+                        data: count_project_dept.map(count_project_dept => count_project_dept.total_count_dept)
+                    }]
+                },
+                // Configuration options go here
+                options: {responsive: true,
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+
+            var tenders_applied_dept_cost = document.getElementById('tenders_applied_dept_cost').getContext('2d');
+            var chart_1 = new Chart(tenders_applied_dept_cost, {
+                // The type of chart we want to create
+                type: 'pie',
+
+                // The data for our dataset
+                data: {
+                    labels: count_project_dept.map(count_project_dept_cost_applied => count_project_dept_cost_applied.dept_name),
+                    datasets: [{
+                        label: 'Department wise tenders applied Total cost',
+                        backgroundColor: ['rgb(255, 99, 132)','rgb(0, 80, 150)'],
+                        borderColor: 'rgb(255, 99, 132)',
+                        data: count_project_dept_cost_applied.map(count_project_dept_cost_applied => count_project_dept_cost_applied.total_cost_departmentwise)
+                    }]
+                },
+                // Configuration options go here
+                options: {responsive: true,
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+            // console.log(count_project_dept.map(count_project_dept_cost_applied => count_project_dept_cost_applied.total_cost_departmentwise))
+
+        } else if (this.status == 400) alert('Error 400')
+        else alert('Some Error Occured')
+    }
+}
+
+graph_data();
+
+// var ctx = document.getElementById('myChart').getContext('2d');
+// var chart = new Chart(ctx, {
+//     // The type of chart we want to create
+//     type: 'line',
+
+//     // The data for our dataset
+//     data: {
+//         labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+//         datasets: [{
+//             label: 'My First dataset',
+//             backgroundColor: 'rgb(255, 99, 132)',
+//             borderColor: 'rgb(255, 99, 132)',
+//             data: [0, 10, 5, 2, 20, 30, 45]
+//         }]
+//     },
+
+//     // Configuration options go here
+//     options: {}
+// });

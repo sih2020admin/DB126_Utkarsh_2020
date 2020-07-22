@@ -32,6 +32,12 @@ async function getTotalCountOfApplicationsOfVendor(request) {
     return count[0];
 }
 exports.getTotalCountOfApplicationsOfVendor = getTotalCountOfApplicationsOfVendor;
+
+async function getTotalCountOfApplicationsOfVendor_dept(request) {
+    let count = await connection_1.default.execute(`SELECT d.dept_id, d.dept_name ,count(etv.etd_id) as total_count_dept FROM e_tender_vendor as etv ,e_tender_details as e, department as d  where etv.vd_id='${request.signedCookies['vd_id_e']}' and etv.et_id=e.et_id and d.dept_id=e.dept_id GROUP BY (e.dept_id);`);
+    return count[0];
+}
+exports.getTotalCountOfApplicationsOfVendor_dept = getTotalCountOfApplicationsOfVendor_dept;
 //gives count of applications per department of a particular vendor
 async function getCountOfApplicationsOfVendorPerDepartment(request) {
     let count = await connection_1.default.execute(`SELECT d.dept_name,e.dept_id  ,count(etd_id) as total_count_department_wise , sum(cast( AES_DECRYPT(etv.bidding_amt ,'${key}') as char )) as total_cost_departmentwise FROM e_tender_vendor as etv , e_tender_details as e , department as d where etv.vd_id='${request.signedCookies['vd_id_e']}' and e.et_id=etv.et_id  and d.dept_id=e.dept_id GROUP BY e.dept_id`);

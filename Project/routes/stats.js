@@ -8,9 +8,10 @@ const stats_2 = require("./../miscellaneous/database/database functions/stats");
 const express_1 = __importDefault(require("express"));
 const router = express_1.default.Router();
 router.post('/statistics', (request, response) => {
-    Promise.all([stats_2.getTotalCountOfApplicationsOfVendor(request), stats_2.getCountOfApplicationsOfVendorPerDepartment(request)])
+    Promise.all([stats_2.getTotalCountOfApplicationsOfVendor(request),stats_2.getTotalCountOfApplicationsOfVendor_dept(request), stats_2.getCountOfApplicationsOfVendorPerDepartment(request)])
         .then((results) => {
         console.log(results);
+        response.send(results);
     })
         .catch((error) => {
         console.log(error);
