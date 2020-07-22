@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+    <link rel="stylesheet" href="/css/approve_tender_admin.css">
+    <title>Tender</title>
+</head>
+<body>
+    {{> header}}
+    {{!-- <div id="detail" class="cont" style="display: none;">
+        <h2 style="text-align: center;">Tender Details</h2><br>    
+        <div style="float: right; margin-right: 50px;">
+          <p><strong>Applications Submitted:</strong></p>
+          <p id="app" style="color: green;"></p>
+        </div><br>
+        <table>
+            <tr>
+                <td><label><strong>Tender Id: </strong></label></td>
+                <td><label id="et_id"></label></td>
+                <td><label><strong>Reference No: </strong></label></td>
+                <td><label id="ref"></label></td>
+                <td><label><strong>Tender Fee: </strong></label></td>
+                <td><label id="fee"></label></td>
+            </tr>
+                <tr>
+                <td><label><strong>File URL: </strong></label></td>
+                <td><a id="file">Tender</a></td>
+                <td><label><strong>Bid Opening Date: </strong></label></td>
+                <td><label id="bid"></label></td>
+            </tr>
+            <tr>
+                <td><label><strong>Title: </strong></label></td>
+                <td><label id="title"></label></td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td><label><strong>Description: </strong></label></td>
+                <td><label id="desc"></label></td>
+            </tr>
+        </table>
+    </div> --}}
+    <br><br>
+    <div id="main_content">
+        <h2 id="finance" style="display: none;">Finanacial Opening</h2>
+    </div>
+    <div id="submit" class="submit_button" style="display: none;">
+        <button type="button" onclick="save(0)" style="align-items: center;">Save And Next</button>
+    </div>
+
+    
+    {{!-- Modal Code --}}
+    <div id="myModal" class="modal" style="text-align: center;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="closeotp">&times;</span>
+                <h2 style="color: white;" >Application</h2>
+            </div>
+            <div class="modal-body">
+                <div style="float: right;">
+                    <label><strong>Bidding Amount: </strong></label>
+                    <label id="bid"></label>
+                </div>
+                <h3 style="text-align: left;">Personal Details</h3>
+                <table>
+                    <tr>
+                    <td><label><strong>Name: </strong></label></td>
+                    <td><label id="name"></label></td>
+                    <td><label><strong>DOB: </strong></label></td>
+                    <td><label id="dob"></label></td>
+                    <td><label><strong>Designation: </strong></label></td>
+                    <td><label id="desg"></label></td>
+                    </tr>
+                    <tr>
+                    <td><label><strong>Aadhar No: </strong></label></td>
+                    <td><label id="aadhar"></label></td>
+                    <td><label><strong>Email: </strong></label></td>
+                    <td><label id="email"></label></td>
+                    <td><label><strong>Contact No: </strong></label></td>
+                    <td><label id="contact"></label></td>
+                    </tr>
+                </table><br><hr><br>
+                <h3 style="text-align: left;">Company Details</h3>
+                <table>
+                <tr>
+                    <td><label><strong>Name: </strong></label></td>
+                    <td><label id="cname"></label></td>
+                    <td><label><strong>Legal Status: </strong></label></td>
+                    <td><label id="legal"></label></td>
+                    <td><label><strong>Estd Year: </strong></label></td>
+                    <td><label id="yoe"></label></td>
+                </tr>
+                <tr>
+                    <td><label><strong>Registration No: </strong></label></td>
+                    <td><label id="register"></label></td>
+                    <td><label><strong>GST No: </strong></label></td>
+                    <td><label id="gst"></label></td>
+                    <td><label><strong>PAN No: </strong></label></td>
+                    <td><label id="pan"></label></td>
+                </tr>
+                <tr>
+                    <td><label><strong>Email: </strong></label></td>
+                    <td><label id="cemail"></label></td>
+                    <td><label><strong>Contact No: </strong></label></td>
+                    <td><label id="ccontact"></label></td>
+                    <td><label><strong>Address: </strong></label></td>
+                    <td><label id="address"></label></td>
+                </tr>
+                </table><hr>
+                <div class="upload_documents">
+                    <h3 style="text-align: left;">Uploaded Documents</h3><br>
+                    <table id="upload" style="display: none;">
+                    <tr>
+                        <th>Sr.No.</th>
+                        <th>File name</th>
+                        <th>File URI</th>
+                        <th>File Link</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>BOQ</td>
+                        <td id="file1"></td>
+                        <td><a id="preview" target="blank">Preview</a></td>
+                    </tr> 
+                    </table>  
+                    <p id="error" style="color: red;"></p> 
+                </div>
+                <p id="tc4"></p><br>
+                <button id="cancel">Cancel</button>
+                <button id="disapprove" onclick="result(0)">Disapprove</button>
+                <button onclick="result(1)"><i id="icon"></i>Approve</button>
+            </div>
+        </div>
+  </div>
+</body>
+</html>
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+<script src="/javascript/approve-boq.js"></script>
+<script src="https://kit.fontawesome.com/523ff21025.js" crossorigin="anonymous"></script>
