@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const user_1 = require("./../miscellaneous/database/database functions/user");
 const misc_1 = require("./../miscellaneous/database/database functions/misc");
+const stats_1 = require("./../miscellaneous/database/database functions/stats");
 const tender_1 = require("./../miscellaneous/database/database functions/tender");
 const connection_1 = __importDefault(require("./../miscellaneous/database/connections/connection"));
 const router = express_1.default.Router();
@@ -51,7 +52,7 @@ router.get('/help', (request, response) => {
 });
 router.get('/profile', (request, response) => {
     let user = user_1.isUser(request);
-    Promise.all([user_1.getUserUsername(request), misc_1.getYears(), misc_1.getLegalStatus(), misc_1.getStates(), tender_1.getProfileDetails(request)])
+    Promise.all([user_1.getUserUsername(request), misc_1.getYears(), misc_1.getLegalStatus(), misc_1.getStates(), tender_1.getProfileDetails(request), stats_1.getTotalCountOfApplicationsOfVendor(request), stats_1.getCountOfApplicationsOfVendorPerDepartment(request)])
         .then((results) => {
         console.log(results[4][3]);
         response.render('user/profile', {

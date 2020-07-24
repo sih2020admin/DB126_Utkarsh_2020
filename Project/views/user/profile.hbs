@@ -5,6 +5,8 @@
   <link rel="stylesheet" href="/css/profile.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://kit.fontawesome.com/523ff21025.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
 </head>
 
 <body>
@@ -16,7 +18,7 @@
       <!-- <h3>Bid Details</h3> -->
       <button class="tablinks" id="ten-button" onclick="operation('Tenders')"><i class="far fa-bookmark"></i>&nbsp &nbspMy Tenders</button>
       <button class="tablinks" id="app-button" onclick="operation('Approved')"><i class="far fa-check-circle"></i>&nbsp &nbspApproved Tenders</button>
-      {{!-- <button class="tablinks" id="down-button" onclick="operation('Docs')"><i class="fas fa-file-download"></i>&nbsp &nbspDownloaded Documents</button> --}}
+      <button class="tablinks" id="stats-button" onclick="operation('stats')"><i class="fas fa-file-download"></i>&nbsp &nbspStatistics</button>
       <button class="tablinks" onclick="location.href='/tenders'"><i class="fas fa-search"></i>&nbsp &nbspSearch Tenders</button>
     </div>
  
@@ -39,8 +41,8 @@
               <td>{{et_title}}</td>
               <td>{{et_tender_desc}}</td>
               <td>{{bidding_amt}}</td>
-              <td><a href=/tender/preview?et_id={{et_id}}&etd_id={{etd_id}}>View</a></td>
-              <td>Submitted</td>
+              <td><a href={{profile_url status et_id etd_id}}>View</a></td>
+              <td>{{profile_status status}}</td>
             </tr>
           {{/each}}
           </table>
@@ -89,6 +91,16 @@
     <div id="Search" class="tabcontent" style="display: none;">
       <h2>Search Tenders</h2>
       <h4>The list of matching tenders</h4>    
+    </div>
+
+    <div id="stats" class="tabcontent" style="display: none;">
+      <h2>Stats</h2>
+      <h4>tenders_applied_dept</h4>
+      <canvas id="tenders_applied_total"></canvas> 
+      <h4>tenders_applied_dept</h4>
+      <canvas id="tenders_applied_dept"></canvas>    
+      <h4>tenders_applied_dept_cost</h4>
+      <canvas id="tenders_applied_dept_cost"></canvas>    
     </div>
 
     <div id="Profile" class="tabcontent profile">

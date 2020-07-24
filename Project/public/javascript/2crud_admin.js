@@ -544,6 +544,7 @@ function add_tender() {
     // var ref_no = document.getElementById('ref_no').value
     var title = document.getElementById('title').value
     var fee = document.getElementById('fee').value
+    var max_bid = document.getElementById('max_bid_amt').value
     var closing_date =String( new Date(document.getElementById('closing_date').value))
     var bid_opening_date = String (new Date(document.getElementById('bid_opening_date').value))
     // var link = document.getElementById("link").value
@@ -557,6 +558,9 @@ function add_tender() {
         return false
     } else if (isNaN(fee) || fee < 0 || fee.length < 1) {
         alert('Invalid Tender fee')
+        return false
+    } else if (isNaN(max_bid) || max_bid < 0 || max_bid.length < 1) {
+        alert('Invalid Maximum Bidding Amount')
         return false
     } else if (closing_date.length < 1 || closing_date=="Invalid Date") {
         alert('Enter Closing date')
@@ -597,6 +601,7 @@ function add_tender() {
                 et_bidding_date:convert( bid_opening_date),
                 et_file_uri: zip_link,
                 dept_id: ad_dept_id,
+                max_bid : max_bid
             })
         )
         //imp here dept id is fixed for now but it shoud be taken from cookies
