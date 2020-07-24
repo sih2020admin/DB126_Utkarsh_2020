@@ -321,8 +321,8 @@ router.post('/sign_8081/:name/:email/:reason/:location/:flag', (req, res) => {
     var location = req.params.location
     var flag = req.params.flag
     // console.log(name);
-    // console.log(req.params);
-
+     console.log("sign 8081 called");
+	
     var uploadPost = multer({ storage: postStorage }).single('file')
     uploadPost(req, res, function (error) {
         if (error) {
@@ -336,6 +336,7 @@ router.post('/sign_8081/:name/:email/:reason/:location/:flag', (req, res) => {
             scriptPath: './routes/',
             args: [name, email, reason, location, req.file.filename],
         }
+	console.log("sign 8081 1");
         PythonShell.run('sign_function.py', options, function (err, results) {
             if (err) throw err
             // Results is an array consisting of messages collected during execution
@@ -348,6 +349,7 @@ router.post('/sign_8081/:name/:email/:reason/:location/:flag', (req, res) => {
                     res.cookie('boq_file', r)
                 }
             }
+		console.log("sign 8081 2")
             res.json(JSON.parse(`{"filename":"` + r + `"}`))
         })
     })

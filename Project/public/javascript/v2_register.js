@@ -229,6 +229,7 @@ function verify_aadhar(){
                 // $(".contact__details").hide();
                 $('#iotp').show();
                 $('#otp').show();
+		$('#otp_label').show();
                 $('#otp_button').show();
                 $('#change_aadhar_button').show();
                 $('#resend_button').show();
