@@ -17,6 +17,7 @@ var transporter = nodemailer.createTransport({
 	},
 });
 
+var key=process.env["ENCRYPTION_KEY"];
 
 
 router.post('/gettenderlist_bid', function (req, res) {  // to be call from admin approve tender
@@ -59,7 +60,7 @@ router.post('/get_application2', function (req, res) {  // to be call from see t
 
 	//imp to mention where status = 111
 
-	db_1.default.query('SELECT e.etd_id, e.et_id, e.vd_id, e.vcd_id, e.bidding_amt, e.is_approved, e.date_of_approval ,et.et_title,et.et_tender_fee,et.et_tender_ref_no,et.et_tender_desc,et.et_last_date_apply ,et.et_bidding_date ,et.et_file_uri, v.v_name, v.v_address, v.v_yoe, v.v_email, v.v_mobile, v.v_reg_no, v.v_state_id, v.v_dist_id, v.v_city_id, v.v_pincode, v.v_legal_id, v.v_pan, v.v_is_verified, v.v_gst ,vc.vcd_name,vc.vcd_title,vc.vcd_dob,vc.vcd_aadhar , vc.vcd_contact,vc.vcd_email,vc.vcd_email,vc.vcd_designation, f.furi_id, f.furi1,f.furi2, f.f_type , p.txn_id , p.order_id ,p.txn_amount , p.resp_message , p.resp_code,p.refund_amount , p.txn_timestamp , p.bank_txn_id , p.gateway_name , p.bank_name , p.payment_mode  FROM `e_tender_vendor` as e INNER JOIN e_tender_details as et ON et.et_id=e.et_id INNER JOIN `vendor_details` as v ON e.vd_id=v.vd_id INNER JOIN v_contact_details as vc ON e.vcd_id = vc.vcd_id INNER JOIN `file_uri` as f ON e.etd_id=f.etd_id INNER JOIN payment_transactions as p ON p.etd_id = e.etd_id WHERE et.et_id = ? and e.status="1111";', [et_id], function (error, results, fields) {
+	db_1.default.query(`SELECT e.etd_id, e.et_id, e.vd_id, e.vcd_id, cast( AES_DECRYPT(e.bidding_amt ,'${key}') as char ) as  bidding_amt, cast( AES_DECRYPT(e.is_approved ,'${key}') as char ) as  is_approved, e.date_of_approval ,et.et_title,et.et_tender_fee,et.et_tender_ref_no,et.et_tender_desc,et.et_last_date_apply ,et.et_bidding_date ,et.et_file_uri, v.v_name, v.v_address, v.v_yoe, v.v_email, v.v_mobile, v.v_reg_no, v.v_state_id, v.v_dist_id, v.v_city_id, v.v_pincode, v.v_legal_id, v.v_pan, v.v_is_verified, v.v_gst ,vc.vcd_name,vc.vcd_title,vc.vcd_dob,vc.vcd_aadhar , vc.vcd_contact,vc.vcd_email,vc.vcd_email,vc.vcd_designation, f.furi_id, cast( AES_DECRYPT(f.furi1 ,'${key}') as char ) as furi1,cast( AES_DECRYPT(f.furi2 ,'${key}') as char ) as furi2, f.f_type , p.txn_id , p.order_id ,p.txn_amount , p.resp_message , p.resp_code,p.refund_amount , p.txn_timestamp , p.bank_txn_id , p.gateway_name , p.bank_name , p.payment_mode  FROM e_tender_vendor as e INNER JOIN e_tender_details as et ON et.et_id=e.et_id INNER JOIN vendor_details as v ON e.vd_id=v.vd_id INNER JOIN v_contact_details as vc ON e.vcd_id = vc.vcd_id INNER JOIN file_uri as f ON e.etd_id=f.etd_id INNER JOIN payment_transactions as p ON p.etd_id = e.etd_id WHERE et.et_id = ? and e.status=AES_ENCRYPT("1111",'${key}');`, [et_id], function (error, results, fields) {
 		if (error) {
 			console.log("error", error);
 			res.sendStatus(400);
@@ -89,11 +90,12 @@ router.post('/approve_tender_application', function (req, res) {  // to be call 
 
 	var et_id = req.body.et_id;
 	var etd_id = req.body.etd_id;
+	var key=process.env["ENCRYPTION_KEY"];
 	console.log("approve applications called" + et_id + etd_id)
 
 
-	db_1.default.query('START TRANSACTION ; UPDATE `e_tender_details` SET `is_approved` = 1 WHERE et_id =  ?; UPDATE `e_tender_vendor` SET `is_approved` = 1, `date_of_approval`=CURRENT_DATE  WHERE etd_id =  ?; 	SELECT `vcd_contact`, `vcd_email` FROM `v_contact_details` WHERE vcd_id IN (SELECT `vcd_id`FROM `e_tender_vendor` WHERE etd_id=?);	 COMMIT;',
-		[et_id, etd_id, etd_id], function (error, results, fields) {
+	db_1.default.query('START TRANSACTION ; UPDATE `e_tender_details` SET `is_approved` = 1 WHERE et_id =  ?; UPDATE `e_tender_vendor` SET `is_approved` = AES_ENCRYPT("1",?), `date_of_approval`=CURRENT_DATE  WHERE etd_id =  ?; 	SELECT `vcd_contact`, `vcd_email` FROM `v_contact_details` WHERE vcd_id IN (SELECT `vcd_id`FROM `e_tender_vendor` WHERE etd_id=?);	 COMMIT;',
+		[et_id,key, etd_id, etd_id], function (error, results, fields) {
 			if (error) {
 				console.log("error", error);
 				res.sendStatus(400);

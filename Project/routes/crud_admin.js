@@ -126,7 +126,8 @@ router.post('/create_tender', function (req, res) {
 	var et_file_uri	 = req.body.et_file_uri
 	// var dept_id	 = req.body.dept_id
 	// var ad_id = req.signedCookies.ad_id_e;
-    var dept_id = req.signedCookies.ad_dept_id_e;
+	var dept_id = req.signedCookies.ad_dept_id_e;
+	var maximum_bid = req.body.max_bid
     // var ad_org_id = req.signedCookies.ad_org_id_e;
 
 	db_1.default.query('SELECT dept_name,(SELECT max(et_id) FROM e_tender_details) as et_id FROM department WHERE dept_id=?',[dept_id],function(err,result){
@@ -140,7 +141,7 @@ router.post('/create_tender', function (req, res) {
 			var et_id=result[0].et_id;
 			et_id+=1;
 			var ref_no= currentYear + '/' + et_id+ '/' + result[0].dept_name + et_id;
-			db_1.default.query('INSERT INTO `e_tender_details` ( `et_title`, `et_tender_fee`, `et_tender_ref_no`, `et_tender_desc`, `et_last_date_apply`, `et_bidding_date`, `et_file_uri`, `is_delete`, `dept_id`) VALUES ( ?, ?, ?,?,?,?, ?, 0, ?);',[et_title ,et_tender_fee ,ref_no ,et_tender_desc ,et_last_date_apply ,et_bidding_date ,et_file_uri ,dept_id] ,function (error, results, fields) {
+			db_1.default.query('INSERT INTO `e_tender_details` ( `et_title`, `et_tender_fee`, `et_tender_ref_no`, `et_tender_desc`, `et_last_date_apply`, `et_bidding_date`, `et_file_uri`, `is_delete`, `dept_id` , `maximum_bid`) VALUES ( ?, ?, ?,?,?,?, ?, 0, ?,?);',[et_title ,et_tender_fee ,ref_no ,et_tender_desc ,et_last_date_apply ,et_bidding_date ,et_file_uri ,dept_id,maximum_bid] ,function (error, results, fields) {
 				if (error) {
 					console.log("error",error);
 					if (error.code == "ER_DUP_ENTRY") {

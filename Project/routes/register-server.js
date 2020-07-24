@@ -8,6 +8,7 @@ Object.defineProperty(exports, '__esModule', { value: true })
 var express_1 = __importDefault(require('express'))
 var db_1 = __importDefault(require('./db'))
 var router = express_1.default.Router()
+var crypto = require('crypto')
 
 var nodemailer = require('nodemailer')
 var transporter = nodemailer.createTransport({
@@ -19,7 +20,7 @@ var transporter = nodemailer.createTransport({
 })
 
 router.post('/register-data', function (request, response) {
-    console.log('register data called')
+    console.log('register data called',request.body.company_details)
 
     var company_details = request.body.company_details
     var contact_details = request.body.contact_details
@@ -45,13 +46,19 @@ router.post('/register-data', function (request, response) {
     var c_aadhaar_number = contact_details.aadhaar_number
     var correspondence_email_id = contact_details.contact_email
     var c_mobile_number = contact_details.contact_contact
+    
+    //new fileds need to be added in vendor_details table
+    var schemes=company_details.schemes
+    var staff_count=company_details.staff_count;
+    var total_equipment =company_details.total_equipment;
+    var made_in_india_equipment =company_details.made_in_india_equipment;
 
     var v_username = account_details.username
-    var v_password = account_details.password
+    var v_password = crypto.createHash('sha512').update(account_details.password).digest('hex')
 
     console.log('hello1')
     var sql =
-        'START TRANSACTION;                                                                                                                                     INSERT INTO `vendor_details`(`v_name`, `v_address`, `v_yoe`, `v_email`, `v_mobile`, `v_reg_no`, `v_state_id`, `v_dist_id`, `v_city_id`, `v_pincode`, `v_legal_id`, `v_pan`, `v_is_verified`,`v_gst`) VALUES (?,?,?, ?,?,?, ?,?,?, ?,?,?, ?,?);                                                                   INSERT INTO `v_contact_details`(`vcd_name`, `vcd_title`, `vcd_dob`, `vcd_aadhar`, `vcd_contact`, `vcd_email`, `vcd_designation`, `vd_id`) VALUES (?,?,?,?, ?,?,?,LAST_INSERT_ID());                                                                                                                                             INSERT INTO `log_in_details`( `user_name`, `password`, `role_id`, `vcd_id`) VALUES (?,?, ?,LAST_INSERT_ID());                                                   COMMIT;'
+        'START TRANSACTION; INSERT INTO `vendor_details`(`v_name`, `v_address`, `v_yoe`, `v_email`, `v_mobile`, `v_reg_no`, `v_state_id`, `v_dist_id`, `v_city_id`, `v_pincode`, `v_legal_id`, `v_pan`, `v_is_verified`,`v_gst`, `schemes`, `staff`, `equipment`, `india_equipment`) VALUES (?,?,?, ?,?,?, ?,?,?, ?,?,?, ?,?, ?,?,?,?); INSERT INTO `v_contact_details`(`vcd_name`, `vcd_title`, `vcd_dob`, `vcd_aadhar`, `vcd_contact`, `vcd_email`, `vcd_designation`, `vd_id`) VALUES (?,?,?,?, ?,?,?,LAST_INSERT_ID());  INSERT INTO `log_in_details`( `user_name`, `password`, `role_id`, `vcd_id`) VALUES (?,?, ?,LAST_INSERT_ID());  COMMIT;'
 
     db_1.default.query(
         sql,
@@ -70,6 +77,10 @@ router.post('/register-data', function (request, response) {
             v_pan,
             '0',
             v_gst,
+            schemes,
+            staff_count,
+            total_equipment,
+            made_in_india_equipment,
             c_contact_name,
             c_title,
             c_date_of_birth,
