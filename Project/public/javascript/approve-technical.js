@@ -23,6 +23,8 @@ function app(j){
     k=j;                              //To Dynamically Set Particular tender To Disapprove/Approve
     modal.style.display="block";
     etd_id = response[j].etd_id;
+    document.getElementById("time").innerHTML = response[j].time_period;
+
     document.getElementById("name").innerHTML = response[j].vcd_name;
     document.getElementById("dob").innerHTML = response[j].vcd_dob;
     document.getElementById("desg").innerHTML = response[j].vcd_designation;
@@ -141,7 +143,7 @@ xhr.onload = function () {
         response = JSON.parse(this.responseText);
         var technical_div = document.getElementById('main_content');
         var flag=0;
-        // console.log(response);
+        console.log(response);
         if(response[0].approved==1 || response[0].approved==2){
             save(1)
         }
@@ -157,7 +159,7 @@ xhr.onload = function () {
                             <th>Legal Status</th>
                             <th>Company Email</th>
                             <th>Company Mobile</th>
-                            <th>Location</th>
+                            <th>Time Period</th>
                             <th>Application</th>
                             <th>Status</th>
                         </tr>`
@@ -170,7 +172,7 @@ xhr.onload = function () {
                                 <td>`+response[i].v_legal_id+`</td>
                                 <td>`+response[i].v_email+`</td>
                                 <td>`+response[i].v_mobile+`</td>
-                                <td>`+response[i].location+`</td>
+                                <td>`+response[i].time_period+`</td>
                                 <td><a onclick="app(`+i+`)" id="v`+i+`">View</a></td>
                                 <td id="`+i+`">_____</td>
                             </tr>` 
