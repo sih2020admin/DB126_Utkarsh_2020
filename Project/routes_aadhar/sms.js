@@ -46,7 +46,7 @@ router.post('/send',(req,res)=>{
                 
                 //SMS sending
                 var smsOptions = {
-                    from: '+17622142266',       
+                    from: '+19416234290',       
                     to: '+91' + results[0].phone_number, 
                     body: 'Aadhar OTP  for E-signing is ' + otp + ' and is valid for 5 minutes.', 
                 }
