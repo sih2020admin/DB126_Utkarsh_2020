@@ -40,7 +40,7 @@
             color: #ffffff;
             padding: 3.8px 10px;
             margin-left: 5px;
-
+            height: 30px;
         }
         button:hover{
             cursor: pointer;
@@ -62,10 +62,10 @@
             // border: 1px solid red;
             box-shadow: 0 0 6px 0 rgba(103, 62, 253, 0.2);
             border-radius: 10px;
-            padding: 20px;
+            padding: 15px;
             vertical-align: middle;
             max-height: 100%;
-            height: 110px;
+            height: 120px;
         }
         .heading{
             font-size: 1.5em; 
@@ -177,7 +177,7 @@
         }
     
         input, select{
-            margin-top: 10px;
+            margin-top: 20px;
         }
         input[type='checkbox'],label{
             margin-top: 13px;
@@ -207,11 +207,13 @@
         height: 100%;
     }
 
-    .extra-padding{
-        padding: 25px 20px;
+    // .extra-padding{
+    //     padding: 25px 20px;
+    // }
+
+    #Agriculture {
+        margin-left: 113px;
     }
-
-
     }
 }
 .cont{
