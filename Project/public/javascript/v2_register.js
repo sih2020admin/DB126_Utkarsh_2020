@@ -428,7 +428,7 @@ function account_validate(username, password, confirm_password) {
 }
 function company_validate(company_name, company_address, company_email, mobile_number, registration_number, state, city, establishment_year, pincode, legal_status, pan_number, gst_register_number ,schemes , staff_count , total_equipment , made_in_india_equipment) {
     var mob = /^[1-9]{1}[0-9]{9}$/;
-    var letters = /^[a-z]*$/i;
+    var letters =  /^[a-zA-Z\s]*$/;
     if (company_name === '') {
         var all_invalids = document.getElementsByClassName("invalid");
         while (all_invalids.length)
