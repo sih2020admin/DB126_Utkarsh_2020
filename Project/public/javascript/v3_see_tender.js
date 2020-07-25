@@ -27,6 +27,10 @@ function loadResults(response) {
                             <p id="Bdate">` +
             modify_date(response[i].et_bidding_date) +
             `</p>
+                            <p class="BdateLabel"><strong>Department:</strong></p>
+                            <p id="dept">` +
+                response[i].dept_name +
+                `</p>
                         </div><br>  
                         <p class="para">` +
             response[i].et_tender_desc +
