@@ -45,9 +45,9 @@ router.post('/get_etd_id', function (req, res) {
 	console.log("tender desc called "+et_id)
 
 			
-db_1.default.query('SELECT etd_id,cast( AES_DECRYPT(status ,?) as char ) as status  FROM  e_tender_vendor WHERE et_id = ? and vd_id=?',[key,et_id,vd_id], function (error, results, fields) {
+db_1.default.query('SELECT etv.etd_id,cast( AES_DECRYPT(etv.status ,?) as char ) as status  FROM  e_tender_vendor as etv  , e_tender_details as e WHERE etv.et_id = ? and etv.vd_id=? and  e.et_last_date_apply >= CURRENT_DATE',[key,et_id,vd_id], function (error, results, fields) {
 	if (error) {
-			  //console.log("error");
+			  console.log(error);
 			  res.sendStatus(400);
 		 }else{
 			   if(results.length >0){
