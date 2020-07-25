@@ -617,7 +617,7 @@ function company_validate(company_name, company_address, company_email, mobile_n
 }
 function contact_validate(title, contact_name, date_of_birth, designation, aadhaar_number, contact_email, contact_contact) {
     var mob = /^[1-9]{1}[0-9]{9}$/;
-    var letters = /^[a-z]*$/i;
+    var letters = /^[a-zA-Z\s]+$/;
     if (title === 'select') {
         var all_invalids = document.getElementsByClassName("invalid");
         while (all_invalids.length)
