@@ -89,6 +89,10 @@ footer a {
   margin-top: 20px;
 }
 
+footer a:hover {
+  opacity: 0.5;
+}
+
 footer .icons {
   margin-top: 20px;
   display: -webkit-box;
@@ -104,6 +108,26 @@ footer .icons a {
 }
 
 footer .icons img {
-  width: 60%;
+  width: 45px;
+}
+
+@media (max-width: 900px) {
+  footer {
+    display: block;
+    margin: auto;
+    text-align: center;
+  }
+  footer .sect + .sect {
+    margin-top: 50px;
+  }
+  footer .icons {
+    display: inline-block;
+  }
+  footer .icons img {
+    width: 35px;
+  }
+  footer .icons a + a {
+    margin-left: 15px;
+  }
 }
 /*# sourceMappingURL=footer.css.map */

@@ -149,4 +149,10 @@ table td {
   text-align: center;
   margin: 40px;
 }
+
+.swal2-input:focus, .swal2-textarea:focus {
+  outline: none !important;
+  -webkit-box-shadow: 0 0 0 1px var(--main_color) !important;
+          box-shadow: 0 0 0 1px var(--main_color) !important;
+}
 /*# sourceMappingURL=confirm_tender.css.map */

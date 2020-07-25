@@ -102,8 +102,6 @@ h1 {
   padding: 10px;
   margin: 10px;
   color: var(--text_color);
-  -webkit-box-shadow: none !important;
-          box-shadow: none !important;
 }
 
 .container1 .input_details input:focus, .container1 .input_details textarea:focus, .container1 .input_details select:focus {

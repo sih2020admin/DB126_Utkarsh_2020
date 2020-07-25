@@ -123,5 +123,5 @@ $.ajax({
 })
 function apply(value) {
     var value1 = $('#et_id' + value).text()
-    location.href = '/admin/application/approve?id=' + value1
+    location.href = '/admin/application/approve/technical?id=' + value1
 }

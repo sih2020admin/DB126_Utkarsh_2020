@@ -66,9 +66,11 @@ router.post('/apply_tender', function (req, res) {
     var time_period =req.body.time_period
     var vd_id = req.signedCookies.vd_id_e
     var vcd_id = req.signedCookies.vcd_id_e
-    console.log('apply tender desc called ' + et_id+time_period)
+    var key=process.env["ENCRYPTION_KEY"];
 
-    db_1.default.query('INSERT INTO `e_tender_vendor`(`et_id`, `vd_id`, `vcd_id`, `bidding_amt`,`time_period`,`status`) VALUES (?,?,?,?,?,"100"); 	 select LAST_INSERT_ID("etd_id");', [et_id, vd_id, vcd_id, bid_amt,time_period], function (error, results, fields) {
+    console.log('apply tender desc called ' + et_id)
+
+    db_1.default.query(' INSERT INTO `e_tender_vendor`(`et_id`, `vd_id`, `vcd_id`, `bidding_amt`,`time_period`,`status` ,`is_approved`) VALUES (?,?,?,AES_ENCRYPT(? ,?),AES_ENCRYPT(? ,?),AES_ENCRYPT("100",?),AES_ENCRYPT("0" ,?)); 	 select LAST_INSERT_ID("etd_id");', [et_id, vd_id, vcd_id, bid_amt,key,time_period,key,key,key], function (error, results, fields) {
         if (error) {
             console.log('error', error)
             res.sendStatus(400)
@@ -87,8 +89,9 @@ router.post('/apply_tender', function (req, res) {
 router.post('/apply_tender_s3', function (req, res) {
     var etd_id = req.body.etd_id
     console.log('apply tender s3 called ' + etd_id)
+    var key=process.env["ENCRYPTION_KEY"];
 
-    db_1.default.query('UPDATE `e_tender_vendor` SET `status` = "111" WHERE `etd_id` = ?;', [etd_id], function (error, results, fields) {
+    db_1.default.query('UPDATE `e_tender_vendor` SET `status` = AES_ENCRYPT("111",?) WHERE `etd_id` = ?;', [key,etd_id], function (error, results, fields) {
         if (error) {
             console.log('error', error)
             res.sendStatus(400)
@@ -102,10 +105,11 @@ router.post('/apply_tender_s3', function (req, res) {
 router.post('/confirm_tender_s5', function (req, res) {
     var etd_id = req.body.etd_id
     console.log(req.body.location, req.body.timestamp)
+    var key=process.env["ENCRYPTION_KEY"];
 
     console.log('confirm tender called ' + etd_id)
 
-    db_1.default.query('UPDATE `e_tender_vendor` SET `status` = "1111",`location` = ?,`timestamp` = ? WHERE `etd_id` = ?;', [req.body.location, req.body.timestamp, etd_id], function (error, results, fields) {
+    db_1.default.query('UPDATE `e_tender_vendor` SET `status` = AES_ENCRYPT("1111",?),`location` = AES_ENCRYPT(?,?),`timestamp` = ? WHERE `etd_id` = ?;', [key,req.body.location,key, req.body.timestamp, etd_id], function (error, results, fields) {
         if (error) {
             console.log('error', error)
             res.sendStatus(400)
@@ -135,10 +139,11 @@ router.post('/enter_file_uri1_db', function (req, res) {
     var etd_id = req.body.etd_id
     var ftype = req.body.f_type
     var furi = req.body.f_uri
+    var key=process.env["ENCRYPTION_KEY"];
 
     console.log('enter file1 db tender s3 called ' + etd_id)
 
-    db_1.default.query('INSERT INTO `file_uri`(`furi1`, `etd_id`, `f_type`) VALUES (?,?,?)', [furi, etd_id, ftype], function (error, results, fields) {
+    db_1.default.query('INSERT INTO `file_uri`(`furi1`, `etd_id`, `f_type`) VALUES (AES_ENCRYPT(?,?),?,?)', [furi,key, etd_id, ftype], function (error, results, fields) {
         if (error) {
             console.log('error', error)
             res.sendStatus(400)
@@ -153,13 +158,14 @@ router.post('/enter_file_uri2_db', function (req, res) {
     var etd_id = req.body.etd_id
     var ftype = req.body.f_type
     var furi = req.body.f_uri
+    var key=process.env["ENCRYPTION_KEY"];
 
     var tech_file = req.body.tech_file;
     var boq_file = req.body.boq_file;
 
     console.log('enter file2 db tender s3 called ' + etd_id)
 
-    db_1.default.query('UPDATE `file_uri` SET `furi2` = ? WHERE etd_id = ? ', [furi, etd_id], function (error, results, fields) {
+    db_1.default.query('UPDATE `file_uri` SET `furi2` = AES_ENCRYPT(?,?) WHERE etd_id = ? ', [furi,key, etd_id], function (error, results, fields) {
         if (error) {
             console.log('error', error)
             res.sendStatus(400)
@@ -321,8 +327,8 @@ router.post('/sign_8081/:name/:email/:reason/:location/:flag', (req, res) => {
     var location = req.params.location
     var flag = req.params.flag
     // console.log(name);
-    // console.log(req.params);
-
+     console.log("sign 8081 called");
+	
     var uploadPost = multer({ storage: postStorage }).single('file')
     uploadPost(req, res, function (error) {
         if (error) {
@@ -336,6 +342,7 @@ router.post('/sign_8081/:name/:email/:reason/:location/:flag', (req, res) => {
             scriptPath: './routes/',
             args: [name, email, reason, location, req.file.filename],
         }
+	console.log("sign 8081 1");
         PythonShell.run('sign_function.py', options, function (err, results) {
             if (err) throw err
             // Results is an array consisting of messages collected during execution
@@ -348,41 +355,10 @@ router.post('/sign_8081/:name/:email/:reason/:location/:flag', (req, res) => {
                     res.cookie('boq_file', r)
                 }
             }
+		console.log("sign 8081 2")
             res.json(JSON.parse(`{"filename":"` + r + `"}`))
         })
     })
-})
-
-router.post('/preview_pdf', function (req, res) {
-    console.log('prview pdf called ', req.body.result0[0].et_tender_ref_no)
-    var et_ref = req.body.result0[0].et_tender_ref_no
-    var title = req.body.result0[0].et_title
-    var fee = req.body.result0[0].et_tender_fee
-    var bid_date = req.body.result0[0].et_bidding_date
-    var vcd_name = req.body.result1[0].vcd_name
-    var vcd_dob = req.body.result1[0].vcd_dob
-    var vcd_designation = req.body.result1[0].vcd_designation
-    var vcd_aadhar = req.body.result1[0].vcd_aadhar
-    var vcd_email = req.body.result1[0].vcd_email
-    var vcd_contact = req.body.result1[0].vcd_contact
-    var v_name = req.body.result1[0].v_name
-    var v_legal_id = req.body.result1[0].v_legal_id
-    var v_yoe = req.body.result1[0].v_yoe
-    var v_reg_no = req.body.result1[0].v_reg_no
-    var v_gst = req.body.result1[0].v_gst
-    var v_pan = req.body.result1[0].v_pan
-    var v_email = req.body.result1[0].v_email
-    var v_mobile = req.body.result1[0].v_mobile
-    var v_address = req.body.result1[0].v_address
-    var furi1 = req.body.result2[0].furi1
-    var furi2 = req.body.result2[0].furi2
-    var txn_id = req.body.result2[0].txn_id
-    var txn_amount = req.body.result2[0].txn_amount
-    var txn_timestamp = req.body.result2[0].txn_timestamp
-    var bank_name = req.body.result2[0].bank_name
-    var resp_message = req.body.result2[0].resp_message
-
-    res.sendStatus(200)
 })
 
 exports.default = router

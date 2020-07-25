@@ -6,8 +6,8 @@
     <link rel="stylesheet" href="/css/crud_admin.css">
     <title>Dashboard</title>
 </head>
-<body>
     {{> header}}
+<body>
     </header>
     <div class="container1">
         <h1>CRUD ADMIN</h1><br><br>
@@ -28,7 +28,11 @@
                 </tr>
                 <tr>
                     <td><label for="fee">Tender Fee</label></td>
-                    <td><input id="fee" type="number" min="0" max="10000" placeholder="Enter Tender Fee" required></td>
+                    <td><input id="fee" type="number" min="0" max="1000000" placeholder="Enter Tender Fee" required></td>
+                </tr>
+                <tr>
+                    <td><label for="max_bid">Maximum Bidding amount</label></td>
+                    <td><input id="max_bid_amt" type="number" min="0"  placeholder="Enter Maximum Bidding amount" required></td>
                 </tr>
                 <tr>
                     <td><label for="closing_date">Closing date</label></td>
