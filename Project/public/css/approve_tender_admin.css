@@ -34,10 +34,6 @@ label {
   color: black;
 }
 
-a {
-  color: blue;
-}
-
 strong, .RnoLabel, .Id, .OdateLabel {
   font-family: 'Open Sans', 'Sans serif';
   font-weight: 100;

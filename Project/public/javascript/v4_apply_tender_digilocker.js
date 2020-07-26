@@ -21,92 +21,129 @@ window.onload = function () {
     document.getElementById('icon2').style.display = 'none'
     document.getElementById('icon3').style.display = 'none'
 
-    //get param "state" from current url
-    var url_string = window.location.href
-    var url = new URL(url_string)
-    var state = url.searchParams.get('state')
-
     var xhr = new XMLHttpRequest()
-    check_digi_url = 'https://165.22.210.37:8081/check_digi_access'
-    xhr.open('GET', check_digi_url, true)
-    xhr.setRequestHeader('Content-Type', 'application/json')
-
-    xhr.send();
-
-    //xhr repsonse handling
     xhr.onload = function () {
-        var temp = JSON.parse(this.responseText)
-        if (this.status == 200) {
-            check_digi_access = temp.digi_access
-            console.log("check digi access", check_digi_access, typeof (check_digi_access));
-            //check if url contains param "state"
-            if (state) {
-                //get et_id and etd_id from "state" and update in global variable
-                var temp = state.split(':')
-                et_id = temp[0]
-                etd_id = temp[1]
+        if (this.status === 200) {
+            res = JSON.parse(this.responseText)
+            console.log(this.responseText, res)
+            var status = res.status
+            var etd_id = res.etd_id
+            if (status == '100') {
 
-                // check if we have users digilocker account access
-                if (check_digi_access == "1") {
-                    //If we have dig_access and param ("state") in url then no need of digilocker login
-                    console.log('params found and we also have digi access')
-                } else {
-                    //If we have params ("state") but not digilocker access
-                    //then send parameters (authentication code, vcd_id) to our server
+                window.location.href = '/tender/payment?et_id=' + et_id + '&etd_id=' + etd_id
+            }
+            else if (status == '110') {
 
-                    //get auth_code and state from the current browser uri
-                    var code = url.searchParams.get('code')
+                // if (result.isConfirmed) window.location.href = '/tender/upload-documents?et_id=' + et_id + '&etd_id=' + etd_id
+                xhr.open('POST', '/get_etd_id')
+                xhr.setRequestHeader('Content-Type', 'application/json')
 
-                    //creating xhr request to make get_access_token api call on our server
-                    //this api call will be then forwarded to digilocker
-                    //response from digilocker will be given back to the server and then client respectively
-                    var xhr = new XMLHttpRequest()
-                    url = 'https://165.22.210.37:8081/get_access_token'
-                    xhr.open('POST', url, true)
-                    xhr.setRequestHeader('Content-Type', 'application/json')
+                xhr.send(data)
 
-                    xhr.send(
-                        JSON.stringify({
-                            code: code,
-                            id: vcd_id,     //modf_sanket
-                        })
-                    )
+                //get param "state" from current url
+                var url_string = window.location.href
+                var url = new URL(url_string)
+                var state = url.searchParams.get('state')
 
-                    //xhr repsonse handling
-                    xhr.onload = function () {
-                        var temp = JSON.parse(this.responseText)
-                        if (this.status == 200) {
-                            // add_to_cookie('digi_access', '1')
-                            // console.log('digi_access successfully updated in cookies too')
-                            alert(temp.msg)
-                        } else if (this.status == 400) {
-                            alert(temp.error)
+                var xhr = new XMLHttpRequest()
+                check_digi_url = 'https://165.22.210.37:8081/check_digi_access'
+                xhr.open('GET', check_digi_url, true)
+                xhr.setRequestHeader('Content-Type', 'application/json')
+
+                xhr.send();
+
+                //xhr repsonse handling
+                xhr.onload = function () {
+                    var temp = JSON.parse(this.responseText)
+                    if (this.status == 200) {
+                        check_digi_access = temp.digi_access
+                        console.log("check digi access", check_digi_access, typeof (check_digi_access));
+                        //check if url contains param "state"
+                        if (state) {
+                            //get et_id and etd_id from "state" and update in global variable
+                            var temp = state.split(':')
+                            et_id = temp[0]
+                            etd_id = temp[1]
+
+                            // check if we have users digilocker account access
+                            if (check_digi_access == "1") {
+                                //If we have dig_access and param ("state") in url then no need of digilocker login
+                                console.log('params found and we also have digi access')
+                            } else {
+                                //If we have params ("state") but not digilocker access
+                                //then send parameters (authentication code, vcd_id) to our server
+
+                                //get auth_code and state from the current browser uri
+                                var code = url.searchParams.get('code')
+
+                                //creating xhr request to make get_access_token api call on our server
+                                //this api call will be then forwarded to digilocker
+                                //response from digilocker will be given back to the server and then client respectively
+                                var xhr = new XMLHttpRequest()
+                                url = 'https://165.22.210.37:8081/get_access_token'
+                                xhr.open('POST', url, true)
+                                xhr.setRequestHeader('Content-Type', 'application/json')
+
+                                xhr.send(
+                                    JSON.stringify({
+                                        code: code,
+                                        id: vcd_id,     //modf_sanket
+                                    })
+                                )
+
+                                //xhr repsonse handling
+                                xhr.onload = function () {
+                                    var temp = JSON.parse(this.responseText)
+                                    if (this.status == 200) {
+                                        // add_to_cookie('digi_access', '1')
+                                        // console.log('digi_access successfully updated in cookies too')
+                                        alert(temp.msg)
+                                    } else if (this.status == 400) {
+                                        alert(temp.error)
+                                    } else {
+                                        alert('Some Other Error ', xhr.status, ' with statusText ', xhr.statusText)
+                                    }
+                                }
+                            }
                         } else {
-                            alert('Some Other Error ', xhr.status, ' with statusText ', xhr.statusText)
+                            //if we don't have "state" params then take et_id and etd_id from params and update in global variables
+                            et_id = url.searchParams.get('et_id')
+                            etd_id = url.searchParams.get('etd_id')
+
+                            // check if we have users digilocker account access
+                            console.log("just check digi ", check_digi_access);
+                            if (check_digi_access == "0") {
+                                //if we don't have param "state" and also not digi_access
+                                //then change url and redirect to digilocker
+                                alert(`We don't have access to your digilocker account. please give access. Click "OK" to continue`)
+                                window.location.href = 'https://api.digitallocker.gov.in/public/oauth2/1/authorize?response_type=code&client_id=DC8FB8CF&redirect_uri=https://165.22.210.37:8081/tender/upload-documents&state=' + et_id + ':' + etd_id
+                            } else {
+                                //if we don't have param "state" in url but we have digi_access then no need of digilocker signin
+                                console.log('We have digi_access but not parameters in url')
+                            }
                         }
+                    } else if (this.status == 400) {
+                        alert(temp.error)
+                    } else {
+                        alert('Some Other Error ', xhr.status, ' with statusText ', xhr.statusText)
                     }
                 }
-            } else {
-                //if we don't have "state" params then take et_id and etd_id from params and update in global variables
-                et_id = url.searchParams.get('et_id')
-                etd_id = url.searchParams.get('etd_id')
-
-                // check if we have users digilocker account access
-                console.log("just check digi ", check_digi_access);
-                if (check_digi_access == "0") {
-                    //if we don't have param "state" and also not digi_access
-                    //then change url and redirect to digilocker
-                    alert(`We don't have access to your digilocker account. please give access. Click "OK" to continue`)
-                    window.location.href = 'https://api.digitallocker.gov.in/public/oauth2/1/authorize?response_type=code&client_id=DC8FB8CF&redirect_uri=https://165.22.210.37:8081/tender/upload-documents&state=' + et_id + ':' + etd_id
-                } else {
-                    //if we don't have param "state" in url but we have digi_access then no need of digilocker signin
-                    console.log('We have digi_access but not parameters in url')
-                }
             }
-        } else if (this.status == 400) {
-            alert(temp.error)
+            else if (status == '111') {
+
+                if (result.isConfirmed) window.location.href = '/tender/confirmation?et_id=' + et_id + '&etd_id=' + etd_id
+
+            } else if (status == '1111') {
+
+                if (result.isConfirmed) window.location.href = '/tender/preview?et_id=' + et_id + '&etd_id=' + etd_id
+
+            }
+        } else if (this.status === 404) {
+
+            if (result.isConfirmed) window.location.href = '/tender/apply?et_id=' + response[i].et_id
+
         } else {
-            alert('Some Other Error ', xhr.status, ' with statusText ', xhr.statusText)
+            alert('Check Network')
         }
     }
 
@@ -201,7 +238,7 @@ function show_files(str) {
                         xhr.addEventListener('readystatechange', function () {
                             if (this.readyState === 4) {
                                 console.log(this.responseText)
-                                var data = JSON.stringify({ etd_id: etd_id, f_type: 'link', f_uri: BOQ_file_uri, tech_file: Technical_file_name, boq_file: BOQ_file_name})
+                                var data = JSON.stringify({ etd_id: etd_id, f_type: 'link', f_uri: BOQ_file_uri, tech_file: Technical_file_name, boq_file: BOQ_file_name })
 
                                 var xhr = new XMLHttpRequest()
 
@@ -279,10 +316,10 @@ function show_files(str) {
 //This function will get content of a directory (using it's id)from digilocker
 //will fetch self_uploaded documents from digilocker
 function get_files() {
-    if(parent_id.length == 0) {
-        document.getElementById("back").style.display="none";
+    if (parent_id.length == 0) {
+        document.getElementById("back").style.display = "none";
     } else {
-        document.getElementById("back").style.display="";
+        document.getElementById("back").style.display = "";
     }
     //creating xhr request for api call
     var xhr = new XMLHttpRequest()
