@@ -578,8 +578,8 @@ function add_tender() {
         var xhr = new XMLHttpRequest()
         // xhr.withCredentials = true;
 
-        xhr.addEventListener('readystatechange', function () {
-            if (this.readyState === 4) {
+        xhr.onload = function () {
+            if (this.status == 200) {
                 console.log(this.responseText)
 
                 alert('successfully added')
@@ -587,7 +587,12 @@ function add_tender() {
                     window.location.href = '/admin/dashboard'
                 }, 200)
             }
-        })
+            else if (this.status == 404) {
+                alert("some error")
+
+            }
+        }
+        
 
         xhr.open('POST', '/create_tender')
         xhr.setRequestHeader('Content-Type', 'application/json')
