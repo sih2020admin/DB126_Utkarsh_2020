@@ -31,7 +31,7 @@ var transporter = nodemailer.createTransport({
 router.post('/login_api', function (reqs, res) {
     var username = reqs.body.username
     var password = crypto.createHash('sha512').update(reqs.body.password).digest('hex')
-    console.log('login called', username)
+    console.log('login called', username,password)
     db_1.default.query('SELECT * FROM  log_in_details WHERE role_id=2 and user_name = ?;', [username], function (error, results, fields) {
         if (error) {
             //console.log("error");
@@ -213,7 +213,7 @@ router.post('/verifyOTP_login', (req, res) => {
 router.post('/login/admin', function (req, res) {
     var username = req.body.username
     var password = crypto.createHash('sha512').update(req.body.password).digest('hex')
-    console.log('admin login called', username , password)
+    console.log('admin login called', username)
 
     db_1.default.query('SELECT * FROM  log_in_details WHERE role_id= 1 and user_name = ?', [username], function (error, results, fields) {
         if (error) {

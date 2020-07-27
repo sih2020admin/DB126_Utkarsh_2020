@@ -191,6 +191,9 @@ function get_department() {
                     for: response[i]['dept_name'],
                     text: response[i]['dept_name'],
                 }).appendTo('#department')
+                if(i==1){
+                    $('<br>',).appendTo('#department')    
+                }
             }
         })
         .catch((error) => {
