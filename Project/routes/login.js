@@ -9,7 +9,7 @@ var express_1 = __importDefault(require('express'))
 var db_1 = __importDefault(require('./db'))
 var router = express_1.default.Router()
 // var unirest = require('unirest')
-var crypto = require('crypto')
+const  crypto = require('crypto')
 var https = require('https')
 
 var nodemailer = require('nodemailer');
