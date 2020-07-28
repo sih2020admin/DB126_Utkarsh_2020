@@ -233,7 +233,8 @@ function filter_department(department) {
     if (department.length !== 0) {
         for (let i = 0; i < response.length; i++) {
             for (let j = 0; j < department.length; j++) {
-                if (department[j] === response[0]['dept_name']) {
+                if (department[j] === response[i]['dept_name']) {
+                    console.log("",response[i])
                     temp.push(response[i])
                 }
             }
