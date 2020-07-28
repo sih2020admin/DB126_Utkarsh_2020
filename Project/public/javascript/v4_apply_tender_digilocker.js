@@ -20,6 +20,7 @@ if (state) { //if url after digi code
         et_id = (_a = urlParams.get('et_id')) === null || _a === void 0 ? void 0 : _a.toString()
         etd_id =  (_a = urlParams.get('etd_id')) === null || _a === void 0 ? void 0 : _a.toString()
     }
+console.log(etd_id, et_id)
 
 
 var check_digi_access;               //maintain flag of digi_access after getting from server
