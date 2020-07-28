@@ -3,16 +3,25 @@ $('#approved_button').click(() => {
     $('.details').hide();
     $('.statistics').hide();
     $('.approved_tenders').fadeTo('fast', 1);
+    document.getElementById("profile_button").classList.remove("active");
+    document.getElementById("stat_button").classList.remove("active");
+    document.getElementById("approved_button").classList.add("active");
 });
 $('#profile_button').click(() => {
     $('.approved_tenders').hide();
     $('.statistics').hide();
     $('.details').fadeTo('fast', 1);
+    document.getElementById("approved_button").classList.remove("active");
+    document.getElementById("stat_button").classList.remove("active");
+    document.getElementById("profile_button").classList.add("active");
 });
 $('#stat_button').click(() => {
     $('.details').hide();
     $('.approved_tenders').hide();
     $('.statistics').fadeTo('fast', 1);
+    document.getElementById("stat_button").classList.add("active");
+    document.getElementById("profile_button").classList.remove("active");
+    document.getElementById("approved_button").classList.remove("active");
 });
 function getChartData(results) {
     return [results[0][0]['count'], results[1][0]['count'], results[2][0]['count'], results[3][0]['count']];
