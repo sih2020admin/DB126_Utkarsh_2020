@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.numberOfVendorsRegistered = exports.getCountOfApplicationsOfVendorPerDepartment = exports.getTotalCountOfApplicationsOfVendor = exports.getAmountDifference = exports.getApplicationsWhichPassedFirstStage = exports.getCountOfApplicationsPerTender = void 0;
+exports.numberOfVendorsRegistered = exports.getCountOfApplicationsOfVendorPerDepartment = exports.getTotalCountOfApplicationsOfVendor = exports.getCountOfApplicationsPerTenderByStatus = exports.getAmountDifference = exports.getApplicationsWhichPassedFirstStage = exports.getCountOfApplicationsPerTender = void 0;
 const connection_1 = __importDefault(require("./../connections/connection"));
 var key = process.env['ENCRYPTION_KEY'];
 //Admin Stats
@@ -25,6 +25,16 @@ async function getAmountDifference() {
     return temp[0];
 }
 exports.getAmountDifference = getAmountDifference;
+async function getCountOfApplicationsPerTenderByStatus(request) {
+    let d = '170';
+    let temp = await connection_1.default.query(`SELECT 'second' as OnStage,et_id,count(status) as count,cast(status as char) as status FROM e_tender_vendor WHERE et_id='${d}' AND status='100';
+    SELECT 'third' as OnStage,et_id,count(status) as count,cast(status as char) as status FROM e_tender_vendor WHERE et_id='${d}' AND status='110';
+    SELECT 'fourth' as OnStage,count(status) as count,cast(status as char) as status FROM e_tender_vendor WHERE et_id='${d}' AND status='111';
+    SELECT 'finished' as OnStage,et_id,count(status) as count,cast(status as char) as status FROM e_tender_vendor WHERE et_id='${d}' AND status='1111'
+    `);
+    return temp[0];
+}
+exports.getCountOfApplicationsPerTenderByStatus = getCountOfApplicationsPerTenderByStatus;
 //Vendor Stats
 //gives count of all the applications of a particular vendor
 async function getTotalCountOfApplicationsOfVendor(request) {
@@ -32,12 +42,6 @@ async function getTotalCountOfApplicationsOfVendor(request) {
     return count[0];
 }
 exports.getTotalCountOfApplicationsOfVendor = getTotalCountOfApplicationsOfVendor;
-
-async function getTotalCountOfApplicationsOfVendor_dept(request) {
-    let count = await connection_1.default.execute(`SELECT d.dept_id, d.dept_name ,count(etv.etd_id) as total_count_dept FROM e_tender_vendor as etv ,e_tender_details as e, department as d  where etv.vd_id='${request.signedCookies['vd_id_e']}' and etv.et_id=e.et_id and d.dept_id=e.dept_id GROUP BY (e.dept_id);`);
-    return count[0];
-}
-exports.getTotalCountOfApplicationsOfVendor_dept = getTotalCountOfApplicationsOfVendor_dept;
 //gives count of applications per department of a particular vendor
 async function getCountOfApplicationsOfVendorPerDepartment(request) {
     let count = await connection_1.default.execute(`SELECT d.dept_name,e.dept_id  ,count(etd_id) as total_count_department_wise , sum(cast( AES_DECRYPT(etv.bidding_amt ,'${key}') as char )) as total_cost_departmentwise FROM e_tender_vendor as etv , e_tender_details as e , department as d where etv.vd_id='${request.signedCookies['vd_id_e']}' and e.et_id=etv.et_id  and d.dept_id=e.dept_id GROUP BY e.dept_id`);
@@ -52,11 +56,3 @@ async function numberOfVendorsRegistered() {
     return count[0];
 }
 exports.numberOfVendorsRegistered = numberOfVendorsRegistered;
-connection_1.default
-    .query(`SELECT count(vd_id) as total_vendors_registred FROM vendor_details`)
-    .then((result) => {
-    console.log(result[0]);
-})
-    .catch((error) => {
-    console.log(error);
-});

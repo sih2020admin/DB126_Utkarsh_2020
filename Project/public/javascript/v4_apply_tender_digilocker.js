@@ -1,8 +1,27 @@
 var vcd_id = get_cookie('vcd_id') //will be used everywhere in digilocker code as vcd_id modf_sanket
-var et_id //to store current et_id
+var et_id = null //to store current et_id
 var etd_id //to store current etd_id
 var vcd_id = get_cookie('vcd_id')    //adding for time sake
 var vd_id = get_cookie('vd_id')
+
+
+var queryString = window.location.search
+var urlParams = new URLSearchParams(queryString)
+var url_string = window.location.href
+var url = new URL(url_string)
+var state = url.searchParams.get('state')
+
+if (state) { //if url after digi code 
+    var temp = state.split(':')
+    et_id = temp[0]
+    etd_id = temp[1]
+
+    }else{   //if normal url 
+        et_id = (_a = urlParams.get('et_id')) === null || _a === void 0 ? void 0 : _a.toString()
+        etd_id =  (_a = urlParams.get('etd_id')) === null || _a === void 0 ? void 0 : _a.toString()
+    }
+console.log(etd_id, et_id)
+
 
 var check_digi_access;               //maintain flag of digi_access after getting from server
 
@@ -35,10 +54,7 @@ window.onload = function () {
             else if (status == '110') {
 
                 // if (result.isConfirmed) window.location.href = '/tender/upload-documents?et_id=' + et_id + '&etd_id=' + etd_id
-                xhr.open('POST', '/get_etd_id')
-                xhr.setRequestHeader('Content-Type', 'application/json')
-
-                xhr.send(data)
+                
 
                 //get param "state" from current url
                 var url_string = window.location.href
@@ -146,6 +162,9 @@ window.onload = function () {
             alert('Check Network')
         }
     }
+    xhr.open('POST', '/get_etd_id')
+    xhr.setRequestHeader('Content-Type', 'application/json')
+    xhr.send(JSON.stringify({ et_id: et_id}))
 
 }
 

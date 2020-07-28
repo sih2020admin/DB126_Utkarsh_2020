@@ -146,7 +146,7 @@ router.post('/redirect', (request, response) => {
                     }
                     else {
                         debug('Successfully inserted in payment database');
-                        db_1.default.query(`update e_tender_vendor set status=110 where et_id=${i.et_id} and etd_id=${i.etd_id}`, (error, result) => {
+                        db_1.default.query(`update e_tender_vendor set status=AES_ENCRYPT(110,'${process.env['ENCRYPTION_KEY']}') where et_id=${i.et_id} and etd_id=${i.etd_id}`, (error, result) => {
                             if (error) {
                                 debug('Error in updating in e-tender-vendor');
                             }

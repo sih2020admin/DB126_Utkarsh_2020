@@ -55,9 +55,9 @@ app = load_routes_1.loadStaticFiles(app);
 app.use(redirect_1.redirectToLoginPage, redirect_1.redirectToProfilePage);
 app.use(redirect_2.redirectToAdminLoginPage, redirect_2.redirectToAdminProfilePage);
 app.use('/tender/apply', tender_1.validateURLParamsApply, tender_1.validateURLParamsDApply, tender_1.applyTender);
-// app.use('/tender/payment', tender_1.validateURLParams, tender_1.validateURLParamsD );
-app.use('/tender/confirmation', tender_1.validateURLParams, tender_1.validateURLParamsD, tender_1.confirmTender)
-app.use('/tender/preview',  tender_1.validateURLParamsD,  tender_1.validateURLParamsD_preview) 
+app.use('/tender/payment', tender_1.validateURLParams, tender_1.validateURLParamsD);
+app.use('/tender/confirmation', tender_1.validateURLParams, tender_1.validateURLParamsD, tender_1.confirmTender);
+app.use('/tender/preview', tender_1.validateURLParams, tender_1.validateURLParamsD_preview, tender_1.previewTender);
 app = load_routes_1.loadRouterFiles(app);
 app.get('*', (request, response) => {
     response.render('error', { layout: false });
@@ -66,4 +66,4 @@ app.get('*', (request, response) => {
 https_1.default.createServer(httpsOptions, app).listen(port, function () {
     console.log('Server listening On Port ' + port);
 });
-exports.default = app;
+exports.default = app; //iface wip2s0 inet manual  

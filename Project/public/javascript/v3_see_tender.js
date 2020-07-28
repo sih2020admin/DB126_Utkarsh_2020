@@ -125,7 +125,7 @@ function apply(i) {
                     showCancelButton: true,
                     confirmButtonColor: '#663EFD',
                     cancelButtonColor: '#a6a6a6',
-                    confirmButtonText: 'Apply',
+                    confirmButtonText: 'Preview',
                 }).then((result) => {
                     // console.log(result)
                     if (result.isConfirmed) window.location.href = '/tender/preview?et_id=' + et_id + '&etd_id=' + etd_id
@@ -191,6 +191,9 @@ function get_department() {
                     for: response[i]['dept_name'],
                     text: response[i]['dept_name'],
                 }).appendTo('#department')
+                if(i==1){
+                    $('<br>',).appendTo('#department')    
+                }
             }
         })
         .catch((error) => {
@@ -211,8 +214,11 @@ function filterData() {
     $.each($("input[type='date']"), function () {
         closing_date.push($(this).val())
     })
+
     filter_categories.push(closing_date)
     filter_categories.push($('#fees').val().toString())
+    console.log(filter_categories , department , closing_date , fee , filtered_result)
+
     filtered_result = filter_department(filter_categories[0])
     filtered_result = filter_fees(filter_categories[2], filtered_result)
     filtered_result = filter_closing_date(filter_categories[1], filtered_result)
@@ -227,7 +233,8 @@ function filter_department(department) {
     if (department.length !== 0) {
         for (let i = 0; i < response.length; i++) {
             for (let j = 0; j < department.length; j++) {
-                if (department[j] === response[0]['dept_name']) {
+                if (department[j] === response[i]['dept_name']) {
+                    console.log("",response[i])
                     temp.push(response[i])
                 }
             }

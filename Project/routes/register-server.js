@@ -5,10 +5,11 @@ var __importDefault =
         return mod && mod.__esModule ? mod : { default: mod }
     }
 Object.defineProperty(exports, '__esModule', { value: true })
+const  crypto = require('crypto')
 var express_1 = __importDefault(require('express'))
 var db_1 = __importDefault(require('./db'))
 var router = express_1.default.Router()
-var crypto = require('crypto')
+// var crypto = require('crypto')
 
 var nodemailer = require('nodemailer')
 var transporter = nodemailer.createTransport({
