@@ -23,7 +23,7 @@ function app(j){
     k=j;                              //To Dynamically Set Particular tender To Disapprove/Approve
     modal.style.display="block";
     etd_id = response[j].etd_id;
-    document.getElementById("time").innerHTML = response[j].time_period;
+    document.getElementById("time").innerHTML = response[j].time_period + "&nbsp;Days";
 
     document.getElementById("name").innerHTML = response[j].vcd_name;
     document.getElementById("dob").innerHTML = response[j].vcd_dob;
@@ -172,7 +172,7 @@ xhr.onload = function () {
                                 <td>`+response[i].v_legal_id+`</td>
                                 <td>`+response[i].v_email+`</td>
                                 <td>`+response[i].v_mobile+`</td>
-                                <td>`+response[i].time_period+`</td>
+                                <td>`+response[i].time_period+` Days</td>
                                 <td><a onclick="app(`+i+`)" id="v`+i+`">View</a></td>
                                 <td id="`+i+`">_____</td>
                             </tr>` 

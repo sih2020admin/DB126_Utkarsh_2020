@@ -27,7 +27,7 @@ function app(j){
     modal.style.display="block";
     etd_id = res[j].etd_id;
 
-    document.getElementById("bid").innerHTML = res[j].bidding_amt;
+    document.getElementById("bid").innerHTML = "₹" + res[j].bidding_amt;
 
     document.getElementById("name").innerHTML = res[j].vcd_name;
     document.getElementById("dob").innerHTML = res[j].vcd_dob;
@@ -187,7 +187,7 @@ xhr.onload = function () {
                                     <td>`+res[i].v_legal_id+`</td>
                                     <td>`+res[i].v_email+`</td>
                                     <td>`+res[i].v_mobile+`</td>
-                                    <td>`+res[i].bidding_amt+`</td>
+                                    <td>₹ `+res[i].bidding_amt+`</td>
                                     <td><a onclick="app(`+i+`)" id="v`+i+`">View</a></td>
                                     <td id="`+i+`">_____</td>
                                 </tr>` 
