@@ -30,11 +30,23 @@ router.get('/tenders/list', (request, response) => {
         response.render('admin/tenders-list', { layout: false, admin, username: results[0] });
     });
 });
-router.get('/application/approve', (request, response) => {
+router.get('/application/approve/technical', (request, response) => {
     let admin = user_1.isAdmin(request);
     Promise.all([user_1.getAdminUsername(request)]).then((results) => {
-        response.render('admin/application-approve', { layout: false, admin, username: results[0] });
+        response.render('admin/approve-technical', { layout: false, admin, username: results[0] });
     });
+});
+router.get('/application/approve/boq', (request, response) => {
+    let admin = user_1.isAdmin(request);
+    Promise.all([user_1.getAdminUsername(request)]).then((results) => {
+        response.render('admin/approve-boq', { layout: false, admin, username: results[0] });
+    });
+});
+router.get('/application/approve/result', (request, response) => {
+    let admin = user_1.isAdmin(request);
+    Promise.all([user_1.getAdminUsername(request)]).then((results) => {
+        response.render('admin/approve-result', { layout: false, admin, username: results[0] });
+   });
 });
 router.get('/help', (request, response) => {
     let admin = user_1.isAdmin(request);
