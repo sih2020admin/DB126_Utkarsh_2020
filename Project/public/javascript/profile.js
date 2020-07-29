@@ -328,11 +328,9 @@ function graph_data(){
     url = '/statistics'
     xhr1.open('POST', url)
     xhr1.setRequestHeader('Content-Type', 'application/json')
-    xhr1.send(
-        JSON.stringify({
-        })
-    )
+    xhr1.send(JSON.stringify({}))
     xhr1.onload = function () {
+        console.log("xhr 1 on load")
         if (this.status == 200) {
             console.log(this.responseText);
             var g_data=JSON.parse(this.responseText);

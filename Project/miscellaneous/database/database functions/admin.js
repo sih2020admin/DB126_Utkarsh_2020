@@ -6,8 +6,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getApprovedTenders = exports.getAdminDetails = void 0;
 const connection_1 = __importDefault(require("./../connections/connection"));
 var key = process.env['ENCRYPTION_KEY'];
+
 async function getAdminDetails(request) {
-    let temp = await connection_1.default.execute(`SELECT a.ad_name,a.ad_contact, a.ad_email, a.ad_addr, o.org_name, o.org_contact , o.org_email , o.org_addr, o.org_state , o.org_dist ,o.org_pin ,d.dept_name FROM admin_detail as a INNER JOIN org_details as o ON a.ad_dept_id = o.org_id INNER JOIN department as d ON a.ad_dept_id=d.dept_id WHERE ad_id =${request.signedCookies['ad_id_e']}`);
+    console.log("admin profile   of admin",request.signedCookies['ad_id_e'])
+    let temp = await connection_1.default.execute(`SELECT a.ad_name,a.ad_contact, a.ad_email, a.ad_addr, o.org_name, o.org_contact , o.org_email , o.org_addr, o.org_state , o.org_dist ,o.org_pin ,d.dept_name FROM admin_detail as a INNER JOIN org_details as o ON a.ad_org_id = o.org_id INNER JOIN department as d ON a.ad_dept_id=d.dept_id WHERE ad_id =${request.signedCookies['ad_id_e']}`);
     return temp[0];
 }
 exports.getAdminDetails = getAdminDetails;
