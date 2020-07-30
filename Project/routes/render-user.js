@@ -110,7 +110,7 @@ router.get('/tender/confirmation', (request, response) => {
     let user = user_1.isUser(request);
     Promise.all([user_1.getUserUsername(request), tender_1.confirmedTenderDetails(request)])
         .then((results) => {
-        var vcd_id= request.signedCookies.vcd_id_e
+            var vcd_id= request.signedCookies.vcd_id_e
         response.render('user/tender_confirmation', { layout: false, user, username: results[0], tender_details: results[1][0][0], personal_details: results[1][1][0], payment_details: results[1][2][0], bid_amt: results[1][3][0],vcd_id: vcd_id });
     })
         .catch((error) => {
@@ -121,6 +121,8 @@ router.get('/tender/confirmation', (request, response) => {
 router.get('/tender/preview', (request, response) => {
     let user = user_1.isUser(request);
     let s;
+    var vcd_id= request.signedCookies.vcd_id_e
+
     Promise.all([user_1.getUserUsername(request), tender_1.previewTenderDetails(request)])
         .then((results) => {
         console.log(results[1][4]);
@@ -132,6 +134,7 @@ router.get('/tender/preview', (request, response) => {
             personal_details: results[1][1][0],
             payment_details: results[1][2][0],
             misc_details: results[1][3][0],
+            vcd_id : vcd_id,
         });
     })
         .catch((error) => {

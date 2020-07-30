@@ -99,7 +99,7 @@ function next(){
         .queue([
             {
                 input: 'number',
-                title: 'Enter Bidding Amount',
+                title: 'Enter Bidding Amount (₹)',
                 inputValidator: (value) => {
                     if (value<0) return 'Invalid Bidding Amount '
                     if (value=='') return 'Invalid Bidding Amount '
@@ -127,8 +127,8 @@ function next(){
                     html: `
 				        <h3 style="text-align:left;">Confirmation</h3>
 				        <br>
-				        <h4>Bidding amount: &nbsp;${result.value[0]}</h4><br>
-				        <h4>Time period: &nbsp;${result.value[1]}</h4><br>	
+				        <h4>Bidding amount: &nbsp;${result.value[0]}&nbsp;₹</h4><br>
+				        <h4>Time period: &nbsp;${result.value[1]}&nbsp;Days</h4><br>	
 				      `,
                     confirmButtonText: 'Confirm',
                     showCancelButton: true,

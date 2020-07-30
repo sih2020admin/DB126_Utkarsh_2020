@@ -126,126 +126,184 @@ var data = JSON.stringify({ dept_id: ad_dept_id })
 xhr.send(data)
 
 // file upload 1
-jQuery('document').ready(function () {
-    // console.log("file 1 uploading");
-    var input = document.getElementById('file1')
-    var formdata = false
-    if (window.FormData) {
-        formdata = new FormData()
-    }
-    input.addEventListener(
-        'change',
-        function (evt) {
-            var i = 0,
-                len = this.files.length,
-                img,
-                reader,
-                file
+// jQuery('document').ready(function () {
+//     // console.log("file 1 uploading");
+//     var input = document.getElementById('file1')
+//     var formdata = false
+//     if (window.FormData) {
+//         formdata = new FormData()
+//     }
+//     input.addEventListener(
+//         'change',
+//         function (evt) {
+//             var i = 0,
+//                 len = this.files.length,
+//                 img,
+//                 reader,
+//                 file
 
-            for (; i < len; i++) {
-                file = this.files[i]
+//             for (; i < len; i++) {
+//                 file = this.files[i]
 
-                if (!!file.type.match(/pdf.*/)) {
-                    if (window.FileReader) {
-                        reader = new FileReader()
-                        reader.onloadend = function (e) {
-                            //showUploadedItem(e.target.result, file.fileName);
-                        }
-                        reader.readAsDataURL(file)
-                    }
+//                 if (!!file.type.match(/pdf.*/)) {
+//                     if (window.FileReader) {
+//                         reader = new FileReader()
+//                         reader.onloadend = function (e) {
+//                             //showUploadedItem(e.target.result, file.fileName);
+//                         }
+//                         reader.readAsDataURL(file)
+//                     }
 
-                    if (formdata) {
-                        formdata.append('tender_pdf', file)
-                        formdata.append('extra', 'extra-data')
-                    }
+//                     if (formdata) {
+//                         formdata.append('tender_pdf', file)
+//                         formdata.append('extra', 'extra-data')
+//                     }
 
-                    if (formdata) {
-                        jQuery.ajax({
-                            url: 'fileupload',
-                            type: 'POST',
-                            data: formdata,
-                            processData: false,
-                            contentType: false,
-                            success: function (res) {
-                                alert('uploaded')
-                                res = JSON.parse(res)
-                                file1_uri = res.filename
-                                if (file2_uri != null && file1_uri != null) {
-                                    // document.getElementById("get_link").style.display = "block";
-                                }
-                            },
-                        })
-                    }
-                } else {
-                    alert('Not a vaild pdf!')
-                }
-            }
-        },
-        false
-    )
-})
+//                     if (formdata) {
+//                         jQuery.ajax({
+//                             url: 'fileupload',
+//                             type: 'POST',
+//                             data: formdata,
+//                             processData: false,
+//                             contentType: false,
+//                             success: function (res) {
+//                                 alert('uploaded')
+//                                 res = JSON.parse(res)
+//                                 file1_uri = res.filename
+//                                 if (file2_uri != null && file1_uri != null) {
+//                                     // document.getElementById("get_link").style.display = "block";
+//                                 }
+//                             },
+//                         })
+//                     }
+//                 } else {
+//                     alert('Not a vaild pdf!')
+//                 }
+//             }
+//         },
+//         false
+//     )
+// })
 
 //file 2 upload
 
-jQuery('document').ready(function () {
-    // console.log("file 1 uploading");
-    var input2 = document.getElementById('file2')
-    // input.display = none;
-    var formdata2 = false
-    if (window.FormData) {
-        formdata2 = new FormData()
+// jQuery('document').ready(function () {
+//     // console.log("file 1 uploading");
+//     var input2 = document.getElementById('file2')
+//     // input.display = none;
+//     var formdata2 = false
+//     if (window.FormData) {
+//         formdata2 = new FormData()
+//     }
+//     input2.addEventListener(
+//         'change',
+//         function (evt) {
+//             var i = 0,
+//                 len = this.files.length,
+//                 img,
+//                 reader,
+//                 file
+
+//             for (; i < len; i++) {
+//                 file = this.files[i]
+
+//                 if (!!file.type.match(/pdf.*/)) {
+//                     if (window.FileReader) {
+//                         reader = new FileReader()
+//                         reader.onloadend = function (e) {
+//                             //showUploadedItem(e.target.result, file.fileName);
+//                         }
+//                         reader.readAsDataURL(file)
+//                     }
+
+//                     if (formdata2) {
+//                         formdata2.append('tender_pdf', file)
+//                         formdata2.append('extra', 'extra-data')
+//                     }
+
+//                     if (formdata2) {
+//                         jQuery.ajax({
+//                             url: 'fileupload',
+//                             type: 'POST',
+//                             data: formdata2,
+//                             processData: false,
+//                             contentType: false,
+//                             success: function (res) {
+//                                 alert('uploaded')
+//                                 res = JSON.parse(res)
+//                                 file2_uri = res.filename
+//                                 if (file2_uri != null && file1_uri != null) {
+//                                     // document.getElementById("get_link").style.display = "block";
+//                                 }
+//                             },
+//                         })
+//                     }
+//                 } else {
+//                     alert('Not a vaild pdf!')
+//                 }
+//             }
+//         },
+//         false
+//     )
+// })
+
+function browse(){
+    var browse = document.getElementById('file1');
+    upload(browse.files);
+}
+var upload = function(files){
+    var xhr1=  new XMLHttpRequest();
+    formdata = new FormData();
+    for( var x = 0;x < files.length;x = x+1){
+        formdata.append('tender_pdf',files[x]);
     }
-    input2.addEventListener(
-        'change',
-        function (evt) {
-            var i = 0,
-                len = this.files.length,
-                img,
-                reader,
-                file
+    var url = "/fileupload";
+    xhr1.open("POST" ,url);
+    xhr1.onload = function(){
+        if(this.status==200){
+            console.log(this.responseText);
+            document.getElementById("div_f1").style.display = "none";
+            res = JSON.parse(this.responseText)
+            file1_uri = res.filename
+            alert("uploaded technical file");
+        }
+        else if(this.status==400)
+            alert("Error 400");
+        else
+            alert("Some Error Occured");
+    }
+    xhr1.send(formdata)
+}
 
-            for (; i < len; i++) {
-                file = this.files[i]
-
-                if (!!file.type.match(/pdf.*/)) {
-                    if (window.FileReader) {
-                        reader = new FileReader()
-                        reader.onloadend = function (e) {
-                            //showUploadedItem(e.target.result, file.fileName);
-                        }
-                        reader.readAsDataURL(file)
-                    }
-
-                    if (formdata2) {
-                        formdata2.append('tender_pdf', file)
-                        formdata2.append('extra', 'extra-data')
-                    }
-
-                    if (formdata2) {
-                        jQuery.ajax({
-                            url: 'fileupload',
-                            type: 'POST',
-                            data: formdata2,
-                            processData: false,
-                            contentType: false,
-                            success: function (res) {
-                                alert('uploaded')
-                                res = JSON.parse(res)
-                                file2_uri = res.filename
-                                if (file2_uri != null && file1_uri != null) {
-                                    // document.getElementById("get_link").style.display = "block";
-                                }
-                            },
-                        })
-                    }
-                } else {
-                    alert('Not a vaild pdf!')
-                }
-            }
-        },
-        false
-    )
-})
+function browse1(){
+    var browse2 = document.getElementById('file2');
+    upload1(browse2.files);
+}
+var upload1 = function(files){
+    var xhr1=  new XMLHttpRequest();
+    formdata = new FormData();
+    for( var x = 0;x < files.length;x = x+1){
+        formdata.append('tender_pdf',files[x]);
+    }
+    
+    var url = "/fileupload";
+    xhr1.open("POST" ,url);
+    
+    xhr1.onload = function(){
+        if(this.status==200){
+            console.log(this.responseText);
+            document.getElementById("div_f2").style.display = "none";
+            res = JSON.parse(this.responseText)
+            file2_uri = res.filename
+            alert("uploaded BOQ file");
+        }
+        else if(this.status==400)
+            alert("Error 400");
+        else
+            alert("Some Error Occured");
+    }
+    xhr1.send(formdata)
+}
 
 function display_form() {
     $('#create_input_details').toggle()
@@ -262,6 +320,7 @@ function isValidDate(dateString) {
 }
 
 function update_td(clicked_id) {
+    var updated_bid_closing_date;
     Swal.mixin({
         confirmButtonText: 'Next &rarr;',
         showCancelButton: true,
@@ -283,21 +342,26 @@ function update_td(clicked_id) {
                 inputValue: response[clicked_id].et_tender_desc,
             },
             {
-                title: 'Closing Date',
+                title: 'Closing Date YYYY-MM-DD',
                 inputValue: response[clicked_id].et_last_date_apply.slice(0, 10),
                 input: 'text',
                 inputPlaceholder: 'YYYY-MM-DD',
                 inputValidator: (value) => {
                     if (!isValidDate(value)) return 'Enter valid date format YYYY-MM-DD'
+                    updated_bid_closing_date=  new Date(value.replace(/-/g,'/'));  
+
                 },
             },
             {
                 input: 'text',
-                title: 'Bid opening date',
+                title: 'Bid opening date YYYY-MM-DD',
                 inputValue: response[clicked_id].et_bidding_date.slice(0, 10),
                 inputPlaceholder: 'YYYY-MM-DD',
                 inputValidator: (value) => {
                     if (!isValidDate(value)) return 'Enter valid date format YYYY-MM-DD'
+                    var date2Updated = new Date(value.replace(/-/g,'/'));
+                    if(date2Updated < updated_bid_closing_date) return "Enter Date after "+updated_bid_closing_date
+
                 },
             },
             {
@@ -313,13 +377,13 @@ function update_td(clicked_id) {
                 Swal.fire({
                     title: 'All done!',
                     html: `
-				        <h3>Updated Tender:</h3>
+				        <h3>Updated Tender</h3>
 				        
-				        <h4>Tender Title:</h4>${result.value[0]}<br>
-				        <h4>Tender Description:</h4>${result.value[1]}<br>	
-				        <h4>Tender Closing Date:</h4>${result.value[2]}<br>
-				        <h4>Tender Bid Opening Date:</h4>${result.value[3]}<br>
-				        <h4>Tender Fee:</h4>${result.value[4]}<br>
+				        <h4>Tender Title</h4><b>${result.value[0]}</b><br>
+				        <h4>Tender Description</h4><b>${result.value[1]}</b><br>	
+				        <h4>Tender Closing Date</h4><b>${result.value[2]}</b><br>
+				        <h4>Tender Bid Opening Date</h4><b>${result.value[3]}</b><br>
+				        <h4>Tender Fee</h4><b>₹&nbsp;${result.value[4]}</b><br>
 
 				      `,
                     confirmButtonText: 'Confirm',
