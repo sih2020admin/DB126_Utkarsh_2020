@@ -4,6 +4,8 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/crud_admin.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
     <title>Dashboard</title>
 </head>
     {{> header}}
@@ -52,8 +54,8 @@
                     <!-- <td><input id="link" type="text" placeholder="Enter link if any" ></td> -->
                 </tr>
                 <tr>
-                    <td id='div_f1' style="display:none;" ><label for="file1" class="upload_label"><span>Upload Technical</span></label><input id="file1" type="file" accept="application/pdf"/></td>
-                    <td id='div_f2' style="display:none;" ><label for="file2" class="upload_label"><span>Upload BOQ</span></label><input id="file2" type="file" accept="application/pdf"/></td>
+                    <td id='div_f1' style="display:none;" ><label for="file1" class="upload_label"><span>Upload Technical</span></label><input id="file1" type="file" accept="application/pdf" onchange="browse()"/></td>
+                    <td id='div_f2' style="display:none;" ><label for="file2" class="upload_label"><span>Upload BOQ</span></label><input id="file2" type="file" accept="application/pdf" onchange="browse1()"/></td>
                       
                 </tr>
                     <td></td>
