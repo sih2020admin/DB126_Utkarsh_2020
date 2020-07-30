@@ -105,8 +105,13 @@
             color: var(--main_color);
         }
         p{
-            text-indent: 2em;
+            // text-indent: 2em;
             line-height: 2em;
+            // box-decoration-break: clone;
+
+        }
+        b{
+            font-weight: bold;
         }
     }
 }

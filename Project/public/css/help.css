@@ -121,8 +121,11 @@
 }
 
 .main .doc p {
-  text-indent: 2em;
   line-height: 2em;
+}
+
+.main .doc b {
+  font-weight: bold;
 }
 
 header {
