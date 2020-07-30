@@ -283,9 +283,18 @@ sup{
 //Update Alert Box
 
 .swal2-content{
-    text-align: left;
+    text-align: left !important;
     b{
-      font-weight: bold;  
+    //   font-weight: 600;
+      margin-left: 10px;  
+      box-decoration-break: clone;
+    }
+    h3{
+        color: var(--main_color);
+    }
+    h4{
+        margin: 10px auto 0;
+        color: var(--accent-color);
     }
 }
 .swal2-title{

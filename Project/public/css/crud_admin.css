@@ -312,11 +312,22 @@ sup {
 }
 
 .swal2-content {
-  text-align: left;
+  text-align: left !important;
 }
 
 .swal2-content b {
-  font-weight: bold;
+  margin-left: 10px;
+  -webkit-box-decoration-break: clone;
+          box-decoration-break: clone;
+}
+
+.swal2-content h3 {
+  color: var(--main_color);
+}
+
+.swal2-content h4 {
+  margin: 10px auto 0;
+  color: var(--accent-color);
 }
 
 .swal2-title {
