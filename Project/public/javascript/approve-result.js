@@ -125,10 +125,10 @@ function result(i){
         xhr.send(JSON.stringify({ et_id: et_id, status: "3"}))
         xhr.onload = function () {
             if (this.status == 200) {
-               // document.getElementById("main_content").style.display = "none";
-                //document.getElementById("head").style.display = "none";
-                //display()
-                //document.getElementById("winner").style.display = "";
+                document.getElementById("main_content").style.display = "none";
+                document.getElementById("head").style.display = "none";
+                display()
+                document.getElementById("winner").style.display = "";
             }
             else if (this.status == 400) 
                 alert('Error 400')
