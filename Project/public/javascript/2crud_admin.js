@@ -313,13 +313,13 @@ function update_td(clicked_id) {
                 Swal.fire({
                     title: 'All done!',
                     html: `
-				        <h3>Updated Tender:</h3>
+				        <h3>Updated Tender</h3>
 				        
-				        <h4>Tender Title:</h4>${result.value[0]}<br>
-				        <h4>Tender Description:</h4>${result.value[1]}<br>	
-				        <h4>Tender Closing Date:</h4>${result.value[2]}<br>
-				        <h4>Tender Bid Opening Date:</h4>${result.value[3]}<br>
-				        <h4>Tender Fee:</h4>${result.value[4]}<br>
+				        <h4>Tender Title</h4><b>${result.value[0]}</b><br>
+				        <h4>Tender Description</h4><b>${result.value[1]}</b><br>	
+				        <h4>Tender Closing Date</h4><b>${result.value[2]}</b><br>
+				        <h4>Tender Bid Opening Date</h4><b>${result.value[3]}</b><br>
+				        <h4>Tender Fee</h4><b>${result.value[4]}</b><br>
 
 				      `,
                     confirmButtonText: 'Confirm',

@@ -282,7 +282,12 @@ sup{
 }
 //Update Alert Box
 
-
+.swal2-content{
+    text-align: left;
+    b{
+      font-weight: bold;  
+    }
+}
 .swal2-title{
     color: var(--main_color);
 }

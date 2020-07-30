@@ -311,6 +311,14 @@ sup {
   color: green;
 }
 
+.swal2-content {
+  text-align: left;
+}
+
+.swal2-content b {
+  font-weight: bold;
+}
+
 .swal2-title {
   color: var(--main_color);
 }
