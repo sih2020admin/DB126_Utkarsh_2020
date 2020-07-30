@@ -85,7 +85,7 @@ table td {
   vertical-align: top;
 }
 
-#time {
+#time, #bid {
   color: var(--main_color);
   font-weight: bold;
 }
