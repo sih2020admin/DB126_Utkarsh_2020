@@ -1,9 +1,9 @@
-# ManagementSystem
+# E-Tendering
 
 <table>
 <tr>
 <td>
-  A Mobile interface for Members of CSI-DBIT to use.
+  E-tendering website(name of our website) offers a medium to view, select and apply for tenders in a safest manner. From selecting a tender to bidding and payment, everything is simple, fast and secure. A good user-interface environment along with easy navigation and customer service is provided. 
 </td>
 </tr>
 </table>
