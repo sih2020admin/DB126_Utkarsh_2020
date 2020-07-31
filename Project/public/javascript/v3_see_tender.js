@@ -64,6 +64,7 @@ function apply(et_id) {
     // if (vd_id != '') {
     // if (result.value) {
     // var et_id = response[i].et_id
+    console.log(et_id)
     var data = JSON.stringify({ et_id: et_id })
     
 
@@ -142,7 +143,7 @@ function apply(et_id) {
                 confirmButtonText: 'Apply',
             }).then((result) => {
                 // console.log(result)
-                if (result.isConfirmed) window.location.href = '/tender/apply?et_id=' + response[i].et_id
+                if (result.isConfirmed) window.location.href = '/tender/apply?et_id=' + et_id
             })
         } else {
             alert('Check Network')
