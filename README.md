@@ -8,11 +8,11 @@
 </tr>
 </table>
 
-# Flow Diagram
+# Flow Chart
 ![Flow](https://github.com/vraj72/V-victory/blob/master/Project/public/images/system_architecture.png)
 
 # Design Interface
-![Design](https://i.imgur.com/rR5kmI5.png)
+![Design](https://github.com/vraj72/V-victory/blob/master/Project/public/images/responsive-mockup-Etendering.png)
 
 
 ## Built with 
