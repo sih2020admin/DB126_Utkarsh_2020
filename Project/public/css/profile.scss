@@ -207,7 +207,11 @@ strong {
     padding: 10px;
     border-radius: 15px;
 }
-
+#tenders_applied_total, #tenders_applied_dept, #tenders_applied_dept_cost{
+    height: auto;
+    width: 800px;
+    margin: 10px auto;
+}
 .mytender{
     //margin-top: 20px;
     //margin-right: 50px;
