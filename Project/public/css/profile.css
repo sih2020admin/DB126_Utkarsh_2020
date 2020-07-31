@@ -221,9 +221,9 @@ strong {
 }
 
 #tenders_applied_total, #tenders_applied_dept, #tenders_applied_dept_cost {
-  height: auto;
-  width: 800px;
-  margin: 10px auto;
+  height: auto !important;
+  width: 800px !important;
+  margin: 10px auto !important;
 }
 
 .mytender {
