@@ -379,11 +379,11 @@ function update_td(clicked_id) {
                     html: `
 				        <h3>Updated Tender</h3>
 				        
-				        <h4>Tender Title</h4><b>${result.value[0]}</b><br>
-				        <h4>Tender Description</h4><b>${result.value[1]}</b><br>	
-				        <h4>Tender Closing Date</h4><b>${result.value[2]}</b><br>
-				        <h4>Tender Bid Opening Date</h4><b>${result.value[3]}</b><br>
-				        <h4>Tender Fee</h4><b>₹&nbsp;${result.value[4]}</b><br>
+				        <h4>Tender Title</h4><h5><b>${result.value[0]}</b></h5>
+				        <h4>Tender Description</h4><h5><b>${result.value[1]}</b></h5>	
+				        <h4>Tender Closing Date</h4><h5><b>${result.value[2]}</b></h5>
+				        <h4>Tender Bid Opening Date</h4><h5><b>${result.value[3]}</b></h5>
+				        <h4>Tender Fee</h4><h5><b>₹&nbsp;${result.value[4]}</b></h5>
 
 				      `,
                     confirmButtonText: 'Confirm',

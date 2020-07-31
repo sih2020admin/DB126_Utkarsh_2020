@@ -311,21 +311,21 @@ sup {
   color: green;
 }
 
-.swal2-content {
+.swal2-content h5 {
   text-align: left !important;
 }
 
 .swal2-content b {
   margin-left: 10px;
-  -webkit-box-decoration-break: clone;
-          box-decoration-break: clone;
 }
 
 .swal2-content h3 {
   color: var(--main_color);
+  text-align: left !important;
 }
 
 .swal2-content h4 {
+  text-align: left !important;
   margin: 10px auto 0;
   color: var(--accent-color);
 }

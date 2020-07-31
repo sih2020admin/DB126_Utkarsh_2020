@@ -283,16 +283,20 @@ sup{
 //Update Alert Box
 
 .swal2-content{
-    text-align: left !important;
+    h5{
+        text-align: left !important;
+    }
     b{
     //   font-weight: 600;
       margin-left: 10px;  
-      box-decoration-break: clone;
+    //   box-decoration-break: clone;
     }
     h3{
         color: var(--main_color);
+        text-align: left !important;
     }
     h4{
+        text-align: left !important;
         margin: 10px auto 0;
         color: var(--accent-color);
     }
