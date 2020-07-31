@@ -212,6 +212,11 @@ button:hover {
 
 .modal-body table {
   text-align: left;
+  width: 100%;
+}
+
+.modal-body #upload {
+  margin-left: 15px;
 }
 
 .modal-header {

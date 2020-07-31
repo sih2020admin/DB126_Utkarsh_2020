@@ -366,7 +366,7 @@ function update_td(clicked_id) {
             },
             {
                 input: 'number',
-                title: 'Tender Fee',
+                title: 'Tender Fee (₹)',
                 inputValue: response[clicked_id].et_tender_fee,
             },
         ])
