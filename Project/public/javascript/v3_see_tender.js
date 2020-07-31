@@ -36,7 +36,7 @@ function loadResults(response) {
             response[i].et_tender_desc +
             `</p>
                         <br><button name="apply" value='apply' class="apply" onclick="apply(` +
-            i +
+            response[i].et_id +
             `)">Apply</button>
                     </div>`
 
@@ -60,10 +60,10 @@ xhr.onload = function () {
 xhr.open('POST', '/gettenderlist')
 xhr.send(data)
 
-function apply(i) {
+function apply(et_id) {
     // if (vd_id != '') {
     // if (result.value) {
-    var et_id = response[i].et_id
+    // var et_id = response[i].et_id
     var data = JSON.stringify({ et_id: et_id })
     
 
