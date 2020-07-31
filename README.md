@@ -17,7 +17,7 @@
 
 ## Built with 
 
-- [HTML CSS JS] - HTML is the standard markup language for Web pages. With HTML you can create your own Website.
+- HTML CSS JS - HTML is the standard markup language for Web pages. With HTML you can create your own Website.
 - [NodeJs](https://nodejs.org/en/) - Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine.
 - [MySQL](https://www.mysql.com) - The world's most popular open source database .
 
