@@ -348,7 +348,7 @@ function graph_data(){
                     labels: ['Total applications'],
                     datasets: [{
                         label: 'Total tenders applied',
-                        backgroundColor: ['#663EFD','#8565fd','#4919FB','#8565fd'],
+                        backgroundColor: ['#663EFD','#8c5cff','#b07aff','#d398ff','#f7b8ff'],
                         //borderColor: '#663EFD',
                         data: total_count_project.map(total_count_project => total_count_project.total_count)
                     }]
@@ -376,7 +376,7 @@ function graph_data(){
                     labels: count_project_dept.map(count_project_dept => count_project_dept.dept_name),
                     datasets: [{
                         label: count_project_dept.map(count_project_dept => count_project_dept.dept_name),
-                        backgroundColor: ['#663EFD','#8565fd','#4919FB','#8565fd'],
+                        backgroundColor: ['#663EFD','#8c5cff','#b07aff','#d398ff','#f7b8ff'],
                         // borderColor: '#663EFD',
                         data: count_project_dept.map(count_project_dept => count_project_dept.total_count_dept)
                     }]
@@ -403,7 +403,7 @@ function graph_data(){
                     labels: count_project_dept_cost_applied.map(count_project_dept_cost_applied => count_project_dept_cost_applied.dept_name),
                     datasets: [{
                         label: 'Department wise tenders applied Total cost',
-                        backgroundColor: ['#663EFD','#8565fd','#4919FB','#8565fd'],
+                        backgroundColor: ['#663EFD','#8c5cff','#b07aff','#d398ff','#f7b8ff'],
                         // borderColor: '#663EFD',
                         data: count_project_dept_cost_applied.map(count_project_dept_cost_applied => count_project_dept_cost_applied.total_cost_departmentwise)
                     }]
