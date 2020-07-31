@@ -9,7 +9,7 @@
 </table>
 
 # Flow Diagram
-![Flow](https://i.imgur.com/7j9pqaw.png)
+![Flow](https://github.com/vraj72/V-victory/blob/master/Project/public/images/system_architecture.png)
 
 # Design Interface
 ![Design](https://i.imgur.com/rR5kmI5.png)
