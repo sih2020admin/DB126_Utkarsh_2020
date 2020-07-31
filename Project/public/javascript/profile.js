@@ -400,7 +400,7 @@ function graph_data(){
 
                 // The data for our dataset
                 data: {
-                    labels: count_project_dept.map(count_project_dept_cost_applied => count_project_dept_cost_applied.dept_name),
+                    labels: count_project_dept_cost_applied.map(count_project_dept_cost_applied => count_project_dept_cost_applied.dept_name),
                     datasets: [{
                         label: 'Department wise tenders applied Total cost',
                         backgroundColor: ['#663EFD','#8565fd','#4919FB','#8565fd'],

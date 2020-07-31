@@ -42,6 +42,6 @@ function form_validate(amount, email, mobile) {
         $('#error-para').text('Invalid Mobile Number');
         return 0;
     }
-    $('#error-para').text('Success');
+    // $('#error-para').text('');
     return 1;
 }

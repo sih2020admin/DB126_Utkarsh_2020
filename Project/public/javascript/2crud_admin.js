@@ -106,7 +106,7 @@ xhr.onload = function () {
             tabCell = tr.insertCell(-1)
             tabCell.innerHTML = '<a href=/tender/' + response[i]['et_file_uri'] + ' target="_blank">link</a>'
             tabCell = tr.insertCell(-1)
-            if (response[i]['is_approved'] == 1) {
+            if (response[i]['is_approved'] == 3) {
             } else {
                 tabCell.innerHTML = "<button class='update' id=" + i + " onclick='update_td(" + i + ")'><i class='far fa-edit' style='font-size:20px;'></i></button><button class='delete' id=" + i + " onclick='delete_td(" + i + ")'><i class='far fa-trash-alt' style='font-size:20px;'></i></button>"
             }
@@ -364,11 +364,11 @@ function update_td(clicked_id) {
 
                 },
             },
-            {
-                input: 'number',
-                title: 'Tender Fee (₹)',
-                inputValue: response[clicked_id].et_tender_fee,
-            },
+            // {
+            //     input: 'number',
+            //     title: 'Tender Fee',
+            //     inputValue: response[clicked_id].et_tender_fee,
+            // },
         ])
         .then((result) => {
             if (result.value) {
@@ -378,13 +378,10 @@ function update_td(clicked_id) {
                     title: 'All done!',
                     html: `
 				        <h3>Updated Tender</h3>
-				        
-				        <h4>Tender Title</h4><h5><b>${result.value[0]}</b></h5>
-				        <h4>Tender Description</h4><h5><b>${result.value[1]}</b></h5>	
-				        <h4>Tender Closing Date</h4><h5><b>${result.value[2]}</b></h5>
-				        <h4>Tender Bid Opening Date</h4><h5><b>${result.value[3]}</b></h5>
-				        <h4>Tender Fee</h4><h5><b>₹&nbsp;${result.value[4]}</b></h5>
-
+				        <h4>Tender Title:</h4>${result.value[0]}<br>
+				        <h4>Tender Description:</h4>${result.value[1]}<br>	
+				        <h4>Tender Closing Date:</h4>${result.value[2]}<br>
+				        <h4>Tender Bid Opening Date:</h4>${result.value[3]}<br>
 				      `,
                     confirmButtonText: 'Confirm',
                     showCancelButton: true,
@@ -422,7 +419,6 @@ function update_td(clicked_id) {
                         var data = JSON.stringify({
                             et_id: response[clicked_id]['et_id'],
                             et_title: result.value[0],
-                            et_tender_fee: result.value[4],
                             et_tender_desc: result.value[1],
                             et_last_date_apply: result.value[2],
                             et_bidding_date: result.value[3],
