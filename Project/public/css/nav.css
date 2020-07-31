@@ -140,5 +140,6 @@ button, input{
   }
   .activ::after{
     margin-right: 160px;
+    display: none;
   }
 }
