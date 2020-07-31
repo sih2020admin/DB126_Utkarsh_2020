@@ -8,16 +8,16 @@
 </tr>
 </table>
 
-# Flow Diagram
+# Flow Chart
 ![Flow](https://github.com/vraj72/V-victory/blob/master/Project/public/images/system_architecture.png)
 
 # Design Interface
-![Design](https://i.imgur.com/rR5kmI5.png)
+![Design](https://github.com/vraj72/V-victory/blob/master/Project/public/images/responsive-mockup-Etendering.png)
 
 
 ## Built with 
 
-- [Android Studio](https://developer.android.com/studio) - Android Studio provides the fastest tools for building apps on every type of Android device.
+- HTML CSS JS - HTML is the standard markup language for Web pages. CSS is a language that describes the style of an HTML document. JavaScript is the programming language of HTML and the Web.
 - [NodeJs](https://nodejs.org/en/) - Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine.
 - [MySQL](https://www.mysql.com) - The world's most popular open source database .
 
