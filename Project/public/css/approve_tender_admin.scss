@@ -116,6 +116,10 @@ table td {
     padding: 10px;
     vertical-align: top;
 }
+#time, #bid{
+    color: var(--main_color);
+    font-weight: bold;
+}
 button{
     width: 150px;
     height: 30px;
@@ -142,6 +146,7 @@ button:hover{
     margin: 40px 0;
     padding: 5px;
     table {
+        text-align: left;
         margin: auto;
         max-width: 100%;
         border-radius: 1em;
@@ -151,6 +156,7 @@ button:hover{
 
         a{
             text-decoration: none;
+            cursor: pointer;
         }
         a:hover{
             text-decoration: underline;
@@ -225,6 +231,13 @@ button:hover{
 }
 .modal-body {
     padding: 20px 30px;
+    table{
+        text-align: left;
+        width: 100%;
+    }
+    #upload{
+        margin-left: 15px;
+    }
 }
 .modal-header {
     padding: 10px;

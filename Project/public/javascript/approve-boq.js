@@ -27,7 +27,7 @@ function app(j){
     modal.style.display="block";
     etd_id = res[j].etd_id;
 
-    document.getElementById("bid").innerHTML = "₹" + res[j].bidding_amt;
+    document.getElementById("bid").innerHTML = "₹&nbsp;" + res[j].bidding_amt;
 
     document.getElementById("name").innerHTML = res[j].vcd_name;
     document.getElementById("dob").innerHTML = res[j].vcd_dob;

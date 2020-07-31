@@ -27,7 +27,7 @@ function app(j){
     modal.style.display="block";
     etd_id = res[j].etd_id;
 
-    document.getElementById("bid").innerHTML = "₹" + res[j].bidding_amt;
+    document.getElementById("bid").innerHTML = "₹&nbsp;" + res[j].bidding_amt;
 
     document.getElementById("name").innerHTML = res[j].vcd_name;
     document.getElementById("dob").innerHTML = res[j].vcd_dob;
@@ -125,10 +125,10 @@ function result(i){
         xhr.send(JSON.stringify({ et_id: et_id, status: "3"}))
         xhr.onload = function () {
             if (this.status == 200) {
-               // document.getElementById("main_content").style.display = "none";
-                //document.getElementById("head").style.display = "none";
-                //display()
-                //document.getElementById("winner").style.display = "";
+                document.getElementById("main_content").style.display = "none";
+                document.getElementById("head").style.display = "none";
+                display()
+                document.getElementById("winner").style.display = "";
             }
             else if (this.status == 400) 
                 alert('Error 400')

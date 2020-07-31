@@ -85,6 +85,11 @@ table td {
   vertical-align: top;
 }
 
+#time, #bid {
+  color: var(--main_color);
+  font-weight: bold;
+}
+
 button {
   width: 150px;
   height: 30px;
@@ -116,6 +121,7 @@ button:hover {
 }
 
 .technical_details table {
+  text-align: left;
   margin: auto;
   max-width: 100%;
   border-radius: 1em;
@@ -127,6 +133,7 @@ button:hover {
 
 .technical_details table a {
   text-decoration: none;
+  cursor: pointer;
 }
 
 .technical_details table a:hover {
@@ -201,6 +208,15 @@ button:hover {
 
 .modal-body {
   padding: 20px 30px;
+}
+
+.modal-body table {
+  text-align: left;
+  width: 100%;
+}
+
+.modal-body #upload {
+  margin-left: 15px;
 }
 
 .modal-header {

@@ -120,3 +120,26 @@ button, input{
 .dropdown:hover .dropdown-content {
   display: block;
 }
+
+@media (max-width: 500px){
+  header{
+    height: fit-content;
+    height: -moz-fit-content;
+  }
+  header nav{
+    display: block;
+    text-align: center;
+    padding: 10px 20px;
+  }
+  header a + a{
+    margin-left: 0; 
+  }
+  a{
+    display: block  ;
+    margin-top: 5px; 
+  }
+  .activ::after{
+    margin-right: 160px;
+    display: none;
+  }
+}
