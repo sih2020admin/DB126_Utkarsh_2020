@@ -376,7 +376,7 @@ function graph_data(){
                     labels: count_project_dept.map(count_project_dept => count_project_dept.dept_name),
                     datasets: [{
                         label: count_project_dept.map(count_project_dept => count_project_dept.dept_name),
-                        backgroundColor: ['rgb(255, 99, 132)','rgb(0, 80, 150)'],
+                        backgroundColor: ['#663EFD','#8565FD'],
                         borderColor: 'rgb(255, 99, 132)',
                         data: count_project_dept.map(count_project_dept => count_project_dept.total_count_dept)
                     }]

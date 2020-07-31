@@ -220,6 +220,12 @@ strong {
   border-radius: 15px;
 }
 
+#tenders_applied_total, #tenders_applied_dept, #tenders_applied_dept_cost {
+  height: auto;
+  width: 800px;
+  margin: 10px auto;
+}
+
 .mytender {
   text-align: left;
   padding: 10px;
