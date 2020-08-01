@@ -3,8 +3,8 @@ login
 #Feilds to be entered from user:
 
 	
-	1.username
-	2.password
+	1.Username
+	2.Password
 	
 	post to server check in database (/login)
 		if correct post linked aadhar number to (/verify)

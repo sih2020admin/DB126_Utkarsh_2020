@@ -3,7 +3,7 @@
 <table>
 <tr>
 <td>
-  E-tendering website(name of our website) offers a medium to view, select and apply for tenders in a safest manner. From selecting a tender to bidding and payment, everything is simple, fast and secure. A good user-interface environment along with easy navigation and customer service is provided. 
+  E-tendering offers a medium to view, select and apply for tenders ,From selecting a tender to bidding ,payment and uploading Documents  everything is simple, fast and secure. A good user-interface environment along with easy navigation and customer service is provided. 
 </td>
 </tr>
 </table>
@@ -23,6 +23,6 @@
 
 ## Team
 
-[<img src="https://i.imgur.com/SeSznJA.png" alt="Afif's Pic" width="120">](https://afif79.github.io/) |  [<img src="https://github.com/vraj72/V-victory/blob/master/Project/public/images/IMG_20190809_142653.png" alt="Ishmeet's Pic" width="120">](https://github.com/MarwinSequeira) | [<img src="https://github.com/vraj72/V-victory/blob/master/Project/public/images/girl.png" alt="Priya's Pic" width="120">](https://github.com/priii2000) | [<img src="https://raw.githubusercontent.com/CSI-DBIT/CSI-ManagementSystem/master/Android/app/src/main/res/drawable/sanket.png" alt="Sanket's Pic" width="120">](https://github.com/sanket1305)| [<img src="https://raw.githubusercontent.com/CSI-DBIT/CSI-ManagementSystem/master/Android/app/src/main/res/drawable/saurabh.png" alt="Saurabh's Pic" width="120">](https://github.com/survir44)| [<img src="https://raw.githubusercontent.com/CSI-DBIT/CSI-ManagementSystem/master/Android/app/src/main/res/drawable/viraj.png" alt="Sanket's Pic" width="120">](https://github.com/vraj72)
+[<img src="https://i.imgur.com/SeSznJA.png" alt="Afif's Pic" width="120">](https://afif79.github.io/) |  [<img src="https://github.com/vraj72/V-victory/blob/master/Project/public/images/IMG_20190809_142653.png" alt="Ishmeet's Pic" width="120">](https://github.com/MarwinSequeira) | [<img src="https://github.com/vraj72/V-victory/blob/master/Project/public/images/girl.png" alt="Priya's Pic" width="120">](https://github.com/priii2000) | [<img src="https://raw.githubusercontent.com/CSI-DBIT/CSI-ManagementSystem/master/Android/app/src/main/res/drawable/saurabh.png" alt="Saurabh's Pic" width="120">](https://github.com/survir44)| [<img src="https://raw.githubusercontent.com/CSI-DBIT/CSI-ManagementSystem/master/Android/app/src/main/res/drawable/sanket.png" alt="Sanket's Pic" width="120">](https://github.com/sanket1305)|[<img src="https://raw.githubusercontent.com/CSI-DBIT/CSI-ManagementSystem/master/Android/app/src/main/res/drawable/viraj.png" alt="Sanket's Pic" width="120">](https://github.com/vraj72)
 |:---:|:---:|:---:|:---:|:---:|:---:|
-[Afif Shaikh](https://github.com/afif79) |[Winston Sequeira](https://github.com/MarwinSequeira) | [Priya Singh](https://github.com/priii2000) | [Sanket Deshmukh](https://github.com/sanket1305) |[Saurabh Yadav](https://github.com/survir44) |[Viraj tandel](https://github.com/vraj72) |
+[Afif Shaikh](https://github.com/afif79) |[Winston Sequeira](https://github.com/MarwinSequeira) | [Priya Singh](https://github.com/priii2000) |[Saurabh Yadav](https://github.com/survir44) |[Sanket Deshmukh](https://github.com/sanket1305) |[Viraj tandel](https://github.com/vraj72) |

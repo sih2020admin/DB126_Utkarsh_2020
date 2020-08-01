@@ -26,9 +26,9 @@ register
 	7.phone number
 
 	*related to account details:
-	1.username
-	2.password
-	3.confirm password
+	1.Username
+	2.Password
+	3.Confirm password
 
 
 
