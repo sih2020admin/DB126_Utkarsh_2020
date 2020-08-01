@@ -35,7 +35,7 @@ create
 	7.if any realted file specify url here
 
 
-		extra:
+		Extra:
 		1.et_id (Auto increment ie no need to specify)
 		2.dept_id (map whos is creating)
 		3.is delete (0 by default)
