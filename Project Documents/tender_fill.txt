@@ -15,7 +15,7 @@ refer link: https://dribbble.com/shots/3306661-App-Settings-CRUD
 
 #vendor will eneter following feild to apply for tender
 
-	1.payment(mnot implemented yet need to think)
+	1.Payment(mnot implemented yet need to think)
 	2.files to be uploaded and then emudhra and then digilocker api call
 	3.fiels url how to link in database?????
 
