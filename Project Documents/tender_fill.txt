@@ -13,7 +13,7 @@ refer link: https://dribbble.com/shots/3306661-App-Settings-CRUD
 	7.if any realted file specify url here
 	8.department
 
-#vendor will eneter following feild to apply for tender
+#Vendor will eneter following feild to apply for tender
 
 	1.Payment(mnot implemented yet need to think)
 	2.files to be uploaded and then emudhra and then digilocker api call
