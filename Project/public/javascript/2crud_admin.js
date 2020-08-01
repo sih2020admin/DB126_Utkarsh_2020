@@ -90,9 +90,11 @@ xhr.onload = function () {
             tr.setAttribute('id', response[i]['et_id'])
 
             tabCell = tr.insertCell(-1)
-            if (response[i]['is_approved'] == 1) {
+
+            if (response[i]['is_approved'] == 3) {
                 tabCell.innerHTML = response[i]['et_tender_ref_no'] + `<sup>approved</sup>`
-            } else tabCell.innerHTML = response[i]['et_tender_ref_no']
+            } 
+            else tabCell.innerHTML = response[i]['et_tender_ref_no']
             tabCell = tr.insertCell(-1)
             tabCell.innerHTML = response[i]['et_title']
             tabCell = tr.insertCell(-1)
