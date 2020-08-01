@@ -22,7 +22,7 @@ approve tender
 	5.approve button
 	
 
-from above table admin will approve only one vendor application (ask for cofirmation)
+From above table admin will approve only one vendor application (ask for cofirmation)
 one application approved all other will be disabled
 
 add all data in new table for further tracking (new table need to be create (think on attribuyes eg: is_active , is_money_given , is_cancelled, approved_by))
