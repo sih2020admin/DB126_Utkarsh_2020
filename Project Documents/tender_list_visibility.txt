@@ -1,4 +1,4 @@
-vendor POV
+Vendor POV
 	1.vendor can see tender where closing date is ahead (in see tender or apply tender page)
 	2.vendor ca see for which they have applied (in vendor dashboard page)
 
