@@ -11,6 +11,9 @@ const urlParams = new URLSearchParams(queryString)
 var et_id = urlParams.get('et_id')
 var status = '000'
 var etd_id
+var max_bid_amount;
+max_bid_amount= parseInt(document.getElementById("max_bid_ammount_s").innerHTML)
+console.log("max bid amount ", max_bid_amount ,document.getElementById("max_bid_ammount_s"))
 /* if (et_id == null) {
     window.location.href = '/tenders'
 } else {
@@ -103,7 +106,8 @@ function next(){
                 inputValidator: (value) => {
                     if (value<0) return 'Invalid Bidding Amount '
                     if (value=='') return 'Invalid Bidding Amount '
-		   if (value==0) return 'Invalid Bidding Amount '
+           if (value==0) return 'Invalid Bidding Amount '
+           if (value> max_bid_amount) return 'Value entered greater than maximum bidding amount'
                 },
             },
             {
