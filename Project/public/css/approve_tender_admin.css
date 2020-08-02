@@ -20,6 +20,12 @@ p {
   color: var(--text_color);
 }
 
+#equipment {
+  width: 700px !important;
+  height: 100% !important;
+  margin: 0 auto !important;
+}
+
 label {
   font-size: medium;
   color: var(--accent-color);

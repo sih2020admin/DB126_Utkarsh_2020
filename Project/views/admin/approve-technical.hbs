@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
     <link rel="stylesheet" href="/css/approve_tender_admin.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <title>Tender</title>
 </head>
 <body>
@@ -99,6 +100,14 @@
                     <td><label id="pan"></label></td>
                 </tr>
                 <tr>
+                    <td><label><strong>Turnover: </strong></label></td>
+                    <td><label id="turn"></label></td>
+                    <td><label><strong>Scehems: </strong></label></td>
+                    <td><label id="scheme"></label></td>
+                    <td><label><strong>Staff Count: </strong></label></td>
+                    <td><label id="staff"></label></td>
+                </tr>
+                <tr>
                     <td><label><strong>Email: </strong></label></td>
                     <td><label id="cemail"></label></td>
                     <td><label><strong>Contact No: </strong></label></td>
@@ -122,9 +131,11 @@
                         <td id="file1"></td>
                         <td><a id="preview" target="blank">Preview</a></td>
                     </tr>
-                    </table> 
+                    </table><hr><br>
                     <p id="error" style="color: red;"></p> 
                 </div>
+                <h3 style="text-align: left;">Make in India Equipment Count (%)</h3>
+                <canvas id="equipment"></canvas> 
                 <p id="tc4"></p><br>
                 <button id="cancel">Cancel</button>
                 <button id="disapprove" onclick="result(0)">Disapprove</button>
