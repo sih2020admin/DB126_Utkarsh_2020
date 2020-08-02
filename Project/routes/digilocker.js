@@ -182,7 +182,7 @@ function get_file(res, vcd_id, furi) {
                 buffer_list.push(datachunk) //appending chunks of buffers to buffer_list as recieved
             })
             .then(function(response) {
-                console.log(response.headers);
+                console.log("hello", response.headers);
             })
             .then(function () {
                 buffer_data = Buffer.concat(buffer_list) //concatinating all chunks of buffers
