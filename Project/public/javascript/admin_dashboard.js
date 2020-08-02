@@ -109,7 +109,7 @@ $.post('/admin/statistics').then((results) => {
             </tr>
             `);
     }
-    for(let i = 0 ;i < results[0].length;i++){
+    for(let i = 0 ;i < results[2].length;i++){
         $('#table2 > tbody:last-child').append(
             `<tr>
                 <td>${results[2][i]["reference"]}</td>
