@@ -1,0 +1,79 @@
+:root {
+  --main_color: #663EFD;
+  --text_color: #000000;
+  --accent-color: #a6a6a6;
+}
+
+* {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container h1 {
+  text-align: center;
+  color: var(--main_color);
+  margin: 15px 0;
+}
+
+.container .cont {
+  max-width: 1200px;
+  width: 100%;
+  border-radius: 10px;
+  margin: 10px auto;
+  padding: 20px;
+  -webkit-box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.2);
+          box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.2);
+}
+
+.container .cont h2 {
+  color: var(--main_color);
+}
+
+.container .cont table {
+  border: 1px;
+  width: 100%;
+}
+
+.container .cont table label {
+  color: var(--accent-color);
+}
+
+.container .cont table th, .container .cont table tr, .container .cont table td {
+  padding: .5rem;
+  vertical-align: baseline;
+}
+
+.container .cont table .fields {
+  color: var(--accent-color);
+}
+
+.container .cont .butts {
+  margin: 10px auto 0;
+  text-align: center;
+}
+
+.container .cont .butts button {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 5px 25px;
+  font-size: 16px;
+  font-weight: 300;
+  border-radius: 5px;
+  background-color: var(--main_color);
+  border: 0.4px solid var(--main_color);
+  outline: none;
+  color: #ffffff;
+  margin-bottom: 30px;
+}
+
+.container .cont .butts button:hover {
+  cursor: pointer;
+  background-color: #ffffff;
+  color: var(--main_color);
+}
+
+.container .cont + .cont {
+  margin: 20px auto;
+}
+/*# sourceMappingURL=super_admin.css.map */
