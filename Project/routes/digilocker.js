@@ -150,7 +150,7 @@ function get_refresh_token(res, vcd_id) {
 //get file from digilocker function
 function get_file(res, vcd_id, furi) {
     //Get access token from database
-    var key=process.env["ENCRYPTION_KEY"];
+    var key = process.env["ENCRYPTION_KEY"];
     var sql = 'SELECT access FROM access_token WHERE id=' + vcd_id
     db_1.default.query(sql, function (err, result) {
         if (err) {
@@ -199,11 +199,17 @@ function get_file(res, vcd_id, furi) {
                 hmac.update(buffer_data)
                 //generate hmac
                 var gen_hmac = hmac.digest('base64')
-                var sql = 'select f1_hash , f2_hash from file_uri where furi1=AES_ENCRYPT("'+furi+'" , "'+key+'") OR furi2=AES_ENCRYPT("'+furi+'" , "'+key+'");'
+                var sql = 'select f1_hash , f2_hash from file_uri where furi1=AES_ENCRYPT("' + furi + '" , "' + key + '") OR furi2=AES_ENCRYPT("' + furi + '" , "' + key + '");'
                 db_1.default.query(sql, function (err, result) {
                     if (err) throw err
                     else {
                         console.log(result)
+                        if (gen_hmac != result[0].f1_hash && gen_hmac != result[0].f2_hash) {
+                            res.status(400).send({ error: 'File Verification Failed... This file has been Modified' })
+                        }
+                        else {
+                            console.log("file verification success")
+                        }
                     }
                 })
 
