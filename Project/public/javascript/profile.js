@@ -277,7 +277,7 @@ function operation(optName) {
     var p = document.getElementById("pro-button")
     var t = document.getElementById("ten-button")
     var a = document.getElementById("app-button")
-    // var d = document.getElementById("down-button")
+    var d = document.getElementById("files-button")
     var s = document.getElementById("stats-button")
 
     if (optName == 'Profile') {
@@ -285,7 +285,7 @@ function operation(optName) {
         p.classList.add("active")
         t.classList.remove("active")
         a.classList.remove("active")
-        // d.classList.remove("active")
+        d.classList.remove("active")
         s.classList.remove("active")
     } 
     else if(optName == 'Tenders') {
@@ -293,7 +293,7 @@ function operation(optName) {
         t.classList.add("active")
         p.classList.remove("active")
         a.classList.remove("active")
-        // d.classList.remove("active")
+        d.classList.remove("active")
         s.classList.remove("active")
     }
     else if(optName == 'Approved'){
@@ -301,12 +301,12 @@ function operation(optName) {
         a.classList.add("active")
         p.classList.remove("active")
         t.classList.remove("active")
-        // d.classList.remove("active")
+        d.classList.remove("active")
         s.classList.remove("active")
     }
     else if(optName == 'Docs'){
         console.log('app')
-        // d.classList.add("active")
+        d.classList.add("active")
         t.classList.remove("active")
         a.classList.remove("active")
         p.classList.remove("active")
@@ -315,7 +315,15 @@ function operation(optName) {
     else if(optName == 'stats'){
         console.log('app')
         s.classList.add("active")
-        // d.classList.remove("active")
+        d.classList.remove("active")
+        t.classList.remove("active")
+        a.classList.remove("active")
+        p.classList.remove("active")
+    }
+    else if(optName == 'Files'){
+        console.log('app')
+        d.classList.add("active")
+        s.classList.remove("active")
         t.classList.remove("active")
         a.classList.remove("active")
         p.classList.remove("active")
