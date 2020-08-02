@@ -265,7 +265,7 @@ router.post('/login/super_admin', function (req, res) {
                 if (results[0].password == password) {
                     //Users password match
                     var ad_id = results[0].ad_id
-
+                    
                     //fetch aadhar number
                     db_1.default.query('SELECT ad_id,ad_dept_id, ad_org_id FROM `admin_detail` WHERE ad_id = ?; ', [ad_id], function (error, results, fields) {
                         if (error) {
