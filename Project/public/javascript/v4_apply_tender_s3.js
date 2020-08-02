@@ -1,6 +1,8 @@
 // var vcd_id = get_cookie('vcd_id');
 var aadhar,host=location.hostname;
 var xhr1 = new XMLHttpRequest();
+var otp1;
+var otp2;
 
 document.getElementById('reason').value = "E-Tendering"; 
 document.getElementById('location').value = "";
@@ -102,7 +104,8 @@ function otp(){
             var xhr = new XMLHttpRequest();
             //var url = "https://"+host+":8091/sign";
             // var url = "https://165.22.210.37:8091/sign";
-            var url = "https://165.22.210.37:8081/sign_8081/"+name+"/"+email+"/"+reason+"/"+location+"/"+flag;
+            // var url = "https://165.22.210.37:8081/sign_8081/"+name+"/"+email+"/"+reason+"/"+location+"/"+flag+"/"+otp+"/"+etd_id;
+            var url = "https://192.168.0.4:8081/sign_8081/"+name+"/"+email+"/"+reason+"/"+location+"/"+flag+"/"+otp+"/"+etd_id;
             xhr.open("POST" ,url);
             xhr.responseType = 'text';
             xhr.send(formdata);
@@ -111,6 +114,7 @@ function otp(){
                     // alert("SuccesFully Signed");
                     if(flag == 0){
                         document.getElementById("tc2").style.display = "none";
+                        otp1 = otp;
                         // console.log(this.response.json())
                         // console.log(JSON.parse(String(xhr.responseText)))
                         // console.log(String(this.response))
@@ -133,6 +137,7 @@ function otp(){
                         document.getElementById("tc3").style.display = "none";
                         document.getElementById("tc5").innerHTML="";
                         var boq_file= get_cookie('boq_file')
+                        otp2=otp;
                         // preview1.href = window.URL.createObjectURL(this.response);
                         BOQ_file_name = boq_file;
                         console.log(BOQ_file_name , boq_file)
