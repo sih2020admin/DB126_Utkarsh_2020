@@ -121,7 +121,7 @@ function next() {
             },
             {
                 input:'number',
-                title:'Percetage of Made in India Equipment',
+                title:'Make in India Equipment(%)',
                 inputValidator:(value)=>{
                     if (value < 0) return 'Invalid Percentage'
                     if (value > 100) return 'Invalid Percentage'
@@ -140,7 +140,7 @@ function next() {
 				        <br>
 				        <h4>Bidding amount: &nbsp;${result.value[0]}&nbsp;₹</h4><br>
                         <h4>Time period: &nbsp;${result.value[1]}&nbsp;Days</h4><br>
-                        <h4>Made in India Equipment %: &nbsp;${result.value[2]}&nbsp;%</h4><br>	
+                        <h4>Made in India Equipment: &nbsp;${result.value[2]}&nbsp;%</h4><br>	
 				      `,
                     confirmButtonText: 'Confirm',
                     showCancelButton: true,
