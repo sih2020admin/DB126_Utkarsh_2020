@@ -353,23 +353,31 @@ function graph_data(){
 
                 // The data for our dataset
                 data: {
-                    labels: ['Total applications'],
+                    labels: [' '],
                     datasets: [{
                         label: 'Total tenders applied',
-                        backgroundColor: ['#663EFD','#8c5cff','#b07aff','#d398ff','#f7b8ff'],
+                        backgroundColor: ['#00F5D4','#00BBF9','#FEE440','#F15BB5'],
                         //borderColor: '#663EFD',
-                        data: total_count_project.map(total_count_project => total_count_project.total_count)
+                        data: total_count_project.map(total_count_project => total_count_project.total_count) 
                     }]
                 },
                 // Configuration options go here
-                options: {responsive: true,
+                options: {
+                    responsive: true,
+                    legend: {
+                        display: false
+                    },
                     scales: {
                         yAxes: [{
                             ticks: {
-                                beginAtZero: true
+                                beginAtZero: true,
+                                stepSize: 1,
+                                precision:0,
+                                min: 0                                
                             }
                         }]
                     }
+                    
                 }
             });
 
@@ -383,8 +391,8 @@ function graph_data(){
                 data: {
                     labels: count_project_dept.map(count_project_dept => count_project_dept.dept_name),
                     datasets: [{
-                        label: count_project_dept.map(count_project_dept => count_project_dept.dept_name),
-                        backgroundColor: ['#663EFD','#8c5cff','#b07aff','#d398ff','#f7b8ff'],
+                        label: ['Total Tenders Applied'],
+                        backgroundColor: ['#F15BB5','#00BBF9','#FEE440','#00F5D4'],
                         // borderColor: '#663EFD',
                         data: count_project_dept.map(count_project_dept => count_project_dept.total_count_dept)
                     }]
@@ -394,7 +402,9 @@ function graph_data(){
                     scales: {
                         yAxes: [{
                             ticks: {
-                                beginAtZero: true
+                                beginAtZero: true,
+                                stepSize: 1,
+                                precision:0
                             }
                         }]
                     }
@@ -411,7 +421,7 @@ function graph_data(){
                     labels: count_project_dept_cost_applied.map(count_project_dept_cost_applied => count_project_dept_cost_applied.dept_name),
                     datasets: [{
                         label: 'Department wise tenders applied Total cost',
-                        backgroundColor: ['#663EFD','#8c5cff','#b07aff','#d398ff','#f7b8ff'],
+                        backgroundColor: ['#00F5D4','#00BBF9','#FEE440','#F15BB5'],
                         // borderColor: '#663EFD',
                         data: count_project_dept_cost_applied.map(count_project_dept_cost_applied => count_project_dept_cost_applied.total_cost_departmentwise)
                     }]
@@ -455,3 +465,52 @@ graph_data();
 //     // Configuration options go here
 //     options: {}
 // });
+
+
+function browse(){
+    var browse = document.getElementById('upload');
+    upload(browse.files);
+}
+var upload = function(files){
+    var xhr1=  new XMLHttpRequest();
+    formdata = new FormData();
+    for( var x = 0;x < files.length;x = x+1){
+        formdata.append('file',files[x]);
+    }
+    //console.log(formdata.get('file'));
+
+    //signing process commented
+    // alert("Document Uploaded,Press OK to Sign the Document");
+    // var url = "https://"+host+":8081/sms/send";
+    // xhr1.open("POST" ,url);
+    // xhr1.setRequestHeader('Content-Type','application/json');
+    // xhr1.send(JSON.stringify({"aadharno":aadhar}));
+    // xhr1.onload = function(){
+    //     if(this.status==200){
+    //         otpmodal();
+    //     }
+    //     else if(this.status==400)
+    //         alert("Error 400");
+    //     else
+    //         alert("Some Error Occured");
+    // }
+
+    
+    var url = "/legal_fileupload";
+    xhr1.open("POST" ,url);
+    
+    xhr1.onload = function(){
+        if(this.status==200){
+            console.log(this.responseText);
+            // document.getElementById("div_f2").style.display = "none";
+            res = JSON.parse(this.responseText)
+            var file_uri = res.filename
+            alert("uploaded file");
+        }
+        else if(this.status==400)
+            alert("Error 400");
+        else
+            alert("Some Error Occured");
+    }
+    xhr1.send(formdata)
+}

@@ -52,7 +52,7 @@ router.get('/help', (request, response) => {
 });
 router.get('/profile', (request, response) => {
     let user = user_1.isUser(request);
-    Promise.all([user_1.getUserUsername(request), misc_1.getYears(), misc_1.getLegalStatus(), misc_1.getStates(), tender_1.getProfileDetails(request), stats_1.getTotalCountOfApplicationsOfVendor(request), stats_1.getCountOfApplicationsOfVendorPerDepartment(request)])
+    Promise.all([user_1.getUserUsername(request), misc_1.getYears(), misc_1.getLegalStatus(), misc_1.getStates(), tender_1.getProfileDetails(request),tender_1.getProfile_upload_documents(request), stats_1.getTotalCountOfApplicationsOfVendor(request), stats_1.getCountOfApplicationsOfVendorPerDepartment(request)])
         .then((results) => {
         console.log(results[4][3]);
         response.render('user/profile', {
@@ -66,6 +66,7 @@ router.get('/profile', (request, response) => {
             person_details: results[4][1][0],
             my_tenders: results[4][2],
             approved_tenders: results[4][3],
+            my_legal_documents : results[5],
         });
     })
         .catch((error) => {

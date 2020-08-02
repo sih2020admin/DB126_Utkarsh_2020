@@ -99,6 +99,27 @@ Chart.pluginService.register({
     },
 });
 $.post('/admin/statistics').then((results) => {
+    for(let i = 0 ;i < results[0].length;i++){
+        $('#table1 > tbody:last-child').append(
+            `<tr>
+                <td>${results[0][i]["Reference"]}</td>
+                <td>${results[0][i]["Title"]}</td>
+                <td>${results[0][i]["Description"]}</td>
+                <td>${results[0][i]["Count"]}</td>
+            </tr>
+            `);
+    }
+    for(let i = 0 ;i < results[2].length;i++){
+        $('#table2 > tbody:last-child').append(
+            `<tr>
+                <td>${results[2][i]["reference"]}</td>
+                <td>${results[2][i]["title"]}</td>
+                <td>${results[2][i]["description"]}</td>
+                <td>${results[2][i]["Count"]}</td>
+            </tr>
+            `);
+    }
+    
     if (getChartData(results[1]).reduce((a, b) => a + b, 0) === 0) {
         alert('N applications to show');
         $('#mycanvas').html('Cannot load stats for this tender');
@@ -106,7 +127,7 @@ $.post('/admin/statistics').then((results) => {
     else {
         let ctx = document.getElementById('mycanvas').getContext('2d');
         let ctx_bar = document.getElementById('bar').getContext('2d');
-        let pie = new Chart(ctx, {
+        /* let pie = new Chart(ctx, {
             type: 'doughnut',
             data: {
                 datasets: [
@@ -140,24 +161,41 @@ $.post('/admin/statistics').then((results) => {
                     },
                 },
             },
-        });
-        console.log(results[1].map((rob) => `${rob['et_id']}`));
+        }); */
+        //console.log(results[1].map((rob) => `${rob['et_id']}`));
         let bar = new Chart(ctx_bar, {
             type: 'bar',
             data: {
                 datasets: [
                     {
+                        label: '  ',
                         data: results[0].map((rob) => rob['Count']),
                         backgroundColor: getBarChartColor(results[0].length),
                     },
                 ],
-                labels: results[0].map((rob) => `${rob['et_id']}`),
+                labels: results[0].map((rob) => `${rob['Title']}`),
             },
             options: {
+                title:{
+                    display:true,
+                    text:'Number of applications per tender',
+                    fontsize:16
+                },
                 legend: {
                     position: 'right',
                     align: 'start',
+                    display: false
                 },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            stepSize: 1,
+                            precision:0,
+                            min: 0                                
+                        }
+                    }]
+                }
             }
         });
     }
