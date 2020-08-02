@@ -8,7 +8,7 @@ function show() {
         document.getElementById('tc').innerHTML = 'Password cannot be Empty'
     } else {
         var xhr = new XMLHttpRequest()
-        var url = '/login/super/admin'
+        var url = '/login/super_admin'
         xhr.open('POST', url)
         xhr.setRequestHeader('Content-Type', 'application/json')
         xhr.send(JSON.stringify({ username: userid, password: passw }))

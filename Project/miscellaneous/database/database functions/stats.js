@@ -21,7 +21,7 @@ exports.getCountOfApplicationsPerTender = getCountOfApplicationsPerTender;
 
 // returns number of applications which have passed Stage one
 async function getApplicationsWhichPassedFirstStage(request) {
-    let application = await connection_1.default.execute(`SELECT et_id,title,reference,description,COUNT(*) as Count from (SELECT etv.et_id,etd.et_title as title,etd.et_tender_desc as description,etd.et_tender_ref_no as reference FROM e_tender_vendor etv INNER JOIN e_tender_details etd ON etv.et_id=etd.et_id WHERE etd.dept_id='${request.signedCookies['ad_dept_id_e']}' AND (etv.is_approved=AES_ENCRYPT(1,'${process.env.ENCRYPTION_KEY}'))) p GROUP BY et_id`);
+    let application = await connection_1.default.execute(`SELECT et_id,title,reference,description,COUNT(*) as Count from (SELECT etv.et_id,etd.et_title as title,etd.et_tender_desc as description,etd.et_tender_ref_no as reference FROM e_tender_vendor etv INNER JOIN e_tender_details etd ON etv.et_id=etd.et_id WHERE etd.dept_id='${request.signedCookies['ad_dept_id_e']}' AND (etv.is_approved<>AES_ENCRYPT(1,'${process.env.ENCRYPTION_KEY}') OR  etv.is_approved<>AES_ENCRYPT(-1,'${process.env.ENCRYPTION_KEY}'))) p GROUP BY et_id`);
     return application[0];
 }
 exports.getApplicationsWhichPassedFirstStage = getApplicationsWhichPassedFirstStage;
