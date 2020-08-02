@@ -15,6 +15,11 @@ p{
     color: var(--text_color)
 } 
 
+#equipment{
+    width: 700px !important;
+    height: 100% !important;
+    margin: 0 auto !important;
+}
 label{
     font-size: medium;
     color: var(--accent-color);
@@ -231,9 +236,19 @@ button:hover{
 }
 .modal-body {
     padding: 20px 30px;
+    hr{
+        color: #FCFCFC63;
+    }
     table{
         text-align: left;
         width: 100%;
+        a{
+            color: var(--main_color);
+            text-decoration: none;
+        }
+        a:hover{
+            text-decoration: underline;
+        }
     }
     #upload{
         margin-left: 15px;

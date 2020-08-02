@@ -194,6 +194,9 @@ $.post('/admin/statistics').then((results) => {
                             precision:0,
                             min: 0                                
                         }
+                    }],
+                    xAxes: [{
+                        barPercentage: 0.6
                     }]
                 }
             }

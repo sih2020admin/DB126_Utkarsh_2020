@@ -11,9 +11,9 @@ const urlParams = new URLSearchParams(queryString)
 var et_id = urlParams.get('et_id')
 var status = '000'
 var etd_id
-var max_bid_amount;
-max_bid_amount= parseInt(document.getElementById("max_bid_ammount_s").innerHTML)
-console.log("max bid amount ", max_bid_amount ,document.getElementById("max_bid_ammount_s"))
+var max_bid_amount
+max_bid_amount = parseInt(document.getElementById('max_bid_ammount_s').innerHTML)
+console.log('max bid amount ', max_bid_amount, document.getElementById('max_bid_ammount_s'))
 /* if (et_id == null) {
     window.location.href = '/tenders'
 } else {
@@ -89,7 +89,7 @@ xhr.onload = function () {
 } */
 
 //Save and Next
-function next(){
+function next() {
     Swal.mixin({
         confirmButtonText: 'Next &rarr;',
         showCancelButton: true,
@@ -104,23 +104,30 @@ function next(){
                 input: 'number',
                 title: 'Enter Bidding Amount (₹)',
                 inputValidator: (value) => {
-                    if (value<0) return 'Invalid Bidding Amount '
-                    if (value=='') return 'Invalid Bidding Amount '
-           if (value==0) return 'Invalid Bidding Amount '
-           if (value> max_bid_amount) return 'Value entered greater than maximum bidding amount'
+                    if (value < 0) return 'Invalid Bidding Amount '
+                    if (value == '') return 'Invalid Bidding Amount '
+                    if (value == 0) return 'Invalid Bidding Amount '
+                    if (value > max_bid_amount) return 'Value entered greater than maximum bidding amount'
                 },
             },
             {
                 input: 'number',
                 title: 'Enter Time period(In Days)',
                 inputValidator: (value) => {
-                    if (value<0) return 'Invalid Time period '
-                    if (value=='') return 'Invalid Time period '
-                    if (value==0) return 'Invalid Time Period '
-	
-},
-
+                    if (value < 0) return 'Invalid Time period '
+                    if (value == '') return 'Invalid Time period '
+                    if (value == 0) return 'Invalid Time Period '
+                },
             },
+            {
+                input:'number',
+                title:'Make in India Equipment(%)',
+                inputValidator:(value)=>{
+                    if (value < 0) return 'Invalid Percentage'
+                    if (value > 100) return 'Invalid Percentage'
+                    if(value === '') return 'Invalid Percentage'
+                }
+            }
         ])
         .then((result) => {
             if (result.value) {
@@ -132,7 +139,8 @@ function next(){
 				        <h3 style="text-align:left;">Confirmation</h3>
 				        <br>
 				        <h4>Bidding amount: &nbsp;${result.value[0]}&nbsp;₹</h4><br>
-				        <h4>Time period: &nbsp;${result.value[1]}&nbsp;Days</h4><br>	
+                        <h4>Time period: &nbsp;${result.value[1]}&nbsp;Days</h4><br>
+                        <h4>Made in India Equipment: &nbsp;${result.value[2]}&nbsp;%</h4><br>	
 				      `,
                     confirmButtonText: 'Confirm',
                     showCancelButton: true,
@@ -142,11 +150,12 @@ function next(){
                         var xhr = new XMLHttpRequest()
                         xhr.open('POST', '/apply_tender')
                         xhr.setRequestHeader('Content-Type', 'application/json')
-                
+
                         var data = JSON.stringify({
                             et_id: et_id,
                             bid_amt: result.value[0],
-                            time_period: result.value[1]
+                            time_period: result.value[1],
+                            percentage: result.value[2]
                         })
                         xhr.send(data)
                         xhr.onload = function () {
@@ -157,8 +166,6 @@ function next(){
                             } else if (this.status == 400) alert('Error 400')
                             else alert('Some Error Occured')
                         }
-
-                        
                     }
                 })
             }

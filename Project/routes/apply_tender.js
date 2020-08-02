@@ -66,13 +66,14 @@ router.post('/apply_tender', function (req, res) {
     // var vcd_id= req.body.vcd_id;
     var bid_amt = req.body.bid_amt
     var time_period =req.body.time_period
+    var percent = req.body.percentage
     var vd_id = req.signedCookies.vd_id_e
     var vcd_id = req.signedCookies.vcd_id_e
     var key=process.env["ENCRYPTION_KEY"];
 
     console.log('apply tender desc called ' + et_id)
 
-    db_1.default.query(' INSERT INTO `e_tender_vendor`(`et_id`, `vd_id`, `vcd_id`, `bidding_amt`,`time_period`,`status` ,`is_approved`) VALUES (?,?,?,AES_ENCRYPT(? ,?),AES_ENCRYPT(? ,?),AES_ENCRYPT("100",?),AES_ENCRYPT("0" ,?)); 	 select LAST_INSERT_ID("etd_id");', [et_id, vd_id, vcd_id, bid_amt,key,time_period,key,key,key], function (error, results, fields) {
+    db_1.default.query(' INSERT INTO `e_tender_vendor`(`et_id`, `vd_id`, `vcd_id`, `bidding_amt`,`time_period`,`status` ,`is_approved`,equi) VALUES (?,?,?,AES_ENCRYPT(? ,?),AES_ENCRYPT(? ,?),AES_ENCRYPT("100",?),AES_ENCRYPT("0" ,?),?); 	 select LAST_INSERT_ID("etd_id");', [et_id, vd_id, vcd_id, bid_amt,key,time_period,key,key,key,percent], function (error, results, fields) {
         if (error) {
             console.log('error', error)
             res.sendStatus(400)

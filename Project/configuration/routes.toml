@@ -6,19 +6,20 @@
         ]
 
 [RouterFiles]
-"Files" = [ { "app_path" = "/payment"   , "module_name" = "payment-server"      , "default_export" = true},
-            { "app_path" = "/misc"      , "module_name" = "misc"                , "default_export" = true},
-            { "app_path" = "/register"  , "module_name" = "register-server"     , "default_export" = true},
-            { "app_path" = "/"          , "module_name" = "render-user"         , "default_export" = true},
-            { "app_path" = "/admin"     , "module_name" = "render"              , "default_export" = true},
-            { "app_path" = "/"          , "module_name" = "stats"               , "default_export" = true},                                               
-            { "app_path" = "/"          , "module_name" = "login"               , "default_export" = true},
-            { "app_path" = "/"          , "module_name" = "tender_desc"         , "default_export" = true},
-            { "app_path" = "/"          , "module_name" = "crud_admin"          , "default_export" = true},
-            { "app_path" = "/"          , "module_name" = "list_tender"         , "default_export" = true},
-            { "app_path" = "/"          , "module_name" = "tender_approval"     , "default_export" = true},
-            { "app_path" = "/"          , "module_name" = "vendor_dashboard"    , "default_export" = true},
-            { "app_path" = "/"          , "module_name" = "apply_tender"        , "default_export" = true},
-            { "app_path" = "/"          , "module_name" = "sign"                , "default_export" = true},
-            { "app_path" = "/"          , "module_name" = "digilocker"          , "default_export" = true}
+"Files" = [ { "app_path" = "/payment"       , "module_name" = "payment-server"      , "default_export" = true},
+            { "app_path" = "/misc"          , "module_name" = "misc"                , "default_export" = true},
+            { "app_path" = "/register"      , "module_name" = "register-server"     , "default_export" = true},
+            { "app_path" = "/"              , "module_name" = "render-user"         , "default_export" = true},
+            { "app_path" = "/admin"         , "module_name" = "render"              , "default_export" = true},
+            { "app_path" = "/super-admin"   , "module_name" = "render-sa"           , "default_export" = true},
+            { "app_path" = "/"              , "module_name" = "stats"               , "default_export" = true},                                               
+            { "app_path" = "/"              , "module_name" = "login"               , "default_export" = true},
+            { "app_path" = "/"              , "module_name" = "tender_desc"         , "default_export" = true},
+            { "app_path" = "/"              , "module_name" = "crud_admin"          , "default_export" = true},
+            { "app_path" = "/"              , "module_name" = "list_tender"         , "default_export" = true},
+            { "app_path" = "/"              , "module_name" = "tender_approval"     , "default_export" = true},
+            { "app_path" = "/"              , "module_name" = "vendor_dashboard"    , "default_export" = true},
+            { "app_path" = "/"              , "module_name" = "apply_tender"        , "default_export" = true},
+            { "app_path" = "/"              , "module_name" = "sign"                , "default_export" = true},
+            { "app_path" = "/"              , "module_name" = "digilocker"          , "default_export" = true}
         ]
