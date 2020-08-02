@@ -561,12 +561,16 @@ function uploadFiles() {
             xhr.send(
                 JSON.stringify({
                     filename: Technical_file_name,
+                    flag: 0,
+                    etd: etd_id
                 })
             )
         } else if (Technical_or_BOQ == 1) {
             xhr.send(
                 JSON.stringify({
                     filename: BOQ_file_name,
+                    flag: 1,
+                    etd: etd_id
                 })
             )
         }

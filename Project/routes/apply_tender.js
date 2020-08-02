@@ -145,7 +145,8 @@ router.post('/enter_file_uri1_db', function (req, res) {
 
     console.log('enter file1 db tender s3 called ' + etd_id)
 
-    db_1.default.query('INSERT INTO `file_uri`(`furi1`, `etd_id`, `f_type`) VALUES (AES_ENCRYPT(?,?),?,?)', [furi,key, etd_id, ftype], function (error, results, fields) {
+    // db_1.default.query('INSERT INTO `file_uri`(`furi1`, `etd_id`, `f_type`) VALUES (AES_ENCRYPT(?,?),?,?)', [furi,key, etd_id, ftype], function (error, results, fields) {
+    db_1.default.query('UPDATE `file_uri` SET `furi1` = AES_ENCRYPT(?,?) WHERE etd_id = ? ', [furi,key, etd_id], function (error, results, fields) {
         if (error) {
             console.log('error', error)
             res.sendStatus(400)
@@ -368,7 +369,7 @@ router.post('/sign_8081/:name/:email/:reason/:location/:flag', (req, res) => {
 
 
 router.post('/legal_fileupload', (req, res) => {
-    // console.log('legal file upload called ' + JSON.stringify(req.body))
+    console.log('legal file upload called ' + JSON.stringify(req.body))
     var vd_id = req.signedCookies.vd_id_e
     var vcd_id = req.signedCookies.vcd_id_e
     
