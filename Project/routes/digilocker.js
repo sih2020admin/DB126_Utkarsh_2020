@@ -199,7 +199,7 @@ function get_file(res, vcd_id, furi) {
                 hmac.update(buffer_data)
                 //generate hmac
                 var gen_hmac = hmac.digest('base64')
-                var sql = 'select f1_hash , f2_hash from file_uri where furi1=AES_ENCRYPT('+furi+' , "'+key+'") OR furi2=AES_ENCRYPT('+furi+' , "'+key+'");'
+                var sql = 'select f1_hash , f2_hash from file_uri where furi1=AES_ENCRYPT("'+furi+'" , "'+key+'") OR furi2=AES_ENCRYPT("'+furi+'" , "'+key+'");'
                 db_1.default.query(sql, function (err, result) {
                     if (err) throw err
                     else {
