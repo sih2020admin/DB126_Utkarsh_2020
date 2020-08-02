@@ -768,53 +768,53 @@ function show_files(str) {
 
                     xhr.send(data)
                 }
-            }
 
-            //sorting of "directory" and "file" list
-            console.log("checking file type", file_type);
-            console.log("checking item array", item_array);
-            if (item_array[i].type == file_type) {
-                var li_element = document.createElement('li')
+                //sorting of "directory" and "file" list
+                console.log("checking file type", file_type);
+                console.log("checking item array", item_array);
+                if (item_array[i].type == file_type) {
+                    var li_element = document.createElement('li')
 
-                //below span_element for folder or file image
-                var span_element = document.createElement('span')
-                var i_element = document.createElement('i')
-                if (item_array[i].type == 'dir') {
-                    i_element.className = 'fa fa-folder'
-                } else {
-                    i_element.className = 'fa fa-file'
-                }
-                i_element.setAttribute('aria-hidden', 'true')
-                span_element.append(i_element)
-                li_element.append(span_element)
+                    //below span_element for folder or file image
+                    var span_element = document.createElement('span')
+                    var i_element = document.createElement('i')
+                    if (item_array[i].type == 'dir') {
+                        i_element.className = 'fa fa-folder'
+                    } else {
+                        i_element.className = 'fa fa-file'
+                    }
+                    i_element.setAttribute('aria-hidden', 'true')
+                    span_element.append(i_element)
+                    li_element.append(span_element)
 
-                //below span_element for file or folder name
-                span_element = document.createElement('span')
-                span_element.append(item_array[i].name)
-                span_element.setAttribute('id', 'name')
-                li_element.append(span_element)
+                    //below span_element for file or folder name
+                    span_element = document.createElement('span')
+                    span_element.append(item_array[i].name)
+                    span_element.setAttribute('id', 'name')
+                    li_element.append(span_element)
 
-                //below span_element for file_uri or folder_id
-                span_element = document.createElement('span')
-                //This if-else has been written to sort files...
-                //first folders will be displayed and then files will be displayed
-                if (item_array[i].type == 'dir') {
-                    span_element.append(item_array[i].id)
+                    //below span_element for file_uri or folder_id
+                    span_element = document.createElement('span')
+                    //This if-else has been written to sort files...
+                    //first folders will be displayed and then files will be displayed
+                    if (item_array[i].type == 'dir') {
+                        span_element.append(item_array[i].id)
+                        span_element.style.visibility = "hidden";
+                    } else {
+                        span_element.append(item_array[i].uri)
+                    }
+                    span_element.setAttribute('id', 'file_id')
+                    li_element.append(span_element)
+
+                    //below span element for parent_id
+                    span_element = document.createElement('span')
+                    span_element.append(item_array[i].parent)
+                    span_element.setAttribute('id', 'parent_id')
                     span_element.style.visibility = "hidden";
-                } else {
-                    span_element.append(item_array[i].uri)
+                    li_element.append(span_element)
+
+                    ul_element.append(li_element)
                 }
-                span_element.setAttribute('id', 'file_id')
-                li_element.append(span_element)
-
-                //below span element for parent_id
-                span_element = document.createElement('span')
-                span_element.append(item_array[i].parent)
-                span_element.setAttribute('id', 'parent_id')
-                span_element.style.visibility = "hidden";
-                li_element.append(span_element)
-
-                ul_element.append(li_element)
             }
         }
     }
