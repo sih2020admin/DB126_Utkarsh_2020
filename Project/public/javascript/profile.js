@@ -743,6 +743,7 @@ function show_files(str) {
                 // if (Technical_or_BOQ == 1) {
                 // console.log("Testing sankey => " + item_array[i].name + "=>" + Technical_file_name + "=>" + is_upload);
                 if (item_array[i].name == file_name) {
+                    console.log("testing", i, item_array[i]);
                     // document.getElementById("fileURI").innerHTML = item_array[i].uri;
                     // Technical_file_uri = item_array[i].uri
                     // console.log('File URI for Technical Document is => ' + item_array[i].uri)
