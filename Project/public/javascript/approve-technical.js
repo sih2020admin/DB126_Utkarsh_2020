@@ -53,7 +53,7 @@ function app(j){
                     datasets: [{
                         label: 'Made In India Equipment(%)',
                         backgroundColor: ['#d398ff'],
-                        data: [response[j].equipment],
+                        data: [response[j].equi],
                     }]
                 },
                 // Configuration options go here
