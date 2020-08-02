@@ -104,8 +104,8 @@ function otp(){
             var xhr = new XMLHttpRequest();
             //var url = "https://"+host+":8091/sign";
             // var url = "https://165.22.210.37:8091/sign";
-            // var url = "https://165.22.210.37:8081/sign_8081/"+name+"/"+email+"/"+reason+"/"+location+"/"+flag+"/"+otp+"/"+etd_id;
-            var url = "https://192.168.0.4:8081/sign_8081/"+name+"/"+email+"/"+reason+"/"+location+"/"+flag+"/"+otp+"/"+etd_id;
+            var url = "https://165.22.210.37:8081/sign_8081/"+name+"/"+email+"/"+reason+"/"+location+"/"+flag+"/"+otp+"/"+etd_id;
+            // var url = "https://192.168.0.4:8081/sign_8081/"+name+"/"+email+"/"+reason+"/"+location+"/"+flag+"/"+otp+"/"+etd_id;
             xhr.open("POST" ,url);
             xhr.responseType = 'text';
             xhr.send(formdata);
