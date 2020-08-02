@@ -216,9 +216,22 @@ button:hover {
   padding: 20px 30px;
 }
 
+.modal-body hr {
+  color: #FCFCFC63;
+}
+
 .modal-body table {
   text-align: left;
   width: 100%;
+}
+
+.modal-body table a {
+  color: var(--main_color);
+  text-decoration: none;
+}
+
+.modal-body table a:hover {
+  text-decoration: underline;
 }
 
 .modal-body #upload {
