@@ -51,7 +51,7 @@ function app(j){
                 data: {
                     labels: [' '],
                     datasets: [{
-                        label: 'Made In India Equipment(%)',
+                        label: 'Make In India Equipment(%)',
                         backgroundColor: ['#FEE440'],
                         data: [response[j].equi],
                     }]
