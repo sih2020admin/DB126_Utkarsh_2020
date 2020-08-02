@@ -78,7 +78,7 @@ window.onload = function () {
                         console.log("check digi access", check_digi_access, typeof (check_digi_access));
                         //if user denies the permission on digilocker
                         if (state && error_digi) {
-                            alert('Oops! You have rejected digilocker permission. We redirecting to you digilocker please give us permission. Click "OK" to continue');
+                            alert('Oops! You have rejected digilocker permission. We are redirecting you to digilocker please give us permission. Click "OK" to continue');
 
                             var temp = state.split(':')
                             et_id = temp[0]
