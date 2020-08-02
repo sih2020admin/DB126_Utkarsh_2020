@@ -3,28 +3,51 @@ $.post('/super-admin/approve-vendor').then((result) => {
         $('<div></div>', {
             class: 'cont',
             html: ` 
-                    <h2>Company Details</h2>
-                    <label class="fields" >Company Name</label><label>${result[i]["v_name"]}</label><br>
-                    <label class="fields" >Company Address</label><label>${result[i]["v_address"]}</label><br>
-                    <label class="fields" >Year of Establishment</label><label>${result[i]["v_yoe"]}</label><br>
-                    <label class="fields" >Email Address</label><label>${result[i]["v_email"]}</label><br>
-                    <label class="fields" >Mobile Number</label><label>${result[i]["v_mobile"]}</label><br>
-                    <label class="fields" >Company Identification Number</label><label>${result[i]["v_reg_no"]}</label><br>
-                    <label class="fields" >GST Number</label><label>${result[i]["v_gst"]}</label><br>
-                    <label class="fields" >Legal Status</label><label>${result[i]["v_legal_id"]}</label><br>
-                    <label class="fields" >Pan Number</label><label>${result[i]["v_pan"]}</label><br>
-                    <label class="fields" >State</label><label>${result[i]["v_state_id"]}</label><br>
-                    <label class="fields" >City</label><label>${result[i]["v_city_id"]}</label><br>
-                    <label class="fields" >Pincode</label><label>${result[i]["v_pincode"]}</label><br>
-                    <h2>Vendor Details</h2>
-                    <label>Name</label><label>${result[i]["vcd_name"]}</label><br>
-                    <label>Title</label><label>${result[i]["vcd_title"]}</label><br>
-                    <label>Date of Birth</label><label>${result[i]["v_dob"]}</label><br>
-                    <label>Aadhaar</label><label>${result[i]["vcd_aadhar"]}</label><br>
-                    <label>Mobile Number</label><label>${result[i]["vcd_contact"]}</label><br>
-                    <label>Email Addresse</label><label>${result[i]["vcd_email"]}</label><br>
-                    <label>Designation</label><label>${result[i]["vcd_designation"]}</label><br>
-                    <label>File URL</label><a href="${result[i]["furi"]}">Link</a><br><br>
+                    <h2>Company Details</h2><br>
+                    <table>
+                    <tr>
+                    <td class="fields">Company Name</td><td>${result[i]["v_name"]}</td><br>
+                    <td class="fields">Company Address</td><td>${result[i]["v_address"]}</td><br>
+                    </tr>
+                    <tr>
+                    <td class="fields">Year of Establishment</td><td>${result[i]["v_yoe"]}</td><br>
+                    <td class="fields">Email Address</td><td>${result[i]["v_email"]}</td><br>
+                    </tr>
+                    <tr>
+                    <td class="fields">Mobile Number</td><td>${result[i]["v_mobile"]}</td><br>
+                    <td class="fields">Company Identification Number</td><td>${result[i]["v_reg_no"]}</td><br>
+                    </tr>
+                    <tr>
+                    <td class="fields">GST Number</td><td>${result[i]["v_gst"]}</td><br>
+                    <td class="fields">Legal Status</td><td>${result[i]["v_legal_id"]}</td><br>
+                    </tr>
+                    <tr>
+                    <td class="fields">Pan Number</td><td>${result[i]["v_pan"]}</td><br>
+                    <td class="fields">State</td><td>${result[i]["v_state_id"]}</td><br>
+                    </tr>
+                    <tr>
+                    <td class="fields">City</td><td>${result[i]["v_city_id"]}</td><br>
+                    <td class="fields">Pincode</td><td>${result[i]["v_pincode"]}</td><br>
+                    </tr></table>
+                    <br><h2>Vendor Details</h2><br>
+                    <table>
+                    <tr>
+                    <td class="fields">Name</td><td>${result[i]["vcd_name"]}</td><br>
+                    <td class="fields">Title</td><td>${result[i]["vcd_title"]}</td><br>
+                    </tr>
+                    <tr>
+                    <td class="fields">Date of Birth</td><td>${result[i]["v_dob"]}</td><br>
+                    <td class="fields">Aadhaar</td><td>${result[i]["vcd_aadhar"]}</td><br>
+                    </tr>
+                    <tr>
+                    <td class="fields">Mobile Number</td><td>${result[i]["vcd_contact"]}</td><br>
+                    <td class="fields">Email Addresse</td><td>${result[i]["vcd_email"]}</td><br>
+                    </tr>
+                    <tr>
+                    <td class="fields">Designation</td><td>${result[i]["vcd_designation"]}</td><br>
+                    <td class="fields">File URL</td><a href="${result[i]["furi"]}">Link</a><br><br>
+                    </tr>
+                    </table>
                     <div class="butts">
                     <button data-vd_id="${result[i]["vd_id"]}" data-vcd_id="${result[i]["vcd_id"]}">Approve</button>
                     <button>Disapprove</button></div>
