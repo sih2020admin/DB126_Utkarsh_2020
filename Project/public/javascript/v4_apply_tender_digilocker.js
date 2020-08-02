@@ -61,7 +61,7 @@ window.onload = function () {
                 var url = new URL(url_string)
                 var state = url.searchParams.get('state')
                 var error_digi = url.searchParams.get('error')
-                console.log("permission denied by user",error_digi);
+                // console.log("permission denied by user", error_digi);
 
                 var xhr = new XMLHttpRequest()
                 check_digi_url = 'https://165.22.210.37:8081/check_digi_access'
@@ -76,8 +76,18 @@ window.onload = function () {
                     if (this.status == 200) {
                         check_digi_access = temp.digi_access
                         console.log("check digi access", check_digi_access, typeof (check_digi_access));
+                        //if user denies the permission on digilocker
+                        if (state && error_digi) {
+                            alert('Oops! You have rejected digilocker permission. We redirecting to you digilocker please give us permission. Click "OK" to continue');
+
+                            var temp = state.split(':')
+                            et_id = temp[0]
+                            etd_id = temp[1]
+
+                            window.location.href = 'https://api.digitallocker.gov.in/public/oauth2/1/authorize?response_type=code&client_id=DC8FB8CF&redirect_uri=https://165.22.210.37:8081/tender/upload-documents&state=' + et_id + ':' + etd_id
+                        }
                         //check if url contains param "state"
-                        if (state) {
+                        else if (state) {
                             //get et_id and etd_id from "state" and update in global variable
                             var temp = state.split(':')
                             et_id = temp[0]
