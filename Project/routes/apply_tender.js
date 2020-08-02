@@ -368,7 +368,7 @@ router.post('/sign_8081/:name/:email/:reason/:location/:flag', (req, res) => {
 
 
 router.post('/legal_fileupload', (req, res) => {
-    console.log('legal file upload called ' + JSON.stringify(req.body))
+    // console.log('legal file upload called ' + JSON.stringify(req.body))
     var vd_id = req.signedCookies.vd_id_e
     var vcd_id = req.signedCookies.vcd_id_e
     
