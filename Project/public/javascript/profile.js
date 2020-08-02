@@ -772,6 +772,7 @@ function show_files(str) {
 
             //sorting of "directory" and "file" list
             console.log("checking file type", file_type);
+            console.log("checking item array", item_array);
             if (item_array[i].type == file_type) {
                 var li_element = document.createElement('li')
 
