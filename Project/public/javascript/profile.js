@@ -375,6 +375,9 @@ function graph_data(){
                                 precision:0,
                                 min: 0                                
                             }
+                        }],
+                        xAxes: [{
+                            barPercentage: 0.2
                         }]
                     }
                     
@@ -399,6 +402,9 @@ function graph_data(){
                 },
                 // Configuration options go here
                 options: {responsive: true,
+                    legend: {
+                        display: false
+                    },
                     scales: {
                         yAxes: [{
                             ticks: {
@@ -406,6 +412,9 @@ function graph_data(){
                                 stepSize: 1,
                                 precision:0
                             }
+                        }],
+                        xAxes: [{
+                            barPercentage: 0.4
                         }]
                     }
                 }

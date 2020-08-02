@@ -10,7 +10,7 @@ const debug = require('debug')('middleware:redirect');
 // @ts-ignore
 var exception = new RegExp('\/' + toml_1.default.parse(fs_1.default.readFileSync('configuration/middleware.toml').toString())['Exceptions']['User']['routes'].join('|\/'));
 function redirectToProfilePage(request, response, next) {
-    if (request.url.match('/admin') === null) {
+    if (request.url.match('/admin') === null && request.url.match('/super-admin') === null) {
         if (request.url.match(/\/login|\/register/)) {
             if (request.signedCookies['vcd_id_e'] !== undefined || request.signedCookies['vd_id_e'] !== undefined) {
                 debug('Found cookies in request and user is accessing vendor login.');
@@ -24,7 +24,7 @@ function redirectToProfilePage(request, response, next) {
 exports.redirectToProfilePage = redirectToProfilePage;
 function redirectToLoginPage(request, response, next) {
     /* console.table({XHR:request.xhr,accepts:request.accepts(['html','json']),value:request.headers["x-requested-with"]}) */
-    if (request.url.match('/admin') === null) {
+    if (request.url.match('/admin') === null && request.url.match('/super-admin') === null) {
         if (request.url !== '/') {
             if (request.url.match(exception) === null && request.method === 'GET') {
                 if (request.signedCookies['vcd_id_e'] === undefined || request.signedCookies['vd_id_e'] === undefined) {

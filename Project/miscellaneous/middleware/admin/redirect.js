@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.redirectToAdminLoginPage = exports.redirectToAdminProfilePage = exports.checkVendorCookies = void 0;
 const debug = require('debug')('middleware:redirect');
 function checkVendorCookies(request, response, next) {
-    if (request.url.match('/admin') && request.method === 'GET') {
+    if (request.url.match('/admin') && request.url.match('/super-admin') === null && request.method === 'GET') {
         if (request.signedCookies['vcd_id_e'] !== null || request.signedCookies['vd_id_e'] || request.signedCookies['digi_access_e']) {
             response.clearCookie('vcd_id');
             response.clearCookie('vd_id');
@@ -21,7 +21,7 @@ function checkVendorCookies(request, response, next) {
 }
 exports.checkVendorCookies = checkVendorCookies;
 function redirectToAdminProfilePage(request, response, next) {
-    if (request.url.match('/admin') && request.method === 'GET') {
+    if (request.url.match('/admin') && request.url.match('/super-admin') === null && request.method === 'GET') {
         if (request.url.match(/\/login/)) {
             if (request.signedCookies['ad_id_e'] !== undefined || request.signedCookies['ad_dept_id_e'] !== undefined || request.signedCookies['ad_org_id_e'] !== undefined) {
                 debug('Found cookies in request and user is accessing Admin login.');

@@ -6,11 +6,39 @@
 }
 
 footer {
-  text-align: left;
-  left: 0;
-  bottom: 0;
-  width: 100%;
   background-color: #fafafc;
+}
+
+footer .logo {
+  margin: 10px auto 0;
+  padding-bottom: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+footer .logo img {
+  height: 100%;
+  width: 100px;
+}
+
+footer .logo #aad {
+  width: 80px;
+}
+
+footer .logo #digi {
+  width: 120px;
+}
+
+.footer {
+  text-align: left;
+  width: 100%;
   padding: 20px 40px;
   font-size: 15px;
   display: -webkit-box;
@@ -34,19 +62,19 @@ footer {
   border-top: 1px solid #a6a6a649;
 }
 
-footer b {
+.footer b {
   font-family: 'Montserrat', sans-serif;
   font-size: 18px;
   color: black;
   font-weight: 500;
 }
 
-footer label {
+.footer label {
   display: block;
   margin-top: 20px;
 }
 
-footer input {
+.footer input {
   border: 1px solid var(--main_color);
   border-radius: 3px;
   height: 35px;
@@ -59,7 +87,7 @@ footer input {
   outline: none;
 }
 
-footer textarea {
+.footer textarea {
   border: 1px solid var(--main_color);
   border-radius: 3px;
   width: 375px;
@@ -71,7 +99,7 @@ footer textarea {
   resize: none;
 }
 
-footer button {
+.footer button {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
@@ -85,25 +113,25 @@ footer button {
   color: #ffffff;
 }
 
-footer button:hover {
+.footer button:hover {
   cursor: pointer;
   background-color: #ffffff;
   color: var(--main_color);
   border: 0.4px solid var(--main_color);
 }
 
-footer a {
+.footer a {
   display: block;
   text-decoration: none;
   color: var(--accent-dark-color);
   margin-top: 20px;
 }
 
-footer a:hover {
+.footer a:hover {
   opacity: 0.5;
 }
 
-footer .icons {
+.footer .icons {
   margin-top: 20px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -113,30 +141,30 @@ footer .icons {
           justify-content: space-between;
 }
 
-footer .icons a {
+.footer .icons a {
   display: inline;
 }
 
-footer .icons img {
+.footer .icons img {
   width: 45px;
 }
 
 @media (max-width: 900px) {
-  footer {
+  .footer {
     display: block;
     margin: auto;
     text-align: center;
   }
-  footer .sect + .sect {
+  .footer .sect + .sect {
     margin-top: 50px;
   }
-  footer .icons {
+  .footer .icons {
     display: inline-block;
   }
-  footer .icons img {
+  .footer .icons img {
     width: 35px;
   }
-  footer .icons a + a {
+  .footer .icons a + a {
     margin-left: 15px;
   }
 }
