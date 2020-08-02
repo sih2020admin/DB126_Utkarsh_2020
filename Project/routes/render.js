@@ -54,4 +54,10 @@ router.get('/help', (request, response) => {
         response.render('admin/help', { layout: false, admin, username: results[0] });
     });
 });
+
+// Super Admin Code
+
+router.get('/super/login',(request, response) =>{
+    response.render('admin/super_admin',{ layout: false})
+})
 exports.default = router;
