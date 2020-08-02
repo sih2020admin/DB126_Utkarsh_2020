@@ -690,7 +690,6 @@ function some() {
             var span_i_class = $(this).find('i').attr('class') //get details of image (whether a folder or file)
             if (span_i_class == 'fa fa-folder') {
                 //if clicked li element is folder
-                is_upload = 0 //update "upload" status to 0
 
                 //update "current_id" and "parent_id"
                 current_id = $(this).find('#file_id').text()
