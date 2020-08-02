@@ -150,6 +150,7 @@ function get_refresh_token(res, vcd_id) {
 //get file from digilocker function
 function get_file(res, vcd_id, furi) {
     //Get access token from database
+    var key=process.env["ENCRYPTION_KEY"];
     var sql = 'SELECT access FROM access_token WHERE id=' + vcd_id
     db_1.default.query(sql, function (err, result) {
         if (err) {
@@ -195,9 +196,16 @@ function get_file(res, vcd_id, furi) {
                 var hmac = crypto.createHmac(algorithm, secret)
 
                 //set file data in hmac object
-                hmac.update(data)
+                hmac.update(buffer_data)
                 //generate hmac
                 var gen_hmac = hmac.digest('base64')
+                var sql = 'select f1_hash , f2_hash from file_uri where furi1=AES_ENCRYPT('+furi+' , "'+key+'") OR furi2=AES_ENCRYPT('+furi+' , "'+key+'");'
+                db_1.default.query(sql, function (err, result) {
+                    if (err) throw err
+                    else {
+                        console.log(result)
+                    }
+                })
 
                 var sql = 'UPDATE v_contact_details SET digi_access=1 WHERE vcd_id=' + vcd_id
                 db_1.default.query(sql, function (err, result) {
