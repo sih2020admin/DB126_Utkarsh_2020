@@ -230,7 +230,7 @@ strong {
     }
 }
 
-
+ 
 .tenders_details{
     font-family: 'Montserrat', sans-serif;
     margin: 40px;
@@ -276,4 +276,24 @@ header{
     position: sticky;
     top: 0;
     left: 0;
+}
+
+// #cur_dir{
+//     text-align: center;
+// }
+input[type="file"]{
+    display: none;
+}
+.upload_label{
+    color: white;
+    width: fit-content;
+    padding: 5px 15px;
+    border-radius: 5px;
+    background-color: var(--main_color);
+    margin: 20px auto;
+    display: block;
+    cursor: pointer;
+}
+.upload_label:hover{
+    opacity: 0.5;
 }

@@ -75,13 +75,14 @@
           {{else}}
             <label class="RnoLabel"><strong>NO LEGAL DOCUMENTS APPLIED !! PLEASE UPLOAD TO GET VERIFIED </strong></label>
             <div>
-        <h3>Upload Documents</h3>
           <div>
             <input type="file" id="upload" accept="application/pdf" onchange="browse()">
+            <label for="upload" class="upload_label"><i class="fas fa-upload"></i>&nbsp;&nbsp;Choose a Document</label>
             <p id="tc2"></p>
             <div>
               <a target="blank" id ="preview" download>Click To Preview</a>
             </div>
+            <br>
           </div>
         <button id="digilocker" type="button" onclick="openModal()">Digilocker</button>
       </div>
