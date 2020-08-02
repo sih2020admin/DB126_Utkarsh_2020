@@ -367,6 +367,7 @@ router.post('/upload_files', function (req, res) {
 
     db_1.default.query(sql, function (err, result) {
         if (err) {
+            console.log("err from dataabse query ",err)
             res.status(400).send({ error: 'Database query failed' })
         }
 
@@ -374,6 +375,7 @@ router.post('/upload_files', function (req, res) {
         var sql = 'SELECT access FROM access_token WHERE id=' + vcd_id
         db_1.default.query(sql, function (err, result) {
             if (err) {
+                console.log("err from dataabse query2 ",err)
                 res.status(400).send({ error: 'Database query failed' })
             }
             console.log('Got Access Token from DB')
