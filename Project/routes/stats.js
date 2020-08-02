@@ -22,6 +22,7 @@ router.post('/admin/statistics', (request, response) => {
     
     Promise.all([stats_1.getCountOfApplicationsPerTender(request), stats_1.getCountOfApplicationsPerTenderByStatus(request), stats_1.getApplicationsWhichPassedFirstStage(request), stats_1.getAmountDifference()])
         .then((results) => {
+        //console.log(results[1])
         response.send(results);
     })
         .catch((error) => {

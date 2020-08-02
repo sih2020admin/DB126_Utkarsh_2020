@@ -21,7 +21,7 @@ exports.getCountOfApplicationsPerTender = getCountOfApplicationsPerTender;
 
 // returns number of applications which have passed Stage one
 async function getApplicationsWhichPassedFirstStage(request) {
-    let application = await connection_1.default.execute(`SELECT et_id,COUNT(*) as Count from (SELECT etv.et_id FROM e_tender_vendor etv INNER JOIN e_tender_details etd ON etv.et_id=etd.et_id WHERE etd.dept_id='${request.signedCookies['ad_dept_id_e']}' AND (etv.is_approved=AES_ENCRYPT(1,'${process.env.ENCRYPTION_KEY}'))) p GROUP BY et_id`);
+    let application = await connection_1.default.execute(`SELECT et_id,title,reference,description,COUNT(*) as Count from (SELECT etv.et_id,etd.et_title as title,etd.et_tender_desc as description,etd.et_tender_ref_no as reference FROM e_tender_vendor etv INNER JOIN e_tender_details etd ON etv.et_id=etd.et_id WHERE etd.dept_id='${request.signedCookies['ad_dept_id_e']}' AND (etv.is_approved=AES_ENCRYPT(1,'${process.env.ENCRYPTION_KEY}'))) p GROUP BY et_id`);
     return application[0];
 }
 exports.getApplicationsWhichPassedFirstStage = getApplicationsWhichPassedFirstStage;
@@ -36,11 +36,11 @@ exports.getAmountDifference = getAmountDifference;
 
 
 async function getCountOfApplicationsPerTenderByStatus(request) {
-    let d = '170';
-    let temp = await connection_1.default.query(`SELECT 'second' as OnStage,et_id,count(status) as count,cast(status as char) as status FROM e_tender_vendor WHERE et_id='${d}' AND status='100';
-    SELECT 'third' as OnStage,et_id,count(status) as count,cast(status as char) as status FROM e_tender_vendor WHERE et_id='${d}' AND status='110';
-    SELECT 'fourth' as OnStage,count(status) as count,cast(status as char) as status FROM e_tender_vendor WHERE et_id='${d}' AND status='111';
-    SELECT 'finished' as OnStage,et_id,count(status) as count,cast(status as char) as status FROM e_tender_vendor WHERE et_id='${d}' AND status='1111'
+    let d = '178';
+    let temp = await connection_1.default.query(`SELECT 'second' as OnStage,et_id,count(status) as count,cast(status as char) as status FROM e_tender_vendor WHERE et_id='${d}' AND status=AES_ENCRYPT(100,'${process.env.ENCRYPTION_KEY}');
+    SELECT 'third' as OnStage,et_id,count(status) as count,cast(status as char) as status FROM e_tender_vendor WHERE et_id='${d}' AND status=AES_ENCRYPT(110,'${process.env.ENCRYPTION_KEY}');
+    SELECT 'fourth' as OnStage,et_id,count(status) as count,cast(status as char) as status FROM e_tender_vendor WHERE et_id='${d}' AND status=AES_ENCRYPT(111,'${process.env.ENCRYPTION_KEY}');
+    SELECT 'finished' as OnStage,et_id,count(status) as count,cast(status as char) as status FROM e_tender_vendor WHERE et_id='${d}' AND status=AES_ENCRYPT(1111,'${process.env.ENCRYPTION_KEY}')
     `);
     return temp[0];
 }
