@@ -95,9 +95,9 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
   max-width: 60%;
   float: left;
 }
@@ -154,5 +154,72 @@
 
 .approved_tenders .container a:hover {
   text-decoration: underline;
+}
+
+.statistics table {
+  max-width: 100%;
+  width: 1200px;
+  border-radius: 15px;
+  border-collapse: collapse;
+  margin: 40px auto;
+  -webkit-box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
+          box-shadow: 0 0 8px 0 rgba(103, 62, 253, 0.3);
+}
+
+.statistics table a {
+  text-decoration: none;
+  color: var(--main_color);
+}
+
+.statistics table a:hover {
+  text-decoration: underline;
+}
+
+.statistics table button {
+  border: none;
+  margin: 10px;
+  background-color: inherit;
+}
+
+.statistics table button:hover {
+  opacity: 0.5;
+}
+
+.statistics tr:nth-child(odd) {
+  background-color: rgba(141, 111, 251, 0.06);
+}
+
+.statistics i {
+  cursor: pointer;
+}
+
+.statistics th {
+  background-color: var(--main_color);
+  color: #fff;
+  font-weight: lighter;
+  white-space: nowrap;
+  z-index: 1;
+}
+
+.statistics .first_th {
+  border-top-left-radius: 10px;
+}
+
+.statistics .last_th {
+  border-top-right-radius: 10px;
+}
+
+.statistics th, .statistics td {
+  padding: 1em 1em;
+}
+
+.statistics td {
+  vertical-align: baseline;
+}
+
+#bar {
+  width: 1200px !important;
+  height: 100% !important;
+  margin: 0 auto;
 }
 /*# sourceMappingURL=admin_dashboard.css.map */
