@@ -41,6 +41,36 @@ function app(j){
     document.getElementById("cemail").innerHTML = response[j].v_email;
     document.getElementById("ccontact").innerHTML = response[j].v_mobile;
     document.getElementById("address").innerHTML = response[j].v_address;
+    document.getElementById("turn").innerHTML = "₹&nbsp;" +"5000000";
+    document.getElementById("scheme").innerHTML = response[j].schemes;
+    document.getElementById("staff").innerHTML = response[j].staff;
+
+    var equipment = document.getElementById('equipment').getContext('2d');
+            var chart = new Chart(equipment, {
+                type: 'horizontalBar',
+                data: {
+                    labels: [' '],
+                    datasets: [{
+                        label: 'Made In India Equipment(%)',
+                        backgroundColor: ['#d398ff'],
+                        data: [response[j].equipment],
+                    }]
+                },
+                // Configuration options go here
+                options: {responsive: true,
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                min: 0
+                            }
+                        }],
+                        xAxes: [{
+                            barPercentage: 0.2
+                        }]
+                    }
+                }
+            });
+
 
     document.getElementById("upload").style.display = "none";
     document.getElementById("error").innerHTML = "";
