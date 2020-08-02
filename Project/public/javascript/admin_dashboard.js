@@ -168,6 +168,7 @@ $.post('/admin/statistics').then((results) => {
             data: {
                 datasets: [
                     {
+                        label: '  ',
                         data: results[0].map((rob) => rob['Count']),
                         backgroundColor: getBarChartColor(results[0].length),
                     },
@@ -183,7 +184,18 @@ $.post('/admin/statistics').then((results) => {
                 legend: {
                     position: 'right',
                     align: 'start',
+                    display: false
                 },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            stepSize: 1,
+                            precision:0,
+                            min: 0                                
+                        }
+                    }]
+                }
             }
         });
     }

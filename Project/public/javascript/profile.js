@@ -362,7 +362,11 @@ function graph_data(){
                     }]
                 },
                 // Configuration options go here
-                options: {responsive: true,
+                options: {
+                    responsive: true,
+                    legend: {
+                        display: false
+                    },
                     scales: {
                         yAxes: [{
                             ticks: {
@@ -373,6 +377,7 @@ function graph_data(){
                             }
                         }]
                     }
+                    
                 }
             });
 
