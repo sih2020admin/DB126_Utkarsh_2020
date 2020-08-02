@@ -249,7 +249,7 @@ function show_files(str) {
                 //accordingly display fileuri in console
 
                 if (Technical_or_BOQ == 2) {
-                    // console.log("Testing sankey => " + item_array[i].name + "=>" + Technical_file_name + "=>" + is_upload);
+                    console.log("Testing sankey => " + item_array[i].name + "=>" + Technical_file_name + "=>" + is_upload);
                     if (item_array[i].name == Technical_file_name) {
                         // document.getElementById("fileURI").innerHTML = item_array[i].uri;
                         Technical_file_uri = item_array[i].uri
