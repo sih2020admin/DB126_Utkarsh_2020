@@ -60,6 +60,8 @@ window.onload = function () {
                 var url_string = window.location.href
                 var url = new URL(url_string)
                 var state = url.searchParams.get('state')
+                var error_digi = url.searchParams.get('error')
+                console.log("permission denied by user",error_digi);
 
                 var xhr = new XMLHttpRequest()
                 check_digi_url = 'https://165.22.210.37:8081/check_digi_access'
