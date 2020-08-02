@@ -213,9 +213,50 @@ router.post('/verifyOTP_login', (req, res) => {
 router.post('/login/admin', function (req, res) {
     var username = req.body.username
     var password = crypto.createHash('sha512').update(req.body.password).digest('hex')
-    console.log('admin login called', username)
+    console.log('admin login called', username,password)
 
     db_1.default.query('SELECT * FROM  log_in_details WHERE role_id= 1 and user_name = ?', [username], function (error, results, fields) {
+        if (error) {
+            res.status(400)
+        } else {
+            if (results.length > 0) {
+                //User exists
+                if (results[0].password == password) {
+                    //Users password match
+                    var ad_id = results[0].ad_id
+
+                    //fetch aadhar number
+                    db_1.default.query('SELECT ad_id,ad_dept_id, ad_org_id FROM `admin_detail` WHERE ad_id = ?; ', [ad_id], function (error, results, fields) {
+                        if (error) {
+                            res.status(400)
+                        } else {
+                            res.cookie('ad_id_e', results[0].ad_id, { signed: true })
+                            res.cookie('ad_org_id_e', results[0].ad_org_id, { signed: true })
+                            res.cookie('ad_dept_id_e', results[0].ad_dept_id, { signed: true })
+                            req.session.ad_id = results[0].ad_id
+                            req.session.ad_org_id = results[0].ad_org_id
+                            req.session.ad_dept_id = results[0].ad_dept_id
+                            res.send(results[0])
+                        }
+                    })
+                } else {
+                    //Users password do not match
+                    res.sendStatus(400)
+                }
+            } else {
+                //User does not exist
+                res.sendStatus(400)
+            }
+        }
+    })
+})
+
+router.post('/login/super_admin', function (req, res) {
+    var username = req.body.username
+    var password = crypto.createHash('sha512').update(req.body.password).digest('hex')
+    console.log('admin login called', username)
+
+    db_1.default.query('SELECT * FROM  log_in_details WHERE role_id= 0 and user_name = ?', [username], function (error, results, fields) {
         if (error) {
             res.status(400)
         } else {
