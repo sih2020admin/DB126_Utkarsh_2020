@@ -17,6 +17,7 @@
       <button class="tablinks first-button active" id="pro-button" onclick="operation('Profile')"><i class="far fa-user-circle"></i>&nbsp &nbspMy Profile</button>
       <!-- <h3>Bid Details</h3> -->
       <button class="tablinks" id="ten-button" onclick="operation('Tenders')"><i class="far fa-bookmark"></i>&nbsp &nbspMy Tenders</button>
+      <button class="tablinks" id="files-button" onclick="operation('Files')"><i class="far fa-bookmark"></i>&nbsp &nbspLegal Documents</button>
       <button class="tablinks" id="app-button" onclick="operation('Approved')"><i class="far fa-check-circle"></i>&nbsp &nbspApproved Tenders</button>
       <button class="tablinks" id="stats-button" onclick="operation('stats')"><i class="far fa-chart-bar"></i>&nbsp &nbspStatistics</button>
       <button class="tablinks" onclick="location.href='/tenders'"><i class="fas fa-search"></i>&nbsp &nbspSearch Tenders</button>
@@ -51,6 +52,25 @@
           {{/if}}
         
       </div>
+    </div>
+
+    <div id="Files" class="tabcontent" style="display: none;">
+      <h2>Legal Documents</h2>
+      <div>
+        <h3>Upload Documents</h3>
+        
+          <div>
+            <input type="file" id="upload" accept="application/pdf" onchange="browse()">
+            <p id="tc2"></p>
+            <div>
+              <a target="blank" id ="preview" download>Click To Preview</a>
+            </div>
+          </div>
+          
+      
+        <button id="digilocker" type="button" onclick="openModal()">Digilocker</button>
+      </div>
+      
     </div>
 
     <div id="Approved" class="tabcontent" style="display: none;">
