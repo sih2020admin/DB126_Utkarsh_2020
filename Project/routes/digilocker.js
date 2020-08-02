@@ -181,11 +181,28 @@ function get_file(res, vcd_id, furi) {
             .on('data', function (datachunk) {
                 buffer_list.push(datachunk) //appending chunks of buffers to buffer_list as recieved
             })
-            .then(function(response) {
+            .then(function (response) {
                 console.log("hello", response.headers);
             })
             .then(function () {
                 buffer_data = Buffer.concat(buffer_list) //concatinating all chunks of buffers
+
+                //Algorithm to be used for HMAC
+                var algorithm = 'sha256'
+                //Secret to be used with HMAC
+                var secret = 'c0af1661ed05294b8f83'
+                //creating hmac object
+                var hmac = crypto.createHmac(algorithm, secret)
+
+                //set file data in hmac object
+                hmac.update(data)
+                //generate hmac
+                var gen_hmac = hmac.digest('base64')
+
+                var sql = 'UPDATE v_contact_details SET digi_access=1 WHERE vcd_id=' + vcd_id
+                db_1.default.query(sql, function (err, result) {
+                    if (err) throw err
+                })
 
                 //keep below line for debugging purpose
                 //writableStream.write(buffer_data);
@@ -358,16 +375,16 @@ router.post('/upload_files', function (req, res) {
 
     var sql;
     //insert file hash into database
-    if(flag == 0) {
-        sql = 'UPDATE file_uri SET f1_hash="'+gen_hmac+'" where etd_id='+etd;
-    } 
+    if (flag == 0) {
+        sql = 'UPDATE file_uri SET f1_hash="' + gen_hmac + '" where etd_id=' + etd;
+    }
     else {
-        sql = 'UPDATE file_uri SET f2_hash="'+gen_hmac+'" where etd_id='+etd;
+        sql = 'UPDATE file_uri SET f2_hash="' + gen_hmac + '" where etd_id=' + etd;
     }
 
     db_1.default.query(sql, function (err, result) {
         if (err) {
-            console.log("err from dataabse query ",err)
+            console.log("err from dataabse query ", err)
             res.status(400).send({ error: 'Database query failed' })
         }
 
@@ -375,7 +392,7 @@ router.post('/upload_files', function (req, res) {
         var sql = 'SELECT access FROM access_token WHERE id=' + vcd_id
         db_1.default.query(sql, function (err, result) {
             if (err) {
-                console.log("err from dataabse query2 ",err)
+                console.log("err from dataabse query2 ", err)
                 res.status(400).send({ error: 'Database query failed' })
             }
             console.log('Got Access Token from DB')
