@@ -16,7 +16,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 # @app.route("/sign", methods=["POST"])
 # @cross_origin(app,support_credentials=True)
-def sign_pdf(name , email , reason , location , filename):
+def sign_pdf(name , email , reason , location , filename , hash):
 #    name = request.form['name']
    # print("request ",name)
 #    email = request.form['email']
@@ -32,12 +32,14 @@ def sign_pdf(name , email , reason , location , filename):
 
    background = Image.new('RGBA', (650, 650), color=(255, 255, 255, 0))
    font = ImageFont.truetype("routes/sign_req/Roboto-Regular.ttf", 30)
+   chota_font = ImageFont.truetype("routes/sign_req/Roboto-Regular.ttf", 15)
    sign_font = ImageFont.truetype("routes/sign_req/Tomatoes.ttf", 60)
    ew, eh = font.getsize(email)
    sw, sh = sign_font.getsize(name)
    rw, rh = font.getsize(reason)
    lw, lh = font.getsize(location)
    dw, dh = font.getsize(date2)
+   hw , hh = chota_font.getsize(hash)
 
    draw = ImageDraw.Draw(background)
 
@@ -46,6 +48,7 @@ def sign_pdf(name , email , reason , location , filename):
    draw.text(((650-rw)/2, 290), reason, font=font, fill="#663EFD")
    draw.text(((650-lw)/2, 330), location, font=font, fill="#663EFD")
    draw.text(((650-dw)/2, 370), date2, font=font, fill="#663EFD")
+   draw.text(((650-hw)/2, 410), hash, font=chota_font, fill="#663EFD")
 
    background.save('routes/sign_req/sig.png')
    dct={
@@ -58,6 +61,7 @@ def sign_pdf(name , email , reason , location , filename):
    b'signingdate': date.encode(),
    b'reason': reason.encode(),
    b'signature': name.encode(),
+   b'hash': hash.encode(),
    b'signaturebox': (450, 700, 600,850),
    }
    with open('routes/sign_req/certificate.p12', 'rb') as fp:
@@ -84,9 +88,10 @@ email = str(sys.argv[2])
 reason = str(sys.argv[3])
 location = str(sys.argv[4])
 filename = str(sys.argv[5])
+hash = str(sys.argv[6])
 
 # print(name)
-print(sign_pdf(str(name) ,str(email) ,str(reason) , str(location) , str(filename)))
+print(sign_pdf(str(name) ,str(email) ,str(reason) , str(location) , str(filename),str(hash)))
 
 
 # if __name__ == "__main__":

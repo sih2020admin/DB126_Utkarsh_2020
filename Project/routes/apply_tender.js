@@ -20,6 +20,7 @@ var multer = require('multer')()
 let { PythonShell } = require('python-shell')
 const { parse } = require('querystring')
 const rp = require('request-promise')
+var crypto = require('crypto')
 
 var multer = require('multer')
 var postStorage = multer.diskStorage({
@@ -322,15 +323,32 @@ router.post('/sms/send', (req, res) => {
 
 // })
 
-router.post('/sign_8081/:name/:email/:reason/:location/:flag', (req, res) => {
+router.post('/sign_8081/:name/:email/:reason/:location/:flag/:otp/:etd_id', (req, res) => {
     console.log('sign 8081 called ' + JSON.stringify(req.body))
     var name = req.params.name
     var email = req.params.email
     var reason = req.params.reason
     var location = req.params.location
     var flag = req.params.flag
-    // console.log(name);
+    var otp = req.params.otp
+    var etd_id = req.params.etd_id
+    var date = new Date()
+    var components = [date.getYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds(), date.getMilliseconds()]
+
+    var time_stamp = components.join('')
+
+    console.log("time stamp ",time_stamp);
      console.log("sign 8081 called");
+      //Algorithm to be used for HMAC
+      var algorithm = 'sha256'
+      //creating hmac object
+      var hmac = crypto.createHmac(algorithm,otp )
+
+      //set file data in hmac object
+      hmac.update(time_stamp)
+      //generate hmac
+      var gen_hmac = hmac.digest('base64')
+      console.log(gen_hmac)
 	
     var uploadPost = multer({ storage: postStorage }).single('file')
     uploadPost(req, res, function (error) {
@@ -343,23 +361,48 @@ router.post('/sign_8081/:name/:email/:reason/:location/:flag', (req, res) => {
             mode: 'text',
             pythonOptions: ['-u'],
             scriptPath: './routes/',
-            args: [name, email, reason, location, req.file.filename],
+            args: [name, email, reason, location, req.file.filename ,gen_hmac],
         }
-	console.log("sign 8081 1");
+        
+	    console.log("sign 8081 1");
         PythonShell.run('sign_function.py', options, function (err, results) {
             if (err) throw err
             // Results is an array consisting of messages collected during execution
             var r = results[0].slice(26)
             console.log('results: ', results, r)
             if (flag == '0') {
-                res.cookie('tech_file', r)
+
+                db_1.default.query('Delete from `file_uri` where etd_id = ? ; INSERT INTO `file_uri` (`etd_id`, `f_type`, `f1_otp`) VALUES ( ? , "doc", ?)', [etd_id , etd_id , gen_hmac], function (error, results, fields) {
+                    if (error) {
+                        console.log('error', error)
+                        res.sendStatus(400)
+                    } else {
+                        console.log(results)
+                        res.cookie('tech_file', r)
+                        res.sendStatus(200)
+                    }
+                })
+
+                
+
             } else if (flag == '1') {
-                {
-                    res.cookie('boq_file', r)
+                {   
+                    db_1.default.query('UPDATE `file_uri` SET  `f2_otp`=? where etd_id = ?', [ gen_hmac,  etd_id ], function (error, results, fields) {
+                        if (error) {
+                            console.log('error', error)
+                            res.sendStatus(400)
+                        } else {
+                            console.log(results)
+                            res.cookie('boq_file', r)
+                            // res.cookie('tech_file', r)
+                            res.sendStatus(200)
+                        }
+                    })
+                    
                 }
             }
-		console.log("sign 8081 2")
-            res.json(JSON.parse(`{"filename":"` + r + `"}`))
+		    console.log("sign 8081 2")
+            // res.json(JSON.parse(`{"filename":"` + r + `"}`))
         })
     })
 })
