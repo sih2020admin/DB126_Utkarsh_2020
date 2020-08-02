@@ -321,8 +321,8 @@ router.post('/fetch_files', (req, res) => {
 router.post('/upload_files', function (req, res) {
     var file_name = req.body.filename
     var flag = req.body.flag
-    var etd = req.body.etd_id
-    //console.log(file_name);
+    var etd = req.body.etd
+    console.log(etd);
 
     //joining path of directory
     /*var path = require('path');
@@ -359,10 +359,10 @@ router.post('/upload_files', function (req, res) {
     var sql;
     //insert file hash into database
     if(flag == 0) {
-        sql = 'UPDATE file_uri SET f1_hash='+gen_hmac+' where etd_id='+etd;
+        sql = 'UPDATE file_uri SET f1_hash="'+gen_hmac+'" where etd_id='+etd;
     } 
     else {
-        sql = 'UPDATE file_uri SET f2_hash='+gen_hmac+' where etd_id='+etd;
+        sql = 'UPDATE file_uri SET f2_hash="'+gen_hmac+'" where etd_id='+etd;
     }
 
     db_1.default.query(sql, function (err, result) {
