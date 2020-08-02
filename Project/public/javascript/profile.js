@@ -960,7 +960,7 @@ function uploadFiles() {
 
     //call Upload File API
     var xhr = new XMLHttpRequest()
-    url = 'https://165.22.210.37:8081/upload_files'
+    url = 'https://165.22.210.37:8081/upload_legal_files'
     xhr.open('POST', url, true)
     xhr.setRequestHeader('Content-Type', 'application/json')
     xhr.setRequestHeader('vcd_id', vcd_id)       //modf_sanket
