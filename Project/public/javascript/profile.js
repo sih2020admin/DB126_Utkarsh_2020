@@ -754,7 +754,7 @@ function show_files(str) {
                     var file_uri = item_array[i].uri
                     // console.log('File URI for BOQ document is => ' + item_array[i].uri)
 
-                    var data = JSON.stringify({ etd_id: etd_id, f_type: 'link', f_uri: file_uri })
+                    var data = JSON.stringify({ f_uri: file_uri })
 
                     var xhr = new XMLHttpRequest()
                     xhr.addEventListener('readystatechange', function () {
