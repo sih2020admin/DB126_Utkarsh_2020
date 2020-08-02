@@ -7,7 +7,8 @@ function show() {
     } else if (passw.length == 0) {
         document.getElementById('tc').innerHTML = 'Password cannot be Empty'
     } else {
-        var xhr = new XMLHttpRequest()
+        console.table({username:userid,password:passw})
+        /* var xhr = new XMLHttpRequest()
         var url = '/login/super_admin'
         xhr.open('POST', url)
         xhr.setRequestHeader('Content-Type', 'application/json')
@@ -32,7 +33,7 @@ function show() {
             } else {
                 document.getElementById('tc').innerHTML = 'Some Error Occured'
             }
-        }
+        } */
     }
     document.getElementById('username').value = ''
     document.getElementById('pass').value = ''
