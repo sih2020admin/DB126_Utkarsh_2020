@@ -174,6 +174,7 @@ function get_file(res, vcd_id, furi) {
 
         var buffer_data //to store entire buffer of file received from digilocker
         var buffer_list = [] //append each chunk of buffer here as recieved
+        var  gen_hmac;
 
         //keep below line for debugging purpose
         //var writableStream = fs.createWriteStream('digi.pdf');
@@ -198,7 +199,15 @@ function get_file(res, vcd_id, furi) {
                 //set file data in hmac object
                 hmac.update(buffer_data)
                 //generate hmac
-                var gen_hmac = hmac.digest('base64')
+                 gen_hmac = hmac.digest('base64')
+                
+
+                
+                //keep below line for debugging purpose
+                //writableStream.write(buffer_data);
+            })
+            .then(function () {
+
                 var sql = 'select f1_hash , f2_hash from file_uri where furi1=AES_ENCRYPT("' + furi + '" , "' + key + '") OR furi2=AES_ENCRYPT("' + furi + '" , "' + key + '");'
                 db_1.default.query(sql, function (err, result) {
                     if (err) throw err
@@ -209,21 +218,12 @@ function get_file(res, vcd_id, furi) {
                         }
                         else {
                             console.log("file verification success")
+                            res.contentType('application/pdf')
+                            res.status(200).send(buffer_data) //send buffer data of file to front-end
                         }
                     }
                 })
-
-                var sql = 'UPDATE v_contact_details SET digi_access=1 WHERE vcd_id=' + vcd_id
-                db_1.default.query(sql, function (err, result) {
-                    if (err) throw err
-                })
-
-                //keep below line for debugging purpose
-                //writableStream.write(buffer_data);
-            })
-            .then(function () {
-                res.contentType('application/pdf')
-                res.status(200).send(buffer_data) //send buffer data of file to front-end
+                
             })
             .catch(function (err) {
                 console.log('Failure', err)
