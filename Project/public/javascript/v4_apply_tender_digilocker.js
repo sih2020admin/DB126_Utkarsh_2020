@@ -248,7 +248,7 @@ function show_files(str) {
                 //check which document has been uploaded to digilocker recently
                 //accordingly display fileuri in console
 
-                if (Technical_or_BOQ == 2) {
+                /*if (Technical_or_BOQ == 2) {
                     console.log("Testing sankey => " + item_array[i].name + "=>" + Technical_file_name + "=>" + is_upload);
                     if (item_array[i].name == Technical_file_name) {
                         // document.getElementById("fileURI").innerHTML = item_array[i].uri;
@@ -294,9 +294,9 @@ function show_files(str) {
                     xhr.setRequestHeader('Content-Type', 'application/json')
 
                     xhr.send(data)
-                }
+                }*/
 
-                /*if (Technical_or_BOQ == 1) {
+                if (Technical_or_BOQ == 1) {
                     // console.log("Testing sankey => " + item_array[i].name + "=>" + Technical_file_name + "=>" + is_upload);
                     if (item_array[i].name == Technical_file_name) {
                         // document.getElementById("fileURI").innerHTML = item_array[i].uri;
@@ -342,7 +342,7 @@ function show_files(str) {
 
                         xhr.send(data)
                     }
-                }*/
+                }
 
                 //sorting of "directory" and "file" list
                 if (item_array[i].type == file_type) {
@@ -530,7 +530,7 @@ window.onclick = function (event) {
 /* ------------------------------------ End of Modal funcionality code -------------------------------------------- */
 
 /* ------------------------------- Start of Upload file to digilocker Code ---------------------------------------- */
-function uploadFiles2() {
+function uploadFiles() {
     //If Both files are uploaded to digilocker
     //ask user if he/she wants to revoke access token;
     if (Technical_or_BOQ == 2) {
@@ -606,7 +606,7 @@ function uploadFiles2() {
     }
 }
 
-function uploadFiles() {
+function uploadFiles2() {
     //hide fa-fa spinner on upload button
     document.getElementById('icon3').style.display = ''
     //update "upload" status
