@@ -216,6 +216,10 @@ button:hover {
   padding: 20px 30px;
 }
 
+.modal-body hr {
+  color: #FCFCFC63;
+}
+
 .modal-body table {
   text-align: left;
   width: 100%;
