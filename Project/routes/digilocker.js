@@ -174,7 +174,7 @@ function get_file(res, vcd_id, furi) {
 
         var buffer_data //to store entire buffer of file received from digilocker
         var buffer_list = [] //append each chunk of buffer here as recieved
-        var  gen_hmac;
+        var gen_hmac;
 
         //keep below line for debugging purpose
         //var writableStream = fs.createWriteStream('digi.pdf');
@@ -199,10 +199,10 @@ function get_file(res, vcd_id, furi) {
                 //set file data in hmac object
                 hmac.update(buffer_data)
                 //generate hmac
-                 gen_hmac = hmac.digest('base64')
-                
+                gen_hmac = hmac.digest('base64')
 
-                
+
+
                 //keep below line for debugging purpose
                 //writableStream.write(buffer_data);
             })
@@ -223,7 +223,7 @@ function get_file(res, vcd_id, furi) {
                         }
                     }
                 })
-                
+
             })
             .catch(function (err) {
                 console.log('Failure', err)
@@ -392,16 +392,53 @@ router.post('/upload_files', function (req, res) {
     if (flag == 0) {
         sql = 'UPDATE file_uri SET f1_hash="' + gen_hmac + '" where etd_id=' + etd;
     }
-    else {
+    else if (flag == 1) {
         sql = 'UPDATE file_uri SET f2_hash="' + gen_hmac + '" where etd_id=' + etd;
     }
 
-    db_1.default.query(sql, function (err, result) {
-        if (err) {
-            console.log("err from dataabse query ", err)
-            res.status(400).send({ error: 'Database query failed' })
-        }
+    else if (flag == 1 || flag == 0) {
 
+        db_1.default.query(sql, function (err, result) {
+            if (err) {
+                console.log("err from dataabse query ", err)
+                res.status(400).send({ error: 'Database query failed' })
+            }
+
+
+            //Get access token from database
+            var sql = 'SELECT access FROM access_token WHERE id=' + vcd_id
+            db_1.default.query(sql, function (err, result) {
+                if (err) {
+                    console.log("err from dataabse query2 ", err)
+                    res.status(400).send({ error: 'Database query failed' })
+                }
+                console.log('Got Access Token from DB')
+                var access_token = result[0].access
+
+                var options = {
+                    method: 'POST',
+                    uri: 'https://api.digitallocker.gov.in/public/oauth2/1/file/upload',
+                    body: data,
+                    headers: {
+                        Authorization: 'Bearer ' + access_token,
+                        'Content-Type': 'application/pdf',
+                        path: pathDigi + '/' + file_name,
+                        hmac: gen_hmac,
+                    },
+                }
+
+                rp(options)
+                    .then(function (body) {
+                        console.log('File Uploaded to Digilocker Server successfully')
+                        res.status(200).send(gen_hmac)
+                    })
+                    .catch(function (err) {
+                        console.log('Failure', err)
+                    })
+            })
+        })
+    }
+    else {
         //Get access token from database
         var sql = 'SELECT access FROM access_token WHERE id=' + vcd_id
         db_1.default.query(sql, function (err, result) {
@@ -433,7 +470,7 @@ router.post('/upload_files', function (req, res) {
                     console.log('Failure', err)
                 })
         })
-    })
+    }
 })
 
 //revoke digilocker token
