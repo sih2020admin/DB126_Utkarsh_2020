@@ -221,6 +221,15 @@ button:hover {
   width: 100%;
 }
 
+.modal-body table a {
+  color: var(--main_color);
+  text-decoration: none;
+}
+
+.modal-body table a:hover {
+  text-decoration: underline;
+}
+
 .modal-body #upload {
   margin-left: 15px;
 }

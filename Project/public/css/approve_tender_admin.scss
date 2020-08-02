@@ -239,6 +239,13 @@ button:hover{
     table{
         text-align: left;
         width: 100%;
+        a{
+            color: var(--main_color);
+            text-decoration: none;
+        }
+        a:hover{
+            text-decoration: underline;
+        }
     }
     #upload{
         margin-left: 15px;
