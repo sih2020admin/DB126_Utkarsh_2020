@@ -19,6 +19,7 @@ var multer = require('multer')()
 // const fs = require('fs');
 let { PythonShell } = require('python-shell')
 const { parse } = require('querystring')
+const rp = require('request-promise')
 
 var multer = require('multer')
 var postStorage = multer.diskStorage({
@@ -38,6 +39,7 @@ var postStorage = multer.diskStorage({
         callback(null, fileName)
     },
 })
+
 function get_data(f) {
     // body...
 
@@ -360,5 +362,96 @@ router.post('/sign_8081/:name/:email/:reason/:location/:flag', (req, res) => {
         })
     })
 })
+
+
+
+
+
+router.post('/legal_fileupload', (req, res) => {
+    console.log('legal file upload called ' + JSON.stringify(req.body))
+    var vd_id = req.signedCookies.vd_id_e
+    var vcd_id = req.signedCookies.vcd_id_e
+    
+    var uploadPost = multer({ storage: postStorage }).single('file')
+    uploadPost(req, res, function (error) {
+        if (error) {
+            console.log(error)
+            return res.send('error uploading file')
+        }
+        console.log(req.file.filename)
+        // var options = {
+        //     mode: 'text',
+        //     pythonOptions: ['-u'],
+        //     scriptPath: './routes/',
+        //     args: [name, email, reason, location, req.file.filename],
+        // }
+	    // console.log("sign 8081 1");
+        // PythonShell.run('sign_function.py', options, function (err, results) {
+        //     if (err) throw err
+        //     // Results is an array consisting of messages collected during execution
+        //     var r = results[0].slice(26)
+        //     console.log('results: ', results, r)
+        //     if (flag == '0') {
+        //         res.cookie('tech_file', r)
+        //     } else if (flag == '1') {
+        //         {
+        //             res.cookie('boq_file', r)
+        //         }
+        //     }
+		// console.log("sign 8081 2")
+        //     res.json(JSON.parse(`{"filename":"` + r + `"}`))
+    
+        // })
+
+        // var options = {
+        //     method: 'POST',
+        //     uri: 'https://localhost:8080/legal_file_insert',
+        //     body:{
+        //         furi : req.file.filename 
+        //     }
+        // }
+
+        // //sending request with above options to digilocker to get list of files
+        // rp(options)
+        //     .then(function (body) {
+        //         // console.log('Got List of Files')
+        //         res.status(200)
+        //     })
+        //     .catch(function (err) {
+        //         console.log('Failure', err)
+        //         res.status(400).send({ error: 'Digilocker API call failed ' + err })
+        //     })
+
+        res.json(JSON.parse(`{"filename":"` + req.file.filename + `"}`))
+        
+    })
+})
+
+router.post('/legal_file_insert', (req, res) => {
+    console.log('legal file upload called ' + JSON.stringify(req.body))
+    var furi = req.body.furi;
+    var vd_id = req.signedCookies.vd_id_e
+    var vcd_id = req.signedCookies.vcd_id_e
+
+
+
+    db_1.default.query('INSERT INTO `legal_documents` ( `vd_id`, `vcd_id`, `file_type`, `furi`) VALUES (  ? , ?, "Company Registration Number" ,?);', [vd_id,vcd_id,furi ], function (error, results, fields) {
+        if (error) {
+            console.log('error', error)
+            res.sendStatus(400)
+        } else {
+            console.log(results)
+            res.sendStatus(200)
+            
+        }
+    })
+      
+})
+
+
+
+
+
+
 
 exports.default = router

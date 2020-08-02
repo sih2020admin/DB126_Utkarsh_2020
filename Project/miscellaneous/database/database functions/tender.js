@@ -21,7 +21,19 @@ async function getProfileDetails(request) {
                                             `);
     return profile[0];
 }
+
 exports.getProfileDetails = getProfileDetails;
+
+async function getProfile_upload_documents(request) {
+    var vd_id = request.signedCookies.vd_id_e;
+    var vcd_id = request.signedCookies.vcd_id_e;
+    let files = await connection_1.default.query(   ` SELECT id, vd_id, vcd_id, file_type, furi FROM legal_documents WHERE vd_id = ${vd_id}`);
+    return files[0];
+}
+
+exports.getProfile_upload_documents = getProfile_upload_documents;
+
+
 async function applyTenderDetails(request) {
     let tender_details = await connection_1.default.query(`SELECT * FROM  e_tender_details INNER JOIN department ON e_tender_details.dept_id = department.dept_id WHERE et_id = ${request.query['et_id']} ; SELECT  vcd_name, vcd_title, vcd_dob,vcd_aadhar,vcd_contact, vcd_email, vcd_designation FROM v_contact_details WHERE vcd_id=${request.signedCookies['vcd_id_e']}; SELECT v_name, v_address, v_yoe, v_email, v_mobile, v_reg_no, v_state_id, v_dist_id, v_city_id, v_pincode, v_legal_id, v_pan, v_is_verified, v_gst FROM vendor_details WHERE vd_id=${request.signedCookies['vd_id_e']}`);
     return tender_details[0];

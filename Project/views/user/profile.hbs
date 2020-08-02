@@ -55,10 +55,29 @@
     </div>
 
     <div id="Files" class="tabcontent" style="display: none;">
-      <h2>Legal Documents</h2>
+      <h2>Uploaded Legal Documents</h2>
+       <div class="tenders_details">
+         {{#if my_legal_documents}}
+          <table>
+            <tr>
+              <th>File Type</th>
+              <th>URI</th>
+              <th>View</th>
+            </tr>
+          {{#each my_legal_documents}}
+          <tr>
+              <td>{{file_type}}</td>
+              <td>{{furi}}</td>
+              <td><a href="">View</a></td>
+            </tr>
+          {{/each}}
+          </table>
+          {{else}}
+            <label class="RnoLabel"><strong>NO LEGAL DOCUMENTS APPLIED !! PLEASE UPLOAD TO GET VERIFIED </strong></label>
+          {{/if}}
+       </div>  
       <div>
         <h3>Upload Documents</h3>
-        
           <div>
             <input type="file" id="upload" accept="application/pdf" onchange="browse()">
             <p id="tc2"></p>
@@ -66,8 +85,6 @@
               <a target="blank" id ="preview" download>Click To Preview</a>
             </div>
           </div>
-          
-      
         <button id="digilocker" type="button" onclick="openModal()">Digilocker</button>
       </div>
       
