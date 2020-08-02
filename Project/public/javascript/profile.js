@@ -401,7 +401,8 @@ function graph_data() {
                     }]
                 },
                 // Configuration options go here
-                options: {responsive: true,
+                options: {
+                    responsive: true,
                     legend: {
                         display: false
                     },
@@ -953,35 +954,32 @@ var span = document.getElementsByClassName('close')[0] // Get the <span> element
 
 // When the user clicks the button, open the modal
 function openModal() {
-    if (document.getElementById('upload').value == '' || document.getElementById('upload1').value == '') document.getElementById('tc5').innerHTML = 'Documents Not Uploaded'
-    else {
-        //REfresh token API
-        var xhr = new XMLHttpRequest()
-        url = 'https://165.22.210.37:8081/refresh_token'
-        xhr.open('POST', url, true)
-        xhr.setRequestHeader('Content-Type', 'application/json')
+    //REfresh token API
+    var xhr = new XMLHttpRequest()
+    url = 'https://165.22.210.37:8081/refresh_token'
+    xhr.open('POST', url, true)
+    xhr.setRequestHeader('Content-Type', 'application/json')
 
-        xhr.send(
-            JSON.stringify({
-                // "id": vcd_id
-                id: vcd_id,           //modf_sanket
-            })
-        )
+    xhr.send(
+        JSON.stringify({
+            // "id": vcd_id
+            id: vcd_id,           //modf_sanket
+        })
+    )
 
-        //xhr repsonse handling
-        xhr.onload = function () {
-            var temp = JSON.parse(this.responseText)
-            if (this.status == 200) {
-                console.log('Your token has been refreshed successfully.')
+    //xhr repsonse handling
+    xhr.onload = function () {
+        var temp = JSON.parse(this.responseText)
+        if (this.status == 200) {
+            console.log('Your token has been refreshed successfully.')
 
-                //on success display modal and fetch files;
-                modal.style.display = 'flex'
-                get_files()
-            } else if (this.status == 400) {
-                alert(temp.error)
-            } else {
-                alert('Some Other Error ', xhr.status, ' with statusText ', xhr.statusText)
-            }
+            //on success display modal and fetch files;
+            modal.style.display = 'flex'
+            get_files()
+        } else if (this.status == 400) {
+            alert(temp.error)
+        } else {
+            alert('Some Other Error ', xhr.status, ' with statusText ', xhr.statusText)
         }
     }
 }
