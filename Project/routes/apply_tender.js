@@ -480,7 +480,7 @@ router.post('/legal_file_insert', (req, res) => {
 
 
 
-    db_1.default.query('INSERT INTO `legal_documents` ( `vd_id`, `vcd_id`, `file_type`, `furi`) VALUES (  ? , ?, "Company Registration Number" ,?);', [vd_id,vcd_id,furi ], function (error, results, fields) {
+    db_1.default.query('INSERT INTO `legal_documents` ( `vd_id`, `vcd_id`, `file_type`, `furi`) VALUES (  ? , ?, "Company Registration Number" ,?);UPDATE vendor_details SET v_is_verified=1 WHERE vd_id=?', [vd_id,vcd_id,furi,vd_id ], function (error, results, fields) {
         if (error) {
             console.log('error', error)
             res.sendStatus(400)
