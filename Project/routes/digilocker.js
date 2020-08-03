@@ -150,6 +150,7 @@ function get_refresh_token(res, vcd_id) {
 //get file from digilocker function
 function get_file(res, vcd_id, furi) {
     //Get access token from database
+    var key = process.env["ENCRYPTION_KEY"];
     var sql = 'SELECT access FROM access_token WHERE id=' + vcd_id
     db_1.default.query(sql, function (err, result) {
         if (err) {
@@ -181,8 +182,41 @@ function get_file(res, vcd_id, furi) {
             .on('data', function (datachunk) {
                 buffer_list.push(datachunk) //appending chunks of buffers to buffer_list as recieved
             })
+            .then(function (response) {
+                console.log("hello", response.headers);
+            })
             .then(function () {
                 buffer_data = Buffer.concat(buffer_list) //concatinating all chunks of buffers
+
+                //Algorithm to be used for HMAC
+                var algorithm = 'sha256'
+                //Secret to be used with HMAC
+                var secret = 'c0af1661ed05294b8f83'
+                //creating hmac object
+                var hmac = crypto.createHmac(algorithm, secret)
+
+                //set file data in hmac object
+                hmac.update(buffer_data)
+                //generate hmac
+                var gen_hmac = hmac.digest('base64')
+                var sql = 'select f1_hash , f2_hash from file_uri where furi1=AES_ENCRYPT("' + furi + '" , "' + key + '") OR furi2=AES_ENCRYPT("' + furi + '" , "' + key + '");'
+                db_1.default.query(sql, function (err, result) {
+                    if (err) throw err
+                    else {
+                        console.log(result)
+                        if (gen_hmac != result[0].f1_hash && gen_hmac != result[0].f2_hash) {
+                            res.status(400).send({ error: 'File Verification Failed... This file has been Modified' })
+                        }
+                        else {
+                            console.log("file verification success")
+                        }
+                    }
+                })
+
+                var sql = 'UPDATE v_contact_details SET digi_access=1 WHERE vcd_id=' + vcd_id
+                db_1.default.query(sql, function (err, result) {
+                    if (err) throw err
+                })
 
                 //keep below line for debugging purpose
                 //writableStream.write(buffer_data);
@@ -260,7 +294,7 @@ router.post('/refresh_token', (req, res) => {
     // var vcd_id = req.body.id
     var vcd_id = req.signedCookies.vcd_id_e;
 
-    if(vcd_id == undefined) {
+    if (vcd_id == undefined) {
         vcd_id = req.body.id;
     }
 
@@ -274,7 +308,7 @@ router.get('/check_digi_access', (req, res) => {
     var digi_access = req.signedCookies.digi_access_e;
     console.log("digi access server", digi_access);
 
-    res.status(200).send('{"digi_access":"'+digi_access+'"}');
+    res.status(200).send('{"digi_access":"' + digi_access + '"}');
 })
 
 //fetches self_uploaded files from digilocker
@@ -317,7 +351,97 @@ router.post('/fetch_files', (req, res) => {
 //upload files to digilocker
 router.post('/upload_files', function (req, res) {
     var file_name = req.body.filename
-    //console.log(file_name);
+    var flag = req.body.flag
+    var etd = req.body.etd
+    console.log(etd);
+
+    //joining path of directory
+    /*var path = require('path');
+    const directoryPath = path.join(__dirname, '../uploaded_documents/'+file_name);
+    */
+    const directoryPath = '/root/e-sign/V-victory/Project/routes/uploaded_documents/' + file_name
+
+    //console.log(directoryPath);
+    var data = fs.readFileSync(directoryPath)
+    //console.log(data);
+
+    //console.log(req.body);     //show form data
+    //console.log(req.files); //show form file
+    //console.log(req.headers); //show headers
+
+    // var vcd_id = req.header('vcd_id')
+    var vcd_id = req.signedCookies.vcd_id_e;
+    var pathDigi = req.header('path')
+    //console.log(vcd_id, pathDigi);
+
+    //Algorithm to be used for HMAC
+    var algorithm = 'sha256'
+    //Secret to be used with HMAC
+    var secret = 'c0af1661ed05294b8f83'
+    //creating hmac object
+    var hmac = crypto.createHmac(algorithm, secret)
+
+    //set file data in hmac object
+    hmac.update(data)
+    //generate hmac
+    var gen_hmac = hmac.digest('base64')
+    //console.log('Hmac generated using ' + algorithm + ' \nHashed output is :  ' + gen_hmac + ' \nFile name is :  ' + file_name);
+
+    var sql;
+    //insert file hash into database
+    if (flag == 0) {
+        sql = 'UPDATE file_uri SET f1_hash="' + gen_hmac + '" where etd_id=' + etd;
+    }
+    else {
+        sql = 'UPDATE file_uri SET f2_hash="' + gen_hmac + '" where etd_id=' + etd;
+    }
+
+    db_1.default.query(sql, function (err, result) {
+        if (err) {
+            console.log("err from dataabse query ", err)
+            res.status(400).send({ error: 'Database query failed' })
+        }
+
+        //Get access token from database
+        var sql = 'SELECT access FROM access_token WHERE id=' + vcd_id
+        db_1.default.query(sql, function (err, result) {
+            if (err) {
+                console.log("err from dataabse query2 ", err)
+                res.status(400).send({ error: 'Database query failed' })
+            }
+            console.log('Got Access Token from DB')
+            var access_token = result[0].access
+
+            var options = {
+                method: 'POST',
+                uri: 'https://api.digitallocker.gov.in/public/oauth2/1/file/upload',
+                body: data,
+                headers: {
+                    Authorization: 'Bearer ' + access_token,
+                    'Content-Type': 'application/pdf',
+                    path: pathDigi + '/' + file_name,
+                    hmac: gen_hmac,
+                },
+            }
+
+            rp(options)
+                .then(function (body) {
+                    console.log('File Uploaded to Digilocker Server successfully')
+                    res.status(200).send(gen_hmac)
+                })
+                .catch(function (err) {
+                    console.log('Failure', err)
+                })
+        })
+    })
+})
+
+//upload LEGAL files to digilocker
+router.post('/upload_legal_files', function (req, res) {
+    var file_name = req.body.filename
+    var flag = req.body.flag
+    var etd = req.body.etd
+    console.log(etd);
 
     //joining path of directory
     /*var path = require('path');
@@ -355,6 +479,7 @@ router.post('/upload_files', function (req, res) {
     var sql = 'SELECT access FROM access_token WHERE id=' + vcd_id
     db_1.default.query(sql, function (err, result) {
         if (err) {
+            console.log("err from dataabse query2 ", err)
             res.status(400).send({ error: 'Database query failed' })
         }
         console.log('Got Access Token from DB')

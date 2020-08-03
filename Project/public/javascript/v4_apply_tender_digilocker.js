@@ -318,7 +318,6 @@ function show_files(str) {
                         xhr.addEventListener('readystatechange', function () {
                             if (this.readyState === 4) {
                                 console.log(this.responseText)
-                                var data = JSON.stringify({ etd_id: etd_id, f_type: 'link', f_uri: BOQ_file_uri, tech_file: Technical_file_name, boq_file: BOQ_file_name })
 
                                 var xhr = new XMLHttpRequest()
 
@@ -561,12 +560,16 @@ function uploadFiles() {
             xhr.send(
                 JSON.stringify({
                     filename: Technical_file_name,
+                    flag: 0,
+                    etd: etd_id
                 })
             )
         } else if (Technical_or_BOQ == 1) {
             xhr.send(
                 JSON.stringify({
                     filename: BOQ_file_name,
+                    flag: 1,
+                    etd: etd_id
                 })
             )
         }
