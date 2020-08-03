@@ -48,14 +48,52 @@ $.post('/super-admin/approve-vendor').then((result) => {
                     </tr>
                     </table><br><br>
                     <div class="butts">
-                    <button data-vd_id="${result[i]["vd_id"]}" data-vcd_id="${result[i]["vcd_id"]}">Approve</button>
-                    <button>Disapprove</button></div>
+                    <button class="approve" data-vd_id="${result[i]["vd_id"]}" data-vcd_id="${result[i]["vcd_id"]}">Approve</button>
+                    <button class="disapprove"  data-vd_id="${result[i]["vd_id"]}">Disapprove</button></div>
                  `,
         }).appendTo('#container')
     }
 })
 $('#container').click((e)=>{
-    $.ajax({
+    if(e.target.className === 'approve'){
+        $.ajax({
+            url: "/super-admin/approve-vendor1",
+            method: 'POST',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify({
+                vd_id: e.target.getAttribute('data-vd_id'),
+            }),
+            success:function(result){
+                if(result === "Approved Successfully"){
+                    location.reload()
+                }
+            },
+            error: function (xhr, error_type, exception) {
+                var error_message = xhr.responseText;
+                console.log("" + error_message);
+            },
+        })
+    }
+    if(e.target.className === 'disapprove'){
+        $.ajax({
+            url: "/super-admin/disapprove-vendor",
+            method: 'POST',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify({
+                vd_id: e.target.getAttribute('data-vd_id'),
+            }),
+            success:function(result){
+                if(result === 'ok'){
+                    location.reload()
+                }
+            },
+            error: function (xhr, error_type, exception) {
+                var error_message = xhr.responseText;
+                console.log("" + error_message);
+            },
+        })
+    }
+    /* $.ajax({
         url: "/super-admin/approve-vendor1",
         method: 'POST',
         contentType: 'application/json; charset=utf-8',
@@ -65,6 +103,6 @@ $('#container').click((e)=>{
         success:function(result){
 
         }
-    })
+    }) */
     //console.log(e.target.getAttribute('data-vd_id'),e.target.getAttribute('data-vcd_id'))
 })
