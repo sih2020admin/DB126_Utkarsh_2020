@@ -599,7 +599,7 @@ window.onload = function () {
                 et_id = temp[0]
                 etd_id = temp[1]
 
-                window.location.href = 'https://api.digitallocker.gov.in/public/oauth2/1/authorize?response_type=code&client_id=DC8FB8CF&redirect_uri=https://165.22.210.37:8081/tender/upload-documents&state=' + et_id + ':' + etd_id
+                window.location.href = 'https://api.digitallocker.gov.in/public/oauth2/1/authorize?response_type=code&client_id=DC8FB8CF&redirect_uri=https://165.22.210.37:8081/profile&state=' + et_id + ':' + etd_id
             }
             //check if url contains param "state"
             else if (state) {
@@ -659,7 +659,7 @@ window.onload = function () {
                     //if we don't have param "state" and also not digi_access
                     //then change url and redirect to digilocker
                     alert(`We don't have access to your digilocker account. please give access. Click "OK" to continue`)
-                    window.location.href = 'https://api.digitallocker.gov.in/public/oauth2/1/authorize?response_type=code&client_id=DC8FB8CF&redirect_uri=https://165.22.210.37:8081/tender/upload-documents&state=' + et_id + ':' + etd_id
+                    window.location.href = 'https://api.digitallocker.gov.in/public/oauth2/1/authorize?response_type=code&client_id=DC8FB8CF&redirect_uri=https://165.22.210.37:8081/profile&state=' + et_id + ':' + etd_id
                 } else {
                     //if we don't have param "state" in url but we have digi_access then no need of digilocker signin
                     console.log('We have digi_access but not parameters in url')
