@@ -32,5 +32,16 @@ $.post('/super-admin/approve-vendor').then((result) => {
     }
 })
 $('#container').click((e)=>{
-    console.log(e.target.getAttribute('data-vd_id'),e.target.getAttribute('data-vcd_id'))
+    $.ajax({
+        url: "/super-admin/approve-vendor1",
+        method: 'POST',
+        contentType: 'application/json; charset=utf-8',
+        data: JSON.stringify({
+            vd_id: e.target.getAttribute('data-vd_id'),
+        }),
+        success:function(result){
+
+        }
+    })
+    //console.log(e.target.getAttribute('data-vd_id'),e.target.getAttribute('data-vcd_id'))
 })
