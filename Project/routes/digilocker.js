@@ -174,7 +174,6 @@ function get_file(res, vcd_id, furi) {
 
         var buffer_data //to store entire buffer of file received from digilocker
         var buffer_list = [] //append each chunk of buffer here as recieved
-        var  gen_hmac;
 
         //keep below line for debugging purpose
         //var writableStream = fs.createWriteStream('digi.pdf');
@@ -199,15 +198,7 @@ function get_file(res, vcd_id, furi) {
                 //set file data in hmac object
                 hmac.update(buffer_data)
                 //generate hmac
-                 gen_hmac = hmac.digest('base64')
-                
-
-                
-                //keep below line for debugging purpose
-                //writableStream.write(buffer_data);
-            })
-            .then(function () {
-
+                var gen_hmac = hmac.digest('base64')
                 var sql = 'select f1_hash , f2_hash from file_uri where furi1=AES_ENCRYPT("' + furi + '" , "' + key + '") OR furi2=AES_ENCRYPT("' + furi + '" , "' + key + '");'
                 db_1.default.query(sql, function (err, result) {
                     if (err) throw err
@@ -218,12 +209,21 @@ function get_file(res, vcd_id, furi) {
                         }
                         else {
                             console.log("file verification success")
-                            res.contentType('application/pdf')
-                            res.status(200).send(buffer_data) //send buffer data of file to front-end
                         }
                     }
                 })
-                
+
+                var sql = 'UPDATE v_contact_details SET digi_access=1 WHERE vcd_id=' + vcd_id
+                db_1.default.query(sql, function (err, result) {
+                    if (err) throw err
+                })
+
+                //keep below line for debugging purpose
+                //writableStream.write(buffer_data);
+            })
+            .then(function () {
+                res.contentType('application/pdf')
+                res.status(200).send(buffer_data) //send buffer data of file to front-end
             })
             .catch(function (err) {
                 console.log('Failure', err)
@@ -436,6 +436,78 @@ router.post('/upload_files', function (req, res) {
     })
 })
 
+//upload LEGAL files to digilocker
+router.post('/upload_legal_files', function (req, res) {
+    var file_name = req.body.filename
+    var flag = req.body.flag
+    var etd = req.body.etd
+    console.log(etd);
+
+    //joining path of directory
+    /*var path = require('path');
+    const directoryPath = path.join(__dirname, '../uploaded_documents/'+file_name);
+    */
+    const directoryPath = '/root/e-sign/V-victory/Project/routes/uploaded_documents/' + file_name
+
+    //console.log(directoryPath);
+    var data = fs.readFileSync(directoryPath)
+    //console.log(data);
+
+    //console.log(req.body);     //show form data
+    //console.log(req.files); //show form file
+    //console.log(req.headers); //show headers
+
+    // var vcd_id = req.header('vcd_id')
+    var vcd_id = req.signedCookies.vcd_id_e;
+    var pathDigi = req.header('path')
+    //console.log(vcd_id, pathDigi);
+
+    //Algorithm to be used for HMAC
+    var algorithm = 'sha256'
+    //Secret to be used with HMAC
+    var secret = 'c0af1661ed05294b8f83'
+    //creating hmac object
+    var hmac = crypto.createHmac(algorithm, secret)
+
+    //set file data in hmac object
+    hmac.update(data)
+    //generate hmac
+    var gen_hmac = hmac.digest('base64')
+    //console.log('Hmac generated using ' + algorithm + ' \nHashed output is :  ' + gen_hmac + ' \nFile name is :  ' + file_name);
+
+    //Get access token from database
+    var sql = 'SELECT access FROM access_token WHERE id=' + vcd_id
+    db_1.default.query(sql, function (err, result) {
+        if (err) {
+            console.log("err from dataabse query2 ", err)
+            res.status(400).send({ error: 'Database query failed' })
+        }
+        console.log('Got Access Token from DB')
+        var access_token = result[0].access
+
+        var options = {
+            method: 'POST',
+            uri: 'https://api.digitallocker.gov.in/public/oauth2/1/file/upload',
+            body: data,
+            headers: {
+                Authorization: 'Bearer ' + access_token,
+                'Content-Type': 'application/pdf',
+                path: pathDigi + '/' + file_name,
+                hmac: gen_hmac,
+            },
+        }
+
+        rp(options)
+            .then(function (body) {
+                console.log('File Uploaded to Digilocker Server successfully')
+                res.status(200).send(gen_hmac)
+            })
+            .catch(function (err) {
+                console.log('Failure', err)
+            })
+    })
+})
+
 //revoke digilocker token
 router.post('/revoke_token', function (req, res) {
     // console.log("Revoke called");
@@ -613,4 +685,184 @@ router.get('/get_files', (req, res) => {
     /* ------------------------------End of refresh Token ----------------------------------------- */
 })
 
+/* ----------------------------- Start of super admin get file code ---------------------------- */
+
+//get file from digilocker function
+function get_file_super(res, vcd_id, furi) {
+    //Get access token from database
+    var key = process.env["ENCRYPTION_KEY"];
+    var sql = 'SELECT access FROM access_token WHERE id=' + vcd_id
+    db_1.default.query(sql, function (err, result) {
+        if (err) {
+            res.status(400).send({ error: 'Database query failed' })
+        }
+        console.log('Got Access Token from DB')
+        var access_token = result[0].access
+
+        //creating options parameter for external server call
+        var options = {
+            method: 'GET',
+            uri: 'https://api.digitallocker.gov.in/public/oauth2/1/file/' + furi,
+            headers: {
+                Authorization: 'Bearer ' + access_token,
+            },
+            resolveWithFullResponse: true,
+        }
+
+        //Note: - Digilocker does not loads entire file and then sends to our server
+        //It does streaming of file while sending.. hence buffer data gets divided into chunks
+
+        var buffer_data //to store entire buffer of file received from digilocker
+        var buffer_list = [] //append each chunk of buffer here as recieved
+
+        //keep below line for debugging purpose
+        //var writableStream = fs.createWriteStream('digi.pdf');
+
+        rp(options)
+            .on('data', function (datachunk) {
+                buffer_list.push(datachunk) //appending chunks of buffers to buffer_list as recieved
+            })
+            .then(function (response) {
+                console.log("hello", response.headers);
+            })
+            .then(function () {
+                buffer_data = Buffer.concat(buffer_list) //concatinating all chunks of buffers
+
+                //keep below line for debugging purpose
+                //writableStream.write(buffer_data);
+            })
+            .then(function () {
+                res.contentType('application/pdf')
+                res.status(200).send(buffer_data) //send buffer data of file to front-end
+            })
+            .catch(function (err) {
+                console.log('Failure', err)
+                res.status(400).send({ error: 'Database query failed' })
+            })
+    })
+}
+
+router.get('/get_files_super', (req, res) => {
+    var furi = req.query.furi
+    //var vd_id = req.query.vd_id;
+    // var vcd_id = req.query.vcd_id
+    var vcd_id = req.query.vcd_id;
+
+    console.log("get files sankey", furi, vcd_id);
+
+    /* ------------------------ Start of Refresh Token ----------------------------- */
+
+    var refresh_token1
+    var date, time
+
+    //get timestamp of token from database
+    var sql = 'SELECT date, time FROM access_token WHERE id=' + vcd_id
+    db_1.default.query(sql, function (err, result) {
+        if (err) {
+            res.status(400).send({ error: "Database connection failed, can't get timestamp of access token" })
+        } else {
+            console.log('Got Timestamp of Access Token from DB')
+            date = result[0].date
+            time = result[0].time
+
+            //get current timestamp in IST
+            var temp = getIST()
+            temp = temp.split(';')
+            var cur_date = temp[0]
+            var cur_time = temp[1]
+
+            //get date, month, year from date and hr minute and sec from time
+            date = date.split('/') //split date to get day, month and year
+            var date_d = date[0]
+            var date_m = date[1]
+            var date_y = date[2]
+
+            time = time.split(':') //split time to get hours, minutes and seconds
+            var time_h = time[0]
+            var time_m = time[1]
+            var time_s = time[2]
+
+            cur_date = cur_date.split('/') //split --current-- date to get day, month and year
+            var cur_date_d = cur_date[0]
+            var cur_date_m = cur_date[1]
+            var cur_date_y = cur_date[2]
+
+            cur_time = cur_time.split(':') //split --current-- time to get hours, minutes and seconds
+            var cur_time_h = cur_time[0]
+            var cur_time_m = cur_time[1]
+            var cur_time_s = cur_time[2]
+
+            var date = new Date(date_y, date_m, date_d, time_h, time_m, time_s) //structuring old date
+            var cur_date = new Date(cur_date_y, cur_date_m, cur_date_d, cur_time_h, cur_time_m, cur_time_s) //structuring --current-- date
+
+            //calculate time and day difference (time difference in minutes)
+            var timeDifference = Math.abs(date.getTime() - cur_date.getTime())
+
+            let differentDays = Math.ceil(timeDifference / (1000 * 3600 * 24))
+            let differentTime = Math.ceil(timeDifference / (1000 * 60))
+
+            //compare dates if difference is == 0 or 1 days (we are taking diffDay = 1 because we have use ceil function see below)
+            //and compare time if difference is < 50 minutes don't refresh token
+            // note: although token expires after 60 minutes we will refresh token after 50 minutes only
+            if ((differentDays == 1 || differentDays == 0) && differentTime < 50) {
+                get_file_super(res, vcd_id, furi)
+            } else {
+                //get refresh token from database... using which we can get new access token
+                var sql = 'SELECT refresh FROM access_token WHERE id=' + vcd_id
+                db_1.default.query(sql, function (err, result) {
+                    if (err) {
+                        res.status(400).send({ error: "Database connection failed, can't get refresh token from database" })
+                    } else {
+                        refresh_token1 = result[0].refresh
+
+                        //creating options parameter for external server call
+                        var options = {
+                            method: 'POST',
+                            uri: 'https://api.digitallocker.gov.in/public/oauth2/1/token',
+                            form: {
+                                refresh_token: refresh_token1,
+                                grant_type: 'refresh_token',
+                            },
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded',
+                                Authorization: 'Basic REM4RkI4Q0Y6YzBhZjE2NjFlZDA1Mjk0YjhmODM=',
+                            },
+                            json: true,
+                        }
+                        //sending request with above options to digilocker to get new access token
+                        rp(options)
+                            .then(function (body) {
+                                console.log('Token has been refreshed successfully')
+                                // console.log(body);
+
+                                //getting Current Timestamp in IST
+                                var temp = getIST()
+                                temp = temp.split(';')
+                                var date = temp[0]
+                                var time = temp[1]
+
+                                //Updating access and refresh token into database
+                                var sql = "UPDATE access_token SET access = '" + body.access_token + "', refresh = '" + body.refresh_token + "', date = '" + date + "', time = '" + time + "' WHERE id=" + vcd_id
+                                db_1.default.query(sql, function (err, result) {
+                                    if (err) {
+                                        res.status(400).send({ error: "Database query failed, can't update access token" })
+                                    } else {
+                                        get_file_super(res, vcd_id, furi)
+                                    }
+                                })
+                            })
+                            .catch(function (err) {
+                                console.log('Failure', err)
+                                if (err) throw err
+                            })
+                    }
+                })
+            }
+        }
+    })
+
+    /* ------------------------------End of refresh Token ----------------------------------------- */
+})
+
+/* ----------------------------- End of super admin get file code ---------------------------- */
 exports.default = router
