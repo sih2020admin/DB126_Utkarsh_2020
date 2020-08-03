@@ -45,7 +45,7 @@ $.post('/super-admin/approve-vendor').then((result) => {
                     </tr>
                     <tr>
                     <td class="fields">Designation</td><td>${result[i]['vcd_designation']}</td>
-                    <td class="fields">File URL</td><td><a href="${result[i]['furi']}">Link</a></td>
+                    <td class="fields">File URL</td><td><a target="_blank" href="/get_file_super?furi=${result[i]['furi']}&vcd_id=${result[i]['vcd_id']}">Link</a></td>
                     </tr>
                     </table><br><br>
                     <div class="butts">
