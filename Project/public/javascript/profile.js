@@ -145,11 +145,6 @@ xhr.onload = function () {
         var response,
             option = ''
         response = JSON.parse(this.responseText)
-        console.log("v_is verfied statsus",response[0][0].v_is_verified)
-        if(response[0][0].v_is_verified ==2 ){
-            
-            document.getElementById("verify_vendor").style.display = "" ;
-        }
 
         /* document.getElementById('name').value = response[1][0].vcd_name
         document.getElementById('dob').value = response[1][0].vcd_dob
@@ -571,7 +566,7 @@ var Technical_or_BOQ = 0 //0 = no document uploaded yet, 1 = technical document 
 /* ----------------------------- Start of on load code (redirect to digilocker sign in) --------------------------- */
 
 //on window load check if user need to be redirected to digilocker sign in page
-function sanky() {
+window.onload = function () {
     //on load of page... hide loader of back and upload button
     document.getElementById('icon2').style.display = 'none'
     document.getElementById('icon3').style.display = 'none'
@@ -604,7 +599,7 @@ function sanky() {
                 et_id = temp[0]
                 etd_id = temp[1]
 
-                window.location.href = 'https://api.digitallocker.gov.in/public/oauth2/1/authorize?response_type=code&client_id=DC8FB8CF&redirect_uri=https://165.22.210.37:8081/profile&state=' + et_id + ':' + etd_id
+                window.location.href = 'https://api.digitallocker.gov.in/public/oauth2/1/authorize?response_type=code&client_id=DC8FB8CF&redirect_uri=https://165.22.210.37:8081/tender/upload-documents&state=' + et_id + ':' + etd_id
             }
             //check if url contains param "state"
             else if (state) {
@@ -664,7 +659,7 @@ function sanky() {
                     //if we don't have param "state" and also not digi_access
                     //then change url and redirect to digilocker
                     alert(`We don't have access to your digilocker account. please give access. Click "OK" to continue`)
-                    window.location.href = 'https://api.digitallocker.gov.in/public/oauth2/1/authorize?response_type=code&client_id=DC8FB8CF&redirect_uri=https://165.22.210.37:8081/profile&state=' + et_id + ':' + etd_id
+                    window.location.href = 'https://api.digitallocker.gov.in/public/oauth2/1/authorize?response_type=code&client_id=DC8FB8CF&redirect_uri=https://165.22.210.37:8081/tender/upload-documents&state=' + et_id + ':' + etd_id
                 } else {
                     //if we don't have param "state" in url but we have digi_access then no need of digilocker signin
                     console.log('We have digi_access but not parameters in url')
@@ -895,7 +890,6 @@ var span = document.getElementsByClassName('close')[0] // Get the <span> element
 
 // When the user clicks the button, open the modal
 function openModal() {
-    sanky();        //checks digi_access
     //REfresh token API
     var xhr = new XMLHttpRequest()
     url = 'https://165.22.210.37:8081/refresh_token'
