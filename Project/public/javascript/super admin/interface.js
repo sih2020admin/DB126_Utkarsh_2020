@@ -36,7 +36,7 @@ $.post('/super-admin/approve-vendor').then((result) => {
                     <td class="fields">Title</td><td>${result[i]['vcd_title']}</td>
                     </tr>
                     <tr>
-                    <td class="fields">Date of Birth</td><td>${result[i]['v_dob']}</td>
+                    <td class="fields">Date of Birth</td><td>${result[i]['vcd_dob']}</td>
                     <td class="fields">Aadhaar</td><td>${result[i]['vcd_aadhar']}</td>
                     </tr>
                     <tr>
