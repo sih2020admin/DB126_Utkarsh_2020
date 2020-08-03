@@ -47,7 +47,7 @@ function app(j){
 
     var equipment = document.getElementById('equipment').getContext('2d');
             var chart = new Chart(equipment, {
-                type: 'horizontalBar',
+                type: 'bar',
                 data: {
                     labels: [' '],
                     datasets: [{

@@ -145,6 +145,11 @@ xhr.onload = function () {
         var response,
             option = ''
         response = JSON.parse(this.responseText)
+        console.log("v_is verfied statsus",response[0][0].v_is_verified)
+        if(response[0][0].v_is_verified ==2 ){
+            
+            document.getElementById("verify_vendor").style.display = "" ;
+        }
 
         /* document.getElementById('name').value = response[1][0].vcd_name
         document.getElementById('dob').value = response[1][0].vcd_dob

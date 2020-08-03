@@ -9,6 +9,40 @@
   -webkit-font-smoothing: antialiased;
 }
 
+.tab_section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  margin-top: 10px;
+}
+
+.tab_section button {
+  width: 49%;
+  height: 40px;
+  outline: none;
+  background-color: var(--main_color);
+  color: white;
+  font-size: 1rem;
+  border: 1.5px solid var(--main_color);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.tab_section button:hover {
+  background-color: #fff;
+  color: var(--main_color);
+  border: 1.5px solid var(--main_color);
+}
+
+.tab_section .active {
+  background-color: #fff;
+  color: var(--main_color);
+  border: 1.5px solid var(--main_color);
+}
+
 .container h1 {
   text-align: center;
   color: var(--main_color);

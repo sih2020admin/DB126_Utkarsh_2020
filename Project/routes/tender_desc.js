@@ -42,24 +42,47 @@ router.post('/get_etd_id', function (req, res) {
 	var vd_id = req.signedCookies.vd_id_e;
 	  var vcd_id = req.signedCookies.vcd_id_e;
 	  var key=process.env["ENCRYPTION_KEY"];
-	console.log("tender desc called "+et_id)
+	console.log("tender desc called "+et_id,vd_id)
+	if(vd_id == undefined){
+		res.sendStatus(464);
+	}
+	else db_1.default.query('SELECT v_is_verified FROM `vendor_details` WHERE vd_id=?;',[vd_id], function (error, results, fields) {
+		if (error) {
+				  console.log(error);
+				  res.sendStatus(400);
+			 }else{
+				   if(results.length >0){
+					   console.log(results[0].v_is_verified);
+					//    res.send(results[0]);
+					if(results[0].v_is_verified ==0 ){
+							res.sendStatus(461)
+				   }else if(results[0].v_is_verified ==1 ){
+					res.sendStatus(462)
+		  			 }
+				   else{
+					db_1.default.query('SELECT etv.etd_id,cast( AES_DECRYPT(etv.status ,?) as char ) as status  FROM  e_tender_vendor as etv  , e_tender_details as e WHERE etv.et_id = ? and etv.vd_id=? and  e.et_last_date_apply >= CURRENT_DATE',[key,et_id,vd_id], function (error, results, fields) {
+						if (error) {
+								  console.log(error);
+								  res.sendStatus(400);
+							 }else{
+								   if(results.length >0){
+									   console.log(results[0]);
+									   res.send(results[0]);
+								   }
+								   else{
+									 //does not exists
+									 res.sendStatus(404);
+								   }
+							  }
+						});
+
+				   }
+			  }
+			}
+		});
 
 			
-db_1.default.query('SELECT etv.etd_id,cast( AES_DECRYPT(etv.status ,?) as char ) as status  FROM  e_tender_vendor as etv  , e_tender_details as e WHERE etv.et_id = ? and etv.vd_id=? and  e.et_last_date_apply >= CURRENT_DATE',[key,et_id,vd_id], function (error, results, fields) {
-	if (error) {
-			  console.log(error);
-			  res.sendStatus(400);
-		 }else{
-			   if(results.length >0){
-				   console.log(results[0]);
-				   res.send(results[0]);
-			   }
-			   else{
-				 //does not exists
-				 res.sendStatus(404);
-			   }
-		  }
-	});
+
 });
 	
 router.post('/view', function (req, res) {

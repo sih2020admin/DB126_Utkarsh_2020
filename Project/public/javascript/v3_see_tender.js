@@ -70,7 +70,54 @@ function apply(et_id) {
 
     var xhr = new XMLHttpRequest()
     xhr.onload = function () {
-        if (this.status === 200) {
+        if (this.status === 464) {
+
+            Swal.fire({
+                title: 'Your not Logged in',
+                text: 'Please login to apply',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#663EFD',
+                cancelButtonColor: '#a6a6a6',
+                confirmButtonText: 'Login',
+            }).then((result) => {
+                console.log(result)
+                window.location.href = '/login'
+            })
+
+        }
+        else if (this.status === 461) {
+
+            Swal.fire({
+                title: 'Your Comapny is not verified',
+                text: 'Get Your company verified by uploading the documents',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#663EFD',
+                cancelButtonColor: '#a6a6a6',
+                confirmButtonText: 'upload',
+            }).then((result) => {
+                console.log(result)
+                window.location.href = '/profile'
+            })
+
+        }
+        else if (this.status === 462) {
+
+            Swal.fire({
+                title: 'Your Comapny is not verified',
+                text: 'Your company verification is pending will let you know when you get verfied',
+                icon: 'warning',
+                confirmButtonColor: '#663EFD',
+                cancelButtonColor: '#a6a6a6',
+                confirmButtonText: 'Okay',
+            }).then((result) => {
+                console.log(result)
+                // window.location.href = '/profile'
+            })
+
+        }
+        else if (this.status === 200) {
             res = JSON.parse(this.responseText)
             console.log(this.responseText ,res )
             var status = res.status
