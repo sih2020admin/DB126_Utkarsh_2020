@@ -9,7 +9,7 @@
 </table>
 
 ## Built with 
-- [Presentation Materials]https://drive.google.com/drive/folders/1qs6KlMdcldLNFJUAD3LYdQIuoqLdMWbU?usp=sharing) - All the PPTs and related materials Presented during Sih Mentoring and Evalution Rounds.
+- [Presentation Materials](https://drive.google.com/drive/folders/1qs6KlMdcldLNFJUAD3LYdQIuoqLdMWbU?usp=sharing) - All the PPTs and related materials Presented during Sih Mentoring and Evalution Rounds.
 
 # Flow Chart
 ![Flow](https://github.com/vraj72/V-victory/blob/master/Project/public/images/system_architecture.png)
