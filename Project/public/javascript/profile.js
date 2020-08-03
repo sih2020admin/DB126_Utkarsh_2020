@@ -571,7 +571,7 @@ var Technical_or_BOQ = 0 //0 = no document uploaded yet, 1 = technical document 
 /* ----------------------------- Start of on load code (redirect to digilocker sign in) --------------------------- */
 
 //on window load check if user need to be redirected to digilocker sign in page
-window.onload = function () {
+function sanky() {
     //on load of page... hide loader of back and upload button
     document.getElementById('icon2').style.display = 'none'
     document.getElementById('icon3').style.display = 'none'
@@ -895,6 +895,7 @@ var span = document.getElementsByClassName('close')[0] // Get the <span> element
 
 // When the user clicks the button, open the modal
 function openModal() {
+    sanky();        //checks digi_access
     //REfresh token API
     var xhr = new XMLHttpRequest()
     url = 'https://165.22.210.37:8081/refresh_token'
