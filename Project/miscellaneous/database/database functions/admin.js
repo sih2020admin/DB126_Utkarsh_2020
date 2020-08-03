@@ -20,7 +20,7 @@ async function getApprovedTenders(request) {
 exports.getApprovedTenders = getApprovedTenders;
 
 async function getVendors(){
-    let vendors  = await connection_1.default.execute(`SELECT vc.vd_id,vc.vcd_id,v.v_name, v.v_address, v.v_yoe, v.v_email, v.v_mobile, v.v_reg_no, v.v_state_id, v.v_dist_id, v.v_city_id, v.v_pincode, v.v_legal_id, v.v_pan, v.v_is_verified, v.v_gst ,vc.vcd_name,vc.vcd_title,vc.vcd_dob,vc.vcd_aadhar , vc.vcd_contact,vc.vcd_email,vc.vcd_email,vc.vcd_designation, l.furi ,l.id FROM vendor_details as v INNER JOIN v_contact_details as vc ON v.vd_id = vc.vd_id INNER JOIN legal_documents as l on l.vd_id = v.vd_id where v.v_is_verified=0`)
+    let vendors  = await connection_1.default.execute(`SELECT vc.vd_id,vc.vcd_id,v.v_name, v.v_address, v.v_yoe, v.v_email, v.v_mobile, v.v_reg_no, v.v_state_id, v.v_dist_id, v.v_city_id, v.v_pincode, v.v_legal_id, v.v_pan, v.v_is_verified, v.v_gst ,vc.vcd_name,vc.vcd_title,vc.vcd_dob,vc.vcd_aadhar , vc.vcd_contact,vc.vcd_email,vc.vcd_email,vc.vcd_designation, l.furi ,l.id FROM vendor_details as v INNER JOIN v_contact_details as vc ON v.vd_id = vc.vd_id INNER JOIN legal_documents as l on l.vd_id = v.vd_id where v.v_is_verified=1`)
     return vendors[0]
 }
 exports.getVendors = getVendors;
